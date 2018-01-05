@@ -19,7 +19,7 @@ def build_sed_decscore_congruence(sys_instances):
         def _congruence(r, s):
             return 1.0
     elif len(sys_instances) > 1:
-        sys_dec_scores = map(lambda x: x["confidence"], sys_instances)
+        sys_dec_scores = [ s["confidence"] for s in sys_instances ]
         min_dec_score = min(sys_dec_scores)
         sys_dec_range = max(sys_dec_scores) - min_dec_score
         

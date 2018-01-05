@@ -68,7 +68,7 @@ if __name__ == '__main__':
 
     log(1, "[Info] Loading file index file")
     file_index = load_json(args.file_index)
-
+    
     def _get_activity_instances(activity, filename, instances_dict):
         if activity in instances_dict:
             return instances_dict[activity].get(filename, [])
@@ -84,7 +84,10 @@ if __name__ == '__main__':
             reference_activity_instances = _get_activity_instances(activity, filename, reference_activities)
             system_activity_instances = _get_activity_instances(activity, filename, system_output_activities)
 
-            sed_kernel = build_linear_combination_kernel([build_sed_time_overlap_filter()],
+            # According to SED eval plan delta_t is 10 seconds (seems
+            # long?), not 10 frames
+            delta_t = file_index[filename]["fps"] * 10
+            sed_kernel = build_linear_combination_kernel([build_sed_time_overlap_filter(delta_t)],
                                                          [("time_congruence", 1.0e-8, sed_time_congruence),
                                                           ("decscore_congruence", 1.0e-6, build_sed_decscore_congruence(system_activity_instances))])
         
@@ -112,8 +115,8 @@ if __name__ == '__main__':
             return "{}[{}:{}]".format(ai["activityID"], ai["localization"]["beginFrame"], ai["localization"]["endFrame"])
 
     def _alignment_record_to_str(rec):
-        activity, alignment, r, s, sim, components = rec
+        activity, filename, alignment, r, s, sim, components = rec
 
-        return "|".join((activity, alignment, _format_activity_instance(r), _format_activity_instance(s), str(sim), str(components)))
+        return "|".join((activity, filename, alignment, _format_activity_instance(r), _format_activity_instance(s), str(sim), str(components)))
         
     print "\n".join(map(_alignment_record_to_str, alignment_records))

@@ -128,15 +128,52 @@ class TestPerformAlignment(TestAlignment):
 
         self.sys_instances_empty = []
         self.ref_instances_empty = []
-                
+
+        def _filter_u(r_i, s_i):
+            return not ((r_i == 3 and s_i == 1) or (s_i > 1 and r_i < 3))
+        
+        def _comp_u_func(r_i, s_i):
+            return r_i + s_i
+        
+        self.ref_instances_u = [1, 2, 3]
+        self.sys_instances_u = [1, 2, 3]
+
+        self.kernel_u = build_linear_combination_kernel([_filter_u], [("add", 1, _comp_u_func)])
+        
+        # self.sim_matrix_unsolvable = [[3, 4, D],
+        #                               [D, D, 6],
+        #                               [D, D, 7]]
+
+        self.corr_u = [(3, 3, 7, { "add": 6 }),
+                       (2, 1, 4, { "add": 3 })]
+        self.miss_u = [(1, None, None, None)]
+        self.fa_u = [(None, 2, None, None)]
+
+    def assertAlignment(self, observed, expected):
+        obs_corr, obs_miss, obs_fa = observed
+        exp_corr, exp_miss, exp_fa = expected
+
+        self.assertItemsEqual(obs_corr, exp_corr)
+        self.assertItemsEqual(obs_miss, exp_miss)
+        self.assertItemsEqual(obs_fa, exp_fa)
+        
     def test_alignment(self):
-        self.assertEqual(perform_alignment(self.ref_instances_1, self.sys_instances_1, self.kernel_multi), (self.corr_1, self.miss_1, self.fa_1))
-        self.assertEqual(perform_alignment(self.ref_instances_1, self.sys_instances_1, self.kernel_2), (self.corr_2, self.miss_2, self.fa_2))
+        self.assertAlignment(perform_alignment(self.ref_instances_1, self.sys_instances_1, self.kernel_multi), (self.corr_1, self.miss_1, self.fa_1))
+
+        self.assertAlignment(perform_alignment(self.ref_instances_1, self.sys_instances_1, self.kernel_2), (self.corr_2, self.miss_2, self.fa_2))
 
     def test_alignment_empty(self):
-        self.assertEqual(perform_alignment(self.ref_instances_1, self.sys_instances_1, self.kernel_d), (self.corr_d, self.miss_d, self.fa_d))
-        self.assertEqual(perform_alignment(self.ref_instances_1, self.sys_instances_empty, self.kernel_multi), (self.corr_d, self.miss_d, []))
-        self.assertEqual(perform_alignment(self.ref_instances_empty, self.sys_instances_1, self.kernel_multi), (self.corr_d, [], self.fa_d))
+        self.assertAlignment(perform_alignment(self.ref_instances_1, self.sys_instances_1, self.kernel_d), (self.corr_d, self.miss_d, self.fa_d))
+        
+        self.assertAlignment(perform_alignment(self.ref_instances_1, self.sys_instances_empty, self.kernel_multi), (self.corr_d, self.miss_d, []))
+        
+        self.assertAlignment(perform_alignment(self.ref_instances_empty, self.sys_instances_1, self.kernel_multi), (self.corr_d, [], self.fa_d))
+
+    def test_munkres_unsolvable(self):
+        # If using DISALLOWED alone, the "munkres" library can't solve
+        # a matrix with possible assignments less than max(M, N).  The
+        # alignment function should cover this case
+        self.assertAlignment(perform_alignment(self.ref_instances_u, self.sys_instances_u, self.kernel_u), (self.corr_u, self.miss_u, self.fa_u))
         
 if __name__ == '__main__':
     unittest.main()
