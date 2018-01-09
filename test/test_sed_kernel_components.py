@@ -57,14 +57,14 @@ class TestDecscoreCongruence(TestSEDKernelComponents):
     def setUp(self):
         super(TestDecscoreCongruence, self).setUp()
 
-        self.sys_1 = [ { "confidence": 0.4 },
-                       { "confidence": 0.5 },
-                       { "confidence": 0.8 },
-                       { "confidence": 0.85 },
-                       { "confidence": 0.95 } ]
+        self.sys_1 = [ { "decisionScore": 0.4 },
+                       { "decisionScore": 0.5 },
+                       { "decisionScore": 0.8 },
+                       { "decisionScore": 0.85 },
+                       { "decisionScore": 0.95 } ]
         self.congruence_func_sys_1 = build_sed_decscore_congruence(self.sys_1)
 
-        self.sys_2 = [ { "confidence": 0.4 } ]        
+        self.sys_2 = [ { "decisionScore": 0.4 } ]
         self.congruence_func_sys_2 = build_sed_decscore_congruence(self.sys_2)
 
         self.sys_empty = [ ]
