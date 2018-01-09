@@ -40,6 +40,10 @@ class TestSparseSignal(unittest.TestCase):
 
         self.sn1 = S({0: 1, 10: 1, 20: 0})
 
+        self.sc1 = S({5: 1, 10: 0})
+        self.sc2 = S({5: 1, 7:1, 10: 0})
+        self.sc3 = S({0: 1, 10: 0})
+
     def testSignalEquivalence(self):
         self.assertEqual(self.se, self.se)
         self.assertEqual(self.s1, self.s1)
@@ -92,6 +96,18 @@ class TestSparseSignal(unittest.TestCase):
 
     def testNormalize(self):
         self.assertEqual(self.sn1.normalize(), S({0: 1, 20: 0}))
+
+    def testGenerateCollar(self):
+        self.assertEqual(self.sc1.generate_collar(2), S({3: 1, 7: 0, 8: 1, 12: 0}))
+        
+        # Input signal should be normalized in the generate_collar
+        # function
+        self.assertEqual(self.sc2.generate_collar(2), S({3: 1, 7: 0, 8: 1, 12: 0}))
+
+        self.assertEqual(self.sc3.generate_collar(2), S({-2: 1, 2: 0, 8: 1, 12: 0}))
+
+        # Output signal should be normalized
+        self.assertEqual(self.sc1.generate_collar(5), S({0: 1, 15: 0}))
         
 if __name__ == '__main__':
     unittest.main()

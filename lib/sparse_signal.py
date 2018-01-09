@@ -46,3 +46,9 @@ class SparseSignal(dict):
             last_t, last_v = t, self[t]
 
         return area
+
+    def generate_collar(self, size):
+        return reduce(lambda init, key: init | SparseSignal({key - size: 1, key + size: 0}),
+                      self.normalize().keys(),
+                      SparseSignal()).normalize()
+
