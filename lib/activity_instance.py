@@ -18,7 +18,10 @@ class ActivityInstance():
             self.objects = None
 
     def __str__(self):
-        return "{}:{}".format(self.activity, self.activityID)
+        if self.decisionScore == None:
+            return "{}:{}".format(self.activity, self.activityID)
+        else:
+            return "{}:{}@{}".format(self.activity, self.activityID, self.decisionScore)
 
 class ObjectInstance():
     def __init__(self, dictionary):

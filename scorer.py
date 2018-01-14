@@ -18,6 +18,7 @@ from actev_kernel_components import *
 from sparse_signal import SparseSignal as S
 from activity_instance import *
 from metrics import *
+from plot import *
 
 def err_quit(msg, exit_status=1):
     print(msg)
@@ -90,8 +91,8 @@ if __name__ == '__main__':
     # Will report out the selected kernel component values
     selected_kernel_components = [ "temporal_intersection-over-union" ]
     
-    alignment_metrics = { "rate_fa": lambda c, m, f: r_fa(c, m, f, total_file_duration_minutes),
-                          "p_miss": p_miss,
+    alignment_metrics = { "rate_fa": lambda c, m, f: r_fa(len(c), len(m), len(f), total_file_duration_minutes),
+                          "p_miss": lambda c, m, f: p_miss(len(c), len(m), len(f)),
                           "p_miss@10rfa": lambda c, m, f: p_miss_at_r_fa(c, m, f, total_file_duration_minutes, 10, lambda x: x.decisionScore) }
     selected_alignment_metrics = [ "rate_fa",
                                    "p_miss",
@@ -130,11 +131,16 @@ if __name__ == '__main__':
             alignment_metric_func = alignment_metrics[alignment_metric]
             metric_recs_array.append((alignment_metric, alignment_metric_func(correct, miss, fa)))
 
+        num_correct, num_miss, num_fa = len(correct), len(miss), len(fa)
+        det_points_array = det_points.setdefault(activity, [])
+        for decision_score in sorted(list({ ar.sys.decisionScore for ar in correct + fa })):
+            num_filtered_c = len(filter(lambda ar: ar.sys.decisionScore >= decision_score, correct))
+            num_filtered_fa = len(filter(lambda ar: ar.sys.decisionScore >= decision_score, fa))
+            num_miss_w_filtered_c = num_miss + num_correct - num_filtered_c
+            det_points_array.append((decision_score,
+                                     r_fa(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, total_file_duration_minutes),
+                                     p_miss(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa)))
 
-#        det_points_array = det_points_array.setdefault(activity, [])
-#        for decision_score in sorted(list(set(map(lambda x: x.system.decisionScore, correct + fa)))):
-            
-            
         return init
 
     alignment_records, metric_records, pair_metric_records, det_point_records = reduce(_alignment_reducer, activity_index, ({}, {}, {}, {}))
@@ -153,3 +159,6 @@ if __name__ == '__main__':
 
     write_records_as_csv("foo_metrics.csv", ["activity", "metric_name", "metric_value"], dict_to_records(metric_records, lambda v: map(str, v)))
 
+    for k, v in det_point_records.iteritems():
+        log(1, "[INFO] Plotting DET curve for {}".format(k))
+        det_single_curve(v, "foo_figure_{}.png".format(k))
