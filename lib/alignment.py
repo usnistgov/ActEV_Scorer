@@ -1,7 +1,6 @@
 from munkres import Munkres, DISALLOWED, make_cost_matrix, UnsolvableMatrix
-from munkres import print_matrix
 
-import pprint
+from alignment_record import AlignmentRecord
 
 # components is a list of (label, weight, function)
 def build_linear_combination_kernel(filters, components, initial_similarity = 1):
@@ -62,7 +61,6 @@ def perform_alignment(ref_instances, sys_instances, kernel, maximize = True):
     matrix = make_cost_matrix(sim_matrix, _mapper)
     
     correct_detects, false_alarms, missed_detects = [], [], []
-    # print_matrix(matrix)
     unmapped_sys = set(range(0, len(sys_instances)))
     unmapped_ref = set(range(0, len(ref_instances)))
     if len(matrix) > 0:
@@ -72,12 +70,12 @@ def perform_alignment(ref_instances, sys_instances, kernel, maximize = True):
                 
             unmapped_sys.remove(s_i)
             unmapped_ref.remove(r_i)
-            correct_detects.append((ref_instances[r_i], sys_instances[s_i], sim_matrix[s_i][r_i], component_matrix[s_i][r_i]))
+            correct_detects.append(AlignmentRecord(ref_instances[r_i], sys_instances[s_i], sim_matrix[s_i][r_i], component_matrix[s_i][r_i]))
 
     for r_i in unmapped_ref:
-        missed_detects.append((ref_instances[r_i], None, None, None))
+        missed_detects.append(AlignmentRecord(ref_instances[r_i], None, None, None))
         
     for s_i in unmapped_sys:
-        false_alarms.append((None, sys_instances[s_i], None, None))
+        false_alarms.append(AlignmentRecord(None, sys_instances[s_i], None, None))
 
     return(correct_detects, missed_detects, false_alarms)

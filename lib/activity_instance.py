@@ -8,7 +8,7 @@ def _localization_key_converter(localization):
 
 class ActivityInstance():
     def __init__(self, dictionary):
-        self.activity = dictionary["activty"]
+        self.activity = dictionary["activity"]
         self.activityID = dictionary["activityID"]
         self.decisionScore = dictionary.get("decisionScore", None)
         self.localization = _localization_key_converter(dictionary["localization"])
@@ -16,6 +16,9 @@ class ActivityInstance():
             self.objects = [ ObjectInstance(o) for o in dictionary["objects"] ]
         else:
             self.objects = None
+
+    def __str__(self):
+        return "{}:{}".format(self.activity, self.activityID)
 
 class ObjectInstance():
     def __init__(self, dictionary):
