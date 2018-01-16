@@ -11,6 +11,8 @@ import pprint ###
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
 sys.path.append(lib_path)
+protocols_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib/protocols")
+sys.path.append(protocols_path)
 
 from alignment import *
 from sed_kernel_components import *
@@ -19,6 +21,8 @@ from sparse_signal import SparseSignal as S
 from activity_instance import *
 from metrics import *
 from plot import *
+
+from actev18 import *
 
 def err_quit(msg, exit_status=1):
     print(msg)
@@ -38,14 +42,20 @@ def load_json(json_fn):
     except IOError as ioerr:
         err_quit("{}. Aborting!".format(ioerr))
 
-def write_records_as_csv(out_path, field_names, records, sep = "|"):
+def yield_file_to_function(file_path, function):
     try:
-        with open(out_path, 'w') as out_f:
-            for rec in [field_names] + records:
-                out_f.write("{}\n".format(sep.join(map(str, rec))))
+        with open(file_path, 'w') as out_f:
+            function(out_f)
     except IOError as ioerr:
         err_quit("{}. Aborting!".format(ioerr))
         
+def write_records_as_csv(out_path, field_names, records, sep = "|"):
+    def _write_recs(out_f):
+        for rec in [field_names] + records:
+            out_f.write("{}\n".format(sep.join(map(str, rec))))
+
+    yield_file_to_function(out_path, _write_recs)
+
 # Reducer function for generating an activity instance lookup dict
 def _activity_instance_reducer(init, a):
     init.setdefault(a["activity"], []).append(ActivityInstance(a))
@@ -78,34 +88,18 @@ if __name__ == '__main__':
     file_index = load_json(args.file_index)
 
     # TODO: remove non-selected area from reference and system
-    # instances
+    # instances, truncation or ?
     total_file_duration_seconds = sum([ S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() / float(v["framerate"]) for v in file_index.values() ])
     total_file_duration_minutes = total_file_duration_seconds / float(60)
 
-    instance_pair_metrics = { "temporal_intersection": temporal_intersection,
-                              "temporal_union": temporal_union }
-    selected_instance_pair_metrics = [ "temporal_intersection",
-                                       "temporal_union"
-    ]
-
-    # Will report out the selected kernel component values
-    selected_kernel_components = [ "temporal_intersection-over-union" ]
-    
-    alignment_metrics = { "rate_fa": lambda c, m, f: r_fa(len(c), len(m), len(f), total_file_duration_minutes),
-                          "p_miss": lambda c, m, f: p_miss(len(c), len(m), len(f)),
-                          "p_miss@10rfa": lambda c, m, f: p_miss_at_r_fa(c, m, f, total_file_duration_minutes, 10, lambda x: x.decisionScore) }
-    selected_alignment_metrics = [ "rate_fa",
-                                   "p_miss",
-                                   "p_miss@10rfa" ]
+    protocol = ActEV18(total_file_duration_minutes = total_file_duration_minutes)
     
     def _alignment_reducer(init, activity_record):
         activity = activity_record["activity"]
 
         alignment_recs, metric_recs, pair_metric_recs, det_points = init
 
-        kernel = build_linear_combination_kernel([temporal_intersection_filter],
-                                                 [("temporal_intersection-over-union", 1.0e-8, temporal_intersection_over_union),
-                                                  ("decscore_congruence", 1.0e-6, build_sed_decscore_congruence(system_activities[activity]))])
+        kernel = protocol.build_kernel(system_activities[activity])
         
         correct, miss, fa = perform_alignment(reference_activities[activity],
                                               system_activities[activity],
@@ -118,18 +112,15 @@ if __name__ == '__main__':
         for ar in correct:
             ref, sys = ar.ref, ar.sys
 
-            for pair_metric in selected_instance_pair_metrics:
-                pair_metric_func = instance_pair_metrics[pair_metric]
-                
-                pair_metric_recs_array.append((ref, sys, pair_metric, pair_metric_func(ref, sys)))
+            for pair_metric in protocol.default_reported_instance_pair_metrics:
+                pair_metric_recs_array.append((ref, sys, pair_metric, protocol.instance_pair_metrics[pair_metric](ref, sys)))
 
-            for kernel_component in selected_kernel_components:
+            for kernel_component in protocol.default_reported_kernel_components:
                 pair_metric_recs_array.append((ref, sys, kernel_component, ar.kernel_components[kernel_component]))
 
         metric_recs_array = metric_recs.setdefault(activity, [])
-        for alignment_metric in selected_alignment_metrics:
-            alignment_metric_func = alignment_metrics[alignment_metric]
-            metric_recs_array.append((alignment_metric, alignment_metric_func(correct, miss, fa)))
+        for alignment_metric in protocol.default_reported_alignment_metrics:
+            metric_recs_array.append((alignment_metric, protocol.alignment_metrics[alignment_metric](correct, miss, fa)))
 
         num_correct, num_miss, num_fa = len(correct), len(miss), len(fa)
         det_points_array = det_points.setdefault(activity, [])
@@ -153,12 +144,18 @@ if __name__ == '__main__':
 
         return out_list
 
+    yield_file_to_function("foo_config.txt", lambda out_f: out_f.write("protocol: {}\n{}\n".format("ActEV18", str(protocol))))
+
     write_records_as_csv("foo_align.csv", ["activity", "alignment", "ref", "sys", "sim", "components"], dict_to_records(alignment_records, lambda v: map(str, v.iter_with_extended_properties())))
 
     write_records_as_csv("foo_pair_metrics.csv", ["activity", "ref", "sys", "metric_name", "metric_value"], dict_to_records(pair_metric_records, lambda v: map(str, v)))
 
     write_records_as_csv("foo_metrics.csv", ["activity", "metric_name", "metric_value"], dict_to_records(metric_records, lambda v: map(str, v)))
 
+    log(1, "[INFO] Plotting combined DET curve")
+    det_curve(det_point_records, "foo_figure_COMBINED.png")
+
     for k, v in det_point_records.iteritems():
         log(1, "[INFO] Plotting DET curve for {}".format(k))
-        det_single_curve(v, "foo_figure_{}.png".format(k))
+        det_curve({k: v}, "foo_figure_{}.png".format(k))
+
