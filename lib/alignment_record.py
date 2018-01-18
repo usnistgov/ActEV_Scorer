@@ -12,14 +12,24 @@ class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
             if self.sys == None:
                 return "TN"
             else:
-                return "FP"
+                return "FA"
         else:
             if self.sys == None:
-                return "FN"
+                return "MD"
             else:
-                return "TP"
+                return "CD"
+
+    @property
+    def sys_decision_score(self):
+        if self.sys == None:
+            return None
+        else:
+            return self.sys.decisionScore
 
     def iter_with_extended_properties(self):
         yield self.alignment
-        for x in self:
-            yield x
+        yield self.ref
+        yield self.sys
+        yield self.sys_decision_score
+        yield self.kernel_similarity
+        yield self.kernel_components

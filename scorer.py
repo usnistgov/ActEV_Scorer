@@ -2,6 +2,7 @@
 
 import sys
 import os
+import errno
 import argparse
 import json
 import jsonschema
@@ -42,6 +43,15 @@ def load_json(json_fn):
     except IOError as ioerr:
         err_quit("{}. Aborting!".format(ioerr))
 
+def mkdir_p(path):
+    try:
+        os.makedirs(path)
+    except OSError as exc:
+        if exc.errno == errno.EEXIST and os.path.isdir(path):
+            pass
+        else:
+            err_quit("{}. Aborting!".format(exc))
+
 def yield_file_to_function(file_path, function):
     try:
         with open(file_path, 'w') as out_f:
@@ -63,10 +73,14 @@ def _activity_instance_reducer(init, a):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Soring script for the NIST ActEV evaluation")
+    # TODO: protocol argument
+#    parser.add_argument('protocol', choices=['ActEV18'])
     parser.add_argument("-s", "--system-output-file", help="System output JSON file", type=str, required=True)
     parser.add_argument("-r", "--reference-file", help="Reference JSON file", type=str, required=True)
     parser.add_argument("-a", "--activity-index", help="Activity index JSON file", type=str, required=True)
     parser.add_argument("-f", "--file-index", help="file index JSON file", type=str, required=True)
+    parser.add_argument("-o", "--output-dir", help="Output directory for results", type=str, required=True)
+    parser.add_argument("-d", "--disable-plotting", help="Disable DET Curve plotting of results", action="store_true")
     parser.add_argument("-v", "--verbose", help="Toggle verbose log output", action="store_true")
     args = parser.parse_args()
 
@@ -89,26 +103,25 @@ if __name__ == '__main__':
 
     # TODO: remove non-selected area from reference and system
     # instances, truncation or ?
-    total_file_duration_seconds = sum([ S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() / float(v["framerate"]) for v in file_index.values() ])
-    total_file_duration_minutes = total_file_duration_seconds / float(60)
+    total_file_duration_minutes = sum([ S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() / float(v["framerate"]) for v in file_index.values() ]) / float(60)
 
     protocol = ActEV18(total_file_duration_minutes = total_file_duration_minutes)
     
     def _alignment_reducer(init, activity_record):
-        activity = activity_record["activity"]
+        activity_name, activity_properties = activity_record
 
         alignment_recs, metric_recs, pair_metric_recs, det_points = init
 
-        kernel = protocol.build_kernel(system_activities[activity])
+        kernel = protocol.build_kernel(system_activities[activity_name])
         
-        correct, miss, fa = perform_alignment(reference_activities[activity],
-                                              system_activities[activity],
+        correct, miss, fa = perform_alignment(reference_activities[activity_name],
+                                              system_activities[activity_name],
                                               kernel)
 
         # Add to alignment records
-        alignment_recs.setdefault(activity, []).extend(correct + miss + fa)
+        alignment_recs.setdefault(activity_name, []).extend(correct + miss + fa)
 
-        pair_metric_recs_array = pair_metric_recs.setdefault(activity, [])
+        pair_metric_recs_array = pair_metric_recs.setdefault(activity_name, [])
         for ar in correct:
             ref, sys = ar.ref, ar.sys
 
@@ -118,12 +131,12 @@ if __name__ == '__main__':
             for kernel_component in protocol.default_reported_kernel_components:
                 pair_metric_recs_array.append((ref, sys, kernel_component, ar.kernel_components[kernel_component]))
 
-        metric_recs_array = metric_recs.setdefault(activity, [])
+        metric_recs_array = metric_recs.setdefault(activity_name, [])
         for alignment_metric in protocol.default_reported_alignment_metrics:
             metric_recs_array.append((alignment_metric, protocol.alignment_metrics[alignment_metric](correct, miss, fa)))
 
         num_correct, num_miss, num_fa = len(correct), len(miss), len(fa)
-        det_points_array = det_points.setdefault(activity, [])
+        det_points_array = det_points.setdefault(activity_name, [])
         for decision_score in sorted(list({ ar.sys.decisionScore for ar in correct + fa })):
             num_filtered_c = len(filter(lambda ar: ar.sys.decisionScore >= decision_score, correct))
             num_filtered_fa = len(filter(lambda ar: ar.sys.decisionScore >= decision_score, fa))
@@ -134,7 +147,7 @@ if __name__ == '__main__':
 
         return init
 
-    alignment_records, metric_records, pair_metric_records, det_point_records = reduce(_alignment_reducer, activity_index, ({}, {}, {}, {}))
+    alignment_records, metric_records, pair_metric_records, det_point_records = reduce(_alignment_reducer, activity_index.iteritems(), ({}, {}, {}, {}))
 
     def dict_to_records(d, value_map = lambda x: x):
         out_list = []
@@ -144,18 +157,25 @@ if __name__ == '__main__':
 
         return out_list
 
-    yield_file_to_function("foo_config.txt", lambda out_f: out_f.write("protocol: {}\n{}\n".format("ActEV18", str(protocol))))
+    mkdir_p(args.output_dir)
+    log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
 
-    write_records_as_csv("foo_align.csv", ["activity", "alignment", "ref", "sys", "sim", "components"], dict_to_records(alignment_records, lambda v: map(str, v.iter_with_extended_properties())))
+    write_records_as_csv("{}/config.csv".format(args.output_dir), ["parameter", "value"], [("command", " ".join(sys.argv)), ("protocol", "ActEV18")] + protocol.dump_parameters())
 
-    write_records_as_csv("foo_pair_metrics.csv", ["activity", "ref", "sys", "metric_name", "metric_value"], dict_to_records(pair_metric_records, lambda v: map(str, v)))
+    write_records_as_csv("{}/alignment.csv".format(args.output_dir), ["activity", "alignment", "ref", "sys", "sys_decision_score", "kernel_similarity", "kernel_components"], dict_to_records(alignment_records, lambda v: map(str, v.iter_with_extended_properties())))
 
-    write_records_as_csv("foo_metrics.csv", ["activity", "metric_name", "metric_value"], dict_to_records(metric_records, lambda v: map(str, v)))
+    write_records_as_csv("{}/pair_metrics.csv".format(args.output_dir), ["activity", "ref", "sys", "metric_name", "metric_value"], dict_to_records(pair_metric_records, lambda v: map(str, v)))
 
-    log(1, "[INFO] Plotting combined DET curve")
-    det_curve(det_point_records, "foo_figure_COMBINED.png")
+    write_records_as_csv("{}/alignment_metrics.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], dict_to_records(metric_records, lambda v: map(str, v)))
 
-    for k, v in det_point_records.iteritems():
-        log(1, "[INFO] Plotting DET curve for {}".format(k))
-        det_curve({k: v}, "foo_figure_{}.png".format(k))
+    if not args.disable_plotting:
+        figure_dir = "{}/figures".format(args.output_dir)
+        mkdir_p(figure_dir)
+        log(1, "[Info] Saving figures to directory '{}'".format(figure_dir))
+        log(1, "[Info] Plotting combined DET curve")
+        det_curve(det_point_records, "{}/DET_COMBINED.png".format(figure_dir))
+
+        for k, v in det_point_records.iteritems():
+            log(1, "[Info] Plotting DET curve for {}".format(k))
+            det_curve({k: v}, "{}/DET_{}.png".format(figure_dir, k))
 

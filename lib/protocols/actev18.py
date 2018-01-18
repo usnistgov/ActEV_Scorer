@@ -11,8 +11,10 @@ from alignment import *
 
 class ActEV18():
     def __init__(self, **kwargs):
-        self.target_rfa = kwargs.get("target_rfa", 10)
         total_file_dur_minutes = kwargs.get("total_file_duration_minutes")
+
+        self.epsilon_temporal_congruence = 1.0e-8
+        self.epsilon_decisionscore_congruence = 1.0e-6
         
         self.instance_pair_metrics = { "temporal_intersection": temporal_intersection,
                                        "temporal_union": temporal_union }
@@ -23,15 +25,17 @@ class ActEV18():
 
         self.alignment_metrics = { "rate_fa": self._build_rfa(total_file_dur_minutes),
                                    "p_miss": lambda c, m, f: p_miss(len(c), len(m), len(f)),
-                                   "p_miss@10rfa": self._build_pmiss_at_rfa(total_file_dur_minutes, self.target_rfa) }
-        self.default_reported_alignment_metrics = [ "rate_fa",
-                                                    "p_miss",
-                                                    "p_miss@10rfa" ]
+                                   "p_miss@10rfa": self._build_pmiss_at_rfa(total_file_dur_minutes, 10) }
+        self.default_reported_alignment_metrics = [ "p_miss@10rfa" ]
 
     def build_kernel(self, system_instances):
         return build_linear_combination_kernel([temporal_intersection_filter],
-                                               [("temporal_intersection-over-union", 1.0e-8, temporal_intersection_over_union),
-                                                ("decscore_congruence", 1.0e-6, build_sed_decscore_congruence(system_instances))])
+                                               [("temporal_intersection-over-union",
+                                                 self.epsilon_temporal_congruence,
+                                                 temporal_intersection_over_union),
+                                                ("decscore_congruence",
+                                                 self.epsilon_decisionscore_congruence,
+                                                 build_sed_decscore_congruence(system_instances))])
 
     def _build_pmiss_at_rfa(self, file_duration, target_rfa):
         def _metric_func(c, m, f):
@@ -45,5 +49,6 @@ class ActEV18():
 
         return _metric_func
 
-    def __str__(self):
-        return "target_rfa: {}".format(self.target_rfa)
+    def dump_parameters(self):
+        return [("epsilon_temporal_congruence", self.epsilon_temporal_congruence),
+                ("epsilon_decisionscore_congruence", self.epsilon_decisionscore_congruence)]
