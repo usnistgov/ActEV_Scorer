@@ -6,7 +6,7 @@ import errno
 import argparse
 import json
 import jsonschema
-from collections import namedtuple
+from operator import add
 
 import pprint ###
 
@@ -16,6 +16,7 @@ protocols_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib/p
 sys.path.append(protocols_path)
 
 from alignment import *
+from alignment_record import *
 from sed_kernel_components import *
 from actev_kernel_components import *
 from sparse_signal import SparseSignal as S
@@ -23,10 +24,8 @@ from activity_instance import *
 from metrics import *
 from plot import *
 
-from actev18 import *
-
 def err_quit(msg, exit_status=1):
-    print(msg)
+    print("[Error] {}".format(msg))
     exit(exit_status)
 
 def build_logger(verbosity_threshold=0):
@@ -73,8 +72,7 @@ def _activity_instance_reducer(init, a):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Soring script for the NIST ActEV evaluation")
-    # TODO: protocol argument
-#    parser.add_argument('protocol', choices=['ActEV18'])
+    parser.add_argument('protocol', choices=['ActEV18'], help="Scoring protocol")
     parser.add_argument("-s", "--system-output-file", help="System output JSON file", type=str, required=True)
     parser.add_argument("-r", "--reference-file", help="Reference JSON file", type=str, required=True)
     parser.add_argument("-a", "--activity-index", help="Activity index JSON file", type=str, required=True)
@@ -90,7 +88,7 @@ if __name__ == '__main__':
     log(1, "[Info] Loading system output file")
     system_output = load_json(args.system_output_file)
     system_activities = reduce(_activity_instance_reducer, system_output["activities"], {})
-    
+
     log(1, "[Info] Loading reference file")
     reference = load_json(args.reference_file)
     reference_activities = reduce(_activity_instance_reducer, reference["activities"], {})
@@ -103,9 +101,28 @@ if __name__ == '__main__':
 
     # TODO: remove non-selected area from reference and system
     # instances, truncation or ?
+    file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() for k, v in file_index.iteritems() }
     total_file_duration_minutes = sum([ S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() / float(v["framerate"]) for v in file_index.values() ]) / float(60)
 
-    protocol = ActEV18(total_file_duration_minutes = total_file_duration_minutes)
+    if args.protocol == 'ActEV18':
+        # Have to pass file duration in here to configure the metric
+        # functions
+        from actev18 import *
+        protocol = ActEV18(total_file_duration_minutes = total_file_duration_minutes,
+                           file_framedur_lookup = file_framedur_lookup)
+    else:
+        err_quit("Unrecognized protocol.  Aborting!")
+
+    log(1, "[Info] Loading JSON schema")
+    schema_path = "{}/{}".format(protocols_path, protocol.schema_fn)
+    system_output_schema = load_json(schema_path)
+
+    log(1, "[Info] Validating system output against JSON schema")
+    try:
+        jsonschema.validate(system_output, system_output_schema)
+        log(1, "[Info] System output validated successfully against JSON schema")
+    except jsonschema.exceptions.ValidationError as verr:
+        err_quit("{}\n[Error] JSON schema validation of system output failed, Aborting!".format(verr))
     
     def _alignment_reducer(init, activity_record):
         activity_name, activity_properties = activity_record
@@ -149,6 +166,10 @@ if __name__ == '__main__':
 
     alignment_records, metric_records, pair_metric_records, det_point_records = reduce(_alignment_reducer, activity_index.iteritems(), ({}, {}, {}, {}))
 
+    global_correct, global_miss, global_fa = reduce(alignment_partitioner, reduce(add, alignment_records.values(), []), ([], [], []))
+
+    global_alignment_metric_records = [ (m, str(protocol.alignment_metrics[m](global_correct, global_miss, global_fa))) for m in protocol.default_reported_alignment_metrics ]
+    
     def dict_to_records(d, value_map = lambda x: x):
         out_list = []
         for k, v in d.iteritems():
@@ -167,6 +188,8 @@ if __name__ == '__main__':
     write_records_as_csv("{}/pair_metrics.csv".format(args.output_dir), ["activity", "ref", "sys", "metric_name", "metric_value"], dict_to_records(pair_metric_records, lambda v: map(str, v)))
 
     write_records_as_csv("{}/alignment_metrics.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], dict_to_records(metric_records, lambda v: map(str, v)))
+
+    write_records_as_csv("{}/alignment_metrics_overall.csv".format(args.output_dir), [ "metric_name", "metric_value" ], global_alignment_metric_records)
 
     if not args.disable_plotting:
         figure_dir = "{}/figures".format(args.output_dir)

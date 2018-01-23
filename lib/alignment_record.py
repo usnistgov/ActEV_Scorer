@@ -1,5 +1,16 @@
 from collections import namedtuple
 
+def alignment_partitioner(init, ar):
+    cd, md, fa = init
+    if ar.alignment == "CD":
+        cd.append(ar)
+    elif ar.alignment == "MD":
+        md.append(ar)
+    elif ar.alignment == "FA":
+        fa.append(ar)
+
+    return init
+
 class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
                                                     "sys",
                                                     "kernel_similarity",

@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$version": "ActEV18_v0",
+    "definitions": {
+	"temporal_localization": {
+	    "type": "object",
+	    "patternProperties": {
+		"^[A-Za-z0-9_\\-\\.]+$": {
+		    "type": "object",
+		    "patternProperties": {
+			"^[0-9]+$": {
+			    "type": "integer",
+			    "minimum": 0,
+			    "maximum": 1
+			}
+		    },
+		    "minProperties": 2,
+		    "additionalProperties": false
+		}
+	    },
+	    "minProperties": 1,
+	    "maxProperties": 1,
+	    "additionalProperties": false
+	},
+	"activity_instance": {
+	    "type": "object",
+	    "properties": {
+		"activity": { "type": "string" },
+		"alertFrame": { "type": "integer" },
+		"decisionScore": { "type": "number" },
+		"activityID": { "type": "integer" },
+		"localization": { "$ref": "#/definitions/temporal_localization" }
+	    },
+	    "required": [ "activity", "decisionScore", "activityID", "localization" ]
+	},
+	"filename": {
+	    "type": "string",
+	    "pattern": "^[A-Za-z0-9_\\-\\.]+$"
+	}
+    },
+    "type": "object",
+    "properties": {
+	"filesProcessed": {
+	    "type": "array",
+	    "items": {
+		"$ref": "#/definitions/filename"
+	    }
+	},
+	"activities": {
+	    "type": "array",
+	    "items": {
+		"$ref": "#/definitions/activity_instance"
+	    }
+	}
+    },
+    "required": [ "filesProcessed", "activities" ]
+}
