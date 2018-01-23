@@ -8,8 +8,6 @@ import json
 import jsonschema
 from operator import add
 
-import pprint ###
-
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
 sys.path.append(lib_path)
 protocols_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib/protocols")
@@ -17,11 +15,8 @@ sys.path.append(protocols_path)
 
 from alignment import *
 from alignment_record import *
-from sed_kernel_components import *
-from actev_kernel_components import *
 from sparse_signal import SparseSignal as S
 from activity_instance import *
-from metrics import *
 from plot import *
 
 def err_quit(msg, exit_status=1):
