@@ -52,7 +52,7 @@ def yield_file_to_function(file_path, function):
             function(out_f)
     except IOError as ioerr:
         err_quit("{}. Aborting!".format(ioerr))
-        
+
 def write_records_as_csv(out_path, field_names, records, sep = "|"):
     def _write_recs(out_f):
         for rec in [field_names] + records:
@@ -64,6 +64,31 @@ def write_records_as_csv(out_path, field_names, records, sep = "|"):
 def _activity_instance_reducer(init, a):
     init.setdefault(a["activity"], []).append(ActivityInstance(a))
     return init
+
+def group_by_func(key_func, items, map_func = None):
+    def _r(h, x):
+        h.setdefault(key_func(x), []).append(x if map_func == None else map_func(x))
+        return h
+
+    return reduce(_r, items, {})
+
+def kv_tuple_to_dict(kv_tuples):
+    def _r(h, kv):
+        k, v = kv
+        h.setdefault(k, []).append(v)
+        return h
+
+    return reduce(_r, kv_tuples, {})
+
+def dict_to_records(d, value_map = None):
+    def _r(init, kv):
+        k, v = kv
+        for _v in v:
+            init.append([k] + (_v if value_map == None else value_map(_v)))
+
+        return init
+
+    return reduce(_r, d.iteritems(), [])
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Soring script for the NIST ActEV evaluation")
@@ -161,17 +186,7 @@ if __name__ == '__main__':
 
     alignment_records, metric_records, pair_metric_records, det_point_records = reduce(_alignment_reducer, activity_index.iteritems(), ({}, {}, {}, {}))
 
-    global_correct, global_miss, global_fa = reduce(alignment_partitioner, reduce(add, alignment_records.values(), []), ([], [], []))
-
-    global_alignment_metric_records = [ (m, str(protocol.alignment_metrics[m](global_correct, global_miss, global_fa))) for m in protocol.default_reported_alignment_metrics ]
-    
-    def dict_to_records(d, value_map = lambda x: x):
-        out_list = []
-        for k, v in d.iteritems():
-            for _v in v:
-                out_list.append([k] + value_map(_v))
-
-        return out_list
+    mean_alignment_metric_records = [ ("mean-{}".format(k), float(reduce(add, v, 0)) / len(v)) for k, v in (group_by_func(lambda kv: kv[0], reduce(add, metric_records.values(), []), lambda kv: kv[1])).iteritems() ]
 
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
@@ -184,7 +199,7 @@ if __name__ == '__main__':
 
     write_records_as_csv("{}/alignment_metrics.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], dict_to_records(metric_records, lambda v: map(str, v)))
 
-    write_records_as_csv("{}/alignment_metrics_overall.csv".format(args.output_dir), [ "metric_name", "metric_value" ], global_alignment_metric_records)
+    write_records_as_csv("{}/alignment_metrics_stats.csv".format(args.output_dir), [ "metric_name", "metric_value" ], mean_alignment_metric_records)
 
     if not args.disable_plotting:
         figure_dir = "{}/figures".format(args.output_dir)

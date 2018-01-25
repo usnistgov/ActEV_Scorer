@@ -16,6 +16,7 @@ run_test() {
     checkfile_outdir_basename=`basename $checkfile_outdir`
     compcheck_outdir=${3-compcheckfiles}
     compcheckfile_outdir="$compcheck_outdir/$checkfile_outdir_basename"
+    mkdir -p "$compcheckfile_outdir"
 
     echo "** Running integration test '$test' **"
     log_fn="$compcheckfile_outdir/$test.log"
