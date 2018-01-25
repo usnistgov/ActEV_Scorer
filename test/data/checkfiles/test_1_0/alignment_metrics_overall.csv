@@ -1,0 +1,8 @@
+metric_name|metric_value
+p_miss@1rfa|0.989726027397
+p_miss@0.2rfa|0.996575342466
+p_miss@0.15rfa|0.996575342466
+p_miss@0.1rfa|0.996575342466
+p_miss@0.03rfa|1.0
+p_miss@0.01rfa|1.0
+n-mide|0.190339514035

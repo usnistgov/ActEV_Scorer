@@ -1,0 +1,8 @@
+[Info] Loading system output file
+[Info] Loading reference file
+[Info] Loading activity index file
+[Info] Loading file index file
+[Info] Loading JSON schema
+[Info] Validating system output against JSON schema
+[Info] System output validated successfully against JSON schema
+[Info] Saving results to directory 'data/checkfiles/test_2_0'
