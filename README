@@ -1,0 +1,107 @@
+ActEV Scoring Software
+Version: 0.0.1
+Date: January 25, 2018
+
+This software package contains a scoring script for the TRECVID
+Activities in Extended Video (ActEV) task.  The script
+"ActEV_Scorer.py", is a Python 2.7 script that will validate and score
+a system output file adhering to the JSON format defined in the ActEV
+evaluation plan.  A collection of unit and integration test cases have
+also been included, see the 'Setup' section for more detail.
+
+ActEV_Scorer.py, when run with the '-h' option, will show the script's
+usage text.  The "example_run.sh" contains an example of typical usage
+(using the provided test data)
+
+Setup:
+
+  This package assumes a Unix-like environment.  Included Python files
+  are written for Python 2.7.
+
+  1) Install Python 2.7, if not already installed
+  2) Install the following Python packages (version number used for
+     development):
+     - munkres (1.0.12)
+     - scipy (1.0.0)
+     - matplotlib (2.0.2)
+  3) Run the tests (optional, but strongly recommended)
+     % make check
+
+Option description:
+
+  SCORING_PROTOCOL - Positional argument, from a fixed set of values
+  (e.g. ActEV18).  This required argument controls what system output
+  formats are valid, and what metrics are computed.  A description of
+  each supported protocol can be found in the "Protocols" section of
+  this document
+
+  -s SYSTEM_OUTPUT_FILE - Required; path to the system output JSON
+  file to be scored
+
+  -r REFERENCE_FILE - Required; path to the reference JSON file to
+  score against
+
+  -a ACTIVITY_INDEX - Required; path to activity index JSON file.
+  This file lists what activities the system output will be evaluated
+  on
+
+  -f FILE_INDEX - Required; path to file index JSON file.  This file
+  lists the files, and temporal ranges within those files, that the
+  system output will be evaluated on ( **NOTE** currently the temporal
+  ranges specified in FILE_INDEX are not used when considering what
+  portion of the system output and reference to evaluate, and are only
+  used to compute the duration of files.  This will be implemented in
+  a future release)
+
+  -o OUTPUT_DIR - Required; directory for computed scores and figures
+
+  -d - Optional; by default, the script will produce a Detection Error
+  Tradeoff (DET) curve figure for each activity and a combined figure
+  of all activity curves.  If the '-d' option is set, no DET curves
+  will be produced by the script
+
+  -v - Optional; if enabled, the script will be more verbose
+  (i.e. provide some scoring progress information)
+
+Protocols:
+
+  ActEV18 - Scoring protocol for the ActEV 2018 evaluation, the
+  following measures are computed:
+    - PMiss at RFA for RFA values of 1, 0.2, 0.15, 0.1, 0.03, and
+      0.01
+    - NMIDE (**NOTE** currently using a no-score collar size of 0
+      frames, this will likely change in a future release)
+
+Changelog:
+
+  Jan 25, 2018 - Version 0.0.1
+    - Initial release
+  
+Authors:
+
+  David Joy
+
+Copyright:
+
+  Full details can be found at: http://nist.gov/data/license.cfm
+
+  This software was developed at the National Institute of Standards
+  and Technology by employees of the Federal Government in the course
+  of their official duties.  Pursuant to Title 17 Section 105 of the
+  United States Code this software is not subject to copyright
+  protection within the United States and is in the public domain.
+  NIST assumes no responsibility whatsoever for its use by any party,
+  and makes no guarantees, expressed or implied, about its quality,
+  reliability, or any other characteristic.
+
+  We would appreciate acknowledgement if the software is used.  This
+  software can be redistributed and/or modified freely provided that
+  any derivative works bear some notice that they are derived from it,
+  and any modified versions bear some notice that they have been
+  modified.
+
+  THIS SOFTWARE IS PROVIDED "AS IS."  With regard to this software,
+  NIST MAKES NO EXPRESS OR IMPLIED WARRANTY AS TO ANY MATTER
+  WHATSOEVER, INCLUDING MERCHANTABILITY, OR FITNESS FOR A PARTICULAR
+  PURPOSE.
+
