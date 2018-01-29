@@ -201,9 +201,9 @@ if __name__ == '__main__':
 
     write_records_as_csv("{}/pair_metrics.csv".format(args.output_dir), ["activity", "ref", "sys", "metric_name", "metric_value"], dict_to_records(pair_metric_records, lambda v: map(str, v)))
 
-    write_records_as_csv("{}/alignment_metrics.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], dict_to_records(det_curve_metric_records, lambda v: map(str, v)) + dict_to_records(metric_records, lambda v: map(str, v)))
+    write_records_as_csv("{}/scores_by_activity.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], dict_to_records(det_curve_metric_records, lambda v: map(str, v)) + dict_to_records(metric_records, lambda v: map(str, v)))
 
-    write_records_as_csv("{}/alignment_metrics_stats.csv".format(args.output_dir), [ "metric_name", "metric_value" ], mean_alignment_metric_records)
+    write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], mean_alignment_metric_records)
 
     if not args.disable_plotting:
         figure_dir = "{}/figures".format(args.output_dir)

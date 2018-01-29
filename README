@@ -1,6 +1,6 @@
 ActEV Scoring Software
 Version: 0.0.1
-Date: January 25, 2018
+Date: January 29, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -24,6 +24,7 @@ Setup:
      - munkres (1.0.12)
      - scipy (1.0.0)
      - matplotlib (2.0.2)
+     - jsonschema (2.5.1)
   3) Run the tests (optional, but strongly recommended)
      % make check
 
@@ -72,11 +73,28 @@ Protocols:
     - NMIDE (**NOTE** currently using a no-score collar size of 0
       frames, this will likely change in a future release)
 
+Output:
+
+  The scoring script writes to several files in the specified
+  OUTPUT_DIR directory (all *.csv files are pipe separated):
+
+    - scores_by_activity.csv - Scores by activity; computed with
+      respect to the selected scoring protocol
+    - scores_aggregated.csv - Aggregated scores over all activities
+    - config.csv - Lists the scoring/protocol parameters used
+    - alignment.csv - Lists each of the matched and unmatched system
+      and reference instances, along with the matching kernel
+      components and similarity scores
+    - pair_metrics.csv - Metrics computed on the matched
+      system/reference instance pairs
+    - figures/DET_<activity>.png - Unless disabled with the '-d'
+      option, the DET curve figure for <activity>
+
 Changelog:
 
-  Jan 25, 2018 - Version 0.0.1
+  Jan 29, 2018 - Version 0.0.1
     - Initial release
-  
+
 Authors:
 
   David Joy
