@@ -1,5 +1,4 @@
 from operator import add
-from math import ceil
 from sparse_signal import SparseSignal as S
 
 def _signal_pairs(r, s, key_join_op = set.union):
@@ -65,13 +64,26 @@ def p_miss(num_c, num_m, num_f):
 def r_fa(num_c, num_m, num_f, denominator):
     return float(num_f) / denominator
 
-def p_miss_at_r_fa(c, m, f, fa_denominator, target_rfa, key_func = lambda x: x):
-    num_allowed_f = int(ceil(target_rfa * fa_denominator))
-    num_f = len(f)
-    
-    if num_f == 0 or num_allowed_f >= num_f:
-        return p_miss(len(c), len(m), num_f)
-    else:
-        last_f_key = key_func(sorted(f, None, key_func, True)[num_allowed_f])
-        num_filtered_c = len(filter(lambda x: key_func(x) > last_f_key, c))
-        return p_miss(num_filtered_c, len(m) + (len(c) - num_filtered_c), num_f)
+# Really just a generic function for finding lowest y at a given x for
+# a DET curve
+def p_miss_at_r_fa(points, target_rfa):
+    last_pmiss = None
+    last_rfa = 0.0
+    exact_match = False
+    for p in sorted(points, None, lambda x: x[0], True):
+        ds, rfa, pmiss = p
+
+        if abs(rfa - target_rfa) < 1e-10:
+            exact_match = True
+        elif rfa > target_rfa:
+            if last_pmiss == None:
+                return 1.0
+            elif exact_match:
+                return last_pmiss
+            else: # interpolate
+                return last_pmiss + (pmiss - last_pmiss) * (float(target_rfa - last_rfa) / (rfa - last_rfa))
+
+        last_pmiss = pmiss
+        last_rfa = rfa
+
+    return last_pmiss

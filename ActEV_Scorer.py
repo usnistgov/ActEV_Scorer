@@ -147,7 +147,7 @@ if __name__ == '__main__':
     def _alignment_reducer(init, activity_record):
         activity_name, activity_properties = activity_record
 
-        alignment_recs, metric_recs, pair_metric_recs, det_points = init
+        alignment_recs, metric_recs, pair_metric_recs, det_curve_metric_recs, det_points = init
 
         kernel = protocol.build_kernel(system_activities[activity_name])
         
@@ -182,11 +182,15 @@ if __name__ == '__main__':
                                      r_fa(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, total_file_duration_minutes),
                                      p_miss(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa)))
 
+        det_curve_metric_recs_array = det_curve_metric_recs.setdefault(activity_name, [])
+        for det_metric in protocol.default_reported_det_curve_metrics:
+            det_curve_metric_recs_array.append((det_metric, protocol.det_curve_metrics[det_metric](det_points_array)))
+
         return init
 
-    alignment_records, metric_records, pair_metric_records, det_point_records = reduce(_alignment_reducer, activity_index.iteritems(), ({}, {}, {}, {}))
+    alignment_records, metric_records, pair_metric_records, det_curve_metric_records, det_point_records = reduce(_alignment_reducer, activity_index.iteritems(), ({}, {}, {}, {}, {}))
 
-    mean_alignment_metric_records = [ ("mean-{}".format(k), float(reduce(add, v, 0)) / len(v)) for k, v in (group_by_func(lambda kv: kv[0], reduce(add, metric_records.values(), []), lambda kv: kv[1])).iteritems() ]
+    mean_alignment_metric_records = [ ("mean-{}".format(k), float(reduce(add, v, 0)) / len(v)) for k, v in (group_by_func(lambda kv: kv[0], reduce(add, metric_records.values() + det_curve_metric_records.values(), []), lambda kv: kv[1])).iteritems() ]
 
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
@@ -197,7 +201,7 @@ if __name__ == '__main__':
 
     write_records_as_csv("{}/pair_metrics.csv".format(args.output_dir), ["activity", "ref", "sys", "metric_name", "metric_value"], dict_to_records(pair_metric_records, lambda v: map(str, v)))
 
-    write_records_as_csv("{}/alignment_metrics.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], dict_to_records(metric_records, lambda v: map(str, v)))
+    write_records_as_csv("{}/alignment_metrics.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], dict_to_records(det_curve_metric_records, lambda v: map(str, v)) + dict_to_records(metric_records, lambda v: map(str, v)))
 
     write_records_as_csv("{}/alignment_metrics_stats.csv".format(args.output_dir), [ "metric_name", "metric_value" ], mean_alignment_metric_records)
 

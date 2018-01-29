@@ -28,20 +28,23 @@ class ActEV18():
 
         self.alignment_metrics = { "rate_fa": self._build_rfa(total_file_dur_minutes),
                                    "p_miss": lambda c, m, f: p_miss(len(c), len(m), len(f)),
-                                   "p_miss@1rfa": self._build_pmiss_at_rfa(total_file_dur_minutes, 1),
-                                   "p_miss@0.2rfa": self._build_pmiss_at_rfa(total_file_dur_minutes, 0.2),
-                                   "p_miss@0.15rfa": self._build_pmiss_at_rfa(total_file_dur_minutes, 0.15),
-                                   "p_miss@0.1rfa": self._build_pmiss_at_rfa(total_file_dur_minutes, 0.1),
-                                   "p_miss@0.03rfa": self._build_pmiss_at_rfa(total_file_dur_minutes, 0.03),
-                                   "p_miss@0.01rfa": self._build_pmiss_at_rfa(total_file_dur_minutes, 0.01),
                                    "n-mide": self._build_nmide(file_framedur_lookup) }
-        self.default_reported_alignment_metrics = [ "p_miss@1rfa",
+
+        self.det_curve_metrics = { "p_miss@1rfa": self._build_pmiss_at_rfa(1),
+                                   "p_miss@0.2rfa": self._build_pmiss_at_rfa(0.2),
+                                   "p_miss@0.15rfa": self._build_pmiss_at_rfa(0.15),
+                                   "p_miss@0.1rfa": self._build_pmiss_at_rfa(0.1),
+                                   "p_miss@0.03rfa": self._build_pmiss_at_rfa(0.03),
+                                   "p_miss@0.01rfa": self._build_pmiss_at_rfa(0.01) }
+
+        self.default_reported_alignment_metrics = [ "n-mide" ]
+
+        self.default_reported_det_curve_metrics = [ "p_miss@1rfa",
                                                     "p_miss@0.2rfa",
                                                     "p_miss@0.15rfa",
                                                     "p_miss@0.1rfa",
                                                     "p_miss@0.03rfa",
-                                                    "p_miss@0.01rfa",
-                                                    "n-mide" ]
+                                                    "p_miss@0.01rfa" ]
 
     def build_kernel(self, system_instances):
         return build_linear_combination_kernel([temporal_intersection_filter],
@@ -52,9 +55,9 @@ class ActEV18():
                                                  self.epsilon_decisionscore_congruence,
                                                  build_sed_decscore_congruence(system_instances))])
 
-    def _build_pmiss_at_rfa(self, file_duration, target_rfa):
-        def _metric_func(c, m, f):
-            return p_miss_at_r_fa(c, m, f, file_duration, target_rfa, lambda x: x.sys_decision_score)
+    def _build_pmiss_at_rfa(self, target_rfa):
+        def _metric_func(points):
+            return p_miss_at_r_fa(points, target_rfa)
 
         return _metric_func
 

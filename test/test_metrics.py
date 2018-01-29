@@ -46,52 +46,73 @@ class TestPMissAtRFA(TestMetrics):
     def setUp(self):
         super(TestPMissAtRFA, self).setUp()
 
-        self.c1 = [1.0, 0.9, 0.6, 0.3, 0.2]
-        self.m1 = [None, None]
-        self.f1 = [0.8, 0.7, 0.5, 0.4]
+        self.points_empty = []
 
-        self.key_func_2 = lambda x: x["decisionScore"]
-        self.c2 = [{ "decisionScore": 1.0 },
-                   { "decisionScore": 0.9 },
-                   { "decisionScore": 0.6 },
-                   { "decisionScore": 0.3 },
-                   { "decisionScore": 0.2 }]
-        self.m2 = [None, None]
-        self.f2 = [{ "decisionScore": 0.8 },
-                   { "decisionScore": 0.7 },
-                   { "decisionScore": 0.5 },
-                   { "decisionScore": 0.4 }]
+        self.points_1 = [(1.0, 0.0, float(6) / 7),
+                         (0.9, 0.0, float(5) / 7),
+                         (0.8, 1.0, float(5) / 7),
+                         (0.7, 2.0, float(5) / 7),
+                         (0.6, 2.0, float(4) / 7),
+                         (0.5, 3.0, float(4) / 7),
+                         (0.3, 4.0, float(3) / 7),
+                         (0.3, 4.0, float(3) / 7),
+                         (0.2, 4.0, float(2) / 7)]
+
+        self.points_2 = [(1.0, 1.0, float(6) / 6),
+                         (0.9, 1.0, float(5) / 6),
+                         (0.6, 2.0, float(5) / 6),
+                         (0.5, 2.0, float(4) / 6),
+                         (0.4, 3.0, float(4) / 6),
+                         (0.3, 3.0, float(3) / 6)]
+
+        self.points_3 = [(1.0, 0.0, float(5) / 6),
+                         (0.9, 0.0, float(4) / 6),
+                         (0.6, 1.0, float(4) / 6),
+                         (0.5, 3.0, float(3) / 6),
+                         (0.5, 3.0, float(3) / 6),
+                         (0.5, 3.0, float(3) / 6)]
+
 
     def testRMissAtRFA(self):
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c1, self.m1, self.f1, 10, float(0) / 10), float(5) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c1, self.m1, self.f1, 10, float(1) / 10), float(5) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c1, self.m1, self.f1, 10, float(2) / 10), float(4) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c1, self.m1, self.f1, 10, float(3) / 10), float(4) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c1, self.m1, self.f1, 10, float(4) / 10), float(2) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c1, self.m1, self.f1, 10, float(5) / 10), float(2) / 7, places=10)
+        self.assertEqual(p_miss_at_r_fa(self.points_empty, 1), None)
+        self.assertEqual(p_miss_at_r_fa(self.points_empty, 0), None)
 
-    def testRMissAtRFAwKeyFun(self):
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c2, self.m2, self.f2, 10, float(0) / 10, self.key_func_2), float(5) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c2, self.m2, self.f2, 10, float(1) / 10, self.key_func_2), float(5) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c2, self.m2, self.f2, 10, float(2) / 10, self.key_func_2), float(4) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c2, self.m2, self.f2, 10, float(3) / 10, self.key_func_2), float(4) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c2, self.m2, self.f2, 10, float(4) / 10, self.key_func_2), float(2) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.c2, self.m2, self.f2, 10, float(5) / 10, self.key_func_2), float(2) / 7, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 0), float(5) / 7, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 1), float(5) / 7, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 1.5), float(5) / 7, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 2), float(4) / 7, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 2.5), float(4) / 7, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 3), float(4) / 7, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 3.5), float(3.5) / 7, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 4), float(2) / 7, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 5), float(2) / 7, places=10)
+
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_2, 0), float(6) / 6, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_2, 2), float(4) / 6, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_2, 2.5), float(4) / 6, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_2, 3), float(3) / 6, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_2, 4), float(3) / 6, places=10)
+
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 0), float(4) / 6, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 2), float(3.5) / 6, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 2.5), float(3.25) / 6, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 3), float(3) / 6, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 4), float(3) / 6, places=10)
 
 class TestNMIDE(TestMetrics):
     def setUp(self):
         super(TestNMIDE, self).setUp()
 
         self.cost_fn = lambda x: 1 * x
-        
+
         self.r1 = S({5: 1, 15: 0})
         self.s1 = S({5: 1, 15: 0})
-        
+
         self.s2 = S({2: 1, 10: 0})
 
         self.r3 = S({5: 1, 15: 0, 30: 1, 35: 0})
         self.s3 = S({10: 1, 15: 0, 40: 1, 50: 0})
-        
+
         self.c1 = [(A({ "f1": self.r1 }), A({ "f1": self.s1 })),
                    (A({ "f1": self.r3 }), A({ "f1": self.s3 }))]
 
@@ -102,9 +123,9 @@ class TestNMIDE(TestMetrics):
                    (A({ "f1": self.r3 }), A({ "f2": self.s3 }))]
 
         self.filedur_1 = { "f1": 80, "f2": 100 }
-        
+
         self.cost_0 = lambda x: 0 * x
-        
+
     def testNMIDE(self):
         self.assertAlmostEqual(n_mide(self.c1, self.filedur_1, 2, self.cost_fn, self.cost_fn), float(0 + (4 / float(7) + 10 / float(57))) / len(self.c1), places=10)
         self.assertAlmostEqual(n_mide(self.c1, self.filedur_1, 0, self.cost_fn, self.cost_fn), float(0 + (10 / float(15) + 10 / float(65))) / len(self.c1), places=10)
@@ -119,11 +140,11 @@ class TestNMIDE(TestMetrics):
 class TestSignalMetrics(unittest.TestCase):
     def setUp(self):
         self.ae = A({})
-        
+
         self.a1 = A({ "f1": { 10: 1, 20: 0 } })
         self.a2 = A({ "f1": { 15: 1, 25: 0 } })
         self.a3 = A({ "f1": { 25: 1, 30: 0 } })
-        
+
         self.a4 = A({ "f2": { 30: 1, 40: 0 } })
 
         self.a5 = A({ "f1": { 10: 1, 20: 0 },
@@ -177,6 +198,6 @@ class TestTemporalIntersectionOverUnion(TestSignalMetrics):
         self.assertAlmostEqual(temporal_intersection_over_union(self.a5, self.a7), float(8) / 25, places=10)
 
         self.assertAlmostEqual(temporal_intersection_over_union(self.a3, self.a4), float(0) / 15, places=10)
-        
+
 if __name__ == '__main__':
     unittest.main()

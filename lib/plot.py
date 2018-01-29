@@ -20,6 +20,8 @@ def det_curve(points_dict, out_fn):
     plt.yticks(ytick, [ str(y * 100) for y in ytick_values ])
 
     plt.legend(loc='upper left', borderaxespad=0, fontsize='small')
+    plt.xlabel("Rate of false alarm (per minute)")
+    plt.ylabel("Probability of missed detection")
 
     plt.savefig(out_fn)
     plt.close()
