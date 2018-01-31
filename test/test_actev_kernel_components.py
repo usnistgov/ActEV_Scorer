@@ -31,6 +31,9 @@ class TestActEVKernelComponents(unittest.TestCase):
         self.a7 = A({ "f1": { 15: 1, 25: 0 },
                       "f2": { 32: 1, 35: 0 } })
 
+        self.temporal_delta = 0.2
+        self.temporal_overlap_filter = build_temporal_overlap_filter(self.temporal_delta)
+
 class TestTemporalIntersectionFilter(TestActEVKernelComponents):
     def test_empty(self):
         self.assertEqual(temporal_intersection_filter(self.ae, self.ae), False)
@@ -46,6 +49,22 @@ class TestTemporalIntersectionFilter(TestActEVKernelComponents):
         self.assertEqual(temporal_intersection_filter(self.a5, self.a7), True)
 
         self.assertEqual(temporal_intersection_filter(self.a3, self.a4), False)
-        
+
+class TestTemporalOverlapFilter(TestActEVKernelComponents):
+    def test_empty(self):
+        self.assertEqual(self.temporal_overlap_filter(self.ae, self.ae), False)
+
+    def test_singlefile(self):
+        self.assertEqual(self.temporal_overlap_filter(self.a1, self.a1), True)
+        self.assertEqual(self.temporal_overlap_filter(self.a1, self.a2), True)
+        self.assertEqual(self.temporal_overlap_filter(self.a2, self.a1), True)
+        self.assertEqual(self.temporal_overlap_filter(self.a1, self.a3), False)
+
+    def test_multifile(self):
+        self.assertEqual(self.temporal_overlap_filter(self.a5, self.a6), False)
+        self.assertEqual(self.temporal_overlap_filter(self.a5, self.a7), True)
+
+        self.assertEqual(self.temporal_overlap_filter(self.a3, self.a4), False)
+
 if __name__ == '__main__':
     unittest.main()

@@ -27,17 +27,17 @@ Loading|FA|None|1201|0.446|None|None
 Loading|FA|None|1242|0.938|None|None
 Loading|FA|None|1314|0.946|None|None
 Person_Person_Interaction|CD|10|19|0.516|1.00000052522|{'decscore_congruence': 0.5167364016736402, 'temporal_intersection-over-union': 0.8484848484848485}
+Person_Person_Interaction|CD|13|23|0.537|1.00000054732|{'decscore_congruence': 0.5387029288702929, 'temporal_intersection-over-union': 0.8620689655172413}
 Person_Person_Interaction|CD|11|70|0.822|1.00000084585|{'decscore_congruence': 0.8368200836820083, 'temporal_intersection-over-union': 0.9032258064516129}
-Person_Person_Interaction|CD|9|285|0.549|1.0000005531|{'decscore_congruence': 0.551255230125523, 'temporal_intersection-over-union': 0.1848341232227488}
-Person_Person_Interaction|CD|13|462|0.84|1.00000085612|{'decscore_congruence': 0.8556485355648535, 'temporal_intersection-over-union': 0.04745166959578207}
-Person_Person_Interaction|CD|8|639|0.663|1.00000067089|{'decscore_congruence': 0.6705020920502093, 'temporal_intersection-over-union': 0.038293216630196934}
-Person_Person_Interaction|CD|12|1120|0.934|1.00000095434|{'decscore_congruence': 0.9539748953974896, 'temporal_intersection-over-union': 0.036511156186612576}
-Person_Person_Interaction|FA|None|23|0.537|None|None
+Person_Person_Interaction|MD|8|None|None|None|None
+Person_Person_Interaction|MD|9|None|None|None|None
+Person_Person_Interaction|MD|12|None|None|None|None
 Person_Person_Interaction|FA|None|154|0.777|None|None
 Person_Person_Interaction|FA|None|173|0.337|None|None
 Person_Person_Interaction|FA|None|184|0.203|None|None
 Person_Person_Interaction|FA|None|252|0.709|None|None
 Person_Person_Interaction|FA|None|266|0.385|None|None
+Person_Person_Interaction|FA|None|285|0.549|None|None
 Person_Person_Interaction|FA|None|338|0.022|None|None
 Person_Person_Interaction|FA|None|348|0.481|None|None
 Person_Person_Interaction|FA|None|350|0.195|None|None
@@ -47,6 +47,7 @@ Person_Person_Interaction|FA|None|403|0.314|None|None
 Person_Person_Interaction|FA|None|405|0.802|None|None
 Person_Person_Interaction|FA|None|450|0.641|None|None
 Person_Person_Interaction|FA|None|457|0.511|None|None
+Person_Person_Interaction|FA|None|462|0.84|None|None
 Person_Person_Interaction|FA|None|478|0.71|None|None
 Person_Person_Interaction|FA|None|479|0.448|None|None
 Person_Person_Interaction|FA|None|484|0.706|None|None
@@ -59,6 +60,7 @@ Person_Person_Interaction|FA|None|530|0.477|None|None
 Person_Person_Interaction|FA|None|554|0.271|None|None
 Person_Person_Interaction|FA|None|589|0.65|None|None
 Person_Person_Interaction|FA|None|615|0.05|None|None
+Person_Person_Interaction|FA|None|639|0.663|None|None
 Person_Person_Interaction|FA|None|651|0.537|None|None
 Person_Person_Interaction|FA|None|659|0.163|None|None
 Person_Person_Interaction|FA|None|660|0.023|None|None
@@ -88,6 +90,7 @@ Person_Person_Interaction|FA|None|1008|0.129|None|None
 Person_Person_Interaction|FA|None|1025|0.601|None|None
 Person_Person_Interaction|FA|None|1036|0.572|None|None
 Person_Person_Interaction|FA|None|1095|0.378|None|None
+Person_Person_Interaction|FA|None|1120|0.934|None|None
 Person_Person_Interaction|FA|None|1121|0.688|None|None
 Person_Person_Interaction|FA|None|1125|0.054|None|None
 Person_Person_Interaction|FA|None|1180|0.978|None|None
@@ -95,12 +98,13 @@ Person_Person_Interaction|FA|None|1213|0.8|None|None
 Person_Person_Interaction|FA|None|1232|0.27|None|None
 Person_Person_Interaction|FA|None|1279|0.328|None|None
 Person_Person_Interaction|FA|None|1292|0.07|None|None
-Closing_Trunk|CD|19|240|0.96|1.00000096975|{'decscore_congruence': 0.9690721649484536, 'temporal_intersection-over-union': 0.06813186813186813}
+Closing_Trunk|MD|19|None|None|None|None
 Closing_Trunk|FA|None|150|0.685|None|None
 Closing_Trunk|FA|None|160|0.254|None|None
 Closing_Trunk|FA|None|165|0.351|None|None
 Closing_Trunk|FA|None|198|0.124|None|None
 Closing_Trunk|FA|None|215|0.431|None|None
+Closing_Trunk|FA|None|240|0.96|None|None
 Closing_Trunk|FA|None|258|0.115|None|None
 Closing_Trunk|FA|None|260|0.508|None|None
 Closing_Trunk|FA|None|287|0.35|None|None
@@ -133,7 +137,7 @@ Closing_Trunk|FA|None|1190|0.259|None|None
 Closing_Trunk|FA|None|1269|0.47|None|None
 Closing_Trunk|FA|None|1277|0.195|None|None
 SetDown|CD|73|28|0.954|1.00000098376|{'decscore_congruence': 0.9743326488706365, 'temporal_intersection-over-union': 0.9423076923076923}
-SetDown|CD|72|444|0.979|1.00000100082|{'decscore_congruence': 1.0, 'temporal_intersection-over-union': 0.0821917808219178}
+SetDown|MD|72|None|None|None|None
 SetDown|FA|None|159|0.627|None|None
 SetDown|FA|None|171|0.413|None|None
 SetDown|FA|None|175|0.03|None|None
@@ -148,6 +152,7 @@ SetDown|FA|None|376|0.655|None|None
 SetDown|FA|None|377|0.005|None|None
 SetDown|FA|None|412|0.684|None|None
 SetDown|FA|None|437|0.731|None|None
+SetDown|FA|None|444|0.979|None|None
 SetDown|FA|None|657|0.124|None|None
 SetDown|FA|None|668|0.163|None|None
 SetDown|FA|None|681|0.378|None|None
@@ -172,7 +177,7 @@ SetDown|FA|None|1241|0.518|None|None
 SetDown|FA|None|1282|0.657|None|None
 SetDown|FA|None|1303|0.923|None|None
 specialized_talking_phone|CD|113|342|0.938|1.00000094754|{'decscore_congruence': 0.9430315361139369, 'temporal_intersection-over-union': 0.45104510451045104}
-specialized_talking_phone|CD|111|422|0.898|1.00000090281|{'decscore_congruence': 0.9023397761953205, 'temporal_intersection-over-union': 0.04702495201535509}
+specialized_talking_phone|CD|111|406|0.719|1.00000072506|{'decscore_congruence': 0.7202441505595116, 'temporal_intersection-over-union': 0.4817351598173516}
 specialized_talking_phone|CD|112|880|0.853|1.0000008594|{'decscore_congruence': 0.8565615462868769, 'temporal_intersection-over-union': 0.2842535787321063}
 specialized_talking_phone|FA|None|108|0.502|None|None
 specialized_talking_phone|FA|None|188|0.096|None|None
@@ -182,8 +187,8 @@ specialized_talking_phone|FA|None|262|0.36|None|None
 specialized_talking_phone|FA|None|306|0.011|None|None
 specialized_talking_phone|FA|None|324|0.372|None|None
 specialized_talking_phone|FA|None|327|0.602|None|None
-specialized_talking_phone|FA|None|406|0.719|None|None
 specialized_talking_phone|FA|None|409|0.457|None|None
+specialized_talking_phone|FA|None|422|0.898|None|None
 specialized_talking_phone|FA|None|432|0.716|None|None
 specialized_talking_phone|FA|None|454|0.334|None|None
 specialized_talking_phone|FA|None|458|0.893|None|None
@@ -222,25 +227,23 @@ vehicle_moving|CD|109|2|0.937|1.00000095341|{'decscore_congruence': 0.9441340782
 vehicle_moving|CD|100|55|0.987|1.00000100883|{'decscore_congruence': 1.0, 'temporal_intersection-over-union': 0.8826086956521739}
 vehicle_moving|CD|103|76|0.697|1.00000068473|{'decscore_congruence': 0.6759776536312849, 'temporal_intersection-over-union': 0.8755656108597285}
 vehicle_moving|CD|105|116|0.913|1.0000009254|{'decscore_congruence': 0.91731843575419, 'temporal_intersection-over-union': 0.8083832335329342}
+vehicle_moving|CD|106|127|0.664|1.00000064785|{'decscore_congruence': 0.6391061452513968, 'temporal_intersection-over-union': 0.8746177370030581}
 vehicle_moving|CD|107|131|0.793|1.00000079172|{'decscore_congruence': 0.7832402234636872, 'temporal_intersection-over-union': 0.8481481481481481}
 vehicle_moving|CD|102|136|0.621|1.00000059937|{'decscore_congruence': 0.5910614525139665, 'temporal_intersection-over-union': 0.8307692307692308}
 vehicle_moving|CD|97|140|0.68|1.00000066477|{'decscore_congruence': 0.6569832402234638, 'temporal_intersection-over-union': 0.7783132530120482}
-vehicle_moving|CD|93|142|0.935|1.00000094193|{'decscore_congruence': 0.9418994413407822, 'temporal_intersection-over-union': 0.002564102564102564}
+vehicle_moving|CD|94|142|0.935|1.00000095025|{'decscore_congruence': 0.9418994413407822, 'temporal_intersection-over-union': 0.8354838709677419}
+vehicle_moving|CD|93|145|0.713|1.0000007029|{'decscore_congruence': 0.693854748603352, 'temporal_intersection-over-union': 0.9047619047619048}
 vehicle_moving|CD|101|167|0.788|1.0000007812|{'decscore_congruence': 0.7776536312849163, 'temporal_intersection-over-union': 0.35447761194029853}
 vehicle_moving|CD|110|341|0.869|1.00000087735|{'decscore_congruence': 0.8681564245810056, 'temporal_intersection-over-union': 0.9196891191709845}
 vehicle_moving|CD|98|539|0.233|1.00000016007|{'decscore_congruence': 0.15754189944134078, 'temporal_intersection-over-union': 0.25259515570934254}
-vehicle_moving|CD|108|549|0.859|1.00000085742|{'decscore_congruence': 0.8569832402234637, 'temporal_intersection-over-union': 0.04395604395604396}
 vehicle_moving|CD|104|653|0.857|1.00000085731|{'decscore_congruence': 0.8547486033519553, 'temporal_intersection-over-union': 0.2557651991614256}
 vehicle_moving|CD|99|870|0.986|1.00000100371|{'decscore_congruence': 0.9988826815642458, 'temporal_intersection-over-union': 0.4831168831168831}
 vehicle_moving|CD|95|874|0.963|1.00000097824|{'decscore_congruence': 0.9731843575418995, 'temporal_intersection-over-union': 0.5059523809523809}
-vehicle_moving|CD|106|900|0.913|1.00000091733|{'decscore_congruence': 0.91731843575419, 'temporal_intersection-over-union': 0.0008417508417508417}
 vehicle_moving|CD|92|938|0.825|1.00000082177|{'decscore_congruence': 0.8189944134078212, 'temporal_intersection-over-union': 0.27708095781071834}
-vehicle_moving|CD|94|955|0.963|1.00000097493|{'decscore_congruence': 0.9731843575418995, 'temporal_intersection-over-union': 0.17473884140550808}
 vehicle_moving|CD|96|1048|0.974|1.00000098944|{'decscore_congruence': 0.9854748603351955, 'temporal_intersection-over-union': 0.3966547192353644}
+vehicle_moving|MD|108|None|None|None|None
 vehicle_moving|FA|None|13|0.512|None|None
 vehicle_moving|FA|None|52|0.607|None|None
-vehicle_moving|FA|None|127|0.664|None|None
-vehicle_moving|FA|None|145|0.713|None|None
 vehicle_moving|FA|None|161|0.351|None|None
 vehicle_moving|FA|None|166|0.632|None|None
 vehicle_moving|FA|None|319|0.751|None|None
@@ -254,11 +257,14 @@ vehicle_moving|FA|None|415|0.405|None|None
 vehicle_moving|FA|None|494|0.092|None|None
 vehicle_moving|FA|None|525|0.878|None|None
 vehicle_moving|FA|None|542|0.871|None|None
+vehicle_moving|FA|None|549|0.859|None|None
 vehicle_moving|FA|None|567|0.2|None|None
 vehicle_moving|FA|None|591|0.521|None|None
 vehicle_moving|FA|None|719|0.218|None|None
 vehicle_moving|FA|None|765|0.834|None|None
+vehicle_moving|FA|None|900|0.913|None|None
 vehicle_moving|FA|None|914|0.763|None|None
+vehicle_moving|FA|None|955|0.963|None|None
 vehicle_moving|FA|None|998|0.481|None|None
 vehicle_moving|FA|None|1038|0.921|None|None
 vehicle_moving|FA|None|1060|0.347|None|None
@@ -272,23 +278,22 @@ vehicle_moving|FA|None|1231|0.477|None|None
 vehicle_moving|FA|None|1250|0.336|None|None
 vehicle_moving|FA|None|1259|0.516|None|None
 vehicle_moving|FA|None|1270|0.271|None|None
+activity_gesturing|CD|291|12|0.762|1.00000077071|{'decscore_congruence': 0.7613751263902933, 'temporal_intersection-over-union': 0.9333333333333333}
 activity_gesturing|CD|281|47|0.871|1.00000088117|{'decscore_congruence': 0.871587462082912, 'temporal_intersection-over-union': 0.9583333333333334}
 activity_gesturing|CD|284|68|0.567|1.00000057278|{'decscore_congruence': 0.564206268958544, 'temporal_intersection-over-union': 0.8571428571428571}
 activity_gesturing|CD|282|79|0.537|1.00000054187|{'decscore_congruence': 0.5338725985844287, 'temporal_intersection-over-union': 0.8}
 activity_gesturing|CD|280|83|0.52|1.00000052585|{'decscore_congruence': 0.5166835187057635, 'temporal_intersection-over-union': 0.9166666666666666}
+activity_gesturing|CD|288|97|0.679|1.00000068591|{'decscore_congruence': 0.6774519716885744, 'temporal_intersection-over-union': 0.8461538461538461}
 activity_gesturing|CD|287|107|0.734|1.00000074167|{'decscore_congruence': 0.7330637007077856, 'temporal_intersection-over-union': 0.8611111111111112}
-activity_gesturing|CD|291|189|0.985|1.00000098723|{'decscore_congruence': 0.9868554095045501, 'temporal_intersection-over-union': 0.03722084367245657}
-activity_gesturing|CD|289|455|0.854|1.00000085505|{'decscore_congruence': 0.8543983822042467, 'temporal_intersection-over-union': 0.06514657980456026}
-activity_gesturing|CD|290|1216|0.875|1.00000087581|{'decscore_congruence': 0.8756319514661274, 'temporal_intersection-over-union': 0.017834394904458598}
-activity_gesturing|CD|288|1234|0.95|1.00000095156|{'decscore_congruence': 0.9514661274014156, 'temporal_intersection-over-union': 0.009478672985781991}
-activity_gesturing|CD|285|1293|0.851|1.0000008517|{'decscore_congruence': 0.8513650151668352, 'temporal_intersection-over-union': 0.03356481481481482}
 activity_gesturing|MD|283|None|None|None|None
+activity_gesturing|MD|285|None|None|None|None
 activity_gesturing|MD|286|None|None|None|None
-activity_gesturing|FA|None|12|0.762|None|None
-activity_gesturing|FA|None|97|0.679|None|None
+activity_gesturing|MD|289|None|None|None|None
+activity_gesturing|MD|290|None|None|None|None
 activity_gesturing|FA|None|162|0.325|None|None
 activity_gesturing|FA|None|174|0.461|None|None
 activity_gesturing|FA|None|182|0.252|None|None
+activity_gesturing|FA|None|189|0.985|None|None
 activity_gesturing|FA|None|213|0.401|None|None
 activity_gesturing|FA|None|225|0.677|None|None
 activity_gesturing|FA|None|257|0.583|None|None
@@ -301,6 +306,7 @@ activity_gesturing|FA|None|383|0.536|None|None
 activity_gesturing|FA|None|413|0.998|None|None
 activity_gesturing|FA|None|416|0.931|None|None
 activity_gesturing|FA|None|445|0.103|None|None
+activity_gesturing|FA|None|455|0.854|None|None
 activity_gesturing|FA|None|470|0.233|None|None
 activity_gesturing|FA|None|624|0.84|None|None
 activity_gesturing|FA|None|663|0.116|None|None
@@ -320,16 +326,17 @@ activity_gesturing|FA|None|995|0.949|None|None
 activity_gesturing|FA|None|1019|0.009|None|None
 activity_gesturing|FA|None|1054|0.123|None|None
 activity_gesturing|FA|None|1096|0.559|None|None
+activity_gesturing|FA|None|1216|0.875|None|None
+activity_gesturing|FA|None|1234|0.95|None|None
 activity_gesturing|FA|None|1258|0.65|None|None
+activity_gesturing|FA|None|1293|0.851|None|None
 Unloading|CD|22|75|0.666|1.00000067032|{'decscore_congruence': 0.6608066184074457, 'temporal_intersection-over-union': 0.9513888888888888}
-Unloading|CD|21|850|0.845|1.00000084693|{'decscore_congruence': 0.8459152016546019, 'temporal_intersection-over-union': 0.10158730158730159}
-Unloading|CD|23|939|0.691|1.00000068748|{'decscore_congruence': 0.686659772492244, 'temporal_intersection-over-union': 0.08205128205128205}
-Unloading|CD|24|1272|0.803|1.00000080358|{'decscore_congruence': 0.8024819027921407, 'temporal_intersection-over-union': 0.10990206746463548}
-Unloading|FA|None|110|0.552|None|None
+Unloading|CD|21|110|0.552|1.000000552|{'decscore_congruence': 0.5429162357807653, 'temporal_intersection-over-union': 0.9081632653061225}
+Unloading|CD|24|212|0.335|1.00000032173|{'decscore_congruence': 0.3185108583247156, 'temporal_intersection-over-union': 0.32167832167832167}
+Unloading|MD|23|None|None|None|None
 Unloading|FA|None|157|0.743|None|None
 Unloading|FA|None|177|0.916|None|None
 Unloading|FA|None|204|0.427|None|None
-Unloading|FA|None|212|0.335|None|None
 Unloading|FA|None|231|0.18|None|None
 Unloading|FA|None|261|0.1|None|None
 Unloading|FA|None|279|0.642|None|None
@@ -345,7 +352,9 @@ Unloading|FA|None|808|0.073|None|None
 Unloading|FA|None|825|0.574|None|None
 Unloading|FA|None|835|0.944|None|None
 Unloading|FA|None|839|0.037|None|None
+Unloading|FA|None|850|0.845|None|None
 Unloading|FA|None|936|0.255|None|None
+Unloading|FA|None|939|0.691|None|None
 Unloading|FA|None|973|0.213|None|None
 Unloading|FA|None|988|0.475|None|None
 Unloading|FA|None|989|0.821|None|None
@@ -362,6 +371,7 @@ Unloading|FA|None|1222|0.421|None|None
 Unloading|FA|None|1233|0.421|None|None
 Unloading|FA|None|1254|0.227|None|None
 Unloading|FA|None|1256|0.562|None|None
+Unloading|FA|None|1272|0.803|None|None
 Unloading|FA|None|1274|0.784|None|None
 Unloading|FA|None|1283|0.645|None|None
 Unloading|FA|None|1302|0.079|None|None
@@ -374,18 +384,19 @@ vehicle_stopping|CD|155|106|0.997|1.00000101|{'decscore_congruence': 1.0, 'tempo
 vehicle_stopping|CD|143|112|0.719|1.00000072942|{'decscore_congruence': 0.7200402819738166, 'temporal_intersection-over-union': 0.9375}
 vehicle_stopping|CD|145|122|0.837|1.00000084812|{'decscore_congruence': 0.8388721047331319, 'temporal_intersection-over-union': 0.925}
 vehicle_stopping|CD|154|130|0.814|1.00000082534|{'decscore_congruence': 0.8157099697885196, 'temporal_intersection-over-union': 0.9629629629629629}
-vehicle_stopping|CD|153|236|0.965|1.00000096918|{'decscore_congruence': 0.9677744209466264, 'temporal_intersection-over-union': 0.140625}
-vehicle_stopping|CD|144|501|0.638|1.00000063901|{'decscore_congruence': 0.6384692849949648, 'temporal_intersection-over-union': 0.05396825396825397}
-vehicle_stopping|CD|150|640|0.137|1.00000013471|{'decscore_congruence': 0.1339375629405841, 'temporal_intersection-over-union': 0.0775}
-vehicle_stopping|CD|140|709|0.13|1.00000012789|{'decscore_congruence': 0.1268882175226586, 'temporal_intersection-over-union': 0.1}
-vehicle_stopping|CD|151|1043|0.903|1.00000090628|{'decscore_congruence': 0.905337361530715, 'temporal_intersection-over-union': 0.09393346379647749}
 vehicle_stopping|MD|139|None|None|None|None
+vehicle_stopping|MD|140|None|None|None|None
 vehicle_stopping|MD|141|None|None|None|None
+vehicle_stopping|MD|144|None|None|None|None
 vehicle_stopping|MD|147|None|None|None|None
+vehicle_stopping|MD|150|None|None|None|None
+vehicle_stopping|MD|151|None|None|None|None
 vehicle_stopping|MD|152|None|None|None|None
+vehicle_stopping|MD|153|None|None|None|None
 vehicle_stopping|FA|None|147|0.227|None|None
 vehicle_stopping|FA|None|203|0.605|None|None
 vehicle_stopping|FA|None|205|0.677|None|None
+vehicle_stopping|FA|None|236|0.965|None|None
 vehicle_stopping|FA|None|255|0.848|None|None
 vehicle_stopping|FA|None|313|0.072|None|None
 vehicle_stopping|FA|None|328|0.674|None|None
@@ -394,12 +405,15 @@ vehicle_stopping|FA|None|371|0.039|None|None
 vehicle_stopping|FA|None|411|0.444|None|None
 vehicle_stopping|FA|None|431|0.9|None|None
 vehicle_stopping|FA|None|469|0.341|None|None
+vehicle_stopping|FA|None|501|0.638|None|None
 vehicle_stopping|FA|None|502|0.578|None|None
 vehicle_stopping|FA|None|551|0.464|None|None
 vehicle_stopping|FA|None|587|0.873|None|None
 vehicle_stopping|FA|None|616|0.872|None|None
 vehicle_stopping|FA|None|635|0.353|None|None
+vehicle_stopping|FA|None|640|0.137|None|None
 vehicle_stopping|FA|None|665|0.033|None|None
+vehicle_stopping|FA|None|709|0.13|None|None
 vehicle_stopping|FA|None|752|0.727|None|None
 vehicle_stopping|FA|None|754|0.314|None|None
 vehicle_stopping|FA|None|883|0.026|None|None
@@ -408,6 +422,7 @@ vehicle_stopping|FA|None|901|0.305|None|None
 vehicle_stopping|FA|None|942|0.52|None|None
 vehicle_stopping|FA|None|944|0.263|None|None
 vehicle_stopping|FA|None|962|0.399|None|None
+vehicle_stopping|FA|None|1043|0.903|None|None
 vehicle_stopping|FA|None|1084|0.955|None|None
 vehicle_stopping|FA|None|1150|0.848|None|None
 vehicle_stopping|FA|None|1159|0.67|None|None
@@ -418,8 +433,7 @@ vehicle_stopping|FA|None|1187|0.187|None|None
 vehicle_stopping|FA|None|1218|0.389|None|None
 vehicle_stopping|FA|None|1257|0.168|None|None
 vehicle_stopping|FA|None|1306|0.004|None|None
-Open_Trunk|CD|18|758|0.729|1.00000071958|{'decscore_congruence': 0.7180067950169875, 'temporal_intersection-over-union': 0.1568627450980392}
-Open_Trunk|FA|None|46|0.559|None|None
+Open_Trunk|CD|18|46|0.559|1.00000053465|{'decscore_congruence': 0.5254813137032843, 'temporal_intersection-over-union': 0.9166666666666666}
 Open_Trunk|FA|None|151|0.583|None|None
 Open_Trunk|FA|None|199|0.222|None|None
 Open_Trunk|FA|None|200|0.546|None|None
@@ -445,6 +459,7 @@ Open_Trunk|FA|None|701|0.626|None|None
 Open_Trunk|FA|None|707|0.395|None|None
 Open_Trunk|FA|None|730|0.258|None|None
 Open_Trunk|FA|None|748|0.681|None|None
+Open_Trunk|FA|None|758|0.729|None|None
 Open_Trunk|FA|None|794|0.421|None|None
 Open_Trunk|FA|None|875|0.133|None|None
 Open_Trunk|FA|None|895|0.452|None|None
@@ -461,19 +476,19 @@ Open_Trunk|FA|None|1238|0.747|None|None
 Open_Trunk|FA|None|1267|0.17|None|None
 Open_Trunk|FA|None|1281|0.763|None|None
 Opening|CD|48|29|0.58|1.0000005892|{'decscore_congruence': 0.581081081081081, 'temporal_intersection-over-union': 0.8115942028985508}
+Opening|CD|57|54|0.547|1.00000055541|{'decscore_congruence': 0.5467775467775469, 'temporal_intersection-over-union': 0.8636363636363636}
 Opening|CD|59|114|0.727|1.00000074224|{'decscore_congruence': 0.7338877338877339, 'temporal_intersection-over-union': 0.8354430379746836}
 Opening|CD|58|144|0.858|1.00000087895|{'decscore_congruence': 0.8700623700623701, 'temporal_intersection-over-union': 0.8888888888888888}
-Opening|CD|57|224|0.825|1.000000836|{'decscore_congruence': 0.8357588357588357, 'temporal_intersection-over-union': 0.024615384615384615}
-Opening|CD|49|565|0.663|1.00000066776|{'decscore_congruence': 0.6673596673596675, 'temporal_intersection-over-union': 0.0403530895334174}
-Opening|CD|56|933|0.141|1.00000012498|{'decscore_congruence': 0.12474012474012472, 'temporal_intersection-over-union': 0.02414486921529175}
-Opening|CD|54|1001|0.803|1.00000081316|{'decscore_congruence': 0.812889812889813, 'temporal_intersection-over-union': 0.027114967462039046}
-Opening|CD|52|1071|0.617|1.00000062014|{'decscore_congruence': 0.6195426195426196, 'temporal_intersection-over-union': 0.05941845764854614}
-Opening|CD|51|1223|0.733|1.00000074041|{'decscore_congruence': 0.7401247401247402, 'temporal_intersection-over-union': 0.02830188679245283}
+Opening|MD|49|None|None|None|None
 Opening|MD|50|None|None|None|None
+Opening|MD|51|None|None|None|None
+Opening|MD|52|None|None|None|None
 Opening|MD|53|None|None|None|None
+Opening|MD|54|None|None|None|None
 Opening|MD|55|None|None|None|None
-Opening|FA|None|54|0.547|None|None
+Opening|MD|56|None|None|None|None
 Opening|FA|None|190|0.181|None|None
+Opening|FA|None|224|0.825|None|None
 Opening|FA|None|227|0.597|None|None
 Opening|FA|None|245|0.117|None|None
 Opening|FA|None|267|0.922|None|None
@@ -483,6 +498,7 @@ Opening|FA|None|354|0.888|None|None
 Opening|FA|None|368|0.636|None|None
 Opening|FA|None|496|0.313|None|None
 Opening|FA|None|532|0.983|None|None
+Opening|FA|None|565|0.663|None|None
 Opening|FA|None|571|0.184|None|None
 Opening|FA|None|598|0.938|None|None
 Opening|FA|None|625|0.902|None|None
@@ -497,17 +513,21 @@ Opening|FA|None|791|0.466|None|None
 Opening|FA|None|830|0.754|None|None
 Opening|FA|None|902|0.625|None|None
 Opening|FA|None|928|0.543|None|None
+Opening|FA|None|933|0.141|None|None
 Opening|FA|None|948|0.408|None|None
 Opening|FA|None|950|0.645|None|None
 Opening|FA|None|956|0.695|None|None
 Opening|FA|None|967|0.29|None|None
 Opening|FA|None|992|0.021|None|None
+Opening|FA|None|1001|0.803|None|None
 Opening|FA|None|1041|0.588|None|None
+Opening|FA|None|1071|0.617|None|None
 Opening|FA|None|1083|0.608|None|None
 Opening|FA|None|1101|0.242|None|None
 Opening|FA|None|1145|0.346|None|None
 Opening|FA|None|1191|0.461|None|None
 Opening|FA|None|1194|0.655|None|None
+Opening|FA|None|1223|0.733|None|None
 Opening|FA|None|1290|0.127|None|None
 specialized_miscellaneous|CD|292|474|0.968|1.00000097457|{'decscore_congruence': 0.9701952723535457, 'temporal_intersection-over-union': 0.4377880184331797}
 specialized_miscellaneous|FA|None|21|0.76|None|None
@@ -557,9 +577,10 @@ activity_running|CD|157|22|0.782|1.00000078409|{'decscore_congruence': 0.7758241
 activity_running|CD|158|100|0.673|1.00000066104|{'decscore_congruence': 0.6560439560439562, 'temporal_intersection-over-union': 0.5}
 activity_running|CD|156|103|0.664|1.00000065517|{'decscore_congruence': 0.6461538461538462, 'temporal_intersection-over-union': 0.9017341040462428}
 activity_running|CD|159|138|0.552|1.00000053212|{'decscore_congruence': 0.5230769230769231, 'temporal_intersection-over-union': 0.9047619047619048}
-activity_running|CD|161|269|0.591|1.00000056682|{'decscore_congruence': 0.5659340659340659, 'temporal_intersection-over-union': 0.08869814020028613}
 activity_running|MD|160|None|None|None|None
+activity_running|MD|161|None|None|None|None
 activity_running|FA|None|180|0.465|None|None
+activity_running|FA|None|269|0.591|None|None
 activity_running|FA|None|369|0.432|None|None
 activity_running|FA|None|433|0.485|None|None
 activity_running|FA|None|461|0.919|None|None
@@ -613,7 +634,7 @@ vehicle_turning_left|CD|75|111|0.82|1.00000083301|{'decscore_congruence': 0.8245
 vehicle_turning_left|CD|78|119|0.83|1.00000084406|{'decscore_congruence': 0.8350840336134453, 'temporal_intersection-over-union': 0.8979591836734694}
 vehicle_turning_left|CD|74|1037|0.672|1.00000067165|{'decscore_congruence': 0.6691176470588236, 'temporal_intersection-over-union': 0.2529411764705882}
 vehicle_turning_left|CD|79|1080|0.422|1.0000004096|{'decscore_congruence': 0.40651260504201686, 'temporal_intersection-over-union': 0.3082901554404145}
-vehicle_turning_left|CD|77|1113|0.358|1.00000033971|{'decscore_congruence': 0.33928571428571425, 'temporal_intersection-over-union': 0.0423728813559322}
+vehicle_turning_left|MD|77|None|None|None|None
 vehicle_turning_left|MD|81|None|None|None|None
 vehicle_turning_left|MD|82|None|None|None|None
 vehicle_turning_left|FA|None|169|0.906|None|None
@@ -644,6 +665,7 @@ vehicle_turning_left|FA|None|965|0.051|None|None
 vehicle_turning_left|FA|None|1028|0.32|None|None
 vehicle_turning_left|FA|None|1046|0.69|None|None
 vehicle_turning_left|FA|None|1097|0.591|None|None
+vehicle_turning_left|FA|None|1113|0.358|None|None
 vehicle_turning_left|FA|None|1119|0.987|None|None
 vehicle_turning_left|FA|None|1177|0.367|None|None
 vehicle_turning_left|FA|None|1193|0.26|None|None
@@ -654,7 +676,7 @@ vehicle_turning_left|FA|None|1246|0.089|None|None
 Pull|CD|33|135|0.918|1.0000009292|{'decscore_congruence': 0.9204081632653062, 'temporal_intersection-over-union': 0.8793503480278422}
 Pull|CD|36|271|0.178|1.00000016803|{'decscore_congruence': 0.16530612244897958, 'temporal_intersection-over-union': 0.2727272727272727}
 Pull|CD|34|847|0.433|1.00000043067|{'decscore_congruence': 0.42551020408163265, 'temporal_intersection-over-union': 0.5158636897767332}
-Pull|CD|35|1288|0.85|1.00000085119|{'decscore_congruence': 0.8510204081632653, 'temporal_intersection-over-union': 0.016795865633074936}
+Pull|CD|35|974|0.122|1.00000011172|{'decscore_congruence': 0.10816326530612244, 'temporal_intersection-over-union': 0.35538005923000987}
 Pull|FA|None|164|0.446|None|None
 Pull|FA|None|170|0.348|None|None
 Pull|FA|None|172|0.682|None|None
@@ -679,7 +701,6 @@ Pull|FA|None|821|0.256|None|None
 Pull|FA|None|888|0.425|None|None
 Pull|FA|None|892|0.502|None|None
 Pull|FA|None|969|0.27|None|None
-Pull|FA|None|974|0.122|None|None
 Pull|FA|None|1003|0.481|None|None
 Pull|FA|None|1077|0.274|None|None
 Pull|FA|None|1092|0.064|None|None
@@ -691,6 +712,7 @@ Pull|FA|None|1205|0.907|None|None
 Pull|FA|None|1206|0.831|None|None
 Pull|FA|None|1264|0.913|None|None
 Pull|FA|None|1265|0.053|None|None
+Pull|FA|None|1288|0.85|None|None
 Pull|FA|None|1313|0.778|None|None
 activity_walking|CD|182|5|0.958|1.00000097532|{'decscore_congruence': 0.9669762641898865, 'temporal_intersection-over-union': 0.8346153846153846}
 activity_walking|CD|162|6|0.612|1.00000061896|{'decscore_congruence': 0.609907120743034, 'temporal_intersection-over-union': 0.9051724137931034}
@@ -702,17 +724,17 @@ activity_walking|CD|190|37|0.603|1.00000060562|{'decscore_congruence': 0.6006191
 activity_walking|CD|213|42|0.628|1.00000063528|{'decscore_congruence': 0.6264189886480909, 'temporal_intersection-over-union': 0.8863109048723898}
 activity_walking|CD|206|43|0.99|1.00000100791|{'decscore_congruence': 1.0, 'temporal_intersection-over-union': 0.7905405405405406}
 activity_walking|CD|195|45|0.61|1.0000006167|{'decscore_congruence': 0.6078431372549019, 'temporal_intersection-over-union': 0.8857142857142857}
-activity_walking|CD|177|53|0.773|1.00000077818|{'decscore_congruence': 0.7760577915376677, 'temporal_intersection-over-union': 0.21237545883586786}
+activity_walking|CD|196|53|0.773|1.00000078474|{'decscore_congruence': 0.7760577915376677, 'temporal_intersection-over-union': 0.8683796539066597}
 activity_walking|CD|218|63|0.972|1.00000099097|{'decscore_congruence': 0.9814241486068112, 'temporal_intersection-over-union': 0.9541284403669725}
 activity_walking|CD|205|64|0.504|1.00000050673|{'decscore_congruence': 0.4984520123839009, 'temporal_intersection-over-union': 0.8275862068965517}
 activity_walking|CD|183|67|0.718|1.00000072843|{'decscore_congruence': 0.7192982456140351, 'temporal_intersection-over-union': 0.9127114020731042}
 activity_walking|CD|215|69|0.909|1.00000092454|{'decscore_congruence': 0.9164086687306502, 'temporal_intersection-over-union': 0.8131868131868132}
 activity_walking|CD|171|74|0.75|1.00000076172|{'decscore_congruence': 0.7523219814241486, 'temporal_intersection-over-union': 0.9393939393939394}
-activity_walking|CD|222|77|0.818|1.00000082345|{'decscore_congruence': 0.8224974200206397, 'temporal_intersection-over-union': 0.09480812641083522}
+activity_walking|CD|189|77|0.818|1.00000083135|{'decscore_congruence': 0.8224974200206397, 'temporal_intersection-over-union': 0.8848758465011287}
 activity_walking|CD|178|78|0.77|1.00000078121|{'decscore_congruence': 0.7729618163054696, 'temporal_intersection-over-union': 0.8248587570621468}
 activity_walking|CD|170|90|0.825|1.00000083854|{'decscore_congruence': 0.8297213622291021, 'temporal_intersection-over-union': 0.8823529411764706}
 activity_walking|CD|188|92|0.828|1.00000084257|{'decscore_congruence': 0.8328173374613003, 'temporal_intersection-over-union': 0.9756944444444444}
-activity_walking|CD|192|95|0.887|1.00000089908|{'decscore_congruence': 0.8937048503611972, 'temporal_intersection-over-union': 0.5374149659863946}
+activity_walking|CD|216|95|0.887|1.00000090177|{'decscore_congruence': 0.8937048503611972, 'temporal_intersection-over-union': 0.806060606060606}
 activity_walking|CD|200|96|0.988|1.00000100763|{'decscore_congruence': 0.9979360165118679, 'temporal_intersection-over-union': 0.9696132596685083}
 activity_walking|CD|221|99|0.523|1.00000052706|{'decscore_congruence': 0.5180598555211559, 'temporal_intersection-over-union': 0.9}
 activity_walking|CD|174|101|0.863|1.00000087788|{'decscore_congruence': 0.868937048503612, 'temporal_intersection-over-union': 0.8947368421052632}
@@ -722,52 +744,57 @@ activity_walking|CD|194|117|0.981|1.00000099998|{'decscore_congruence': 0.990712
 activity_walking|CD|179|120|0.861|1.00000087537|{'decscore_congruence': 0.8668730650154799, 'temporal_intersection-over-union': 0.85}
 activity_walking|CD|181|125|0.754|1.00000076576|{'decscore_congruence': 0.7564499484004128, 'temporal_intersection-over-union': 0.9310344827586207}
 activity_walking|CD|180|141|0.975|1.00000099348|{'decscore_congruence': 0.9845201238390092, 'temporal_intersection-over-union': 0.8962264150943396}
-activity_walking|CD|172|217|0.625|1.00000062373|{'decscore_congruence': 0.6233230134158927, 'temporal_intersection-over-union': 0.04093567251461988}
+activity_walking|CD|220|217|0.625|1.00000062625|{'decscore_congruence': 0.6233230134158927, 'temporal_intersection-over-union': 0.2923076923076923}
 activity_walking|CD|198|310|0.887|1.00000089585|{'decscore_congruence': 0.8937048503611972, 'temporal_intersection-over-union': 0.21473684210526317}
-activity_walking|CD|175|321|0.88|1.0000008878|{'decscore_congruence': 0.8864809081527348, 'temporal_intersection-over-union': 0.13157894736842105}
-activity_walking|CD|209|451|0.628|1.00000062709|{'decscore_congruence': 0.6264189886480909, 'temporal_intersection-over-union': 0.06743421052631579}
+activity_walking|CD|197|380|0.309|1.00000030165|{'decscore_congruence': 0.29721362229102166, 'temporal_intersection-over-union': 0.443859649122807}
 activity_walking|CD|164|490|0.609|1.00000060905|{'decscore_congruence': 0.6068111455108359, 'temporal_intersection-over-union': 0.22388059701492538}
 activity_walking|CD|193|540|0.954|1.00000096609|{'decscore_congruence': 0.9628482972136223, 'temporal_intersection-over-union': 0.3237822349570201}
-activity_walking|CD|207|543|0.693|1.00000069396|{'decscore_congruence': 0.6934984520123838, 'temporal_intersection-over-union': 0.046536412078152754}
-activity_walking|CD|168|611|0.601|1.00000059878|{'decscore_congruence': 0.5985552115583075, 'temporal_intersection-over-union': 0.02242846094354215}
-activity_walking|CD|189|612|0.238|1.00000022626|{'decscore_congruence': 0.22394220846233232, 'temporal_intersection-over-union': 0.23135593220338982}
+activity_walking|CD|207|611|0.601|1.00000060185|{'decscore_congruence': 0.5985552115583075, 'temporal_intersection-over-union': 0.32966252220248665}
 activity_walking|CD|223|666|0.88|1.0000008912|{'decscore_congruence': 0.8864809081527348, 'temporal_intersection-over-union': 0.4720194647201946}
-activity_walking|CD|197|734|0.501|1.00000049678|{'decscore_congruence': 0.4953560371517028, 'temporal_intersection-over-union': 0.14210526315789473}
-activity_walking|CD|216|768|0.64|1.00000063921|{'decscore_congruence': 0.6388028895768834, 'temporal_intersection-over-union': 0.04050925925925926}
 activity_walking|CD|166|785|0.896|1.00000090855|{'decscore_congruence': 0.9029927760577916, 'temporal_intersection-over-union': 0.5558659217877095}
 activity_walking|CD|173|946|0.489|1.00000048598|{'decscore_congruence': 0.4829721362229102, 'temporal_intersection-over-union': 0.3004769475357711}
-activity_walking|CD|220|1073|0.736|1.000000738|{'decscore_congruence': 0.737874097007224, 'temporal_intersection-over-union': 0.012546625974906748}
 activity_walking|CD|219|1091|0.56|1.00000055935|{'decscore_congruence': 0.5562435500515996, 'temporal_intersection-over-union': 0.31095406360424027}
-activity_walking|CD|191|1147|0.72|1.00000072146|{'decscore_congruence': 0.7213622291021672, 'temporal_intersection-over-union': 0.00980392156862745}
-activity_walking|CD|196|1156|0.021|1.00000000037|{'decscore_congruence': 0.0, 'temporal_intersection-over-union': 0.03743961352657005}
 activity_walking|CD|214|1198|0.202|1.00000018956|{'decscore_congruence': 0.18679050567595462, 'temporal_intersection-over-union': 0.27692307692307694}
 activity_walking|CD|176|1204|0.837|1.00000084567|{'decscore_congruence': 0.8421052631578947, 'temporal_intersection-over-union': 0.356243949661181}
 activity_walking|MD|163|None|None|None|None
 activity_walking|MD|165|None|None|None|None
 activity_walking|MD|167|None|None|None|None
+activity_walking|MD|168|None|None|None|None
 activity_walking|MD|169|None|None|None|None
+activity_walking|MD|172|None|None|None|None
+activity_walking|MD|175|None|None|None|None
+activity_walking|MD|177|None|None|None|None
+activity_walking|MD|191|None|None|None|None
+activity_walking|MD|192|None|None|None|None
 activity_walking|MD|201|None|None|None|None
 activity_walking|MD|202|None|None|None|None
 activity_walking|MD|203|None|None|None|None
 activity_walking|MD|204|None|None|None|None
 activity_walking|MD|208|None|None|None|None
+activity_walking|MD|209|None|None|None|None
 activity_walking|MD|211|None|None|None|None
 activity_walking|MD|212|None|None|None|None
 activity_walking|MD|217|None|None|None|None
+activity_walking|MD|222|None|None|None|None
 activity_walking|FA|None|263|0.557|None|None
 activity_walking|FA|None|274|0.225|None|None
 activity_walking|FA|None|309|0.926|None|None
 activity_walking|FA|None|320|0.333|None|None
-activity_walking|FA|None|380|0.309|None|None
+activity_walking|FA|None|321|0.88|None|None
 activity_walking|FA|None|420|0.177|None|None
+activity_walking|FA|None|451|0.628|None|None
 activity_walking|FA|None|466|0.036|None|None
 activity_walking|FA|None|489|0.23|None|None
 activity_walking|FA|None|513|0.751|None|None
 activity_walking|FA|None|518|0.223|None|None
+activity_walking|FA|None|543|0.693|None|None
 activity_walking|FA|None|563|0.444|None|None
+activity_walking|FA|None|612|0.238|None|None
 activity_walking|FA|None|644|0.457|None|None
 activity_walking|FA|None|671|0.364|None|None
+activity_walking|FA|None|734|0.501|None|None
 activity_walking|FA|None|756|0.465|None|None
+activity_walking|FA|None|768|0.64|None|None
 activity_walking|FA|None|790|0.387|None|None
 activity_walking|FA|None|822|0.295|None|None
 activity_walking|FA|None|842|0.137|None|None
@@ -775,18 +802,22 @@ activity_walking|FA|None|855|0.674|None|None
 activity_walking|FA|None|909|0.605|None|None
 activity_walking|FA|None|954|0.236|None|None
 activity_walking|FA|None|1050|0.211|None|None
+activity_walking|FA|None|1073|0.736|None|None
 activity_walking|FA|None|1122|0.629|None|None
+activity_walking|FA|None|1147|0.72|None|None
+activity_walking|FA|None|1156|0.021|None|None
 activity_walking|FA|None|1219|0.625|None|None
 activity_walking|FA|None|1301|0.317|None|None
 activity_walking|FA|None|1307|0.1|None|None
 Exiting|CD|39|35|0.6|1.000000611|{'decscore_congruence': 0.6022155085599195, 'temporal_intersection-over-union': 0.8787878787878788}
-Exiting|CD|38|185|0.957|1.00000096259|{'decscore_congruence': 0.9617321248741187, 'temporal_intersection-over-union': 0.0853932584269663}
-Exiting|CD|41|515|0.974|1.00000097893|{'decscore_congruence': 0.9788519637462235, 'temporal_intersection-over-union': 0.007415254237288136}
-Exiting|CD|42|1021|0.464|1.00000046582|{'decscore_congruence': 0.4652567975830816, 'temporal_intersection-over-union': 0.056291390728476824}
-Exiting|CD|40|1226|0.536|1.00000053868|{'decscore_congruence': 0.5377643504531723, 'temporal_intersection-over-union': 0.09125475285171103}
 Exiting|MD|37|None|None|None|None
+Exiting|MD|38|None|None|None|None
+Exiting|MD|40|None|None|None|None
+Exiting|MD|41|None|None|None|None
+Exiting|MD|42|None|None|None|None
 Exiting|FA|None|153|0.486|None|None
 Exiting|FA|None|176|0.316|None|None
+Exiting|FA|None|185|0.957|None|None
 Exiting|FA|None|206|0.21|None|None
 Exiting|FA|None|208|0.029|None|None
 Exiting|FA|None|229|0.983|None|None
@@ -799,6 +830,7 @@ Exiting|FA|None|379|0.186|None|None
 Exiting|FA|None|398|0.908|None|None
 Exiting|FA|None|410|0.9|None|None
 Exiting|FA|None|429|0.889|None|None
+Exiting|FA|None|515|0.974|None|None
 Exiting|FA|None|569|0.614|None|None
 Exiting|FA|None|573|0.675|None|None
 Exiting|FA|None|626|0.993|None|None
@@ -811,6 +843,7 @@ Exiting|FA|None|838|0.115|None|None
 Exiting|FA|None|848|0.543|None|None
 Exiting|FA|None|862|0.898|None|None
 Exiting|FA|None|907|0.318|None|None
+Exiting|FA|None|1021|0.464|None|None
 Exiting|FA|None|1066|0.508|None|None
 Exiting|FA|None|1141|0.671|None|None
 Exiting|FA|None|1162|0.054|None|None
@@ -818,17 +851,17 @@ Exiting|FA|None|1166|0.523|None|None
 Exiting|FA|None|1186|0.827|None|None
 Exiting|FA|None|1207|0.586|None|None
 Exiting|FA|None|1215|0.44|None|None
+Exiting|FA|None|1226|0.536|None|None
 Exiting|FA|None|1230|0.608|None|None
 Exiting|FA|None|1280|0.019|None|None
 Exiting|FA|None|1284|0.464|None|None
 Exiting|FA|None|1285|0.263|None|None
 Transport_HeavyCarry|CD|28|11|0.519|1.00000053348|{'decscore_congruence': 0.5247844827586207, 'temporal_intersection-over-union': 0.8695652173913043}
+Transport_HeavyCarry|CD|27|105|0.668|1.00000069439|{'decscore_congruence': 0.685344827586207, 'temporal_intersection-over-union': 0.9041916167664671}
 Transport_HeavyCarry|CD|29|113|0.888|1.00000093045|{'decscore_congruence': 0.9224137931034483, 'temporal_intersection-over-union': 0.8035714285714286}
 Transport_HeavyCarry|CD|30|408|0.191|1.00000017344|{'decscore_congruence': 0.17133620689655174, 'temporal_intersection-over-union': 0.2100371747211896}
-Transport_HeavyCarry|CD|27|537|0.696|1.0000007165|{'decscore_congruence': 0.7155172413793103, 'temporal_intersection-over-union': 0.09787234042553192}
-Transport_HeavyCarry|CD|26|1044|0.874|1.00000090769|{'decscore_congruence': 0.9073275862068966, 'temporal_intersection-over-union': 0.035751840168243953}
-Transport_HeavyCarry|CD|25|1126|0.882|1.00000091769|{'decscore_congruence': 0.915948275862069, 'temporal_intersection-over-union': 0.17463235294117646}
-Transport_HeavyCarry|FA|None|105|0.668|None|None
+Transport_HeavyCarry|CD|25|920|0.183|1.00000016688|{'decscore_congruence': 0.1627155172413793, 'temporal_intersection-over-union': 0.41627906976744183}
+Transport_HeavyCarry|MD|26|None|None|None|None
 Transport_HeavyCarry|FA|None|220|0.139|None|None
 Transport_HeavyCarry|FA|None|270|0.528|None|None
 Transport_HeavyCarry|FA|None|314|0.892|None|None
@@ -841,6 +874,7 @@ Transport_HeavyCarry|FA|None|446|0.132|None|None
 Transport_HeavyCarry|FA|None|456|0.617|None|None
 Transport_HeavyCarry|FA|None|467|0.077|None|None
 Transport_HeavyCarry|FA|None|488|0.263|None|None
+Transport_HeavyCarry|FA|None|537|0.696|None|None
 Transport_HeavyCarry|FA|None|610|0.243|None|None
 Transport_HeavyCarry|FA|None|621|0.924|None|None
 Transport_HeavyCarry|FA|None|641|0.601|None|None
@@ -854,13 +888,14 @@ Transport_HeavyCarry|FA|None|796|0.953|None|None
 Transport_HeavyCarry|FA|None|832|0.741|None|None
 Transport_HeavyCarry|FA|None|849|0.429|None|None
 Transport_HeavyCarry|FA|None|916|0.341|None|None
-Transport_HeavyCarry|FA|None|920|0.183|None|None
 Transport_HeavyCarry|FA|None|931|0.389|None|None
 Transport_HeavyCarry|FA|None|951|0.319|None|None
 Transport_HeavyCarry|FA|None|972|0.359|None|None
 Transport_HeavyCarry|FA|None|987|0.442|None|None
 Transport_HeavyCarry|FA|None|997|0.032|None|None
+Transport_HeavyCarry|FA|None|1044|0.874|None|None
 Transport_HeavyCarry|FA|None|1069|0.923|None|None
+Transport_HeavyCarry|FA|None|1126|0.882|None|None
 Transport_HeavyCarry|FA|None|1142|0.96|None|None
 Transport_HeavyCarry|FA|None|1208|0.21|None|None
 Transport_HeavyCarry|FA|None|1211|0.162|None|None
@@ -913,12 +948,12 @@ Closing|CD|64|30|0.789|1.00000078996|{'decscore_congruence': 0.7803030303030305,
 Closing|CD|67|115|0.515|1.00000049281|{'decscore_congruence': 0.4837662337662338, 'temporal_intersection-over-union': 0.9047619047619048}
 Closing|CD|69|123|0.807|1.00000080848|{'decscore_congruence': 0.7997835497835499, 'temporal_intersection-over-union': 0.8695652173913043}
 Closing|CD|71|143|0.529|1.00000050801|{'decscore_congruence': 0.498917748917749, 'temporal_intersection-over-union': 0.9090909090909091}
-Closing|CD|60|792|0.708|1.00000069311|{'decscore_congruence': 0.6926406926406926, 'temporal_intersection-over-union': 0.04713804713804714}
-Closing|CD|68|860|0.679|1.00000066156|{'decscore_congruence': 0.6612554112554113, 'temporal_intersection-over-union': 0.030107526881720432}
-Closing|CD|66|904|0.307|1.00000025923|{'decscore_congruence': 0.25865800865800864, 'temporal_intersection-over-union': 0.05764411027568922}
-Closing|CD|63|1248|0.499|1.00000046709|{'decscore_congruence': 0.4664502164502165, 'temporal_intersection-over-union': 0.06419400855920114}
+Closing|MD|60|None|None|None|None
 Closing|MD|62|None|None|None|None
+Closing|MD|63|None|None|None|None
 Closing|MD|65|None|None|None|None
+Closing|MD|66|None|None|None|None
+Closing|MD|68|None|None|None|None
 Closing|FA|None|242|0.946|None|None
 Closing|FA|None|250|0.654|None|None
 Closing|FA|None|254|0.931|None|None
@@ -931,12 +966,16 @@ Closing|FA|None|628|0.13|None|None
 Closing|FA|None|648|0.992|None|None
 Closing|FA|None|744|0.462|None|None
 Closing|FA|None|776|0.682|None|None
+Closing|FA|None|792|0.708|None|None
+Closing|FA|None|860|0.679|None|None
 Closing|FA|None|896|0.069|None|None
+Closing|FA|None|904|0.307|None|None
 Closing|FA|None|981|0.376|None|None
 Closing|FA|None|1031|0.591|None|None
 Closing|FA|None|1035|0.068|None|None
 Closing|FA|None|1062|0.318|None|None
 Closing|FA|None|1132|0.306|None|None
+Closing|FA|None|1248|0.499|None|None
 Closing|FA|None|1260|0.682|None|None
 Closing|FA|None|1273|0.422|None|None
 Closing|FA|None|1309|0.153|None|None
@@ -944,33 +983,34 @@ Closing|FA|None|1311|0.622|None|None
 vehicle_starting|CD|137|24|0.723|1.00000076423|{'decscore_congruence': 0.7559652928416486, 'temporal_intersection-over-union': 0.8260869565217391}
 vehicle_starting|CD|136|59|0.849|1.00000090252|{'decscore_congruence': 0.8926247288503254, 'temporal_intersection-over-union': 0.9891304347826086}
 vehicle_starting|CD|131|60|0.569|1.00000059809|{'decscore_congruence': 0.588937093275488, 'temporal_intersection-over-union': 0.9154929577464789}
+vehicle_starting|CD|126|81|0.868|1.00000092253|{'decscore_congruence': 0.913232104121475, 'temporal_intersection-over-union': 0.9298245614035088}
+vehicle_starting|CD|132|118|0.653|1.00000068935|{'decscore_congruence': 0.6800433839479393, 'temporal_intersection-over-union': 0.9307692307692308}
 vehicle_starting|CD|133|126|0.688|1.00000072645|{'decscore_congruence': 0.7180043383947939, 'temporal_intersection-over-union': 0.8444444444444444}
-vehicle_starting|CD|124|370|0.902|1.00000095058|{'decscore_congruence': 0.9501084598698483, 'temporal_intersection-over-union': 0.046680497925311204}
-vehicle_starting|CD|135|572|0.357|1.00000036098|{'decscore_congruence': 0.35900216919739697, 'temporal_intersection-over-union': 0.1973018549747049}
-vehicle_starting|CD|134|607|0.89|1.0000009379|{'decscore_congruence': 0.9370932754880694, 'temporal_intersection-over-union': 0.08066429418742586}
-vehicle_starting|CD|125|819|0.293|1.00000029046|{'decscore_congruence': 0.28958785249457697, 'temporal_intersection-over-union': 0.08695652173913043}
-vehicle_starting|CD|126|1039|0.937|1.00000098813|{'decscore_congruence': 0.9880694143167029, 'temporal_intersection-over-union': 0.006224066390041493}
-vehicle_starting|CD|132|1067|0.841|1.00000088397|{'decscore_congruence': 0.883947939262473, 'temporal_intersection-over-union': 0.002157497303128371}
+vehicle_starting|MD|124|None|None|None|None
+vehicle_starting|MD|125|None|None|None|None
 vehicle_starting|MD|127|None|None|None|None
 vehicle_starting|MD|128|None|None|None|None
 vehicle_starting|MD|129|None|None|None|None
 vehicle_starting|MD|130|None|None|None|None
-vehicle_starting|FA|None|81|0.868|None|None
-vehicle_starting|FA|None|118|0.653|None|None
+vehicle_starting|MD|134|None|None|None|None
+vehicle_starting|MD|135|None|None|None|None
 vehicle_starting|FA|None|193|0.394|None|None
 vehicle_starting|FA|None|202|0.396|None|None
 vehicle_starting|FA|None|241|0.269|None|None
 vehicle_starting|FA|None|259|0.834|None|None
 vehicle_starting|FA|None|278|0.026|None|None
 vehicle_starting|FA|None|339|0.351|None|None
+vehicle_starting|FA|None|370|0.902|None|None
 vehicle_starting|FA|None|381|0.405|None|None
 vehicle_starting|FA|None|393|0.627|None|None
 vehicle_starting|FA|None|419|0.586|None|None
 vehicle_starting|FA|None|441|0.294|None|None
 vehicle_starting|FA|None|544|0.863|None|None
 vehicle_starting|FA|None|558|0.117|None|None
+vehicle_starting|FA|None|572|0.357|None|None
 vehicle_starting|FA|None|585|0.768|None|None
 vehicle_starting|FA|None|597|0.5|None|None
+vehicle_starting|FA|None|607|0.89|None|None
 vehicle_starting|FA|None|629|0.286|None|None
 vehicle_starting|FA|None|638|0.916|None|None
 vehicle_starting|FA|None|667|0.624|None|None
@@ -979,6 +1019,7 @@ vehicle_starting|FA|None|767|0.618|None|None
 vehicle_starting|FA|None|771|0.733|None|None
 vehicle_starting|FA|None|804|0.204|None|None
 vehicle_starting|FA|None|814|0.452|None|None
+vehicle_starting|FA|None|819|0.293|None|None
 vehicle_starting|FA|None|824|0.308|None|None
 vehicle_starting|FA|None|829|0.722|None|None
 vehicle_starting|FA|None|889|0.769|None|None
@@ -986,8 +1027,10 @@ vehicle_starting|FA|None|917|0.531|None|None
 vehicle_starting|FA|None|924|0.57|None|None
 vehicle_starting|FA|None|986|0.505|None|None
 vehicle_starting|FA|None|1012|0.327|None|None
+vehicle_starting|FA|None|1039|0.937|None|None
 vehicle_starting|FA|None|1042|0.381|None|None
 vehicle_starting|FA|None|1056|0.724|None|None
+vehicle_starting|FA|None|1067|0.841|None|None
 vehicle_starting|FA|None|1072|0.603|None|None
 vehicle_starting|FA|None|1129|0.509|None|None
 vehicle_starting|FA|None|1138|0.16|None|None
@@ -995,48 +1038,44 @@ vehicle_starting|FA|None|1160|0.607|None|None
 vehicle_starting|FA|None|1199|0.948|None|None
 vehicle_starting|FA|None|1299|0.063|None|None
 vehicle_starting|FA|None|1312|0.319|None|None
-activity_standing|CD|225|4|0.934|1.00000095096|{'decscore_congruence': 0.9495268138801263, 'temporal_intersection-over-union': 0.1429573758989651}
+activity_standing|CD|249|4|0.934|1.00000095839|{'decscore_congruence': 0.9495268138801263, 'temporal_intersection-over-union': 0.8868089573128062}
 activity_standing|CD|278|8|0.982|1.000001005|{'decscore_congruence': 1.0, 'temporal_intersection-over-union': 0.5}
 activity_standing|CD|257|16|0.974|1.00000100043|{'decscore_congruence': 0.9915878023133543, 'temporal_intersection-over-union': 0.8840579710144928}
-activity_standing|CD|252|18|0.619|1.00000061836|{'decscore_congruence': 0.6182965299684543, 'temporal_intersection-over-union': 0.006269592476489028}
 activity_standing|CD|266|25|0.915|1.00000093815|{'decscore_congruence': 0.9295478443743429, 'temporal_intersection-over-union': 0.86}
 activity_standing|CD|259|33|0.727|1.00000074186|{'decscore_congruence': 0.7318611987381703, 'temporal_intersection-over-union': 1.0}
 activity_standing|CD|247|38|0.727|1.00000074106|{'decscore_congruence': 0.7318611987381703, 'temporal_intersection-over-union': 0.9202453987730062}
 activity_standing|CD|270|40|0.735|1.00000074834|{'decscore_congruence': 0.7402733964248159, 'temporal_intersection-over-union': 0.8064516129032258}
 activity_standing|CD|243|50|0.656|1.00000066701|{'decscore_congruence': 0.6572029442691903, 'temporal_intersection-over-union': 0.9803921568627451}
-activity_standing|CD|262|51|0.797|1.0000008055|{'decscore_congruence': 0.8054679284963198, 'temporal_intersection-over-union': 0.0036356678147722926}
+activity_standing|CD|237|51|0.797|1.00000081452|{'decscore_congruence': 0.8054679284963198, 'temporal_intersection-over-union': 0.9049350649350649}
 activity_standing|CD|245|56|0.708|1.00000072086|{'decscore_congruence': 0.711882229232387, 'temporal_intersection-over-union': 0.8974358974358975}
 activity_standing|CD|232|57|0.638|1.00000064328|{'decscore_congruence': 0.6382754994742377, 'temporal_intersection-over-union': 0.5}
 activity_standing|CD|261|58|0.695|1.00000070821|{'decscore_congruence': 0.6982124079915878, 'temporal_intersection-over-union': 1.0}
+activity_standing|CD|262|61|0.645|1.00000065468|{'decscore_congruence': 0.6456361724500526, 'temporal_intersection-over-union': 0.9047619047619048}
 activity_standing|CD|226|65|0.534|1.00000053793|{'decscore_congruence': 0.5289169295478444, 'temporal_intersection-over-union': 0.9010989010989011}
+activity_standing|CD|253|66|0.613|1.00000062045|{'decscore_congruence': 0.61198738170347, 'temporal_intersection-over-union': 0.8461538461538461}
 activity_standing|CD|251|72|0.964|1.0000009907|{'decscore_congruence': 0.9810725552050473, 'temporal_intersection-over-union': 0.9629629629629629}
 activity_standing|CD|260|73|0.935|1.00000095925|{'decscore_congruence': 0.950578338590957, 'temporal_intersection-over-union': 0.8666666666666667}
-activity_standing|CD|254|82|0.692|1.00000070349|{'decscore_congruence': 0.6950578338590956, 'temporal_intersection-over-union': 0.8431372549019608}
 activity_standing|CD|271|86|0.536|1.00000053896|{'decscore_congruence': 0.5310199789695058, 'temporal_intersection-over-union': 0.7941176470588235}
 activity_standing|CD|263|88|0.68|1.00000069101|{'decscore_congruence': 0.6824395373291273, 'temporal_intersection-over-union': 0.8571428571428571}
 activity_standing|CD|255|91|0.784|1.00000080148|{'decscore_congruence': 0.7917981072555206, 'temporal_intersection-over-union': 0.967741935483871}
 activity_standing|CD|240|94|0.79|1.00000080756|{'decscore_congruence': 0.7981072555205048, 'temporal_intersection-over-union': 0.9457364341085271}
 activity_standing|CD|268|98|0.924|1.00000094751|{'decscore_congruence': 0.9390115667718192, 'temporal_intersection-over-union': 0.8502415458937198}
+activity_standing|CD|228|128|0.745|1.00000075962|{'decscore_congruence': 0.750788643533123, 'temporal_intersection-over-union': 0.8833333333333333}
 activity_standing|CD|241|132|0.672|1.00000068215|{'decscore_congruence': 0.6740273396424816, 'temporal_intersection-over-union': 0.8120300751879699}
 activity_standing|CD|273|134|0.749|1.00000076434|{'decscore_congruence': 0.7549947423764458, 'temporal_intersection-over-union': 0.934375}
 activity_standing|CD|244|137|0.827|1.00000084576|{'decscore_congruence': 0.8370136698212408, 'temporal_intersection-over-union': 0.8743169398907104}
 activity_standing|CD|242|139|0.527|1.00000053026|{'decscore_congruence': 0.5215562565720294, 'temporal_intersection-over-union': 0.8705882352941177}
-activity_standing|CD|279|209|0.203|1.00000018207|{'decscore_congruence': 0.1808622502628812, 'temporal_intersection-over-union': 0.1212624584717608}
-activity_standing|CD|265|223|0.968|1.00000098723|{'decscore_congruence': 0.9852786540483701, 'temporal_intersection-over-union': 0.19504643962848298}
-activity_standing|CD|229|288|0.159|1.00000013612|{'decscore_congruence': 0.13459516298633017, 'temporal_intersection-over-union': 0.152317880794702}
+activity_standing|CD|252|288|0.159|1.00000013933|{'decscore_congruence': 0.13459516298633017, 'temporal_intersection-over-union': 0.47335423197492166}
 activity_standing|CD|267|593|0.141|1.00000012132|{'decscore_congruence': 0.11566771819137749, 'temporal_intersection-over-union': 0.5652173913043478}
-activity_standing|CD|258|599|0.137|1.00000011461|{'decscore_congruence': 0.1114616193480547, 'temporal_intersection-over-union': 0.3151515151515151}
-activity_standing|CD|227|646|0.841|1.00000085233|{'decscore_congruence': 0.8517350157728707, 'temporal_intersection-over-union': 0.05940289319790705}
-activity_standing|CD|256|724|0.821|1.00000083089|{'decscore_congruence': 0.8307045215562565, 'temporal_intersection-over-union': 0.018145161290322582}
-activity_standing|CD|237|897|0.862|1.00000087414|{'decscore_congruence': 0.8738170347003155, 'temporal_intersection-over-union': 0.03255411255411256}
+activity_standing|CD|258|724|0.821|1.00000083411|{'decscore_congruence': 0.8307045215562565, 'temporal_intersection-over-union': 0.34055727554179566}
 activity_standing|CD|274|923|0.359|1.00000035072|{'decscore_congruence': 0.34490010515247105, 'temporal_intersection-over-union': 0.5824175824175825}
 activity_standing|CD|239|926|0.751|1.00000075993|{'decscore_congruence': 0.7570977917981072, 'temporal_intersection-over-union': 0.2835714285714286}
-activity_standing|CD|246|932|0.418|1.00000040697|{'decscore_congruence': 0.4069400630914827, 'temporal_intersection-over-union': 0.0028328611898017}
-activity_standing|CD|249|957|0.74|1.0000007473|{'decscore_congruence': 0.7455310199789695, 'temporal_intersection-over-union': 0.17663257277734068}
 activity_standing|CD|250|980|0.826|1.00000083811|{'decscore_congruence': 0.83596214511041, 'temporal_intersection-over-union': 0.21453831041257368}
-activity_standing|CD|228|1006|0.796|1.0000008056|{'decscore_congruence': 0.8044164037854891, 'temporal_intersection-over-union': 0.11836115326251896}
-activity_standing|CD|253|1214|0.833|1.00000084398|{'decscore_congruence': 0.843322818086225, 'temporal_intersection-over-union': 0.06593406593406594}
+activity_standing|CD|254|1214|0.833|1.00000084613|{'decscore_congruence': 0.843322818086225, 'temporal_intersection-over-union': 0.2802197802197802}
 activity_standing|MD|224|None|None|None|None
+activity_standing|MD|225|None|None|None|None
+activity_standing|MD|227|None|None|None|None
+activity_standing|MD|229|None|None|None|None
 activity_standing|MD|230|None|None|None|None
 activity_standing|MD|231|None|None|None|None
 activity_standing|MD|233|None|None|None|None
@@ -1044,25 +1083,32 @@ activity_standing|MD|234|None|None|None|None
 activity_standing|MD|235|None|None|None|None
 activity_standing|MD|236|None|None|None|None
 activity_standing|MD|238|None|None|None|None
+activity_standing|MD|246|None|None|None|None
 activity_standing|MD|248|None|None|None|None
+activity_standing|MD|256|None|None|None|None
 activity_standing|MD|264|None|None|None|None
+activity_standing|MD|265|None|None|None|None
 activity_standing|MD|269|None|None|None|None
 activity_standing|MD|272|None|None|None|None
 activity_standing|MD|275|None|None|None|None
 activity_standing|MD|276|None|None|None|None
 activity_standing|MD|277|None|None|None|None
-activity_standing|FA|None|61|0.645|None|None
-activity_standing|FA|None|66|0.613|None|None
-activity_standing|FA|None|128|0.745|None|None
+activity_standing|MD|279|None|None|None|None
+activity_standing|FA|None|18|0.619|None|None
+activity_standing|FA|None|82|0.692|None|None
 activity_standing|FA|None|149|0.418|None|None
+activity_standing|FA|None|209|0.203|None|None
 activity_standing|FA|None|218|0.828|None|None
+activity_standing|FA|None|223|0.968|None|None
 activity_standing|FA|None|226|0.486|None|None
 activity_standing|FA|None|249|0.709|None|None
 activity_standing|FA|None|308|0.64|None|None
 activity_standing|FA|None|448|0.841|None|None
 activity_standing|FA|None|464|0.063|None|None
 activity_standing|FA|None|485|0.544|None|None
+activity_standing|FA|None|599|0.137|None|None
 activity_standing|FA|None|604|0.451|None|None
+activity_standing|FA|None|646|0.841|None|None
 activity_standing|FA|None|672|0.031|None|None
 activity_standing|FA|None|673|0.087|None|None
 activity_standing|FA|None|691|0.305|None|None
@@ -1072,8 +1118,12 @@ activity_standing|FA|None|772|0.583|None|None
 activity_standing|FA|None|802|0.061|None|None
 activity_standing|FA|None|841|0.234|None|None
 activity_standing|FA|None|877|0.345|None|None
+activity_standing|FA|None|897|0.862|None|None
 activity_standing|FA|None|899|0.751|None|None
 activity_standing|FA|None|919|0.969|None|None
+activity_standing|FA|None|932|0.418|None|None
+activity_standing|FA|None|957|0.74|None|None
+activity_standing|FA|None|1006|0.796|None|None
 activity_standing|FA|None|1023|0.771|None|None
 activity_standing|FA|None|1078|0.838|None|None
 activity_standing|FA|None|1088|0.234|None|None
@@ -1082,11 +1132,12 @@ activity_standing|FA|None|1192|0.187|None|None
 activity_standing|FA|None|1296|0.83|None|None
 activity_carrying|CD|85|36|0.88|1.0000008872|{'decscore_congruence': 0.8780487804878049, 'temporal_intersection-over-union': 0.915016501650165}
 activity_carrying|CD|84|124|0.866|1.00000087331|{'decscore_congruence': 0.8638211382113821, 'temporal_intersection-over-union': 0.9487427466150871}
-activity_carrying|CD|86|286|0.642|1.00000063722|{'decscore_congruence': 0.6361788617886179, 'temporal_intersection-over-union': 0.10426540284360189}
 activity_carrying|CD|83|927|0.925|1.00000092782|{'decscore_congruence': 0.9237804878048781, 'temporal_intersection-over-union': 0.40370751802265703}
+activity_carrying|MD|86|None|None|None|None
 activity_carrying|FA|None|44|0.803|None|None
 activity_carrying|FA|None|237|0.216|None|None
 activity_carrying|FA|None|268|0.387|None|None
+activity_carrying|FA|None|286|0.642|None|None
 activity_carrying|FA|None|290|0.601|None|None
 activity_carrying|FA|None|296|0.061|None|None
 activity_carrying|FA|None|299|0.399|None|None
@@ -1138,14 +1189,15 @@ Talking|CD|2|71|0.892|1.00000093833|{'decscore_congruence': 0.9286474973375932, 
 Talking|CD|3|85|0.943|1.00000099171|{'decscore_congruence': 0.9829605963791267, 'temporal_intersection-over-union': 0.875}
 Talking|CD|4|87|0.566|1.00000059073|{'decscore_congruence': 0.5814696485623003, 'temporal_intersection-over-union': 0.9264705882352942}
 Talking|CD|7|247|0.892|1.00000093489|{'decscore_congruence': 0.9286474973375932, 'temporal_intersection-over-union': 0.6243654822335025}
-Talking|CD|1|281|0.915|1.0000009543|{'decscore_congruence': 0.9531416400425986, 'temporal_intersection-over-union': 0.11540497617787189}
-Talking|CD|6|487|0.406|1.0000004128|{'decscore_congruence': 0.41107561235356765, 'temporal_intersection-over-union': 0.1721311475409836}
-Talking|CD|5|1040|0.524|1.00000053691|{'decscore_congruence': 0.5367412140575081, 'temporal_intersection-over-union': 0.016684045881126174}
+Talking|CD|1|527|0.474|1.0000004856|{'decscore_congruence': 0.483493077742279, 'temporal_intersection-over-union': 0.21021611001964635}
+Talking|MD|5|None|None|None|None
+Talking|MD|6|None|None|None|None
 Talking|FA|None|158|0.527|None|None
 Talking|FA|None|186|0.897|None|None
 Talking|FA|None|207|0.249|None|None
 Talking|FA|None|243|0.685|None|None
 Talking|FA|None|246|0.713|None|None
+Talking|FA|None|281|0.915|None|None
 Talking|FA|None|300|0.039|None|None
 Talking|FA|None|307|0.226|None|None
 Talking|FA|None|315|0.643|None|None
@@ -1156,10 +1208,10 @@ Talking|FA|None|385|0.56|None|None
 Talking|FA|None|424|0.331|None|None
 Talking|FA|None|438|0.426|None|None
 Talking|FA|None|476|0.768|None|None
+Talking|FA|None|487|0.406|None|None
 Talking|FA|None|504|0.023|None|None
 Talking|FA|None|506|0.198|None|None
 Talking|FA|None|516|0.594|None|None
-Talking|FA|None|527|0.474|None|None
 Talking|FA|None|545|0.133|None|None
 Talking|FA|None|557|0.391|None|None
 Talking|FA|None|574|0.063|None|None
@@ -1178,6 +1230,7 @@ Talking|FA|None|915|0.372|None|None
 Talking|FA|None|930|0.891|None|None
 Talking|FA|None|947|0.299|None|None
 Talking|FA|None|1009|0.02|None|None
+Talking|FA|None|1040|0.524|None|None
 Talking|FA|None|1058|0.565|None|None
 Talking|FA|None|1061|0.786|None|None
 Talking|FA|None|1114|0.089|None|None
@@ -1189,11 +1242,10 @@ Talking|FA|None|1210|0.694|None|None
 Talking|FA|None|1245|0.197|None|None
 Entering|CD|44|27|0.769|1.00000080046|{'decscore_congruence': 0.7917098445595855, 'temporal_intersection-over-union': 0.875}
 Entering|CD|47|80|0.795|1.00000082757|{'decscore_congruence': 0.8186528497409327, 'temporal_intersection-over-union': 0.8918918918918919}
+Entering|CD|46|84|0.652|1.00000067931|{'decscore_congruence': 0.6704663212435233, 'temporal_intersection-over-union': 0.8846153846153846}
 Entering|CD|43|197|0.894|1.00000092359|{'decscore_congruence': 0.9212435233160622, 'temporal_intersection-over-union': 0.23423423423423423}
-Entering|CD|46|1136|0.955|1.00000098471|{'decscore_congruence': 0.9844559585492227, 'temporal_intersection-over-union': 0.02495201535508637}
 Entering|MD|45|None|None|None|None
 Entering|FA|None|49|0.865|None|None
-Entering|FA|None|84|0.652|None|None
 Entering|FA|None|156|0.909|None|None
 Entering|FA|None|201|0.036|None|None
 Entering|FA|None|219|0.68|None|None
@@ -1222,6 +1274,7 @@ Entering|FA|None|885|0.055|None|None
 Entering|FA|None|979|0.816|None|None
 Entering|FA|None|990|0.902|None|None
 Entering|FA|None|1015|0.668|None|None
+Entering|FA|None|1136|0.955|None|None
 Entering|FA|None|1167|0.953|None|None
 Entering|FA|None|1173|0.639|None|None
 Entering|FA|None|1202|0.218|None|None
@@ -1230,20 +1283,22 @@ Entering|FA|None|1249|0.947|None|None
 Entering|FA|None|1297|0.352|None|None
 Entering|FA|None|1298|0.913|None|None
 Entering|FA|None|1310|0.226|None|None
-vehicle_turning_right|CD|116|10|0.766|1.00000080332|{'decscore_congruence': 0.7946808510638298, 'temporal_intersection-over-union': 0.8641975308641975}
 vehicle_turning_right|CD|117|14|0.899|1.00000094469|{'decscore_congruence': 0.9361702127659575, 'temporal_intersection-over-union': 0.8524590163934426}
 vehicle_turning_right|CD|122|102|0.742|1.00000077792|{'decscore_congruence': 0.7691489361702127, 'temporal_intersection-over-union': 0.8769230769230769}
 vehicle_turning_right|CD|119|129|0.834|1.00000087516|{'decscore_congruence': 0.8670212765957447, 'temporal_intersection-over-union': 0.813953488372093}
 vehicle_turning_right|CD|114|133|0.954|1.00000100361|{'decscore_congruence': 0.9946808510638298, 'temporal_intersection-over-union': 0.8933333333333333}
-vehicle_turning_right|CD|120|283|0.911|1.00000095004|{'decscore_congruence': 0.948936170212766, 'temporal_intersection-over-union': 0.11065149948293691}
-vehicle_turning_right|CD|115|284|0.943|1.00000098366|{'decscore_congruence': 0.9829787234042553, 'temporal_intersection-over-union': 0.06781750924784218}
+vehicle_turning_right|CD|116|284|0.943|1.00000098505|{'decscore_congruence': 0.9829787234042553, 'temporal_intersection-over-union': 0.20710059171597633}
 vehicle_turning_right|CD|123|605|0.496|1.00000051467|{'decscore_congruence': 0.5074468085106383, 'temporal_intersection-over-union': 0.7222222222222222}
-vehicle_turning_right|CD|118|634|0.103|1.00000008988|{'decscore_congruence': 0.08936170212765956, 'temporal_intersection-over-union': 0.052294557097118465}
-vehicle_turning_right|CD|121|1032|0.177|1.00000016893|{'decscore_congruence': 0.16808510638297874, 'temporal_intersection-over-union': 0.08423913043478261}
+vehicle_turning_right|CD|115|949|0.203|1.00000019976|{'decscore_congruence': 0.19574468085106386, 'temporal_intersection-over-union': 0.40169133192389006}
+vehicle_turning_right|MD|118|None|None|None|None
+vehicle_turning_right|MD|120|None|None|None|None
+vehicle_turning_right|MD|121|None|None|None|None
+vehicle_turning_right|FA|None|10|0.766|None|None
 vehicle_turning_right|FA|None|152|0.416|None|None
 vehicle_turning_right|FA|None|163|0.359|None|None
 vehicle_turning_right|FA|None|248|0.842|None|None
 vehicle_turning_right|FA|None|256|0.399|None|None
+vehicle_turning_right|FA|None|283|0.911|None|None
 vehicle_turning_right|FA|None|304|0.264|None|None
 vehicle_turning_right|FA|None|316|0.019|None|None
 vehicle_turning_right|FA|None|330|0.028|None|None
@@ -1255,6 +1310,7 @@ vehicle_turning_right|FA|None|440|0.514|None|None
 vehicle_turning_right|FA|None|442|0.188|None|None
 vehicle_turning_right|FA|None|552|0.716|None|None
 vehicle_turning_right|FA|None|588|0.868|None|None
+vehicle_turning_right|FA|None|634|0.103|None|None
 vehicle_turning_right|FA|None|658|0.79|None|None
 vehicle_turning_right|FA|None|670|0.959|None|None
 vehicle_turning_right|FA|None|686|0.669|None|None
@@ -1266,10 +1322,10 @@ vehicle_turning_right|FA|None|823|0.433|None|None
 vehicle_turning_right|FA|None|845|0.019|None|None
 vehicle_turning_right|FA|None|884|0.074|None|None
 vehicle_turning_right|FA|None|937|0.456|None|None
-vehicle_turning_right|FA|None|949|0.203|None|None
 vehicle_turning_right|FA|None|1010|0.582|None|None
 vehicle_turning_right|FA|None|1011|0.47|None|None
 vehicle_turning_right|FA|None|1024|0.817|None|None
+vehicle_turning_right|FA|None|1032|0.177|None|None
 vehicle_turning_right|FA|None|1098|0.689|None|None
 vehicle_turning_right|FA|None|1104|0.455|None|None
 vehicle_turning_right|FA|None|1135|0.956|None|None
@@ -1279,12 +1335,11 @@ vehicle_turning_right|FA|None|1251|0.535|None|None
 vehicle_turning_right|FA|None|1300|0.862|None|None
 vehicle_turning_right|FA|None|1305|0.686|None|None
 specialized_texting_phone|CD|91|17|0.994|1.00000100923|{'decscore_congruence': 1.0, 'temporal_intersection-over-union': 0.9230769230769231}
+specialized_texting_phone|CD|88|89|0.546|1.00000054595|{'decscore_congruence': 0.5362318840579711, 'temporal_intersection-over-union': 0.9714285714285714}
 specialized_texting_phone|CD|87|238|0.232|1.00000021453|{'decscore_congruence': 0.2111801242236025, 'temporal_intersection-over-union': 0.33535353535353535}
-specialized_texting_phone|CD|88|566|0.649|1.00000064333|{'decscore_congruence': 0.6428571428571429, 'temporal_intersection-over-union': 0.047156726768377254}
 specialized_texting_phone|CD|90|852|0.835|1.00000084011|{'decscore_congruence': 0.8354037267080745, 'temporal_intersection-over-union': 0.47086247086247085}
 specialized_texting_phone|CD|89|1212|0.951|1.00000095786|{'decscore_congruence': 0.9554865424430642, 'temporal_intersection-over-union': 0.2373894955798232}
 specialized_texting_phone|FA|None|34|0.817|None|None
-specialized_texting_phone|FA|None|89|0.546|None|None
 specialized_texting_phone|FA|None|146|0.654|None|None
 specialized_texting_phone|FA|None|216|0.804|None|None
 specialized_texting_phone|FA|None|222|0.246|None|None
@@ -1301,6 +1356,7 @@ specialized_texting_phone|FA|None|452|0.261|None|None
 specialized_texting_phone|FA|None|493|0.953|None|None
 specialized_texting_phone|FA|None|553|0.412|None|None
 specialized_texting_phone|FA|None|555|0.482|None|None
+specialized_texting_phone|FA|None|566|0.649|None|None
 specialized_texting_phone|FA|None|581|0.604|None|None
 specialized_texting_phone|FA|None|654|0.506|None|None
 specialized_texting_phone|FA|None|710|0.463|None|None
@@ -1314,10 +1370,10 @@ specialized_texting_phone|FA|None|1155|0.731|None|None
 specialized_texting_phone|FA|None|1164|0.425|None|None
 specialized_texting_phone|FA|None|1225|0.808|None|None
 specialized_texting_phone|FA|None|1268|0.066|None|None
-Interacts|CD|17|121|0.849|1.00000084157|{'decscore_congruence': 0.8414376321353065, 'temporal_intersection-over-union': 0.012904398400581607}
-Interacts|CD|14|534|0.999|1.00000100129|{'decscore_congruence': 1.0, 'temporal_intersection-over-union': 0.12922252010723861}
-Interacts|CD|16|576|0.761|1.00000075033|{'decscore_congruence': 0.7484143763213531, 'temporal_intersection-over-union': 0.192}
+Interacts|CD|14|121|0.849|1.00000085077|{'decscore_congruence': 0.8414376321353065, 'temporal_intersection-over-union': 0.9332752613240418}
 Interacts|MD|15|None|None|None|None
+Interacts|MD|16|None|None|None|None
+Interacts|MD|17|None|None|None|None
 Interacts|FA|None|155|0.661|None|None
 Interacts|FA|None|183|0.462|None|None
 Interacts|FA|None|187|0.12|None|None
@@ -1331,9 +1387,11 @@ Interacts|FA|None|426|0.303|None|None
 Interacts|FA|None|430|0.233|None|None
 Interacts|FA|None|459|0.976|None|None
 Interacts|FA|None|463|0.319|None|None
+Interacts|FA|None|534|0.999|None|None
 Interacts|FA|None|547|0.205|None|None
 Interacts|FA|None|556|0.294|None|None
 Interacts|FA|None|568|0.299|None|None
+Interacts|FA|None|576|0.761|None|None
 Interacts|FA|None|580|0.602|None|None
 Interacts|FA|None|618|0.595|None|None
 Interacts|FA|None|631|0.366|None|None

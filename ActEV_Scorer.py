@@ -190,7 +190,11 @@ if __name__ == '__main__':
 
     alignment_records, metric_records, pair_metric_records, det_curve_metric_records, det_point_records = reduce(_alignment_reducer, activity_index.iteritems(), ({}, {}, {}, {}, {}))
 
-    mean_alignment_metric_records = [ ("mean-{}".format(k), float(reduce(add, v, 0)) / len(v)) for k, v in (group_by_func(lambda kv: kv[0], reduce(add, metric_records.values() + det_curve_metric_records.values(), []), lambda kv: kv[1])).iteritems() ]
+    def _mean_exclude_none(values):
+        fv = filter(lambda v: v is not None, values)
+        return float(reduce(add, fv, 0)) / len(fv) if len(fv) > 0 else None
+
+    mean_alignment_metric_records = [ ("mean-{}".format(k), _mean_exclude_none(v)) for k, v in (group_by_func(lambda kv: kv[0], reduce(add, metric_records.values() + det_curve_metric_records.values(), []), lambda kv: kv[1])).iteritems() ]
 
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))

@@ -18,6 +18,10 @@ class ActEV18():
         
         self.epsilon_temporal_congruence = 1.0e-8
         self.epsilon_decisionscore_congruence = 1.0e-6
+        self.temporal_overlap_delta = 0.2
+        self.nmide_ns_collar_size = 0
+
+        self.temporal_overlap_filter = build_temporal_overlap_filter(self.temporal_overlap_delta)
         
         self.instance_pair_metrics = { "temporal_intersection": temporal_intersection,
                                        "temporal_union": temporal_union }
@@ -28,7 +32,7 @@ class ActEV18():
 
         self.alignment_metrics = { "rate_fa": self._build_rfa(total_file_dur_minutes),
                                    "p_miss": lambda c, m, f: p_miss(len(c), len(m), len(f)),
-                                   "n-mide": self._build_nmide(file_framedur_lookup) }
+                                   "n-mide": self._build_nmide(file_framedur_lookup, self.nmide_ns_collar_size) }
 
         self.det_curve_metrics = { "p_miss@1rfa": self._build_pmiss_at_rfa(1),
                                    "p_miss@0.2rfa": self._build_pmiss_at_rfa(0.2),
@@ -47,7 +51,7 @@ class ActEV18():
                                                     "p_miss@0.01rfa" ]
 
     def build_kernel(self, system_instances):
-        return build_linear_combination_kernel([temporal_intersection_filter],
+        return build_linear_combination_kernel([self.temporal_overlap_filter],
                                                [("temporal_intersection-over-union",
                                                  self.epsilon_temporal_congruence,
                                                  temporal_intersection_over_union),
@@ -67,8 +71,7 @@ class ActEV18():
 
         return _metric_func
 
-    # TODO: Update NS collar size
-    def _build_nmide(self, file_duration_lookup, ns_collar_size = 0, cost_fn_miss = lambda x: 1 * x, cost_fn_fa = lambda x: 1 * x):
+    def _build_nmide(self, file_duration_lookup, ns_collar_size, cost_fn_miss = lambda x: 1 * x, cost_fn_fa = lambda x: 1 * x):
         def _metric_func(c, m, f):
             return n_mide([(ar.ref, ar.sys) for ar in c], file_duration_lookup, ns_collar_size, cost_fn_miss, cost_fn_fa)
 
@@ -76,4 +79,6 @@ class ActEV18():
 
     def dump_parameters(self):
         return [("epsilon_temporal_congruence", self.epsilon_temporal_congruence),
-                ("epsilon_decisionscore_congruence", self.epsilon_decisionscore_congruence)]
+                ("epsilon_decisionscore_congruence", self.epsilon_decisionscore_congruence),
+                ("delta_temporal_overlap_filter", self.temporal_overlap_delta),
+                ("N_MIDE_no_score_zone_collar_size", self.nmide_ns_collar_size)]
