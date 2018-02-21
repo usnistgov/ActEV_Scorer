@@ -28,6 +28,12 @@ class TestSEDKernelComponents(unittest.TestCase):
 
         self.sys_empty = [ ]
 
+        self.sys_same = [ A(0.8),
+                          A(0.8),
+                          A(0.8) ]
+
+        self.congruence_func_sys_same = build_sed_decscore_congruence(self.sys_same)
+
     def test_decscore_congruence(self):
         self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[0]), 0.0)
         self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[1]), 0.1 / 0.55)
@@ -37,6 +43,11 @@ class TestSEDKernelComponents(unittest.TestCase):
 
     def test_decscore_congruence_single_instance(self):
         self.assertAlmostEqual(self.congruence_func_sys_2(None, self.sys_2[0]), 1.0)
+
+    def test_decscore_congruence_same(self):
+        self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[0]), 1.0)
+        self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[1]), 1.0)
+        self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[2]), 1.0)
 
     def test_decscore_congruence_empty(self):
         # This shouldn't raise an exception, if it does, our test case

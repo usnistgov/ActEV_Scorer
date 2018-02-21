@@ -14,6 +14,12 @@ def det_curve(points_dict, out_fn):
     for k, points in points_dict.iteritems():
         plt.plot([ x for ds, x, y in points ], [ norm.ppf(y) for ds, x, y in points ], label = k)
 
+    # Need the following line for matplotlib 1.5.1.  Without explicit
+    # limits, matplotlib attempts to infer them from the data, but if
+    # all xvalues are 0, a ValueError is raised when trying to set
+    # xscale
+    plt.xlim(xtick_values[0], xtick_values[-1])
+
     plt.xscale("log")
     plt.xticks(xtick_values, map(str, xtick_values))
     

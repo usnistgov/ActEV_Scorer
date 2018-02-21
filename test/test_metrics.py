@@ -72,6 +72,9 @@ class TestPMissAtRFA(TestMetrics):
                          (0.5, 3.0, float(3) / 6),
                          (0.5, 3.0, float(3) / 6)]
 
+        self.points_4 = [(1.0, 0.0, float(5) / 6),
+                         (0.9, 0.0, float(4) / 6)]
+
 
     def testRMissAtRFA(self):
         self.assertEqual(p_miss_at_r_fa(self.points_empty, 1), None)
@@ -98,6 +101,9 @@ class TestPMissAtRFA(TestMetrics):
         self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 2.5), float(3.25) / 6, places=10)
         self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 3), float(3) / 6, places=10)
         self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 4), float(3) / 6, places=10)
+
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_4, 1), float(4) / 6, places=10)
+        self.assertAlmostEqual(p_miss_at_r_fa(self.points_4, 2), float(4) / 6, places=10)
 
 class TestNMIDE(TestMetrics):
     def setUp(self):

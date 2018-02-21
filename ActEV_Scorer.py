@@ -149,10 +149,10 @@ if __name__ == '__main__':
 
         alignment_recs, metric_recs, pair_metric_recs, det_curve_metric_recs, det_points = init
 
-        kernel = protocol.build_kernel(system_activities[activity_name])
+        kernel = protocol.build_kernel(system_activities.get(activity_name, []))
         
-        correct, miss, fa = perform_alignment(reference_activities[activity_name],
-                                              system_activities[activity_name],
+        correct, miss, fa = perform_alignment(reference_activities.get(activity_name, []),
+                                              system_activities.get(activity_name, []),
                                               kernel)
 
         # Add to alignment records

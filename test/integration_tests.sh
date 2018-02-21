@@ -61,3 +61,29 @@ test_2_0() {
 	-d \
 	-v
 }
+
+# integration test 3-0
+test_3_0() {
+    ../ActEV_Scorer.py \
+	"ActEV18" \
+	-s "data/test_3-0_fake-sysout.json" \
+	-r "data/test_3-0.json" \
+	-a "data/test_3-0_activity-index.json" \
+	-f "data/test_3-0_file-index.json" \
+	-o "$1" \
+	-d \
+	-v
+}
+
+# integration test 3-1
+test_3_1() {
+    ../ActEV_Scorer.py \
+	"ActEV18" \
+	-s "data/test_3-1_fake-sysout.json" \
+	-r "data/test_3-0.json" \
+	-a "data/test_3-0_activity-index.json" \
+	-f "data/test_3-0_file-index.json" \
+	-o "$1" \
+	-d \
+	-v
+}
