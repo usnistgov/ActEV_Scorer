@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.0.1
-Date: January 31, 2018
+Version: 0.0.2
+Date: February 22, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -94,6 +94,14 @@ Changelog:
 
   Jan 31, 2018 - Version 0.0.1
     - Initial release
+
+  Feb 22, 2018 - Version 0.0.2
+    - Fixed an issue where system or reference files without instances
+      for an activity listed in the activity index would cause the
+      script to fail
+    - Fixed an issue with older versions of the matplotlib package,
+      which would cause the script fail when plotting activities with
+      no false alarms
 
 Contact:
 
