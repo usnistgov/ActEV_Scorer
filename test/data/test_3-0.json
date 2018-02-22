@@ -1,0 +1,187 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 19,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3561": 1,
+          "3620": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 43,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3845": 1,
+          "3897": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 44,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "6070": 1,
+          "6099": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 45,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "10419": 1,
+          "10483": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 46,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "13173": 1,
+          "13198": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 47,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "19578": 1,
+          "19614": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 60,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "2088": 1,
+          "2116": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 61,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3033": 1,
+          "3061": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 62,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3231": 1,
+          "3268": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 63,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3896": 1,
+          "3941": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 64,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "9318": 1,
+          "9346": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 65,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "9514": 1,
+          "9547": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 66,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "10085": 1,
+          "10131": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 67,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "13099": 1,
+          "13118": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 68,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "18887": 1,
+          "18915": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 69,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "19469": 1,
+          "19490": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 70,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "19947": 1,
+          "19984": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 71,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "10470": 1,
+          "10502": 0
+        }
+      }
+    }
+  ]
+}
