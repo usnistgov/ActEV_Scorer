@@ -228,6 +228,13 @@ if __name__ == '__main__':
 
     mean_alignment_metric_records = [ ("mean-{}".format(k), _mean_exclude_none(v)) for k, v in (group_by_func(lambda kv: kv[0], reduce(add, metric_records.values() + det_curve_metric_records.values(), []), lambda kv: kv[1])).iteritems() ]
 
+    def _compute_microavg_alignment_metrics(init, metric):
+        c, m, f = reduce(alignment_partitioner, reduce(add, alignment_records.values(), []), ([], [], []))
+        init.append((metric, protocol.alignment_metrics[metric](c, m, f)))
+        return init
+
+    microavg_alignment_metrics = reduce(_compute_microavg_alignment_metrics, protocol.default_reported_alignment_metrics, [])
+
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
 
@@ -239,7 +246,7 @@ if __name__ == '__main__':
 
     write_records_as_csv("{}/scores_by_activity.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], dict_to_records(det_curve_metric_records, lambda v: map(str, v)) + dict_to_records(metric_records, lambda v: map(str, v)))
 
-    write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], mean_alignment_metric_records)
+    write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], mean_alignment_metric_records + microavg_alignment_metrics)
 
     if not args.disable_plotting:
         figure_dir = "{}/figures".format(args.output_dir)
