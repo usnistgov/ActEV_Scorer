@@ -1,3 +1,4 @@
+[Info] Command: ../ActEV_Scorer.py ActEV18 -s data/VIRAT_S_000001_fake-sysout.json -r data/VIRAT_S_000001.json -a data/VIRAT_S_000001_activity-index.json -f data/VIRAT_S_000001_file-index.json -o data/checkfiles/test_2_0 -d -v
 [Info] Loading system output file
 [Info] Loading reference file
 [Info] Loading activity index file

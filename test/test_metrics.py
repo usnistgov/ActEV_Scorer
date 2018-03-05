@@ -205,5 +205,11 @@ class TestTemporalIntersectionOverUnion(TestSignalMetrics):
 
         self.assertAlmostEqual(temporal_intersection_over_union(self.a3, self.a4), float(0) / 15, places=10)
 
+class TestMeanExcludeNone(TestMetrics):
+    def test(self):
+        self.assertAlmostEqual(mean_exclude_none([1, 2, 3]), 2.0, places=10)
+        self.assertAlmostEqual(mean_exclude_none([1, 2, 3, None]), 2.0, places=10)
+        self.assertAlmostEqual(mean_exclude_none([1, 2, 3, None, None]), 2.0, places=10)
+
 if __name__ == '__main__':
     unittest.main()

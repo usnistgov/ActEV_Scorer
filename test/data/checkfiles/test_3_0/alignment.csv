@@ -1,16 +1,19 @@
 activity|alignment|ref|sys|sys_decision_score|kernel_similarity|kernel_components
 Closing|CD|61|1|0.756|1.0000007539|{'decscore_congruence': 0.7445887445887446, 'temporal_intersection-over-union': 0.9310344827586207}
-Closing|CD|70|26|0.774|1.00000077304|{'decscore_congruence': 0.7640692640692641, 'temporal_intersection-over-union': 0.8974358974358975}
 Closing|CD|64|30|0.789|1.00000078996|{'decscore_congruence': 0.7803030303030305, 'temporal_intersection-over-union': 0.9655172413793104}
 Closing|CD|67|115|0.515|1.00000049281|{'decscore_congruence': 0.4837662337662338, 'temporal_intersection-over-union': 0.9047619047619048}
 Closing|CD|69|123|0.807|1.00000080848|{'decscore_congruence': 0.7997835497835499, 'temporal_intersection-over-union': 0.8695652173913043}
+Closing|CD|70|26|0.774|1.00000077304|{'decscore_congruence': 0.7640692640692641, 'temporal_intersection-over-union': 0.8974358974358975}
 Closing|CD|71|143|0.529|1.00000050801|{'decscore_congruence': 0.498917748917749, 'temporal_intersection-over-union': 0.9090909090909091}
-Closing|MD|60|None|None|None|None
-Closing|MD|62|None|None|None|None
-Closing|MD|63|None|None|None|None
-Closing|MD|65|None|None|None|None
-Closing|MD|66|None|None|None|None
-Closing|MD|68|None|None|None|None
+Closing|FA|None|1031|0.591|None|None
+Closing|FA|None|1035|0.068|None|None
+Closing|FA|None|1062|0.318|None|None
+Closing|FA|None|1132|0.306|None|None
+Closing|FA|None|1248|0.499|None|None
+Closing|FA|None|1260|0.682|None|None
+Closing|FA|None|1273|0.422|None|None
+Closing|FA|None|1309|0.153|None|None
+Closing|FA|None|1311|0.622|None|None
 Closing|FA|None|242|0.946|None|None
 Closing|FA|None|250|0.654|None|None
 Closing|FA|None|254|0.931|None|None
@@ -28,59 +31,23 @@ Closing|FA|None|860|0.679|None|None
 Closing|FA|None|896|0.069|None|None
 Closing|FA|None|904|0.307|None|None
 Closing|FA|None|981|0.376|None|None
-Closing|FA|None|1031|0.591|None|None
-Closing|FA|None|1035|0.068|None|None
-Closing|FA|None|1062|0.318|None|None
-Closing|FA|None|1132|0.306|None|None
-Closing|FA|None|1248|0.499|None|None
-Closing|FA|None|1260|0.682|None|None
-Closing|FA|None|1273|0.422|None|None
-Closing|FA|None|1309|0.153|None|None
-Closing|FA|None|1311|0.622|None|None
-Entering|CD|44|27|0.769|1.00000080046|{'decscore_congruence': 0.7917098445595855, 'temporal_intersection-over-union': 0.875}
-Entering|CD|47|80|0.795|1.00000082757|{'decscore_congruence': 0.8186528497409327, 'temporal_intersection-over-union': 0.8918918918918919}
-Entering|CD|46|84|0.652|1.00000067931|{'decscore_congruence': 0.6704663212435233, 'temporal_intersection-over-union': 0.8846153846153846}
-Entering|CD|43|197|0.894|1.00000092359|{'decscore_congruence': 0.9212435233160622, 'temporal_intersection-over-union': 0.23423423423423423}
-Entering|MD|45|None|None|None|None
-Entering|FA|None|49|0.865|None|None
-Entering|FA|None|156|0.909|None|None
-Entering|FA|None|201|0.036|None|None
-Entering|FA|None|219|0.68|None|None
-Entering|FA|None|280|0.842|None|None
-Entering|FA|None|378|0.621|None|None
-Entering|FA|None|387|0.97|None|None
-Entering|FA|None|471|0.935|None|None
-Entering|FA|None|486|0.505|None|None
-Entering|FA|None|498|0.046|None|None
-Entering|FA|None|550|0.171|None|None
-Entering|FA|None|564|0.702|None|None
-Entering|FA|None|582|0.215|None|None
-Entering|FA|None|586|0.573|None|None
-Entering|FA|None|623|0.143|None|None
-Entering|FA|None|689|0.499|None|None
-Entering|FA|None|705|0.93|None|None
-Entering|FA|None|706|0.005|None|None
-Entering|FA|None|712|0.872|None|None
-Entering|FA|None|763|0.176|None|None
-Entering|FA|None|784|0.034|None|None
-Entering|FA|None|809|0.615|None|None
-Entering|FA|None|834|0.893|None|None
-Entering|FA|None|872|0.287|None|None
-Entering|FA|None|882|0.132|None|None
-Entering|FA|None|885|0.055|None|None
-Entering|FA|None|979|0.816|None|None
-Entering|FA|None|990|0.902|None|None
-Entering|FA|None|1015|0.668|None|None
-Entering|FA|None|1136|0.955|None|None
-Entering|FA|None|1167|0.953|None|None
-Entering|FA|None|1173|0.639|None|None
-Entering|FA|None|1202|0.218|None|None
-Entering|FA|None|1228|0.572|None|None
-Entering|FA|None|1249|0.947|None|None
-Entering|FA|None|1297|0.352|None|None
-Entering|FA|None|1298|0.913|None|None
-Entering|FA|None|1310|0.226|None|None
-Closing_Trunk|MD|19|None|None|None|None
+Closing|MD|60|None|None|None|None
+Closing|MD|62|None|None|None|None
+Closing|MD|63|None|None|None|None
+Closing|MD|65|None|None|None|None
+Closing|MD|66|None|None|None|None
+Closing|MD|68|None|None|None|None
+Closing_Trunk|FA|None|1007|0.99|None|None
+Closing_Trunk|FA|None|1022|0.723|None|None
+Closing_Trunk|FA|None|1049|0.396|None|None
+Closing_Trunk|FA|None|1051|0.202|None|None
+Closing_Trunk|FA|None|1075|0.548|None|None
+Closing_Trunk|FA|None|1154|0.179|None|None
+Closing_Trunk|FA|None|1158|0.653|None|None
+Closing_Trunk|FA|None|1184|0.608|None|None
+Closing_Trunk|FA|None|1190|0.259|None|None
+Closing_Trunk|FA|None|1269|0.47|None|None
+Closing_Trunk|FA|None|1277|0.195|None|None
 Closing_Trunk|FA|None|150|0.685|None|None
 Closing_Trunk|FA|None|160|0.254|None|None
 Closing_Trunk|FA|None|165|0.351|None|None
@@ -107,14 +74,47 @@ Closing_Trunk|FA|None|676|0.113|None|None
 Closing_Trunk|FA|None|688|0.173|None|None
 Closing_Trunk|FA|None|755|0.02|None|None
 Closing_Trunk|FA|None|778|0.606|None|None
-Closing_Trunk|FA|None|1007|0.99|None|None
-Closing_Trunk|FA|None|1022|0.723|None|None
-Closing_Trunk|FA|None|1049|0.396|None|None
-Closing_Trunk|FA|None|1051|0.202|None|None
-Closing_Trunk|FA|None|1075|0.548|None|None
-Closing_Trunk|FA|None|1154|0.179|None|None
-Closing_Trunk|FA|None|1158|0.653|None|None
-Closing_Trunk|FA|None|1184|0.608|None|None
-Closing_Trunk|FA|None|1190|0.259|None|None
-Closing_Trunk|FA|None|1269|0.47|None|None
-Closing_Trunk|FA|None|1277|0.195|None|None
+Closing_Trunk|MD|19|None|None|None|None
+Entering|CD|43|197|0.894|1.00000092359|{'decscore_congruence': 0.9212435233160622, 'temporal_intersection-over-union': 0.23423423423423423}
+Entering|CD|44|27|0.769|1.00000080046|{'decscore_congruence': 0.7917098445595855, 'temporal_intersection-over-union': 0.875}
+Entering|CD|46|84|0.652|1.00000067931|{'decscore_congruence': 0.6704663212435233, 'temporal_intersection-over-union': 0.8846153846153846}
+Entering|CD|47|80|0.795|1.00000082757|{'decscore_congruence': 0.8186528497409327, 'temporal_intersection-over-union': 0.8918918918918919}
+Entering|FA|None|1015|0.668|None|None
+Entering|FA|None|1136|0.955|None|None
+Entering|FA|None|1167|0.953|None|None
+Entering|FA|None|1173|0.639|None|None
+Entering|FA|None|1202|0.218|None|None
+Entering|FA|None|1228|0.572|None|None
+Entering|FA|None|1249|0.947|None|None
+Entering|FA|None|1297|0.352|None|None
+Entering|FA|None|1298|0.913|None|None
+Entering|FA|None|1310|0.226|None|None
+Entering|FA|None|156|0.909|None|None
+Entering|FA|None|201|0.036|None|None
+Entering|FA|None|219|0.68|None|None
+Entering|FA|None|280|0.842|None|None
+Entering|FA|None|378|0.621|None|None
+Entering|FA|None|387|0.97|None|None
+Entering|FA|None|471|0.935|None|None
+Entering|FA|None|486|0.505|None|None
+Entering|FA|None|49|0.865|None|None
+Entering|FA|None|498|0.046|None|None
+Entering|FA|None|550|0.171|None|None
+Entering|FA|None|564|0.702|None|None
+Entering|FA|None|582|0.215|None|None
+Entering|FA|None|586|0.573|None|None
+Entering|FA|None|623|0.143|None|None
+Entering|FA|None|689|0.499|None|None
+Entering|FA|None|705|0.93|None|None
+Entering|FA|None|706|0.005|None|None
+Entering|FA|None|712|0.872|None|None
+Entering|FA|None|763|0.176|None|None
+Entering|FA|None|784|0.034|None|None
+Entering|FA|None|809|0.615|None|None
+Entering|FA|None|834|0.893|None|None
+Entering|FA|None|872|0.287|None|None
+Entering|FA|None|882|0.132|None|None
+Entering|FA|None|885|0.055|None|None
+Entering|FA|None|979|0.816|None|None
+Entering|FA|None|990|0.902|None|None
+Entering|MD|45|None|None|None|None

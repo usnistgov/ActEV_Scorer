@@ -119,3 +119,7 @@ def p_miss_at_r_fa(points, target_rfa):
         last_rfa = rfa
 
     return last_pmiss
+
+def mean_exclude_none(values):
+    fv = filter(lambda v: v is not None, values)
+    return float(reduce(add, fv, 0)) / len(fv) if len(fv) > 0 else None
