@@ -43,10 +43,10 @@ from sed_kernel_components import *
 from alignment import *
 from helpers import *
 
-class ActEV18():
+class ActEV18_AD():
     @classmethod
     def get_schema_fn(cls):
-        return "actev18_schema.json"
+        return "actev18_ad_schema.json"
 
     def __init__(self):
         self.default_scoring_parameters = { "epsilon_temporal_congruence": 1.0e-8,

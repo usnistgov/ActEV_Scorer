@@ -36,10 +36,10 @@ run_test() {
     echo "*** OK ***"
 }
 
-# ActEV18 integration test 1
+# ActEV18_AD integration test 1
 test_1_0() {
     ../ActEV_Scorer.py \
-	"ActEV18" \
+	"ActEV18_AD" \
 	-s "data/VIRAT_S_000000_fake-sysout.json" \
 	-r "data/VIRAT_S_000000.json" \
 	-a "data/VIRAT_S_000000_activity-index.json" \
@@ -49,10 +49,10 @@ test_1_0() {
 	-v
 }
 
-# ActEV18 integration test 2
+# ActEV18_AD integration test 2
 test_2_0() {
     ../ActEV_Scorer.py \
-	"ActEV18" \
+	"ActEV18_AD" \
 	-s "data/VIRAT_S_000001_fake-sysout.json" \
 	-r "data/VIRAT_S_000001.json" \
 	-a "data/VIRAT_S_000001_activity-index.json" \
@@ -65,7 +65,7 @@ test_2_0() {
 # integration test 3-0
 test_3_0() {
     ../ActEV_Scorer.py \
-	"ActEV18" \
+	"ActEV18_AD" \
 	-s "data/test_3-0_fake-sysout.json" \
 	-r "data/test_3-0.json" \
 	-a "data/test_3-0_activity-index.json" \
@@ -78,7 +78,7 @@ test_3_0() {
 # integration test 3-1
 test_3_1() {
     ../ActEV_Scorer.py \
-	"ActEV18" \
+	"ActEV18_AD" \
 	-s "data/test_3-1_fake-sysout.json" \
 	-r "data/test_3-0.json" \
 	-a "data/test_3-0_activity-index.json" \

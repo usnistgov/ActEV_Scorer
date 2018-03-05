@@ -31,10 +31,10 @@ Setup:
 Option description:
 
   SCORING_PROTOCOL - Positional argument, from a fixed set of values
-  (e.g. ActEV18).  This required argument controls what system output
-  formats are valid, and what metrics are computed.  A description of
-  each supported protocol can be found in the "Protocols" section of
-  this document
+  (e.g. ActEV18_AD).  This required argument controls what system
+  output formats are valid, and what metrics are computed.  A
+  description of each supported protocol can be found in the
+  "Protocols" section of this document
 
   -s SYSTEM_OUTPUT_FILE - Required; path to the system output JSON
   file to be scored
@@ -66,8 +66,8 @@ Option description:
 
 Protocols:
 
-  ActEV18 - Scoring protocol for the ActEV 2018 evaluation, the
-  following measures are computed:
+  ActEV18_AD - Scoring protocol for the ActEV 2018 Activity Detection
+  task, the following measures are computed:
     - PMiss at RFA for RFA values of 1, 0.2, 0.15, 0.1, 0.03, and
       0.01
     - NMIDE (**NOTE** currently using a no-score collar size of 0
@@ -102,6 +102,16 @@ Changelog:
     - Fixed an issue with older versions of the matplotlib package,
       which would cause the script fail when plotting activities with
       no false alarms
+
+  March 5, 2018 - Version *.*.*
+    - Added N-MIDE measure to aggregate scores, which is computed over
+      the entire alignment (regardless of activity) in addition to the
+      already reported N-MIDE macro-averaged over activities
+      (currently reported as "mean-n-mide")
+    - Changed "config.csv" output to be a serialized JSON object,
+      named "scoring_parameters.json"
+    - Renamed the "ActEV18" protocol to "ActEV18_AD", as it's
+      specifically for the Activity Detection task
 
 Contact:
 
