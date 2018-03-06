@@ -7,14 +7,14 @@ lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../lib")
 sys.path.append(lib_path)
 
 import unittest
-from operator import add
+from operator import add, sub
 from sparse_signal import SparseSignal as S
 
 class TestSparseSignal(unittest.TestCase):
     def setUp(self):
         super(TestSparseSignal, self).setUp()
 
-        self.se = S({})
+        self.se = S()
         self.s1 = S({30: 1, 60: 0})
         self.s2 = S({0: 1, 10: 0})
         self.s3 = S({30: 1, 40: 0})
@@ -22,7 +22,7 @@ class TestSparseSignal(unittest.TestCase):
         self.s5 = S({0: 1, 30: 0})
         self.s6 = S({60: 1, 100: 0})
         self.s7 = S({0: 1, 100: 0})
-        
+
         self.sb1 = S({0: 1, 30: 2, 60: 1, 100: 0})
         self.sb2 = S({30: 2, 40: 1, 60: 0})
         self.sb3 = S({30: 1, 60: 2, 100: 1, 130: 0})
@@ -43,6 +43,12 @@ class TestSparseSignal(unittest.TestCase):
         self.sc1 = S({5: 1, 10: 0})
         self.sc2 = S({5: 1, 7:1, 10: 0})
         self.sc3 = S({0: 1, 10: 0})
+
+        self.s2d_1 = S({10: S({10: 1, 20: 0}), 15: S(), 30: S({15: 1, 35: 0}), 40: S()})
+        self.s2d_2 = S({10: S({15: 1, 25: 0}), 35: S()})
+
+        self.s3d_1 = S({1: S({10: S({10: 1, 20: 0}), 20: S()}), 2: S({10: S({10: 1, 30: 0}), 30: S()}), 4: S()})
+        self.s3d_2 = S({1: S({10: S({10: 1, 20: 0}), 20: S()}), 4: S()})
 
     def testSignalEquivalence(self):
         self.assertEqual(self.se, self.se)
@@ -99,7 +105,7 @@ class TestSparseSignal(unittest.TestCase):
 
     def testGenerateCollar(self):
         self.assertEqual(self.sc1.generate_collar(2), S({3: 1, 7: 0, 8: 1, 12: 0}))
-        
+
         # Input signal should be normalized in the generate_collar
         # function
         self.assertEqual(self.sc2.generate_collar(2), S({3: 1, 7: 0, 8: 1, 12: 0}))
@@ -108,6 +114,33 @@ class TestSparseSignal(unittest.TestCase):
 
         # Output signal should be normalized
         self.assertEqual(self.sc1.generate_collar(5), S({0: 1, 15: 0}))
-        
+
+    def test2D(self):
+        self.assertEqual(self.s2d_1.area(), 250)
+        self.assertEqual(self.s2d_2.area(), 250)
+
+        self.assertEqual(self.s2d_1.join(self.s2d_1.join(self.s2d_1, lambda a, b: a.join(b, min, 0), S()), lambda a, b: a.join(b, sub, 0), S()), S())
+
+        self.assertEqual(self.s2d_1.join(self.s2d_2, lambda a, b: a.join(b, min, 0), S()), S({10: S({15: 1, 20: 0}), 15: S(), 30: S({15: 1, 25: 0}), 35: S()}))
+        self.assertEqual(self.s2d_1.join_nd(self.s2d_2, 2, min), S({10: S({15: 1, 20: 0}), 15: S(), 30: S({15: 1, 25: 0}), 35: S()}))
+
+        self.assertEqual(self.s2d_1.join_nd(S(), 2, max), self.s2d_1)
+
+        self.assertEqual(self.s2d_1.join_nd(self.s2d_2, 2, lambda a, b: a - min(a, b)), S({10: S({10: 1, 15: 0}), 15: S(), 30: S({25: 1, 35: 0}), 35: S({15: 1, 35: 0}), 40: S()}))
+        self.assertEqual(self.s2d_1.join_nd(self.s2d_2, 2, lambda a, b: a - min(a, b)).area(), 175)
+
+        self.assertEqual(self.s2d_1.join_nd(self.s2d_2, 2, max), S({10: S({10: 1, 25: 0}), 15: S({15: 1, 25: 0}), 30: S({15: 1, 35: 0}), 40: S()}))
+        self.assertEqual(self.s2d_1.join_nd(self.s2d_2, 2, max).area(), 425)
+
+    def test3D(self):
+        self.assertEqual(self.s3d_1.area(), 900)
+        self.assertEqual(self.s3d_2.area(), 300)
+
+        self.assertEqual(self.s3d_1.join_nd(self.s3d_1, 3, lambda a, b: a - min(a, b)).area(), 0)
+        self.assertEqual(self.s3d_2.join_nd(self.s3d_1, 3, lambda a, b: a - min(a, b)).area(), 0)
+
+        self.assertEqual(self.s3d_1.join_nd(self.s3d_2, 3, lambda a, b: a - min(a, b)).area(), 600)
+        self.assertEqual(self.s3d_1.join_nd(self.s3d_2, 3, max).area(), 900)
+
 if __name__ == '__main__':
     unittest.main()

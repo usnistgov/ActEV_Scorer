@@ -31,6 +31,7 @@
 # licenses.
 
 from operator import add, sub
+from itertools import repeat
 
 class SparseSignal(dict):
     def __init__(self, *args, **kwargs):
@@ -45,7 +46,7 @@ class SparseSignal(dict):
         for key in sorted(set(self.keys()) | set(other.keys())):
             self_val = self.get(key, self_val)
             other_val = other.get(key, other_val)
-            
+
             new_val = join_func(self_val, other_val)
             if new_val != last_val:
                 out_signal[key] = new_val
@@ -55,7 +56,7 @@ class SparseSignal(dict):
 
     def __add__(self, other):
         return self.join(other, add)
-            
+
     def __and__(self, other):
         return self.join(other, min)
 
@@ -63,7 +64,13 @@ class SparseSignal(dict):
         return self.join(other, max)
 
     def __sub__(self, other):
-        return self.join(self & other, sub)
+        return self.join(other, lambda a, b: a - min(a, b))
+
+    def join_nd(self, other, n, op, default = 0):
+        def _r(init, _):
+            return lambda a, b: a.join(b, init, SparseSignal())
+
+        return reduce(_r, repeat(None, n - 1), lambda a, b: a.join(b, op, default))(self, other)
 
     def normalize(self):
         return self + {}
@@ -74,7 +81,11 @@ class SparseSignal(dict):
 
         for t in sorted(self.keys()):
             if last_t != None and last_v != None:
-                area += (t - last_t) * last_v
+                if isinstance(last_v, SparseSignal):
+                    area += (t - last_t) * last_v.area()
+                else:
+                    area += (t - last_t) * last_v
+
             last_t, last_v = t, self[t]
 
         return area
@@ -83,4 +94,3 @@ class SparseSignal(dict):
         return reduce(lambda init, key: init | SparseSignal({key - size: 1, key + size: 0}),
                       self.normalize().keys(),
                       SparseSignal()).normalize()
-
