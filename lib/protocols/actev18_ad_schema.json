@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$version": "ActEV18_v0",
+  "$version": "ActEV18_AD_v1",
   "definitions": {
     "temporal_localization": {
       "type": "object",
@@ -31,7 +31,7 @@
         "alertFrame": {
           "type": "integer"
         },
-        "decisionScore": {
+        "presenceConf": {
           "type": "number"
         },
         "activityID": {
@@ -43,7 +43,7 @@
       },
       "required": [
         "activity",
-        "decisionScore",
+        "presenceConf",
         "activityID",
         "localization"
       ]

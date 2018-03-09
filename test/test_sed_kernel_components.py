@@ -11,8 +11,8 @@ from sed_kernel_components import *
 
 # ActivityInstance stub class
 class A():
-    def __init__(self, decScore):
-        self.decisionScore = decScore
+    def __init__(self, conf):
+        self.presenceConf = conf
 
 class TestSEDKernelComponents(unittest.TestCase):
     def setUp(self):
@@ -21,10 +21,10 @@ class TestSEDKernelComponents(unittest.TestCase):
                        A(0.8),
                        A(0.85),
                        A(0.95) ]
-        self.congruence_func_sys_1 = build_sed_decscore_congruence(self.sys_1)
+        self.congruence_func_sys_1 = build_sed_presenceconf_congruence(self.sys_1)
 
         self.sys_2 = [ A(0.4) ]
-        self.congruence_func_sys_2 = build_sed_decscore_congruence(self.sys_2)
+        self.congruence_func_sys_2 = build_sed_presenceconf_congruence(self.sys_2)
 
         self.sys_empty = [ ]
 
@@ -32,27 +32,27 @@ class TestSEDKernelComponents(unittest.TestCase):
                           A(0.8),
                           A(0.8) ]
 
-        self.congruence_func_sys_same = build_sed_decscore_congruence(self.sys_same)
+        self.congruence_func_sys_same = build_sed_presenceconf_congruence(self.sys_same)
 
-    def test_decscore_congruence(self):
+    def test_presenceconf_congruence(self):
         self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[0]), 0.0)
         self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[1]), 0.1 / 0.55)
         self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[2]), 0.4 / 0.55)
         self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[3]), 0.45 / 0.55)
         self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[4]), 1.0)
 
-    def test_decscore_congruence_single_instance(self):
+    def test_presenceconf_congruence_single_instance(self):
         self.assertAlmostEqual(self.congruence_func_sys_2(None, self.sys_2[0]), 1.0)
 
-    def test_decscore_congruence_same(self):
+    def test_presenceconf_congruence_same(self):
         self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[0]), 1.0)
         self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[1]), 1.0)
         self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[2]), 1.0)
 
-    def test_decscore_congruence_empty(self):
+    def test_presenceconf_congruence_empty(self):
         # This shouldn't raise an exception, if it does, our test case
         # fails
-        build_sed_decscore_congruence(self.sys_empty)
+        build_sed_presenceconf_congruence(self.sys_empty)
         
 if __name__ == '__main__':
     unittest.main()

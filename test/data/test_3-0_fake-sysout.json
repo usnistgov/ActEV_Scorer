@@ -6,7 +6,7 @@
     {
       "activity": "Closing",
       "activityID": 1,
-      "decisionScore": 0.756,
+      "presenceConf": 0.756,
       "alertFrame": 3062,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -18,7 +18,7 @@
     {
       "activity": "Closing",
       "activityID": 26,
-      "decisionScore": 0.774,
+      "presenceConf": 0.774,
       "alertFrame": 19982,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -30,7 +30,7 @@
     {
       "activity": "Entering",
       "activityID": 27,
-      "decisionScore": 0.769,
+      "presenceConf": 0.769,
       "alertFrame": 6098,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -42,7 +42,7 @@
     {
       "activity": "Closing",
       "activityID": 30,
-      "decisionScore": 0.789,
+      "presenceConf": 0.789,
       "alertFrame": 9347,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -54,7 +54,7 @@
     {
       "activity": "Entering",
       "activityID": 49,
-      "decisionScore": 0.865,
+      "presenceConf": 0.865,
       "alertFrame": 3892,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -66,7 +66,7 @@
     {
       "activity": "Entering",
       "activityID": 80,
-      "decisionScore": 0.795,
+      "presenceConf": 0.795,
       "alertFrame": 19615,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -78,7 +78,7 @@
     {
       "activity": "Entering",
       "activityID": 84,
-      "decisionScore": 0.652,
+      "presenceConf": 0.652,
       "alertFrame": 13199,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -90,7 +90,7 @@
     {
       "activity": "Closing",
       "activityID": 115,
-      "decisionScore": 0.515,
+      "presenceConf": 0.515,
       "alertFrame": 13119,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -102,7 +102,7 @@
     {
       "activity": "Closing",
       "activityID": 123,
-      "decisionScore": 0.807,
+      "presenceConf": 0.807,
       "alertFrame": 19492,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -114,7 +114,7 @@
     {
       "activity": "Closing",
       "activityID": 143,
-      "decisionScore": 0.529,
+      "presenceConf": 0.529,
       "alertFrame": 10500,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -126,7 +126,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 150,
-      "decisionScore": 0.685,
+      "presenceConf": 0.685,
       "alertFrame": 3084,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -138,7 +138,7 @@
     {
       "activity": "Entering",
       "activityID": 156,
-      "decisionScore": 0.909,
+      "presenceConf": 0.909,
       "alertFrame": 19114,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -150,7 +150,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 160,
-      "decisionScore": 0.254,
+      "presenceConf": 0.254,
       "alertFrame": 20228,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -162,7 +162,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 165,
-      "decisionScore": 0.351,
+      "presenceConf": 0.351,
       "alertFrame": 9391,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -174,7 +174,7 @@
     {
       "activity": "Entering",
       "activityID": 197,
-      "decisionScore": 0.894,
+      "presenceConf": 0.894,
       "alertFrame": 4028,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -186,7 +186,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 198,
-      "decisionScore": 0.124,
+      "presenceConf": 0.124,
       "alertFrame": 19936,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -198,7 +198,7 @@
     {
       "activity": "Entering",
       "activityID": 201,
-      "decisionScore": 0.036,
+      "presenceConf": 0.036,
       "alertFrame": 17282,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -210,7 +210,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 215,
-      "decisionScore": 0.431,
+      "presenceConf": 0.431,
       "alertFrame": 14434,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -222,7 +222,7 @@
     {
       "activity": "Entering",
       "activityID": 219,
-      "decisionScore": 0.68,
+      "presenceConf": 0.68,
       "alertFrame": 7277,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -234,7 +234,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 240,
-      "decisionScore": 0.96,
+      "presenceConf": 0.96,
       "alertFrame": 4016,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -246,7 +246,7 @@
     {
       "activity": "Closing",
       "activityID": 242,
-      "decisionScore": 0.946,
+      "presenceConf": 0.946,
       "alertFrame": 4784,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -258,7 +258,7 @@
     {
       "activity": "Closing",
       "activityID": 250,
-      "decisionScore": 0.654,
+      "presenceConf": 0.654,
       "alertFrame": 4600,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -270,7 +270,7 @@
     {
       "activity": "Closing",
       "activityID": 254,
-      "decisionScore": 0.931,
+      "presenceConf": 0.931,
       "alertFrame": 20567,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -282,7 +282,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 258,
-      "decisionScore": 0.115,
+      "presenceConf": 0.115,
       "alertFrame": 5395,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -294,7 +294,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 260,
-      "decisionScore": 0.508,
+      "presenceConf": 0.508,
       "alertFrame": 9262,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -306,7 +306,7 @@
     {
       "activity": "Closing",
       "activityID": 276,
-      "decisionScore": 0.226,
+      "presenceConf": 0.226,
       "alertFrame": 15318,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -318,7 +318,7 @@
     {
       "activity": "Entering",
       "activityID": 280,
-      "decisionScore": 0.842,
+      "presenceConf": 0.842,
       "alertFrame": 4242,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -330,7 +330,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 287,
-      "decisionScore": 0.35,
+      "presenceConf": 0.35,
       "alertFrame": 3992,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -342,7 +342,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 311,
-      "decisionScore": 0.369,
+      "presenceConf": 0.369,
       "alertFrame": 17192,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -354,7 +354,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 322,
-      "decisionScore": 0.8,
+      "presenceConf": 0.8,
       "alertFrame": 19384,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -366,7 +366,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 345,
-      "decisionScore": 0.586,
+      "presenceConf": 0.586,
       "alertFrame": 2715,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -378,7 +378,7 @@
     {
       "activity": "Closing",
       "activityID": 356,
-      "decisionScore": 0.584,
+      "presenceConf": 0.584,
       "alertFrame": 14778,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -390,7 +390,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 375,
-      "decisionScore": 0.063,
+      "presenceConf": 0.063,
       "alertFrame": 5417,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -402,7 +402,7 @@
     {
       "activity": "Entering",
       "activityID": 378,
-      "decisionScore": 0.621,
+      "presenceConf": 0.621,
       "alertFrame": 1953,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -414,7 +414,7 @@
     {
       "activity": "Entering",
       "activityID": 387,
-      "decisionScore": 0.97,
+      "presenceConf": 0.97,
       "alertFrame": 4999,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -426,7 +426,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 428,
-      "decisionScore": 0.45,
+      "presenceConf": 0.45,
       "alertFrame": 20277,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -438,7 +438,7 @@
     {
       "activity": "Entering",
       "activityID": 471,
-      "decisionScore": 0.935,
+      "presenceConf": 0.935,
       "alertFrame": 12466,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -450,7 +450,7 @@
     {
       "activity": "Closing",
       "activityID": 473,
-      "decisionScore": 0.28,
+      "presenceConf": 0.28,
       "alertFrame": 2959,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -462,7 +462,7 @@
     {
       "activity": "Entering",
       "activityID": 486,
-      "decisionScore": 0.505,
+      "presenceConf": 0.505,
       "alertFrame": 7097,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -474,7 +474,7 @@
     {
       "activity": "Entering",
       "activityID": 498,
-      "decisionScore": 0.046,
+      "presenceConf": 0.046,
       "alertFrame": 20756,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -486,7 +486,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 499,
-      "decisionScore": 0.299,
+      "presenceConf": 0.299,
       "alertFrame": 15013,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -498,7 +498,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 519,
-      "decisionScore": 0.307,
+      "presenceConf": 0.307,
       "alertFrame": 12510,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -510,7 +510,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 522,
-      "decisionScore": 0.352,
+      "presenceConf": 0.352,
       "alertFrame": 9780,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -522,7 +522,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 523,
-      "decisionScore": 0.896,
+      "presenceConf": 0.896,
       "alertFrame": 2924,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -534,7 +534,7 @@
     {
       "activity": "Closing",
       "activityID": 541,
-      "decisionScore": 0.08,
+      "presenceConf": 0.08,
       "alertFrame": 8983,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -546,7 +546,7 @@
     {
       "activity": "Entering",
       "activityID": 550,
-      "decisionScore": 0.171,
+      "presenceConf": 0.171,
       "alertFrame": 20941,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -558,7 +558,7 @@
     {
       "activity": "Entering",
       "activityID": 564,
-      "decisionScore": 0.702,
+      "presenceConf": 0.702,
       "alertFrame": 6486,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -570,7 +570,7 @@
     {
       "activity": "Entering",
       "activityID": 582,
-      "decisionScore": 0.215,
+      "presenceConf": 0.215,
       "alertFrame": 4442,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -582,7 +582,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 583,
-      "decisionScore": 0.127,
+      "presenceConf": 0.127,
       "alertFrame": 16663,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -594,7 +594,7 @@
     {
       "activity": "Entering",
       "activityID": 586,
-      "decisionScore": 0.573,
+      "presenceConf": 0.573,
       "alertFrame": 20941,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -606,7 +606,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 619,
-      "decisionScore": 0.685,
+      "presenceConf": 0.685,
       "alertFrame": 20809,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -618,7 +618,7 @@
     {
       "activity": "Closing",
       "activityID": 620,
-      "decisionScore": 0.567,
+      "presenceConf": 0.567,
       "alertFrame": 18848,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -630,7 +630,7 @@
     {
       "activity": "Entering",
       "activityID": 623,
-      "decisionScore": 0.143,
+      "presenceConf": 0.143,
       "alertFrame": 11493,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -642,7 +642,7 @@
     {
       "activity": "Closing",
       "activityID": 628,
-      "decisionScore": 0.13,
+      "presenceConf": 0.13,
       "alertFrame": 16476,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -654,7 +654,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 637,
-      "decisionScore": 0.64,
+      "presenceConf": 0.64,
       "alertFrame": 18987,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -666,7 +666,7 @@
     {
       "activity": "Closing",
       "activityID": 648,
-      "decisionScore": 0.992,
+      "presenceConf": 0.992,
       "alertFrame": 18224,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -678,7 +678,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 669,
-      "decisionScore": 0.434,
+      "presenceConf": 0.434,
       "alertFrame": 14676,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -690,7 +690,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 676,
-      "decisionScore": 0.113,
+      "presenceConf": 0.113,
       "alertFrame": 5246,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -702,7 +702,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 688,
-      "decisionScore": 0.173,
+      "presenceConf": 0.173,
       "alertFrame": 7196,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -714,7 +714,7 @@
     {
       "activity": "Entering",
       "activityID": 689,
-      "decisionScore": 0.499,
+      "presenceConf": 0.499,
       "alertFrame": 17836,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -726,7 +726,7 @@
     {
       "activity": "Entering",
       "activityID": 705,
-      "decisionScore": 0.93,
+      "presenceConf": 0.93,
       "alertFrame": 2160,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -738,7 +738,7 @@
     {
       "activity": "Entering",
       "activityID": 706,
-      "decisionScore": 0.005,
+      "presenceConf": 0.005,
       "alertFrame": 2518,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -750,7 +750,7 @@
     {
       "activity": "Entering",
       "activityID": 712,
-      "decisionScore": 0.872,
+      "presenceConf": 0.872,
       "alertFrame": 5155,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -762,7 +762,7 @@
     {
       "activity": "Closing",
       "activityID": 744,
-      "decisionScore": 0.462,
+      "presenceConf": 0.462,
       "alertFrame": 4158,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -774,7 +774,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 755,
-      "decisionScore": 0.02,
+      "presenceConf": 0.02,
       "alertFrame": 14812,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -786,7 +786,7 @@
     {
       "activity": "Entering",
       "activityID": 763,
-      "decisionScore": 0.176,
+      "presenceConf": 0.176,
       "alertFrame": 6484,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -798,7 +798,7 @@
     {
       "activity": "Closing",
       "activityID": 776,
-      "decisionScore": 0.682,
+      "presenceConf": 0.682,
       "alertFrame": 9849,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -810,7 +810,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 778,
-      "decisionScore": 0.606,
+      "presenceConf": 0.606,
       "alertFrame": 12892,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -822,7 +822,7 @@
     {
       "activity": "Entering",
       "activityID": 784,
-      "decisionScore": 0.034,
+      "presenceConf": 0.034,
       "alertFrame": 5302,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -834,7 +834,7 @@
     {
       "activity": "Closing",
       "activityID": 792,
-      "decisionScore": 0.708,
+      "presenceConf": 0.708,
       "alertFrame": 2424,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -846,7 +846,7 @@
     {
       "activity": "Entering",
       "activityID": 809,
-      "decisionScore": 0.615,
+      "presenceConf": 0.615,
       "alertFrame": 9843,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -858,7 +858,7 @@
     {
       "activity": "Entering",
       "activityID": 834,
-      "decisionScore": 0.893,
+      "presenceConf": 0.893,
       "alertFrame": 8686,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -870,7 +870,7 @@
     {
       "activity": "Closing",
       "activityID": 860,
-      "decisionScore": 0.679,
+      "presenceConf": 0.679,
       "alertFrame": 19508,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -882,7 +882,7 @@
     {
       "activity": "Entering",
       "activityID": 872,
-      "decisionScore": 0.287,
+      "presenceConf": 0.287,
       "alertFrame": 18141,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -894,7 +894,7 @@
     {
       "activity": "Entering",
       "activityID": 882,
-      "decisionScore": 0.132,
+      "presenceConf": 0.132,
       "alertFrame": 2761,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -906,7 +906,7 @@
     {
       "activity": "Entering",
       "activityID": 885,
-      "decisionScore": 0.055,
+      "presenceConf": 0.055,
       "alertFrame": 20239,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -918,7 +918,7 @@
     {
       "activity": "Closing",
       "activityID": 896,
-      "decisionScore": 0.069,
+      "presenceConf": 0.069,
       "alertFrame": 10255,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -930,7 +930,7 @@
     {
       "activity": "Closing",
       "activityID": 904,
-      "decisionScore": 0.307,
+      "presenceConf": 0.307,
       "alertFrame": 10521,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -942,7 +942,7 @@
     {
       "activity": "Entering",
       "activityID": 979,
-      "decisionScore": 0.816,
+      "presenceConf": 0.816,
       "alertFrame": 2248,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -954,7 +954,7 @@
     {
       "activity": "Closing",
       "activityID": 981,
-      "decisionScore": 0.376,
+      "presenceConf": 0.376,
       "alertFrame": 3004,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -966,7 +966,7 @@
     {
       "activity": "Entering",
       "activityID": 990,
-      "decisionScore": 0.902,
+      "presenceConf": 0.902,
       "alertFrame": 6807,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -978,7 +978,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 1007,
-      "decisionScore": 0.99,
+      "presenceConf": 0.99,
       "alertFrame": 4639,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -990,7 +990,7 @@
     {
       "activity": "Entering",
       "activityID": 1015,
-      "decisionScore": 0.668,
+      "presenceConf": 0.668,
       "alertFrame": 2997,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1002,7 +1002,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 1022,
-      "decisionScore": 0.723,
+      "presenceConf": 0.723,
       "alertFrame": 7853,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1014,7 +1014,7 @@
     {
       "activity": "Closing",
       "activityID": 1031,
-      "decisionScore": 0.591,
+      "presenceConf": 0.591,
       "alertFrame": 11180,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1026,7 +1026,7 @@
     {
       "activity": "Closing",
       "activityID": 1035,
-      "decisionScore": 0.068,
+      "presenceConf": 0.068,
       "alertFrame": 11942,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1038,7 +1038,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 1049,
-      "decisionScore": 0.396,
+      "presenceConf": 0.396,
       "alertFrame": 14135,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1050,7 +1050,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 1051,
-      "decisionScore": 0.202,
+      "presenceConf": 0.202,
       "alertFrame": 1608,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1062,7 +1062,7 @@
     {
       "activity": "Closing",
       "activityID": 1062,
-      "decisionScore": 0.318,
+      "presenceConf": 0.318,
       "alertFrame": 7086,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1074,7 +1074,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 1075,
-      "decisionScore": 0.548,
+      "presenceConf": 0.548,
       "alertFrame": 15050,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1086,7 +1086,7 @@
     {
       "activity": "Closing",
       "activityID": 1132,
-      "decisionScore": 0.306,
+      "presenceConf": 0.306,
       "alertFrame": 12135,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1098,7 +1098,7 @@
     {
       "activity": "Entering",
       "activityID": 1136,
-      "decisionScore": 0.955,
+      "presenceConf": 0.955,
       "alertFrame": 13186,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1110,7 +1110,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 1154,
-      "decisionScore": 0.179,
+      "presenceConf": 0.179,
       "alertFrame": 3064,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1122,7 +1122,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 1158,
-      "decisionScore": 0.653,
+      "presenceConf": 0.653,
       "alertFrame": 1878,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1134,7 +1134,7 @@
     {
       "activity": "Entering",
       "activityID": 1167,
-      "decisionScore": 0.953,
+      "presenceConf": 0.953,
       "alertFrame": 2513,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1146,7 +1146,7 @@
     {
       "activity": "Entering",
       "activityID": 1173,
-      "decisionScore": 0.639,
+      "presenceConf": 0.639,
       "alertFrame": 17819,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1158,7 +1158,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 1184,
-      "decisionScore": 0.608,
+      "presenceConf": 0.608,
       "alertFrame": 11938,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1170,7 +1170,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 1190,
-      "decisionScore": 0.259,
+      "presenceConf": 0.259,
       "alertFrame": 19608,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1182,7 +1182,7 @@
     {
       "activity": "Entering",
       "activityID": 1202,
-      "decisionScore": 0.218,
+      "presenceConf": 0.218,
       "alertFrame": 2476,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1194,7 +1194,7 @@
     {
       "activity": "Entering",
       "activityID": 1228,
-      "decisionScore": 0.572,
+      "presenceConf": 0.572,
       "alertFrame": 4884,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1206,7 +1206,7 @@
     {
       "activity": "Closing",
       "activityID": 1248,
-      "decisionScore": 0.499,
+      "presenceConf": 0.499,
       "alertFrame": 4187,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1218,7 +1218,7 @@
     {
       "activity": "Entering",
       "activityID": 1249,
-      "decisionScore": 0.947,
+      "presenceConf": 0.947,
       "alertFrame": 5561,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1230,7 +1230,7 @@
     {
       "activity": "Closing",
       "activityID": 1260,
-      "decisionScore": 0.682,
+      "presenceConf": 0.682,
       "alertFrame": 14835,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1242,7 +1242,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 1269,
-      "decisionScore": 0.47,
+      "presenceConf": 0.47,
       "alertFrame": 10332,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1254,7 +1254,7 @@
     {
       "activity": "Closing",
       "activityID": 1273,
-      "decisionScore": 0.422,
+      "presenceConf": 0.422,
       "alertFrame": 4244,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1266,7 +1266,7 @@
     {
       "activity": "Closing_Trunk",
       "activityID": 1277,
-      "decisionScore": 0.195,
+      "presenceConf": 0.195,
       "alertFrame": 12743,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1278,7 +1278,7 @@
     {
       "activity": "Entering",
       "activityID": 1297,
-      "decisionScore": 0.352,
+      "presenceConf": 0.352,
       "alertFrame": 17663,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1290,7 +1290,7 @@
     {
       "activity": "Entering",
       "activityID": 1298,
-      "decisionScore": 0.913,
+      "presenceConf": 0.913,
       "alertFrame": 9331,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1302,7 +1302,7 @@
     {
       "activity": "Closing",
       "activityID": 1309,
-      "decisionScore": 0.153,
+      "presenceConf": 0.153,
       "alertFrame": 3082,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1314,7 +1314,7 @@
     {
       "activity": "Entering",
       "activityID": 1310,
-      "decisionScore": 0.226,
+      "presenceConf": 0.226,
       "alertFrame": 7337,
       "localization": {
         "VIRAT_S_000000.mp4": {
@@ -1326,7 +1326,7 @@
     {
       "activity": "Closing",
       "activityID": 1311,
-      "decisionScore": 0.622,
+      "presenceConf": 0.622,
       "alertFrame": 19789,
       "localization": {
         "VIRAT_S_000000.mp4": {

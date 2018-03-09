@@ -30,21 +30,21 @@
 # bundled with the code in compliance with the conditions of those
 # licenses.
 
-def build_sed_decscore_congruence(sys_instances):
+def build_sed_presenceconf_congruence(sys_instances):
     if len(sys_instances) == 1:
         def _congruence(r, s):
             return 1.0
     elif len(sys_instances) > 1:
-        sys_dec_scores = [ s.decisionScore for s in sys_instances ]
-        min_dec_score = min(sys_dec_scores)
-        sys_dec_range = max(sys_dec_scores) - min_dec_score
+        sys_presence_confs = [ s.presenceConf for s in sys_instances ]
+        min_presence_conf = min(sys_presence_confs)
+        sys_conf_range = max(sys_presence_confs) - min_presence_conf
 
-        if sys_dec_range == 0:
+        if sys_conf_range == 0:
             def _congruence(r, s):
                 return 1.0
         else:
             def _congruence(r, s):
-                return float(s.decisionScore - min_dec_score) / sys_dec_range
+                return float(s.presenceConf - min_presence_conf) / sys_conf_range
     else:
         def _congruence(r, s):
             return None

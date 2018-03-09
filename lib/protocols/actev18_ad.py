@@ -50,7 +50,7 @@ class ActEV18_AD():
 
     def __init__(self):
         self.default_scoring_parameters = { "epsilon_temporal_congruence": 1.0e-8,
-                                            "epsilon_decisionscore_congruence": 1.0e-6,
+                                            "epsilon_presenceconf_congruence": 1.0e-6,
                                             "temporal_overlap_delta": 0.2,
                                             "nmide_ns_collar_size": 0 }
 
@@ -62,9 +62,9 @@ class ActEV18_AD():
                                                [("temporal_intersection-over-union",
                                                  scoring_parameters["epsilon_temporal_congruence"],
                                                  temporal_intersection_over_union),
-                                                ("decscore_congruence",
-                                                 scoring_parameters["epsilon_decisionscore_congruence"],
-                                                 build_sed_decscore_congruence(system_instances))])
+                                                ("presenceconf_congruence",
+                                                 scoring_parameters["epsilon_presenceconf_congruence"],
+                                                 build_sed_presenceconf_congruence(system_instances))])
 
     def build_metrics(self,
                       scoring_parameters,
@@ -162,11 +162,11 @@ class ActEV18_AD():
 
             num_correct, num_miss, num_fa = len(correct), len(miss), len(fa)
             det_points_array = det_points.setdefault(activity_name, [])
-            for decision_score in sorted(list({ ar.sys.decisionScore for ar in correct + fa })):
-                num_filtered_c = len(filter(lambda ar: ar.sys.decisionScore >= decision_score, correct))
-                num_filtered_fa = len(filter(lambda ar: ar.sys.decisionScore >= decision_score, fa))
+            for presence_conf in sorted(list({ ar.sys.presenceConf for ar in correct + fa })):
+                num_filtered_c = len(filter(lambda ar: ar.sys.presenceConf >= presence_conf, correct))
+                num_filtered_fa = len(filter(lambda ar: ar.sys.presenceConf >= presence_conf, fa))
                 num_miss_w_filtered_c = num_miss + num_correct - num_filtered_c
-                det_points_array.append(det_point_func(decision_score,
+                det_points_array.append(det_point_func(presence_conf,
                                                        num_filtered_c,
                                                        num_miss_w_filtered_c,
                                                        num_filtered_fa))

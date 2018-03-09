@@ -63,16 +63,16 @@ class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
                 return "CD"
 
     @property
-    def sys_decision_score(self):
+    def sys_presence_conf(self):
         if self.sys == None:
             return None
         else:
-            return self.sys.decisionScore
+            return self.sys.presenceConf
 
     def iter_with_extended_properties(self):
         yield self.alignment
         yield self.ref
         yield self.sys
-        yield self.sys_decision_score
+        yield self.sys_presence_conf
         yield self.kernel_similarity
         yield self.kernel_components
