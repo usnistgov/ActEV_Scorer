@@ -94,3 +94,33 @@ class SparseSignal(dict):
         return reduce(lambda init, key: init | SparseSignal({key - size: 1, key + size: 0}),
                       self.normalize().keys(),
                       SparseSignal()).normalize()
+
+    def iterate_by_frame(self, start, stop, default = 0):
+        if start > stop:
+            raise ValueError("Stop must be greater than or equal to start")
+
+        n = start
+        last_val = default
+        sorted_keys = sorted(self.keys(), reverse=True)
+        while n <= stop:
+            while len(sorted_keys) > 0 and n >= sorted_keys[-1]:
+                last_val = self[sorted_keys.pop()]
+
+            yield (n, last_val)
+            n += 1
+
+    # This iterator is really intended for discrete time signals, but
+    # won't enforce
+    def on_steps(self, value_predicate, stepsize = 1):
+        if len(self) > 0:
+            sorted_keys = sorted(self.keys(), reverse=True)
+            last_key = sorted_keys[0]
+            n = sorted_keys[-1]
+            while n <= last_key:
+                while len(sorted_keys) > 0 and n >= sorted_keys[-1]:
+                    last_val = self[sorted_keys.pop()]
+
+                if value_predicate(last_val):
+                    yield (n, last_val)
+
+                n += stepsize

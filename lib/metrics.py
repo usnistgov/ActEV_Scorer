@@ -33,19 +33,64 @@
 from operator import add
 from sparse_signal import SparseSignal as S
 
-def _signal_pairs(r, s, key_join_op = set.union):
+from pprint import pprint
+
+def _signal_pairs(r, s, signal_accessor, key_join_op = set.union):
     rl, sl = r.localization, s.localization
-    return [ (S(rl.get(k, {})), S(sl.get(k, {})), k) for k in key_join_op(set(rl.keys()), set(sl.keys())) ]
+    return [ (signal_accessor(rl, k), signal_accessor(sl, k), k) for k in key_join_op(set(rl.keys()), set(sl.keys())) ]
+
+def _temporal_signal_accessor(localization, k):
+    return S(localization.get(k, {}))
+
+def temporal_signal_pairs(r, s, key_join_op = set.union):
+    return _signal_pairs(r, s, _temporal_signal_accessor, key_join_op)
 
 def temporal_intersection(r, s):
-    return reduce(add, [ (r & s).area() for r, s, k in _signal_pairs(r, s, set.intersection) ], 0)
+    return reduce(add, [ (r & s).area() for r, s, k in temporal_signal_pairs(r, s, set.intersection) ], 0)
 
 def temporal_union(r, s):
-    return reduce(add, [ (r | s).area() for r, s, k in _signal_pairs(r, s) ], 0)        
+    return reduce(add, [ (r | s).area() for r, s, k in temporal_signal_pairs(r, s) ], 0)
 
 def temporal_intersection_over_union(r, s):
     intersection = temporal_intersection(r, s)
     union = temporal_union(r, s)
+
+    # Not sure if this is the best way to handle union == 0; but in
+    # practise should never encounter this case
+    return float(intersection) / union if union != 0 else 0.0
+
+def _spatial_signal_accessor(localization, k):
+    if k in localization:
+        return localization.get(k).spatial_signal
+    else:
+        return S()
+
+def spatial_signal_pairs(r, s, key_join_op = set.union):
+    return _signal_pairs(r, s, _spatial_signal_accessor, key_join_op)
+
+def simple_spatial_intersection(r, s):
+    return r.join_nd(s, 2, min).area()
+
+def simple_spatial_union(r, s):
+    return r.join_nd(s, 2, max).area()
+
+def simple_spatial_intersection_over_union(r, s):
+    intersection = simple_spatial_intersection(r, s)
+    union = simple_spatial_union(r, s)
+
+    # Not sure if this is the best way to handle union == 0; but in
+    # practise should never encounter this case
+    return float(intersection) / union if union != 0 else 0.0
+
+def spatial_intersection(r, s):
+    return reduce(add, [ simple_spatial_intersection(r, s) for r, s, k in spatial_signal_pairs(r, s, set.intersection) ], 0)
+
+def spatial_union(r, s):
+    return reduce(add, [ simple_spatial_union(r, s) for r, s, k in spatial_signal_pairs(r, s) ], 0)
+
+def spatial_intersection_over_union(r, s):
+    intersection = spatial_intersection(r, s)
+    union = spatial_union(r, s)
 
     # Not sure if this is the best way to handle union == 0; but in
     # practise should never encounter this case
@@ -65,7 +110,7 @@ def n_mide(aligned_pairs, file_framedur_lookup, ns_collar_size, cost_fn_miss, co
         c_r = rs - ns_collar
         c_s = ss - ns_collar
         col_r = rs | ns_collar
-        
+
         miss = (c_r - c_s).area()
         fa = (c_s - c_r).area()
 
@@ -75,7 +120,7 @@ def n_mide(aligned_pairs, file_framedur_lookup, ns_collar_size, cost_fn_miss, co
         r, s = pair
         # Using the _sub_reducer here is important in the case of
         # cross-file activity instances
-        miss, fa, miss_denom, fa_denom = reduce(_sub_reducer, _signal_pairs(r, s), (0, 0, 0, 0))
+        miss, fa, miss_denom, fa_denom = reduce(_sub_reducer, temporal_signal_pairs(r, s), (0, 0, 0, 0))
 
         return init + cost_fn_miss(float(miss) / miss_denom) + cost_fn_fa(float(fa) / fa_denom)
 
@@ -123,3 +168,6 @@ def p_miss_at_r_fa(points, target_rfa):
 def mean_exclude_none(values):
     fv = filter(lambda v: v is not None, values)
     return float(reduce(add, fv, 0)) / len(fv) if len(fv) > 0 else None
+
+def mode(num_c, num_m, num_f, cost_m, cost_f):
+    return float(cost_m(num_m) + cost_f(num_f)) / (num_c + num_m)

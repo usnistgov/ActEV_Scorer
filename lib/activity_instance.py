@@ -30,19 +30,34 @@
 # bundled with the code in compliance with the conditions of those
 # licenses.
 
+from sparse_signal import SparseSignal as S
+
 # Since JSON doesn't like integers as property list keys, we have to
 # do that conversion.  This method assumes the localization parameter
 # is a nested dictionary of the form { "<filename>": { "<frame_num>":
 # value } }
-def _localization_key_converter(localization):
-    return { k: { int(_k): _v for _k, _v in v.iteritems() }
+def _localization_key_converter(localization, value_mapper = lambda x: x):
+    return { k: { int(_k): value_mapper(_v) for _k, _v in v.iteritems() }
              for k, v in localization.iteritems() }
+
+def _bounding_box_to_signal(bounding_box):
+    x, y, w, h = map(lambda e: bounding_box[e], ("x", "y", "w", "h"))
+    return S({x: S({y: 1, y + h: 0}), x + w: S()})
+
+def _build_object_frame_wconf_mapper(obj_type):
+    def _object_frame_wconf_mapper(obj):
+        if len(obj) == 0:
+            return ObjectLocalizationFrame.empty()
+        else:
+            return ObjectLocalizationFrame(obj["boundingBox"], obj.get("presenceConf", None), obj_type)
+
+    return _object_frame_wconf_mapper
 
 class ActivityInstance():
     def __init__(self, dictionary):
         self.activity = dictionary["activity"]
         self.activityID = dictionary["activityID"]
-        self.decisionScore = dictionary.get("decisionScore", None)
+        self.presenceConf = dictionary.get("presenceConf", None)
         self.localization = _localization_key_converter(dictionary["localization"])
         if dictionary.has_key("objects"):
             self.objects = [ ObjectInstance(o) for o in dictionary["objects"] ]
@@ -56,4 +71,14 @@ class ObjectInstance():
     def __init__(self, dictionary):
         self.objectType = dictionary["objectType"]
         self.objectID = dictionary["objectID"]
-        self.localization = _localization_key_converter(dictionary["localization"])
+        self.localization = _localization_key_converter(dictionary["localization"], _build_object_frame_wconf_mapper(self.objectType))
+
+class ObjectLocalizationFrame():
+    def __init__(self, bounding_box, conf, obj_type):
+        self.spatial_signal = _bounding_box_to_signal(bounding_box) if bounding_box else S()
+        self.presenceConf = conf
+        self.objectType = obj_type
+
+    @classmethod
+    def empty(cls):
+        return cls(None, None, None)

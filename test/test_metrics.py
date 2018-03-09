@@ -211,5 +211,98 @@ class TestMeanExcludeNone(TestMetrics):
         self.assertAlmostEqual(mean_exclude_none([1, 2, 3, None]), 2.0, places=10)
         self.assertAlmostEqual(mean_exclude_none([1, 2, 3, None, None]), 2.0, places=10)
 
+# ObjectLocalizationFrame stub class
+class O():
+    def __init__(self, signal):
+        self.spatial_signal = signal
+
+class TestSpatialSignalMetrics(unittest.TestCase):
+    def setUp(self):
+        self.ae = A({})
+
+        self.a1 = A({ "f1": O(S({ 10: S({10: 1, 20: 0}), 15: S()})) })
+        self.a2 = A({ "f1": O(S({ 10: S({15: 1, 25: 0}), 35: S()})) })
+        self.a3 = A({ "f1": O(S({ 30: S({15: 1, 35: 0}), 40: S()})) })
+
+        self.a4 = A({ "f1": O(S({ 10: S({10: 1, 20: 0}), 15: S()})),
+                      "f2": O(S({ 30: S({15: 1, 35: 0}), 40: S()}))})
+        self.a5 = A({ "f1": O(S({ 10: S({15: 1, 25: 0}), 35: S()})),
+                      "f2": O(S({ 10: S({15: 1, 25: 0}), 35: S()}))})
+
+class TestSpatialIntersection(TestSpatialSignalMetrics):
+    def test_empty(self):
+        self.assertEqual(spatial_intersection(self.ae, self.ae), 0)
+
+    def test_singlefile(self):
+        self.assertEqual(spatial_intersection(self.a1, self.a1), 50)
+        self.assertEqual(spatial_intersection(self.a1, self.a2), 25)
+        self.assertEqual(spatial_intersection(self.a2, self.a1), 25)
+        self.assertEqual(spatial_intersection(self.a1, self.a3), 0)
+
+    def test_multifile(self):
+        self.assertEqual(spatial_intersection(self.a4, self.a5), 75)
+        self.assertEqual(spatial_intersection(self.a5, self.a4), 75)
+
+        self.assertEqual(spatial_intersection(self.a2, self.a4), 25)
+        self.assertEqual(spatial_intersection(self.a3, self.a4), 0)
+
+class TestSpatialUnion(TestSpatialSignalMetrics):
+    def test_empty(self):
+        self.assertEqual(spatial_union(self.ae, self.ae), 0)
+
+    def test_singlefile(self):
+        self.assertEqual(spatial_union(self.a1, self.a1), 50)
+        self.assertEqual(spatial_union(self.a1, self.a2), 275)
+        self.assertEqual(spatial_union(self.a2, self.a1), 275)
+        self.assertEqual(spatial_union(self.a1, self.a3), 250)
+
+    def test_multifile(self):
+        self.assertEqual(spatial_union(self.a4, self.a5), 275 + 400)
+        self.assertEqual(spatial_union(self.a5, self.a4), 275 + 400)
+
+        self.assertEqual(spatial_union(self.a2, self.a4), 275 + 200)
+        self.assertEqual(spatial_union(self.a3, self.a4), 250 + 200)
+
+class TestSpatialIntersectionOverUnion(TestSpatialSignalMetrics):
+    def test_empty(self):
+        self.assertEqual(spatial_intersection_over_union(self.ae, self.ae), 0.0)
+
+    def test_singlefile(self):
+        self.assertEqual(spatial_intersection_over_union(self.a1, self.a1), 1.0)
+        self.assertEqual(spatial_intersection_over_union(self.a1, self.a2), float(25) / 275)
+        self.assertEqual(spatial_intersection_over_union(self.a2, self.a1), float(25) / 275)
+        self.assertEqual(spatial_intersection_over_union(self.a1, self.a3), float(0) / 250)
+
+    def test_multifile(self):
+        self.assertEqual(spatial_intersection_over_union(self.a4, self.a5), float(75) / (275 + 400))
+        self.assertEqual(spatial_intersection_over_union(self.a5, self.a4), float(75) / (275 + 400))
+
+        self.assertEqual(spatial_intersection_over_union(self.a2, self.a4), float(25) / (275 + 200))
+        self.assertEqual(spatial_intersection_over_union(self.a3, self.a4), float(0) / (250 + 200))
+
+class TestMODE(TestMetrics):
+    def setUp(self):
+        super(TestMODE, self).setUp()
+
+        self.c_1 = 6
+        self.c_2 = 0
+
+        self.f_1 = 28
+        self.f_2 = 18
+
+        self.m_1 = 26
+        self.m_2 = 32
+
+        self.wf_1 = lambda x: x * 1
+        self.wf_2 = lambda x: x * 2
+
+    def test_mode(self):
+        self.assertAlmostEqual(mode(self.c_1, self.m_1, self.f_1, self.wf_1, self.wf_1), float(54) / 32, places = 10)
+        self.assertAlmostEqual(mode(self.c_1, self.m_1, self.f_2, self.wf_1, self.wf_1), float(44) / 32, places = 10)
+        self.assertAlmostEqual(mode(self.c_2, self.m_2, self.f_2, self.wf_1, self.wf_1), float(50) / 32, places = 10)
+
+        self.assertAlmostEqual(mode(self.c_1, self.m_1, self.f_1, self.wf_1, self.wf_2), float(26 + 2 * 28) / 32, places = 10)
+        self.assertAlmostEqual(mode(self.c_1, self.m_1, self.f_1, self.wf_2, self.wf_2), float(2 * 26 + 2 * 28) / 32, places = 10)
+
 if __name__ == '__main__':
     unittest.main()

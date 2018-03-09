@@ -50,6 +50,10 @@ class TestSparseSignal(unittest.TestCase):
         self.s3d_1 = S({1: S({10: S({10: 1, 20: 0}), 20: S()}), 2: S({10: S({10: 1, 30: 0}), 30: S()}), 4: S()})
         self.s3d_2 = S({1: S({10: S({10: 1, 20: 0}), 20: S()}), 4: S()})
 
+        self.s_iter1 = S({3: 1, 5: 2, 10: 0})
+
+        self.s_iter2 = S({3: 1, 5: 0, 7: 1, 10: 0})
+
     def testSignalEquivalence(self):
         self.assertEqual(self.se, self.se)
         self.assertEqual(self.s1, self.s1)
@@ -141,6 +145,21 @@ class TestSparseSignal(unittest.TestCase):
 
         self.assertEqual(self.s3d_1.join_nd(self.s3d_2, 3, lambda a, b: a - min(a, b)).area(), 600)
         self.assertEqual(self.s3d_1.join_nd(self.s3d_2, 3, max).area(), 900)
+
+    def testIterateByFrame(self):
+        self.assertEqual([ x for x in self.s_iter1.iterate_by_frame(1, 1) ], [ (1, 0) ])
+        self.assertEqual([ x for x in self.s_iter1.iterate_by_frame(1, 5) ], [ (1, 0), (2, 0), (3, 1), (4, 1), (5, 2) ])
+        self.assertEqual([ x for x in self.s_iter1.iterate_by_frame(1, 11) ], [ (1, 0), (2, 0), (3, 1), (4, 1), (5, 2), (6, 2), (7, 2), (8, 2), (9, 2), (10, 0), (11, 0) ])
+        self.assertEqual([ x for x in self.s_iter1.iterate_by_frame(1, 11, -1) ], [ (1, -1), (2, -1), (3, 1), (4, 1), (5, 2), (6, 2), (7, 2), (8, 2), (9, 2), (10, 0), (11, 0) ])
+
+        with self.assertRaises(ValueError):
+            [ x for x in self.s_iter1.iterate_by_frame(1, 0) ]
+
+    def testOnSteps(self):
+        self.assertEqual([ x for x in self.s_iter1.on_steps(lambda x: x == 1) ], [ (3, 1), (4, 1) ])
+        self.assertEqual([ x for x in self.s_iter1.on_steps(lambda x: x == 2) ], [ (5, 2), (6, 2), (7, 2), (8, 2), (9, 2) ])
+
+        self.assertEqual([ x for x in self.s_iter2.on_steps(lambda x: x == 1) ], [ (3, 1), (4, 1), (7, 1), (8, 1), (9, 1) ])
 
 if __name__ == '__main__':
     unittest.main()

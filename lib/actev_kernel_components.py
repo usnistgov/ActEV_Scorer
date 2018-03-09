@@ -31,6 +31,14 @@
 # licenses.
 
 from metrics import *
+from activity_instance import *
+from sparse_signal import SparseSignal as S
+from helpers import *
+from alignment import *
+
+from operator import add
+
+from pprint import pprint
 
 # Returns true if there's some temporal intersection between the
 # system and reference activity instances
@@ -42,3 +50,74 @@ def build_temporal_overlap_filter(threshold):
         return temporal_intersection_over_union(r, s) > threshold
 
     return _filter
+
+def build_spatial_overlap_filter(threshold):
+    def _filter(r, s):
+        return spatial_intersection_over_union(r, s) > threshold
+
+    return _filter
+
+def build_simple_spatial_overlap_filter(threshold):
+    def _filter(r, s):
+        return simple_spatial_intersection_over_union(r.spatial_signal, s.spatial_signal) > threshold
+
+    return _filter
+
+def object_type_match_filter(r, s):
+    return r.objectType == s.objectType
+
+def _object_signals_to_lookup(temporal_signal, local_objects):
+    # Re-using the same empty ObjectLocalizationFrame, this is OK, as
+    # long as we don't mutate it somewhere along the way
+    empty_olf = ObjectLocalizationFrame.empty()
+
+    def _r(init, o):
+        selected_o = [ x for x in temporal_signal.join(o, lambda a, b: b if a else empty_olf, empty_olf).on_steps(lambda x: len(x.spatial_signal) > 0) ]
+
+        init.extend(selected_o)
+        return init
+
+    return group_by_func(lambda x: x[0], reduce(_r, local_objects, []), lambda x: x[1])
+
+# Using a factory function here so we can configure the object kernel
+# at the protocol level.  Not sure if this is the best place to pass
+# in the weightning functions
+def build_object_congruence(obj_kernel_builder, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
+    def object_congruence(r, s):
+        ro, so = r.objects, s.objects
+
+        # For N_MODE computation, localizations spanning multiple files
+        # are treated independently
+        total_c, total_m, total_f, total_r = [], [], [], []
+        for r, s, k in temporal_signal_pairs(r, s):
+            local_so_localizations = map(lambda o: o.localization.get(k, S()), so)
+            local_ro_localizations = map(lambda o: o.localization.get(k, S()), ro)
+
+            sos_lookup = _object_signals_to_lookup(s, local_so_localizations)
+            ros_lookup = _object_signals_to_lookup(r, local_ro_localizations)
+
+            for frame in sos_lookup.viewkeys() | ros_lookup.viewkeys():
+                sys = sos_lookup.get(frame, [])
+                ref = ros_lookup.get(frame, [])
+
+                c, m, f = perform_alignment(ref, sys, obj_kernel_builder(sys))
+                total_c.extend(c)
+                total_m.extend(m)
+                total_f.extend(f)
+                total_r.extend(ref)
+
+        num_miss = len(total_m)
+        num_correct = len(total_c)
+        def _modes_reducer(init, conf):
+            num_filtered_c = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_c))
+            num_filtered_fa = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_f))
+            num_miss_w_filtered_c = num_miss + num_correct - num_filtered_c
+            init.append((conf, mode(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, cmiss, cfa)))
+            return init
+
+        mode_scores = reduce(_modes_reducer, sorted(list({ ar.sys.presenceConf for ar in total_c + total_f })), [])
+        min_mode = min(map(lambda x: x[1], mode_scores))
+
+        return min_mode
+
+    return object_congruence
