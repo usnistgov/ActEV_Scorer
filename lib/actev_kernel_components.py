@@ -38,39 +38,41 @@ from alignment import *
 
 from operator import add
 
-from pprint import pprint
-
 # Returns true if there's some temporal intersection between the
 # system and reference activity instances
 def temporal_intersection_filter(r, s):
-    return temporal_intersection(r, s) > 0
+    ti = temporal_intersection(r, s)
+    return (temporal_intersection(r, s) > 0, { "temporal_intersection": ti })
 
 def build_temporal_overlap_filter(threshold):
     def _filter(r, s):
-        return temporal_intersection_over_union(r, s) > threshold
+        tiou = temporal_intersection_over_union(r, s)
+        return (tiou > threshold, { "temporal_intersection-over-union": tiou })
 
     return _filter
 
-def temporal_intersection_over_union_component(r, s):
-    return { "temporal_intersection-over-union": temporal_intersection_over_union(r, s) }
+def temporal_intersection_over_union_component(r, s, cache):
+    return { "temporal_intersection-over-union": cache.get("temporal_intersection-over-union", temporal_intersection_over_union(r, s)) }
 
 def build_spatial_overlap_filter(threshold):
     def _filter(r, s):
-        return spatial_intersection_over_union(r, s) > threshold
+        siou = spatial_intersection_over_union(r, s)
+        return (siou > threshold, { "spatial_intersection-over-union": siou })
 
     return _filter
 
 def build_simple_spatial_overlap_filter(threshold):
     def _filter(r, s):
-        return simple_spatial_intersection_over_union(r.spatial_signal, s.spatial_signal) > threshold
+        ssiou = simple_spatial_intersection_over_union(r.spatial_signal, s.spatial_signal)
+        return (ssiou > threshold, { "spatial_intersection-over-union": ssiou })
 
     return _filter
 
-def simple_spatial_intersection_over_union_component(r, s):
-    return { "spatial_intersection-over-union": simple_spatial_intersection_over_union(r.spatial_signal, s.spatial_signal) }
+def simple_spatial_intersection_over_union_component(r, s, cache):
+    return { "spatial_intersection-over-union": cache.get("spatial_intersection-over-union", simple_spatial_intersection_over_union(r.spatial_signal, s.spatial_signal)) }
 
 def object_type_match_filter(r, s):
-    return r.objectType == s.objectType
+    return (r.objectType == s.objectType, {})
 
 def _object_signals_to_lookup(temporal_signal, local_objects):
     # Re-using the same empty ObjectLocalizationFrame, this is OK, as
@@ -89,7 +91,7 @@ def _object_signals_to_lookup(temporal_signal, local_objects):
 # at the protocol level.  Not sure if this is the best place to pass
 # in the weightning functions
 def build_object_congruence(obj_kernel_builder, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
-    def object_congruence(r, s):
+    def object_congruence(r, s, cache):
         ro, so = r.objects, s.objects
 
         # For N_MODE computation, localizations spanning multiple files

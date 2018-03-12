@@ -39,8 +39,15 @@ from helpers import *
 # components is a list of (label, weight, function)
 def build_linear_combination_kernel(filters, components, weights, initial_similarity = 1):
     def _kernel(r_i, s_i):
-        if reduce(and_, [ f(r_i, s_i) for f in filters ], True):
-            component_values = reduce(merge_dicts, [ cf(r_i, s_i) for cf in components ], {})
+        def _filter_reducer(init, f):
+            ok, cache = init
+            f_ok, f_cache = f(r_i, s_i)
+            cache.update(f_cache)
+            return (ok and f_ok, cache)
+
+        ok, cache = reduce(_filter_reducer, filters, (True, {}))
+        if ok:
+            component_values = reduce(merge_dicts, [ cf(r_i, s_i, cache) for cf in components ], {})
 
             def _r(init, key_weight):
                 key, weight = key_weight

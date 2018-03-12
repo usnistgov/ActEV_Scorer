@@ -1,6 +1,6 @@
 {
   "nmide_ns_collar_size": 0, 
   "epsilon_temporal_congruence": 1e-08, 
-  "epsilon_presenceconf_congruence": 1e-06, 
+  "epsilon_activity_presenceconf_congruence": 1e-06, 
   "temporal_overlap_delta": 0.2
 }

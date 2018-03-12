@@ -71,79 +71,86 @@ class TestActEVKernelComponents(unittest.TestCase):
         self.o_3 = O("vehicle")
         self.o_4 = O("Vehicle")
 
+    def assert_filter(self, obs, exp):
+        obs_b, obs_d = obs
+        exp_b, exp_d = exp
+        self.assertEqual(obs_b, exp_b)
+        for k in obs_d.viewkeys() | exp_d.viewkeys():
+            self.assertAlmostEqual(obs_d[k], exp_d[k], places=10)
+
 class TestTemporalIntersectionFilter(TestActEVKernelComponents):
     def test_empty(self):
-        self.assertEqual(temporal_intersection_filter(self.ae, self.ae), False)
+        self.assertEqual(temporal_intersection_filter(self.ae, self.ae), (False, { "temporal_intersection": 0 }))
 
     def test_singlefile(self):
-        self.assertEqual(temporal_intersection_filter(self.a1, self.a1), True)
-        self.assertEqual(temporal_intersection_filter(self.a1, self.a2), True)
-        self.assertEqual(temporal_intersection_filter(self.a2, self.a1), True)
-        self.assertEqual(temporal_intersection_filter(self.a1, self.a3), False)
+        self.assertEqual(temporal_intersection_filter(self.a1, self.a1), (True, { "temporal_intersection": 10 }))
+        self.assertEqual(temporal_intersection_filter(self.a1, self.a2), (True, { "temporal_intersection": 5 }))
+        self.assertEqual(temporal_intersection_filter(self.a2, self.a1), (True, { "temporal_intersection": 5 }))
+        self.assertEqual(temporal_intersection_filter(self.a1, self.a3), (False, { "temporal_intersection": 0 }))
 
     def test_multifile(self):
-        self.assertEqual(temporal_intersection_filter(self.a5, self.a6), True)
-        self.assertEqual(temporal_intersection_filter(self.a5, self.a7), True)
+        self.assertEqual(temporal_intersection_filter(self.a5, self.a6), (True, { "temporal_intersection": 5 }))
+        self.assertEqual(temporal_intersection_filter(self.a5, self.a7), (True, { "temporal_intersection": 8 }))
 
-        self.assertEqual(temporal_intersection_filter(self.a3, self.a4), False)
+        self.assertEqual(temporal_intersection_filter(self.a3, self.a4), (False, { "temporal_intersection": 0 }))
 
-class TestTemporalOverlapFilter(TestActEVKernelComponents):
+class TestTemporalOverlapFilter(TestActEVKernelComponents):    
     def test_empty(self):
-        self.assertEqual(self.temporal_overlap_filter(self.ae, self.ae), False)
+        self.assert_filter(self.temporal_overlap_filter(self.ae, self.ae), (False, { "temporal_intersection-over-union": 0.0 }))
 
     def test_singlefile(self):
-        self.assertEqual(self.temporal_overlap_filter(self.a1, self.a1), True)
-        self.assertEqual(self.temporal_overlap_filter(self.a1, self.a2), True)
-        self.assertEqual(self.temporal_overlap_filter(self.a2, self.a1), True)
-        self.assertEqual(self.temporal_overlap_filter(self.a1, self.a3), False)
+        self.assert_filter(self.temporal_overlap_filter(self.a1, self.a1), (True, { "temporal_intersection-over-union": float(10) / 10 }))
+        self.assertEqual(self.temporal_overlap_filter(self.a1, self.a2), (True, { "temporal_intersection-over-union": float(5) / 15 }))
+        self.assertEqual(self.temporal_overlap_filter(self.a2, self.a1), (True, { "temporal_intersection-over-union": float(5) / 15 }))
+        self.assertEqual(self.temporal_overlap_filter(self.a1, self.a3), (False, { "temporal_intersection-over-union": float(0) / 15 }))
 
     def test_multifile(self):
-        self.assertEqual(self.temporal_overlap_filter(self.a5, self.a6), False)
-        self.assertEqual(self.temporal_overlap_filter(self.a5, self.a7), True)
+        self.assert_filter(self.temporal_overlap_filter(self.a5, self.a6), (False, { "temporal_intersection-over-union": float(5) / 45 }))
+        self.assert_filter(self.temporal_overlap_filter(self.a5, self.a7), (True, { "temporal_intersection-over-union": float(8) / 25 }))
 
-        self.assertEqual(self.temporal_overlap_filter(self.a3, self.a4), False)
+        self.assert_filter(self.temporal_overlap_filter(self.a3, self.a4), (False, { "temporal_intersection-over-union": float(0) / 15 }))
 
 class TestSpatialOverlapFilter(TestActEVKernelComponents):
     def test_empty(self):
-        self.assertEqual(self.spatial_overlap_filter_1(self.s_ae, self.s_ae), False)
+        self.assert_filter(self.spatial_overlap_filter_1(self.s_ae, self.s_ae), (False, { "spatial_intersection-over-union": 0.0 }))
 
-        self.assertEqual(self.spatial_overlap_filter_2(self.s_ae, self.s_ae), False)
+        self.assert_filter(self.spatial_overlap_filter_2(self.s_ae, self.s_ae), (False, { "spatial_intersection-over-union": 0.0 }))
 
     def test_singlefile(self):
-        self.assertEqual(self.spatial_overlap_filter_1(self.s_a1, self.s_a1), True)
-        self.assertEqual(self.spatial_overlap_filter_1(self.s_a1, self.s_a2), False)
-        self.assertEqual(self.spatial_overlap_filter_1(self.s_a2, self.s_a1), False)
-        self.assertEqual(self.spatial_overlap_filter_1(self.s_a1, self.s_a3), False)
+        self.assert_filter(self.spatial_overlap_filter_1(self.s_a1, self.s_a1), (True, { "spatial_intersection-over-union": 1.0 }))
+        self.assert_filter(self.spatial_overlap_filter_1(self.s_a1, self.s_a2), (False, { "spatial_intersection-over-union": float(25) / 275 }))
+        self.assert_filter(self.spatial_overlap_filter_1(self.s_a2, self.s_a1), (False, { "spatial_intersection-over-union": float(25) / 275 }))
+        self.assert_filter(self.spatial_overlap_filter_1(self.s_a1, self.s_a3), (False, { "spatial_intersection-over-union": float(0) / 275 }))
 
-        self.assertEqual(self.spatial_overlap_filter_2(self.s_a1, self.s_a1), True)
-        self.assertEqual(self.spatial_overlap_filter_2(self.s_a1, self.s_a2), False)
-        self.assertEqual(self.spatial_overlap_filter_2(self.s_a2, self.s_a1), False)
-        self.assertEqual(self.spatial_overlap_filter_2(self.s_a1, self.s_a3), False)
+        self.assert_filter(self.spatial_overlap_filter_2(self.s_a1, self.s_a1), (True, { "spatial_intersection-over-union": 1.0 }))
+        self.assert_filter(self.spatial_overlap_filter_2(self.s_a1, self.s_a2), (False, { "spatial_intersection-over-union": float(25) / 275 }))
+        self.assert_filter(self.spatial_overlap_filter_2(self.s_a2, self.s_a1), (False, { "spatial_intersection-over-union": float(25) / 275 }))
+        self.assert_filter(self.spatial_overlap_filter_2(self.s_a1, self.s_a3), (False, { "spatial_intersection-over-union": float(0) / 275 }))
 
     def test_multifile(self):
-        self.assertEqual(self.spatial_overlap_filter_1(self.s_a4, self.s_a5), False)
-        self.assertEqual(self.spatial_overlap_filter_1(self.s_a5, self.s_a4), False)
+        self.assert_filter(self.spatial_overlap_filter_1(self.s_a4, self.s_a5), (False, { "spatial_intersection-over-union": float(75) / (275 + 400) }))
+        self.assert_filter(self.spatial_overlap_filter_1(self.s_a5, self.s_a4), (False, { "spatial_intersection-over-union": float(75) / (275 + 400) }))
 
-        self.assertEqual(self.spatial_overlap_filter_1(self.s_a2, self.s_a4), False)
-        self.assertEqual(self.spatial_overlap_filter_1(self.s_a3, self.s_a4), False)
+        self.assert_filter(self.spatial_overlap_filter_1(self.s_a2, self.s_a4), (False, { "spatial_intersection-over-union": float(25) / (275 + 200) }))
+        self.assert_filter(self.spatial_overlap_filter_1(self.s_a3, self.s_a4), (False, { "spatial_intersection-over-union": float(0) / (250 + 200) }))
 
-        self.assertEqual(self.spatial_overlap_filter_2(self.s_a4, self.s_a5), True)
-        self.assertEqual(self.spatial_overlap_filter_2(self.s_a5, self.s_a4), True)
+        self.assert_filter(self.spatial_overlap_filter_2(self.s_a4, self.s_a5), (True, { "spatial_intersection-over-union": float(75) / (275 + 400) }))
+        self.assert_filter(self.spatial_overlap_filter_2(self.s_a5, self.s_a4), (True, { "spatial_intersection-over-union": float(75) / (275 + 400) }))
 
-        self.assertEqual(self.spatial_overlap_filter_2(self.s_a2, self.s_a4), False)
-        self.assertEqual(self.spatial_overlap_filter_2(self.s_a3, self.s_a4), False)
+        self.assert_filter(self.spatial_overlap_filter_2(self.s_a2, self.s_a4), (False, { "spatial_intersection-over-union": float(25) / (275 + 200) }))
+        self.assert_filter(self.spatial_overlap_filter_2(self.s_a3, self.s_a4), (False, { "spatial_intersection-over-union": float(0) / (250 + 200) }))
 
 class TestObjectTypeFilter(TestActEVKernelComponents):
     def test_filter(self):
-        self.assertEqual(object_type_match_filter(self.o_1, self.o_1), True)
-        self.assertEqual(object_type_match_filter(self.o_1, self.o_2), True)
-        self.assertEqual(object_type_match_filter(self.o_2, self.o_1), True)
+        self.assertEqual(object_type_match_filter(self.o_1, self.o_1), (True, {}))
+        self.assertEqual(object_type_match_filter(self.o_1, self.o_2), (True, {}))
+        self.assertEqual(object_type_match_filter(self.o_2, self.o_1), (True, {}))
 
-        self.assertEqual(object_type_match_filter(self.o_1, self.o_3), False)
-        self.assertEqual(object_type_match_filter(self.o_1, self.o_4), False)
+        self.assertEqual(object_type_match_filter(self.o_1, self.o_3), (False, {}))
+        self.assertEqual(object_type_match_filter(self.o_1, self.o_4), (False, {}))
 
-        self.assertEqual(object_type_match_filter(self.o_3, self.o_4), False)
-        self.assertEqual(object_type_match_filter(self.o_4, self.o_3), False)
+        self.assertEqual(object_type_match_filter(self.o_3, self.o_4), (False, {}))
+        self.assertEqual(object_type_match_filter(self.o_4, self.o_3), (False, {}))
 
 class TestObjectCongruence(TestActEVKernelComponents):
     def setUp(self):
@@ -256,7 +263,7 @@ class TestObjectCongruence(TestActEVKernelComponents):
         self.obj_kernel_builder = _obj_kernel_builder
 
     def test_object_congruence(self):
-        object_congruence = build_object_congruence(self.obj_kernel_builder)(self.rai_1, self.sai_1)
+        object_congruence = build_object_congruence(self.obj_kernel_builder)(self.rai_1, self.sai_1, {})
         self.assertAlmostEqual(object_congruence.get("minMODE", None), 1.375, places=10)
 
 if __name__ == '__main__':

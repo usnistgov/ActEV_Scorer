@@ -1,4 +1,4 @@
-# actev18.py
+# actev18_ad.py
 # Author(s): David Joy
 
 # This software was developed by employees of the National Institute of
@@ -50,7 +50,7 @@ class ActEV18_AD():
 
     def __init__(self):
         self.default_scoring_parameters = { "epsilon_temporal_congruence": 1.0e-8,
-                                            "epsilon_presenceconf_congruence": 1.0e-6,
+                                            "epsilon_activity_presenceconf_congruence": 1.0e-6,
                                             "temporal_overlap_delta": 0.2,
                                             "nmide_ns_collar_size": 0 }
 
@@ -65,7 +65,7 @@ class ActEV18_AD():
                                                [temporal_intersection_over_union_component,
                                                 build_sed_presenceconf_congruence(system_instances)],
                                                {"temporal_intersection-over-union": scoring_parameters["epsilon_temporal_congruence"],
-                                                "presenceconf_congruence": scoring_parameters["epsilon_presenceconf_congruence"]})
+                                                "presenceconf_congruence": scoring_parameters["epsilon_activity_presenceconf_congruence"]})
 
     def build_metrics(self,
                       scoring_parameters,

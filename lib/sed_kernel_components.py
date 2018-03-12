@@ -32,7 +32,7 @@
 
 def build_sed_presenceconf_congruence(sys_instances):
     if len(sys_instances) == 1:
-        def _congruence(r, s):
+        def _congruence(r, s, cache):
             return { "presenceconf_congruence": 1.0 }
     elif len(sys_instances) > 1:
         sys_presence_confs = [ s.presenceConf for s in sys_instances ]
@@ -40,13 +40,13 @@ def build_sed_presenceconf_congruence(sys_instances):
         sys_conf_range = max(sys_presence_confs) - min_presence_conf
 
         if sys_conf_range == 0:
-            def _congruence(r, s):
+            def _congruence(r, s, cache):
                 return { "presenceconf_congruence": 1.0 }
         else:
-            def _congruence(r, s):
+            def _congruence(r, s, cache):
                 return { "presenceconf_congruence": float(s.presenceConf - min_presence_conf) / sys_conf_range }
     else:
-        def _congruence(r, s):
+        def _congruence(r, s, cache):
             return { "presenceconf_congruence": None }
 
     return _congruence

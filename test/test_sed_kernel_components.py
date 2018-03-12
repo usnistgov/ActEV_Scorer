@@ -42,19 +42,19 @@ class TestSEDKernelComponents(unittest.TestCase):
         self.congruence_func_sys_same = unpacker(build_sed_presenceconf_congruence(self.sys_same))
 
     def test_presenceconf_congruence(self):
-        self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[0]), 0.0)
-        self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[1]), 0.1 / 0.55)
-        self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[2]), 0.4 / 0.55)
-        self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[3]), 0.45 / 0.55)
-        self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[4]), 1.0)
+        self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[0], {}), 0.0)
+        self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[1], {}), 0.1 / 0.55)
+        self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[2], {}), 0.4 / 0.55)
+        self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[3], {}), 0.45 / 0.55)
+        self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[4], {}), 1.0)
 
     def test_presenceconf_congruence_single_instance(self):
-        self.assertAlmostEqual(self.congruence_func_sys_2(None, self.sys_2[0]), 1.0)
+        self.assertAlmostEqual(self.congruence_func_sys_2(None, self.sys_2[0], {}), 1.0)
 
     def test_presenceconf_congruence_same(self):
-        self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[0]), 1.0)
-        self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[1]), 1.0)
-        self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[2]), 1.0)
+        self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[0], {}), 1.0)
+        self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[1], {}), 1.0)
+        self.assertAlmostEqual(self.congruence_func_sys_same(None, self.sys_same[2], {}), 1.0)
 
     def test_presenceconf_congruence_empty(self):
         # This shouldn't raise an exception, if it does, our test case

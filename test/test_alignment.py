@@ -19,15 +19,15 @@ class TestBuildLinearCombinationKernel(TestAlignment):
         super(TestBuildLinearCombinationKernel, self).setUp()
 
         def _filter_1(r_i, s_i):
-            return r_i > s_i
+            return (r_i > s_i, {})
 
         def _filter_2(r_i, s_i):
-            return r_i < 5
+            return (r_i < 5, {})
 
-        def _comp_1_func(r_i, s_i):
+        def _comp_1_func(r_i, s_i, cache):
             return { "summation": r_i + s_i }
 
-        def _comp_2_func(r_i, s_i):
+        def _comp_2_func(r_i, s_i, cache):
             return { "multiplication": r_i * s_i }
 
         self.kernel_blank_1 = build_linear_combination_kernel([], [], {})
@@ -40,6 +40,15 @@ class TestBuildLinearCombinationKernel(TestAlignment):
         self.kernel_4 = build_linear_combination_kernel([], [_comp_1_func, _comp_2_func], { "summation": 3, "multiplication": 2 })
 
         self.kernel_5 = build_linear_combination_kernel([_filter_1, _filter_2], [_comp_1_func, _comp_2_func], { "summation": 3, "multiplication": 2 }, 3)
+
+        def _caching_filter_1(r_i, s_i):
+            total = r_i + s_i
+            return (total, { "sum": total })
+
+        def _caching_comp_1(r_i, s_i, cache):
+            return { "summation": cache["sum"] }
+
+        self.cache_kernel_1 = build_linear_combination_kernel([_caching_filter_1], [_caching_comp_1], { "summation": 1 }, 1)
 
     def test_blank_kernel(self):
         self.assertEqual(self.kernel_blank_1(3, 4), (1, {}))
@@ -68,14 +77,18 @@ class TestBuildLinearCombinationKernel(TestAlignment):
 
         self.assertEqual(self.kernel_5(4, 3), (48, { "summation": 7, "multiplication": 12 }))
 
+    def test_caching_kernels(self):
+        self.assertEqual(self.cache_kernel_1(3, 4), (8, { "summation": 7 }))
+        self.assertEqual(self.cache_kernel_1(0, 2), (3, { "summation": 2 }))
+
 class TestPerformAlignment(TestAlignment):
     def setUp(self):
         super(TestPerformAlignment, self).setUp()
 
         def _filter_1(r_i, s_i):
-            return r_i != 3
+            return (r_i != 3, {})
 
-        def _comp_1_func(r_i, s_i):
+        def _comp_1_func(r_i, s_i, cache):
             return { "multi": r_i * s_i }
 
         self.ref_instances_1 = [1, 2, 3, 4]
@@ -95,7 +108,7 @@ class TestPerformAlignment(TestAlignment):
         self.fa_1 = [(None, 2, None, None)]
 
         def _filter_d(r_i, s_i):
-            return False
+            return (False, {})
 
         self.kernel_d = build_linear_combination_kernel([_filter_d], [_comp_1_func], { "multi": 1 })
 
@@ -110,7 +123,7 @@ class TestPerformAlignment(TestAlignment):
                      (None, 16, None, None)]
 
         def _filter_2(r_i, s_i):
-            return not (r_i == 3 and s_i == 8)
+            return (not (r_i == 3 and s_i == 8), {})
 
         self.kernel_2 = build_linear_combination_kernel([_filter_2], [_comp_1_func], { "multi": 1 })
 
@@ -130,9 +143,9 @@ class TestPerformAlignment(TestAlignment):
         self.ref_instances_empty = []
 
         def _filter_u(r_i, s_i):
-            return not ((r_i == 3 and s_i == 1) or (s_i > 1 and r_i < 3))
+            return (not ((r_i == 3 and s_i == 1) or (s_i > 1 and r_i < 3)), {})
 
-        def _comp_u_func(r_i, s_i):
+        def _comp_u_func(r_i, s_i, cache):
             return { "add": r_i + s_i }
 
         self.ref_instances_u = [1, 2, 3]
