@@ -4,8 +4,6 @@ import sys
 import os
 import json
 
-from pprint import pprint
-
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../lib")
 sys.path.append(lib_path)
 
@@ -94,7 +92,7 @@ class TestTemporalIntersectionFilter(TestActEVKernelComponents):
 
         self.assertEqual(temporal_intersection_filter(self.a3, self.a4), (False, { "temporal_intersection": 0 }))
 
-class TestTemporalOverlapFilter(TestActEVKernelComponents):    
+class TestTemporalOverlapFilter(TestActEVKernelComponents):
     def test_empty(self):
         self.assert_filter(self.temporal_overlap_filter(self.ae, self.ae), (False, { "temporal_intersection-over-union": 0.0 }))
 
@@ -220,6 +218,49 @@ class TestObjectCongruence(TestActEVKernelComponents):
           ]
         }"""))
 
+        self.sai_2 = ActivityInstance(json.loads("""
+        {
+          "activity": "Closing",
+          "activityID": 1,
+          "presenceConf": 0.77,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3034": 1,
+              "3062": 0
+            }
+          },
+          "objects": [
+            {
+              "objectType": "person",
+              "objectID": 1,
+              "localization": {
+                "VIRAT_S_000000.mp4": {
+                  "3034": {
+                    "presenceConf": 0.45,
+                    "boundingBox": {
+                      "x": 10,
+                      "y": 30,
+                      "w": 50,
+                      "h": 20
+                    }
+                  },
+                  "3052": {
+                    "presenceConf": 0.67,
+                    "boundingBox": {
+                      "x": 80,
+                      "y": 10,
+                      "w": 50,
+                      "h": 20
+                    }
+                  },
+                  "3062": {
+                  }
+                }
+              }
+            }
+          ]
+        }"""))
+
         self.rai_1 = ActivityInstance(json.loads("""
         {
           "activity": "Closing",
@@ -262,9 +303,21 @@ class TestObjectCongruence(TestActEVKernelComponents):
 
         self.obj_kernel_builder = _obj_kernel_builder
 
+    def assert_mode_scores(self, observed, expected):
+        for o, e in zip(*map(sorted, [observed, expected])):
+            o_conf, o_mode = o
+            e_conf, e_mode = e
+            self.assertEqual(o_conf, e_conf)
+            self.assertAlmostEqual(o_mode, e_mode, places=10)
+
     def test_object_congruence(self):
-        object_congruence = build_object_congruence(self.obj_kernel_builder)(self.rai_1, self.sai_1, {})
-        self.assertAlmostEqual(object_congruence.get("minMODE", None), 1.375, places=10)
+        object_congruence_1 = build_object_congruence(self.obj_kernel_builder)(self.rai_1, self.sai_1, {})
+        self.assertAlmostEqual(object_congruence_1["minMODE"], 1.375, places=10)
+        self.assert_mode_scores(object_congruence_1["MODE_records"], [(0.2, 1.6875), (0.45, 1.375), (0.67, 1.5625)])
+
+        object_congruence_2 = build_object_congruence(self.obj_kernel_builder)(self.rai_1, self.sai_2, {})
+        self.assertAlmostEqual(object_congruence_2["minMODE"], 0.75, places=10)
+        self.assert_mode_scores(object_congruence_2["MODE_records"], [(0.45, 0.75), (0.67, 1.3125)])
 
 if __name__ == '__main__':
     unittest.main()

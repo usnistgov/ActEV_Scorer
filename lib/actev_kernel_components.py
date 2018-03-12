@@ -90,42 +90,69 @@ def _object_signals_to_lookup(temporal_signal, local_objects):
 # Using a factory function here so we can configure the object kernel
 # at the protocol level.  Not sure if this is the best place to pass
 # in the weightning functions
+def build_object_congruence_filter(obj_kernel_builder, threshold, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
+    components = _object_congruence(r, s, obj_kernel_builder, cmiss, cfa)
+
+    return (components["minMode"] < threshold, components)
+
 def build_object_congruence(obj_kernel_builder, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
-    def object_congruence(r, s, cache):
-        ro, so = r.objects, s.objects
+    def object_congruence_component(r, s, cache):
+        def _r_out_dict(init, k):
+            ok, d = init
+            still_ok = False
+            if k in cache:
+                d[k] = cache[k]
+                still_ok = True
 
-        # For N_MODE computation, localizations spanning multiple files
-        # are treated independently
-        total_c, total_m, total_f, total_r = [], [], [], []
-        for r, s, k in temporal_signal_pairs(r, s):
-            local_so_localizations = map(lambda o: o.localization.get(k, S()), so)
-            local_ro_localizations = map(lambda o: o.localization.get(k, S()), ro)
+            return (ok and still_ok, d)
 
-            sos_lookup = _object_signals_to_lookup(s, local_so_localizations)
-            ros_lookup = _object_signals_to_lookup(r, local_ro_localizations)
+        was_cached, components = reduce(_r_out_dict, [ "minMode", "MODE_records" ], (True, {}))
 
-            for frame in sos_lookup.viewkeys() | ros_lookup.viewkeys():
-                sys = sos_lookup.get(frame, [])
-                ref = ros_lookup.get(frame, [])
+        if was_cached:
+            return components
+        else:
+            return _object_congruence(r, s, obj_kernel_builder, cmiss, cfa)
 
-                c, m, f = perform_alignment(ref, sys, obj_kernel_builder(sys))
-                total_c.extend(c)
-                total_m.extend(m)
-                total_f.extend(f)
-                total_r.extend(ref)
+    return object_congruence_component
 
-        num_miss = len(total_m)
-        num_correct = len(total_c)
-        def _modes_reducer(init, conf):
-            num_filtered_c = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_c))
-            num_filtered_fa = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_f))
-            num_miss_w_filtered_c = num_miss + num_correct - num_filtered_c
-            init.append((conf, mode(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, cmiss, cfa)))
-            return init
 
-        mode_scores = reduce(_modes_reducer, sorted(list({ ar.sys.presenceConf for ar in total_c + total_f })), [])
-        min_mode = min(map(lambda x: x[1], mode_scores))
+def _object_congruence(r, s, obj_kernel_builder, cmiss, cfa):
+    ro, so = r.objects, s.objects
 
-        return { "minMODE": min_mode }
+    # For N_MODE computation, localizations spanning multiple files
+    # are treated independently
+    total_c, total_m, total_f, total_r = [], [], [], []
+    frame_alignment_records = []
+    for r, s, k in temporal_signal_pairs(r, s):
+        local_so_localizations = map(lambda o: o.localization.get(k, S()), so)
+        local_ro_localizations = map(lambda o: o.localization.get(k, S()), ro)
 
-    return object_congruence
+        sos_lookup = _object_signals_to_lookup(s, local_so_localizations)
+        ros_lookup = _object_signals_to_lookup(r, local_ro_localizations)
+
+        for frame in sos_lookup.viewkeys() | ros_lookup.viewkeys():
+            sys = sos_lookup.get(frame, [])
+            ref = ros_lookup.get(frame, [])
+
+            c, m, f = perform_alignment(ref, sys, obj_kernel_builder(sys))
+            total_c.extend(c)
+            total_m.extend(m)
+            total_f.extend(f)
+            total_r.extend(ref)
+
+            for ar in c + m + f:
+                frame_alignment_records.extend((frame, ar))
+
+    num_miss = len(total_m)
+    num_correct = len(total_c)
+    def _modes_reducer(init, conf):
+        num_filtered_c = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_c))
+        num_filtered_fa = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_f))
+        num_miss_w_filtered_c = num_miss + num_correct - num_filtered_c
+        init.append((conf, mode(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, cmiss, cfa)))
+        return init
+
+    mode_scores = reduce(_modes_reducer, sorted(list({ ar.sys.presenceConf for ar in total_c + total_f })), [])
+    min_mode = min(map(lambda x: x[1], mode_scores))
+
+    return { "minMODE": min_mode, "MODE_records": mode_scores, "alignment_records": frame_alignment_records }
