@@ -25,22 +25,22 @@ class TestBuildLinearCombinationKernel(TestAlignment):
             return r_i < 5
 
         def _comp_1_func(r_i, s_i):
-            return r_i + s_i
+            return { "summation": r_i + s_i }
 
         def _comp_2_func(r_i, s_i):
-            return r_i * s_i
+            return { "multiplication": r_i * s_i }
 
-        self.kernel_blank_1 = build_linear_combination_kernel([], [])
-        self.kernel_blank_2 = build_linear_combination_kernel([], [], 3)
-        
-        self.kernel_1 = build_linear_combination_kernel([_filter_1], [])
-        self.kernel_2 = build_linear_combination_kernel([_filter_1, _filter_2], [])
+        self.kernel_blank_1 = build_linear_combination_kernel([], [], {})
+        self.kernel_blank_2 = build_linear_combination_kernel([], [], {}, 3)
 
-        self.kernel_3 = build_linear_combination_kernel([], [("summation", 3, _comp_1_func)])
-        self.kernel_4 = build_linear_combination_kernel([], [("summation", 3, _comp_1_func), ("multiplication", 2, _comp_2_func)])
+        self.kernel_1 = build_linear_combination_kernel([_filter_1], [], {})
+        self.kernel_2 = build_linear_combination_kernel([_filter_1, _filter_2], [], {})
 
-        self.kernel_5 = build_linear_combination_kernel([_filter_1, _filter_2], [("summation", 3, _comp_1_func), ("multiplication", 2, _comp_2_func)], 3)
-        
+        self.kernel_3 = build_linear_combination_kernel([], [_comp_1_func], { "summation": 3 })
+        self.kernel_4 = build_linear_combination_kernel([], [_comp_1_func, _comp_2_func], { "summation": 3, "multiplication": 2 })
+
+        self.kernel_5 = build_linear_combination_kernel([_filter_1, _filter_2], [_comp_1_func, _comp_2_func], { "summation": 3, "multiplication": 2 }, 3)
+
     def test_blank_kernel(self):
         self.assertEqual(self.kernel_blank_1(3, 4), (1, {}))
         self.assertEqual(self.kernel_blank_1(0, 0), (1, {}))
@@ -50,7 +50,7 @@ class TestBuildLinearCombinationKernel(TestAlignment):
     def test_filtering_kernels(self):
         self.assertEqual(self.kernel_1(3, 4), (DISALLOWED, {}))
         self.assertEqual(self.kernel_1(4, 3), (1, {}))
-        
+
         self.assertEqual(self.kernel_2(4, 3), (1, {}))
         self.assertEqual(self.kernel_2(5, 3), (DISALLOWED, {}))
 
@@ -65,7 +65,7 @@ class TestBuildLinearCombinationKernel(TestAlignment):
 
     def test_combined_kernels(self):
         self.assertEqual(self.kernel_5(5, 3), (DISALLOWED, {}))
-        
+
         self.assertEqual(self.kernel_5(4, 3), (48, { "summation": 7, "multiplication": 12 }))
 
 class TestPerformAlignment(TestAlignment):
@@ -74,15 +74,15 @@ class TestPerformAlignment(TestAlignment):
 
         def _filter_1(r_i, s_i):
             return r_i != 3
-        
+
         def _comp_1_func(r_i, s_i):
-            return r_i * s_i
-        
+            return { "multi": r_i * s_i }
+
         self.ref_instances_1 = [1, 2, 3, 4]
         self.sys_instances_1 = [2, 4, 8, 16]
 
-        self.kernel_multi = build_linear_combination_kernel([_filter_1], [("multi", 1, _comp_1_func)])
-        
+        self.kernel_multi = build_linear_combination_kernel([_filter_1], [_comp_1_func], { "multi": 1 })
+
         # self.sim_matrix_1 = [[3, 5, D, 9],
         #                      [5, 9, D, 17],
         #                      [9, 17, D, 33],
@@ -97,7 +97,7 @@ class TestPerformAlignment(TestAlignment):
         def _filter_d(r_i, s_i):
             return False
 
-        self.kernel_d = build_linear_combination_kernel([_filter_d], [("multi", 1, _comp_1_func)])
+        self.kernel_d = build_linear_combination_kernel([_filter_d], [_comp_1_func], { "multi": 1 })
 
         self.corr_d = []
         self.miss_d = [(1, None, None, None),
@@ -112,13 +112,13 @@ class TestPerformAlignment(TestAlignment):
         def _filter_2(r_i, s_i):
             return not (r_i == 3 and s_i == 8)
 
-        self.kernel_2 = build_linear_combination_kernel([_filter_2], [("multi", 1, _comp_1_func)])
+        self.kernel_2 = build_linear_combination_kernel([_filter_2], [_comp_1_func], { "multi": 1 })
 
         # self.sim_matrix_2 = [[3, 5, 7, 9],
         #                      [5, 9, 13, 17],
         #                      [9, 17, D, 33],
         #                      [17, 33, 49, 65]]
-        
+
         self.corr_2 = [(1, 2, 3, { "multi": 2 }),
                        (3, 4, 13, { "multi": 12 }),
                        (2, 8, 17, { "multi": 16 }),
@@ -131,15 +131,15 @@ class TestPerformAlignment(TestAlignment):
 
         def _filter_u(r_i, s_i):
             return not ((r_i == 3 and s_i == 1) or (s_i > 1 and r_i < 3))
-        
+
         def _comp_u_func(r_i, s_i):
-            return r_i + s_i
-        
+            return { "add": r_i + s_i }
+
         self.ref_instances_u = [1, 2, 3]
         self.sys_instances_u = [1, 2, 3]
 
-        self.kernel_u = build_linear_combination_kernel([_filter_u], [("add", 1, _comp_u_func)])
-        
+        self.kernel_u = build_linear_combination_kernel([_filter_u], [_comp_u_func], { "add": 1 })
+
         # self.sim_matrix_unsolvable = [[3, 4, D],
         #                               [D, D, 6],
         #                               [D, D, 7]]
@@ -156,7 +156,7 @@ class TestPerformAlignment(TestAlignment):
         self.assertItemsEqual(obs_corr, exp_corr)
         self.assertItemsEqual(obs_miss, exp_miss)
         self.assertItemsEqual(obs_fa, exp_fa)
-        
+
     def test_alignment(self):
         self.assertAlignment(perform_alignment(self.ref_instances_1, self.sys_instances_1, self.kernel_multi), (self.corr_1, self.miss_1, self.fa_1))
 
@@ -164,9 +164,9 @@ class TestPerformAlignment(TestAlignment):
 
     def test_alignment_empty(self):
         self.assertAlignment(perform_alignment(self.ref_instances_1, self.sys_instances_1, self.kernel_d), (self.corr_d, self.miss_d, self.fa_d))
-        
+
         self.assertAlignment(perform_alignment(self.ref_instances_1, self.sys_instances_empty, self.kernel_multi), (self.corr_d, self.miss_d, []))
-        
+
         self.assertAlignment(perform_alignment(self.ref_instances_empty, self.sys_instances_1, self.kernel_multi), (self.corr_d, [], self.fa_d))
 
     def test_munkres_unsolvable(self):
@@ -174,6 +174,6 @@ class TestPerformAlignment(TestAlignment):
         # a matrix with possible assignments less than max(M, N).  The
         # alignment function should cover this case
         self.assertAlignment(perform_alignment(self.ref_instances_u, self.sys_instances_u, self.kernel_u), (self.corr_u, self.miss_u, self.fa_u))
-        
+
 if __name__ == '__main__':
     unittest.main()

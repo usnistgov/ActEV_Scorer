@@ -248,17 +248,16 @@ class TestObjectCongruence(TestActEVKernelComponents):
         def _obj_kernel_builder(sys):
             return build_linear_combination_kernel([object_type_match_filter,
                                                     build_simple_spatial_overlap_filter(0.5)],
-                                                   [("spatial_intersection-over-union",
-                                                     10e-8,
-                                                     lambda r, s: simple_spatial_intersection_over_union(r.spatial_signal, s.spatial_signal)),
-                                                    ("presence-conf-congruence",
-                                                     10e-6,
-                                                     build_sed_presenceconf_congruence(sys))])
+                                                   [simple_spatial_intersection_over_union_component,
+                                                    build_sed_presenceconf_congruence(sys)],
+                                                   {"spatial_intersection-over-union": 10e-8,
+                                                    "presence-conf-congruence": 10e-6 })
 
         self.obj_kernel_builder = _obj_kernel_builder
 
     def test_object_congruence(self):
-        self.assertEqual(build_object_congruence(self.obj_kernel_builder)(self.rai_1, self.sai_1), 1.375)
+        object_congruence = build_object_congruence(self.obj_kernel_builder)(self.rai_1, self.sai_1)
+        self.assertAlmostEqual(object_congruence.get("minMODE", None), 1.375, places=10)
 
 if __name__ == '__main__':
     unittest.main()

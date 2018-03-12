@@ -51,6 +51,9 @@ def build_temporal_overlap_filter(threshold):
 
     return _filter
 
+def temporal_intersection_over_union_component(r, s):
+    return { "temporal_intersection-over-union": temporal_intersection_over_union(r, s) }
+
 def build_spatial_overlap_filter(threshold):
     def _filter(r, s):
         return spatial_intersection_over_union(r, s) > threshold
@@ -62,6 +65,9 @@ def build_simple_spatial_overlap_filter(threshold):
         return simple_spatial_intersection_over_union(r.spatial_signal, s.spatial_signal) > threshold
 
     return _filter
+
+def simple_spatial_intersection_over_union_component(r, s):
+    return { "spatial_intersection-over-union": simple_spatial_intersection_over_union(r.spatial_signal, s.spatial_signal) }
 
 def object_type_match_filter(r, s):
     return r.objectType == s.objectType
@@ -118,6 +124,6 @@ def build_object_congruence(obj_kernel_builder, cmiss = lambda x: 1 * x, cfa = l
         mode_scores = reduce(_modes_reducer, sorted(list({ ar.sys.presenceConf for ar in total_c + total_f })), [])
         min_mode = min(map(lambda x: x[1], mode_scores))
 
-        return min_mode
+        return { "minMODE": min_mode }
 
     return object_congruence

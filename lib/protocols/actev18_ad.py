@@ -54,17 +54,18 @@ class ActEV18_AD():
                                             "temporal_overlap_delta": 0.2,
                                             "nmide_ns_collar_size": 0 }
 
+        self.output_kernel_components = [ "temporal_intersection-over-union",
+                                          "presenceconf_congruence" ]
+
     def build_kernel(self,
                      system_instances,
                      reference_instances,
                      scoring_parameters):
         return build_linear_combination_kernel([build_temporal_overlap_filter(scoring_parameters["temporal_overlap_delta"])],
-                                               [("temporal_intersection-over-union",
-                                                 scoring_parameters["epsilon_temporal_congruence"],
-                                                 temporal_intersection_over_union),
-                                                ("presenceconf_congruence",
-                                                 scoring_parameters["epsilon_presenceconf_congruence"],
-                                                 build_sed_presenceconf_congruence(system_instances))])
+                                               [temporal_intersection_over_union_component,
+                                                build_sed_presenceconf_congruence(system_instances)],
+                                               {"temporal_intersection-over-union": scoring_parameters["epsilon_temporal_congruence"],
+                                                "presenceconf_congruence": scoring_parameters["epsilon_presenceconf_congruence"]})
 
     def build_metrics(self,
                       scoring_parameters,
@@ -191,15 +192,17 @@ class ActEV18_AD():
 
         microavg_alignment_measures = reduce(_compute_microavg_alignment_measures, alignment_metrics.iteritems(), [])
 
+        def _reformat_alignment_records(init, item):
+            key, records = item
+
+            init[key] = map(lambda r: map(str, r.iter_with_extended_properties(self.output_kernel_components)), records)
+            return init
+
+        output_alignment_records = reduce(_reformat_alignment_records, alignment_records.iteritems(), {})
+
         return (scoring_parameters,
-                alignment_records,
+                output_alignment_records,
                 merge_dicts(measure_records, det_curve_measure_records, add),
                 pair_measure_records,
                 mean_alignment_measure_records + microavg_alignment_measures,
                 det_point_records)
-
-    def dump_parameters(self):
-        return [("epsilon_temporal_congruence", self.epsilon_temporal_congruence),
-                ("epsilon_decisionscore_congruence", self.epsilon_decisionscore_congruence),
-                ("delta_temporal_overlap_filter", self.temporal_overlap_delta),
-                ("N_MIDE_no_score_zone_collar_size", self.nmide_ns_collar_size)]

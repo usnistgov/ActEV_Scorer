@@ -30,7 +30,9 @@
 # bundled with the code in compliance with the conditions of those
 # licenses.
 
-from collections import namedtuple
+from collections import namedtuple, OrderedDict
+
+import json
 
 def alignment_partitioner(init, ar):
     cd, md, fa = init
@@ -69,10 +71,18 @@ class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
         else:
             return self.sys.presenceConf
 
-    def iter_with_extended_properties(self):
+    def iter_with_extended_properties(self, reported_components):
         yield self.alignment
-        yield self.ref
-        yield self.sys
-        yield self.sys_presence_conf
-        yield self.kernel_similarity
-        yield self.kernel_components
+        yield str(self.ref)
+        yield str(self.sys)
+        yield str(self.sys_presence_conf)
+        yield str(self.kernel_similarity)
+
+        def _r(init, c):
+            init[c] = self.kernel_components.get(c)
+            return init
+
+        # Want to yield out the JSON serialization of requested kernel
+        # components in the order requested.  Ordering is also
+        # important for our integration tests.
+        yield json.dumps(reduce(_r, reported_components, OrderedDict())) if self.kernel_components else None

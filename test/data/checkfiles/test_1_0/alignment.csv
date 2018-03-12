@@ -1,10 +1,10 @@
 activity|alignment|ref|sys|sys_decision_score|kernel_similarity|kernel_components
-Closing|CD|61|1|0.756|1.0000007539|{'temporal_intersection-over-union': 0.9310344827586207, 'presenceconf_congruence': 0.7445887445887446}
-Closing|CD|64|30|0.789|1.00000078996|{'temporal_intersection-over-union': 0.9655172413793104, 'presenceconf_congruence': 0.7803030303030305}
-Closing|CD|67|115|0.515|1.00000049281|{'temporal_intersection-over-union': 0.9047619047619048, 'presenceconf_congruence': 0.4837662337662338}
-Closing|CD|69|123|0.807|1.00000080848|{'temporal_intersection-over-union': 0.8695652173913043, 'presenceconf_congruence': 0.7997835497835499}
-Closing|CD|70|26|0.774|1.00000077304|{'temporal_intersection-over-union': 0.8974358974358975, 'presenceconf_congruence': 0.7640692640692641}
-Closing|CD|71|143|0.529|1.00000050801|{'temporal_intersection-over-union': 0.9090909090909091, 'presenceconf_congruence': 0.498917748917749}
+Closing|CD|61|1|0.756|1.0000007539|{"temporal_intersection-over-union": 0.9310344827586207, "presenceconf_congruence": 0.7445887445887446}
+Closing|CD|64|30|0.789|1.00000078996|{"temporal_intersection-over-union": 0.9655172413793104, "presenceconf_congruence": 0.7803030303030305}
+Closing|CD|67|115|0.515|1.00000049281|{"temporal_intersection-over-union": 0.9047619047619048, "presenceconf_congruence": 0.4837662337662338}
+Closing|CD|69|123|0.807|1.00000080848|{"temporal_intersection-over-union": 0.8695652173913043, "presenceconf_congruence": 0.7997835497835499}
+Closing|CD|70|26|0.774|1.00000077304|{"temporal_intersection-over-union": 0.8974358974358975, "presenceconf_congruence": 0.7640692640692641}
+Closing|CD|71|143|0.529|1.00000050801|{"temporal_intersection-over-union": 0.9090909090909091, "presenceconf_congruence": 0.498917748917749}
 Closing|FA|None|1031|0.591|None|None
 Closing|FA|None|1035|0.068|None|None
 Closing|FA|None|1062|0.318|None|None
@@ -75,10 +75,10 @@ Closing_Trunk|FA|None|688|0.173|None|None
 Closing_Trunk|FA|None|755|0.02|None|None
 Closing_Trunk|FA|None|778|0.606|None|None
 Closing_Trunk|MD|19|None|None|None|None
-Entering|CD|43|197|0.894|1.00000092359|{'temporal_intersection-over-union': 0.23423423423423423, 'presenceconf_congruence': 0.9212435233160622}
-Entering|CD|44|27|0.769|1.00000080046|{'temporal_intersection-over-union': 0.875, 'presenceconf_congruence': 0.7917098445595855}
-Entering|CD|46|84|0.652|1.00000067931|{'temporal_intersection-over-union': 0.8846153846153846, 'presenceconf_congruence': 0.6704663212435233}
-Entering|CD|47|80|0.795|1.00000082757|{'temporal_intersection-over-union': 0.8918918918918919, 'presenceconf_congruence': 0.8186528497409327}
+Entering|CD|43|197|0.894|1.00000092359|{"temporal_intersection-over-union": 0.23423423423423423, "presenceconf_congruence": 0.9212435233160622}
+Entering|CD|44|27|0.769|1.00000080046|{"temporal_intersection-over-union": 0.875, "presenceconf_congruence": 0.7917098445595855}
+Entering|CD|46|84|0.652|1.00000067931|{"temporal_intersection-over-union": 0.8846153846153846, "presenceconf_congruence": 0.6704663212435233}
+Entering|CD|47|80|0.795|1.00000082757|{"temporal_intersection-over-union": 0.8918918918918919, "presenceconf_congruence": 0.8186528497409327}
 Entering|FA|None|1015|0.668|None|None
 Entering|FA|None|1136|0.955|None|None
 Entering|FA|None|1167|0.953|None|None
@@ -118,7 +118,7 @@ Entering|FA|None|885|0.055|None|None
 Entering|FA|None|979|0.816|None|None
 Entering|FA|None|990|0.902|None|None
 Entering|MD|45|None|None|None|None
-Exiting|CD|39|35|0.6|1.000000611|{'temporal_intersection-over-union': 0.8787878787878788, 'presenceconf_congruence': 0.6022155085599195}
+Exiting|CD|39|35|0.6|1.000000611|{"temporal_intersection-over-union": 0.8787878787878788, "presenceconf_congruence": 0.6022155085599195}
 Exiting|FA|None|1021|0.464|None|None
 Exiting|FA|None|1066|0.508|None|None
 Exiting|FA|None|1141|0.671|None|None
@@ -165,7 +165,7 @@ Exiting|MD|38|None|None|None|None
 Exiting|MD|40|None|None|None|None
 Exiting|MD|41|None|None|None|None
 Exiting|MD|42|None|None|None|None
-Interacts|CD|14|121|0.849|1.00000085077|{'temporal_intersection-over-union': 0.9332752613240418, 'presenceconf_congruence': 0.8414376321353065}
+Interacts|CD|14|121|0.849|1.00000085077|{"temporal_intersection-over-union": 0.9332752613240418, "presenceconf_congruence": 0.8414376321353065}
 Interacts|FA|None|1000|0.984|None|None
 Interacts|FA|None|1033|0.737|None|None
 Interacts|FA|None|1034|0.881|None|None
@@ -215,7 +215,7 @@ Interacts|FA|None|940|0.466|None|None
 Interacts|MD|15|None|None|None|None
 Interacts|MD|16|None|None|None|None
 Interacts|MD|17|None|None|None|None
-Loading|CD|20|7|0.775|1.00000079327|{'temporal_intersection-over-union': 0.8363636363636363, 'presenceconf_congruence': 0.7849056603773585}
+Loading|CD|20|7|0.775|1.00000079327|{"temporal_intersection-over-union": 0.8363636363636363, "presenceconf_congruence": 0.7849056603773585}
 Loading|FA|None|1002|0.263|None|None
 Loading|FA|None|1074|0.316|None|None
 Loading|FA|None|1146|0.151|None|None
@@ -242,7 +242,7 @@ Loading|FA|None|922|0.773|None|None
 Loading|FA|None|943|0.614|None|None
 Loading|FA|None|971|0.869|None|None
 Loading|FA|None|976|0.66|None|None
-Open_Trunk|CD|18|46|0.559|1.00000053465|{'temporal_intersection-over-union': 0.9166666666666666, 'presenceconf_congruence': 0.5254813137032843}
+Open_Trunk|CD|18|46|0.559|1.00000053465|{"temporal_intersection-over-union": 0.9166666666666666, "presenceconf_congruence": 0.5254813137032843}
 Open_Trunk|FA|None|1027|0.287|None|None
 Open_Trunk|FA|None|1047|0.337|None|None
 Open_Trunk|FA|None|1112|0.267|None|None
@@ -284,10 +284,10 @@ Open_Trunk|FA|None|895|0.452|None|None
 Open_Trunk|FA|None|906|0.281|None|None
 Open_Trunk|FA|None|921|0.532|None|None
 Open_Trunk|FA|None|966|0.399|None|None
-Opening|CD|48|29|0.58|1.0000005892|{'temporal_intersection-over-union': 0.8115942028985508, 'presenceconf_congruence': 0.581081081081081}
-Opening|CD|57|54|0.547|1.00000055541|{'temporal_intersection-over-union': 0.8636363636363636, 'presenceconf_congruence': 0.5467775467775469}
-Opening|CD|58|144|0.858|1.00000087895|{'temporal_intersection-over-union': 0.8888888888888888, 'presenceconf_congruence': 0.8700623700623701}
-Opening|CD|59|114|0.727|1.00000074224|{'temporal_intersection-over-union': 0.8354430379746836, 'presenceconf_congruence': 0.7338877338877339}
+Opening|CD|48|29|0.58|1.0000005892|{"temporal_intersection-over-union": 0.8115942028985508, "presenceconf_congruence": 0.581081081081081}
+Opening|CD|57|54|0.547|1.00000055541|{"temporal_intersection-over-union": 0.8636363636363636, "presenceconf_congruence": 0.5467775467775469}
+Opening|CD|58|144|0.858|1.00000087895|{"temporal_intersection-over-union": 0.8888888888888888, "presenceconf_congruence": 0.8700623700623701}
+Opening|CD|59|114|0.727|1.00000074224|{"temporal_intersection-over-union": 0.8354430379746836, "presenceconf_congruence": 0.7338877338877339}
 Opening|FA|None|1001|0.803|None|None
 Opening|FA|None|1041|0.588|None|None
 Opening|FA|None|1071|0.617|None|None
@@ -338,9 +338,9 @@ Opening|MD|53|None|None|None|None
 Opening|MD|54|None|None|None|None
 Opening|MD|55|None|None|None|None
 Opening|MD|56|None|None|None|None
-Person_Person_Interaction|CD|10|19|0.516|1.00000052522|{'temporal_intersection-over-union': 0.8484848484848485, 'presenceconf_congruence': 0.5167364016736402}
-Person_Person_Interaction|CD|11|70|0.822|1.00000084585|{'temporal_intersection-over-union': 0.9032258064516129, 'presenceconf_congruence': 0.8368200836820083}
-Person_Person_Interaction|CD|13|23|0.537|1.00000054732|{'temporal_intersection-over-union': 0.8620689655172413, 'presenceconf_congruence': 0.5387029288702929}
+Person_Person_Interaction|CD|10|19|0.516|1.00000052522|{"temporal_intersection-over-union": 0.8484848484848485, "presenceconf_congruence": 0.5167364016736402}
+Person_Person_Interaction|CD|11|70|0.822|1.00000084585|{"temporal_intersection-over-union": 0.9032258064516129, "presenceconf_congruence": 0.8368200836820083}
+Person_Person_Interaction|CD|13|23|0.537|1.00000054732|{"temporal_intersection-over-union": 0.8620689655172413, "presenceconf_congruence": 0.5387029288702929}
 Person_Person_Interaction|FA|None|1008|0.129|None|None
 Person_Person_Interaction|FA|None|1025|0.601|None|None
 Person_Person_Interaction|FA|None|1036|0.572|None|None
@@ -410,10 +410,10 @@ Person_Person_Interaction|FA|None|993|0.398|None|None
 Person_Person_Interaction|MD|12|None|None|None|None
 Person_Person_Interaction|MD|8|None|None|None|None
 Person_Person_Interaction|MD|9|None|None|None|None
-Pull|CD|33|135|0.918|1.0000009292|{'temporal_intersection-over-union': 0.8793503480278422, 'presenceconf_congruence': 0.9204081632653062}
-Pull|CD|34|847|0.433|1.00000043067|{'temporal_intersection-over-union': 0.5158636897767332, 'presenceconf_congruence': 0.42551020408163265}
-Pull|CD|35|974|0.122|1.00000011172|{'temporal_intersection-over-union': 0.35538005923000987, 'presenceconf_congruence': 0.10816326530612244}
-Pull|CD|36|271|0.178|1.00000016803|{'temporal_intersection-over-union': 0.2727272727272727, 'presenceconf_congruence': 0.16530612244897958}
+Pull|CD|33|135|0.918|1.0000009292|{"temporal_intersection-over-union": 0.8793503480278422, "presenceconf_congruence": 0.9204081632653062}
+Pull|CD|34|847|0.433|1.00000043067|{"temporal_intersection-over-union": 0.5158636897767332, "presenceconf_congruence": 0.42551020408163265}
+Pull|CD|35|974|0.122|1.00000011172|{"temporal_intersection-over-union": 0.35538005923000987, "presenceconf_congruence": 0.10816326530612244}
+Pull|CD|36|271|0.178|1.00000016803|{"temporal_intersection-over-union": 0.2727272727272727, "presenceconf_congruence": 0.16530612244897958}
 Pull|FA|None|1003|0.481|None|None
 Pull|FA|None|1077|0.274|None|None
 Pull|FA|None|1092|0.064|None|None
@@ -451,8 +451,8 @@ Pull|FA|None|821|0.256|None|None
 Pull|FA|None|888|0.425|None|None
 Pull|FA|None|892|0.502|None|None
 Pull|FA|None|969|0.27|None|None
-Push|CD|31|3|0.716|1.00000071621|{'temporal_intersection-over-union': 0.9201596806387226, 'presenceconf_congruence': 0.7070063694267515}
-Push|CD|32|1271|0.173|1.00000013318|{'temporal_intersection-over-union': 0.2608695652173913, 'presenceconf_congruence': 0.1305732484076433}
+Push|CD|31|3|0.716|1.00000071621|{"temporal_intersection-over-union": 0.9201596806387226, "presenceconf_congruence": 0.7070063694267515}
+Push|CD|32|1271|0.173|1.00000013318|{"temporal_intersection-over-union": 0.2608695652173913, "presenceconf_congruence": 0.1305732484076433}
 Push|FA|None|1014|0.181|None|None
 Push|FA|None|1020|0.74|None|None
 Push|FA|None|1026|0.777|None|None
@@ -493,7 +493,7 @@ Push|FA|None|735|0.429|None|None
 Push|FA|None|795|0.598|None|None
 Push|FA|None|820|0.518|None|None
 Push|FA|None|873|0.992|None|None
-SetDown|CD|73|28|0.954|1.00000098376|{'temporal_intersection-over-union': 0.9423076923076923, 'presenceconf_congruence': 0.9743326488706365}
+SetDown|CD|73|28|0.954|1.00000098376|{"temporal_intersection-over-union": 0.9423076923076923, "presenceconf_congruence": 0.9743326488706365}
 SetDown|FA|None|1070|0.489|None|None
 SetDown|FA|None|1076|0.037|None|None
 SetDown|FA|None|1085|0.886|None|None
@@ -533,11 +533,11 @@ SetDown|FA|None|953|0.604|None|None
 SetDown|FA|None|975|0.391|None|None
 SetDown|FA|None|994|0.917|None|None
 SetDown|MD|72|None|None|None|None
-Talking|CD|1|527|0.474|1.0000004856|{'temporal_intersection-over-union': 0.21021611001964635, 'presenceconf_congruence': 0.483493077742279}
-Talking|CD|2|71|0.892|1.00000093833|{'temporal_intersection-over-union': 0.9683698296836983, 'presenceconf_congruence': 0.9286474973375932}
-Talking|CD|3|85|0.943|1.00000099171|{'temporal_intersection-over-union': 0.875, 'presenceconf_congruence': 0.9829605963791267}
-Talking|CD|4|87|0.566|1.00000059073|{'temporal_intersection-over-union': 0.9264705882352942, 'presenceconf_congruence': 0.5814696485623003}
-Talking|CD|7|247|0.892|1.00000093489|{'temporal_intersection-over-union': 0.6243654822335025, 'presenceconf_congruence': 0.9286474973375932}
+Talking|CD|1|527|0.474|1.0000004856|{"temporal_intersection-over-union": 0.21021611001964635, "presenceconf_congruence": 0.483493077742279}
+Talking|CD|2|71|0.892|1.00000093833|{"temporal_intersection-over-union": 0.9683698296836983, "presenceconf_congruence": 0.9286474973375932}
+Talking|CD|3|85|0.943|1.00000099171|{"temporal_intersection-over-union": 0.875, "presenceconf_congruence": 0.9829605963791267}
+Talking|CD|4|87|0.566|1.00000059073|{"temporal_intersection-over-union": 0.9264705882352942, "presenceconf_congruence": 0.5814696485623003}
+Talking|CD|7|247|0.892|1.00000093489|{"temporal_intersection-over-union": 0.6243654822335025, "presenceconf_congruence": 0.9286474973375932}
 Talking|FA|None|1009|0.02|None|None
 Talking|FA|None|1040|0.524|None|None
 Talking|FA|None|1058|0.565|None|None
@@ -588,11 +588,11 @@ Talking|FA|None|930|0.891|None|None
 Talking|FA|None|947|0.299|None|None
 Talking|MD|5|None|None|None|None
 Talking|MD|6|None|None|None|None
-Transport_HeavyCarry|CD|25|920|0.183|1.00000016688|{'temporal_intersection-over-union': 0.41627906976744183, 'presenceconf_congruence': 0.1627155172413793}
-Transport_HeavyCarry|CD|27|105|0.668|1.00000069439|{'temporal_intersection-over-union': 0.9041916167664671, 'presenceconf_congruence': 0.685344827586207}
-Transport_HeavyCarry|CD|28|11|0.519|1.00000053348|{'temporal_intersection-over-union': 0.8695652173913043, 'presenceconf_congruence': 0.5247844827586207}
-Transport_HeavyCarry|CD|29|113|0.888|1.00000093045|{'temporal_intersection-over-union': 0.8035714285714286, 'presenceconf_congruence': 0.9224137931034483}
-Transport_HeavyCarry|CD|30|408|0.191|1.00000017344|{'temporal_intersection-over-union': 0.2100371747211896, 'presenceconf_congruence': 0.17133620689655174}
+Transport_HeavyCarry|CD|25|920|0.183|1.00000016688|{"temporal_intersection-over-union": 0.41627906976744183, "presenceconf_congruence": 0.1627155172413793}
+Transport_HeavyCarry|CD|27|105|0.668|1.00000069439|{"temporal_intersection-over-union": 0.9041916167664671, "presenceconf_congruence": 0.685344827586207}
+Transport_HeavyCarry|CD|28|11|0.519|1.00000053348|{"temporal_intersection-over-union": 0.8695652173913043, "presenceconf_congruence": 0.5247844827586207}
+Transport_HeavyCarry|CD|29|113|0.888|1.00000093045|{"temporal_intersection-over-union": 0.8035714285714286, "presenceconf_congruence": 0.9224137931034483}
+Transport_HeavyCarry|CD|30|408|0.191|1.00000017344|{"temporal_intersection-over-union": 0.2100371747211896, "presenceconf_congruence": 0.17133620689655174}
 Transport_HeavyCarry|FA|None|1044|0.874|None|None
 Transport_HeavyCarry|FA|None|1069|0.923|None|None
 Transport_HeavyCarry|FA|None|1126|0.882|None|None
@@ -632,9 +632,9 @@ Transport_HeavyCarry|FA|None|972|0.359|None|None
 Transport_HeavyCarry|FA|None|987|0.442|None|None
 Transport_HeavyCarry|FA|None|997|0.032|None|None
 Transport_HeavyCarry|MD|26|None|None|None|None
-Unloading|CD|21|110|0.552|1.000000552|{'temporal_intersection-over-union': 0.9081632653061225, 'presenceconf_congruence': 0.5429162357807653}
-Unloading|CD|22|75|0.666|1.00000067032|{'temporal_intersection-over-union': 0.9513888888888888, 'presenceconf_congruence': 0.6608066184074457}
-Unloading|CD|24|212|0.335|1.00000032173|{'temporal_intersection-over-union': 0.32167832167832167, 'presenceconf_congruence': 0.3185108583247156}
+Unloading|CD|21|110|0.552|1.000000552|{"temporal_intersection-over-union": 0.9081632653061225, "presenceconf_congruence": 0.5429162357807653}
+Unloading|CD|22|75|0.666|1.00000067032|{"temporal_intersection-over-union": 0.9513888888888888, "presenceconf_congruence": 0.6608066184074457}
+Unloading|CD|24|212|0.335|1.00000032173|{"temporal_intersection-over-union": 0.32167832167832167, "presenceconf_congruence": 0.3185108583247156}
 Unloading|FA|None|1029|0.982|None|None
 Unloading|FA|None|1059|0.132|None|None
 Unloading|FA|None|1110|0.805|None|None
@@ -677,9 +677,9 @@ Unloading|FA|None|973|0.213|None|None
 Unloading|FA|None|988|0.475|None|None
 Unloading|FA|None|989|0.821|None|None
 Unloading|MD|23|None|None|None|None
-activity_carrying|CD|83|927|0.925|1.00000092782|{'temporal_intersection-over-union': 0.40370751802265703, 'presenceconf_congruence': 0.9237804878048781}
-activity_carrying|CD|84|124|0.866|1.00000087331|{'temporal_intersection-over-union': 0.9487427466150871, 'presenceconf_congruence': 0.8638211382113821}
-activity_carrying|CD|85|36|0.88|1.0000008872|{'temporal_intersection-over-union': 0.915016501650165, 'presenceconf_congruence': 0.8780487804878049}
+activity_carrying|CD|83|927|0.925|1.00000092782|{"temporal_intersection-over-union": 0.40370751802265703, "presenceconf_congruence": 0.9237804878048781}
+activity_carrying|CD|84|124|0.866|1.00000087331|{"temporal_intersection-over-union": 0.9487427466150871, "presenceconf_congruence": 0.8638211382113821}
+activity_carrying|CD|85|36|0.88|1.0000008872|{"temporal_intersection-over-union": 0.915016501650165, "presenceconf_congruence": 0.8780487804878049}
 activity_carrying|FA|None|1016|0.301|None|None
 activity_carrying|FA|None|1082|0.763|None|None
 activity_carrying|FA|None|1086|0.385|None|None
@@ -732,13 +732,13 @@ activity_carrying|FA|None|753|0.161|None|None
 activity_carrying|FA|None|797|0.236|None|None
 activity_carrying|FA|None|891|0.331|None|None
 activity_carrying|MD|86|None|None|None|None
-activity_gesturing|CD|280|83|0.52|1.00000052585|{'temporal_intersection-over-union': 0.9166666666666666, 'presenceconf_congruence': 0.5166835187057635}
-activity_gesturing|CD|281|47|0.871|1.00000088117|{'temporal_intersection-over-union': 0.9583333333333334, 'presenceconf_congruence': 0.871587462082912}
-activity_gesturing|CD|282|79|0.537|1.00000054187|{'temporal_intersection-over-union': 0.8, 'presenceconf_congruence': 0.5338725985844287}
-activity_gesturing|CD|284|68|0.567|1.00000057278|{'temporal_intersection-over-union': 0.8571428571428571, 'presenceconf_congruence': 0.564206268958544}
-activity_gesturing|CD|287|107|0.734|1.00000074167|{'temporal_intersection-over-union': 0.8611111111111112, 'presenceconf_congruence': 0.7330637007077856}
-activity_gesturing|CD|288|97|0.679|1.00000068591|{'temporal_intersection-over-union': 0.8461538461538461, 'presenceconf_congruence': 0.6774519716885744}
-activity_gesturing|CD|291|12|0.762|1.00000077071|{'temporal_intersection-over-union': 0.9333333333333333, 'presenceconf_congruence': 0.7613751263902933}
+activity_gesturing|CD|280|83|0.52|1.00000052585|{"temporal_intersection-over-union": 0.9166666666666666, "presenceconf_congruence": 0.5166835187057635}
+activity_gesturing|CD|281|47|0.871|1.00000088117|{"temporal_intersection-over-union": 0.9583333333333334, "presenceconf_congruence": 0.871587462082912}
+activity_gesturing|CD|282|79|0.537|1.00000054187|{"temporal_intersection-over-union": 0.8, "presenceconf_congruence": 0.5338725985844287}
+activity_gesturing|CD|284|68|0.567|1.00000057278|{"temporal_intersection-over-union": 0.8571428571428571, "presenceconf_congruence": 0.564206268958544}
+activity_gesturing|CD|287|107|0.734|1.00000074167|{"temporal_intersection-over-union": 0.8611111111111112, "presenceconf_congruence": 0.7330637007077856}
+activity_gesturing|CD|288|97|0.679|1.00000068591|{"temporal_intersection-over-union": 0.8461538461538461, "presenceconf_congruence": 0.6774519716885744}
+activity_gesturing|CD|291|12|0.762|1.00000077071|{"temporal_intersection-over-union": 0.9333333333333333, "presenceconf_congruence": 0.7613751263902933}
 activity_gesturing|FA|None|1019|0.009|None|None
 activity_gesturing|FA|None|1054|0.123|None|None
 activity_gesturing|FA|None|1096|0.559|None|None
@@ -784,10 +784,10 @@ activity_gesturing|MD|285|None|None|None|None
 activity_gesturing|MD|286|None|None|None|None
 activity_gesturing|MD|289|None|None|None|None
 activity_gesturing|MD|290|None|None|None|None
-activity_running|CD|156|103|0.664|1.00000065517|{'temporal_intersection-over-union': 0.9017341040462428, 'presenceconf_congruence': 0.6461538461538462}
-activity_running|CD|157|22|0.782|1.00000078409|{'temporal_intersection-over-union': 0.8260869565217391, 'presenceconf_congruence': 0.7758241758241758}
-activity_running|CD|158|100|0.673|1.00000066104|{'temporal_intersection-over-union': 0.5, 'presenceconf_congruence': 0.6560439560439562}
-activity_running|CD|159|138|0.552|1.00000053212|{'temporal_intersection-over-union': 0.9047619047619048, 'presenceconf_congruence': 0.5230769230769231}
+activity_running|CD|156|103|0.664|1.00000065517|{"temporal_intersection-over-union": 0.9017341040462428, "presenceconf_congruence": 0.6461538461538462}
+activity_running|CD|157|22|0.782|1.00000078409|{"temporal_intersection-over-union": 0.8260869565217391, "presenceconf_congruence": 0.7758241758241758}
+activity_running|CD|158|100|0.673|1.00000066104|{"temporal_intersection-over-union": 0.5, "presenceconf_congruence": 0.6560439560439562}
+activity_running|CD|159|138|0.552|1.00000053212|{"temporal_intersection-over-union": 0.9047619047619048, "presenceconf_congruence": 0.5230769230769231}
 activity_running|FA|None|1004|0.986|None|None
 activity_running|FA|None|1005|0.972|None|None
 activity_running|FA|None|1013|0.872|None|None
@@ -839,40 +839,40 @@ activity_running|FA|None|968|0.782|None|None
 activity_running|FA|None|977|0.747|None|None
 activity_running|MD|160|None|None|None|None
 activity_running|MD|161|None|None|None|None
-activity_standing|CD|226|65|0.534|1.00000053793|{'temporal_intersection-over-union': 0.9010989010989011, 'presenceconf_congruence': 0.5289169295478444}
-activity_standing|CD|228|128|0.745|1.00000075962|{'temporal_intersection-over-union': 0.8833333333333333, 'presenceconf_congruence': 0.750788643533123}
-activity_standing|CD|232|57|0.638|1.00000064328|{'temporal_intersection-over-union': 0.5, 'presenceconf_congruence': 0.6382754994742377}
-activity_standing|CD|237|51|0.797|1.00000081452|{'temporal_intersection-over-union': 0.9049350649350649, 'presenceconf_congruence': 0.8054679284963198}
-activity_standing|CD|239|926|0.751|1.00000075993|{'temporal_intersection-over-union': 0.2835714285714286, 'presenceconf_congruence': 0.7570977917981072}
-activity_standing|CD|240|94|0.79|1.00000080756|{'temporal_intersection-over-union': 0.9457364341085271, 'presenceconf_congruence': 0.7981072555205048}
-activity_standing|CD|241|132|0.672|1.00000068215|{'temporal_intersection-over-union': 0.8120300751879699, 'presenceconf_congruence': 0.6740273396424816}
-activity_standing|CD|242|139|0.527|1.00000053026|{'temporal_intersection-over-union': 0.8705882352941177, 'presenceconf_congruence': 0.5215562565720294}
-activity_standing|CD|243|50|0.656|1.00000066701|{'temporal_intersection-over-union': 0.9803921568627451, 'presenceconf_congruence': 0.6572029442691903}
-activity_standing|CD|244|137|0.827|1.00000084576|{'temporal_intersection-over-union': 0.8743169398907104, 'presenceconf_congruence': 0.8370136698212408}
-activity_standing|CD|245|56|0.708|1.00000072086|{'temporal_intersection-over-union': 0.8974358974358975, 'presenceconf_congruence': 0.711882229232387}
-activity_standing|CD|247|38|0.727|1.00000074106|{'temporal_intersection-over-union': 0.9202453987730062, 'presenceconf_congruence': 0.7318611987381703}
-activity_standing|CD|249|4|0.934|1.00000095839|{'temporal_intersection-over-union': 0.8868089573128062, 'presenceconf_congruence': 0.9495268138801263}
-activity_standing|CD|250|980|0.826|1.00000083811|{'temporal_intersection-over-union': 0.21453831041257368, 'presenceconf_congruence': 0.83596214511041}
-activity_standing|CD|251|72|0.964|1.0000009907|{'temporal_intersection-over-union': 0.9629629629629629, 'presenceconf_congruence': 0.9810725552050473}
-activity_standing|CD|252|288|0.159|1.00000013933|{'temporal_intersection-over-union': 0.47335423197492166, 'presenceconf_congruence': 0.13459516298633017}
-activity_standing|CD|253|66|0.613|1.00000062045|{'temporal_intersection-over-union': 0.8461538461538461, 'presenceconf_congruence': 0.61198738170347}
-activity_standing|CD|254|1214|0.833|1.00000084613|{'temporal_intersection-over-union': 0.2802197802197802, 'presenceconf_congruence': 0.843322818086225}
-activity_standing|CD|255|91|0.784|1.00000080148|{'temporal_intersection-over-union': 0.967741935483871, 'presenceconf_congruence': 0.7917981072555206}
-activity_standing|CD|257|16|0.974|1.00000100043|{'temporal_intersection-over-union': 0.8840579710144928, 'presenceconf_congruence': 0.9915878023133543}
-activity_standing|CD|258|724|0.821|1.00000083411|{'temporal_intersection-over-union': 0.34055727554179566, 'presenceconf_congruence': 0.8307045215562565}
-activity_standing|CD|259|33|0.727|1.00000074186|{'temporal_intersection-over-union': 1.0, 'presenceconf_congruence': 0.7318611987381703}
-activity_standing|CD|260|73|0.935|1.00000095925|{'temporal_intersection-over-union': 0.8666666666666667, 'presenceconf_congruence': 0.950578338590957}
-activity_standing|CD|261|58|0.695|1.00000070821|{'temporal_intersection-over-union': 1.0, 'presenceconf_congruence': 0.6982124079915878}
-activity_standing|CD|262|61|0.645|1.00000065468|{'temporal_intersection-over-union': 0.9047619047619048, 'presenceconf_congruence': 0.6456361724500526}
-activity_standing|CD|263|88|0.68|1.00000069101|{'temporal_intersection-over-union': 0.8571428571428571, 'presenceconf_congruence': 0.6824395373291273}
-activity_standing|CD|266|25|0.915|1.00000093815|{'temporal_intersection-over-union': 0.86, 'presenceconf_congruence': 0.9295478443743429}
-activity_standing|CD|267|593|0.141|1.00000012132|{'temporal_intersection-over-union': 0.5652173913043478, 'presenceconf_congruence': 0.11566771819137749}
-activity_standing|CD|268|98|0.924|1.00000094751|{'temporal_intersection-over-union': 0.8502415458937198, 'presenceconf_congruence': 0.9390115667718192}
-activity_standing|CD|270|40|0.735|1.00000074834|{'temporal_intersection-over-union': 0.8064516129032258, 'presenceconf_congruence': 0.7402733964248159}
-activity_standing|CD|271|86|0.536|1.00000053896|{'temporal_intersection-over-union': 0.7941176470588235, 'presenceconf_congruence': 0.5310199789695058}
-activity_standing|CD|273|134|0.749|1.00000076434|{'temporal_intersection-over-union': 0.934375, 'presenceconf_congruence': 0.7549947423764458}
-activity_standing|CD|274|923|0.359|1.00000035072|{'temporal_intersection-over-union': 0.5824175824175825, 'presenceconf_congruence': 0.34490010515247105}
-activity_standing|CD|278|8|0.982|1.000001005|{'temporal_intersection-over-union': 0.5, 'presenceconf_congruence': 1.0}
+activity_standing|CD|226|65|0.534|1.00000053793|{"temporal_intersection-over-union": 0.9010989010989011, "presenceconf_congruence": 0.5289169295478444}
+activity_standing|CD|228|128|0.745|1.00000075962|{"temporal_intersection-over-union": 0.8833333333333333, "presenceconf_congruence": 0.750788643533123}
+activity_standing|CD|232|57|0.638|1.00000064328|{"temporal_intersection-over-union": 0.5, "presenceconf_congruence": 0.6382754994742377}
+activity_standing|CD|237|51|0.797|1.00000081452|{"temporal_intersection-over-union": 0.9049350649350649, "presenceconf_congruence": 0.8054679284963198}
+activity_standing|CD|239|926|0.751|1.00000075993|{"temporal_intersection-over-union": 0.2835714285714286, "presenceconf_congruence": 0.7570977917981072}
+activity_standing|CD|240|94|0.79|1.00000080756|{"temporal_intersection-over-union": 0.9457364341085271, "presenceconf_congruence": 0.7981072555205048}
+activity_standing|CD|241|132|0.672|1.00000068215|{"temporal_intersection-over-union": 0.8120300751879699, "presenceconf_congruence": 0.6740273396424816}
+activity_standing|CD|242|139|0.527|1.00000053026|{"temporal_intersection-over-union": 0.8705882352941177, "presenceconf_congruence": 0.5215562565720294}
+activity_standing|CD|243|50|0.656|1.00000066701|{"temporal_intersection-over-union": 0.9803921568627451, "presenceconf_congruence": 0.6572029442691903}
+activity_standing|CD|244|137|0.827|1.00000084576|{"temporal_intersection-over-union": 0.8743169398907104, "presenceconf_congruence": 0.8370136698212408}
+activity_standing|CD|245|56|0.708|1.00000072086|{"temporal_intersection-over-union": 0.8974358974358975, "presenceconf_congruence": 0.711882229232387}
+activity_standing|CD|247|38|0.727|1.00000074106|{"temporal_intersection-over-union": 0.9202453987730062, "presenceconf_congruence": 0.7318611987381703}
+activity_standing|CD|249|4|0.934|1.00000095839|{"temporal_intersection-over-union": 0.8868089573128062, "presenceconf_congruence": 0.9495268138801263}
+activity_standing|CD|250|980|0.826|1.00000083811|{"temporal_intersection-over-union": 0.21453831041257368, "presenceconf_congruence": 0.83596214511041}
+activity_standing|CD|251|72|0.964|1.0000009907|{"temporal_intersection-over-union": 0.9629629629629629, "presenceconf_congruence": 0.9810725552050473}
+activity_standing|CD|252|288|0.159|1.00000013933|{"temporal_intersection-over-union": 0.47335423197492166, "presenceconf_congruence": 0.13459516298633017}
+activity_standing|CD|253|66|0.613|1.00000062045|{"temporal_intersection-over-union": 0.8461538461538461, "presenceconf_congruence": 0.61198738170347}
+activity_standing|CD|254|1214|0.833|1.00000084613|{"temporal_intersection-over-union": 0.2802197802197802, "presenceconf_congruence": 0.843322818086225}
+activity_standing|CD|255|91|0.784|1.00000080148|{"temporal_intersection-over-union": 0.967741935483871, "presenceconf_congruence": 0.7917981072555206}
+activity_standing|CD|257|16|0.974|1.00000100043|{"temporal_intersection-over-union": 0.8840579710144928, "presenceconf_congruence": 0.9915878023133543}
+activity_standing|CD|258|724|0.821|1.00000083411|{"temporal_intersection-over-union": 0.34055727554179566, "presenceconf_congruence": 0.8307045215562565}
+activity_standing|CD|259|33|0.727|1.00000074186|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.7318611987381703}
+activity_standing|CD|260|73|0.935|1.00000095925|{"temporal_intersection-over-union": 0.8666666666666667, "presenceconf_congruence": 0.950578338590957}
+activity_standing|CD|261|58|0.695|1.00000070821|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.6982124079915878}
+activity_standing|CD|262|61|0.645|1.00000065468|{"temporal_intersection-over-union": 0.9047619047619048, "presenceconf_congruence": 0.6456361724500526}
+activity_standing|CD|263|88|0.68|1.00000069101|{"temporal_intersection-over-union": 0.8571428571428571, "presenceconf_congruence": 0.6824395373291273}
+activity_standing|CD|266|25|0.915|1.00000093815|{"temporal_intersection-over-union": 0.86, "presenceconf_congruence": 0.9295478443743429}
+activity_standing|CD|267|593|0.141|1.00000012132|{"temporal_intersection-over-union": 0.5652173913043478, "presenceconf_congruence": 0.11566771819137749}
+activity_standing|CD|268|98|0.924|1.00000094751|{"temporal_intersection-over-union": 0.8502415458937198, "presenceconf_congruence": 0.9390115667718192}
+activity_standing|CD|270|40|0.735|1.00000074834|{"temporal_intersection-over-union": 0.8064516129032258, "presenceconf_congruence": 0.7402733964248159}
+activity_standing|CD|271|86|0.536|1.00000053896|{"temporal_intersection-over-union": 0.7941176470588235, "presenceconf_congruence": 0.5310199789695058}
+activity_standing|CD|273|134|0.749|1.00000076434|{"temporal_intersection-over-union": 0.934375, "presenceconf_congruence": 0.7549947423764458}
+activity_standing|CD|274|923|0.359|1.00000035072|{"temporal_intersection-over-union": 0.5824175824175825, "presenceconf_congruence": 0.34490010515247105}
+activity_standing|CD|278|8|0.982|1.000001005|{"temporal_intersection-over-union": 0.5, "presenceconf_congruence": 1.0}
 activity_standing|FA|None|1006|0.796|None|None
 activity_standing|FA|None|1023|0.771|None|None
 activity_standing|FA|None|1078|0.838|None|None
@@ -931,48 +931,48 @@ activity_standing|MD|275|None|None|None|None
 activity_standing|MD|276|None|None|None|None
 activity_standing|MD|277|None|None|None|None
 activity_standing|MD|279|None|None|None|None
-activity_walking|CD|162|6|0.612|1.00000061896|{'temporal_intersection-over-union': 0.9051724137931034, 'presenceconf_congruence': 0.609907120743034}
-activity_walking|CD|164|490|0.609|1.00000060905|{'temporal_intersection-over-union': 0.22388059701492538, 'presenceconf_congruence': 0.6068111455108359}
-activity_walking|CD|166|785|0.896|1.00000090855|{'temporal_intersection-over-union': 0.5558659217877095, 'presenceconf_congruence': 0.9029927760577916}
-activity_walking|CD|170|90|0.825|1.00000083854|{'temporal_intersection-over-union': 0.8823529411764706, 'presenceconf_congruence': 0.8297213622291021}
-activity_walking|CD|171|74|0.75|1.00000076172|{'temporal_intersection-over-union': 0.9393939393939394, 'presenceconf_congruence': 0.7523219814241486}
-activity_walking|CD|173|946|0.489|1.00000048598|{'temporal_intersection-over-union': 0.3004769475357711, 'presenceconf_congruence': 0.4829721362229102}
-activity_walking|CD|174|101|0.863|1.00000087788|{'temporal_intersection-over-union': 0.8947368421052632, 'presenceconf_congruence': 0.868937048503612}
-activity_walking|CD|176|1204|0.837|1.00000084567|{'temporal_intersection-over-union': 0.356243949661181, 'presenceconf_congruence': 0.8421052631578947}
-activity_walking|CD|178|78|0.77|1.00000078121|{'temporal_intersection-over-union': 0.8248587570621468, 'presenceconf_congruence': 0.7729618163054696}
-activity_walking|CD|179|120|0.861|1.00000087537|{'temporal_intersection-over-union': 0.85, 'presenceconf_congruence': 0.8668730650154799}
-activity_walking|CD|180|141|0.975|1.00000099348|{'temporal_intersection-over-union': 0.8962264150943396, 'presenceconf_congruence': 0.9845201238390092}
-activity_walking|CD|181|125|0.754|1.00000076576|{'temporal_intersection-over-union': 0.9310344827586207, 'presenceconf_congruence': 0.7564499484004128}
-activity_walking|CD|182|5|0.958|1.00000097532|{'temporal_intersection-over-union': 0.8346153846153846, 'presenceconf_congruence': 0.9669762641898865}
-activity_walking|CD|183|67|0.718|1.00000072843|{'temporal_intersection-over-union': 0.9127114020731042, 'presenceconf_congruence': 0.7192982456140351}
-activity_walking|CD|184|32|0.589|1.00000059454|{'temporal_intersection-over-union': 0.8372093023255814, 'presenceconf_congruence': 0.5861713106295149}
-activity_walking|CD|185|15|0.839|1.00000085349|{'temporal_intersection-over-union': 0.9322033898305084, 'presenceconf_congruence': 0.8441692466460268}
-activity_walking|CD|186|20|0.601|1.00000060724|{'temporal_intersection-over-union': 0.8688524590163934, 'presenceconf_congruence': 0.5985552115583075}
-activity_walking|CD|187|104|0.648|1.00000065543|{'temporal_intersection-over-union': 0.8372093023255814, 'presenceconf_congruence': 0.6470588235294118}
-activity_walking|CD|188|92|0.828|1.00000084257|{'temporal_intersection-over-union': 0.9756944444444444, 'presenceconf_congruence': 0.8328173374613003}
-activity_walking|CD|189|77|0.818|1.00000083135|{'temporal_intersection-over-union': 0.8848758465011287, 'presenceconf_congruence': 0.8224974200206397}
-activity_walking|CD|190|37|0.603|1.00000060562|{'temporal_intersection-over-union': 0.5, 'presenceconf_congruence': 0.6006191950464396}
-activity_walking|CD|193|540|0.954|1.00000096609|{'temporal_intersection-over-union': 0.3237822349570201, 'presenceconf_congruence': 0.9628482972136223}
-activity_walking|CD|194|117|0.981|1.00000099998|{'temporal_intersection-over-union': 0.926829268292683, 'presenceconf_congruence': 0.9907120743034056}
-activity_walking|CD|195|45|0.61|1.0000006167|{'temporal_intersection-over-union': 0.8857142857142857, 'presenceconf_congruence': 0.6078431372549019}
-activity_walking|CD|196|53|0.773|1.00000078474|{'temporal_intersection-over-union': 0.8683796539066597, 'presenceconf_congruence': 0.7760577915376677}
-activity_walking|CD|197|380|0.309|1.00000030165|{'temporal_intersection-over-union': 0.443859649122807, 'presenceconf_congruence': 0.29721362229102166}
-activity_walking|CD|198|310|0.887|1.00000089585|{'temporal_intersection-over-union': 0.21473684210526317, 'presenceconf_congruence': 0.8937048503611972}
-activity_walking|CD|199|109|0.568|1.00000057347|{'temporal_intersection-over-union': 0.897119341563786, 'presenceconf_congruence': 0.5644994840041279}
-activity_walking|CD|200|96|0.988|1.00000100763|{'temporal_intersection-over-union': 0.9696132596685083, 'presenceconf_congruence': 0.9979360165118679}
-activity_walking|CD|205|64|0.504|1.00000050673|{'temporal_intersection-over-union': 0.8275862068965517, 'presenceconf_congruence': 0.4984520123839009}
-activity_walking|CD|206|43|0.99|1.00000100791|{'temporal_intersection-over-union': 0.7905405405405406, 'presenceconf_congruence': 1.0}
-activity_walking|CD|207|611|0.601|1.00000060185|{'temporal_intersection-over-union': 0.32966252220248665, 'presenceconf_congruence': 0.5985552115583075}
-activity_walking|CD|210|9|0.514|1.00000051753|{'temporal_intersection-over-union': 0.8754770992366412, 'presenceconf_congruence': 0.5087719298245614}
-activity_walking|CD|213|42|0.628|1.00000063528|{'temporal_intersection-over-union': 0.8863109048723898, 'presenceconf_congruence': 0.6264189886480909}
-activity_walking|CD|214|1198|0.202|1.00000018956|{'temporal_intersection-over-union': 0.27692307692307694, 'presenceconf_congruence': 0.18679050567595462}
-activity_walking|CD|215|69|0.909|1.00000092454|{'temporal_intersection-over-union': 0.8131868131868132, 'presenceconf_congruence': 0.9164086687306502}
-activity_walking|CD|216|95|0.887|1.00000090177|{'temporal_intersection-over-union': 0.806060606060606, 'presenceconf_congruence': 0.8937048503611972}
-activity_walking|CD|218|63|0.972|1.00000099097|{'temporal_intersection-over-union': 0.9541284403669725, 'presenceconf_congruence': 0.9814241486068112}
-activity_walking|CD|219|1091|0.56|1.00000055935|{'temporal_intersection-over-union': 0.31095406360424027, 'presenceconf_congruence': 0.5562435500515996}
-activity_walking|CD|220|217|0.625|1.00000062625|{'temporal_intersection-over-union': 0.2923076923076923, 'presenceconf_congruence': 0.6233230134158927}
-activity_walking|CD|221|99|0.523|1.00000052706|{'temporal_intersection-over-union': 0.9, 'presenceconf_congruence': 0.5180598555211559}
-activity_walking|CD|223|666|0.88|1.0000008912|{'temporal_intersection-over-union': 0.4720194647201946, 'presenceconf_congruence': 0.8864809081527348}
+activity_walking|CD|162|6|0.612|1.00000061896|{"temporal_intersection-over-union": 0.9051724137931034, "presenceconf_congruence": 0.609907120743034}
+activity_walking|CD|164|490|0.609|1.00000060905|{"temporal_intersection-over-union": 0.22388059701492538, "presenceconf_congruence": 0.6068111455108359}
+activity_walking|CD|166|785|0.896|1.00000090855|{"temporal_intersection-over-union": 0.5558659217877095, "presenceconf_congruence": 0.9029927760577916}
+activity_walking|CD|170|90|0.825|1.00000083854|{"temporal_intersection-over-union": 0.8823529411764706, "presenceconf_congruence": 0.8297213622291021}
+activity_walking|CD|171|74|0.75|1.00000076172|{"temporal_intersection-over-union": 0.9393939393939394, "presenceconf_congruence": 0.7523219814241486}
+activity_walking|CD|173|946|0.489|1.00000048598|{"temporal_intersection-over-union": 0.3004769475357711, "presenceconf_congruence": 0.4829721362229102}
+activity_walking|CD|174|101|0.863|1.00000087788|{"temporal_intersection-over-union": 0.8947368421052632, "presenceconf_congruence": 0.868937048503612}
+activity_walking|CD|176|1204|0.837|1.00000084567|{"temporal_intersection-over-union": 0.356243949661181, "presenceconf_congruence": 0.8421052631578947}
+activity_walking|CD|178|78|0.77|1.00000078121|{"temporal_intersection-over-union": 0.8248587570621468, "presenceconf_congruence": 0.7729618163054696}
+activity_walking|CD|179|120|0.861|1.00000087537|{"temporal_intersection-over-union": 0.85, "presenceconf_congruence": 0.8668730650154799}
+activity_walking|CD|180|141|0.975|1.00000099348|{"temporal_intersection-over-union": 0.8962264150943396, "presenceconf_congruence": 0.9845201238390092}
+activity_walking|CD|181|125|0.754|1.00000076576|{"temporal_intersection-over-union": 0.9310344827586207, "presenceconf_congruence": 0.7564499484004128}
+activity_walking|CD|182|5|0.958|1.00000097532|{"temporal_intersection-over-union": 0.8346153846153846, "presenceconf_congruence": 0.9669762641898865}
+activity_walking|CD|183|67|0.718|1.00000072843|{"temporal_intersection-over-union": 0.9127114020731042, "presenceconf_congruence": 0.7192982456140351}
+activity_walking|CD|184|32|0.589|1.00000059454|{"temporal_intersection-over-union": 0.8372093023255814, "presenceconf_congruence": 0.5861713106295149}
+activity_walking|CD|185|15|0.839|1.00000085349|{"temporal_intersection-over-union": 0.9322033898305084, "presenceconf_congruence": 0.8441692466460268}
+activity_walking|CD|186|20|0.601|1.00000060724|{"temporal_intersection-over-union": 0.8688524590163934, "presenceconf_congruence": 0.5985552115583075}
+activity_walking|CD|187|104|0.648|1.00000065543|{"temporal_intersection-over-union": 0.8372093023255814, "presenceconf_congruence": 0.6470588235294118}
+activity_walking|CD|188|92|0.828|1.00000084257|{"temporal_intersection-over-union": 0.9756944444444444, "presenceconf_congruence": 0.8328173374613003}
+activity_walking|CD|189|77|0.818|1.00000083135|{"temporal_intersection-over-union": 0.8848758465011287, "presenceconf_congruence": 0.8224974200206397}
+activity_walking|CD|190|37|0.603|1.00000060562|{"temporal_intersection-over-union": 0.5, "presenceconf_congruence": 0.6006191950464396}
+activity_walking|CD|193|540|0.954|1.00000096609|{"temporal_intersection-over-union": 0.3237822349570201, "presenceconf_congruence": 0.9628482972136223}
+activity_walking|CD|194|117|0.981|1.00000099998|{"temporal_intersection-over-union": 0.926829268292683, "presenceconf_congruence": 0.9907120743034056}
+activity_walking|CD|195|45|0.61|1.0000006167|{"temporal_intersection-over-union": 0.8857142857142857, "presenceconf_congruence": 0.6078431372549019}
+activity_walking|CD|196|53|0.773|1.00000078474|{"temporal_intersection-over-union": 0.8683796539066597, "presenceconf_congruence": 0.7760577915376677}
+activity_walking|CD|197|380|0.309|1.00000030165|{"temporal_intersection-over-union": 0.443859649122807, "presenceconf_congruence": 0.29721362229102166}
+activity_walking|CD|198|310|0.887|1.00000089585|{"temporal_intersection-over-union": 0.21473684210526317, "presenceconf_congruence": 0.8937048503611972}
+activity_walking|CD|199|109|0.568|1.00000057347|{"temporal_intersection-over-union": 0.897119341563786, "presenceconf_congruence": 0.5644994840041279}
+activity_walking|CD|200|96|0.988|1.00000100763|{"temporal_intersection-over-union": 0.9696132596685083, "presenceconf_congruence": 0.9979360165118679}
+activity_walking|CD|205|64|0.504|1.00000050673|{"temporal_intersection-over-union": 0.8275862068965517, "presenceconf_congruence": 0.4984520123839009}
+activity_walking|CD|206|43|0.99|1.00000100791|{"temporal_intersection-over-union": 0.7905405405405406, "presenceconf_congruence": 1.0}
+activity_walking|CD|207|611|0.601|1.00000060185|{"temporal_intersection-over-union": 0.32966252220248665, "presenceconf_congruence": 0.5985552115583075}
+activity_walking|CD|210|9|0.514|1.00000051753|{"temporal_intersection-over-union": 0.8754770992366412, "presenceconf_congruence": 0.5087719298245614}
+activity_walking|CD|213|42|0.628|1.00000063528|{"temporal_intersection-over-union": 0.8863109048723898, "presenceconf_congruence": 0.6264189886480909}
+activity_walking|CD|214|1198|0.202|1.00000018956|{"temporal_intersection-over-union": 0.27692307692307694, "presenceconf_congruence": 0.18679050567595462}
+activity_walking|CD|215|69|0.909|1.00000092454|{"temporal_intersection-over-union": 0.8131868131868132, "presenceconf_congruence": 0.9164086687306502}
+activity_walking|CD|216|95|0.887|1.00000090177|{"temporal_intersection-over-union": 0.806060606060606, "presenceconf_congruence": 0.8937048503611972}
+activity_walking|CD|218|63|0.972|1.00000099097|{"temporal_intersection-over-union": 0.9541284403669725, "presenceconf_congruence": 0.9814241486068112}
+activity_walking|CD|219|1091|0.56|1.00000055935|{"temporal_intersection-over-union": 0.31095406360424027, "presenceconf_congruence": 0.5562435500515996}
+activity_walking|CD|220|217|0.625|1.00000062625|{"temporal_intersection-over-union": 0.2923076923076923, "presenceconf_congruence": 0.6233230134158927}
+activity_walking|CD|221|99|0.523|1.00000052706|{"temporal_intersection-over-union": 0.9, "presenceconf_congruence": 0.5180598555211559}
+activity_walking|CD|223|666|0.88|1.0000008912|{"temporal_intersection-over-union": 0.4720194647201946, "presenceconf_congruence": 0.8864809081527348}
 activity_walking|FA|None|1050|0.211|None|None
 activity_walking|FA|None|1073|0.736|None|None
 activity_walking|FA|None|1122|0.629|None|None
@@ -1026,7 +1026,7 @@ activity_walking|MD|211|None|None|None|None
 activity_walking|MD|212|None|None|None|None
 activity_walking|MD|217|None|None|None|None
 activity_walking|MD|222|None|None|None|None
-specialized_miscellaneous|CD|292|474|0.968|1.00000097457|{'temporal_intersection-over-union': 0.4377880184331797, 'presenceconf_congruence': 0.9701952723535457}
+specialized_miscellaneous|CD|292|474|0.968|1.00000097457|{"temporal_intersection-over-union": 0.4377880184331797, "presenceconf_congruence": 0.9701952723535457}
 specialized_miscellaneous|FA|None|1030|0.108|None|None
 specialized_miscellaneous|FA|None|1052|0.216|None|None
 specialized_miscellaneous|FA|None|1057|0.166|None|None
@@ -1070,9 +1070,9 @@ specialized_miscellaneous|FA|None|929|0.684|None|None
 specialized_miscellaneous|FA|None|934|0.95|None|None
 specialized_miscellaneous|FA|None|996|0.369|None|None
 specialized_miscellaneous|FA|None|999|0.696|None|None
-specialized_talking_phone|CD|111|406|0.719|1.00000072506|{'temporal_intersection-over-union': 0.4817351598173516, 'presenceconf_congruence': 0.7202441505595116}
-specialized_talking_phone|CD|112|880|0.853|1.0000008594|{'temporal_intersection-over-union': 0.2842535787321063, 'presenceconf_congruence': 0.8565615462868769}
-specialized_talking_phone|CD|113|342|0.938|1.00000094754|{'temporal_intersection-over-union': 0.45104510451045104, 'presenceconf_congruence': 0.9430315361139369}
+specialized_talking_phone|CD|111|406|0.719|1.00000072506|{"temporal_intersection-over-union": 0.4817351598173516, "presenceconf_congruence": 0.7202441505595116}
+specialized_talking_phone|CD|112|880|0.853|1.0000008594|{"temporal_intersection-over-union": 0.2842535787321063, "presenceconf_congruence": 0.8565615462868769}
+specialized_talking_phone|CD|113|342|0.938|1.00000094754|{"temporal_intersection-over-union": 0.45104510451045104, "presenceconf_congruence": 0.9430315361139369}
 specialized_talking_phone|FA|None|1018|0.136|None|None
 specialized_talking_phone|FA|None|108|0.502|None|None
 specialized_talking_phone|FA|None|1099|0.401|None|None
@@ -1117,11 +1117,11 @@ specialized_talking_phone|FA|None|970|0.448|None|None
 specialized_talking_phone|FA|None|982|0.978|None|None
 specialized_talking_phone|FA|None|983|0.088|None|None
 specialized_talking_phone|FA|None|985|0.094|None|None
-specialized_texting_phone|CD|87|238|0.232|1.00000021453|{'temporal_intersection-over-union': 0.33535353535353535, 'presenceconf_congruence': 0.2111801242236025}
-specialized_texting_phone|CD|88|89|0.546|1.00000054595|{'temporal_intersection-over-union': 0.9714285714285714, 'presenceconf_congruence': 0.5362318840579711}
-specialized_texting_phone|CD|89|1212|0.951|1.00000095786|{'temporal_intersection-over-union': 0.2373894955798232, 'presenceconf_congruence': 0.9554865424430642}
-specialized_texting_phone|CD|90|852|0.835|1.00000084011|{'temporal_intersection-over-union': 0.47086247086247085, 'presenceconf_congruence': 0.8354037267080745}
-specialized_texting_phone|CD|91|17|0.994|1.00000100923|{'temporal_intersection-over-union': 0.9230769230769231, 'presenceconf_congruence': 1.0}
+specialized_texting_phone|CD|87|238|0.232|1.00000021453|{"temporal_intersection-over-union": 0.33535353535353535, "presenceconf_congruence": 0.2111801242236025}
+specialized_texting_phone|CD|88|89|0.546|1.00000054595|{"temporal_intersection-over-union": 0.9714285714285714, "presenceconf_congruence": 0.5362318840579711}
+specialized_texting_phone|CD|89|1212|0.951|1.00000095786|{"temporal_intersection-over-union": 0.2373894955798232, "presenceconf_congruence": 0.9554865424430642}
+specialized_texting_phone|CD|90|852|0.835|1.00000084011|{"temporal_intersection-over-union": 0.47086247086247085, "presenceconf_congruence": 0.8354037267080745}
+specialized_texting_phone|CD|91|17|0.994|1.00000100923|{"temporal_intersection-over-union": 0.9230769230769231, "presenceconf_congruence": 1.0}
 specialized_texting_phone|FA|None|1045|0.193|None|None
 specialized_texting_phone|FA|None|1089|0.424|None|None
 specialized_texting_phone|FA|None|1094|0.162|None|None
@@ -1153,24 +1153,24 @@ specialized_texting_phone|FA|None|654|0.506|None|None
 specialized_texting_phone|FA|None|710|0.463|None|None
 specialized_texting_phone|FA|None|713|0.608|None|None
 specialized_texting_phone|FA|None|731|0.535|None|None
-vehicle_moving|CD|100|55|0.987|1.00000100883|{'temporal_intersection-over-union': 0.8826086956521739, 'presenceconf_congruence': 1.0}
-vehicle_moving|CD|101|167|0.788|1.0000007812|{'temporal_intersection-over-union': 0.35447761194029853, 'presenceconf_congruence': 0.7776536312849163}
-vehicle_moving|CD|102|136|0.621|1.00000059937|{'temporal_intersection-over-union': 0.8307692307692308, 'presenceconf_congruence': 0.5910614525139665}
-vehicle_moving|CD|103|76|0.697|1.00000068473|{'temporal_intersection-over-union': 0.8755656108597285, 'presenceconf_congruence': 0.6759776536312849}
-vehicle_moving|CD|104|653|0.857|1.00000085731|{'temporal_intersection-over-union': 0.2557651991614256, 'presenceconf_congruence': 0.8547486033519553}
-vehicle_moving|CD|105|116|0.913|1.0000009254|{'temporal_intersection-over-union': 0.8083832335329342, 'presenceconf_congruence': 0.91731843575419}
-vehicle_moving|CD|106|127|0.664|1.00000064785|{'temporal_intersection-over-union': 0.8746177370030581, 'presenceconf_congruence': 0.6391061452513968}
-vehicle_moving|CD|107|131|0.793|1.00000079172|{'temporal_intersection-over-union': 0.8481481481481481, 'presenceconf_congruence': 0.7832402234636872}
-vehicle_moving|CD|109|2|0.937|1.00000095341|{'temporal_intersection-over-union': 0.927710843373494, 'presenceconf_congruence': 0.9441340782122906}
-vehicle_moving|CD|110|341|0.869|1.00000087735|{'temporal_intersection-over-union': 0.9196891191709845, 'presenceconf_congruence': 0.8681564245810056}
-vehicle_moving|CD|92|938|0.825|1.00000082177|{'temporal_intersection-over-union': 0.27708095781071834, 'presenceconf_congruence': 0.8189944134078212}
-vehicle_moving|CD|93|145|0.713|1.0000007029|{'temporal_intersection-over-union': 0.9047619047619048, 'presenceconf_congruence': 0.693854748603352}
-vehicle_moving|CD|94|142|0.935|1.00000095025|{'temporal_intersection-over-union': 0.8354838709677419, 'presenceconf_congruence': 0.9418994413407822}
-vehicle_moving|CD|95|874|0.963|1.00000097824|{'temporal_intersection-over-union': 0.5059523809523809, 'presenceconf_congruence': 0.9731843575418995}
-vehicle_moving|CD|96|1048|0.974|1.00000098944|{'temporal_intersection-over-union': 0.3966547192353644, 'presenceconf_congruence': 0.9854748603351955}
-vehicle_moving|CD|97|140|0.68|1.00000066477|{'temporal_intersection-over-union': 0.7783132530120482, 'presenceconf_congruence': 0.6569832402234638}
-vehicle_moving|CD|98|539|0.233|1.00000016007|{'temporal_intersection-over-union': 0.25259515570934254, 'presenceconf_congruence': 0.15754189944134078}
-vehicle_moving|CD|99|870|0.986|1.00000100371|{'temporal_intersection-over-union': 0.4831168831168831, 'presenceconf_congruence': 0.9988826815642458}
+vehicle_moving|CD|100|55|0.987|1.00000100883|{"temporal_intersection-over-union": 0.8826086956521739, "presenceconf_congruence": 1.0}
+vehicle_moving|CD|101|167|0.788|1.0000007812|{"temporal_intersection-over-union": 0.35447761194029853, "presenceconf_congruence": 0.7776536312849163}
+vehicle_moving|CD|102|136|0.621|1.00000059937|{"temporal_intersection-over-union": 0.8307692307692308, "presenceconf_congruence": 0.5910614525139665}
+vehicle_moving|CD|103|76|0.697|1.00000068473|{"temporal_intersection-over-union": 0.8755656108597285, "presenceconf_congruence": 0.6759776536312849}
+vehicle_moving|CD|104|653|0.857|1.00000085731|{"temporal_intersection-over-union": 0.2557651991614256, "presenceconf_congruence": 0.8547486033519553}
+vehicle_moving|CD|105|116|0.913|1.0000009254|{"temporal_intersection-over-union": 0.8083832335329342, "presenceconf_congruence": 0.91731843575419}
+vehicle_moving|CD|106|127|0.664|1.00000064785|{"temporal_intersection-over-union": 0.8746177370030581, "presenceconf_congruence": 0.6391061452513968}
+vehicle_moving|CD|107|131|0.793|1.00000079172|{"temporal_intersection-over-union": 0.8481481481481481, "presenceconf_congruence": 0.7832402234636872}
+vehicle_moving|CD|109|2|0.937|1.00000095341|{"temporal_intersection-over-union": 0.927710843373494, "presenceconf_congruence": 0.9441340782122906}
+vehicle_moving|CD|110|341|0.869|1.00000087735|{"temporal_intersection-over-union": 0.9196891191709845, "presenceconf_congruence": 0.8681564245810056}
+vehicle_moving|CD|92|938|0.825|1.00000082177|{"temporal_intersection-over-union": 0.27708095781071834, "presenceconf_congruence": 0.8189944134078212}
+vehicle_moving|CD|93|145|0.713|1.0000007029|{"temporal_intersection-over-union": 0.9047619047619048, "presenceconf_congruence": 0.693854748603352}
+vehicle_moving|CD|94|142|0.935|1.00000095025|{"temporal_intersection-over-union": 0.8354838709677419, "presenceconf_congruence": 0.9418994413407822}
+vehicle_moving|CD|95|874|0.963|1.00000097824|{"temporal_intersection-over-union": 0.5059523809523809, "presenceconf_congruence": 0.9731843575418995}
+vehicle_moving|CD|96|1048|0.974|1.00000098944|{"temporal_intersection-over-union": 0.3966547192353644, "presenceconf_congruence": 0.9854748603351955}
+vehicle_moving|CD|97|140|0.68|1.00000066477|{"temporal_intersection-over-union": 0.7783132530120482, "presenceconf_congruence": 0.6569832402234638}
+vehicle_moving|CD|98|539|0.233|1.00000016007|{"temporal_intersection-over-union": 0.25259515570934254, "presenceconf_congruence": 0.15754189944134078}
+vehicle_moving|CD|99|870|0.986|1.00000100371|{"temporal_intersection-over-union": 0.4831168831168831, "presenceconf_congruence": 0.9988826815642458}
 vehicle_moving|FA|None|1038|0.921|None|None
 vehicle_moving|FA|None|1060|0.347|None|None
 vehicle_moving|FA|None|1093|0.284|None|None
@@ -1208,12 +1208,12 @@ vehicle_moving|FA|None|914|0.763|None|None
 vehicle_moving|FA|None|955|0.963|None|None
 vehicle_moving|FA|None|998|0.481|None|None
 vehicle_moving|MD|108|None|None|None|None
-vehicle_starting|CD|126|81|0.868|1.00000092253|{'temporal_intersection-over-union': 0.9298245614035088, 'presenceconf_congruence': 0.913232104121475}
-vehicle_starting|CD|131|60|0.569|1.00000059809|{'temporal_intersection-over-union': 0.9154929577464789, 'presenceconf_congruence': 0.588937093275488}
-vehicle_starting|CD|132|118|0.653|1.00000068935|{'temporal_intersection-over-union': 0.9307692307692308, 'presenceconf_congruence': 0.6800433839479393}
-vehicle_starting|CD|133|126|0.688|1.00000072645|{'temporal_intersection-over-union': 0.8444444444444444, 'presenceconf_congruence': 0.7180043383947939}
-vehicle_starting|CD|136|59|0.849|1.00000090252|{'temporal_intersection-over-union': 0.9891304347826086, 'presenceconf_congruence': 0.8926247288503254}
-vehicle_starting|CD|137|24|0.723|1.00000076423|{'temporal_intersection-over-union': 0.8260869565217391, 'presenceconf_congruence': 0.7559652928416486}
+vehicle_starting|CD|126|81|0.868|1.00000092253|{"temporal_intersection-over-union": 0.9298245614035088, "presenceconf_congruence": 0.913232104121475}
+vehicle_starting|CD|131|60|0.569|1.00000059809|{"temporal_intersection-over-union": 0.9154929577464789, "presenceconf_congruence": 0.588937093275488}
+vehicle_starting|CD|132|118|0.653|1.00000068935|{"temporal_intersection-over-union": 0.9307692307692308, "presenceconf_congruence": 0.6800433839479393}
+vehicle_starting|CD|133|126|0.688|1.00000072645|{"temporal_intersection-over-union": 0.8444444444444444, "presenceconf_congruence": 0.7180043383947939}
+vehicle_starting|CD|136|59|0.849|1.00000090252|{"temporal_intersection-over-union": 0.9891304347826086, "presenceconf_congruence": 0.8926247288503254}
+vehicle_starting|CD|137|24|0.723|1.00000076423|{"temporal_intersection-over-union": 0.8260869565217391, "presenceconf_congruence": 0.7559652928416486}
 vehicle_starting|FA|None|1012|0.327|None|None
 vehicle_starting|FA|None|1039|0.937|None|None
 vehicle_starting|FA|None|1042|0.381|None|None
@@ -1266,15 +1266,15 @@ vehicle_starting|MD|129|None|None|None|None
 vehicle_starting|MD|130|None|None|None|None
 vehicle_starting|MD|134|None|None|None|None
 vehicle_starting|MD|135|None|None|None|None
-vehicle_stopping|CD|138|48|0.779|1.00000078946|{'temporal_intersection-over-union': 0.9, 'presenceconf_congruence': 0.7804632426988922}
-vehicle_stopping|CD|142|0|0.842|1.00000085224|{'temporal_intersection-over-union': 0.8333333333333334, 'presenceconf_congruence': 0.8439073514602216}
-vehicle_stopping|CD|143|112|0.719|1.00000072942|{'temporal_intersection-over-union': 0.9375, 'presenceconf_congruence': 0.7200402819738166}
-vehicle_stopping|CD|145|122|0.837|1.00000084812|{'temporal_intersection-over-union': 0.925, 'presenceconf_congruence': 0.8388721047331319}
-vehicle_stopping|CD|146|62|0.818|1.0000008282|{'temporal_intersection-over-union': 0.8461538461538461, 'presenceconf_congruence': 0.8197381671701913}
-vehicle_stopping|CD|148|31|0.629|1.00000063841|{'temporal_intersection-over-union': 0.9, 'presenceconf_congruence': 0.6294058408862034}
-vehicle_stopping|CD|149|39|0.797|1.00000080783|{'temporal_intersection-over-union': 0.9242424242424242, 'presenceconf_congruence': 0.798590130916415}
-vehicle_stopping|CD|154|130|0.814|1.00000082534|{'temporal_intersection-over-union': 0.9629629629629629, 'presenceconf_congruence': 0.8157099697885196}
-vehicle_stopping|CD|155|106|0.997|1.00000101|{'temporal_intersection-over-union': 1.0, 'presenceconf_congruence': 1.0}
+vehicle_stopping|CD|138|48|0.779|1.00000078946|{"temporal_intersection-over-union": 0.9, "presenceconf_congruence": 0.7804632426988922}
+vehicle_stopping|CD|142|0|0.842|1.00000085224|{"temporal_intersection-over-union": 0.8333333333333334, "presenceconf_congruence": 0.8439073514602216}
+vehicle_stopping|CD|143|112|0.719|1.00000072942|{"temporal_intersection-over-union": 0.9375, "presenceconf_congruence": 0.7200402819738166}
+vehicle_stopping|CD|145|122|0.837|1.00000084812|{"temporal_intersection-over-union": 0.925, "presenceconf_congruence": 0.8388721047331319}
+vehicle_stopping|CD|146|62|0.818|1.0000008282|{"temporal_intersection-over-union": 0.8461538461538461, "presenceconf_congruence": 0.8197381671701913}
+vehicle_stopping|CD|148|31|0.629|1.00000063841|{"temporal_intersection-over-union": 0.9, "presenceconf_congruence": 0.6294058408862034}
+vehicle_stopping|CD|149|39|0.797|1.00000080783|{"temporal_intersection-over-union": 0.9242424242424242, "presenceconf_congruence": 0.798590130916415}
+vehicle_stopping|CD|154|130|0.814|1.00000082534|{"temporal_intersection-over-union": 0.9629629629629629, "presenceconf_congruence": 0.8157099697885196}
+vehicle_stopping|CD|155|106|0.997|1.00000101|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 vehicle_stopping|FA|None|1043|0.903|None|None
 vehicle_stopping|FA|None|1084|0.955|None|None
 vehicle_stopping|FA|None|1150|0.848|None|None
@@ -1324,12 +1324,12 @@ vehicle_stopping|MD|150|None|None|None|None
 vehicle_stopping|MD|151|None|None|None|None
 vehicle_stopping|MD|152|None|None|None|None
 vehicle_stopping|MD|153|None|None|None|None
-vehicle_turning_left|CD|74|1037|0.672|1.00000067165|{'temporal_intersection-over-union': 0.2529411764705882, 'presenceconf_congruence': 0.6691176470588236}
-vehicle_turning_left|CD|75|111|0.82|1.00000083301|{'temporal_intersection-over-union': 0.8428571428571429, 'presenceconf_congruence': 0.8245798319327731}
-vehicle_turning_left|CD|76|41|0.888|1.000000905|{'temporal_intersection-over-union': 0.8987341772151899, 'presenceconf_congruence': 0.8960084033613446}
-vehicle_turning_left|CD|78|119|0.83|1.00000084406|{'temporal_intersection-over-union': 0.8979591836734694, 'presenceconf_congruence': 0.8350840336134453}
-vehicle_turning_left|CD|79|1080|0.422|1.0000004096|{'temporal_intersection-over-union': 0.3082901554404145, 'presenceconf_congruence': 0.40651260504201686}
-vehicle_turning_left|CD|80|93|0.887|1.00000090386|{'temporal_intersection-over-union': 0.8902439024390244, 'presenceconf_congruence': 0.8949579831932774}
+vehicle_turning_left|CD|74|1037|0.672|1.00000067165|{"temporal_intersection-over-union": 0.2529411764705882, "presenceconf_congruence": 0.6691176470588236}
+vehicle_turning_left|CD|75|111|0.82|1.00000083301|{"temporal_intersection-over-union": 0.8428571428571429, "presenceconf_congruence": 0.8245798319327731}
+vehicle_turning_left|CD|76|41|0.888|1.000000905|{"temporal_intersection-over-union": 0.8987341772151899, "presenceconf_congruence": 0.8960084033613446}
+vehicle_turning_left|CD|78|119|0.83|1.00000084406|{"temporal_intersection-over-union": 0.8979591836734694, "presenceconf_congruence": 0.8350840336134453}
+vehicle_turning_left|CD|79|1080|0.422|1.0000004096|{"temporal_intersection-over-union": 0.3082901554404145, "presenceconf_congruence": 0.40651260504201686}
+vehicle_turning_left|CD|80|93|0.887|1.00000090386|{"temporal_intersection-over-union": 0.8902439024390244, "presenceconf_congruence": 0.8949579831932774}
 vehicle_turning_left|FA|None|1028|0.32|None|None
 vehicle_turning_left|FA|None|1046|0.69|None|None
 vehicle_turning_left|FA|None|1097|0.591|None|None
@@ -1369,13 +1369,13 @@ vehicle_turning_left|FA|None|965|0.051|None|None
 vehicle_turning_left|MD|77|None|None|None|None
 vehicle_turning_left|MD|81|None|None|None|None
 vehicle_turning_left|MD|82|None|None|None|None
-vehicle_turning_right|CD|114|133|0.954|1.00000100361|{'temporal_intersection-over-union': 0.8933333333333333, 'presenceconf_congruence': 0.9946808510638298}
-vehicle_turning_right|CD|115|949|0.203|1.00000019976|{'temporal_intersection-over-union': 0.40169133192389006, 'presenceconf_congruence': 0.19574468085106386}
-vehicle_turning_right|CD|116|284|0.943|1.00000098505|{'temporal_intersection-over-union': 0.20710059171597633, 'presenceconf_congruence': 0.9829787234042553}
-vehicle_turning_right|CD|117|14|0.899|1.00000094469|{'temporal_intersection-over-union': 0.8524590163934426, 'presenceconf_congruence': 0.9361702127659575}
-vehicle_turning_right|CD|119|129|0.834|1.00000087516|{'temporal_intersection-over-union': 0.813953488372093, 'presenceconf_congruence': 0.8670212765957447}
-vehicle_turning_right|CD|122|102|0.742|1.00000077792|{'temporal_intersection-over-union': 0.8769230769230769, 'presenceconf_congruence': 0.7691489361702127}
-vehicle_turning_right|CD|123|605|0.496|1.00000051467|{'temporal_intersection-over-union': 0.7222222222222222, 'presenceconf_congruence': 0.5074468085106383}
+vehicle_turning_right|CD|114|133|0.954|1.00000100361|{"temporal_intersection-over-union": 0.8933333333333333, "presenceconf_congruence": 0.9946808510638298}
+vehicle_turning_right|CD|115|949|0.203|1.00000019976|{"temporal_intersection-over-union": 0.40169133192389006, "presenceconf_congruence": 0.19574468085106386}
+vehicle_turning_right|CD|116|284|0.943|1.00000098505|{"temporal_intersection-over-union": 0.20710059171597633, "presenceconf_congruence": 0.9829787234042553}
+vehicle_turning_right|CD|117|14|0.899|1.00000094469|{"temporal_intersection-over-union": 0.8524590163934426, "presenceconf_congruence": 0.9361702127659575}
+vehicle_turning_right|CD|119|129|0.834|1.00000087516|{"temporal_intersection-over-union": 0.813953488372093, "presenceconf_congruence": 0.8670212765957447}
+vehicle_turning_right|CD|122|102|0.742|1.00000077792|{"temporal_intersection-over-union": 0.8769230769230769, "presenceconf_congruence": 0.7691489361702127}
+vehicle_turning_right|CD|123|605|0.496|1.00000051467|{"temporal_intersection-over-union": 0.7222222222222222, "presenceconf_congruence": 0.5074468085106383}
 vehicle_turning_right|FA|None|10|0.766|None|None
 vehicle_turning_right|FA|None|1010|0.582|None|None
 vehicle_turning_right|FA|None|1011|0.47|None|None

@@ -21,10 +21,17 @@ class TestSEDKernelComponents(unittest.TestCase):
                        A(0.8),
                        A(0.85),
                        A(0.95) ]
-        self.congruence_func_sys_1 = build_sed_presenceconf_congruence(self.sys_1)
+
+        def unpacker(func):
+            def _f(*args):
+                return func(*args)["presenceconf_congruence"]
+
+            return _f
+
+        self.congruence_func_sys_1 = unpacker(build_sed_presenceconf_congruence(self.sys_1))
 
         self.sys_2 = [ A(0.4) ]
-        self.congruence_func_sys_2 = build_sed_presenceconf_congruence(self.sys_2)
+        self.congruence_func_sys_2 = unpacker(build_sed_presenceconf_congruence(self.sys_2))
 
         self.sys_empty = [ ]
 
@@ -32,7 +39,7 @@ class TestSEDKernelComponents(unittest.TestCase):
                           A(0.8),
                           A(0.8) ]
 
-        self.congruence_func_sys_same = build_sed_presenceconf_congruence(self.sys_same)
+        self.congruence_func_sys_same = unpacker(build_sed_presenceconf_congruence(self.sys_same))
 
     def test_presenceconf_congruence(self):
         self.assertAlmostEqual(self.congruence_func_sys_1(None, self.sys_1[0]), 0.0)
@@ -53,6 +60,6 @@ class TestSEDKernelComponents(unittest.TestCase):
         # This shouldn't raise an exception, if it does, our test case
         # fails
         build_sed_presenceconf_congruence(self.sys_empty)
-        
+
 if __name__ == '__main__':
     unittest.main()

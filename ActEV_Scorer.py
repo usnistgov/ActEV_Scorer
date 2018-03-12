@@ -156,7 +156,7 @@ if __name__ == '__main__':
 
     serialize_as_json("{}/scoring_parameters.json".format(args.output_dir), scoring_parameters)
 
-    write_records_as_csv("{}/alignment.csv".format(args.output_dir), ["activity", "alignment", "ref", "sys", "sys_decision_score", "kernel_similarity", "kernel_components"], dict_to_records(alignment_records, lambda v: map(str, v.iter_with_extended_properties())))
+    write_records_as_csv("{}/alignment.csv".format(args.output_dir), ["activity", "alignment", "ref", "sys", "sys_decision_score", "kernel_similarity", "kernel_components"], dict_to_records(alignment_records))
 
     write_records_as_csv("{}/pair_metrics.csv".format(args.output_dir), ["activity", "ref", "sys", "metric_name", "metric_value"], dict_to_records(pair_measure_records, lambda v: map(str, v)))
 
