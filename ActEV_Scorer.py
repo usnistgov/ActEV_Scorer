@@ -101,50 +101,32 @@ def _activity_instance_reducer(init, a):
     init.setdefault(a["activity"], []).append(ActivityInstance(a))
     return init
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Soring script for the NIST ActEV evaluation")
-    parser.add_argument('protocol', choices=['ActEV18_AD', 'ActEV18_AOD'], help="Scoring protocol")
-    parser.add_argument("-s", "--system-output-file", help="System output JSON file", type=str, required=True)
-    parser.add_argument("-r", "--reference-file", help="Reference JSON file", type=str, required=True)
-    parser.add_argument("-a", "--activity-index", help="Activity index JSON file", type=str, required=True)
-    parser.add_argument("-f", "--file-index", help="file index JSON file", type=str, required=True)
-    parser.add_argument("-o", "--output-dir", help="Output directory for results", type=str, required=True)
-    parser.add_argument("-d", "--disable-plotting", help="Disable DET Curve plotting of results", action="store_true")
-    parser.add_argument("-v", "--verbose", help="Toggle verbose log output", action="store_true")
-    args = parser.parse_args()
-
-    verbosity_threshold = 1 if args.verbose else 0
-    log = build_logger(verbosity_threshold)
-
-    log(1, "[Info] Command: {}".format(" ".join(sys.argv)))
-
-    if args.protocol == 'ActEV18_AD':
-        from actev18_ad import *
-        protocol = ActEV18_AD
-    elif args.protocol == 'ActEV18_AOD':
-        from actev18_aod import *
-        protocol = ActEV18_AOD
-    else:
-        err_quit("Unrecognized protocol.  Aborting!")
-
+def load_system_output(log, system_output_file):
     log(1, "[Info] Loading system output file")
-    system_output = load_json(args.system_output_file)
-    system_activities = reduce(_activity_instance_reducer, system_output["activities"], {})
+    return load_json(system_output_file)
 
+def load_reference(log, reference_file):
     log(1, "[Info] Loading reference file")
-    reference = load_json(args.reference_file)
-    reference_activities = reduce(_activity_instance_reducer, reference["activities"], {})
+    return load_json(args.reference_file)
 
+def load_activity_index(log, activity_index_file):
     log(1, "[Info] Loading activity index file")
-    activity_index = load_json(args.activity_index)
+    return load_json(args.activity_index)
 
+def load_file_index(log, file_index_file):
     log(1, "[Info] Loading file index file")
-    file_index = load_json(args.file_index)
+    return load_json(args.file_index)
 
+def load_schema_for_protocol(log, protocol):
     log(1, "[Info] Loading JSON schema")
     schema_path = "{}/{}".format(protocols_path, protocol.get_schema_fn())
-    system_output_schema = load_json(schema_path)
 
+    return load_json(schema_path)
+
+def parse_activities(deserialized_json):
+    return reduce(_activity_instance_reducer, deserialized_json["activities"], {})
+
+def validate_input(log, system_output, system_activities, reference_activities, activity_index, file_index, system_output_schema):
     log(1, "[Info] Validating system output against JSON schema")
     try:
         jsonschema.validate(system_output, system_output_schema)
@@ -152,12 +134,53 @@ if __name__ == '__main__':
     except jsonschema.exceptions.ValidationError as verr:
         err_quit("{}\n[Error] JSON schema validation of system output failed, Aborting!".format(verr))
 
+    # Assuming that the input is valid if we make it this far
+    return True
+
+def plot_dets(log, output_dir, det_point_records):
+    figure_dir = "{}/figures".format(output_dir)
+    mkdir_p(figure_dir)
+    log(1, "[Info] Saving figures to directory '{}'".format(figure_dir))
+    log(1, "[Info] Plotting combined DET curve")
+    det_curve(det_point_records, "{}/DET_COMBINED.png".format(figure_dir))
+
+    for k, v in det_point_records.iteritems():
+        log(1, "[Info] Plotting DET curve for {}".format(k))
+        det_curve({k: v}, "{}/DET_{}.png".format(figure_dir, k))
+
+    return figure_dir
+
+def write_out_scoring_params(output_dir, params):
+    out_file = "{}/scoring_parameters.json".format(output_dir)
+    serialize_as_json(out_file, params)
+
+    return out_file
+
+def score_actev18_ad(args):
+    verbosity_threshold = 1 if args.verbose else 0
+    log = build_logger(verbosity_threshold)
+
+    log(1, "[Info] Command: {}".format(" ".join(sys.argv)))
+
+    from actev18_ad import ActEV18_AD
+    protocol = ActEV18_AD
+
+    system_output = load_system_output(log, args.system_output_file)
+    system_activities = parse_activities(system_output)
+    reference = load_reference(log, args.reference_file)
+    reference_activities = parse_activities(reference)
+    activity_index = load_activity_index(log, args.activity_index)
+    file_index = load_file_index(log, args.file_index)
+    system_output_schema = load_schema_for_protocol(log, protocol)
+
+    validate_input(log, system_output, system_activities, reference_activities, activity_index, file_index, system_output_schema)
+
     scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records = protocol().score({}, system_activities, reference_activities, activity_index, file_index)
 
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
 
-    serialize_as_json("{}/scoring_parameters.json".format(args.output_dir), scoring_parameters)
+    write_out_scoring_params(args.output_dir, scoring_parameters)
 
     write_records_as_csv("{}/alignment.csv".format(args.output_dir), ["activity", "alignment", "ref", "sys", "sys_decision_score", "kernel_similarity", "kernel_components"], dict_to_records(alignment_records))
 
@@ -168,12 +191,76 @@ if __name__ == '__main__':
     write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], aggregate_measure_records)
 
     if not args.disable_plotting:
-        figure_dir = "{}/figures".format(args.output_dir)
-        mkdir_p(figure_dir)
-        log(1, "[Info] Saving figures to directory '{}'".format(figure_dir))
-        log(1, "[Info] Plotting combined DET curve")
-        det_curve(det_point_records, "{}/DET_COMBINED.png".format(figure_dir))
+        plot_dets(log, args.output_dir, det_point_records)
 
-        for k, v in det_point_records.iteritems():
-            log(1, "[Info] Plotting DET curve for {}".format(k))
-            det_curve({k: v}, "{}/DET_{}.png".format(figure_dir, k))
+def score_actev18_aod(args):
+    verbosity_threshold = 1 if args.verbose else 0
+    log = build_logger(verbosity_threshold)
+
+    log(1, "[Info] Command: {}".format(" ".join(sys.argv)))
+
+    from actev18_aod import ActEV18_AOD
+    protocol = ActEV18_AOD
+
+    system_output = load_system_output(log, args.system_output_file)
+    system_activities = parse_activities(system_output)
+    reference = load_reference(log, args.reference_file)
+    reference_activities = parse_activities(reference)
+    activity_index = load_activity_index(log, args.activity_index)
+    file_index = load_file_index(log, args.file_index)
+    system_output_schema = load_schema_for_protocol(log, protocol)
+
+    validate_input(log, system_output, system_activities, reference_activities, activity_index, file_index, system_output_schema)
+
+    scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records = protocol().score({}, system_activities, reference_activities, activity_index, file_index)
+
+    mkdir_p(args.output_dir)
+    log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
+
+    write_out_scoring_params(args.output_dir, scoring_parameters)
+
+    write_records_as_csv("{}/alignment.csv".format(args.output_dir), ["activity", "alignment", "ref", "sys", "sys_decision_score", "kernel_similarity", "kernel_components"], dict_to_records(alignment_records))
+
+    write_records_as_csv("{}/pair_metrics.csv".format(args.output_dir), ["activity", "ref", "sys", "metric_name", "metric_value"], dict_to_records(pair_measure_records, lambda v: map(str, v)))
+
+    write_records_as_csv("{}/scores_by_activity.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], dict_to_records(activity_measure_records, lambda v: map(str, v)))
+
+    write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], aggregate_measure_records)
+
+    if not args.disable_plotting:
+        plot_dets(log, args.output_dir, det_point_records)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="Soring script for the NIST ActEV evaluation")
+
+    subparsers = parser.add_subparsers(help="Scoring protocols")
+
+    base_args = [[["-s", "--system-output-file"], dict(help="System output JSON file", type=str, required=True)],
+                 [["-r", "--reference-file"], dict(help="Reference JSON file", type=str, required=True)],
+                 [["-a", "--activity-index"], dict(help="Activity index JSON file", type=str, required=True)],
+                 [["-f", "--file-index"], dict(help="file index JSON file", type=str, required=True)],
+                 [["-o", "--output-dir"], dict(help="Output directory for results", type=str, required=True)],
+                 [["-d", "--disable-plotting"], dict(help="Disable DET Curve plotting of results", action="store_true")],
+                 [["-v", "--verbose"], dict(help="Toggle verbose log output", action="store_true")]]
+
+    def add_protocol_subparser(name, kwargs, func, arguments):
+        subp = subparsers.add_parser(name, **kwargs)
+        for a, b in arguments:
+            subp.add_argument(*a, **b)
+
+        subp.set_defaults(func=func)
+        return subp
+
+    add_protocol_subparser("ActEV18_AD",
+                           dict(help="Scoring protocol for the ActEV18 Activity Detection task"),
+                           score_actev18_ad,
+                           base_args)
+
+    add_protocol_subparser("ActEV18_AOD",
+                           dict(help="Scoring protocol for the ActEV18 Activity and Object Detection task"),
+                           score_actev18_aod,
+                           base_args)
+
+    args = parser.parse_args()
+    args.func(args)
