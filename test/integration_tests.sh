@@ -87,3 +87,30 @@ test_3_1() {
 	-d \
 	-v
 }
+
+# integration test 4-0
+test_4_0() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AOD" \
+	-s "data/test_4-0_fake-sysout.json" \
+	-r "data/test_4-0.json" \
+	-a "data/test_4-0_activity-index.json" \
+	-f "data/test_4-0_file-index.json" \
+	-o "$1" \
+	-d \
+	-v
+}
+
+# integration test 4-1
+# AD scoring on AOD input
+test_4_1() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AD" \
+	-s "data/test_4-0_fake-sysout.json" \
+	-r "data/test_4-0.json" \
+	-a "data/test_4-0_activity-index.json" \
+	-f "data/test_4-0_file-index.json" \
+	-o "$1" \
+	-d \
+	-v
+}

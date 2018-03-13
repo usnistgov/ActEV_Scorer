@@ -1,0 +1,11 @@
+{
+  "nmide_ns_collar_size": 0, 
+  "epsilon_object_presenceconf_congruence": 1e-06, 
+  "epsilon_temporal_congruence": 1e-08, 
+  "epsilon_activity_presenceconf_congruence": 1e-06, 
+  "epsilon_object_congruence": 1e-08, 
+  "epsilon_object-overlap_congruence": 1e-08, 
+  "spatial_overlap_delta": 0.5, 
+  "temporal_overlap_delta": 0.2, 
+  "object_congruence_delta": 1.0
+}
