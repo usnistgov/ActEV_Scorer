@@ -103,7 +103,7 @@ def _activity_instance_reducer(init, a):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Soring script for the NIST ActEV evaluation")
-    parser.add_argument('protocol', choices=['ActEV18_AD'], help="Scoring protocol")
+    parser.add_argument('protocol', choices=['ActEV18_AD', 'ActEV18_AOD'], help="Scoring protocol")
     parser.add_argument("-s", "--system-output-file", help="System output JSON file", type=str, required=True)
     parser.add_argument("-r", "--reference-file", help="Reference JSON file", type=str, required=True)
     parser.add_argument("-a", "--activity-index", help="Activity index JSON file", type=str, required=True)
@@ -121,6 +121,9 @@ if __name__ == '__main__':
     if args.protocol == 'ActEV18_AD':
         from actev18_ad import *
         protocol = ActEV18_AD
+    elif args.protocol == 'ActEV18_AOD':
+        from actev18_aod import *
+        protocol = ActEV18_AOD
     else:
         err_quit("Unrecognized protocol.  Aborting!")
 

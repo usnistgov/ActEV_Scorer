@@ -91,9 +91,12 @@ def _object_signals_to_lookup(temporal_signal, local_objects):
 # at the protocol level.  Not sure if this is the best place to pass
 # in the weightning functions
 def build_object_congruence_filter(obj_kernel_builder, threshold, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
-    components = _object_congruence(r, s, obj_kernel_builder, cmiss, cfa)
+    def _filter(r, s):
+        components = _object_congruence(r, s, obj_kernel_builder, cmiss, cfa)
+        min_mode = components["minMODE"]
+        return (False if min_mode is None else min_mode < threshold, components)
 
-    return (components["minMode"] < threshold, components)
+    return _filter
 
 def build_object_congruence(obj_kernel_builder, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
     def object_congruence_component(r, s, cache):
@@ -106,7 +109,7 @@ def build_object_congruence(obj_kernel_builder, cmiss = lambda x: 1 * x, cfa = l
 
             return (ok and still_ok, d)
 
-        was_cached, components = reduce(_r_out_dict, [ "minMode", "MODE_records" ], (True, {}))
+        was_cached, components = reduce(_r_out_dict, [ "minMODE", "MODE_records" ], (True, {}))
 
         if was_cached:
             return components
@@ -153,6 +156,6 @@ def _object_congruence(r, s, obj_kernel_builder, cmiss, cfa):
         return init
 
     mode_scores = reduce(_modes_reducer, sorted(list({ ar.sys.presenceConf for ar in total_c + total_f })), [])
-    min_mode = min(map(lambda x: x[1], mode_scores))
+    min_mode = min(map(lambda x: x[1], mode_scores)) if len(mode_scores) > 0 else None
 
     return { "minMODE": min_mode, "MODE_records": mode_scores, "alignment_records": frame_alignment_records }
