@@ -100,6 +100,11 @@ def n_mide(aligned_pairs, file_framedur_lookup, ns_collar_size, cost_fn_miss, co
     # Should consider another paramemter for for all files to consider
     # for FA denominator calculation, in the case of cross-file
     # activity instances
+    num_aligned = len(aligned_pairs)
+
+    if num_aligned == 0:
+        return None
+
     def _sub_reducer(init, pair):
         init_miss, init_fa, init_miss_d, init_fa_d = init
         rs, ss, k = pair
@@ -119,15 +124,40 @@ def n_mide(aligned_pairs, file_framedur_lookup, ns_collar_size, cost_fn_miss, co
         # Using the _sub_reducer here is important in the case of
         # cross-file activity instances
         miss, fa, miss_denom, fa_denom = reduce(_sub_reducer, temporal_signal_pairs(r, s), (0, 0, 0, 0))
+        if miss_denom > 0:
+            init.append(cost_fn_miss(float(miss) / miss_denom) + cost_fn_fa(float(fa) / fa_denom))
 
-        return init + cost_fn_miss(float(miss) / miss_denom) + cost_fn_fa(float(fa) / fa_denom)
+        return init
 
-    num_aligned = len(aligned_pairs)
+    mides = reduce(_reducer, aligned_pairs, [])
 
-    if num_aligned == 0:
+    if len(mides) == 0:
         return None
     else:
-        return reduce(_reducer, aligned_pairs, 0.0) / num_aligned
+        return float(reduce(add, mides)) / len(mides)
+
+# Should refactor this to be part of the n_mide calculation
+def n_mide_count_rejected(aligned_pairs, ns_collar_size):
+    if len(aligned_pairs) == 0:
+        return 0
+
+    def _sub_reducer(init, pair):
+        rs, ss, k = pair
+
+        ns_collar = rs.generate_collar(ns_collar_size)
+        c_r = rs - ns_collar
+
+        return init + c_r.area()
+
+    def _reducer(init, pair):
+        r, s = pair
+        # Using the _sub_reducer here is important in the case of
+        # cross-file activity instances
+        total_r_area = reduce(_sub_reducer, temporal_signal_pairs(r, s), 0)
+
+        return init + 1 if total_r_area == 0 else init
+
+    return reduce(_reducer, aligned_pairs, 0)
 
 def p_miss(num_c, num_m, num_f):
     denom = num_m + num_c

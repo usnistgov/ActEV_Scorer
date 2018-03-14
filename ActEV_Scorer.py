@@ -107,15 +107,19 @@ def load_system_output(log, system_output_file):
 
 def load_reference(log, reference_file):
     log(1, "[Info] Loading reference file")
-    return load_json(args.reference_file)
+    return load_json(reference_file)
 
 def load_activity_index(log, activity_index_file):
     log(1, "[Info] Loading activity index file")
-    return load_json(args.activity_index)
+    return load_json(activity_index_file)
 
 def load_file_index(log, file_index_file):
     log(1, "[Info] Loading file index file")
-    return load_json(args.file_index)
+    return load_json(file_index_file)
+
+def load_scoring_parameters(log, scoring_parameters_file):
+    log(1, "[Info] Loading scoring parameters file")
+    return load_json(scoring_parameters_file)
 
 def load_schema_for_protocol(log, protocol):
     log(1, "[Info] Loading JSON schema")
@@ -172,10 +176,11 @@ def score_actev18_ad(args):
     activity_index = load_activity_index(log, args.activity_index)
     file_index = load_file_index(log, args.file_index)
     system_output_schema = load_schema_for_protocol(log, protocol)
+    input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
 
     validate_input(log, system_output, system_activities, reference_activities, activity_index, file_index, system_output_schema)
 
-    scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records = protocol().score({}, system_activities, reference_activities, activity_index, file_index)
+    scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records = protocol().score(input_scoring_parameters, system_activities, reference_activities, activity_index, file_index)
 
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
@@ -209,10 +214,11 @@ def score_actev18_aod(args):
     activity_index = load_activity_index(log, args.activity_index)
     file_index = load_file_index(log, args.file_index)
     system_output_schema = load_schema_for_protocol(log, protocol)
+    input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
 
     validate_input(log, system_output, system_activities, reference_activities, activity_index, file_index, system_output_schema)
 
-    scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records, object_frame_alignment_records = protocol().score({}, system_activities, reference_activities, activity_index, file_index)
+    scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records, object_frame_alignment_records = protocol().score(input_scoring_parameters, system_activities, reference_activities, activity_index, file_index)
 
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
@@ -245,7 +251,8 @@ if __name__ == '__main__':
                  [["-f", "--file-index"], dict(help="file index JSON file", type=str, required=True)],
                  [["-o", "--output-dir"], dict(help="Output directory for results", type=str, required=True)],
                  [["-d", "--disable-plotting"], dict(help="Disable DET Curve plotting of results", action="store_true")],
-                 [["-v", "--verbose"], dict(help="Toggle verbose log output", action="store_true")]]
+                 [["-v", "--verbose"], dict(help="Toggle verbose log output", action="store_true")],
+                 [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)]]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)

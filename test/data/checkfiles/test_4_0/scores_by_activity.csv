@@ -1,5 +1,6 @@
 activity|metric_name|metric_value
 Closing|n-mide|0.0
+Closing|n-mide_num_rejected|0
 Closing|p_miss@0.01rfa|1.0
 Closing|p_miss@0.03rfa|1.0
 Closing|p_miss@0.15rfa|0.0
@@ -7,6 +8,7 @@ Closing|p_miss@0.1rfa|0.0
 Closing|p_miss@0.2rfa|0.0
 Closing|p_miss@1rfa|0.0
 Entering|n-mide|0.0
+Entering|n-mide_num_rejected|0
 Entering|p_miss@0.01rfa|1.0
 Entering|p_miss@0.03rfa|1.0
 Entering|p_miss@0.15rfa|0.5

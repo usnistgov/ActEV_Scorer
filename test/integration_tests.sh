@@ -49,6 +49,21 @@ test_1_0() {
 	-v
 }
 
+# ActEV18_AD integration test 1_1
+# Testing passing of scoring parameters JSON
+test_1_1() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AD" \
+	-s "data/VIRAT_S_000000_fake-sysout.json" \
+	-r "data/VIRAT_S_000000.json" \
+	-a "data/VIRAT_S_000000_activity-index.json" \
+	-f "data/VIRAT_S_000000_file-index.json" \
+	-o "$1" \
+	-d \
+	-p "data/test_1_1.scoring_parameters.json" \
+	-v
+}
+
 # ActEV18_AD integration test 2
 test_2_0() {
     ../ActEV_Scorer.py \

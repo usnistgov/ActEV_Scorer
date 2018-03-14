@@ -119,6 +119,8 @@ class TestNMIDE(TestMetrics):
         self.r3 = S({5: 1, 15: 0, 30: 1, 35: 0})
         self.s3 = S({10: 1, 15: 0, 40: 1, 50: 0})
 
+        self.r4 = S({30: 1, 35: 0})
+
         self.c1 = [(A({ "f1": self.r1 }), A({ "f1": self.s1 })),
                    (A({ "f1": self.r3 }), A({ "f1": self.s3 }))]
 
@@ -127,6 +129,9 @@ class TestNMIDE(TestMetrics):
 
         self.c3 = [(A({ "f1": self.r1 }), A({ "f2": self.s1 })),
                    (A({ "f1": self.r3 }), A({ "f2": self.s3 }))]
+
+        self.c4 = [(A({ "f1": self.r1 }), A({ "f1": self.s2 })),
+                   (A({ "f1": self.r4 }), A({ "f1": self.s3 }))]
 
         self.filedur_1 = { "f1": 80, "f2": 100 }
 
@@ -142,6 +147,19 @@ class TestNMIDE(TestMetrics):
         self.assertAlmostEqual(n_mide(self.cd, self.filedur_1, 2, self.cost_fn, self.cost_fn), float(0 + (8 / float(14) + 20 / float(57 + 77))) / len(self.cd), places=10)
 
         self.assertAlmostEqual(n_mide(self.c3, self.filedur_1, 2, self.cost_fn, self.cost_fn), float((6 / float(6) + 10 / float(100 + 66)) + (7 / float(7) + 15 / float(100 + 57))) / len(self.c3), places=10)
+
+        self.assertAlmostEqual(n_mide(self.c4, self.filedur_1, 3, self.cost_fn, self.cost_fn), float((2 / float(4)) + 0) / 1, places=10)
+
+        self.assertEqual(n_mide(self.c3, self.filedur_1, 10, self.cost_fn, self.cost_fn), None)
+
+    def testNMIDE_count_rejected(self):
+        self.assertEqual(n_mide_count_rejected(self.c3, 2), 0)
+        self.assertEqual(n_mide_count_rejected(self.cd, 2), 0)
+        self.assertEqual(n_mide_count_rejected(self.c3, 10), 2)
+        self.assertEqual(n_mide_count_rejected(self.cd, 10), 2)
+        self.assertEqual(n_mide_count_rejected(self.c4, 0), 0)
+        self.assertEqual(n_mide_count_rejected(self.c4, 3), 1)
+        self.assertEqual(n_mide_count_rejected(self.c4, 10), 2)
 
 class TestSignalMetrics(unittest.TestCase):
     def setUp(self):
