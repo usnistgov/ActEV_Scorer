@@ -36,6 +36,8 @@ import os
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
 
+from operator import add
+
 from metrics import *
 from alignment_record import *
 from actev_kernel_components import *
@@ -51,7 +53,7 @@ class ActEV18_AOD():
     def __init__(self):
         self.default_scoring_parameters = { "epsilon_temporal_congruence": 1.0e-8,
                                             "epsilon_activity_presenceconf_congruence": 1.0e-6,
-                                            "epsilon_object_congruence": 1.0e-8,
+                                            "epsilon_object_congruence": 1.0e-10,
                                             "epsilon_object-overlap_congruence": 1.0e-8,
                                             "epsilon_object_presenceconf_congruence": 1.0e-6,
                                             "temporal_overlap_delta": 0.2,
@@ -62,6 +64,9 @@ class ActEV18_AOD():
         self.output_kernel_components = [ "temporal_intersection-over-union",
                                           "presenceconf_congruence",
                                           "minMODE" ]
+
+        self.output_object_kernel_components = [ "spatial_intersection-over-union",
+                                                 "presenceconf_congruence" ]
 
     def build_kernel(self,
                      system_instances,
@@ -75,7 +80,7 @@ class ActEV18_AOD():
                                                     build_sed_presenceconf_congruence(sys_objs)],
                                                    {"spatial_intersection-over-union": scoring_parameters["epsilon_object-overlap_congruence"],
                                                     "presenceconf_congruence": scoring_parameters["epsilon_object_presenceconf_congruence"]})
-        
+
         return build_linear_combination_kernel([build_temporal_overlap_filter(scoring_parameters["temporal_overlap_delta"]),
                                                 build_object_congruence_filter(_object_kernel_builder, scoring_parameters["object_congruence_delta"])],
                                                [build_object_congruence(_object_kernel_builder),
@@ -219,9 +224,27 @@ class ActEV18_AOD():
 
         output_alignment_records = reduce(_reformat_alignment_records, alignment_records.iteritems(), {})
 
+        def _object_frame_alignment_records(init, kv):
+            activity, recs = kv
+
+            def _m(item):
+                def _subm(frame_ar):
+                    frame, ar = frame_ar
+                    return [str(item.ref),
+                            str(item.sys),
+                            str(frame)] + [ x for x in ar.iter_with_extended_properties(self.output_object_kernel_components) ]
+
+                return map(_subm, item.kernel_components.get("alignment_records", []))
+
+            init[activity] = reduce(add, map(_m, filter(lambda r: r.alignment == "CD", recs)), [])
+            return init
+
+        object_frame_alignment_records = reduce(_object_frame_alignment_records, alignment_records.iteritems(), {})
+
         return (scoring_parameters,
                 output_alignment_records,
                 merge_dicts(measure_records, det_curve_measure_records, add),
                 pair_measure_records,
                 mean_alignment_measure_records + microavg_alignment_measures,
-                det_point_records)
+                det_point_records,
+                object_frame_alignment_records)

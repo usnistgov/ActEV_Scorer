@@ -109,7 +109,7 @@ def build_object_congruence(obj_kernel_builder, cmiss = lambda x: 1 * x, cfa = l
 
             return (ok and still_ok, d)
 
-        was_cached, components = reduce(_r_out_dict, [ "minMODE", "MODE_records" ], (True, {}))
+        was_cached, components = reduce(_r_out_dict, [ "minMODE", "MODE_records", "alignment_records" ], (True, {}))
 
         if was_cached:
             return components
@@ -144,7 +144,7 @@ def _object_congruence(r, s, obj_kernel_builder, cmiss, cfa):
             total_r.extend(ref)
 
             for ar in c + m + f:
-                frame_alignment_records.extend((frame, ar))
+                frame_alignment_records.append((frame, ar))
 
     num_miss = len(total_m)
     num_correct = len(total_c)

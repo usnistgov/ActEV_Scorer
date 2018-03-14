@@ -33,8 +33,6 @@
 from operator import add
 from sparse_signal import SparseSignal as S
 
-from pprint import pprint
-
 def _signal_pairs(r, s, signal_accessor, key_join_op = set.union):
     rl, sl = r.localization, s.localization
     return [ (signal_accessor(rl, k), signal_accessor(sl, k), k) for k in key_join_op(set(rl.keys()), set(sl.keys())) ]

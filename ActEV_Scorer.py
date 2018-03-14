@@ -212,7 +212,7 @@ def score_actev18_aod(args):
 
     validate_input(log, system_output, system_activities, reference_activities, activity_index, file_index, system_output_schema)
 
-    scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records = protocol().score({}, system_activities, reference_activities, activity_index, file_index)
+    scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records, object_frame_alignment_records = protocol().score({}, system_activities, reference_activities, activity_index, file_index)
 
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
@@ -226,6 +226,9 @@ def score_actev18_aod(args):
     write_records_as_csv("{}/scores_by_activity.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], dict_to_records(activity_measure_records, lambda v: map(str, v)))
 
     write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], aggregate_measure_records)
+
+    if args.dump_object_alignment_records:
+        write_records_as_csv("{}/object_alignment.csv".format(args.output_dir), ["activity", "ref_activity", "sys_activity", "frame", "alignment", "ref_object", "sys_object", "sys_decision_score", "kernel_similarity", "kernel_components"], dict_to_records(object_frame_alignment_records))
 
     if not args.disable_plotting:
         plot_dets(log, args.output_dir, det_point_records)
@@ -260,7 +263,7 @@ if __name__ == '__main__':
     add_protocol_subparser("ActEV18_AOD",
                            dict(help="Scoring protocol for the ActEV18 Activity and Object Detection task"),
                            score_actev18_aod,
-                           base_args)
+                           base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
 
     args = parser.parse_args()
     args.func(args)
