@@ -1,4 +1,4 @@
-activity|alignment|ref|sys|sys_decision_score|kernel_similarity|kernel_components
+activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
 Closing|CD|61|1|0.756|1.0000007539|{"temporal_intersection-over-union": 0.9310344827586207, "presenceconf_congruence": 0.7445887445887446}
 Closing|CD|64|30|0.789|1.00000078996|{"temporal_intersection-over-union": 0.9655172413793104, "presenceconf_congruence": 0.7803030303030305}
 Closing|CD|67|115|0.515|1.00000049281|{"temporal_intersection-over-union": 0.9047619047619048, "presenceconf_congruence": 0.4837662337662338}
