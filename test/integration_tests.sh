@@ -113,6 +113,7 @@ test_4_0() {
 	-f "data/test_4-0_file-index.json" \
 	-o "$1" \
 	-d \
+	-j \
 	-v
 }
 

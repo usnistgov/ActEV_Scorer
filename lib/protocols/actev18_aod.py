@@ -82,8 +82,8 @@ class ActEV18_AOD():
                                                     "presenceconf_congruence": scoring_parameters["epsilon_object_presenceconf_congruence"]})
 
         return build_linear_combination_kernel([build_temporal_overlap_filter(scoring_parameters["temporal_overlap_delta"]),
-                                                build_object_congruence_filter(_object_kernel_builder, scoring_parameters["object_congruence_delta"])],
-                                               [build_object_congruence(_object_kernel_builder),
+                                                build_object_congruence_filter(_object_kernel_builder, intersection_filter, intersection_filter, scoring_parameters["object_congruence_delta"])],
+                                               [build_object_congruence(_object_kernel_builder, intersection_filter, intersection_filter),
                                                 temporal_intersection_over_union_component,
                                                 build_sed_presenceconf_congruence(system_instances)],
                                                {"temporal_intersection-over-union": scoring_parameters["epsilon_temporal_congruence"],

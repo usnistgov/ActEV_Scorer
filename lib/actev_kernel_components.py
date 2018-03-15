@@ -80,7 +80,7 @@ def _object_signals_to_lookup(temporal_signal, local_objects):
     empty_olf = ObjectLocalizationFrame.empty()
 
     def _r(init, o):
-        selected_o = [ x for x in temporal_signal.join(o, lambda a, b: b if a else empty_olf, empty_olf).on_steps(lambda x: len(x.spatial_signal) > 0) ]
+        selected_o = [ x for x in temporal_signal.join(o, lambda a, b: b if a else empty_olf).on_steps(lambda x: len(x.spatial_signal) > 0) ]
 
         init.extend(selected_o)
         return init
@@ -90,15 +90,15 @@ def _object_signals_to_lookup(temporal_signal, local_objects):
 # Using a factory function here so we can configure the object kernel
 # at the protocol level.  Not sure if this is the best place to pass
 # in the weightning functions
-def build_object_congruence_filter(obj_kernel_builder, threshold, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
+def build_object_congruence_filter(obj_kernel_builder, ref_filter, sys_filter, threshold, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
     def _filter(r, s):
-        components = _object_congruence(r, s, obj_kernel_builder, cmiss, cfa)
+        components = _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa)
         min_mode = components["minMODE"]
         return (False if min_mode is None else min_mode < threshold, components)
 
     return _filter
 
-def build_object_congruence(obj_kernel_builder, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
+def build_object_congruence(obj_kernel_builder, ref_filter, sys_filter, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
     def object_congruence_component(r, s, cache):
         def _r_out_dict(init, k):
             ok, d = init
@@ -114,12 +114,20 @@ def build_object_congruence(obj_kernel_builder, cmiss = lambda x: 1 * x, cfa = l
         if was_cached:
             return components
         else:
-            return _object_congruence(r, s, obj_kernel_builder, cmiss, cfa)
+            return _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa)
 
     return object_congruence_component
 
+def intersection_filter(r, s):
+    return r & s
 
-def _object_congruence(r, s, obj_kernel_builder, cmiss, cfa):
+def ref_passthrough_filter(r, s):
+    return r
+
+def sys_passthrough_filter(r, s):
+    return s
+
+def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa):
     ro, so = r.objects, s.objects
 
     # For N_MODE computation, localizations spanning multiple files
@@ -130,8 +138,8 @@ def _object_congruence(r, s, obj_kernel_builder, cmiss, cfa):
         local_so_localizations = map(lambda o: o.localization.get(k, S()), so)
         local_ro_localizations = map(lambda o: o.localization.get(k, S()), ro)
 
-        sos_lookup = _object_signals_to_lookup(s, local_so_localizations)
-        ros_lookup = _object_signals_to_lookup(r, local_ro_localizations)
+        sos_lookup = _object_signals_to_lookup(sys_filter(r, s), local_so_localizations)
+        ros_lookup = _object_signals_to_lookup(ref_filter(r, s), local_ro_localizations)
 
         for frame in sos_lookup.viewkeys() | ros_lookup.viewkeys():
             sys = sos_lookup.get(frame, [])

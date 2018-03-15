@@ -310,12 +310,21 @@ class TestObjectCongruence(TestActEVKernelComponents):
             self.assertEqual(o_conf, e_conf)
             self.assertAlmostEqual(o_mode, e_mode, places=10)
 
-    def test_object_congruence(self):
-        object_congruence_1 = build_object_congruence(self.obj_kernel_builder)(self.rai_1, self.sai_1, {})
+    def test_object_congruence_intersection(self):
+        intersect_object_congruence_1 = build_object_congruence(self.obj_kernel_builder, intersection_filter, intersection_filter)(self.rai_1, self.sai_1, {})
+        self.assertAlmostEqual(intersect_object_congruence_1["minMODE"], 1.2, places=10)
+        self.assert_mode_scores(intersect_object_congruence_1["MODE_records"], [(0.2, 1.7), (0.45, 1.2), (0.67, 1.5)])
+
+        intersect_object_congruence_2 = build_object_congruence(self.obj_kernel_builder, intersection_filter, intersection_filter)(self.rai_1, self.sai_2, {})
+        self.assertAlmostEqual(intersect_object_congruence_2["minMODE"], float(20) / 28, places=10)
+        self.assert_mode_scores(intersect_object_congruence_2["MODE_records"], [(0.45, float(20) / 28), (0.67, float(38) / 28)])
+
+    def test_object_congruence_passthrough(self):
+        object_congruence_1 = build_object_congruence(self.obj_kernel_builder, ref_passthrough_filter, sys_passthrough_filter)(self.rai_1, self.sai_1, {})
         self.assertAlmostEqual(object_congruence_1["minMODE"], 1.375, places=10)
         self.assert_mode_scores(object_congruence_1["MODE_records"], [(0.2, 1.6875), (0.45, 1.375), (0.67, 1.5625)])
 
-        object_congruence_2 = build_object_congruence(self.obj_kernel_builder)(self.rai_1, self.sai_2, {})
+        object_congruence_2 = build_object_congruence(self.obj_kernel_builder, ref_passthrough_filter, sys_passthrough_filter)(self.rai_1, self.sai_2, {})
         self.assertAlmostEqual(object_congruence_2["minMODE"], 0.75, places=10)
         self.assert_mode_scores(object_congruence_2["MODE_records"], [(0.45, 0.75), (0.67, 1.3125)])
 

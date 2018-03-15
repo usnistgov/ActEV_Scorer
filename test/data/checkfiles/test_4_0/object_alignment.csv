@@ -1,0 +1,199 @@
+activity|ref_activity|sys_activity|frame|alignment|ref_object|sys_object|sys_presenceconf_score|kernel_similarity|kernel_components
+Closing|1|1|3034|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3034|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3034|FA|None|3|0.41|None|None
+Closing|1|1|3035|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3035|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3035|FA|None|3|0.41|None|None
+Closing|1|1|3036|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3036|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3036|FA|None|3|0.41|None|None
+Closing|1|1|3037|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3037|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3037|FA|None|3|0.41|None|None
+Closing|1|1|3038|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3038|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3038|FA|None|3|0.41|None|None
+Closing|1|1|3039|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3039|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3039|FA|None|3|0.41|None|None
+Closing|1|1|3040|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3040|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3040|FA|None|3|0.41|None|None
+Closing|1|1|3041|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3041|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3041|FA|None|3|0.41|None|None
+Closing|1|1|3042|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3042|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3042|FA|None|3|0.41|None|None
+Closing|1|1|3043|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3043|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3043|FA|None|3|0.41|None|None
+Closing|1|1|3044|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3044|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3044|FA|None|3|0.41|None|None
+Closing|1|1|3045|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3045|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3045|FA|None|3|0.41|None|None
+Closing|1|1|3046|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3046|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3046|FA|None|3|0.41|None|None
+Closing|1|1|3047|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3047|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3047|FA|None|3|0.41|None|None
+Closing|1|1|3048|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3048|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3048|FA|None|3|0.41|None|None
+Closing|1|1|3049|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3049|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3049|FA|None|3|0.41|None|None
+Closing|1|1|3050|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3050|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3050|FA|None|3|0.41|None|None
+Closing|1|1|3051|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3051|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3051|FA|None|3|0.41|None|None
+Closing|1|1|3052|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3052|FA|None|1|0.67|None|None
+Closing|1|1|3052|FA|None|3|0.41|None|None
+Closing|1|1|3052|MD|1|None|None|None|None
+Closing|1|1|3053|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3053|FA|None|1|0.67|None|None
+Closing|1|1|3053|FA|None|3|0.41|None|None
+Closing|1|1|3053|MD|1|None|None|None|None
+Closing|1|1|3054|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3054|FA|None|1|0.67|None|None
+Closing|1|1|3054|FA|None|3|0.41|None|None
+Closing|1|1|3054|MD|1|None|None|None|None
+Closing|1|1|3055|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3055|FA|None|1|0.67|None|None
+Closing|1|1|3055|FA|None|3|0.41|None|None
+Closing|1|1|3055|MD|1|None|None|None|None
+Closing|1|1|3056|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3056|FA|None|1|0.67|None|None
+Closing|1|1|3056|FA|None|3|0.41|None|None
+Closing|1|1|3056|MD|1|None|None|None|None
+Closing|1|1|3057|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3057|FA|None|1|0.67|None|None
+Closing|1|1|3057|FA|None|3|0.41|None|None
+Closing|1|1|3057|MD|1|None|None|None|None
+Closing|1|1|3058|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3058|FA|None|1|0.67|None|None
+Closing|1|1|3058|FA|None|3|0.41|None|None
+Closing|1|1|3058|MD|1|None|None|None|None
+Closing|1|1|3059|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3059|FA|None|1|0.67|None|None
+Closing|1|1|3059|FA|None|3|0.41|None|None
+Closing|1|1|3059|MD|1|None|None|None|None
+Closing|1|1|3060|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3060|FA|None|1|0.67|None|None
+Closing|1|1|3060|FA|None|3|0.41|None|None
+Closing|1|1|3060|MD|1|None|None|None|None
+Closing|1|1|3061|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|3061|FA|None|1|0.67|None|None
+Closing|1|1|3061|FA|None|3|0.41|None|None
+Closing|1|1|3061|MD|1|None|None|None|None
+Entering|2|3|3845|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3845|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3846|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3846|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3847|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3847|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3848|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3848|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3849|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3849|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3850|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3850|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3851|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3851|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3852|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3852|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3853|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3853|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3854|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3854|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3855|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3855|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3856|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3856|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3857|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3857|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3858|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3858|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3859|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3859|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3860|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3860|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3861|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3861|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3862|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3862|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3863|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3863|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3864|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3864|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3865|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3865|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3866|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3866|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3867|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3867|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3868|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3868|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3869|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3869|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3870|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3870|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3871|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3871|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3872|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3872|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3873|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3873|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3874|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3874|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3875|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3875|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3876|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3876|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3877|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3877|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3878|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3878|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3879|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3879|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3880|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3880|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3881|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3881|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3882|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3882|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3883|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3883|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3884|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3884|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3885|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3885|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3886|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3886|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3887|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3887|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3888|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3888|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3889|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3889|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3890|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3890|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3891|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3891|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3892|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3892|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3893|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3893|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3894|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3894|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3895|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3895|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
+Entering|2|3|3896|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3896|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
