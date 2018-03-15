@@ -136,9 +136,29 @@ def validate_input(log, system_output, system_activities, reference_activities, 
         jsonschema.validate(system_output, system_output_schema)
         log(1, "[Info] System output validated successfully against JSON schema")
     except jsonschema.exceptions.ValidationError as verr:
-        err_quit("{}\n[Error] JSON schema validation of system output failed, Aborting!".format(verr))
+        err_quit("{}\n[Error] JSON schema validation of system output failed. Aborting!".format(verr))
 
     # Assuming that the input is valid if we make it this far
+    return True
+
+# Check system "filesProcessed" vs file index
+def check_file_index_congruence(log, system_output, file_index):
+    sys_files = set(system_output.get("filesProcessed", []))
+    index_files = set(file_index.keys())
+
+    missing = index_files - sys_files
+    extraneous = sys_files - index_files
+
+    log(1, "[Info] Checking file index against system's \"filesProcessed\"")
+    for m in missing:
+        log(0, "[Error] Missing file '{}' from system's \"filesProcessed\"")
+
+    for e in extraneous:
+        log(0, "[Error] Extraneous file '{}' in system's \"filesProcessed\"")
+
+    if len(missing) + len(extraneous) > 0:
+        error_quit("[Error] System \"filesProcessed\" and file index are incongruent. Aborting!")
+
     return True
 
 def plot_dets(log, output_dir, det_point_records):
@@ -179,6 +199,7 @@ def score_actev18_ad(args):
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
 
     validate_input(log, system_output, system_activities, reference_activities, activity_index, file_index, system_output_schema)
+    check_file_index_congruence(log, system_output, file_index)
 
     scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records = protocol().score(input_scoring_parameters, system_activities, reference_activities, activity_index, file_index)
 
@@ -217,6 +238,7 @@ def score_actev18_aod(args):
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
 
     validate_input(log, system_output, system_activities, reference_activities, activity_index, file_index, system_output_schema)
+    check_file_index_congruence(log, system_output, file_index)
 
     scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records, object_frame_alignment_records = protocol().score(input_scoring_parameters, system_activities, reference_activities, activity_index, file_index)
 

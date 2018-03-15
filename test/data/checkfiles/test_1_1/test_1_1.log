@@ -7,4 +7,5 @@
 [Info] Loading scoring parameters file
 [Info] Validating system output against JSON schema
 [Info] System output validated successfully against JSON schema
+[Info] Checking file index against system's "filesProcessed"
 [Info] Saving results to directory 'data/checkfiles/test_1_1'
