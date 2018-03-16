@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.0.2
-Date: February 22, 2018
+Version: 0.1.0
+Date: March 16, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -61,6 +61,10 @@ Option description:
   of all activity curves.  If the '-d' option is set, no DET curves
   will be produced by the script
 
+  -p SCORING_PARAMETERS_FILE - Optional; path to a scoring parameters
+  JSON file.  If provided, overwrites the default parameters used for
+  scoring
+
   -v - Optional; if enabled, the script will be more verbose
   (i.e. provide some scoring progress information)
 
@@ -73,6 +77,14 @@ Protocols:
     - NMIDE (**NOTE** currently using a no-score collar size of 0
       frames, this will likely change in a future release)
 
+  ActEV18_AOD - Scoring protocol for the ActEV 2018 Activity and
+  Object Detection task.  This protocol computes both the PMiss at RFA
+  and NMIDE measures reported for the ActEV18_AD protocol, but over an
+  activity instance alignment that also considers object detections.
+  The following additional measure are computed:
+    - minMODE - The minimum NMODE score for an object detection
+      alignment; reported for each aligned activity instance pair
+
 Output:
 
   The scoring script writes to several files in the specified
@@ -81,7 +93,8 @@ Output:
     - scores_by_activity.csv - Scores by activity; computed with
       respect to the selected scoring protocol
     - scores_aggregated.csv - Aggregated scores over all activities
-    - config.csv - Lists the scoring/protocol parameters used
+    - scoring_parameters.json - Lists the scoring/protocol parameters
+      used
     - alignment.csv - Lists each of the matched and unmatched system
       and reference instances, along with the matching kernel
       components and similarity scores
@@ -89,6 +102,12 @@ Output:
       system/reference instance pairs
     - figures/DET_<activity>.png - Unless disabled with the '-d'
       option, the DET curve figure for <activity>
+
+  Option/Protocol dependent:
+
+    - object_alignment.csv - For the "ActEV18_AOD" protocol, enabled
+      with '-j'; Lists the frame-by-frame object alignments for each
+      pair of aligned activity instances
 
 Changelog:
 
@@ -103,15 +122,31 @@ Changelog:
       which would cause the script fail when plotting activities with
       no false alarms
 
-  March 5, 2018 - Version *.*.*
+  March 16, 2018 - Version 0.1.0
+    - Renamed the "ActEV18" protocol to "ActEV18_AD", as it's
+      specifically for the Activity Detection task
+    - Added scoring protocol for "ActEV18_AOD".  This protocol
+      includes an option (-j) to dump out the frame-by-frame object
+      alignments for each pair of aligned activity instances
+    - Updated schema and code to expect "presenceConf" instead of
+      "decisionScore" for activity detections.  The headers of some
+      output files have been updated to reflect this change
+    - Changed "config.csv" output to be a serialized JSON, named
+      "scoring_parameters.json"
+    - Added a command line option to accept a scoring parameters JSON
+      file to overwrite the protocol's default parameters for the
+      scoring run
+    - The script now checks the file index against the
+      "filesProcessed" reported in the system output file for
+      congruence
     - Added N-MIDE measure to aggregate scores, which is computed over
       the entire alignment (regardless of activity) in addition to the
       already reported N-MIDE macro-averaged over activities
       (currently reported as "mean-n-mide")
-    - Changed "config.csv" output to be a serialized JSON object,
-      named "scoring_parameters.json"
-    - Renamed the "ActEV18" protocol to "ActEV18_AD", as it's
-      specifically for the Activity Detection task
+    - The N-MIDE computation now ignores pairs where the reference
+      instance has been reduced to a duration of zero due to the size
+      of the no-score collar.  The number of ignored pairs are
+      reported as "n-mide_num_rejected"
 
 Contact:
 

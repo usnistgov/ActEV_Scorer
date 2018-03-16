@@ -265,7 +265,7 @@ def score_actev18_aod(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Soring script for the NIST ActEV evaluation")
 
-    subparsers = parser.add_subparsers(help="Scoring protocols")
+    subparsers = parser.add_subparsers(help="Scoring protocols.  Include the '-h' argument after the selected protocol to see it's usage (e.g. ActEV18_AD -h)")
 
     base_args = [[["-s", "--system-output-file"], dict(help="System output JSON file", type=str, required=True)],
                  [["-r", "--reference-file"], dict(help="Reference JSON file", type=str, required=True)],
