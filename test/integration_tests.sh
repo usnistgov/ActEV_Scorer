@@ -103,6 +103,20 @@ test_3_1() {
 	-v
 }
 
+# integration test 3-2
+# Testing multi-file input
+test_3_2() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AD" \
+	-s "data/test_3-2_fake-sysout.json" \
+	-r "data/test_3-2.json" \
+	-a "data/test_3-0_activity-index.json" \
+	-f "data/test_3-2_file-index.json" \
+	-o "$1" \
+	-d \
+	-v
+}
+
 # integration test 4-0
 test_4_0() {
     ../ActEV_Scorer.py \

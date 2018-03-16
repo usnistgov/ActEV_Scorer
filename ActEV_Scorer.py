@@ -151,13 +151,13 @@ def check_file_index_congruence(log, system_output, file_index):
 
     log(1, "[Info] Checking file index against system's \"filesProcessed\"")
     for m in missing:
-        log(0, "[Error] Missing file '{}' from system's \"filesProcessed\"")
+        log(0, "[Error] Missing file '{}' from system's \"filesProcessed\"".format(m))
 
     for e in extraneous:
-        log(0, "[Error] Extraneous file '{}' in system's \"filesProcessed\"")
+        log(0, "[Error] Extraneous file '{}' in system's \"filesProcessed\"".format(e))
 
     if len(missing) + len(extraneous) > 0:
-        error_quit("[Error] System \"filesProcessed\" and file index are incongruent. Aborting!")
+        err_quit("[Error] System \"filesProcessed\" and file index are incongruent. Aborting!")
 
     return True
 

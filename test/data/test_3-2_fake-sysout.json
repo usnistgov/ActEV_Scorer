@@ -1,0 +1,2672 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4",
+    "VIRAT_S_999999.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing",
+      "activityID": 1,
+      "presenceConf": 0.756,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3034": 1,
+          "3062": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 26,
+      "presenceConf": 0.774,
+      "alertFrame": 19982,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "19945": 1,
+          "19982": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 27,
+      "presenceConf": 0.769,
+      "alertFrame": 6098,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "6067": 1,
+          "6098": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 30,
+      "presenceConf": 0.789,
+      "alertFrame": 9347,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "9318": 1,
+          "9347": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 49,
+      "presenceConf": 0.865,
+      "alertFrame": 3892,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3847": 1,
+          "3892": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 80,
+      "presenceConf": 0.795,
+      "alertFrame": 19615,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "19581": 1,
+          "19615": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 84,
+      "presenceConf": 0.652,
+      "alertFrame": 13199,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "13175": 1,
+          "13199": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 115,
+      "presenceConf": 0.515,
+      "alertFrame": 13119,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "13098": 1,
+          "13119": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 123,
+      "presenceConf": 0.807,
+      "alertFrame": 19492,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "19470": 1,
+          "19492": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 143,
+      "presenceConf": 0.529,
+      "alertFrame": 10500,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "10469": 1,
+          "10500": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 150,
+      "presenceConf": 0.685,
+      "alertFrame": 3084,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "2560": 1,
+          "3084": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 156,
+      "presenceConf": 0.909,
+      "alertFrame": 19114,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "18642": 1,
+          "19114": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 160,
+      "presenceConf": 0.254,
+      "alertFrame": 20228,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "19538": 1,
+          "20228": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 165,
+      "presenceConf": 0.351,
+      "alertFrame": 9391,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "8837": 1,
+          "9391": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 197,
+      "presenceConf": 0.894,
+      "alertFrame": 4028,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3806": 1,
+          "4028": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 198,
+      "presenceConf": 0.124,
+      "alertFrame": 19936,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "18967": 1,
+          "19936": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 201,
+      "presenceConf": 0.036,
+      "alertFrame": 17282,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "16727": 1,
+          "17282": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 215,
+      "presenceConf": 0.431,
+      "alertFrame": 14434,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "13807": 1,
+          "14434": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 219,
+      "presenceConf": 0.68,
+      "alertFrame": 7277,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "7142": 1,
+          "7277": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 240,
+      "presenceConf": 0.96,
+      "alertFrame": 4016,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3589": 1,
+          "4016": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 242,
+      "presenceConf": 0.946,
+      "alertFrame": 4784,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "4690": 1,
+          "4784": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 250,
+      "presenceConf": 0.654,
+      "alertFrame": 4600,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "4053": 1,
+          "4600": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 254,
+      "presenceConf": 0.931,
+      "alertFrame": 20567,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "20033": 1,
+          "20567": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 258,
+      "presenceConf": 0.115,
+      "alertFrame": 5395,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "4859": 1,
+          "5395": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 260,
+      "presenceConf": 0.508,
+      "alertFrame": 9262,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "8942": 1,
+          "9262": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 276,
+      "presenceConf": 0.226,
+      "alertFrame": 15318,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "14430": 1,
+          "15318": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 280,
+      "presenceConf": 0.842,
+      "alertFrame": 4242,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3558": 1,
+          "4242": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 287,
+      "presenceConf": 0.35,
+      "alertFrame": 3992,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3198": 1,
+          "3992": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 311,
+      "presenceConf": 0.369,
+      "alertFrame": 17192,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "16776": 1,
+          "17192": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 322,
+      "presenceConf": 0.8,
+      "alertFrame": 19384,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "18749": 1,
+          "19384": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 345,
+      "presenceConf": 0.586,
+      "alertFrame": 2715,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "2255": 1,
+          "2715": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 356,
+      "presenceConf": 0.584,
+      "alertFrame": 14778,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "14708": 1,
+          "14778": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 375,
+      "presenceConf": 0.063,
+      "alertFrame": 5417,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "4749": 1,
+          "5417": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 378,
+      "presenceConf": 0.621,
+      "alertFrame": 1953,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "1889": 1,
+          "1953": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 387,
+      "presenceConf": 0.97,
+      "alertFrame": 4999,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "4108": 1,
+          "4999": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 428,
+      "presenceConf": 0.45,
+      "alertFrame": 20277,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "20041": 1,
+          "20277": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 471,
+      "presenceConf": 0.935,
+      "alertFrame": 12466,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "11827": 1,
+          "12466": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 473,
+      "presenceConf": 0.28,
+      "alertFrame": 2959,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "2065": 1,
+          "2959": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 486,
+      "presenceConf": 0.505,
+      "alertFrame": 7097,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "6658": 1,
+          "7097": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 498,
+      "presenceConf": 0.046,
+      "alertFrame": 20756,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "20197": 1,
+          "20756": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 499,
+      "presenceConf": 0.299,
+      "alertFrame": 15013,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "14942": 1,
+          "15013": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 519,
+      "presenceConf": 0.307,
+      "alertFrame": 12510,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "11693": 1,
+          "12510": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 522,
+      "presenceConf": 0.352,
+      "alertFrame": 9780,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "9425": 1,
+          "9780": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 523,
+      "presenceConf": 0.896,
+      "alertFrame": 2924,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "2687": 1,
+          "2924": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 541,
+      "presenceConf": 0.08,
+      "alertFrame": 8983,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "8522": 1,
+          "8983": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 550,
+      "presenceConf": 0.171,
+      "alertFrame": 20941,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "20594": 1,
+          "20941": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 564,
+      "presenceConf": 0.702,
+      "alertFrame": 6486,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "6354": 1,
+          "6486": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 582,
+      "presenceConf": 0.215,
+      "alertFrame": 4442,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3503": 1,
+          "4442": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 583,
+      "presenceConf": 0.127,
+      "alertFrame": 16663,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "15900": 1,
+          "16663": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 586,
+      "presenceConf": 0.573,
+      "alertFrame": 20941,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "20911": 1,
+          "20941": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 619,
+      "presenceConf": 0.685,
+      "alertFrame": 20809,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "20476": 1,
+          "20809": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 620,
+      "presenceConf": 0.567,
+      "alertFrame": 18848,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "18614": 1,
+          "18848": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 623,
+      "presenceConf": 0.143,
+      "alertFrame": 11493,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "10835": 1,
+          "11493": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 628,
+      "presenceConf": 0.13,
+      "alertFrame": 16476,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "16231": 1,
+          "16476": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 637,
+      "presenceConf": 0.64,
+      "alertFrame": 18987,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "18950": 1,
+          "18987": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 648,
+      "presenceConf": 0.992,
+      "alertFrame": 18224,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "17774": 1,
+          "18224": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 669,
+      "presenceConf": 0.434,
+      "alertFrame": 14676,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "13951": 1,
+          "14676": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 676,
+      "presenceConf": 0.113,
+      "alertFrame": 5246,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "5150": 1,
+          "5246": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 688,
+      "presenceConf": 0.173,
+      "alertFrame": 7196,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "6695": 1,
+          "7196": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 689,
+      "presenceConf": 0.499,
+      "alertFrame": 17836,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "17640": 1,
+          "17836": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 705,
+      "presenceConf": 0.93,
+      "alertFrame": 2160,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "1365": 1,
+          "2160": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 706,
+      "presenceConf": 0.005,
+      "alertFrame": 2518,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "2005": 1,
+          "2518": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 712,
+      "presenceConf": 0.872,
+      "alertFrame": 5155,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "4761": 1,
+          "5155": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 744,
+      "presenceConf": 0.462,
+      "alertFrame": 4158,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3344": 1,
+          "4158": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 755,
+      "presenceConf": 0.02,
+      "alertFrame": 14812,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "13959": 1,
+          "14812": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 763,
+      "presenceConf": 0.176,
+      "alertFrame": 6484,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "5528": 1,
+          "6484": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 776,
+      "presenceConf": 0.682,
+      "alertFrame": 9849,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "9819": 1,
+          "9849": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 778,
+      "presenceConf": 0.606,
+      "alertFrame": 12892,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "12127": 1,
+          "12892": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 784,
+      "presenceConf": 0.034,
+      "alertFrame": 5302,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "4485": 1,
+          "5302": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 792,
+      "presenceConf": 0.708,
+      "alertFrame": 2424,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "1830": 1,
+          "2424": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 809,
+      "presenceConf": 0.615,
+      "alertFrame": 9843,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "9242": 1,
+          "9843": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 834,
+      "presenceConf": 0.893,
+      "alertFrame": 8686,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "7831": 1,
+          "8686": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 860,
+      "presenceConf": 0.679,
+      "alertFrame": 19508,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "18578": 1,
+          "19508": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 872,
+      "presenceConf": 0.287,
+      "alertFrame": 18141,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "17216": 1,
+          "18141": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 882,
+      "presenceConf": 0.132,
+      "alertFrame": 2761,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "2191": 1,
+          "2761": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 885,
+      "presenceConf": 0.055,
+      "alertFrame": 20239,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "19899": 1,
+          "20239": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 896,
+      "presenceConf": 0.069,
+      "alertFrame": 10255,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "10220": 1,
+          "10255": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 904,
+      "presenceConf": 0.307,
+      "alertFrame": 10521,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "9723": 1,
+          "10521": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 979,
+      "presenceConf": 0.816,
+      "alertFrame": 2248,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "1316": 1,
+          "2248": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 981,
+      "presenceConf": 0.376,
+      "alertFrame": 3004,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "2831": 1,
+          "3004": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 990,
+      "presenceConf": 0.902,
+      "alertFrame": 6807,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "6349": 1,
+          "6807": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 1007,
+      "presenceConf": 0.99,
+      "alertFrame": 4639,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "4404": 1,
+          "4639": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 1015,
+      "presenceConf": 0.668,
+      "alertFrame": 2997,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "2000": 1,
+          "2997": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 1022,
+      "presenceConf": 0.723,
+      "alertFrame": 7853,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "6909": 1,
+          "7853": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 1031,
+      "presenceConf": 0.591,
+      "alertFrame": 11180,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "11083": 1,
+          "11180": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 1035,
+      "presenceConf": 0.068,
+      "alertFrame": 11942,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "11416": 1,
+          "11942": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 1049,
+      "presenceConf": 0.396,
+      "alertFrame": 14135,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "14089": 1,
+          "14135": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 1051,
+      "presenceConf": 0.202,
+      "alertFrame": 1608,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "759": 1,
+          "1608": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 1062,
+      "presenceConf": 0.318,
+      "alertFrame": 7086,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "6388": 1,
+          "7086": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 1075,
+      "presenceConf": 0.548,
+      "alertFrame": 15050,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "14954": 1,
+          "15050": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 1132,
+      "presenceConf": 0.306,
+      "alertFrame": 12135,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "12073": 1,
+          "12135": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 1136,
+      "presenceConf": 0.955,
+      "alertFrame": 13186,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "12677": 1,
+          "13186": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 1154,
+      "presenceConf": 0.179,
+      "alertFrame": 3064,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "2582": 1,
+          "3064": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 1158,
+      "presenceConf": 0.653,
+      "alertFrame": 1878,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "1769": 1,
+          "1878": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 1167,
+      "presenceConf": 0.953,
+      "alertFrame": 2513,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "1878": 1,
+          "2513": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 1173,
+      "presenceConf": 0.639,
+      "alertFrame": 17819,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "17709": 1,
+          "17819": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 1184,
+      "presenceConf": 0.608,
+      "alertFrame": 11938,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "11752": 1,
+          "11938": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 1190,
+      "presenceConf": 0.259,
+      "alertFrame": 19608,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "18731": 1,
+          "19608": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 1202,
+      "presenceConf": 0.218,
+      "alertFrame": 2476,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "1857": 1,
+          "2476": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 1228,
+      "presenceConf": 0.572,
+      "alertFrame": 4884,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "4026": 1,
+          "4884": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 1248,
+      "presenceConf": 0.499,
+      "alertFrame": 4187,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3486": 1,
+          "4187": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 1249,
+      "presenceConf": 0.947,
+      "alertFrame": 5561,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "5278": 1,
+          "5561": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 1260,
+      "presenceConf": 0.682,
+      "alertFrame": 14835,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "14097": 1,
+          "14835": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 1269,
+      "presenceConf": 0.47,
+      "alertFrame": 10332,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "9475": 1,
+          "10332": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 1273,
+      "presenceConf": 0.422,
+      "alertFrame": 4244,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3665": 1,
+          "4244": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 1277,
+      "presenceConf": 0.195,
+      "alertFrame": 12743,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "12486": 1,
+          "12743": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 1297,
+      "presenceConf": 0.352,
+      "alertFrame": 17663,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "16996": 1,
+          "17663": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 1298,
+      "presenceConf": 0.913,
+      "alertFrame": 9331,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "8624": 1,
+          "9331": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 1309,
+      "presenceConf": 0.153,
+      "alertFrame": 3082,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "2613": 1,
+          "3082": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 1310,
+      "presenceConf": 0.226,
+      "alertFrame": 7337,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "6441": 1,
+          "7337": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 1311,
+      "presenceConf": 0.622,
+      "alertFrame": 19789,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "19011": 1,
+          "19789": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 91,
+      "presenceConf": 0.756,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "3034": 1,
+          "3062": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 926,
+      "presenceConf": 0.774,
+      "alertFrame": 19982,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "19945": 1,
+          "19982": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 927,
+      "presenceConf": 0.769,
+      "alertFrame": 6098,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "6067": 1,
+          "6098": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 930,
+      "presenceConf": 0.789,
+      "alertFrame": 9347,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "9318": 1,
+          "9347": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 949,
+      "presenceConf": 0.865,
+      "alertFrame": 3892,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "3847": 1,
+          "3892": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 980,
+      "presenceConf": 0.795,
+      "alertFrame": 19615,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "19581": 1,
+          "19615": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 984,
+      "presenceConf": 0.652,
+      "alertFrame": 13199,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "13175": 1,
+          "13199": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9115,
+      "presenceConf": 0.515,
+      "alertFrame": 13119,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "13098": 1,
+          "13119": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9123,
+      "presenceConf": 0.807,
+      "alertFrame": 19492,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "19470": 1,
+          "19492": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9143,
+      "presenceConf": 0.529,
+      "alertFrame": 10500,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "10469": 1,
+          "10500": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9150,
+      "presenceConf": 0.685,
+      "alertFrame": 3084,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "2560": 1,
+          "3084": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9156,
+      "presenceConf": 0.909,
+      "alertFrame": 19114,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "18642": 1,
+          "19114": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9160,
+      "presenceConf": 0.254,
+      "alertFrame": 20228,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "19538": 1,
+          "20228": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9165,
+      "presenceConf": 0.351,
+      "alertFrame": 9391,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "8837": 1,
+          "9391": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9197,
+      "presenceConf": 0.894,
+      "alertFrame": 4028,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "3806": 1,
+          "4028": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9198,
+      "presenceConf": 0.124,
+      "alertFrame": 19936,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "18967": 1,
+          "19936": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9201,
+      "presenceConf": 0.036,
+      "alertFrame": 17282,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "16727": 1,
+          "17282": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9215,
+      "presenceConf": 0.431,
+      "alertFrame": 14434,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "13807": 1,
+          "14434": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9219,
+      "presenceConf": 0.68,
+      "alertFrame": 7277,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "7142": 1,
+          "7277": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9240,
+      "presenceConf": 0.96,
+      "alertFrame": 4016,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "3589": 1,
+          "4016": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9242,
+      "presenceConf": 0.946,
+      "alertFrame": 4784,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "4690": 1,
+          "4784": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9250,
+      "presenceConf": 0.654,
+      "alertFrame": 4600,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "4053": 1,
+          "4600": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9254,
+      "presenceConf": 0.931,
+      "alertFrame": 20567,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "20033": 1,
+          "20567": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9258,
+      "presenceConf": 0.115,
+      "alertFrame": 5395,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "4859": 1,
+          "5395": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9260,
+      "presenceConf": 0.508,
+      "alertFrame": 9262,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "8942": 1,
+          "9262": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9276,
+      "presenceConf": 0.226,
+      "alertFrame": 15318,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "14430": 1,
+          "15318": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9280,
+      "presenceConf": 0.842,
+      "alertFrame": 4242,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "3558": 1,
+          "4242": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9287,
+      "presenceConf": 0.35,
+      "alertFrame": 3992,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "3198": 1,
+          "3992": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9311,
+      "presenceConf": 0.369,
+      "alertFrame": 17192,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "16776": 1,
+          "17192": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9322,
+      "presenceConf": 0.8,
+      "alertFrame": 19384,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "18749": 1,
+          "19384": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9345,
+      "presenceConf": 0.586,
+      "alertFrame": 2715,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "2255": 1,
+          "2715": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9356,
+      "presenceConf": 0.584,
+      "alertFrame": 14778,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "14708": 1,
+          "14778": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9375,
+      "presenceConf": 0.063,
+      "alertFrame": 5417,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "4749": 1,
+          "5417": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9378,
+      "presenceConf": 0.621,
+      "alertFrame": 1953,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "1889": 1,
+          "1953": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9387,
+      "presenceConf": 0.97,
+      "alertFrame": 4999,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "4108": 1,
+          "4999": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9428,
+      "presenceConf": 0.45,
+      "alertFrame": 20277,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "20041": 1,
+          "20277": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9471,
+      "presenceConf": 0.935,
+      "alertFrame": 12466,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "11827": 1,
+          "12466": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9473,
+      "presenceConf": 0.28,
+      "alertFrame": 2959,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "2065": 1,
+          "2959": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9486,
+      "presenceConf": 0.505,
+      "alertFrame": 7097,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "6658": 1,
+          "7097": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9498,
+      "presenceConf": 0.046,
+      "alertFrame": 20756,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "20197": 1,
+          "20756": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9499,
+      "presenceConf": 0.299,
+      "alertFrame": 15013,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "14942": 1,
+          "15013": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9519,
+      "presenceConf": 0.307,
+      "alertFrame": 12510,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "11693": 1,
+          "12510": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9522,
+      "presenceConf": 0.352,
+      "alertFrame": 9780,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "9425": 1,
+          "9780": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9523,
+      "presenceConf": 0.896,
+      "alertFrame": 2924,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "2687": 1,
+          "2924": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9541,
+      "presenceConf": 0.08,
+      "alertFrame": 8983,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "8522": 1,
+          "8983": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9550,
+      "presenceConf": 0.171,
+      "alertFrame": 20941,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "20594": 1,
+          "20941": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9564,
+      "presenceConf": 0.702,
+      "alertFrame": 6486,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "6354": 1,
+          "6486": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9582,
+      "presenceConf": 0.215,
+      "alertFrame": 4442,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "3503": 1,
+          "4442": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9583,
+      "presenceConf": 0.127,
+      "alertFrame": 16663,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "15900": 1,
+          "16663": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9586,
+      "presenceConf": 0.573,
+      "alertFrame": 20941,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "20911": 1,
+          "20941": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9619,
+      "presenceConf": 0.685,
+      "alertFrame": 20809,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "20476": 1,
+          "20809": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9620,
+      "presenceConf": 0.567,
+      "alertFrame": 18848,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "18614": 1,
+          "18848": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9623,
+      "presenceConf": 0.143,
+      "alertFrame": 11493,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "10835": 1,
+          "11493": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9628,
+      "presenceConf": 0.13,
+      "alertFrame": 16476,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "16231": 1,
+          "16476": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9637,
+      "presenceConf": 0.64,
+      "alertFrame": 18987,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "18950": 1,
+          "18987": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9648,
+      "presenceConf": 0.992,
+      "alertFrame": 18224,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "17774": 1,
+          "18224": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9669,
+      "presenceConf": 0.434,
+      "alertFrame": 14676,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "13951": 1,
+          "14676": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9676,
+      "presenceConf": 0.113,
+      "alertFrame": 5246,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "5150": 1,
+          "5246": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9688,
+      "presenceConf": 0.173,
+      "alertFrame": 7196,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "6695": 1,
+          "7196": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9689,
+      "presenceConf": 0.499,
+      "alertFrame": 17836,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "17640": 1,
+          "17836": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9705,
+      "presenceConf": 0.93,
+      "alertFrame": 2160,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "1365": 1,
+          "2160": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9706,
+      "presenceConf": 0.005,
+      "alertFrame": 2518,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "2005": 1,
+          "2518": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9712,
+      "presenceConf": 0.872,
+      "alertFrame": 5155,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "4761": 1,
+          "5155": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9744,
+      "presenceConf": 0.462,
+      "alertFrame": 4158,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "3344": 1,
+          "4158": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9755,
+      "presenceConf": 0.02,
+      "alertFrame": 14812,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "13959": 1,
+          "14812": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9763,
+      "presenceConf": 0.176,
+      "alertFrame": 6484,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "5528": 1,
+          "6484": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9776,
+      "presenceConf": 0.682,
+      "alertFrame": 9849,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "9819": 1,
+          "9849": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 9778,
+      "presenceConf": 0.606,
+      "alertFrame": 12892,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "12127": 1,
+          "12892": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9784,
+      "presenceConf": 0.034,
+      "alertFrame": 5302,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "4485": 1,
+          "5302": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9792,
+      "presenceConf": 0.708,
+      "alertFrame": 2424,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "1830": 1,
+          "2424": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9809,
+      "presenceConf": 0.615,
+      "alertFrame": 9843,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "9242": 1,
+          "9843": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9834,
+      "presenceConf": 0.893,
+      "alertFrame": 8686,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "7831": 1,
+          "8686": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9860,
+      "presenceConf": 0.679,
+      "alertFrame": 19508,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "18578": 1,
+          "19508": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9872,
+      "presenceConf": 0.287,
+      "alertFrame": 18141,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "17216": 1,
+          "18141": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9882,
+      "presenceConf": 0.132,
+      "alertFrame": 2761,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "2191": 1,
+          "2761": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9885,
+      "presenceConf": 0.055,
+      "alertFrame": 20239,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "19899": 1,
+          "20239": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9896,
+      "presenceConf": 0.069,
+      "alertFrame": 10255,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "10220": 1,
+          "10255": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9904,
+      "presenceConf": 0.307,
+      "alertFrame": 10521,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "9723": 1,
+          "10521": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9979,
+      "presenceConf": 0.816,
+      "alertFrame": 2248,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "1316": 1,
+          "2248": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9981,
+      "presenceConf": 0.376,
+      "alertFrame": 3004,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "2831": 1,
+          "3004": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 9990,
+      "presenceConf": 0.902,
+      "alertFrame": 6807,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "6349": 1,
+          "6807": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 91007,
+      "presenceConf": 0.99,
+      "alertFrame": 4639,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "4404": 1,
+          "4639": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 91015,
+      "presenceConf": 0.668,
+      "alertFrame": 2997,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "2000": 1,
+          "2997": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 91022,
+      "presenceConf": 0.723,
+      "alertFrame": 7853,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "6909": 1,
+          "7853": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 91031,
+      "presenceConf": 0.591,
+      "alertFrame": 11180,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "11083": 1,
+          "11180": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 91035,
+      "presenceConf": 0.068,
+      "alertFrame": 11942,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "11416": 1,
+          "11942": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 91049,
+      "presenceConf": 0.396,
+      "alertFrame": 14135,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "14089": 1,
+          "14135": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 91051,
+      "presenceConf": 0.202,
+      "alertFrame": 1608,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "759": 1,
+          "1608": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 91062,
+      "presenceConf": 0.318,
+      "alertFrame": 7086,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "6388": 1,
+          "7086": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 91075,
+      "presenceConf": 0.548,
+      "alertFrame": 15050,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "14954": 1,
+          "15050": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 91132,
+      "presenceConf": 0.306,
+      "alertFrame": 12135,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "12073": 1,
+          "12135": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 91136,
+      "presenceConf": 0.955,
+      "alertFrame": 13186,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "12677": 1,
+          "13186": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 91154,
+      "presenceConf": 0.179,
+      "alertFrame": 3064,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "2582": 1,
+          "3064": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 91158,
+      "presenceConf": 0.653,
+      "alertFrame": 1878,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "1769": 1,
+          "1878": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 91167,
+      "presenceConf": 0.953,
+      "alertFrame": 2513,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "1878": 1,
+          "2513": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 91173,
+      "presenceConf": 0.639,
+      "alertFrame": 17819,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "17709": 1,
+          "17819": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 91184,
+      "presenceConf": 0.608,
+      "alertFrame": 11938,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "11752": 1,
+          "11938": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 91190,
+      "presenceConf": 0.259,
+      "alertFrame": 19608,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "18731": 1,
+          "19608": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 91202,
+      "presenceConf": 0.218,
+      "alertFrame": 2476,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "1857": 1,
+          "2476": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 91228,
+      "presenceConf": 0.572,
+      "alertFrame": 4884,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "4026": 1,
+          "4884": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 91248,
+      "presenceConf": 0.499,
+      "alertFrame": 4187,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "3486": 1,
+          "4187": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 91249,
+      "presenceConf": 0.947,
+      "alertFrame": 5561,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "5278": 1,
+          "5561": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 91260,
+      "presenceConf": 0.682,
+      "alertFrame": 14835,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "14097": 1,
+          "14835": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 91269,
+      "presenceConf": 0.47,
+      "alertFrame": 10332,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "9475": 1,
+          "10332": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 91273,
+      "presenceConf": 0.422,
+      "alertFrame": 4244,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "3665": 1,
+          "4244": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing_Trunk",
+      "activityID": 91277,
+      "presenceConf": 0.195,
+      "alertFrame": 12743,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "12486": 1,
+          "12743": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 91297,
+      "presenceConf": 0.352,
+      "alertFrame": 17663,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "16996": 1,
+          "17663": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 91298,
+      "presenceConf": 0.913,
+      "alertFrame": 9331,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "8624": 1,
+          "9331": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 91309,
+      "presenceConf": 0.153,
+      "alertFrame": 3082,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "2613": 1,
+          "3082": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 91310,
+      "presenceConf": 0.226,
+      "alertFrame": 7337,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "6441": 1,
+          "7337": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 91311,
+      "presenceConf": 0.622,
+      "alertFrame": 19789,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "19011": 1,
+          "19789": 0
+        }
+      }
+    }
+  ]
+}
