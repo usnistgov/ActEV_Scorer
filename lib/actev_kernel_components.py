@@ -90,15 +90,16 @@ def _object_signals_to_lookup(temporal_signal, local_objects):
 # Using a factory function here so we can configure the object kernel
 # at the protocol level.  Not sure if this is the best place to pass
 # in the weightning functions
-def build_object_congruence_filter(obj_kernel_builder, ref_filter, sys_filter, threshold, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
+def build_object_congruence_filter(obj_kernel_builder, ref_filter, sys_filter, threshold, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x, target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]):
     def _filter(r, s):
-        components = _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa)
+        components = _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa, target_rfas)
         min_mode = components["minMODE"]
+
         return (False if min_mode is None else min_mode < threshold, components)
 
     return _filter
 
-def build_object_congruence(obj_kernel_builder, ref_filter, sys_filter, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x):
+def build_object_congruence(obj_kernel_builder, ref_filter, sys_filter, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x, target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]):
     def object_congruence_component(r, s, cache):
         def _r_out_dict(init, k):
             ok, d = init
@@ -109,12 +110,12 @@ def build_object_congruence(obj_kernel_builder, ref_filter, sys_filter, cmiss = 
 
             return (ok and still_ok, d)
 
-        was_cached, components = reduce(_r_out_dict, [ "minMODE", "MODE_records", "alignment_records" ], (True, {}))
+        was_cached, components = reduce(_r_out_dict, [ "minMODE", "MODE_records", "alignment_records", "det_points", "ref_filter_localization" ] + [ "object-p_miss@{}rfa".format(target_rfa) for target_rfa in target_rfas ], (True, {}))
 
         if was_cached:
             return components
         else:
-            return _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa)
+            return _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa, target_rfas)
 
     return object_congruence_component
 
@@ -127,19 +128,24 @@ def ref_passthrough_filter(r, s):
 def sys_passthrough_filter(r, s):
     return s
 
-def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa):
+def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa, target_rfas):
     ro, so = r.objects, s.objects
 
     # For N_MODE computation, localizations spanning multiple files
     # are treated independently
     total_c, total_m, total_f, total_r = [], [], [], []
     frame_alignment_records = []
+    # We need to report out the ref filter localization for aggregate
+    # PMiss@RFA measurements
+    ref_filter_localization = {}
     for r, s, k in temporal_signal_pairs(r, s):
         local_so_localizations = map(lambda o: o.localization.get(k, S()), so)
         local_ro_localizations = map(lambda o: o.localization.get(k, S()), ro)
 
         sos_lookup = _object_signals_to_lookup(sys_filter(r, s), local_so_localizations)
         ros_lookup = _object_signals_to_lookup(ref_filter(r, s), local_ro_localizations)
+
+        ref_filter_localization[k] = ref_filter(r, s)
 
         for frame in sos_lookup.viewkeys() | ros_lookup.viewkeys():
             sys = sos_lookup.get(frame, [])
@@ -156,14 +162,28 @@ def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, 
 
     num_miss = len(total_m)
     num_correct = len(total_c)
-    def _modes_reducer(init, conf):
+
+    ref_filter_area = sum([ v.area() for v in ref_filter_localization.values() ])
+
+    def _conf_sweep_reducer(init, conf):
+        mode_scores, det_points = init
         num_filtered_c = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_c))
         num_filtered_fa = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_f))
         num_miss_w_filtered_c = num_miss + num_correct - num_filtered_c
-        init.append((conf, mode(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, cmiss, cfa)))
+        mode_scores.append((conf, mode(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, cmiss, cfa)))
+        det_points.append((conf, r_fa(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, ref_filter_area), p_miss(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa)))
+
         return init
 
-    mode_scores = reduce(_modes_reducer, sorted(list({ ar.sys.presenceConf for ar in total_c + total_f })), [])
-    min_mode = min(map(lambda x: x[1], mode_scores)) if len(mode_scores) > 0 else None
+    mode_scores, det_points = reduce(_conf_sweep_reducer, sorted(list({ ar.sys.presenceConf for ar in total_c + total_f })), ([], []))
 
-    return { "minMODE": min_mode, "MODE_records": mode_scores, "alignment_records": frame_alignment_records }
+    min_mode = min(map(lambda x: x[1], mode_scores)) if len(mode_scores) > 0 else None
+    pmiss_at_rfa_measures = { "object-p_miss@{}rfa".format(target_rfa): p_miss_at_r_fa(det_points, target_rfa) for target_rfa in target_rfas }
+
+    out_components = { "minMODE": min_mode,
+                       "MODE_records": mode_scores,
+                       "alignment_records": frame_alignment_records,
+                       "det_points": det_points,
+                       "ref_filter_localization": ref_filter_localization }
+
+    return merge_dicts(out_components, pmiss_at_rfa_measures)

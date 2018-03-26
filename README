@@ -84,6 +84,10 @@ Protocols:
   The following additional measure are computed:
     - minMODE - The minimum NMODE score for an object detection
       alignment; reported for each aligned activity instance pair
+    - PMiss at RFA for RFA values of 0.5, 0.2, 0.1, 0.033 for object
+      detections (these measures are prefixed with "object-" to
+      differentiate them from PMiss at RFA measures on activity
+      detections)
 
 Output:
 
@@ -148,7 +152,9 @@ Changelog:
       of the no-score collar.  The number of ignored pairs are
       reported as "n-mide_num_rejected"
 
-  March 23, 2018 - Version *.*.*
+  March 26, 2018 - Version *.*.*
+    - Added object detection PMiss@RFA measures for the "ActEV18_AOD"
+      protocol
     - Fixed an issue where DET curve points with PMiss of 1 or 0
       weren't being plotted.  Note that these points will not be
       directly visible within the DET curve figures due to the y-axis

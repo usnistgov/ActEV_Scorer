@@ -107,20 +107,54 @@ class ActEV18_AOD():
 
         alignment_metrics = { "n-mide": self._build_nmide(file_framedur_lookup, scoring_parameters["nmide_ns_collar_size"]),
                               "n-mide_num_rejected": self._build_nmide_count_rejects(scoring_parameters["nmide_ns_collar_size"])}
-        det_curve_metrics = { "p_miss@1rfa": self._build_pmiss_at_rfa(1),
-                              "p_miss@0.2rfa": self._build_pmiss_at_rfa(0.2),
-                              "p_miss@0.15rfa": self._build_pmiss_at_rfa(0.15),
-                              "p_miss@0.1rfa": self._build_pmiss_at_rfa(0.1),
-                              "p_miss@0.03rfa": self._build_pmiss_at_rfa(0.03),
-                              "p_miss@0.01rfa": self._build_pmiss_at_rfa(0.01) }
+
+        object_target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]
+
+        def alignment_metrics_plus(c, m, f):
+            # Build concat object alignment records
+            def _concat_align_recs(init, ar):
+                init.extend(map(lambda x: x[1], ar.kernel_components["alignment_records"]))
+                return init
+
+            combined_alignment_records = reduce(_concat_align_recs, c, [])
+
+            def _localization_reducer(init, loc):
+                # Merges the two temporal localization dictionaries by
+                # "adding" the signals
+                return merge_dicts(init, loc, add)
+
+            ref_filter_area = sum([ v.area() for v in reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], c), {}).values() ])
+
+            obj_c, obj_m, obj_f = reduce(alignment_partitioner, combined_alignment_records, ([], [], []))
+            num_obj_c, num_obj_m, num_obj_f = len(obj_c), len(obj_m), len(obj_f)
+
+            def _sweep_reducer(init, conf):
+                num_filtered_c = len(filter(lambda ar: ar.sys.presenceConf >= conf, obj_c))
+                num_filtered_fa = len(filter(lambda ar: ar.sys.presenceConf >= conf, obj_f))
+                num_miss_w_filtered_c = num_obj_m + num_obj_c - num_filtered_c
+                init.append((conf, r_fa(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, ref_filter_area), p_miss(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa)))
+                return init
+
+            det_points = reduce(_sweep_reducer, sorted(list({ ar.sys.presenceConf for ar in obj_c + obj_f })), [])
+
+            return [ ("object-p_miss@{}rfa".format(target_rfa), p_miss_at_r_fa(det_points, target_rfa)) for target_rfa in object_target_rfas ]
+
+        det_curve_metrics = { "p_miss@{}rfa".format(trfa): self._build_pmiss_at_rfa(trfa) for trfa in [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ] }
 
         pair_metrics = { "temporal_intersection": temporal_intersection,
                          "temporal_union": temporal_union }
-        kernel_component_metrics = { "temporal_intersection-over-union": lambda c: c["temporal_intersection-over-union"],
-                                     "minMODE": lambda c: c["minMODE"] }
+
+        def _build_simple_lookup(component_name):
+            def _lkup(components):
+                return components[component_name]
+
+            return { component_name: _lkup }
+
+        kernel_component_metrics = reduce(merge_dicts, map(_build_simple_lookup, [ "temporal_intersection-over-union", "minMODE" ] + [ "object-p_miss@{}rfa".format(tfa) for tfa in object_target_rfas ]), {})
 
         return (det_point_function,
                 alignment_metrics,
+                alignment_metrics_plus,
                 det_curve_metrics,
                 pair_metrics,
                 kernel_component_metrics)
@@ -160,7 +194,7 @@ class ActEV18_AOD():
         scoring_parameters = self.default_scoring_parameters.copy()
         scoring_parameters.update(input_scoring_parameters)
 
-        det_point_func, alignment_metrics, det_curve_metrics, pair_metrics, kernel_component_metrics = self.build_metrics(scoring_parameters, system_activities, reference_activities, activity_index, file_index)
+        det_point_func, alignment_metrics, alignment_metrics_plus, det_curve_metrics, pair_metrics, kernel_component_metrics = self.build_metrics(scoring_parameters, system_activities, reference_activities, activity_index, file_index)
 
         def _alignment_reducer(init, activity_record):
             activity_name, activity_properties = activity_record
@@ -181,7 +215,6 @@ class ActEV18_AOD():
             pair_metric_recs_array = pair_metric_recs.setdefault(activity_name, [])
             for ar in correct:
                 ref, sys = ar.ref, ar.sys
-
                 for pair_metric, metric_func in pair_metrics.iteritems():
                     pair_metric_recs_array.append((ref, sys, pair_metric, metric_func(ref, sys)))
 
@@ -191,6 +224,8 @@ class ActEV18_AOD():
             metric_recs_array = metric_recs.setdefault(activity_name, [])
             for alignment_metric, metric_func in alignment_metrics.iteritems():
                 metric_recs_array.append((alignment_metric, metric_func(correct, miss, fa)))
+
+            metric_recs_array.extend(alignment_metrics_plus(correct, miss, fa))
 
             num_correct, num_miss, num_fa = len(correct), len(miss), len(fa)
             det_points_array = det_points.setdefault(activity_name, [])
@@ -223,6 +258,8 @@ class ActEV18_AOD():
 
         microavg_alignment_measures = reduce(_compute_microavg_alignment_measures, alignment_metrics.iteritems(), [])
 
+        overall_alignment_measures = alignment_metrics_plus(flat_c, flat_m, flat_f)
+
         def _reformat_alignment_records(init, item):
             key, records = item
 
@@ -252,6 +289,6 @@ class ActEV18_AOD():
                 output_alignment_records,
                 merge_dicts(measure_records, det_curve_measure_records, add),
                 pair_measure_records,
-                mean_alignment_measure_records + microavg_alignment_measures,
+                mean_alignment_measure_records + microavg_alignment_measures + overall_alignment_measures,
                 det_point_records,
                 object_frame_alignment_records)
