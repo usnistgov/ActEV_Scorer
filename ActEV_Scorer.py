@@ -256,7 +256,7 @@ def score_actev18_aod(args):
     write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], aggregate_measure_records)
 
     if args.dump_object_alignment_records:
-        write_records_as_csv("{}/object_alignment.csv".format(args.output_dir), ["activity", "ref_activity", "sys_activity", "frame", "alignment", "ref_object", "sys_object", "sys_presenceconf_score", "kernel_similarity", "kernel_components"], dict_to_records(object_frame_alignment_records))
+        write_records_as_csv("{}/object_alignment.csv".format(args.output_dir), ["activity", "ref_activity", "sys_activity", "frame", "object_type", "alignment", "ref_object", "sys_object", "sys_presenceconf_score", "kernel_similarity", "kernel_components"], dict_to_records(object_frame_alignment_records))
 
     if not args.disable_plotting:
         plot_dets(log, args.output_dir, det_point_records)

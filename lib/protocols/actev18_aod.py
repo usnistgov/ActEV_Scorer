@@ -58,12 +58,12 @@ class ActEV18_AOD():
                                             "epsilon_object_presenceconf_congruence": 1.0e-6,
                                             "temporal_overlap_delta": 0.2,
                                             "spatial_overlap_delta": 0.5,
-                                            "object_congruence_delta": 1.0,
+                                            "object_congruence_delta": 0.0,
                                             "nmide_ns_collar_size": 0 }
 
         self.output_kernel_components = [ "temporal_intersection-over-union",
                                           "presenceconf_congruence",
-                                          "minMODE" ]
+                                          "object_congruence" ]
 
         self.output_object_kernel_components = [ "spatial_intersection-over-union",
                                                  "presenceconf_congruence" ]
@@ -88,7 +88,7 @@ class ActEV18_AOD():
                                                 build_sed_presenceconf_congruence(system_instances)],
                                                {"temporal_intersection-over-union": scoring_parameters["epsilon_temporal_congruence"],
                                                 "presenceconf_congruence": scoring_parameters["epsilon_activity_presenceconf_congruence"],
-                                                "minMODE": scoring_parameters["epsilon_object_congruence"]})
+                                                "object_congruence": scoring_parameters["epsilon_object_congruence"]})
 
     def build_metrics(self,
                       scoring_parameters,
@@ -144,6 +144,24 @@ class ActEV18_AOD():
         pair_metrics = { "temporal_intersection": temporal_intersection,
                          "temporal_union": temporal_union }
 
+        def pair_aggregate_metrics(pair_metrics):
+            def _grouper(metric_rec):
+                ref, sys, name, val = metric_rec
+                return name
+
+            def _mapper(metric_rec):
+                ref, sys, name, val = metric_rec
+                return val
+
+            pair_metrics_dict = group_by_func(_grouper, pair_metrics, _mapper)
+
+            def _r(init, metric):
+                n = "mean-{}".format(metric)
+                init.append((n, mean_exclude_none(pair_metrics_dict.get(metric, []))))
+                return init
+
+            return reduce(_r, [ "object-p_miss@{}rfa".format(target_rfa) for target_rfa in object_target_rfas ], [])
+
         def _build_simple_lookup(component_name):
             def _lkup(components):
                 return components[component_name]
@@ -157,6 +175,7 @@ class ActEV18_AOD():
                 alignment_metrics_plus,
                 det_curve_metrics,
                 pair_metrics,
+                pair_aggregate_metrics,
                 kernel_component_metrics)
 
 
@@ -194,7 +213,7 @@ class ActEV18_AOD():
         scoring_parameters = self.default_scoring_parameters.copy()
         scoring_parameters.update(input_scoring_parameters)
 
-        det_point_func, alignment_metrics, alignment_metrics_plus, det_curve_metrics, pair_metrics, kernel_component_metrics = self.build_metrics(scoring_parameters, system_activities, reference_activities, activity_index, file_index)
+        det_point_func, alignment_metrics, alignment_metrics_plus, det_curve_metrics, pair_metrics, pair_aggregate_metrics, kernel_component_metrics = self.build_metrics(scoring_parameters, system_activities, reference_activities, activity_index, file_index)
 
         def _alignment_reducer(init, activity_record):
             activity_name, activity_properties = activity_record
@@ -212,20 +231,24 @@ class ActEV18_AOD():
             # Add to alignment records
             alignment_recs.setdefault(activity_name, []).extend(correct + miss + fa)
 
-            pair_metric_recs_array = pair_metric_recs.setdefault(activity_name, [])
+            local_pair_metric_recs = []
             for ar in correct:
                 ref, sys = ar.ref, ar.sys
                 for pair_metric, metric_func in pair_metrics.iteritems():
-                    pair_metric_recs_array.append((ref, sys, pair_metric, metric_func(ref, sys)))
+                    local_pair_metric_recs.append((ref, sys, pair_metric, metric_func(ref, sys)))
 
                 for kernel_component_metric, metric_func in kernel_component_metrics.iteritems():
-                    pair_metric_recs_array.append((ref, sys, kernel_component_metric, metric_func(ar.kernel_components)))
+                    local_pair_metric_recs.append((ref, sys, kernel_component_metric, metric_func(ar.kernel_components)))
+
+            pair_metric_recs_array = pair_metric_recs.setdefault(activity_name, [])
+            pair_metric_recs_array.extend(local_pair_metric_recs)
 
             metric_recs_array = metric_recs.setdefault(activity_name, [])
             for alignment_metric, metric_func in alignment_metrics.iteritems():
                 metric_recs_array.append((alignment_metric, metric_func(correct, miss, fa)))
 
             metric_recs_array.extend(alignment_metrics_plus(correct, miss, fa))
+            metric_recs_array.extend(pair_aggregate_metrics(local_pair_metric_recs))
 
             num_correct, num_miss, num_fa = len(correct), len(miss), len(fa)
             det_points_array = det_points.setdefault(activity_name, [])
@@ -276,7 +299,8 @@ class ActEV18_AOD():
                     frame, ar = frame_ar
                     return [str(item.ref),
                             str(item.sys),
-                            str(frame)] + [ x for x in ar.iter_with_extended_properties(self.output_object_kernel_components) ]
+                            str(frame),
+                            str(ar.ref.objectType if ar.ref is not None else ar.sys.objectType)] + [ x for x in ar.iter_with_extended_properties(self.output_object_kernel_components) ]
 
                 return map(_subm, item.kernel_components.get("alignment_records", []))
 

@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.1.0
-Date: March 16, 2018
+Version: 0.1.1
+Date: March 27, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -152,9 +152,16 @@ Changelog:
       of the no-score collar.  The number of ignored pairs are
       reported as "n-mide_num_rejected"
 
-  March 26, 2018 - Version *.*.*
+  March 27, 2018 - Version 0.1.1
     - Added object detection PMiss@RFA measures for the "ActEV18_AOD"
       protocol
+    - Fixed object congruence calculation for "ActEV18_AOD".  Should
+      be calculated as 1 - minMODE, rather than simply minMODE
+      (**NOTE** this change affects alignment, and as a result your
+      scores may have changed from the previous version)
+    - For "ActEV18_AOD", updated the default object congruence delta
+      to be 0 instead of 1 to reflect the updated object congruence
+      calculation
     - Fixed an issue where DET curve points with PMiss of 1 or 0
       weren't being plotted.  Note that these points will not be
       directly visible within the DET curve figures due to the y-axis

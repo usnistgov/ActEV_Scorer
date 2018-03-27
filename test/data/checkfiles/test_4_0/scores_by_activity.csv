@@ -1,4 +1,8 @@
 activity|metric_name|metric_value
+Closing|mean-object-p_miss@0.033rfa|0.5
+Closing|mean-object-p_miss@0.1rfa|0.5
+Closing|mean-object-p_miss@0.2rfa|0.5
+Closing|mean-object-p_miss@0.5rfa|0.178571428571
 Closing|n-mide|0.0
 Closing|n-mide_num_rejected|0
 Closing|object-p_miss@0.033rfa|0.5
@@ -11,6 +15,10 @@ Closing|p_miss@0.15rfa|0.0
 Closing|p_miss@0.1rfa|0.0
 Closing|p_miss@0.2rfa|0.0
 Closing|p_miss@1rfa|0.0
+Entering|mean-object-p_miss@0.033rfa|0.0
+Entering|mean-object-p_miss@0.1rfa|0.0
+Entering|mean-object-p_miss@0.2rfa|0.0
+Entering|mean-object-p_miss@0.5rfa|0.0
 Entering|n-mide|0.0
 Entering|n-mide_num_rejected|0
 Entering|object-p_miss@0.033rfa|0.0

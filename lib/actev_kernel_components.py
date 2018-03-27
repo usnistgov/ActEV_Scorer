@@ -93,9 +93,9 @@ def _object_signals_to_lookup(temporal_signal, local_objects):
 def build_object_congruence_filter(obj_kernel_builder, ref_filter, sys_filter, threshold, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x, target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]):
     def _filter(r, s):
         components = _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa, target_rfas)
-        min_mode = components["minMODE"]
+        obj_congruence = components["object_congruence"]
 
-        return (False if min_mode is None else min_mode < threshold, components)
+        return (False if obj_congruence is None else obj_congruence >= threshold, components)
 
     return _filter
 
@@ -110,7 +110,7 @@ def build_object_congruence(obj_kernel_builder, ref_filter, sys_filter, cmiss = 
 
             return (ok and still_ok, d)
 
-        was_cached, components = reduce(_r_out_dict, [ "minMODE", "MODE_records", "alignment_records", "det_points", "ref_filter_localization" ] + [ "object-p_miss@{}rfa".format(target_rfa) for target_rfa in target_rfas ], (True, {}))
+        was_cached, components = reduce(_r_out_dict, [ "object_congruence", "minMODE", "MODE_records", "alignment_records", "det_points", "ref_filter_localization" ] + [ "object-p_miss@{}rfa".format(target_rfa) for target_rfa in target_rfas ], (True, {}))
 
         if was_cached:
             return components
@@ -180,7 +180,8 @@ def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, 
     min_mode = min(map(lambda x: x[1], mode_scores)) if len(mode_scores) > 0 else None
     pmiss_at_rfa_measures = { "object-p_miss@{}rfa".format(target_rfa): p_miss_at_r_fa(det_points, target_rfa) for target_rfa in target_rfas }
 
-    out_components = { "minMODE": min_mode,
+    out_components = { "object_congruence": 1 - min_mode if min_mode is not None else None,
+                       "minMODE": min_mode,
                        "MODE_records": mode_scores,
                        "alignment_records": frame_alignment_records,
                        "det_points": det_points,
