@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.1.1
-Date: March 27, 2018
+Version: 0.1.2
+Date: April 9, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -167,7 +167,7 @@ Changelog:
       directly visible within the DET curve figures due to the y-axis
       scaling, but will connect to other points within the view
 
-  April 9, 2018 - Version *.*.*
+  April 9, 2018 - Version 0.1.2
     - Fixed an issue where a reference activity instance spanning the
       entire duration of the source video would cause the N-MIDE
       computation to fail.  These instances are now ignored for
