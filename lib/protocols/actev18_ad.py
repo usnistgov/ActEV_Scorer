@@ -83,7 +83,7 @@ class ActEV18_AD():
             return (decision_score, rfa_func(num_c, num_m, num_f), p_miss(num_c, num_m, num_f))
 
         alignment_metrics = { "n-mide": self._build_nmide(file_framedur_lookup, scoring_parameters["nmide_ns_collar_size"]),
-                              "n-mide_num_rejected": self._build_nmide_count_rejects(scoring_parameters["nmide_ns_collar_size"])}
+                              "n-mide_num_rejected": self._build_nmide_count_rejects(file_framedur_lookup, scoring_parameters["nmide_ns_collar_size"])}
         det_curve_metrics = { "p_miss@1rfa": self._build_pmiss_at_rfa(1),
                               "p_miss@0.2rfa": self._build_pmiss_at_rfa(0.2),
                               "p_miss@0.15rfa": self._build_pmiss_at_rfa(0.15),
@@ -120,9 +120,9 @@ class ActEV18_AD():
 
         return _metric_func
 
-    def _build_nmide_count_rejects(self, ns_collar_size):
+    def _build_nmide_count_rejects(self, file_duration_lookup, ns_collar_size):
         def _metric_func(c, m, f):
-            return n_mide_count_rejected([(ar.ref, ar.sys) for ar in c], ns_collar_size)
+            return n_mide_count_rejected([(ar.ref, ar.sys) for ar in c], file_duration_lookup, ns_collar_size)
 
         return _metric_func
 

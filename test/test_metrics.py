@@ -135,6 +135,9 @@ class TestNMIDE(TestMetrics):
 
         self.filedur_1 = { "f1": 80, "f2": 100 }
 
+        # Testing 0 FA denominator
+        self.filedur_2 = { "f1": 15 }
+
         self.cost_0 = lambda x: 0 * x
 
     def testNMIDE(self):
@@ -143,6 +146,9 @@ class TestNMIDE(TestMetrics):
         self.assertAlmostEqual(n_mide(self.c1, self.filedur_1, 2, self.cost_0, self.cost_fn), float(0 + (0 + 10 / float(57))) / len(self.c1), places=10)
         self.assertAlmostEqual(n_mide(self.c1, self.filedur_1, 2, self.cost_fn, self.cost_0), float(0 + (4 / float(7) + 0)) / len(self.c1), places=10)
         self.assertAlmostEqual(n_mide(self.c1, self.filedur_1, 2, self.cost_0, self.cost_0), 0.0, places=10)
+
+        # n_mide should ignore pair with 0 false-alarm denominator
+        self.assertAlmostEqual(n_mide(self.c1, self.filedur_2, 0, self.cost_fn, self.cost_fn), float(0), places=10)
 
         self.assertAlmostEqual(n_mide(self.cd, self.filedur_1, 2, self.cost_fn, self.cost_fn), float(0 + (8 / float(14) + 20 / float(57 + 77))) / len(self.cd), places=10)
 
@@ -153,13 +159,16 @@ class TestNMIDE(TestMetrics):
         self.assertEqual(n_mide(self.c3, self.filedur_1, 10, self.cost_fn, self.cost_fn), None)
 
     def testNMIDE_count_rejected(self):
-        self.assertEqual(n_mide_count_rejected(self.c3, 2), 0)
-        self.assertEqual(n_mide_count_rejected(self.cd, 2), 0)
-        self.assertEqual(n_mide_count_rejected(self.c3, 10), 2)
-        self.assertEqual(n_mide_count_rejected(self.cd, 10), 2)
-        self.assertEqual(n_mide_count_rejected(self.c4, 0), 0)
-        self.assertEqual(n_mide_count_rejected(self.c4, 3), 1)
-        self.assertEqual(n_mide_count_rejected(self.c4, 10), 2)
+        self.assertEqual(n_mide_count_rejected(self.c3, self.filedur_1, 2), 0)
+        self.assertEqual(n_mide_count_rejected(self.cd, self.filedur_1, 2), 0)
+        self.assertEqual(n_mide_count_rejected(self.c3, self.filedur_1, 10), 2)
+        self.assertEqual(n_mide_count_rejected(self.cd, self.filedur_1, 10), 2)
+        self.assertEqual(n_mide_count_rejected(self.c4, self.filedur_1, 0), 0)
+        self.assertEqual(n_mide_count_rejected(self.c4, self.filedur_1, 3), 1)
+        self.assertEqual(n_mide_count_rejected(self.c4, self.filedur_1, 10), 2)
+
+        # n_mide should ignore pair with 0 false-alarm denominator
+        self.assertEqual(n_mide_count_rejected(self.c1, self.filedur_2, 0), 1)
 
 class TestSignalMetrics(unittest.TestCase):
     def setUp(self):

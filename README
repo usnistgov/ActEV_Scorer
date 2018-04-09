@@ -167,6 +167,14 @@ Changelog:
       directly visible within the DET curve figures due to the y-axis
       scaling, but will connect to other points within the view
 
+  April 9, 2018 - Version *.*.*
+    - Fixed an issue where a reference activity instance spanning the
+      entire duration of the source video would cause the N-MIDE
+      computation to fail.  These instances are now ignored for
+      N-MIDE, and are included in the "n-mide_num_rejected" count
+    - Added an optimization to the kernel builder function whereby
+      unnecessary filter computations are skipped
+
 Contact:
 
   Please send any issues, questions, or comments to
