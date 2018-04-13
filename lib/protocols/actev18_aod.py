@@ -73,11 +73,20 @@ class ActEV18_AOD():
                      reference_instances,
                      scoring_parameters):
 
+        def _r(init, sys):
+            localization_vals = reduce(add, map(lambda x: x.localization.values(), sys.objects), [])
+            init.extend(reduce(add, map(lambda x: x.values(), localization_vals), []))
+
+            return init
+
+        # Have to filter out empty ObjectLocalizationFrames here
+        global_sys_obj_localizations = filter(lambda x: x.presenceConf is not None, reduce(_r, system_instances, []))
+
         def _object_kernel_builder(sys_objs):
             return build_linear_combination_kernel([object_type_match_filter,
                                                     build_simple_spatial_overlap_filter(scoring_parameters["spatial_overlap_delta"])],
                                                    [simple_spatial_intersection_over_union_component,
-                                                    build_sed_presenceconf_congruence(sys_objs)],
+                                                    build_sed_presenceconf_congruence(global_sys_obj_localizations)],
                                                    {"spatial_intersection-over-union": scoring_parameters["epsilon_object-overlap_congruence"],
                                                     "presenceconf_congruence": scoring_parameters["epsilon_object_presenceconf_congruence"]})
 
@@ -215,14 +224,14 @@ class ActEV18_AOD():
 
         det_point_func, alignment_metrics, alignment_metrics_plus, det_curve_metrics, pair_metrics, pair_aggregate_metrics, kernel_component_metrics = self.build_metrics(scoring_parameters, system_activities, reference_activities, activity_index, file_index)
 
+        kernel = self.build_kernel(reduce(add, system_activities.values(), []),
+                                   reduce(add, reference_activities.values(), []),
+                                   scoring_parameters)
+
         def _alignment_reducer(init, activity_record):
             activity_name, activity_properties = activity_record
 
             alignment_recs, metric_recs, pair_metric_recs, det_curve_metric_recs, det_points = init
-
-            kernel = self.build_kernel(system_activities.get(activity_name, []),
-                                       reference_activities.get(activity_name, []),
-                                       scoring_parameters)
 
             correct, miss, fa = perform_alignment(reference_activities.get(activity_name, []),
                                                   system_activities.get(activity_name, []),

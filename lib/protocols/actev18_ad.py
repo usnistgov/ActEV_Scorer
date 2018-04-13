@@ -138,14 +138,14 @@ class ActEV18_AD():
 
         det_point_func, alignment_metrics, det_curve_metrics, pair_metrics, kernel_component_metrics = self.build_metrics(scoring_parameters, system_activities, reference_activities, activity_index, file_index)
 
+        kernel = self.build_kernel(reduce(add, system_activities.values(), []),
+                                   reduce(add, reference_activities.values(), []),
+                                   scoring_parameters)
+
         def _alignment_reducer(init, activity_record):
             activity_name, activity_properties = activity_record
 
             alignment_recs, metric_recs, pair_metric_recs, det_curve_metric_recs, det_points = init
-
-            kernel = self.build_kernel(system_activities.get(activity_name, []),
-                                       reference_activities.get(activity_name, []),
-                                       scoring_parameters)
 
             correct, miss, fa = perform_alignment(reference_activities.get(activity_name, []),
                                                   system_activities.get(activity_name, []),

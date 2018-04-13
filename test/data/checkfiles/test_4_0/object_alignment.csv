@@ -1,56 +1,56 @@
 activity|ref_activity|sys_activity|frame|object_type|alignment|ref_object|sys_object|sys_presenceconf_score|kernel_similarity|kernel_components
-Closing|1|1|3034|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3034|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3034|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3034|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3035|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3035|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3035|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3035|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3036|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3036|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3036|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3036|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3037|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3037|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3037|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3037|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3038|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3038|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3038|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3038|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3039|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3039|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3039|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3039|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3040|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3040|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3040|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3040|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3041|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3041|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3041|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3041|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3042|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3042|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3042|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3042|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3043|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3043|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3043|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3043|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3044|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3044|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3044|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3044|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3045|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3045|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3045|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3045|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3046|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3046|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3046|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3046|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3047|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3047|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3047|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3047|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3048|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3048|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3048|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3048|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3049|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3049|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3049|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3049|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3050|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3050|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3050|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3050|vehicle|FA|None|3|0.41|None|None
-Closing|1|1|3051|person|CD|1|1|0.45|1.00000011256|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.10256410256410264}
+Closing|1|1|3051|person|CD|1|1|0.45|1.00000049529|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.4852941176470588}
 Closing|1|1|3051|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3051|vehicle|FA|None|3|0.41|None|None
 Closing|1|1|3052|person|FA|None|1|0.67|None|None
@@ -93,107 +93,107 @@ Closing|1|1|3061|person|FA|None|1|0.67|None|None
 Closing|1|1|3061|person|MD|1|None|None|None|None
 Closing|1|1|3061|vehicle|CD|2|2|0.8|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
 Closing|1|1|3061|vehicle|FA|None|3|0.41|None|None
-Entering|2|3|3845|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3845|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3845|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3846|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3846|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3846|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3847|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3847|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3847|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3848|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3848|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3848|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3849|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3849|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3849|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3850|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3850|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3850|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3851|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3851|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3851|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3852|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3852|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3852|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3853|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3853|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3853|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3854|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3854|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3854|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3855|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3855|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3855|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3856|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3856|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3856|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3857|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3857|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3857|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3858|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3858|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3858|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3859|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3859|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3859|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3860|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3860|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3860|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3861|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3861|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3861|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3862|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3862|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3862|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3863|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3863|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3863|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3864|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3864|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3864|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3865|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3865|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3865|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3866|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3866|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3866|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3867|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3867|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3867|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3868|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3868|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3868|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3869|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3869|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3869|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3870|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3870|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3870|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3871|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3871|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3871|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3872|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3872|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3872|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3873|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3873|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3873|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3874|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3874|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3874|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3875|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3875|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3875|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3876|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3876|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3876|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3877|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3877|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3877|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3878|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3878|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3878|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3879|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3879|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3879|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3880|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3880|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3880|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3881|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3881|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3881|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3882|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3882|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3882|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3883|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3883|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3883|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3884|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3884|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3884|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3885|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3885|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3885|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3886|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3886|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3886|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3887|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3887|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3887|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3888|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3888|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3888|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3889|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3889|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3889|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3890|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3890|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3890|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3891|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3891|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3891|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3892|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3892|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3892|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3893|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3893|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3893|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3894|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3894|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3894|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3895|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3895|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3895|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|2|3|3896|person|CD|1|1|0.22|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Entering|2|3|3896|person|CD|1|1|0.22|1.00000015706|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.14705882352941177}
 Entering|2|3|3896|vehicle|CD|2|2|0.12|1.00000001|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
