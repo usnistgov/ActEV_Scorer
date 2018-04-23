@@ -1,0 +1,22 @@
+{
+  "Closing": {
+    "objectTypes": [
+      "person",
+      "vehicle"
+    ],
+    "objectTypeMap": {
+      "person": "*object*",
+      "vehicle": "*object*"
+    }
+  },
+  "Entering": {
+    "objectTypes": [
+      "person",
+      "vehicle"
+    ],
+    "objectTypeMap": {
+      "person": "*object*",
+      "vehicle": "*object*"
+    }
+  }
+}

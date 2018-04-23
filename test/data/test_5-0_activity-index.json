@@ -7,8 +7,7 @@
   },
   "Entering": {
     "objectTypes": [
-      "person",
-      "vehicle"
+      "person"
     ]
   }
 }

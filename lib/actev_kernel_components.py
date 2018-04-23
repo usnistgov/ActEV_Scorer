@@ -74,6 +74,18 @@ def simple_spatial_intersection_over_union_component(r, s, cache):
 def object_type_match_filter(r, s):
     return (r.objectType == s.objectType, {})
 
+def build_equiv_class_type_match_filter(classes):
+    def _filter(r, s):
+        r_class = classes.get(r.objectType, None)
+        s_class = classes.get(s.objectType, None)
+
+        if r_class is None or s_class is None:
+            return (False, {})
+        else:
+            return (r_class == s_class, {})
+
+    return _filter
+
 def _object_signals_to_lookup(temporal_signal, local_objects):
     # Re-using the same empty ObjectLocalizationFrame, this is OK, as
     # long as we don't mutate it somewhere along the way
@@ -90,16 +102,16 @@ def _object_signals_to_lookup(temporal_signal, local_objects):
 # Using a factory function here so we can configure the object kernel
 # at the protocol level.  Not sure if this is the best place to pass
 # in the weightning functions
-def build_object_congruence_filter(obj_kernel_builder, ref_filter, sys_filter, threshold, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x, target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]):
+def build_object_congruence_filter(obj_kernel_builder, ref_filter, sys_filter, threshold, object_types = [], cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x, target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]):
     def _filter(r, s):
-        components = _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa, target_rfas)
+        components = _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_types, cmiss, cfa, target_rfas)
         obj_congruence = components["object_congruence"]
 
         return (False if obj_congruence is None else obj_congruence >= threshold, components)
 
     return _filter
 
-def build_object_congruence(obj_kernel_builder, ref_filter, sys_filter, cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x, target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]):
+def build_object_congruence(obj_kernel_builder, ref_filter, sys_filter, object_types = [], cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x, target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]):
     def object_congruence_component(r, s, cache):
         def _r_out_dict(init, k):
             ok, d = init
@@ -115,7 +127,7 @@ def build_object_congruence(obj_kernel_builder, ref_filter, sys_filter, cmiss = 
         if was_cached:
             return components
         else:
-            return _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa, target_rfas)
+            return _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_types, cmiss, cfa, target_rfas)
 
     return object_congruence_component
 
@@ -128,8 +140,10 @@ def ref_passthrough_filter(r, s):
 def sys_passthrough_filter(r, s):
     return s
 
-def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, cmiss, cfa, target_rfas):
-    ro, so = r.objects, s.objects
+def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_types, cmiss, cfa, target_rfas):
+    # If object_types provided as non-empty array, only consider objects included in object_types
+    ro = r.objects if len(object_types) == 0 else filter(lambda o: o.objectType in object_types, r.objects)
+    so = s.objects if len(object_types) == 0 else filter(lambda o: o.objectType in object_types, s.objects)
 
     # For N_MODE computation, localizations spanning multiple files
     # are treated independently

@@ -69,6 +69,23 @@ class TestActEVKernelComponents(unittest.TestCase):
         self.o_3 = O("vehicle")
         self.o_4 = O("Vehicle")
 
+        self.o_5 = O("construction_vehicle")
+
+        self.obj_classes_1 = { "person": "person",
+                               "vehicle": "vehicle" }
+
+        self.obj_classes_2 = { "person": "person",
+                               "vehicle": "vehicle",
+                               "construction_vehicle": "vehicle" }
+
+        self.obj_classes_3 = { "person": "*object*",
+                               "vehicle": "*object*",
+                               "construction_vehicle": "*object*" }
+
+        self.obj_ec_filter_1 = build_equiv_class_type_match_filter(self.obj_classes_1)
+        self.obj_ec_filter_2 = build_equiv_class_type_match_filter(self.obj_classes_2)
+        self.obj_ec_filter_3 = build_equiv_class_type_match_filter(self.obj_classes_3)
+
     def assert_filter(self, obs, exp):
         obs_b, obs_d = obs
         exp_b, exp_d = exp
@@ -149,6 +166,21 @@ class TestObjectTypeFilter(TestActEVKernelComponents):
 
         self.assertEqual(object_type_match_filter(self.o_3, self.o_4), (False, {}))
         self.assertEqual(object_type_match_filter(self.o_4, self.o_3), (False, {}))
+
+class TestEquivClassObjectTypeFilter(TestActEVKernelComponents):
+    def test_filter(self):
+        self.assertEqual(self.obj_ec_filter_1(self.o_1, self.o_1), (True, {}))
+        self.assertEqual(self.obj_ec_filter_1(self.o_1, self.o_2), (True, {}))
+        self.assertEqual(self.obj_ec_filter_1(self.o_2, self.o_1), (True, {}))
+        self.assertEqual(self.obj_ec_filter_1(self.o_1, self.o_3), (False, {}))
+        self.assertEqual(self.obj_ec_filter_1(self.o_3, self.o_4), (False, {}))
+
+        self.assertEqual(self.obj_ec_filter_2(self.o_3, self.o_5), (True, {}))
+        self.assertEqual(self.obj_ec_filter_2(self.o_1, self.o_3), (False, {}))
+
+        self.assertEqual(self.obj_ec_filter_3(self.o_3, self.o_5), (True, {}))
+        self.assertEqual(self.obj_ec_filter_3(self.o_1, self.o_5), (True, {}))
+        self.assertEqual(self.obj_ec_filter_3(self.o_1, self.o_3), (True, {}))
 
 class TestObjectCongruence(TestActEVKernelComponents):
     def setUp(self):
@@ -326,6 +358,15 @@ class TestObjectCongruence(TestActEVKernelComponents):
         self.assertAlmostEqual(intersect_object_congruence_2["object-p_miss@0.2rfa"], 1.0, places=10)
         self.assertAlmostEqual(intersect_object_congruence_2["object-p_miss@0.1rfa"], 1.0, places=10)
         self.assertAlmostEqual(intersect_object_congruence_2["object-p_miss@0.033rfa"], 1.0, places=10)
+
+    def test_object_congruence_intersection_wobjecttypes(self):
+        intersect_object_congruence_1 = build_object_congruence(self.obj_kernel_builder, intersection_filter, intersection_filter, ["person"])(self.rai_1, self.sai_1, {})
+        self.assertAlmostEqual(intersect_object_congruence_1["minMODE"], 1.2, places=10)
+        self.assert_mode_scores(intersect_object_congruence_1["MODE_records"], [(0.45, 1.2), (0.67, 1.5)])
+        self.assertAlmostEqual(intersect_object_congruence_1["object-p_miss@0.5rfa"], 0.7, places=10)
+        self.assertAlmostEqual(intersect_object_congruence_1["object-p_miss@0.2rfa"], 1.0, places=10)
+        self.assertAlmostEqual(intersect_object_congruence_1["object-p_miss@0.1rfa"], 1.0, places=10)
+        self.assertAlmostEqual(intersect_object_congruence_1["object-p_miss@0.033rfa"], 1.0, places=10)
 
     def test_object_congruence_passthrough(self):
         object_congruence_1 = build_object_congruence(self.obj_kernel_builder, ref_passthrough_filter, sys_passthrough_filter)(self.rai_1, self.sai_1, {})

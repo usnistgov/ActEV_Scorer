@@ -71,6 +71,7 @@ class ActEV18_AOD():
     def build_kernel(self,
                      system_instances,
                      reference_instances,
+                     activity_properties,
                      scoring_parameters):
 
         def _r(init, sys):
@@ -82,8 +83,17 @@ class ActEV18_AOD():
         # Have to filter out empty ObjectLocalizationFrames here
         global_sys_obj_localizations = filter(lambda x: x.presenceConf is not None, reduce(_r, system_instances, []))
 
+        object_types = activity_properties.get("objectTypes", [])
+        object_type_map = activity_properties.get("objectTypeMap", None)
+
+        if object_type_map is None:
+            object_type_filter = object_type_match_filter
+        else:
+            object_type_equiv_class = merge_dicts({ o: o for o in object_types }, object_type_map)
+            object_type_filter = build_equiv_class_type_match_filter(object_type_equiv_class)
+
         def _object_kernel_builder(sys_objs):
-            return build_linear_combination_kernel([object_type_match_filter,
+            return build_linear_combination_kernel([object_type_filter,
                                                     build_simple_spatial_overlap_filter(scoring_parameters["spatial_overlap_delta"])],
                                                    [simple_spatial_intersection_over_union_component,
                                                     build_sed_presenceconf_congruence(global_sys_obj_localizations)],
@@ -91,7 +101,7 @@ class ActEV18_AOD():
                                                     "presenceconf_congruence": scoring_parameters["epsilon_object_presenceconf_congruence"]})
 
         return build_linear_combination_kernel([build_temporal_overlap_filter(scoring_parameters["temporal_overlap_delta"]),
-                                                build_object_congruence_filter(_object_kernel_builder, intersection_filter, intersection_filter, scoring_parameters["object_congruence_delta"])],
+                                                build_object_congruence_filter(_object_kernel_builder, intersection_filter, intersection_filter, scoring_parameters["object_congruence_delta"], object_types)],
                                                [build_object_congruence(_object_kernel_builder, intersection_filter, intersection_filter),
                                                 temporal_intersection_over_union_component,
                                                 build_sed_presenceconf_congruence(system_instances)],
@@ -224,14 +234,18 @@ class ActEV18_AOD():
 
         det_point_func, alignment_metrics, alignment_metrics_plus, det_curve_metrics, pair_metrics, pair_aggregate_metrics, kernel_component_metrics = self.build_metrics(scoring_parameters, system_activities, reference_activities, activity_index, file_index)
 
-        kernel = self.build_kernel(reduce(add, system_activities.values(), []),
-                                   reduce(add, reference_activities.values(), []),
-                                   scoring_parameters)
+        global_system_activities = reduce(add, system_activities.values(), [])
+        global_reference_activities = reduce(add, reference_activities.values(), [])
 
         def _alignment_reducer(init, activity_record):
             activity_name, activity_properties = activity_record
 
             alignment_recs, metric_recs, pair_metric_recs, det_curve_metric_recs, det_points = init
+
+            kernel = self.build_kernel(global_system_activities,
+                                       global_reference_activities,
+                                       activity_properties,
+                                       scoring_parameters)
 
             correct, miss, fa = perform_alignment(reference_activities.get(activity_name, []),
                                                   system_activities.get(activity_name, []),
@@ -302,14 +316,22 @@ class ActEV18_AOD():
 
         def _object_frame_alignment_records(init, kv):
             activity, recs = kv
+            object_type_map = activity_index[activity].get("objectTypeMap", {})
 
             def _m(item):
                 def _subm(frame_ar):
                     frame, ar = frame_ar
-                    return [str(item.ref),
-                            str(item.sys),
-                            str(frame),
-                            str(ar.ref.objectType if ar.ref is not None else ar.sys.objectType)] + [ x for x in ar.iter_with_extended_properties(self.output_object_kernel_components) ]
+                    ref_object_type = ar.ref.objectType if ar.ref is not None else None
+                    sys_object_type = ar.sys.objectType if ar.sys is not None else None
+                    mapped_type = object_type_map.get(ref_object_type if ref_object_type is not None else sys_object_type,
+                                                      ref_object_type if ref_object_type is not None else sys_object_type)
+                    return map(str, [item.ref,
+                                     item.sys,
+                                     frame,
+                                     ref_object_type,
+                                     sys_object_type,
+                                     object_type_map.get(ref_object_type, ref_object_type) if ref_object_type is not None else None,
+                                     object_type_map.get(sys_object_type, sys_object_type) if sys_object_type is not None else None]) + [ x for x in ar.iter_with_extended_properties(self.output_object_kernel_components) ]
 
                 return map(_subm, item.kernel_components.get("alignment_records", []))
 

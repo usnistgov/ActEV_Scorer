@@ -144,3 +144,63 @@ test_4_1() {
 	-d \
 	-v
 }
+
+# integration test 5-0
+# Activity index equivalence class testing
+test_5_0() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AOD" \
+	-s "data/test_4-0_fake-sysout.json" \
+	-r "data/test_4-0.json" \
+	-a "data/test_5-0_activity-index.json" \
+	-f "data/test_4-0_file-index.json" \
+	-o "$1" \
+	-d \
+	-j \
+	-v
+}
+
+# integration test 5-1
+# Activity index equivalence class testing
+test_5_1() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AOD" \
+	-s "data/test_4-0_fake-sysout.json" \
+	-r "data/test_4-0.json" \
+	-a "data/test_5-1_activity-index.json" \
+	-f "data/test_4-0_file-index.json" \
+	-o "$1" \
+	-d \
+	-j \
+	-v
+}
+
+# integration test 5-2
+# Activity index equivalence class testing
+test_5_2() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AOD" \
+	-s "data/test_5-2_fake-sysout.json" \
+	-r "data/test_4-0.json" \
+	-a "data/test_5-2_activity-index.json" \
+	-f "data/test_4-0_file-index.json" \
+	-o "$1" \
+	-d \
+	-j \
+	-v
+}
+
+# integration test 5-3
+# Activity index equivalence class testing
+test_5_3() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AOD" \
+	-s "data/test_5-3_fake-sysout.json" \
+	-r "data/test_4-0.json" \
+	-a "data/test_5-2_activity-index.json" \
+	-f "data/test_4-0_file-index.json" \
+	-o "$1" \
+	-d \
+	-j \
+	-v
+}
