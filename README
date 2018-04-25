@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.2.0
-Date: April 23, 2018
+Version: 0.2.1
+Date: April 25, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -39,8 +39,8 @@ Option description:
   -s SYSTEM_OUTPUT_FILE - Required; path to the system output JSON
   file to be scored
 
-  -r REFERENCE_FILE - Required; path to the reference JSON file to
-  score against
+  -r REFERENCE_FILE - Required unless running validation only; path to
+  the reference JSON file to score against
 
   -a ACTIVITY_INDEX - Required; path to activity index JSON file.
   This file lists what activities the system output will be evaluated
@@ -54,7 +54,8 @@ Option description:
   used to compute the duration of files.  This will be implemented in
   a future release)
 
-  -o OUTPUT_DIR - Required; directory for computed scores and figures
+  -o OUTPUT_DIR - Required unless running validation only; directory
+  for computed scores and figures
 
   -d - Optional; by default, the script will produce a Detection Error
   Tradeoff (DET) curve figure for each activity and a combined figure
@@ -67,6 +68,10 @@ Option description:
 
   -v - Optional; if enabled, the script will be more verbose
   (i.e. provide some scoring progress information)
+
+  -V - Optional; if enabled, the SYSTEM_OUTPUT_FILE will be validated
+  but not scored.  REFERENCE_FILE and OUTPUT_DIR parameters are not
+  required if this option is enabled
 
 Protocols:
 
@@ -192,6 +197,15 @@ Changelog:
       the activity index file.  If the "objectTypes" property is
       provided as an empty list, or is simply omitted, no such
       filtering takes place
+
+  April 25, 2018 - Version 0.2.1
+    - Added an option (-V, --validation-only) where the system output
+      file will be validated but not scored.  With this option
+      enabled, the reference file (-r), and output directory (-o)
+      parameters are not required
+    - Fixed an issue where the global range of "presenceConf" scores
+      for object detections was being computed more often than
+      necessary
 
 Contact:
 
