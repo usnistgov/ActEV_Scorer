@@ -130,7 +130,7 @@ def load_schema_for_protocol(log, protocol):
 def parse_activities(deserialized_json):
     return reduce(_activity_instance_reducer, deserialized_json["activities"], {})
 
-def validate_input(log, system_output, system_activities, reference_activities, activity_index, file_index, system_output_schema):
+def validate_input(log, system_output, system_output_schema):
     log(1, "[Info] Validating system output against JSON schema")
     try:
         jsonschema.validate(system_output, system_output_schema)
@@ -186,20 +186,35 @@ def score_actev18_ad(args):
 
     log(1, "[Info] Command: {}".format(" ".join(sys.argv)))
 
+    if not args.validation_only:
+        # Check for now-required arguments
+        if args.reference_file is None:
+            err_quit("Missing required REFERENCE_FILE argument (-r, --reference-file).  Aborting!")
+
+        if args.output_dir is None:
+            err_quit("Missing required OUTPUT_DIR argument (-o, --output-dir).  Aborting!")
+
     from actev18_ad import ActEV18_AD
     protocol = ActEV18_AD
 
     system_output = load_system_output(log, args.system_output_file)
-    system_activities = parse_activities(system_output)
-    reference = load_reference(log, args.reference_file)
-    reference_activities = parse_activities(reference)
     activity_index = load_activity_index(log, args.activity_index)
     file_index = load_file_index(log, args.file_index)
     system_output_schema = load_schema_for_protocol(log, protocol)
-    input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
 
-    validate_input(log, system_output, system_activities, reference_activities, activity_index, file_index, system_output_schema)
+    validate_input(log, system_output, system_output_schema)
     check_file_index_congruence(log, system_output, file_index)
+    log(1, "[Info] Validation successful")
+
+    if args.validation_only:
+        exit(0)
+
+    system_activities = parse_activities(system_output)
+    reference = load_reference(log, args.reference_file)
+    reference_activities = parse_activities(reference)
+
+    input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
+    log(1, "[Info] Scoring ..")
 
     scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records = protocol().score(input_scoring_parameters, system_activities, reference_activities, activity_index, file_index)
 
@@ -225,20 +240,35 @@ def score_actev18_aod(args):
 
     log(1, "[Info] Command: {}".format(" ".join(sys.argv)))
 
+    if not args.validation_only:
+        # Check for now-required arguments
+        if args.reference_file is None:
+            err_quit("Missing required REFERENCE_FILE argument (-r, --reference-file).  Aborting!")
+
+        if args.output_dir is None:
+            err_quit("Missing required OUTPUT_DIR argument (-o, --output-dir).  Aborting!")
+
     from actev18_aod import ActEV18_AOD
     protocol = ActEV18_AOD
 
     system_output = load_system_output(log, args.system_output_file)
-    system_activities = parse_activities(system_output)
-    reference = load_reference(log, args.reference_file)
-    reference_activities = parse_activities(reference)
     activity_index = load_activity_index(log, args.activity_index)
     file_index = load_file_index(log, args.file_index)
     system_output_schema = load_schema_for_protocol(log, protocol)
-    input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
 
-    validate_input(log, system_output, system_activities, reference_activities, activity_index, file_index, system_output_schema)
+    validate_input(log, system_output, system_output_schema)
     check_file_index_congruence(log, system_output, file_index)
+    log(1, "[Info] Validation successful")
+
+    if args.validation_only:
+        exit(0)
+
+    system_activities = parse_activities(system_output)
+    reference = load_reference(log, args.reference_file)
+    reference_activities = parse_activities(reference)
+
+    input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
+    log(1, "[Info] Scoring ..")
 
     scoring_parameters, alignment_records, activity_measure_records, pair_measure_records, aggregate_measure_records, det_point_records, object_frame_alignment_records = protocol().score(input_scoring_parameters, system_activities, reference_activities, activity_index, file_index)
 
@@ -268,13 +298,14 @@ if __name__ == '__main__':
     subparsers = parser.add_subparsers(help="Scoring protocols.  Include the '-h' argument after the selected protocol to see it's usage (e.g. ActEV18_AD -h)")
 
     base_args = [[["-s", "--system-output-file"], dict(help="System output JSON file", type=str, required=True)],
-                 [["-r", "--reference-file"], dict(help="Reference JSON file", type=str, required=True)],
+                 [["-r", "--reference-file"], dict(help="Reference JSON file", type=str)],
                  [["-a", "--activity-index"], dict(help="Activity index JSON file", type=str, required=True)],
                  [["-f", "--file-index"], dict(help="file index JSON file", type=str, required=True)],
-                 [["-o", "--output-dir"], dict(help="Output directory for results", type=str, required=True)],
+                 [["-o", "--output-dir"], dict(help="Output directory for results", type=str)],
                  [["-d", "--disable-plotting"], dict(help="Disable DET Curve plotting of results", action="store_true")],
                  [["-v", "--verbose"], dict(help="Toggle verbose log output", action="store_true")],
-                 [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)]]
+                 [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)],
+                 [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)

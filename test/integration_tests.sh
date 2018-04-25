@@ -64,6 +64,19 @@ test_1_1() {
 	-v
 }
 
+# ActEV18_AD integration test 1_2
+# Check validation only option
+test_1_2() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AD" \
+	-s "data/VIRAT_S_000000_fake-sysout.json" \
+	-a "data/VIRAT_S_000000_activity-index.json" \
+	-f "data/VIRAT_S_000000_file-index.json" \
+	-d \
+	-v \
+	-V
+}
+
 # ActEV18_AD integration test 2
 test_2_0() {
     ../ActEV_Scorer.py \
@@ -144,6 +157,21 @@ test_4_1() {
 	-d \
 	-v
 }
+
+# integration test 4-3
+# Check validation only option
+test_4_2() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AOD" \
+	-s "data/test_4-0_fake-sysout.json" \
+	-a "data/test_4-0_activity-index.json" \
+	-f "data/test_4-0_file-index.json" \
+	-d \
+	-j \
+	-v \
+	-V
+}
+
 
 # integration test 5-0
 # Activity index equivalence class testing
