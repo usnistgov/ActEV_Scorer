@@ -92,11 +92,14 @@ class ActEV18_AOD():
             object_type_equiv_class = merge_dicts({ o: o for o in object_types }, object_type_map)
             object_type_filter = build_equiv_class_type_match_filter(object_type_equiv_class)
 
+        obj_presenceconf_congruence = build_sed_presenceconf_congruence(global_sys_obj_localizations)
+        simple_spatial_overlap_filter = build_simple_spatial_overlap_filter(scoring_parameters["spatial_overlap_delta"])
+
         def _object_kernel_builder(sys_objs):
             return build_linear_combination_kernel([object_type_filter,
-                                                    build_simple_spatial_overlap_filter(scoring_parameters["spatial_overlap_delta"])],
+                                                    simple_spatial_overlap_filter],
                                                    [simple_spatial_intersection_over_union_component,
-                                                    build_sed_presenceconf_congruence(global_sys_obj_localizations)],
+                                                    obj_presenceconf_congruence],
                                                    {"spatial_intersection-over-union": scoring_parameters["epsilon_object-overlap_congruence"],
                                                     "presenceconf_congruence": scoring_parameters["epsilon_object_presenceconf_congruence"]})
 
