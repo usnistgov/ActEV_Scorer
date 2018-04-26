@@ -1,0 +1,134 @@
+{
+  "Closing": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  },
+  "Closing_Trunk": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  },
+  "Entering": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  },
+  "Exiting": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  },
+  "Loading": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  },
+  "Open_Trunk": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  },
+  "Opening": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  },
+  "Transport_HeavyCarry": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  },
+  "Unloading": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  },
+  "vehicle_turning_left": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  },
+  "vehicle_turning_right": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  },
+  "vehicle_u_turn": {
+    "objectTypes": [
+      "Construction_Vehicle",
+      "Person",
+      "Vehicle"
+    ],
+    "objectTypeMap": {
+      "Vehicle": "*Vehicle*",
+      "Construction_Vehicle": "*Vehicle*"
+    }
+  }
+}

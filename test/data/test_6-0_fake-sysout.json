@@ -1,0 +1,57 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_040103_03_000284_000425.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Opening", 
+      "activityID": 1,
+      "presenceConf": 0.899,
+      "alertFrame": 1825,
+      "localization": {
+        "VIRAT_S_040103_03_000284_000425.mp4": {
+          "1557": 1, 
+          "1726": 0
+        }
+      }, 
+      "objects": [
+        {
+          "localization": {
+            "VIRAT_S_040103_03_000284_000425.mp4": {
+              "1557": {
+                "presenceConf": 0.88,
+                "boundingBox": {
+                  "h": 57, 
+                  "w": 29, 
+                  "x": 282, 
+                  "y": 16
+                }
+              },
+              "1726": {}
+            }
+          },
+          "objectID": 1, 
+          "objectType": "Door"
+        }, 
+        {
+          "localization": {
+            "VIRAT_S_040103_03_000284_000425.mp4": {
+              "1557": {
+                "presenceConf": 0.82,
+                "boundingBox": {
+                  "h": 38, 
+                  "w": 12, 
+                  "x": 299, 
+                  "y": 30
+                }
+              },
+              "1726": {}
+            }
+          },
+          "objectID": 2, 
+          "objectType": "Person"
+        }
+      ]
+    }
+  ]
+}

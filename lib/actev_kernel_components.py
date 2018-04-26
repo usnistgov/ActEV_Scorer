@@ -184,7 +184,12 @@ def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_
         num_filtered_c = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_c))
         num_filtered_fa = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_f))
         num_miss_w_filtered_c = num_miss + num_correct - num_filtered_c
-        mode_scores.append((conf, mode(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, cmiss, cfa)))
+
+        # Don't attempt to compute mode if there are no reference
+        # objects
+        if num_miss + num_correct > 0:
+            mode_scores.append((conf, mode(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, cmiss, cfa)))
+
         det_points.append((conf, r_fa(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, ref_filter_area), p_miss(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa)))
 
         return init

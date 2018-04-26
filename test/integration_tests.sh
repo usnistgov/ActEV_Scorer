@@ -232,3 +232,19 @@ test_5_3() {
 	-j \
 	-v
 }
+
+# integration test 6-0
+# Check for handling of MODE metric over instances with 0 reference
+# objects
+test_6_0() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AOD" \
+	-s "data/test_6-0_fake-sysout.json" \
+	-r "data/test_6-0.json" \
+	-a "data/test_6-0_activity-index.json" \
+	-f "data/test_6-0_file-index.json" \
+	-o "$1" \
+	-d \
+	-j \
+	-v
+}
