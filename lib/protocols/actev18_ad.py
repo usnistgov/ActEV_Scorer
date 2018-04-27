@@ -92,7 +92,9 @@ class ActEV18_AD():
                               "p_miss@0.01rfa": self._build_pmiss_at_rfa(0.01) }
 
         pair_metrics = { "temporal_intersection": temporal_intersection,
-                         "temporal_union": temporal_union }
+                         "temporal_union": temporal_union,
+                         "temporal_fa": temporal_fa,
+                         "temporal_miss": temporal_miss }
         kernel_component_metrics = { "temporal_intersection-over-union": lambda c: c["temporal_intersection-over-union"] }
 
         return (det_point_function,

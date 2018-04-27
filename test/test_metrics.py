@@ -232,6 +232,38 @@ class TestTemporalIntersectionOverUnion(TestSignalMetrics):
 
         self.assertAlmostEqual(temporal_intersection_over_union(self.a3, self.a4), float(0) / 15, places=10)
 
+class TestTemporalMiss(TestSignalMetrics):
+    def test_empty(self):
+        self.assertEqual(temporal_miss(self.ae, self.ae), 0)
+
+    def test_singlefile(self):
+        self.assertEqual(temporal_miss(self.a1, self.a1), 0)
+        self.assertEqual(temporal_miss(self.a1, self.a2), 5)
+        self.assertEqual(temporal_miss(self.a2, self.a1), 5)
+        self.assertEqual(temporal_miss(self.a1, self.a3), 10)
+
+    def test_multifile(self):
+        self.assertEqual(temporal_miss(self.a5, self.a6), (5 + 10))
+        self.assertEqual(temporal_miss(self.a5, self.a7), (5 + 7))
+
+        self.assertEqual(temporal_miss(self.a3, self.a4), 5)
+
+class TestTemporalFA(TestSignalMetrics):
+    def test_empty(self):
+        self.assertEqual(temporal_fa(self.ae, self.ae), 0)
+
+    def test_singlefile(self):
+        self.assertEqual(temporal_fa(self.a1, self.a1), 0)
+        self.assertEqual(temporal_fa(self.a1, self.a2), 5)
+        self.assertEqual(temporal_fa(self.a2, self.a1), 5)
+        self.assertEqual(temporal_fa(self.a1, self.a3), 5)
+
+    def test_multifile(self):
+        self.assertEqual(temporal_fa(self.a5, self.a6), (5 + 20))
+        self.assertEqual(temporal_fa(self.a5, self.a7), (5 + 0))
+
+        self.assertEqual(temporal_fa(self.a3, self.a4), 10)
+
 class TestMeanExcludeNone(TestMetrics):
     def test(self):
         self.assertAlmostEqual(mean_exclude_none([1, 2, 3]), 2.0, places=10)

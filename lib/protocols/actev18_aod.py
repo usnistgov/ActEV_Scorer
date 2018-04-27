@@ -164,7 +164,9 @@ class ActEV18_AOD():
         det_curve_metrics = { "p_miss@{}rfa".format(trfa): self._build_pmiss_at_rfa(trfa) for trfa in [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ] }
 
         pair_metrics = { "temporal_intersection": temporal_intersection,
-                         "temporal_union": temporal_union }
+                         "temporal_union": temporal_union,
+                         "temporal_fa": temporal_fa,
+                         "temporal_miss": temporal_miss }
 
         def pair_aggregate_metrics(pair_metrics):
             def _grouper(metric_rec):

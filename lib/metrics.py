@@ -49,6 +49,12 @@ def temporal_intersection(r, s):
 def temporal_union(r, s):
     return reduce(add, [ (r | s).area() for r, s, k in temporal_signal_pairs(r, s) ], 0)
 
+def temporal_fa(r, s):
+    return reduce(add, [ (s - (r & s)).area() for r, s, k in temporal_signal_pairs(r, s) ], 0)
+
+def temporal_miss(r, s):
+    return reduce(add, [ (r - (r & s)).area() for r, s, k in temporal_signal_pairs(r, s) ], 0)
+
 def temporal_intersection_over_union(r, s):
     intersection = temporal_intersection(r, s)
     union = temporal_union(r, s)
