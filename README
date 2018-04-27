@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.2.1
-Date: April 25, 2018
+Version: 0.2.2
+Date: April 27, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -206,6 +206,13 @@ Changelog:
     - Fixed an issue where the global range of "presenceConf" scores
       for object detections was being computed more often than
       necessary
+
+  April 27, 2018 - Version 0.2.2
+    - Fixed a divide by zero issue when computing MODE for the
+      "ActEV_AOD" object detection congruence kernel component.
+      Specifically when there are no reference objects
+    - Added "temporal_fa" and "temporal_miss" to the pair metrics
+      output
 
 Contact:
 
