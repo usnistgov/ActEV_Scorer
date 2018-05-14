@@ -32,6 +32,8 @@
 
 from operator import add
 from sparse_signal import SparseSignal as S
+from alignment_record import *
+from helpers import *
 
 def _signal_pairs(r, s, signal_accessor, key_join_op = set.union):
     rl, sl = r.localization, s.localization
@@ -109,7 +111,8 @@ def n_mide(aligned_pairs, file_framedur_lookup, ns_collar_size, cost_fn_miss, co
     num_aligned = len(aligned_pairs)
 
     if num_aligned == 0:
-        return None
+        return { "n-mide": None,
+                 "n-mide_num_rejected": 0 }
 
     def _sub_reducer(init, pair):
         init_miss, init_fa, init_miss_d, init_fa_d = init
@@ -138,34 +141,17 @@ def n_mide(aligned_pairs, file_framedur_lookup, ns_collar_size, cost_fn_miss, co
     mides = reduce(_reducer, aligned_pairs, [])
 
     if len(mides) == 0:
-        return None
+        return { "n-mide": None,
+                 "n-mide_num_rejected": len(aligned_pairs) }
     else:
-        return float(reduce(add, mides)) / len(mides)
+        return { "n-mide": float(reduce(add, mides)) / len(mides),
+                 "n-mide_num_rejected": len(aligned_pairs) - len(mides) }
 
-# Should refactor this to be part of the n_mide calculation
-def n_mide_count_rejected(aligned_pairs, file_framedur_lookup, ns_collar_size):
-    if len(aligned_pairs) == 0:
-        return 0
+def build_n_mide_metric(file_frame_dur_lookup, ns_collar_size, cost_fn_miss = lambda x: 1 * x, cost_fn_fa = lambda x: 1 * x):
+    def _n_mide(pairs):
+        return n_mide(pairs, file_frame_dur_lookup, ns_collar_size, cost_fn_miss, cost_fn_fa)
 
-    def _sub_reducer(init, pair):
-        miss_denom, fa_denom = init
-        rs, ss, k = pair
-
-        ns_collar = rs.generate_collar(ns_collar_size)
-        c_r = rs - ns_collar
-        col_r = rs | ns_collar
-
-        return (miss_denom + c_r.area(), fa_denom + file_framedur_lookup.get(k) - col_r.area())
-
-    def _reducer(init, pair):
-        r, s = pair
-        # Using the _sub_reducer here is important in the case of
-        # cross-file activity instances
-        total_miss_denom, total_fa_denom = reduce(_sub_reducer, temporal_signal_pairs(r, s), (0, 0))
-
-        return init + 1 if total_miss_denom == 0 or total_fa_denom <= 0 else init
-
-    return reduce(_reducer, aligned_pairs, 0)
+    return _n_mide
 
 def p_miss(num_c, num_m, num_f):
     denom = num_m + num_c
@@ -174,36 +160,129 @@ def p_miss(num_c, num_m, num_f):
     else:
         return float(num_m) / denom
 
+def build_pmiss_metric():
+    def _p_miss(num_c, num_m, num_f):
+        return { "p_miss": p_miss(num_c, num_m, num_f) }
+    return _p_miss
+
 def r_fa(num_c, num_m, num_f, denominator):
     return float(num_f) / denominator
 
-# Really just a generic function for finding lowest y at a given x for
-# a DET curve
-def p_miss_at_r_fa(points, target_rfa):
-    last_pmiss = None
-    last_rfa = 0.0
+def build_rfa_metric(denom):
+    def _r_fa(num_c, num_m, num_f):
+        return { "rfa": r_fa(num_c, num_m, num_f, denom) }
+
+    return _r_fa
+
+# Returns lowest y value for each x_targ.  The points argument should
+# be a list of tuples, where each tuple is of the form
+# (confidence_value, metrics_dict)
+def get_points_along_confidence_curve(points, x_label, x_key, y_label, y_key, x_targs, y_default = 1.0):
+    if len(x_targs) == 0:
+        return {}
+
+    def _metric_str(targ):
+        return "{}@{}{}".format(y_label, targ, x_label)
+
+    # Note ** currently reporting out None's for each targ if the
+    # curve is empty
+    if len(points) == 0:
+        return { _metric_str(t): None for t in x_targs }
+
+    sorted_targs = sorted(x_targs, reverse = True)
+    curr_targ = sorted_targs[-1]
+
+    out_metrics = {}
+
+    x, y = None, None
+    last_y = None
+    last_x = 0.0
     exact_match = False
-    for p in sorted(points, None, lambda x: x[0], True):
-        ds, rfa, pmiss = p
+    sorted_points = sorted([ (ds, x_key(m), y_key(m)) for ds, m in points ], None, lambda x: x[0])
+    while True:
+        if x is not None:
+            if abs(x - curr_targ) < 1e-10:
+                exact_match = True
+            elif x > curr_targ:
+                if last_y == None:
+                    out_metrics[_metric_str(curr_targ)] = y_default
+                elif exact_match:
+                    out_metrics[_metric_str(curr_targ)] = last_y
+                    exact_match = False
+                else: # interpolate
+                    out_metrics[_metric_str(curr_targ)] = last_y + (y - last_y) * (float(curr_targ - last_x) / (x - last_x))
 
-        if abs(rfa - target_rfa) < 1e-10:
-            exact_match = True
-        elif rfa > target_rfa:
-            if last_pmiss == None:
-                return 1.0
-            elif exact_match:
-                return last_pmiss
-            else: # interpolate
-                return last_pmiss + (pmiss - last_pmiss) * (float(target_rfa - last_rfa) / (rfa - last_rfa))
+                sorted_targs.pop()
+                if len(sorted_targs) == 0:
+                    break
+                else:
+                    curr_targ = sorted_targs[-1]
+                    continue
 
-        last_pmiss = pmiss
-        last_rfa = rfa
+        # Only pop the next point if we're sure we haven't overstepped any remaining targs
+        last_y, last_x = y, x
+        if len(sorted_points) > 0:
+            ds, x, y = sorted_points.pop()
+        else:
+            break
 
-    return last_pmiss
+    # If we ran out of points but still have targets, generate the
+    # metrics here
+    last_y = y
+    for targ in sorted_targs:
+        out_metrics[_metric_str(targ)] = y_default if last_y is None else last_y
+
+    return out_metrics
 
 def mean_exclude_none(values):
     fv = filter(lambda v: v is not None, values)
-    return float(reduce(add, fv, 0)) / len(fv) if len(fv) > 0 else None
+    return { "mean": float(reduce(add, fv, 0)) / len(fv) if len(fv) > 0 else None,
+             "mean_num_rejected": len(values) - len(fv) }
 
 def mode(num_c, num_m, num_f, cost_m, cost_f):
     return float(cost_m(num_m) + cost_f(num_f)) / (num_c + num_m)
+
+def build_mode_metric(cost_fn_m = lambda x: 1 * x, cost_fn_f = lambda x: 1 * x):
+    def _mode(num_c, num_m, num_f):
+        # Don't attempt to compute mode if there are no reference
+        # objects
+        value = mode(num_c, num_m, num_f, cost_fn_m, cost_fn_f) if num_m + num_c > 0 else None
+        return { "mode": value }
+
+    return _mode
+
+def build_sweeper(conf_key_func, measure_funcs):
+    def _sweep(alignment_records):
+        c, m, f = partition_alignment(alignment_records)
+        total_c = len(c)
+        num_m = len(m)
+        # num_f = len(f)
+
+        out_points = []
+        current_c, current_f = 0, 0
+        ars = sorted(c + f, None, conf_key_func)
+        while len(ars) > 0:
+            ar = ars.pop()
+            conf = conf_key_func(ar)
+
+            if ar.alignment == "CD":
+                current_c += 1
+            elif ar.alignment == "FA":
+                current_f += 1
+
+            if len(ars) > 0:
+                if conf != conf_key_func(ars[-1]):
+                    out_points.append((conf, reduce(merge_dicts, [ m(current_c, num_m + (total_c - current_c), current_f) for m in measure_funcs ], {})))
+            else:
+                out_points.append((conf, reduce(merge_dicts, [ m(current_c, num_m + (total_c - current_c), current_f) for m in measure_funcs ], {})))
+
+        return out_points
+
+    return _sweep
+
+def flatten_sweeper_records(recs, keys):
+    return [ [ c ] + [ d[k] for k in keys ] for c, d in recs ]
+
+def build_det_sweeper(conf_key_func, rfa_denom):
+    return build_sweeper(conf_key_func, [ build_rfa_metric(rfa_denom),
+                                          build_pmiss_metric() ])

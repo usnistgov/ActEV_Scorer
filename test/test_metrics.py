@@ -19,6 +19,10 @@ class TestMetrics(unittest.TestCase):
     def setUp(self):
         super(TestMetrics, self).setUp()
 
+    def assert_metrics(self, observed, expected, places = 10):
+        for k in observed.viewkeys() | expected.viewkeys():
+            self.assertAlmostEqual(observed[k], expected[k], places = places)
+
 class TestPMiss(TestMetrics):
     def setUp(self):
         super(TestPMiss, self).setUp()
@@ -42,68 +46,88 @@ class TestRFA(TestMetrics):
         self.assertAlmostEqual(r_fa(0, 0, 2, 60), float(2) / 60, places=10)
         self.assertAlmostEqual(r_fa(0, 0, 5, 10), float(5) / 10, places=10)
 
-class TestPMissAtRFA(TestMetrics):
+class TestGetPointsAlongConfidenceCurve(TestMetrics):
     def setUp(self):
-        super(TestPMissAtRFA, self).setUp()
+        super(TestGetPointsAlongConfidenceCurve, self).setUp()
 
         self.points_empty = []
 
-        self.points_1 = [(1.0, 0.0, float(6) / 7),
-                         (0.9, 0.0, float(5) / 7),
-                         (0.8, 1.0, float(5) / 7),
-                         (0.7, 2.0, float(5) / 7),
-                         (0.6, 2.0, float(4) / 7),
-                         (0.5, 3.0, float(4) / 7),
-                         (0.3, 4.0, float(3) / 7),
-                         (0.3, 4.0, float(3) / 7),
-                         (0.2, 4.0, float(2) / 7)]
+        self.points_1 = [(1.0, { "rfa": 0.0, "pmiss": float(6) / 7 }),
+                         (0.9, { "rfa": 0.0, "pmiss": float(5) / 7 }),
+                         (0.8, { "rfa": 1.0, "pmiss": float(5) / 7 }),
+                         (0.7, { "rfa": 2.0, "pmiss": float(5) / 7 }),
+                         (0.6, { "rfa": 2.0, "pmiss": float(4) / 7 }),
+                         (0.5, { "rfa": 3.0, "pmiss": float(4) / 7 }),
+                         (0.3, { "rfa": 4.0, "pmiss": float(3) / 7 }),
+                         (0.3, { "rfa": 4.0, "pmiss": float(3) / 7 }),
+                         (0.2, { "rfa": 4.0, "pmiss": float(2) / 7 })]
 
-        self.points_2 = [(1.0, 1.0, float(6) / 6),
-                         (0.9, 1.0, float(5) / 6),
-                         (0.6, 2.0, float(5) / 6),
-                         (0.5, 2.0, float(4) / 6),
-                         (0.4, 3.0, float(4) / 6),
-                         (0.3, 3.0, float(3) / 6)]
+        self.points_2 = [(1.0, { "rfa": 1.0, "pmiss": float(6) / 6 }),
+                         (0.9, { "rfa": 1.0, "pmiss": float(5) / 6 }),
+                         (0.6, { "rfa": 2.0, "pmiss": float(5) / 6 }),
+                         (0.5, { "rfa": 2.0, "pmiss": float(4) / 6 }),
+                         (0.4, { "rfa": 3.0, "pmiss": float(4) / 6 }),
+                         (0.3, { "rfa": 3.0, "pmiss": float(3) / 6 })]
 
-        self.points_3 = [(1.0, 0.0, float(5) / 6),
-                         (0.9, 0.0, float(4) / 6),
-                         (0.6, 1.0, float(4) / 6),
-                         (0.5, 3.0, float(3) / 6),
-                         (0.5, 3.0, float(3) / 6),
-                         (0.5, 3.0, float(3) / 6)]
+        self.points_3 = [(1.0, { "rfa": 0.0, "pmiss": float(5) / 6 }),
+                         (0.9, { "rfa": 0.0, "pmiss": float(4) / 6 }),
+                         (0.6, { "rfa": 1.0, "pmiss": float(4) / 6 }),
+                         (0.5, { "rfa": 3.0, "pmiss": float(3) / 6 }),
+                         (0.5, { "rfa": 3.0, "pmiss": float(3) / 6 }),
+                         (0.5, { "rfa": 3.0, "pmiss": float(3) / 6 })]
 
-        self.points_4 = [(1.0, 0.0, float(5) / 6),
-                         (0.9, 0.0, float(4) / 6)]
+        self.points_4 = [(1.0, { "rfa": 0.0, "pmiss": float(5) / 6 }),
+                         (0.9, { "rfa": 0.0, "pmiss": float(4) / 6 })]
 
+        self.points_5 = [(1.0, { "rfa": 0.2, "pmiss": float(6) / 30 })]
 
-    def testRMissAtRFA(self):
-        self.assertEqual(p_miss_at_r_fa(self.points_empty, 1), None)
-        self.assertEqual(p_miss_at_r_fa(self.points_empty, 0), None)
+    def ez_gpacc(self, points, targs):
+        return get_points_along_confidence_curve(points, "rfa", lambda m: m["rfa"], "pmiss", lambda m: m["pmiss"], targs)
 
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 0), float(5) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 1), float(5) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 1.5), float(5) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 2), float(4) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 2.5), float(4) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 3), float(4) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 3.5), float(3.5) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 4), float(2) / 7, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_1, 5), float(2) / 7, places=10)
+    def testGetPointsAlongConfidenceCurve(self):
+        self.assert_metrics(self.ez_gpacc(self.points_empty, [1]), { "pmiss@1rfa": None })
+        self.assert_metrics(self.ez_gpacc(self.points_empty, [0]), { "pmiss@0rfa": None })
 
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_2, 0), float(6) / 6, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_2, 2), float(4) / 6, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_2, 2.5), float(4) / 6, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_2, 3), float(3) / 6, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_2, 4), float(3) / 6, places=10)
+        self.assert_metrics(self.ez_gpacc(self.points_empty, [0, 1]), { "pmiss@1rfa": None, "pmiss@0rfa": None })
 
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 0), float(4) / 6, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 2), float(3.5) / 6, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 2.5), float(3.25) / 6, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 3), float(3) / 6, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_3, 4), float(3) / 6, places=10)
+        self.assert_metrics(self.ez_gpacc(self.points_1, [0]), { "pmiss@0rfa": float(5) / 7 })
+        self.assert_metrics(self.ez_gpacc(self.points_1, [3.5]), { "pmiss@3.5rfa": float(3.5) / 7 })
+        self.assert_metrics(self.ez_gpacc(self.points_1, [3.5, 3.5]), { "pmiss@3.5rfa": float(3.5) / 7 })
 
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_4, 1), float(4) / 6, places=10)
-        self.assertAlmostEqual(p_miss_at_r_fa(self.points_4, 2), float(4) / 6, places=10)
+        self.assert_metrics(self.ez_gpacc(self.points_1, [0, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5]),
+                            { "pmiss@0rfa": float(5) / 7,
+                              "pmiss@1rfa": float(5) / 7,
+                              "pmiss@1.5rfa": float(5) / 7,
+                              "pmiss@2rfa": float(4) / 7,
+                              "pmiss@2.5rfa": float(4) / 7,
+                              "pmiss@3rfa": float(4) / 7,
+                              "pmiss@3.5rfa": float(3.5) / 7,
+                              "pmiss@4rfa": float(2) / 7,
+                              "pmiss@5rfa": float(2) / 7 })
+
+        self.assert_metrics(self.ez_gpacc(self.points_2, [0, 2, 2.5, 3, 4]),
+                            { "pmiss@0rfa": float(6) / 6,
+                              "pmiss@2rfa": float(4) / 6,
+                              "pmiss@2.5rfa": float(4) / 6,
+                              "pmiss@3rfa": float(3) / 6,
+                              "pmiss@4rfa": float(3) / 6})
+
+        self.assert_metrics(self.ez_gpacc(self.points_3, [0, 2, 2.5, 3, 4]),
+                            { "pmiss@0rfa": float(4) / 6,
+                              "pmiss@2rfa": float(3.5) / 6,
+                              "pmiss@2.5rfa": float(3.25) / 6,
+                              "pmiss@3rfa": float(3) / 6,
+                              "pmiss@4rfa": float(3) / 6})
+
+        self.assert_metrics(self.ez_gpacc(self.points_4, [1, 2]),
+                            { "pmiss@1rfa": float(4) / 6,
+                              "pmiss@2rfa": float(4) / 6 })
+
+        self.assert_metrics(self.ez_gpacc(self.points_5, [0.033, 0.1, 0.2, 0.5]),
+                            { "pmiss@0.033rfa": 1.0,
+                              "pmiss@0.1rfa": 1.0,
+                              "pmiss@0.2rfa": float(6) / 30,
+                              "pmiss@0.5rfa": float(6) / 30 })
 
 class TestNMIDE(TestMetrics):
     def setUp(self):
@@ -141,34 +165,38 @@ class TestNMIDE(TestMetrics):
         self.cost_0 = lambda x: 0 * x
 
     def testNMIDE(self):
-        self.assertAlmostEqual(n_mide(self.c1, self.filedur_1, 2, self.cost_fn, self.cost_fn), float(0 + (4 / float(7) + 10 / float(57))) / len(self.c1), places=10)
-        self.assertAlmostEqual(n_mide(self.c1, self.filedur_1, 0, self.cost_fn, self.cost_fn), float(0 + (10 / float(15) + 10 / float(65))) / len(self.c1), places=10)
-        self.assertAlmostEqual(n_mide(self.c1, self.filedur_1, 2, self.cost_0, self.cost_fn), float(0 + (0 + 10 / float(57))) / len(self.c1), places=10)
-        self.assertAlmostEqual(n_mide(self.c1, self.filedur_1, 2, self.cost_fn, self.cost_0), float(0 + (4 / float(7) + 0)) / len(self.c1), places=10)
-        self.assertAlmostEqual(n_mide(self.c1, self.filedur_1, 2, self.cost_0, self.cost_0), 0.0, places=10)
+        def assertNMIDE(observed, expected):
+            self.assertAlmostEqual(observed["n-mide"], expected["n-mide"], places=10)
+            self.assertEqual(observed["n-mide_num_rejected"], expected["n-mide_num_rejected"])
+
+        assertNMIDE(n_mide(self.c1, self.filedur_1, 2, self.cost_fn, self.cost_fn), { "n-mide": float(0 + (4 / float(7) + 10 / float(57))) / len(self.c1), "n-mide_num_rejected": 0 })
+        assertNMIDE(n_mide(self.c1, self.filedur_1, 0, self.cost_fn, self.cost_fn), { "n-mide": float(0 + (10 / float(15) + 10 / float(65))) / len(self.c1), "n-mide_num_rejected": 0})
+        assertNMIDE(n_mide(self.c1, self.filedur_1, 2, self.cost_0, self.cost_fn), { "n-mide": float(0 + (0 + 10 / float(57))) / len(self.c1), "n-mide_num_rejected": 0})
+        assertNMIDE(n_mide(self.c1, self.filedur_1, 2, self.cost_fn, self.cost_0), { "n-mide": float(0 + (4 / float(7) + 0)) / len(self.c1), "n-mide_num_rejected": 0})
+        assertNMIDE(n_mide(self.c1, self.filedur_1, 2, self.cost_0, self.cost_0), { "n-mide": 0.0, "n-mide_num_rejected": 0 })
 
         # n_mide should ignore pair with 0 false-alarm denominator
-        self.assertAlmostEqual(n_mide(self.c1, self.filedur_2, 0, self.cost_fn, self.cost_fn), float(0), places=10)
+        assertNMIDE(n_mide(self.c1, self.filedur_2, 0, self.cost_fn, self.cost_fn), { "n-mide": float(0), "n-mide_num_rejected": 1 } )
 
-        self.assertAlmostEqual(n_mide(self.cd, self.filedur_1, 2, self.cost_fn, self.cost_fn), float(0 + (8 / float(14) + 20 / float(57 + 77))) / len(self.cd), places=10)
+        assertNMIDE(n_mide(self.cd, self.filedur_1, 2, self.cost_fn, self.cost_fn), { "n-mide": float(0 + (8 / float(14) + 20 / float(57 + 77))) / len(self.cd), "n-mide_num_rejected": 0})
 
-        self.assertAlmostEqual(n_mide(self.c3, self.filedur_1, 2, self.cost_fn, self.cost_fn), float((6 / float(6) + 10 / float(100 + 66)) + (7 / float(7) + 15 / float(100 + 57))) / len(self.c3), places=10)
+        assertNMIDE(n_mide(self.c3, self.filedur_1, 2, self.cost_fn, self.cost_fn), { "n-mide": float((6 / float(6) + 10 / float(100 + 66)) + (7 / float(7) + 15 / float(100 + 57))) / len(self.c3), "n-mide_num_rejected": 0})
 
-        self.assertAlmostEqual(n_mide(self.c4, self.filedur_1, 3, self.cost_fn, self.cost_fn), float((2 / float(4)) + 0) / 1, places=10)
+        assertNMIDE(n_mide(self.c4, self.filedur_1, 3, self.cost_fn, self.cost_fn), { "n-mide": float((2 / float(4)) + 0) / 1, "n-mide_num_rejected": 1})
 
-        self.assertEqual(n_mide(self.c3, self.filedur_1, 10, self.cost_fn, self.cost_fn), None)
+        assertNMIDE(n_mide(self.c3, self.filedur_1, 10, self.cost_fn, self.cost_fn), { "n-mide": None, "n-mide_num_rejected": 2 })
 
     def testNMIDE_count_rejected(self):
-        self.assertEqual(n_mide_count_rejected(self.c3, self.filedur_1, 2), 0)
-        self.assertEqual(n_mide_count_rejected(self.cd, self.filedur_1, 2), 0)
-        self.assertEqual(n_mide_count_rejected(self.c3, self.filedur_1, 10), 2)
-        self.assertEqual(n_mide_count_rejected(self.cd, self.filedur_1, 10), 2)
-        self.assertEqual(n_mide_count_rejected(self.c4, self.filedur_1, 0), 0)
-        self.assertEqual(n_mide_count_rejected(self.c4, self.filedur_1, 3), 1)
-        self.assertEqual(n_mide_count_rejected(self.c4, self.filedur_1, 10), 2)
+        self.assertEqual(build_n_mide_metric(self.filedur_1, 2)(self.c3)["n-mide_num_rejected"], 0)
+        self.assertEqual(build_n_mide_metric(self.filedur_1, 2)(self.cd)["n-mide_num_rejected"], 0)
+        self.assertEqual(build_n_mide_metric(self.filedur_1, 10)(self.c3)["n-mide_num_rejected"], 2)
+        self.assertEqual(build_n_mide_metric(self.filedur_1, 10)(self.cd)["n-mide_num_rejected"], 2)
+        self.assertEqual(build_n_mide_metric(self.filedur_1, 0)(self.c4)["n-mide_num_rejected"], 0)
+        self.assertEqual(build_n_mide_metric(self.filedur_1, 3)(self.c4)["n-mide_num_rejected"], 1)
+        self.assertEqual(build_n_mide_metric(self.filedur_1, 10)(self.c4)["n-mide_num_rejected"], 2)
 
         # n_mide should ignore pair with 0 false-alarm denominator
-        self.assertEqual(n_mide_count_rejected(self.c1, self.filedur_2, 0), 1)
+        self.assertEqual(build_n_mide_metric(self.filedur_2, 0)(self.c1)["n-mide_num_rejected"], 1)
 
 class TestSignalMetrics(unittest.TestCase):
     def setUp(self):
@@ -221,8 +249,8 @@ class TestTemporalIntersectionOverUnion(TestSignalMetrics):
         self.assertEqual(temporal_intersection_over_union(self.ae, self.ae), 0.0)
 
     def test_singlefile(self):
-        self.assertAlmostEqual(temporal_intersection_over_union(self.a1, self.a1), float(10) / 10, places=10)
-        self.assertAlmostEqual(temporal_intersection_over_union(self.a1, self.a2), float(5) / 15, places=10)
+        self.assertAlmostEqual(temporal_intersection_over_union(self.a1, self.a1), float(10) / 10)
+        self.assertAlmostEqual(temporal_intersection_over_union(self.a1, self.a2), float(5) / 15)
         self.assertAlmostEqual(temporal_intersection_over_union(self.a2, self.a1), float(5) / 15, places=10)
         self.assertAlmostEqual(temporal_intersection_over_union(self.a1, self.a3), float(0) / 15, places=10)
 
@@ -266,9 +294,9 @@ class TestTemporalFA(TestSignalMetrics):
 
 class TestMeanExcludeNone(TestMetrics):
     def test(self):
-        self.assertAlmostEqual(mean_exclude_none([1, 2, 3]), 2.0, places=10)
-        self.assertAlmostEqual(mean_exclude_none([1, 2, 3, None]), 2.0, places=10)
-        self.assertAlmostEqual(mean_exclude_none([1, 2, 3, None, None]), 2.0, places=10)
+        self.assertEqual(mean_exclude_none([1, 2, 3]), { "mean": 2.0, "mean_num_rejected": 0 })
+        self.assertEqual(mean_exclude_none([1, 2, 3, None]), { "mean": 2.0, "mean_num_rejected": 1 })
+        self.assertEqual(mean_exclude_none([1, 2, 3, None, None]), { "mean": 2.0, "mean_num_rejected": 2 })
 
 # ObjectLocalizationFrame stub class
 class O():
@@ -362,6 +390,44 @@ class TestMODE(TestMetrics):
 
         self.assertAlmostEqual(mode(self.c_1, self.m_1, self.f_1, self.wf_1, self.wf_2), float(26 + 2 * 28) / 32, places = 10)
         self.assertAlmostEqual(mode(self.c_1, self.m_1, self.f_1, self.wf_2, self.wf_2), float(2 * 26 + 2 * 28) / 32, places = 10)
+
+
+class AR():
+    def __init__(self, conf, alignment):
+        self.alignment = alignment
+        self.sys_presence_conf = conf
+
+class TestSweeper(TestMetrics):
+    def setUp(self):
+        super(TestSweeper, self).setUp()
+
+        self.recs_1 = [ AR(1.0, "FA"),
+                        AR(None, "MD"),
+                        AR(0.8, "CD"),
+                        AR(None, "MD"),
+                        AR(0.7, "CD"),
+                        AR(0.5, "FA") ]
+
+    def pmiss(self, c, m, f):
+        d = c + m
+        return { "p_miss": None if d == 0 else float(m) / d }
+
+    def build_rfa(self, denom):
+        def _rfa(c, m, f):
+            return { "rfa": float(f) / denom }
+
+        return _rfa
+
+    def conf_lkup(self, ar):
+        return ar.sys_presence_conf
+
+    def test_build_sweeper(self):
+        sweeper = build_sweeper(self.conf_lkup, [ self.pmiss, self.build_rfa(10) ])
+
+        self.assertItemsEqual(sweeper(self.recs_1), [ (0.5, { "p_miss": float(2) / 4, "rfa": float(2) / 10 }),
+                                                      (0.7, { "p_miss": float(2) / 4, "rfa": float(1) / 10 }),
+                                                      (0.8, { "p_miss": float(3) / 4, "rfa": float(1) / 10 }),
+                                                      (1.0, { "p_miss": float(4) / 4, "rfa": float(1) / 10 }) ])
 
 if __name__ == '__main__':
     unittest.main()

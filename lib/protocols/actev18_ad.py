@@ -42,176 +42,154 @@ from actev_kernel_components import *
 from sed_kernel_components import *
 from alignment import *
 from helpers import *
+from default import *
 
-class ActEV18_AD():
+class ActEV18_AD(Default):
     @classmethod
     def get_schema_fn(cls):
         return "actev18_ad_schema.json"
 
-    def __init__(self):
-        self.default_scoring_parameters = { "epsilon_temporal_congruence": 1.0e-8,
-                                            "epsilon_activity_presenceconf_congruence": 1.0e-6,
-                                            "temporal_overlap_delta": 0.2,
-                                            "nmide_ns_collar_size": 0 }
+    def __init__(self, scoring_parameters, file_index, activity_index):
+        default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
+                                       "activity.epsilon_presenceconf_congruence": 1.0e-6,
+                                       "activity.temporal_overlap_delta": 0.2,
+                                       "activity.p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "nmide.ns_collar_size": 0,
+                                       "nmide.cost_miss": 1,
+                                       "nmide.cost_fa": 1 }
 
-        self.output_kernel_components = [ "temporal_intersection-over-union",
-                                          "presenceconf_congruence" ]
+        scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
-    def build_kernel(self,
-                     system_instances,
-                     reference_instances,
-                     scoring_parameters):
-        return build_linear_combination_kernel([build_temporal_overlap_filter(scoring_parameters["temporal_overlap_delta"])],
-                                               [temporal_intersection_over_union_component,
-                                                build_sed_presenceconf_congruence(system_instances)],
-                                               {"temporal_intersection-over-union": scoring_parameters["epsilon_temporal_congruence"],
-                                                "presenceconf_congruence": scoring_parameters["epsilon_activity_presenceconf_congruence"]})
+        super(ActEV18_AD, self).__init__(scoring_parameters, file_index, activity_index)
 
-    def build_metrics(self,
-                      scoring_parameters,
-                      system_activities,
-                      reference_activities,
-                      activity_index,
-                      file_index):
-        # TODO: remove non-selected area from reference and system
-        # instances, truncation or ?
-        file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() for k, v in file_index.iteritems() }
-        total_file_duration_minutes = sum([ float(frames) / file_index[k]["framerate"] for k, frames in file_framedur_lookup.iteritems()]) / float(60)
+        self.file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() for k, v in file_index.iteritems() }
+        self.total_file_duration_minutes = sum([ float(frames) / file_index[k]["framerate"] for k, frames in self.file_framedur_lookup.iteritems()]) / float(60)
 
-        rfa_func = self._build_rfa(total_file_duration_minutes)
-        def det_point_function(decision_score, num_c, num_m, num_f):
-            return (decision_score, rfa_func(num_c, num_m, num_f), p_miss(num_c, num_m, num_f))
+    # Warning ** this cohort generation function only works when
+    # activity instances are localized to a single file!!  This is
+    # enforced by the schemas for ActEV18_AD and ActEV18_AOD
+    def default_cohort_gen(self, refs, syss):
+        def _localization_file_grouper(instance):
+            return instance.localization.keys()[0]
 
-        alignment_metrics = { "n-mide": self._build_nmide(file_framedur_lookup, scoring_parameters["nmide_ns_collar_size"]),
-                              "n-mide_num_rejected": self._build_nmide_count_rejects(file_framedur_lookup, scoring_parameters["nmide_ns_collar_size"])}
-        det_curve_metrics = { "p_miss@1rfa": self._build_pmiss_at_rfa(1),
-                              "p_miss@0.2rfa": self._build_pmiss_at_rfa(0.2),
-                              "p_miss@0.15rfa": self._build_pmiss_at_rfa(0.15),
-                              "p_miss@0.1rfa": self._build_pmiss_at_rfa(0.1),
-                              "p_miss@0.03rfa": self._build_pmiss_at_rfa(0.03),
-                              "p_miss@0.01rfa": self._build_pmiss_at_rfa(0.01) }
+        ref_groups = group_by_func(_localization_file_grouper, refs)
+        sys_groups = group_by_func(_localization_file_grouper, syss)
 
-        pair_metrics = { "temporal_intersection": temporal_intersection,
-                         "temporal_union": temporal_union,
-                         "temporal_fa": temporal_fa,
-                         "temporal_miss": temporal_miss }
-        kernel_component_metrics = { "temporal_intersection-over-union": lambda c: c["temporal_intersection-over-union"] }
+        for k in ref_groups.viewkeys() | sys_groups.viewkeys():
+            yield (ref_groups.get(k, []), sys_groups.get(k, []))
 
-        return (det_point_function,
-                alignment_metrics,
-                det_curve_metrics,
-                pair_metrics,
-                kernel_component_metrics)
+    def default_kernel_builder(self, refs, syss):
+        kernel = build_linear_combination_kernel([ build_temporal_overlap_filter(self.scoring_parameters["activity.temporal_overlap_delta"]) ],
+                                               [ temporal_intersection_over_union_component,
+                                                 build_sed_presenceconf_congruence(syss) ],
+                                               { "temporal_intersection-over-union": self.scoring_parameters["activity.epsilon_temporal_congruence"],
+                                                 "presenceconf_congruence": self.scoring_parameters["activity.epsilon_presenceconf_congruence"] })
 
+        # Kernel for AD doesn't change based on activity, just
+        # returning the predefined kernel
+        def _configure_kernel_for_activity(activity, activity_properties, refs, syss):
+            return kernel
 
-    def _build_pmiss_at_rfa(self, target_rfa):
-        def _metric_func(points):
-            return p_miss_at_r_fa(points, target_rfa)
+        return _configure_kernel_for_activity
 
-        return _metric_func
+    def build_nmide_measure(self):
+        def _nmide(ars):
+            c = filter(lambda rec: rec.alignment == "CD", ars)
+            return n_mide([ (ar.ref, ar.sys) for ar in c ],
+                          self.file_framedur_lookup,
+                          self.scoring_parameters["nmide.ns_collar_size"],
+                          lambda x: self.scoring_parameters["nmide.cost_miss"] * x,
+                          lambda x: self.scoring_parameters["nmide.cost_miss"] * x)
 
-    def _build_rfa(self, file_duration):
-        def _metric_func(num_c, num_m, num_f):
-            return r_fa(num_c, num_m, num_f, file_duration)
+        return _nmide
 
-        return _metric_func
+    def compute_det_points_and_measures(self, alignment, rfa_denom, rfa_targets):
+        sweeper = build_det_sweeper(lambda ar: ar.sys_presence_conf, rfa_denom)
 
-    def _build_nmide(self, file_duration_lookup, ns_collar_size, cost_fn_miss = lambda x: 1 * x, cost_fn_fa = lambda x: 1 * x):
-        def _metric_func(c, m, f):
-            return n_mide([(ar.ref, ar.sys) for ar in c], file_duration_lookup, ns_collar_size, cost_fn_miss, cost_fn_fa)
+        det_points = sweeper(alignment)
 
-        return _metric_func
+        measures = get_points_along_confidence_curve(det_points,
+                                                     "rfa",
+                                                     lambda r: r["rfa"],
+                                                     "p_miss",
+                                                     lambda r: r["p_miss"],
+                                                     rfa_targets)
 
-    def _build_nmide_count_rejects(self, file_duration_lookup, ns_collar_size):
-        def _metric_func(c, m, f):
-            return n_mide_count_rejected([(ar.ref, ar.sys) for ar in c], file_duration_lookup, ns_collar_size)
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), measures)
 
-        return _metric_func
+    def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, default_factorizations = []):
+        def _r(init, item):
+            p, m = init
+            factorization, recs = item
 
-    def score(self,
-              input_scoring_parameters,
-              system_activities,
-              reference_activities,
-              activity_index,
-              file_index):
+            det_points, measures = self.compute_det_points_and_measures(recs, rfa_denom_func(recs), rfa_targets)
 
-        scoring_parameters = self.default_scoring_parameters.copy()
-        scoring_parameters.update(input_scoring_parameters)
+            p["-".join(factorization)] = det_points
 
-        det_point_func, alignment_metrics, det_curve_metrics, pair_metrics, kernel_component_metrics = self.build_metrics(scoring_parameters, system_activities, reference_activities, activity_index, file_index)
+            for _m, v in measures.iteritems():
+                m.append(factorization + (_m, v))
 
-        kernel = self.build_kernel(reduce(add, system_activities.values(), []),
-                                   reduce(add, reference_activities.values(), []),
-                                   scoring_parameters)
+            return (p, m)
 
-        def _alignment_reducer(init, activity_record):
-            activity_name, activity_properties = activity_record
+        grouped = merge_dicts({ k: [] for k in default_factorizations }, group_by_func(factorization_func, records))
+        return reduce(_r, grouped.iteritems(), ({}, []))
 
-            alignment_recs, metric_recs, pair_metric_recs, det_curve_metric_recs, det_points = init
+    def compute_record_means(self, records, selected_measures = None):
+        raw_means = self.compute_means(records, selected_measures)
 
-            correct, miss, fa = perform_alignment(reference_activities.get(activity_name, []),
-                                                  system_activities.get(activity_name, []),
-                                                  kernel)
+        def _r(init, r):
+            f, m, v = r
 
-            # Add to alignment records
-            alignment_recs.setdefault(activity_name, []).extend(correct + miss + fa)
-
-            pair_metric_recs_array = pair_metric_recs.setdefault(activity_name, [])
-            for ar in correct:
-                ref, sys = ar.ref, ar.sys
-
-                for pair_metric, metric_func in pair_metrics.iteritems():
-                    pair_metric_recs_array.append((ref, sys, pair_metric, metric_func(ref, sys)))
-
-                for kernel_component_metric, metric_func in kernel_component_metrics.iteritems():
-                    pair_metric_recs_array.append((ref, sys, kernel_component_metric, metric_func(ar.kernel_components)))
-
-            metric_recs_array = metric_recs.setdefault(activity_name, [])
-            for alignment_metric, metric_func in alignment_metrics.iteritems():
-                metric_recs_array.append((alignment_metric, metric_func(correct, miss, fa)))
-
-            num_correct, num_miss, num_fa = len(correct), len(miss), len(fa)
-            det_points_array = det_points.setdefault(activity_name, [])
-            for presence_conf in sorted(list({ ar.sys.presenceConf for ar in correct + fa })):
-                num_filtered_c = len(filter(lambda ar: ar.sys.presenceConf >= presence_conf, correct))
-                num_filtered_fa = len(filter(lambda ar: ar.sys.presenceConf >= presence_conf, fa))
-                num_miss_w_filtered_c = num_miss + num_correct - num_filtered_c
-                det_points_array.append(det_point_func(presence_conf,
-                                                       num_filtered_c,
-                                                       num_miss_w_filtered_c,
-                                                       num_filtered_fa))
-
-            det_curve_metric_recs_array = det_curve_metric_recs.setdefault(activity_name, [])
-            for det_metric, metric_func in det_curve_metrics.iteritems():
-                det_curve_metric_recs_array.append((det_metric, metric_func(det_points_array)))
+            if m == "mean":
+                init.append(("mean-{}".format(f), v))
 
             return init
 
-        alignment_records, measure_records, pair_measure_records, det_curve_measure_records, det_point_records = reduce(_alignment_reducer, activity_index.iteritems(), ({}, {}, {}, {}, {}))
+        return reduce(_r, raw_means, [])
 
-        mean_alignment_measure_records = [ ("mean-{}".format(k), mean_exclude_none(v)) for k, v in (group_by_func(lambda kv: kv[0], reduce(add, measure_records.values() + det_curve_measure_records.values(), []), lambda kv: kv[1])).iteritems() ]
+    def compute_results(self, alignment):
+        c, m, f = partition_alignment(alignment)
 
-        flat_alignment_records = reduce(add, alignment_records.values(), [])
-        flat_c, flat_m, flat_f = reduce(alignment_partitioner, flat_alignment_records, ([], [], []))
+        nmide_measure = self.build_nmide_measure()
 
-        def _compute_microavg_alignment_measures(init, metric):
-            metric_name, metric_func = metric
-            init.append((metric_name, metric_func(flat_c, flat_m, flat_f)))
-            return init
+        def _pair_arg_map(rec):
+            return (rec.ref, rec.sys)
 
-        microavg_alignment_measures = reduce(_compute_microavg_alignment_measures, alignment_metrics.iteritems(), [])
+        pair_measures = [ self.build_simple_measure(_pair_arg_map, "temporal_intersection", temporal_intersection),
+                          self.build_simple_measure(_pair_arg_map, "temporal_union", temporal_union),
+                          self.build_simple_measure(_pair_arg_map, "temporal_fa", temporal_fa),
+                          self.build_simple_measure(_pair_arg_map, "temporal_miss", temporal_miss),
+                          self.build_simple_measure(lambda x: (x.kernel_components.get("temporal_intersection-over-union"),), "temporal_intersection-over-union", identity) ]
 
-        def _reformat_alignment_records(init, item):
-            key, records = item
+        # Pairs
+        def _pair_properties_map(rec):
+            return (rec.activity, rec.ref.activityID, rec.sys.activityID)
 
-            init[key] = map(lambda r: map(str, r.iter_with_extended_properties(self.output_kernel_components)), records)
-            return init
+        pair_results = self.compute_atomic_measures(c, _pair_properties_map, pair_measures)
 
-        output_alignment_records = reduce(_reformat_alignment_records, alignment_records.iteritems(), {})
+        # Activity level + Pair Aggregates
+        def _activity_grouper(rec):
+            return (rec.activity,)
 
-        return (scoring_parameters,
-                output_alignment_records,
-                merge_dicts(measure_records, det_curve_measure_records, add),
-                pair_measure_records,
-                mean_alignment_measure_records + microavg_alignment_measures,
-                det_point_records)
+        activity_nmides = self.compute_aggregate_measures(alignment, _activity_grouper, [ nmide_measure ], self.default_activity_groups)
+        out_det_points, det_measures = self.compute_aggregate_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.default_activity_groups)
+
+        # Overall level + Activity Aggregates + Pair Agg. Aggregates
+        def _empty_grouper(rec):
+            return tuple() # empty tuple
+
+        activity_results = activity_nmides + det_measures
+
+        overall_nmide = self.compute_aggregate_measures(alignment, _empty_grouper, [ nmide_measure ])
+        activity_means = self.compute_record_means(activity_results)
+
+        def _align_rec_mapper(rec):
+            return (rec.activity,) + tuple(rec.iter_with_extended_properties(["temporal_intersection-over-union", "presenceconf_congruence"]))
+
+        output_alignment_records = map(_align_rec_mapper, alignment)
+
+        return { "pair_metrics": pair_results,
+                 "scores_by_activity": activity_results,
+                 "scores_aggregated": activity_means + overall_nmide,
+                 "det_point_records": out_det_points,
+                 "output_alignment_records": output_alignment_records }

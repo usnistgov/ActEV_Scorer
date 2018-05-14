@@ -36,7 +36,9 @@ from operator import and_
 from alignment_record import AlignmentRecord
 from helpers import *
 
-# components is a list of (label, weight, function)
+# components is a list of functions, each returning a dict of
+# component values.  Weights is dict of component label to kernel
+# weight
 def build_linear_combination_kernel(filters, components, weights, initial_similarity = 1):
     def _kernel(r_i, s_i):
         def _filter_reducer(init, f):

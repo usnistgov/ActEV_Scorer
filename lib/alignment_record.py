@@ -34,7 +34,7 @@ from collections import namedtuple, OrderedDict
 
 import json
 
-def alignment_partitioner(init, ar):
+def _alignment_partitioner(init, ar):
     cd, md, fa = init
     if ar.alignment == "CD":
         cd.append(ar)
@@ -44,6 +44,9 @@ def alignment_partitioner(init, ar):
         fa.append(ar)
 
     return init
+
+def partition_alignment(alignment_records):
+    return reduce(_alignment_partitioner, alignment_records, ([], [], []))
 
 class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
                                                     "sys",
@@ -71,6 +74,16 @@ class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
         else:
             return self.sys.presenceConf
 
+    @property
+    def activity(self):
+        if self.ref is None:
+            if self.sys is None:
+                return None
+            else:
+                return self.sys.activity
+        else:
+            return self.ref.activity
+
     def iter_with_extended_properties(self, reported_components):
         yield self.alignment
         yield str(self.ref)
@@ -79,7 +92,9 @@ class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
         yield str(self.kernel_similarity)
 
         def _r(init, c):
-            init[c] = self.kernel_components.get(c)
+            if c in self.kernel_components:
+                init[c] = self.kernel_components.get(c)
+
             return init
 
         # Want to yield out the JSON serialization of requested kernel

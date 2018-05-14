@@ -44,35 +44,38 @@ from actev_kernel_components import *
 from sed_kernel_components import *
 from alignment import *
 from helpers import *
+from actev18_ad import *
 
-class ActEV18_AOD():
+class ActEV18_AOD(ActEV18_AD):
     @classmethod
     def get_schema_fn(cls):
         return "actev18_aod_schema.json"
 
-    def __init__(self):
-        self.default_scoring_parameters = { "epsilon_temporal_congruence": 1.0e-8,
-                                            "epsilon_activity_presenceconf_congruence": 1.0e-6,
-                                            "epsilon_object_congruence": 1.0e-10,
-                                            "epsilon_object-overlap_congruence": 1.0e-8,
-                                            "epsilon_object_presenceconf_congruence": 1.0e-6,
-                                            "temporal_overlap_delta": 0.2,
-                                            "spatial_overlap_delta": 0.5,
-                                            "object_congruence_delta": 0.0,
-                                            "nmide_ns_collar_size": 0 }
+    def __init__(self, scoring_parameters, file_index, activity_index):
+        default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
+                                       "activity.epsilon_presenceconf_congruence": 1.0e-6,
+                                       "activity.temporal_overlap_delta": 0.2,
+                                       "activity.p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "nmide.ns_collar_size": 0,
+                                       "nmide.cost_miss": 1,
+                                       "nmide.cost_fa": 1,
+                                       "activity.epsilon_object_congruence": 1.0e-10,
+                                       "activity.object_congruence_delta": 0.0,
+                                       "object.epsilon_object-overlap_congruence": 1.0e-8,
+                                       "object.epsilon_presenceconf_congruence": 1.0e-6,
+                                       "object.spatial_overlap_delta": 0.5,
+                                       "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
+                                       "mode.cost_miss": 1,
+                                       "mode.cost_fa": 1 }
 
-        self.output_kernel_components = [ "temporal_intersection-over-union",
-                                          "presenceconf_congruence",
-                                          "object_congruence" ]
+        scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
-        self.output_object_kernel_components = [ "spatial_intersection-over-union",
-                                                 "presenceconf_congruence" ]
+        super(ActEV18_AOD, self).__init__(scoring_parameters, file_index, activity_index)
 
-    def build_kernel(self,
-                     system_instances,
-                     reference_instances,
-                     activity_properties,
-                     scoring_parameters):
+    def default_kernel_builder(self, refs, syss):
+
+        act_presenceconf_congruence = build_sed_presenceconf_congruence(syss)
+        simple_temporal_overlap_filter = build_temporal_overlap_filter(self.scoring_parameters["activity.temporal_overlap_delta"])
 
         def _r(init, sys):
             localization_vals = reduce(add, map(lambda x: x.localization.values(), sys.objects), [])
@@ -81,247 +84,91 @@ class ActEV18_AOD():
             return init
 
         # Have to filter out empty ObjectLocalizationFrames here
-        global_sys_obj_localizations = filter(lambda x: x.presenceConf is not None, reduce(_r, system_instances, []))
-
-        object_types = activity_properties.get("objectTypes", [])
-        object_type_map = activity_properties.get("objectTypeMap", None)
-
-        if object_type_map is None:
-            object_type_filter = object_type_match_filter
-        else:
-            object_type_equiv_class = merge_dicts({ o: o for o in object_types }, object_type_map)
-            object_type_filter = build_equiv_class_type_match_filter(object_type_equiv_class)
+        global_sys_obj_localizations = filter(lambda x: x.presenceConf is not None, reduce(_r, syss, []))
 
         obj_presenceconf_congruence = build_sed_presenceconf_congruence(global_sys_obj_localizations)
-        simple_spatial_overlap_filter = build_simple_spatial_overlap_filter(scoring_parameters["spatial_overlap_delta"])
+        simple_spatial_overlap_filter = build_simple_spatial_overlap_filter(self.scoring_parameters["object.spatial_overlap_delta"])
 
-        def _object_kernel_builder(sys_objs):
-            return build_linear_combination_kernel([object_type_filter,
-                                                    simple_spatial_overlap_filter],
-                                                   [simple_spatial_intersection_over_union_component,
-                                                    obj_presenceconf_congruence],
-                                                   {"spatial_intersection-over-union": scoring_parameters["epsilon_object-overlap_congruence"],
-                                                    "presenceconf_congruence": scoring_parameters["epsilon_object_presenceconf_congruence"]})
+        mode_cost_miss = self.scoring_parameters["mode.cost_miss"]
+        mode_costfn_miss = lambda x: mode_cost_miss * x
 
-        return build_linear_combination_kernel([build_temporal_overlap_filter(scoring_parameters["temporal_overlap_delta"]),
-                                                build_object_congruence_filter(_object_kernel_builder, intersection_filter, intersection_filter, scoring_parameters["object_congruence_delta"], object_types)],
-                                               [build_object_congruence(_object_kernel_builder, intersection_filter, intersection_filter),
-                                                temporal_intersection_over_union_component,
-                                                build_sed_presenceconf_congruence(system_instances)],
-                                               {"temporal_intersection-over-union": scoring_parameters["epsilon_temporal_congruence"],
-                                                "presenceconf_congruence": scoring_parameters["epsilon_activity_presenceconf_congruence"],
-                                                "object_congruence": scoring_parameters["epsilon_object_congruence"]})
+        mode_cost_fa = self.scoring_parameters["mode.cost_fa"]
+        mode_costfn_fa = lambda x: mode_cost_fa * x
 
-    def build_metrics(self,
-                      scoring_parameters,
-                      system_activities,
-                      reference_activities,
-                      activity_index,
-                      file_index):
-        # TODO: remove non-selected area from reference and system
-        # instances, truncation or ?
-        file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() for k, v in file_index.iteritems() }
-        total_file_duration_minutes = sum([ float(frames) / file_index[k]["framerate"] for k, frames in file_framedur_lookup.iteritems()]) / float(60)
+        def _configure_kernel_for_activity(activity, activity_properties, refs, syss):
+            object_types = activity_properties.get("objectTypes", [])
+            object_type_map = activity_properties.get("objectTypeMap", None)
 
-        rfa_func = self._build_rfa(total_file_duration_minutes)
-        def det_point_function(decision_score, num_c, num_m, num_f):
-            return (decision_score, rfa_func(num_c, num_m, num_f), p_miss(num_c, num_m, num_f))
+            if object_type_map is None:
+                object_type_filter = object_type_match_filter
+            else:
+                object_type_equiv_class = merge_dicts({ o: o for o in object_types }, object_type_map)
+                object_type_filter = build_equiv_class_type_match_filter(object_type_equiv_class)
 
-        alignment_metrics = { "n-mide": self._build_nmide(file_framedur_lookup, scoring_parameters["nmide_ns_collar_size"]),
-                              "n-mide_num_rejected": self._build_nmide_count_rejects(file_framedur_lookup, scoring_parameters["nmide_ns_collar_size"])}
+            def _object_kernel_builder(sys_objs):
+                return build_linear_combination_kernel([object_type_filter,
+                                                        simple_spatial_overlap_filter],
+                                                       [simple_spatial_intersection_over_union_component,
+                                                        obj_presenceconf_congruence],
+                                                       {"spatial_intersection-over-union": self.scoring_parameters["object.epsilon_object-overlap_congruence"],
+                                                        "presenceconf_congruence": self.scoring_parameters["object.epsilon_presenceconf_congruence"]})
 
-        object_target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]
+            return build_linear_combination_kernel([simple_temporal_overlap_filter,
+                                                    build_object_congruence_filter(_object_kernel_builder,
+                                                                                   intersection_filter,
+                                                                                   intersection_filter,
+                                                                                   self.scoring_parameters["activity.object_congruence_delta"],
+                                                                                   object_types,
+                                                                                   mode_costfn_miss,
+                                                                                   mode_costfn_fa,
+                                                                                   self.scoring_parameters["object.p_miss_at_rfa_targets"])],
+                                                   [build_object_congruence(_object_kernel_builder,
+                                                                            intersection_filter,
+                                                                            intersection_filter,
+                                                                            object_types,
+                                                                            mode_costfn_miss,
+                                                                            mode_costfn_fa,
+                                                                            self.scoring_parameters["object.p_miss_at_rfa_targets"]),
+                                                    temporal_intersection_over_union_component,
+                                                    act_presenceconf_congruence],
+                                                   {"temporal_intersection-over-union": self.scoring_parameters["activity.epsilon_temporal_congruence"],
+                                                    "presenceconf_congruence": self.scoring_parameters["activity.epsilon_presenceconf_congruence"],
+                                                    "object_congruence": self.scoring_parameters["activity.epsilon_object_congruence"]})
 
-        def alignment_metrics_plus(c, m, f):
-            # Build concat object alignment records
-            def _concat_align_recs(init, ar):
-                init.extend(map(lambda x: x[1], ar.kernel_components["alignment_records"]))
-                return init
+        return _configure_kernel_for_activity
 
-            combined_alignment_records = reduce(_concat_align_recs, c, [])
-
-            def _localization_reducer(init, loc):
-                # Merges the two temporal localization dictionaries by
-                # "adding" the signals
-                return merge_dicts(init, loc, add)
-
-            ref_filter_area = sum([ v.area() for v in reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], c), {}).values() ])
-
-            obj_c, obj_m, obj_f = reduce(alignment_partitioner, combined_alignment_records, ([], [], []))
-            num_obj_c, num_obj_m, num_obj_f = len(obj_c), len(obj_m), len(obj_f)
-
-            def _sweep_reducer(init, conf):
-                num_filtered_c = len(filter(lambda ar: ar.sys.presenceConf >= conf, obj_c))
-                num_filtered_fa = len(filter(lambda ar: ar.sys.presenceConf >= conf, obj_f))
-                num_miss_w_filtered_c = num_obj_m + num_obj_c - num_filtered_c
-                init.append((conf, r_fa(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, ref_filter_area), p_miss(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa)))
-                return init
-
-            det_points = reduce(_sweep_reducer, sorted(list({ ar.sys.presenceConf for ar in obj_c + obj_f })), [])
-
-            return [ ("object-p_miss@{}rfa".format(target_rfa), p_miss_at_r_fa(det_points, target_rfa)) for target_rfa in object_target_rfas ]
-
-        det_curve_metrics = { "p_miss@{}rfa".format(trfa): self._build_pmiss_at_rfa(trfa) for trfa in [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ] }
-
-        pair_metrics = { "temporal_intersection": temporal_intersection,
-                         "temporal_union": temporal_union,
-                         "temporal_fa": temporal_fa,
-                         "temporal_miss": temporal_miss }
-
-        def pair_aggregate_metrics(pair_metrics):
-            def _grouper(metric_rec):
-                ref, sys, name, val = metric_rec
-                return name
-
-            def _mapper(metric_rec):
-                ref, sys, name, val = metric_rec
-                return val
-
-            pair_metrics_dict = group_by_func(_grouper, pair_metrics, _mapper)
-
-            def _r(init, metric):
-                n = "mean-{}".format(metric)
-                init.append((n, mean_exclude_none(pair_metrics_dict.get(metric, []))))
-                return init
-
-            return reduce(_r, [ "object-p_miss@{}rfa".format(target_rfa) for target_rfa in object_target_rfas ], [])
-
-        def _build_simple_lookup(component_name):
-            def _lkup(components):
-                return components[component_name]
-
-            return { component_name: _lkup }
-
-        kernel_component_metrics = reduce(merge_dicts, map(_build_simple_lookup, [ "temporal_intersection-over-union", "minMODE" ] + [ "object-p_miss@{}rfa".format(tfa) for tfa in object_target_rfas ]), {})
-
-        return (det_point_function,
-                alignment_metrics,
-                alignment_metrics_plus,
-                det_curve_metrics,
-                pair_metrics,
-                pair_aggregate_metrics,
-                kernel_component_metrics)
-
-
-    def _build_pmiss_at_rfa(self, target_rfa):
-        def _metric_func(points):
-            return p_miss_at_r_fa(points, target_rfa)
-
-        return _metric_func
-
-    def _build_rfa(self, file_duration):
-        def _metric_func(num_c, num_m, num_f):
-            return r_fa(num_c, num_m, num_f, file_duration)
-
-        return _metric_func
-
-    def _build_nmide(self, file_duration_lookup, ns_collar_size, cost_fn_miss = lambda x: 1 * x, cost_fn_fa = lambda x: 1 * x):
-        def _metric_func(c, m, f):
-            return n_mide([(ar.ref, ar.sys) for ar in c], file_duration_lookup, ns_collar_size, cost_fn_miss, cost_fn_fa)
-
-        return _metric_func
-
-    def _build_nmide_count_rejects(self, file_duration_lookup, ns_collar_size):
-        def _metric_func(c, m, f):
-            return n_mide_count_rejected([(ar.ref, ar.sys) for ar in c], file_duration_lookup, ns_collar_size)
-
-        return _metric_func
-
-    def score(self,
-              input_scoring_parameters,
-              system_activities,
-              reference_activities,
-              activity_index,
-              file_index):
-
-        scoring_parameters = self.default_scoring_parameters.copy()
-        scoring_parameters.update(input_scoring_parameters)
-
-        det_point_func, alignment_metrics, alignment_metrics_plus, det_curve_metrics, pair_metrics, pair_aggregate_metrics, kernel_component_metrics = self.build_metrics(scoring_parameters, system_activities, reference_activities, activity_index, file_index)
-
-        global_system_activities = reduce(add, system_activities.values(), [])
-        global_reference_activities = reduce(add, reference_activities.values(), [])
-
-        def _alignment_reducer(init, activity_record):
-            activity_name, activity_properties = activity_record
-
-            alignment_recs, metric_recs, pair_metric_recs, det_curve_metric_recs, det_points = init
-
-            kernel = self.build_kernel(global_system_activities,
-                                       global_reference_activities,
-                                       activity_properties,
-                                       scoring_parameters)
-
-            correct, miss, fa = perform_alignment(reference_activities.get(activity_name, []),
-                                                  system_activities.get(activity_name, []),
-                                                  kernel)
-
-            # Add to alignment records
-            alignment_recs.setdefault(activity_name, []).extend(correct + miss + fa)
-
-            local_pair_metric_recs = []
-            for ar in correct:
-                ref, sys = ar.ref, ar.sys
-                for pair_metric, metric_func in pair_metrics.iteritems():
-                    local_pair_metric_recs.append((ref, sys, pair_metric, metric_func(ref, sys)))
-
-                for kernel_component_metric, metric_func in kernel_component_metrics.iteritems():
-                    local_pair_metric_recs.append((ref, sys, kernel_component_metric, metric_func(ar.kernel_components)))
-
-            pair_metric_recs_array = pair_metric_recs.setdefault(activity_name, [])
-            pair_metric_recs_array.extend(local_pair_metric_recs)
-
-            metric_recs_array = metric_recs.setdefault(activity_name, [])
-            for alignment_metric, metric_func in alignment_metrics.iteritems():
-                metric_recs_array.append((alignment_metric, metric_func(correct, miss, fa)))
-
-            metric_recs_array.extend(alignment_metrics_plus(correct, miss, fa))
-            metric_recs_array.extend(pair_aggregate_metrics(local_pair_metric_recs))
-
-            num_correct, num_miss, num_fa = len(correct), len(miss), len(fa)
-            det_points_array = det_points.setdefault(activity_name, [])
-            for presence_conf in sorted(list({ ar.sys.presenceConf for ar in correct + fa })):
-                num_filtered_c = len(filter(lambda ar: ar.sys.presenceConf >= presence_conf, correct))
-                num_filtered_fa = len(filter(lambda ar: ar.sys.presenceConf >= presence_conf, fa))
-                num_miss_w_filtered_c = num_miss + num_correct - num_filtered_c
-                det_points_array.append(det_point_func(presence_conf,
-                                                       num_filtered_c,
-                                                       num_miss_w_filtered_c,
-                                                       num_filtered_fa))
-
-            det_curve_metric_recs_array = det_curve_metric_recs.setdefault(activity_name, [])
-            for det_metric, metric_func in det_curve_metrics.iteritems():
-                det_curve_metric_recs_array.append((det_metric, metric_func(det_points_array)))
-
+    def compute_aggregate_obj_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, default_factorizations = None):
+        # Build concat object alignment records
+        def _concat_align_recs(init, ar):
+            init.extend(map(lambda x: x[1], ar.kernel_components["alignment_records"]))
             return init
 
-        alignment_records, measure_records, pair_measure_records, det_curve_measure_records, det_point_records = reduce(_alignment_reducer, activity_index.iteritems(), ({}, {}, {}, {}, {}))
+        def _r(init, item):
+            p, m = init
+            factorization, recs = item
 
-        mean_alignment_measure_records = [ ("mean-{}".format(k), mean_exclude_none(v)) for k, v in (group_by_func(lambda kv: kv[0], reduce(add, measure_records.values() + det_curve_measure_records.values(), []), lambda kv: kv[1])).iteritems() ]
+            combined_alignment_records = reduce(_concat_align_recs, recs, [])
 
-        flat_alignment_records = reduce(add, alignment_records.values(), [])
-        flat_c, flat_m, flat_f = reduce(alignment_partitioner, flat_alignment_records, ([], [], []))
+            det_points, measures = self.compute_det_points_and_measures(combined_alignment_records, rfa_denom_func(recs), rfa_targets)
 
-        def _compute_microavg_alignment_measures(init, metric):
-            metric_name, metric_func = metric
-            init.append((metric_name, metric_func(flat_c, flat_m, flat_f)))
-            return init
+            p["-".join(factorization)] = det_points
 
-        microavg_alignment_measures = reduce(_compute_microavg_alignment_measures, alignment_metrics.iteritems(), [])
+            for _m, v in measures.iteritems():
+                m.append(factorization + ("object-{}".format(_m), v))
 
-        overall_alignment_measures = alignment_metrics_plus(flat_c, flat_m, flat_f)
+            return (p, m)
 
-        def _reformat_alignment_records(init, item):
-            key, records = item
+        return reduce(_r, group_by_func(factorization_func, records, default_groups = default_factorizations).iteritems(), ({}, []))
 
-            init[key] = map(lambda r: map(str, r.iter_with_extended_properties(self.output_kernel_components)), records)
-            return init
+    def compute_results(self, alignment):
+        c, m, f = partition_alignment(alignment)
 
-        output_alignment_records = reduce(_reformat_alignment_records, alignment_records.iteritems(), {})
+        # Building off of the metrics computed for AD
+        ad_results = super(ActEV18_AOD, self).compute_results(alignment)
 
         def _object_frame_alignment_records(init, kv):
             activity, recs = kv
-            object_type_map = activity_index[activity].get("objectTypeMap", {})
+            object_type_map = self.activity_index[activity].get("objectTypeMap", {})
 
             def _m(item):
                 def _subm(frame_ar):
@@ -330,25 +177,72 @@ class ActEV18_AOD():
                     sys_object_type = ar.sys.objectType if ar.sys is not None else None
                     mapped_type = object_type_map.get(ref_object_type if ref_object_type is not None else sys_object_type,
                                                       ref_object_type if ref_object_type is not None else sys_object_type)
-                    return map(str, [item.ref,
+                    return map(str, [activity,
+                                     item.ref,
                                      item.sys,
                                      frame,
                                      ref_object_type,
                                      sys_object_type,
                                      object_type_map.get(ref_object_type, ref_object_type) if ref_object_type is not None else None,
-                                     object_type_map.get(sys_object_type, sys_object_type) if sys_object_type is not None else None]) + [ x for x in ar.iter_with_extended_properties(self.output_object_kernel_components) ]
+                                     object_type_map.get(sys_object_type, sys_object_type) if sys_object_type is not None else None]) + [ x for x in ar.iter_with_extended_properties(["spatial_intersection-over-union", "presenceconf_congruence"]) ]
 
                 return map(_subm, item.kernel_components.get("alignment_records", []))
 
-            init[activity] = reduce(add, map(_m, filter(lambda r: r.alignment == "CD", recs)), [])
+            init.extend(reduce(add, map(_m, filter(lambda r: r.alignment == "CD", recs)), []))
             return init
 
-        object_frame_alignment_records = reduce(_object_frame_alignment_records, alignment_records.iteritems(), {})
+        object_frame_alignment_records = reduce(_object_frame_alignment_records, group_by_func(lambda rec: rec.activity, alignment).iteritems(), [])
 
-        return (scoring_parameters,
-                output_alignment_records,
-                merge_dicts(measure_records, det_curve_measure_records, add),
-                pair_measure_records,
-                mean_alignment_measure_records + microavg_alignment_measures + overall_alignment_measures,
-                det_point_records,
-                object_frame_alignment_records)
+        def _obj_pmiss_at_rfa(targ):
+            t = "object-p_miss@{}rfa".format(targ)
+            return self.build_simple_measure(lambda x: (x.kernel_components.get(t),), t, identity)
+
+        aod_pair_measures = [ self.build_simple_measure(lambda x: (x.kernel_components.get("minMODE"),), "minMODE", identity)] + map(_obj_pmiss_at_rfa, self.scoring_parameters["object.p_miss_at_rfa_targets"])
+
+        def _pair_properties_map(rec):
+            return (rec.activity, rec.ref.activityID, rec.sys.activityID)
+
+        aod_pair_results = self.compute_atomic_measures(c, _pair_properties_map, aod_pair_measures)
+
+        def _activity_grouper(rec):
+            return (rec.activity,)
+
+        def _empty_grouper(rec):
+            return tuple() # empty tuple
+
+        def _rfa_denom_fn(correct_recs):
+            def _localization_reducer(init, loc):
+                # Merges the two temporal localization dictionaries by
+                # "adding" the signals
+                return merge_dicts(init, loc, add)
+
+            return sum([ v.area() for v in reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {}).values() ])
+
+        activity_obj_det_points, activity_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _activity_grouper, _rfa_denom_fn, self.scoring_parameters["object.p_miss_at_rfa_targets"], self.default_activity_groups)
+
+        def _pair_metric_means(init, res):
+            a, ress = res
+
+            init.extend([ (a,) + r for r in self.compute_record_means(ress, map(lambda targ: "object-p_miss@{}rfa".format(targ), self.scoring_parameters["object.p_miss_at_rfa_targets"])) ])
+            return init
+
+        obj_activity_means = reduce(_pair_metric_means, group_by_func(lambda t: t[0], aod_pair_results, default_groups = self.activity_index.keys()).iteritems(), [])
+
+        agg_obj_det_points, agg_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _empty_grouper, _rfa_denom_fn, self.scoring_parameters["object.p_miss_at_rfa_targets"], [ tuple() ])
+
+        agg_obj_activity_means = self.compute_record_means(obj_activity_means)
+
+        agg_obj_means = self.compute_record_means(activity_obj_det_measures)
+
+        appended_results = merge_dicts(ad_results, { "scores_by_activity": activity_obj_det_measures + obj_activity_means,
+                                                     "pair_metrics": aod_pair_results,
+                                                     "object_frame_alignment_records": object_frame_alignment_records,
+                                                     "scores_aggregated": agg_obj_det_measures + agg_obj_activity_means + agg_obj_means }, add)
+
+        def _align_rec_mapper(rec):
+            return (rec.activity,) + tuple(rec.iter_with_extended_properties([ "temporal_intersection-over-union", "presenceconf_congruence", "object_congruence" ]))
+
+        output_alignment_records = map(_align_rec_mapper, alignment)
+
+        # Replacement results for AOD
+        return merge_dicts(appended_results, { "output_alignment_records": output_alignment_records })

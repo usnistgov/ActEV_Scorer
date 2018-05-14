@@ -174,30 +174,23 @@ def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_
             for ar in c + m + f:
                 frame_alignment_records.append((frame, ar))
 
-    num_miss = len(total_m)
-    num_correct = len(total_c)
-
     ref_filter_area = sum([ v.area() for v in ref_filter_localization.values() ])
 
-    def _conf_sweep_reducer(init, conf):
-        mode_scores, det_points = init
-        num_filtered_c = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_c))
-        num_filtered_fa = len(filter(lambda ar: ar.sys.presenceConf >= conf, total_f))
-        num_miss_w_filtered_c = num_miss + num_correct - num_filtered_c
+    sweeper = build_sweeper(lambda r: r.sys.presenceConf, [ build_rfa_metric(ref_filter_area),
+                                                            build_pmiss_metric(),
+                                                            build_mode_metric(cmiss, cfa) ])
 
-        # Don't attempt to compute mode if there are no reference
-        # objects
-        if num_miss + num_correct > 0:
-            mode_scores.append((conf, mode(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, cmiss, cfa)))
+    sweep_recs = sweeper(total_c + total_m + total_f)
 
-        det_points.append((conf, r_fa(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa, ref_filter_area), p_miss(num_filtered_c, num_miss_w_filtered_c, num_filtered_fa)))
+    # Filter out None mode scores (in the case of zero reference
+    # objects)
+    mode_scores = filter(lambda r: r[1] is not None, flatten_sweeper_records(sweep_recs, [ "mode" ]))
 
-        return init
-
-    mode_scores, det_points = reduce(_conf_sweep_reducer, sorted(list({ ar.sys.presenceConf for ar in total_c + total_f })), ([], []))
+    det_points = flatten_sweeper_records(sweep_recs, [ "rfa", "p_miss" ])
 
     min_mode = min(map(lambda x: x[1], mode_scores)) if len(mode_scores) > 0 else None
-    pmiss_at_rfa_measures = { "object-p_miss@{}rfa".format(target_rfa): p_miss_at_r_fa(det_points, target_rfa) for target_rfa in target_rfas }
+
+    pmiss_at_rfa_measures = get_points_along_confidence_curve(sweep_recs, "rfa", lambda r: r["rfa"], "object-p_miss", lambda r: r["p_miss"], target_rfas)
 
     out_components = { "object_congruence": 1 - min_mode if min_mode is not None else None,
                        "minMODE": min_mode,

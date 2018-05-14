@@ -30,12 +30,18 @@
 # bundled with the code in compliance with the conditions of those
 # licenses.
 
-def group_by_func(key_func, items, map_func = None):
+# Optional default_groups ensures the inclusion of the
+# specified groups in the output dictionary
+def group_by_func(key_func, items, map_func = None, default_groups = None):
     def _r(h, x):
         h.setdefault(key_func(x), []).append(x if map_func == None else map_func(x))
         return h
 
-    return reduce(_r, items, {})
+    grouped = reduce(_r, items, {})
+    if default_groups is None:
+        return grouped
+    else:
+        return merge_dicts({ k: [] for k in default_groups }, grouped)
 
 def dict_to_records(d, value_map = None):
     def _r(init, kv):
@@ -58,5 +64,8 @@ def merge_dicts(a, b, conflict_func = None):
             init[k] = b[k]
 
         return init
-    
+
     return reduce(_r, a.viewkeys() | b.viewkeys(), {})
+
+def identity(x):
+    return x

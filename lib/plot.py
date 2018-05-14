@@ -57,11 +57,11 @@ def det_curve(points_dict, out_fn):
     # min/max yticks so that matplotlib can plot them, but they won't
     # be shown in the plot view
     clamp = _make_clamp(ytick[0] - 10, ytick[-1] + 10)
-    
+
     xtick_values = [0.01, 0.1, 1, 10]
 
     plt.figure(num=0, figsize=(7, 6.5), dpi=240)
-    for k, points in points_dict.iteritems():
+    for k, points in sorted(points_dict.iteritems()):
         plt.plot([ x for ds, x, y in points ], [ clamp(norm.ppf(y)) for ds, x, y in points ], label = k)
 
     # Need the following line for matplotlib 1.5.1.  Without explicit
