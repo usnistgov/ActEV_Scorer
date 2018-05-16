@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.2.2
-Date: April 27, 2018
+Version: 0.3.0
+Date: May 16, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -213,6 +213,13 @@ Changelog:
       Specifically when there are no reference objects
     - Added "temporal_fa" and "temporal_miss" to the pair metrics
       output
+
+  May 16, 2018 - Version 0.3.0
+    - Renamed existing scoring parameters to be less ambiguous.  Added
+      scoring parameters to control error weights for some metrics as
+      well as the target rates of false alarm
+    - Refactored portions of the alignment and metric computation code
+      to improve performance
 
 Contact:
 
