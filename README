@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.3.0
-Date: May 16, 2018
+Version: 0.3.1
+Date: May 24, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -220,6 +220,13 @@ Changelog:
       well as the target rates of false alarm
     - Refactored portions of the alignment and metric computation code
       to improve performance
+
+  May 24, 2018 - Version 0.3.1
+    - Now reporting a PMiss@RFA of 1.0 instead of None when there are
+      no system reported instances
+    - For the "ActEV_AOD" protocol, now reporting a mean object
+      PMiss@RFA of 1.0 instead of None when there are no aligned
+      activity instances
 
 Contact:
 
