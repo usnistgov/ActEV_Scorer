@@ -223,7 +223,15 @@ class ActEV18_AOD(ActEV18_AD):
         def _pair_metric_means(init, res):
             a, ress = res
 
-            init.extend([ (a,) + r for r in self.compute_record_means(ress, map(lambda targ: "object-p_miss@{}rfa".format(targ), self.scoring_parameters["object.p_miss_at_rfa_targets"])) ])
+            for r in self.compute_record_means(ress, map(lambda targ: "object-p_miss@{}rfa".format(targ), self.scoring_parameters["object.p_miss_at_rfa_targets"])):
+                label, val = r
+
+                # Explicitly setting mean object-p_miss@rfa to be 1.0
+                # rather than None in the case where no activity
+                # instances were detected for a given activity. TODO
+                # find a cleaner way to incorporate this
+                init.extend([ (a, label, 1.0 if val is None else val) ])
+
             return init
 
         obj_activity_means = reduce(_pair_metric_means, group_by_func(lambda t: t[0], aod_pair_results, default_groups = self.activity_index.keys()).iteritems(), [])

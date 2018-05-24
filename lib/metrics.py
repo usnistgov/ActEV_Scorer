@@ -184,10 +184,10 @@ def get_points_along_confidence_curve(points, x_label, x_key, y_label, y_key, x_
     def _metric_str(targ):
         return "{}@{}{}".format(y_label, targ, x_label)
 
-    # Note ** currently reporting out None's for each targ if the
-    # curve is empty
+    # Note ** currently reporting out the 'y_default' for each targ if
+    # the curve is empty
     if len(points) == 0:
-        return { _metric_str(t): None for t in x_targs }
+        return { _metric_str(t): y_default for t in x_targs }
 
     sorted_targs = sorted(x_targs, reverse = True)
     curr_targ = sorted_targs[-1]

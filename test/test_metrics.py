@@ -85,10 +85,10 @@ class TestGetPointsAlongConfidenceCurve(TestMetrics):
         return get_points_along_confidence_curve(points, "rfa", lambda m: m["rfa"], "pmiss", lambda m: m["pmiss"], targs)
 
     def testGetPointsAlongConfidenceCurve(self):
-        self.assert_metrics(self.ez_gpacc(self.points_empty, [1]), { "pmiss@1rfa": None })
-        self.assert_metrics(self.ez_gpacc(self.points_empty, [0]), { "pmiss@0rfa": None })
+        self.assert_metrics(self.ez_gpacc(self.points_empty, [1]), { "pmiss@1rfa": 1.0 })
+        self.assert_metrics(self.ez_gpacc(self.points_empty, [0]), { "pmiss@0rfa": 1.0 })
 
-        self.assert_metrics(self.ez_gpacc(self.points_empty, [0, 1]), { "pmiss@1rfa": None, "pmiss@0rfa": None })
+        self.assert_metrics(self.ez_gpacc(self.points_empty, [0, 1]), { "pmiss@1rfa": 1.0, "pmiss@0rfa": 1.0 })
 
         self.assert_metrics(self.ez_gpacc(self.points_1, [0]), { "pmiss@0rfa": float(5) / 7 })
         self.assert_metrics(self.ez_gpacc(self.points_1, [3.5]), { "pmiss@3.5rfa": float(3.5) / 7 })
