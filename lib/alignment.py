@@ -71,30 +71,24 @@ def build_linear_combination_kernel(filters, components, weights, initial_simila
     return _kernel
 
 def perform_alignment(ref_instances, sys_instances, kernel, maximize = True):
-    similarity_scores, component_scores = {}, {}
-
     disallowed = {}
 
     max_sim = 0
+    sim_matrix, component_matrix = [], []
     for s_i, s in enumerate(sys_instances):
+        sim_row = []
+        comp_row = []
         for r_i, r in enumerate(ref_instances):
             sim, comp = kernel(r, s)
 
-            similarity_scores[(s_i, r_i)] = sim
-            component_scores[(s_i, r_i)] = comp
+            sim_row.append(sim)
+            comp_row.append(comp)
 
             if sim == DISALLOWED:
                 disallowed[(s_i, r_i)] = True
             else:
                 if sim > max_sim: max_sim = sim
 
-    sim_matrix, component_matrix = [], []
-    for s_i, s in enumerate(sys_instances):
-        sim_row = []
-        comp_row = []
-        for r_i, r in enumerate(ref_instances):
-            sim_row.append(similarity_scores[(s_i, r_i)])
-            comp_row.append(component_scores[(s_i, r_i)])
         sim_matrix.append(sim_row)
         component_matrix.append(comp_row)
 

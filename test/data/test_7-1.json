@@ -1,0 +1,208 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4",
+    "VIRAT_S_999999.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing",
+      "activityID": 1,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3034": 1,
+          "3062": 0
+        }
+      },
+      "objects": [
+        {
+          "objectType": "person",
+          "objectID": 1,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3034": {
+                "boundingBox": {
+                  "x": 10,
+                  "y": 30,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "3062": {
+              }
+            }
+          }
+        },
+        {
+          "objectType": "vehicle",
+          "objectID": 2,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3034": {
+                "boundingBox": {
+                  "x": 100,
+                  "y": 100,
+                  "w": 80,
+                  "h": 60
+                }
+              },
+              "3062": {
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "activity": "Entering",
+      "activityID": 2,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3845": 1,
+          "3897": 0
+        },
+        "VIRAT_S_999999.mp4": {
+          "3840": 1,
+          "3898": 0
+        }
+      },
+      "objects": [
+        {
+          "objectType": "person",
+          "objectID": 1,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3845": {
+                "boundingBox": {
+                  "x": 10,
+                  "y": 30,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "3897": {
+              }
+            },
+            "VIRAT_S_999999.mp4": {
+              "3840": {
+                "boundingBox": {
+                  "x": 10,
+                  "y": 30,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "3898": {
+              }
+            }
+          }
+        },
+        {
+          "objectType": "vehicle",
+          "objectID": 2,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3845": {
+                "boundingBox": {
+                  "x": 100,
+                  "y": 100,
+                  "w": 80,
+                  "h": 60
+                }
+              },
+              "3897": {
+              }
+            },
+            "VIRAT_S_999999.mp4": {
+              "3840": {
+                "boundingBox": {
+                  "x": 100,
+                  "y": 100,
+                  "w": 80,
+                  "h": 60
+                }
+              },
+              "3898": {
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "activity": "Entering",
+      "activityID": 3,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "6070": 1,
+          "6099": 0
+        }
+      },
+      "objects": [
+        {
+          "objectType": "person",
+          "objectID": 1,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "6070": {
+                "boundingBox": {
+                  "x": 10,
+                  "y": 30,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "6080": {
+                "boundingBox": {
+                  "x": 100,
+                  "y": 300,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "6099": {
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "activity": "Entering",
+      "activityID": 90,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "6070": 1,
+          "6099": 0
+        }
+      },
+      "objects": [
+        {
+          "objectType": "person",
+          "objectID": 1,
+          "localization": {
+            "VIRAT_S_999999.mp4": {
+              "6070": {
+                "boundingBox": {
+                  "x": 10,
+                  "y": 30,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "6080": {
+                "boundingBox": {
+                  "x": 100,
+                  "y": 300,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "6099": {
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -248,7 +248,7 @@ class TestObjectCongruence(TestActEVKernelComponents):
               }
             }
           ]
-        }"""))
+        }"""), True)
 
         self.sai_2 = ActivityInstance(json.loads("""
         {
@@ -291,7 +291,7 @@ class TestObjectCongruence(TestActEVKernelComponents):
               }
             }
           ]
-        }"""))
+        }"""), True)
 
         self.rai_1 = ActivityInstance(json.loads("""
         {
@@ -323,7 +323,7 @@ class TestObjectCongruence(TestActEVKernelComponents):
               }
             }
           ]
-        }"""))
+        }"""), True)
 
         def _obj_kernel_builder(sys):
             return build_linear_combination_kernel([object_type_match_filter,

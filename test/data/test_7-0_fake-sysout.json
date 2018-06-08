@@ -1,0 +1,326 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4",
+    "VIRAT_S_999999.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing",
+      "activityID": 1,
+      "presenceConf": 0.756,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3034": 1,
+          "3062": 0
+        }
+      },
+      "objects": [
+        {
+          "objectType": "person",
+          "objectID": 1,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3034": {
+                "presenceConf": 0.45,
+                "boundingBox": {
+                  "x": 10,
+                  "y": 30,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "3052": {
+                "presenceConf": 0.67,
+                "boundingBox": {
+                  "x": 80,
+                  "y": 10,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "3062": {
+              }
+            }
+          }
+        },
+        {
+          "objectType": "vehicle",
+          "objectID": 2,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3034": {
+                "presenceConf": 0.8,
+                "boundingBox": {
+                  "x": 100,
+                  "y": 100,
+                  "w": 80,
+                  "h": 60
+                }
+              },
+              "3062": {
+              }
+            }
+          }
+        },
+        {
+          "objectType": "vehicle",
+          "objectID": 3,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3034": {
+                "presenceConf": 0.41,
+                "boundingBox": {
+                  "x": 0,
+                  "y": 10,
+                  "w": 100,
+                  "h": 80
+                }
+              },
+              "3062": {
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "activity": "Closing",
+      "activityID": 2,
+      "presenceConf": 0.774,
+      "alertFrame": 19982,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "19945": 1,
+          "19982": 0
+        }
+      },
+      "objects": [
+        {
+          "objectType": "person",
+          "objectID": 1,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3034": {
+                "presenceConf": 0.45,
+                "boundingBox": {
+                  "x": 10,
+                  "y": 30,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "3052": {
+                "presenceConf": 0.67,
+                "boundingBox": {
+                  "x": 80,
+                  "y": 10,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "3062": {
+              }
+            }
+          }
+        },
+        {
+          "objectType": "vehicle",
+          "objectID": 2,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3034": {
+                "presenceConf": 0.8,
+                "boundingBox": {
+                  "x": 100,
+                  "y": 100,
+                  "w": 80,
+                  "h": 60
+                }
+              },
+              "3062": {
+              }
+            }
+          }
+        },
+        {
+          "objectType": "vehicle",
+          "objectID": 3,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3034": {
+                "presenceConf": 0.41,
+                "boundingBox": {
+                  "x": 0,
+                  "y": 10,
+                  "w": 100,
+                  "h": 80
+                }
+              },
+              "3062": {
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "activity": "Entering",
+      "activityID": 3,
+      "presenceConf": 0.652,
+      "alertFrame": 3897,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3845": 1,
+          "3897": 0
+        }
+      },
+      "objects": [
+        {
+          "objectType": "person",
+          "objectID": 1,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3845": {
+                "presenceConf": 0.22,
+                "boundingBox": {
+                  "x": 10,
+                  "y": 30,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "3897": {
+              }
+            }
+          }
+        },
+        {
+          "objectType": "vehicle",
+          "objectID": 2,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "3845": {
+                "presenceConf": 0.12,
+                "boundingBox": {
+                  "x": 100,
+                  "y": 100,
+                  "w": 80,
+                  "h": 60
+                }
+              },
+              "3897": {
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "activity": "Entering",
+      "activityID": 4,
+      "presenceConf": 0.769,
+      "alertFrame": 6098,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "6067": 1,
+          "6098": 0
+        }
+      },
+      "objects": []
+    },
+    {
+      "activity": "Entering",
+      "activityID": 90,
+      "presenceConf": 0.769,
+      "alertFrame": 6098,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "6067": 1,
+          "6098": 0
+        }
+      },
+      "objects": []
+    },
+    {
+      "activity": "Closing",
+      "activityID": 91,
+      "presenceConf": 0.756,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_999999.mp4": {
+          "3034": 1,
+          "3062": 0
+        }
+      },
+      "objects": [
+        {
+          "objectType": "person",
+          "objectID": 1,
+          "localization": {
+            "VIRAT_S_999999.mp4": {
+              "3034": {
+                "presenceConf": 0.45,
+                "boundingBox": {
+                  "x": 10,
+                  "y": 30,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "3052": {
+                "presenceConf": 0.67,
+                "boundingBox": {
+                  "x": 80,
+                  "y": 10,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "3062": {
+              }
+            }
+          }
+        },
+        {
+          "objectType": "vehicle",
+          "objectID": 2,
+          "localization": {
+            "VIRAT_S_999999.mp4": {
+              "3034": {
+                "presenceConf": 0.8,
+                "boundingBox": {
+                  "x": 100,
+                  "y": 100,
+                  "w": 80,
+                  "h": 60
+                }
+              },
+              "3062": {
+              }
+            }
+          }
+        },
+        {
+          "objectType": "vehicle",
+          "objectID": 3,
+          "localization": {
+            "VIRAT_S_999999.mp4": {
+              "3034": {
+                "presenceConf": 0.41,
+                "boundingBox": {
+                  "x": 0,
+                  "y": 10,
+                  "w": 100,
+                  "h": 80
+                }
+              },
+              "3062": {
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

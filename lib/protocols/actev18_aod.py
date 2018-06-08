@@ -51,6 +51,10 @@ class ActEV18_AOD(ActEV18_AD):
     def get_schema_fn(cls):
         return "actev18_aod_schema.json"
 
+    @classmethod
+    def requires_object_localization(cls):
+        return True
+
     def __init__(self, scoring_parameters, file_index, activity_index):
         default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,

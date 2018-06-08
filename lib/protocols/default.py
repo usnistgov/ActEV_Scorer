@@ -46,6 +46,10 @@ class Default(object):
     def get_schema_fn(cls):
         raise NotImplementedError
 
+    @classmethod
+    def requires_object_localization(cls):
+        return False
+
     def __init__(self, scoring_parameters, file_index, activity_index):
         self.scoring_parameters = scoring_parameters
         self.file_index = file_index

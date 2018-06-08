@@ -54,12 +54,12 @@ def _build_object_frame_wconf_mapper(obj_type, obj_id):
     return _object_frame_wconf_mapper
 
 class ActivityInstance():
-    def __init__(self, dictionary):
+    def __init__(self, dictionary, load_objects = False):
         self.activity = dictionary["activity"]
         self.activityID = dictionary["activityID"]
         self.presenceConf = dictionary.get("presenceConf", None)
         self.localization = _localization_key_converter(dictionary["localization"])
-        if dictionary.has_key("objects"):
+        if load_objects and dictionary.has_key("objects"):
             self.objects = [ ObjectInstance(o) for o in dictionary["objects"] ]
         else:
             self.objects = None

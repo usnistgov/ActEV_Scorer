@@ -1,0 +1,29 @@
+{
+  "object.p_miss_at_rfa_targets": [
+    0.5, 
+    0.2, 
+    0.1, 
+    0.033
+  ], 
+  "activity.epsilon_presenceconf_congruence": 1e-06, 
+  "mode.cost_fa": 1, 
+  "object.epsilon_presenceconf_congruence": 1e-06, 
+  "nmide.cost_miss": 1, 
+  "object.epsilon_object-overlap_congruence": 1e-08, 
+  "activity.p_miss_at_rfa_targets": [
+    1, 
+    0.2, 
+    0.15, 
+    0.1, 
+    0.03, 
+    0.01
+  ], 
+  "nmide.cost_fa": 1, 
+  "activity.temporal_overlap_delta": 0.2, 
+  "activity.epsilon_temporal_congruence": 1e-08, 
+  "mode.cost_miss": 1, 
+  "object.spatial_overlap_delta": 0.5, 
+  "activity.object_congruence_delta": 0.0, 
+  "activity.epsilon_object_congruence": 1e-10, 
+  "nmide.ns_collar_size": 0
+}

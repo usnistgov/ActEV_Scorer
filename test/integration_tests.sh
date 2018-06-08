@@ -248,3 +248,35 @@ test_6_0() {
 	-j \
 	-v
 }
+
+# integration test 7-0
+# Test ignore-extraneous-files (-F) option
+test_7_0() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AOD" \
+	-s "data/test_7-0_fake-sysout.json" \
+	-r "data/test_4-0.json" \
+	-a "data/test_4-0_activity-index.json" \
+	-f "data/test_4-0_file-index.json" \
+	-F \
+	-o "$1" \
+	-d \
+	-j \
+	-v
+}
+
+# integration test 7-1
+# Test ignore-extraneous-files (-F) option
+test_7_1() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AOD" \
+	-s "data/test_7-0_fake-sysout.json" \
+	-r "data/test_7-1.json" \
+	-a "data/test_4-0_activity-index.json" \
+	-f "data/test_4-0_file-index.json" \
+	-F \
+	-o "$1" \
+	-d \
+	-j \
+	-v
+}

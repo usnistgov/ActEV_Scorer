@@ -122,8 +122,26 @@ def load_schema_for_protocol(log, protocol):
 
     return load_json(schema_path)
 
-def parse_activities(deserialized_json):
-    return [ ActivityInstance(a) for a in deserialized_json.get("activities", []) ]
+def parse_activities(deserialized_json, file_index, load_objects = False, ignore_extraneous = False):
+    activity_instances = [ ActivityInstance(a, load_objects) for a in deserialized_json.get("activities", []) ]
+
+    if ignore_extraneous:
+        extraneous_files = set(deserialized_json.get("filesProcessed", [])) - file_index.viewkeys()
+
+        def _r(init, a):
+            for f in extraneous_files & a.localization.viewkeys():
+                del a.localization[f]
+
+            # Throw out activity instances only localized to
+            # "extraneous" files
+            if len(a.localization) > 0:
+                init.append(a)
+
+            return init
+
+        return reduce(_r, activity_instances, [])
+    else:
+        return activity_instances
 
 def validate_input(log, system_output, system_output_schema):
     log(1, "[Info] Validating system output against JSON schema")
@@ -137,7 +155,7 @@ def validate_input(log, system_output, system_output_schema):
     return True
 
 # Check system "filesProcessed" vs file index
-def check_file_index_congruence(log, system_output, file_index):
+def check_file_index_congruence(log, system_output, file_index, ignore_extraneous = False):
     sys_files = set(system_output.get("filesProcessed", []))
     index_files = set(file_index.keys())
 
@@ -148,11 +166,16 @@ def check_file_index_congruence(log, system_output, file_index):
     for m in missing:
         log(0, "[Error] Missing file '{}' from system's \"filesProcessed\"".format(m))
 
-    for e in extraneous:
-        log(0, "[Error] Extraneous file '{}' in system's \"filesProcessed\"".format(e))
+    if ignore_extraneous:
+        if len(missing) > 0:
+            err_quit("System \"filesProcessed\" and file index are incongruent. Aborting!")
 
-    if len(missing) + len(extraneous) > 0:
-        err_quit("[Error] System \"filesProcessed\" and file index are incongruent. Aborting!")
+    else:
+        for e in extraneous:
+            log(0, "[Error] Extraneous file '{}' in system's \"filesProcessed\"".format(e))
+
+        if len(missing) + len(extraneous) > 0:
+            err_quit("System \"filesProcessed\" and file index are incongruent. Aborting!")
 
     return True
 
@@ -207,15 +230,15 @@ def score_basic(protocol_class, args):
     system_output_schema = load_schema_for_protocol(log, protocol)
 
     validate_input(log, system_output, system_output_schema)
-    check_file_index_congruence(log, system_output, file_index)
+    check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files)
     log(1, "[Info] Validation successful")
 
     if args.validation_only:
         exit(0)
 
-    system_activities = parse_activities(system_output)
+    system_activities = parse_activities(system_output, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files)
     reference = load_reference(log, args.reference_file)
-    reference_activities = parse_activities(reference)
+    reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files)
 
     log(1, "[Info] Scoring ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
@@ -249,6 +272,7 @@ if __name__ == '__main__':
                  [["-r", "--reference-file"], dict(help="Reference JSON file", type=str)],
                  [["-a", "--activity-index"], dict(help="Activity index JSON file", type=str, required=True)],
                  [["-f", "--file-index"], dict(help="file index JSON file", type=str, required=True)],
+                 [["-F", "--ignore-extraneous-files"], dict(help="Ignore system detection localizations for files not included in the file index", action="store_true")],
                  [["-o", "--output-dir"], dict(help="Output directory for results", type=str)],
                  [["-d", "--disable-plotting"], dict(help="Disable DET Curve plotting of results", action="store_true")],
                  [["-v", "--verbose"], dict(help="Toggle verbose log output", action="store_true")],
