@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.3.1
-Date: May 24, 2018
+Version: 0.3.2
+Date: June 13, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -72,6 +72,11 @@ Option description:
   -V - Optional; if enabled, the SYSTEM_OUTPUT_FILE will be validated
   but not scored.  REFERENCE_FILE and OUTPUT_DIR parameters are not
   required if this option is enabled
+
+  -F - Optional; if enabled, ignores extraneous "filesProcessed" and
+  ignores system and reference instance localizations for extraneous
+  files.  Note that extraneous files in this sense are those not
+  included in the FILE_INDEX
 
 Protocols:
 
@@ -227,6 +232,12 @@ Changelog:
     - For the "ActEV_AOD" protocol, now reporting a mean object
       PMiss@RFA of 1.0 instead of None when there are no aligned
       activity instances
+
+  June 13, 2018 - Version 0.3.2
+    - Added an option (-F, --ignore-extraneous-files) to ignore
+      "filesProcessed" and reference and system localizations for
+      files not included in the provided FILE_INDEX
+    - Miscellaneous improvements
 
 Contact:
 
