@@ -161,22 +161,22 @@ def p_miss(num_c, num_m, num_f):
         return float(num_m) / denom
 
 def build_pmiss_metric():
-    def _p_miss(num_c, num_m, num_f):
-        return { "p_miss": p_miss(num_c, num_m, num_f) }
+    def _p_miss(c, m, f):
+        return { "p_miss": p_miss(len(c), len(m), len(f)) }
     return _p_miss
 
 def r_fa(num_c, num_m, num_f, denominator):
     return float(num_f) / denominator
 
 def build_rfa_metric(denom):
-    def _r_fa(num_c, num_m, num_f):
-        return { "rfa": r_fa(num_c, num_m, num_f, denom) }
+    def _r_fa(c, m, f):
+        return { "rfa": r_fa(len(c), len(m), len(f), denom) }
 
     return _r_fa
 
-# Returns lowest y value for each x_targ.  The points argument should
-# be a list of tuples, where each tuple is of the form
-# (confidence_value, metrics_dict)
+# Returns y value for lowest confidence value at each x_targ.  The
+# points argument should be a list of tuples, where each tuple is of
+# the form (confidence_value, metrics_dict)
 def get_points_along_confidence_curve(points, x_label, x_key, y_label, y_key, x_targs, y_default = 1.0):
     if len(x_targs) == 0:
         return {}
@@ -243,9 +243,10 @@ def mode(num_c, num_m, num_f, cost_m, cost_f):
     return float(cost_m(num_m) + cost_f(num_f)) / (num_c + num_m)
 
 def build_mode_metric(cost_fn_m = lambda x: 1 * x, cost_fn_f = lambda x: 1 * x):
-    def _mode(num_c, num_m, num_f):
+    def _mode(c, m, f):
         # Don't attempt to compute mode if there are no reference
         # objects
+        num_c, num_m, num_f = len(c), len(m), len(f)
         value = mode(num_c, num_m, num_f, cost_fn_m, cost_fn_f) if num_m + num_c > 0 else None
         return { "mode": value }
 
@@ -259,22 +260,21 @@ def build_sweeper(conf_key_func, measure_funcs):
         # num_f = len(f)
 
         out_points = []
-        current_c, current_f = 0, 0
-        ars = sorted(c + f, None, conf_key_func)
-        while len(ars) > 0:
-            ar = ars.pop()
-            conf = conf_key_func(ar)
+        current_c, current_f = [], []
 
-            if ar.alignment == "CD":
-                current_c += 1
-            elif ar.alignment == "FA":
-                current_f += 1
+        # m records don't need to be sorted as they have None
+        # confidence scores
+        current_m = m + sorted(c, None, conf_key_func)
+        remaining_f = sorted(f, None, conf_key_func)
+        uniq_confs = sorted(set(map(conf_key_func, c + f)), reverse = True)
+        for conf in uniq_confs:
+            while len(current_m) > 0 and current_m[-1].alignment != "MD" and conf_key_func(current_m[-1]) >= conf:
+                current_c.append(current_m.pop())
 
-            if len(ars) > 0:
-                if conf != conf_key_func(ars[-1]):
-                    out_points.append((conf, reduce(merge_dicts, [ m(current_c, num_m + (total_c - current_c), current_f) for m in measure_funcs ], {})))
-            else:
-                out_points.append((conf, reduce(merge_dicts, [ m(current_c, num_m + (total_c - current_c), current_f) for m in measure_funcs ], {})))
+            while len(remaining_f) > 0 and conf_key_func(remaining_f[-1]) >= conf:
+                current_f.append(remaining_f.pop())
+
+            out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], {})))
 
         return out_points
 

@@ -60,6 +60,7 @@ class ActEV18_AOD(ActEV18_AD):
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,
                                        "activity.temporal_overlap_delta": 0.2,
                                        "activity.p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.n_mide_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "nmide.ns_collar_size": 0,
                                        "nmide.cost_miss": 1,
                                        "nmide.cost_fa": 1,
@@ -141,6 +142,21 @@ class ActEV18_AOD(ActEV18_AD):
 
         return _configure_kernel_for_activity
 
+    def compute_obj_det_points_and_measures(self, alignment, rfa_denom, rfa_targets):
+        sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [ build_rfa_metric(rfa_denom),
+                                                                   build_pmiss_metric() ])
+
+        det_points = sweeper(alignment)
+
+        pmiss_measures = get_points_along_confidence_curve(det_points,
+                                                           "rfa",
+                                                           lambda r: r["rfa"],
+                                                           "p_miss",
+                                                           lambda r: r["p_miss"],
+                                                           rfa_targets)
+
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), pmiss_measures)
+
     def compute_aggregate_obj_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, default_factorizations = None):
         # Build concat object alignment records
         def _concat_align_recs(init, ar):
@@ -153,7 +169,7 @@ class ActEV18_AOD(ActEV18_AD):
 
             combined_alignment_records = reduce(_concat_align_recs, recs, [])
 
-            det_points, measures = self.compute_det_points_and_measures(combined_alignment_records, rfa_denom_func(recs), rfa_targets)
+            det_points, measures = self.compute_obj_det_points_and_measures(combined_alignment_records, rfa_denom_func(recs), rfa_targets)
 
             p["-".join(factorization)] = det_points
 

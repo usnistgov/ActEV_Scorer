@@ -12,5 +12,13 @@
   "activity.epsilon_temporal_congruence": 1e-08, 
   "activity.epsilon_presenceconf_congruence": 1e-06, 
   "nmide.cost_fa": 1, 
-  "nmide.ns_collar_size": 10
+  "nmide.ns_collar_size": 10, 
+  "activity.n_mide_at_rfa_targets": [
+    1, 
+    0.2, 
+    0.15, 
+    0.1, 
+    0.03, 
+    0.01
+  ]
 }

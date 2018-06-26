@@ -4,6 +4,12 @@ mean-mean-object-p_miss@0.1rfa|0.25
 mean-mean-object-p_miss@0.2rfa|0.25
 mean-mean-object-p_miss@0.5rfa|0.0892857142857
 mean-n-mide|0.0
+mean-n-mide@0.01rfa|None
+mean-n-mide@0.03rfa|None
+mean-n-mide@0.15rfa|0.0
+mean-n-mide@0.1rfa|0.0
+mean-n-mide@0.2rfa|0.0
+mean-n-mide@1rfa|0.0
 mean-n-mide_num_rejected|0.0
 mean-object-p_miss@0.033rfa|0.25
 mean-object-p_miss@0.1rfa|0.25

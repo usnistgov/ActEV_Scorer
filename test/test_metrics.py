@@ -409,12 +409,12 @@ class TestSweeper(TestMetrics):
                         AR(0.5, "FA") ]
 
     def pmiss(self, c, m, f):
-        d = c + m
-        return { "p_miss": None if d == 0 else float(m) / d }
+        d = len(c) + len(m)
+        return { "p_miss": None if d == 0 else float(len(m)) / d }
 
     def build_rfa(self, denom):
         def _rfa(c, m, f):
-            return { "rfa": float(f) / denom }
+            return { "rfa": float(len(f)) / denom }
 
         return _rfa
 

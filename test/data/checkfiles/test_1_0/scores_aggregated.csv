@@ -1,5 +1,11 @@
 metric_name|metric_value
 mean-n-mide|0.108615107372
+mean-n-mide@0.01rfa|0.0546054812583
+mean-n-mide@0.03rfa|0.0532289152187
+mean-n-mide@0.15rfa|0.114593061082
+mean-n-mide@0.1rfa|0.113213387799
+mean-n-mide@0.2rfa|0.106408003894
+mean-n-mide@1rfa|0.0987866742718
 mean-n-mide_num_rejected|0.0
 mean-p_miss@0.01rfa|0.979707478181
 mean-p_miss@0.03rfa|0.979270134822
