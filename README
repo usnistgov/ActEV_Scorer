@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.3.2
-Date: June 13, 2018
+Version: 0.3.3
+Date: June 25, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -82,10 +82,10 @@ Protocols:
 
   ActEV18_AD - Scoring protocol for the ActEV 2018 Activity Detection
   task, the following measures are computed:
-    - PMiss at RFA for RFA values of 1, 0.2, 0.15, 0.1, 0.03, and
-      0.01
+    - PMiss at RFA for RFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
     - NMIDE (**NOTE** currently using a no-score collar size of 0
       frames, this will likely change in a future release)
+    - NMIDE at RFA for RFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
 
   ActEV18_AOD - Scoring protocol for the ActEV 2018 Activity and
   Object Detection task.  This protocol computes both the PMiss at RFA
@@ -238,6 +238,11 @@ Changelog:
       "filesProcessed" and reference and system localizations for
       files not included in the provided FILE_INDEX
     - Miscellaneous improvements
+
+  June 25, 2018 - Version 0.3.3
+    - Added NMIDE at RFA measures for both "ActEV_AD" and "ActEV_AOD"
+      protocols
+    - Moved DET curve plot legend to the right of the plot
 
 Contact:
 
