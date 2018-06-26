@@ -76,9 +76,9 @@ def det_curve(points_dict, out_fn):
 
     plt.yticks(ytick, ytick_labels)
 
-    plt.legend(loc='upper left', borderaxespad=0, fontsize='small')
+    plt.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0, fontsize='small')
     plt.xlabel("Rate of false alarm (per minute)")
     plt.ylabel("Probability of missed detection")
 
-    plt.savefig(out_fn)
+    plt.savefig(out_fn, bbox_inches="tight")
     plt.close()
