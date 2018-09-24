@@ -1,0 +1,77 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+      {
+      "activity": "Closing",
+      "activityID": 1,
+      "presenceConf": 0.756,
+      "alertFrame": 45013,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "44989": 1,
+          "45013": 0
+        }
+      },
+      "objects": [
+       {
+          "objectType": "person",
+          "objectID": 1,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "44989": {
+                "presenceConf": 0.7,
+                "boundingBox": {
+                  "x": 10,
+                  "y": 30,
+                  "w": 50,
+                  "h": 20
+                }
+	      },
+              "45000": {
+              }
+            }
+          }
+        },
+        {
+	    "objectType": "person",
+	    "objectID": 2,
+	    "localization": {
+		"VIRAT_S_000000.mp4": {
+		    "44989": {
+			"presenceConf": 0.7,
+			"boundingBox": {
+			    "x": 2,
+			    "y": 20,
+			    "w": 50,
+			    "h": 20
+			}
+		    },
+		    "44993": {
+			"presenceConf": 0.7,
+			"boundingBox": {
+			    "x": 5,
+			    "y": 24,
+			    "w": 50,
+			    "h": 20
+			}
+		    },
+		    "45000": {
+			"presenceConf": 0.7,
+			"boundingBox": {
+			    "x": 10,
+			    "y": 30,
+			    "w": 50,
+			    "h": 20
+			}
+		    },
+		    "45013": {
+		    }
+		}
+	    }
+	}
+      ]
+    }
+  ]
+}

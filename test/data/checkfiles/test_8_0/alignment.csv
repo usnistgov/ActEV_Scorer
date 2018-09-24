@@ -1,0 +1,2 @@
+activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
+Closing|CD|1|1|0.756|1.00000151|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 1.0, "object_congruence": 0.5416666666666667}

@@ -280,3 +280,17 @@ test_7_1() {
 	-j \
 	-v
 }
+
+test_8_0() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AODT" \
+	-s "data/test_8-0_fake-sysout.json" \
+	-r "data/test_8-0.json" \
+	-a "data/test_8-0_activity-index.json" \
+	-f "data/test_8-0_file-index.json" \
+	-F \
+	-o "$1" \
+	-d \
+	-j \
+	-v
+}

@@ -1,0 +1,36 @@
+activity|ref_activity|sys_activity|frame|ref_object_type|sys_object_type|mapped_ref_object_type|mapped_sys_object_type|alignment|ref_object|sys_object|sys_presenceconf_score|kernel_similarity|kernel_components
+Closing|1|1|44989|None|person|None|person|FA|None|2|0.7|None|None
+Closing|1|1|44989|person|person|person|person|CD|1|1|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|44990|None|person|None|person|FA|None|2|0.7|None|None
+Closing|1|1|44990|person|person|person|person|CD|1|1|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|44991|None|person|None|person|FA|None|2|0.7|None|None
+Closing|1|1|44991|person|person|person|person|CD|1|1|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|44992|None|person|None|person|FA|None|2|0.7|None|None
+Closing|1|1|44992|person|person|person|person|CD|1|1|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|44993|None|person|None|person|FA|None|2|0.7|None|None
+Closing|1|1|44993|person|person|person|person|CD|1|1|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|44994|None|person|None|person|FA|None|2|0.7|None|None
+Closing|1|1|44994|person|person|person|person|CD|1|1|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|44995|None|person|None|person|FA|None|2|0.7|None|None
+Closing|1|1|44995|person|person|person|person|CD|1|1|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|44996|None|person|None|person|FA|None|2|0.7|None|None
+Closing|1|1|44996|person|person|person|person|CD|1|1|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|44997|None|person|None|person|FA|None|2|0.7|None|None
+Closing|1|1|44997|person|person|person|person|CD|1|1|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|44998|None|person|None|person|FA|None|2|0.7|None|None
+Closing|1|1|44998|person|person|person|person|CD|1|1|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|44999|None|person|None|person|FA|None|2|0.7|None|None
+Closing|1|1|44999|person|person|person|person|CD|1|1|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45000|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45001|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45002|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45003|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45004|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45005|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45006|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45007|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45008|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45009|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45010|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45011|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}
+Closing|1|1|45012|person|person|person|person|CD|1|2|0.7|1.00000101|{"spatial_intersection-over-union": 1.0, "presenceconf_congruence": 1.0}

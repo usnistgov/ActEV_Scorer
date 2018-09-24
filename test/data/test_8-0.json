@@ -1,0 +1,37 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing",
+      "activityID": 1,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "44989": 1,
+          "45013": 0
+        }
+      },
+      "objects": [
+        {
+          "objectType": "person",
+          "objectID": 1,
+          "localization": {
+            "VIRAT_S_000000.mp4": {
+              "44989": {
+                "boundingBox": {
+                  "x": 10,
+                  "y": 30,
+                  "w": 50,
+                  "h": 20
+                }
+              },
+              "45013": {
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
