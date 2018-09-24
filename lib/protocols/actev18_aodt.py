@@ -46,7 +46,7 @@ from alignment import *
 from helpers import *
 from actev18_ad import *
 
-class ActEV18_AOD(ActEV18_AD):
+class ActEV18_AODT(ActEV18_AD):
     @classmethod
     def get_schema_fn(cls):
         return "actev18_aod_schema.json"
@@ -65,17 +65,19 @@ class ActEV18_AOD(ActEV18_AD):
                                        "nmide.cost_miss": 1,
                                        "nmide.cost_fa": 1,
                                        "activity.epsilon_object_congruence": 1.0e-10,
+                                       "activity.epsilon_object_tracking_congruence": 1.0e-6, 
                                        "activity.object_congruence_delta": 0.0,
                                        "object.epsilon_object-overlap_congruence": 1.0e-8,
                                        "object.epsilon_presenceconf_congruence": 1.0e-6,
                                        "object.spatial_overlap_delta": 0.5,
                                        "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
                                        "mode.cost_miss": 1,
-                                       "mode.cost_fa": 1 }
+                                       "mode.cost_fa": 1,
+                                       "mode.cost_id": 1}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
-        super(ActEV18_AOD, self).__init__(scoring_parameters, file_index, activity_index)
+        super(ActEV18_AODT, self).__init__(scoring_parameters, file_index, activity_index)
 
     def default_kernel_builder(self, refs, syss):
 
@@ -100,6 +102,9 @@ class ActEV18_AOD(ActEV18_AD):
         mode_cost_fa = self.scoring_parameters["mode.cost_fa"]
         mode_costfn_fa = lambda x: mode_cost_fa * x
 
+        mode_cost_id = self.scoring_parameters["mode.cost_id"]
+        mode_costfn_id = lambda x: mode_cost_id * x
+
         def _configure_kernel_for_activity(activity, activity_properties, refs, syss):
             object_types = activity_properties.get("objectTypes", [])
             object_type_map = activity_properties.get("objectTypeMap", None)
@@ -120,26 +125,28 @@ class ActEV18_AOD(ActEV18_AD):
                                                         "presenceconf_congruence": self.scoring_parameters["object.epsilon_presenceconf_congruence"]})
 
             return build_linear_combination_kernel([simple_temporal_overlap_filter,
-                                                    build_object_congruence_filter(_object_kernel_builder,
+                                                    build_object_tracking_congruence_filter(_object_kernel_builder,
                                                                                    intersection_filter,
                                                                                    intersection_filter,
                                                                                    self.scoring_parameters["activity.object_congruence_delta"],
                                                                                    object_types,
                                                                                    mode_costfn_miss,
                                                                                    mode_costfn_fa,
+                                                                                   mode_costfn_id,
                                                                                    self.scoring_parameters["object.p_miss_at_rfa_targets"])],
-                                                   [build_object_congruence(_object_kernel_builder,
+                                                   [build_object_tracking_congruence(_object_kernel_builder,
                                                                             intersection_filter,
                                                                             intersection_filter,
                                                                             object_types,
                                                                             mode_costfn_miss,
                                                                             mode_costfn_fa,
+                                                                            mode_costfn_id,
                                                                             self.scoring_parameters["object.p_miss_at_rfa_targets"]),
                                                     temporal_intersection_over_union_component,
                                                     act_presenceconf_congruence],
                                                    {"temporal_intersection-over-union": self.scoring_parameters["activity.epsilon_temporal_congruence"],
                                                     "presenceconf_congruence": self.scoring_parameters["activity.epsilon_presenceconf_congruence"],
-                                                    "object_congruence": self.scoring_parameters["activity.epsilon_object_congruence"]})
+                                                    "object_tracking_congruence": self.scoring_parameters["activity.epsilon_object_tracking_congruence"]})
 
         return _configure_kernel_for_activity
 
@@ -185,8 +192,8 @@ class ActEV18_AOD(ActEV18_AD):
         c, m, f = partition_alignment(alignment)
 
         # Building off of the metrics computed for AD
-        ad_results = super(ActEV18_AOD, self).compute_results(alignment)
-
+        ad_results = super(ActEV18_AODT, self).compute_results(alignment)
+        #print ad_results
         def _object_frame_alignment_records(init, kv):
             activity, recs = kv
             object_type_map = self.activity_index[activity].get("objectTypeMap", {})
@@ -217,14 +224,16 @@ class ActEV18_AOD(ActEV18_AD):
         def _obj_pmiss_at_rfa(targ):
             t = "object-p_miss@{}rfa".format(targ)
             return self.build_simple_measure(lambda x: (x.kernel_components.get(t),), t, identity)
-
-        aod_pair_measures = [ self.build_simple_measure(lambda x: (x.kernel_components.get("minMODE"),), "minMODE", identity)] + map(_obj_pmiss_at_rfa, self.scoring_parameters["object.p_miss_at_rfa_targets"])
-
+        
+        aod_pair_measures = [ self.build_simple_measure(lambda x: (x.kernel_components.get("minMOTE"),), "minMOTE", identity)] + [ self.build_simple_measure(lambda x: (x.kernel_components.get("minMODE"),), "minMODE", identity)] + map(_obj_pmiss_at_rfa, self.scoring_parameters["object.p_miss_at_rfa_targets"])
+        #print "aod_pair_measures"
+        #print aod_pair_measures
         def _pair_properties_map(rec):
             return (rec.activity, rec.ref.activityID, rec.sys.activityID)
 
         aod_pair_results = self.compute_atomic_measures(c, _pair_properties_map, aod_pair_measures)
-
+        #print "aod_pair_results"
+        #print aod_pair_results
         def _activity_grouper(rec):
             return (rec.activity,)
 
@@ -237,7 +246,7 @@ class ActEV18_AOD(ActEV18_AD):
                 # "adding" the signals
                 return merge_dicts(init, loc, add)
             #print correct_recs
-#            print [lambda x: x.kernel_components["ref_filter_localization"], correct_recs]
+#       build_simple_measure     print [lambda x: x.kernel_components["ref_filter_localization"], correct_recs]
 #            print reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {})
 #            print reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {}).values()
 #            print [v.area() for v in reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {}).values() ]
@@ -277,5 +286,5 @@ class ActEV18_AOD(ActEV18_AD):
 
         output_alignment_records = map(_align_rec_mapper, alignment)
 
-        # Replacement results for AOD
+        # Replacement results for AODT
         return merge_dicts(appended_results, { "output_alignment_records": output_alignment_records })

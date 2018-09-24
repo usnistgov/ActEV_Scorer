@@ -67,7 +67,13 @@ class SparseSignal(dict):
         return self.join(other, lambda a, b: a - min(a, b))
 
     def join_nd(self, other, n, op, default = 0):
+        #print "other: " +str(other)
+        #print "n: " +str(n)
+        #print "op: "+str(op)
         def _r(init, _):
+            #print "init "
+            #print init
+            #print lambda a, b: a.join(b, init, SparseSignal())
             return lambda a, b: a.join(b, init, SparseSignal())
 
         return reduce(_r, repeat(None, n - 1), lambda a, b: a.join(b, op, default))(self, other)

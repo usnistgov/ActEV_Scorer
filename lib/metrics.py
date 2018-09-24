@@ -40,12 +40,21 @@ def _signal_pairs(r, s, signal_accessor, key_join_op = set.union):
     return [ (signal_accessor(rl, k), signal_accessor(sl, k), k) for k in key_join_op(set(rl.keys()), set(sl.keys())) ]
 
 def _temporal_signal_accessor(localization, k):
+    #print 'localization:'
+    #print localization
     return S(localization.get(k, {}))
 
 def temporal_signal_pairs(r, s, key_join_op = set.union):
+    #print "return of temporal_signal_pairs"
+    #print _signal_pairs(r, s, _temporal_signal_accessor, key_join_op)
     return _signal_pairs(r, s, _temporal_signal_accessor, key_join_op)
 
 def temporal_intersection(r, s):
+    #print "temporal_intersection r:"
+    #print r
+    #print "temporal_intersection s:"
+    #print s
+#    print reduce(add, [ (r & s).area() for r, s, k in temporal_signal_pairs(r, s, set.intersection) ], 0)
     return reduce(add, [ (r & s).area() for r, s, k in temporal_signal_pairs(r, s, set.intersection) ], 0)
 
 def temporal_union(r, s):
@@ -60,7 +69,8 @@ def temporal_miss(r, s):
 def temporal_intersection_over_union(r, s):
     intersection = temporal_intersection(r, s)
     union = temporal_union(r, s)
-
+    #print intersection
+    #print union
     # Not sure if this is the best way to handle union == 0; but in
     # practise should never encounter this case
     return float(intersection) / union if union != 0 else 0.0
@@ -82,7 +92,11 @@ def simple_spatial_union(r, s):
 
 def simple_spatial_intersection_over_union(r, s):
     intersection = simple_spatial_intersection(r, s)
+    #print "intersection: "
+    #print intersection
     union = simple_spatial_union(r, s)
+    #print "union: "
+    #print union
 
     # Not sure if this is the best way to handle union == 0; but in
     # practise should never encounter this case
@@ -248,9 +262,48 @@ def build_mode_metric(cost_fn_m = lambda x: 1 * x, cost_fn_f = lambda x: 1 * x):
         # objects
         num_c, num_m, num_f = len(c), len(m), len(f)
         value = mode(num_c, num_m, num_f, cost_fn_m, cost_fn_f) if num_m + num_c > 0 else None
+        #print "MODE CALCULATED"
+        #print value
         return { "mode": value }
 
     return _mode
+
+def mote(num_c, num_m, num_f, num_id, cost_m, cost_f, cost_id):
+    #print cost_m(num_m)
+    #print cost_id
+#    print "NUM_ID"
+#    print num_id
+#    print "NUM_F"
+#    print num_f
+    return float(cost_m(num_m) + cost_f(num_f) + cost_id(num_id)) / (num_c + num_m)
+    #return float(cost_m(num_m) + cost_f(num_f)) / (num_c + num_m)
+
+def build_mote_metric(frame_correct_align, conf_func, cost_fn_m = lambda x: 1 * x, cost_fn_f = lambda x: 1 * x, cost_fn_id = lambda x: 1 * x):
+    def _mote(c, m, f):
+        num_c, num_m, num_f = len(c), len(m), len(f)
+        
+        conf = sorted(set(map(conf_func, c + f)))[0]
+        #print "CONF"
+        #print conf
+        num_id = 0 
+        cur_align={}
+        for i in frame_correct_align:
+            #print i
+            ar=i[1]
+            #print ar
+            if ar.sys.presenceConf >= conf:
+                try:
+                    if cur_align[ar.ref.objectID] != ar.sys.objectID:
+                        num_id+=1
+                        cur_align[ar.ref.objectID] = ar.sys.objectID
+                except:
+                    cur_align[ar.ref.objectID] = ar.sys.objectID
+        #print num_id
+        value = mote(num_c, num_m, num_f, num_id, cost_fn_m, cost_fn_f, cost_fn_id) if num_m + num_c > 0 else None
+#        print "Calculating MOTE"
+        #print value
+        return { "mote": value }
+    return _mote
 
 def build_sweeper(conf_key_func, measure_funcs):
     def _sweep(alignment_records):
@@ -258,7 +311,8 @@ def build_sweeper(conf_key_func, measure_funcs):
         total_c = len(c)
         num_m = len(m)
         # num_f = len(f)
-
+        #print "C Again:"
+        #print c
         out_points = []
         current_c, current_f = [], []
 
@@ -270,12 +324,14 @@ def build_sweeper(conf_key_func, measure_funcs):
         for conf in uniq_confs:
             while len(current_m) > 0 and current_m[-1].alignment != "MD" and conf_key_func(current_m[-1]) >= conf:
                 current_c.append(current_m.pop())
-
+            #print "current c"
+            #print current_c
             while len(remaining_f) > 0 and conf_key_func(remaining_f[-1]) >= conf:
                 current_f.append(remaining_f.pop())
 
             out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], {})))
-
+        #print "OUT_POINTS: "
+        #print out_points
         return out_points
 
     return _sweep

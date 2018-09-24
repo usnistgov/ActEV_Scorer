@@ -36,6 +36,8 @@ import json
 
 def _alignment_partitioner(init, ar):
     cd, md, fa = init
+    #print "AR: "
+    #print ar
     if ar.alignment == "CD":
         cd.append(ar)
     elif ar.alignment == "MD":
@@ -100,4 +102,5 @@ class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
         # Want to yield out the JSON serialization of requested kernel
         # components in the order requested.  Ordering is also
         # important for our integration tests.
+        #print json.dumps(reduce(_r, reported_components, OrderedDict())) if self.kernel_components else None
         yield json.dumps(reduce(_r, reported_components, OrderedDict())) if self.kernel_components else None

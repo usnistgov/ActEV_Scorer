@@ -88,10 +88,13 @@ class Default(object):
 
             # Second phase of kernel building, taking into account the
             # activity
+#            print "BEFORE KERNEL"
             kernel = kernel_builder(activity, activity_properties, refs, syss)
-
+#            print "AFTER KERNEL"
             for rs, ss in cohort_gen(refs, syss):
+#                print "BEFORE ALIGNMENT"
                 c, m, f = perform_alignment(rs, ss, kernel)
+#                print "AFTER ALIGNMENT"
 
                 alignment_recs.extend(c)
                 alignment_recs.extend(m)
@@ -146,6 +149,9 @@ class Default(object):
 
 
     def build_simple_measure(self, arg_func, name, measure_func):
+        #        print arg_func
+        #        print name
+        #        print measure_func
         def _m(*rec):
             return { name: measure_func(*arg_func(*rec)) }
 

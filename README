@@ -99,6 +99,15 @@ Protocols:
       differentiate them from PMiss at RFA measures on activity
       detections)
 
+  ActEV18_AODT - Scoring protocol for the ActEV 2018 Activity and
+  Object Detection and Tracking task. This protocol computes both th
+  PMiss at RFA, NMIDE, and minMODE measures reported for the ActEV18_AD
+  and ActEV18_AOD protocols, but over an activity instance alignment
+  that also considers object  detections. The following additional
+  measures are computed:
+    - MOTE - the Multiple Object Tracking Error for an object
+      detection and tracking alignment.
+      
 Output:
 
   The scoring script writes to several files in the specified
@@ -119,9 +128,9 @@ Output:
 
   Option/Protocol dependent:
 
-    - object_alignment.csv - For the "ActEV18_AOD" protocol, enabled
-      with '-j'; Lists the frame-by-frame object alignments for each
-      pair of aligned activity instances
+    - object_alignment.csv - For the "ActEV18_AOD" and "ActEV18_AODT"
+      protocols, enabled with '-j'; Lists the frame-by-frame object
+      alignments for each pair of aligned activity instances
 
 Changelog:
 
@@ -244,6 +253,10 @@ Changelog:
       protocols
     - Moved DET curve plot legend to the right of the plot
 
+  September 24, 2018 - Version 0.3.4
+    - Added AODT Task
+    - Added MOTE to output files
+    
 Contact:
 
   Please send any issues, questions, or comments to
@@ -252,4 +265,4 @@ Contact:
 Authors:
 
   David Joy
-
+  Andrew Delgado

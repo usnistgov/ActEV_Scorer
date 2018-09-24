@@ -69,6 +69,10 @@ def build_simple_spatial_overlap_filter(threshold):
     return _filter
 
 def simple_spatial_intersection_over_union_component(r, s, cache):
+    #print "simple_spatial"
+    #print simple_spatial_intersection_over_union(r.spatial_signal, s.spatial_signal)
+    #print r.spatial_signal
+    #print s.spatial_signal
     return { "spatial_intersection-over-union": cache.get("spatial_intersection-over-union", simple_spatial_intersection_over_union(r.spatial_signal, s.spatial_signal)) }
 
 def object_type_match_filter(r, s):
@@ -105,6 +109,8 @@ def _object_signals_to_lookup(temporal_signal, local_objects):
 def build_object_congruence_filter(obj_kernel_builder, ref_filter, sys_filter, threshold, object_types = [], cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x, target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]):
     def _filter(r, s):
         components = _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_types, cmiss, cfa, target_rfas)
+        #print "Components: "
+        #print components
         obj_congruence = components["object_congruence"]
 
         return (False if obj_congruence is None else obj_congruence >= threshold, components)
@@ -166,6 +172,14 @@ def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_
             ref = ros_lookup.get(frame, [])
 
             c, m, f = perform_alignment(ref, sys, obj_kernel_builder(sys))
+            #print "C: "
+            #print c
+            #print "REFOBJECT ID?"
+            #print c[0].ref.objectID
+            #print "SYSOBJECT ID?"
+            #print c[0].sys.objectID
+            #print "FRAME: "
+            #print frame
             total_c.extend(c)
             total_m.extend(m)
             total_f.extend(f)
@@ -191,7 +205,7 @@ def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_
     min_mode = min(map(lambda x: x[1], mode_scores)) if len(mode_scores) > 0 else None
 
     pmiss_at_rfa_measures = get_points_along_confidence_curve(sweep_recs, "rfa", lambda r: r["rfa"], "object-p_miss", lambda r: r["p_miss"], target_rfas)
-
+    
     out_components = { "object_congruence": 1 - min_mode if min_mode is not None else None,
                        "minMODE": min_mode,
                        "MODE_records": mode_scores,
@@ -200,3 +214,128 @@ def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_
                        "ref_filter_localization": ref_filter_localization }
 
     return merge_dicts(out_components, pmiss_at_rfa_measures)
+
+
+
+def build_object_tracking_congruence_filter(obj_kernel_builder, ref_filter, sys_filter, threshold, object_types = [], cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x, cid = lambda x: 1 * x, target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]):
+    def _filter(r, s):
+        components = _object_tracking_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_types, cmiss, cfa, cid, target_rfas)
+        #print "Components: "
+        #print components
+        obj_congruence = components["object_congruence"]
+        
+        return (False if obj_congruence is None else obj_congruence >= threshold, components)
+    
+    return _filter
+
+def build_object_tracking_congruence(obj_kernel_builder, ref_filter, sys_filter, object_types = [], cmiss = lambda x: 1 * x, cfa = lambda x: 1 * x, cid = lambda x: 1 * x, target_rfas = [ 0.5, 0.2, 0.1, 0.033 ]):
+    def object_tracking_congruence_component(r, s, cache):
+        def _r_out_dict(init, k):
+            ok, d = init
+            still_ok = False
+            if k in cache:
+                d[k] = cache[k]
+                still_ok = True
+                
+            return (ok and still_ok, d)
+
+        was_cached, components = reduce(_r_out_dict, [ "object_congruence", "minMODE", "MODE_records", "object_tracking_congruence", "minMOTE", "MOTE_records", "alignment_records", "det_points", "ref_filter_localization" ] + [ "object-p_miss@{}rfa".format(target_rfa) for target_rfa in target_rfas ], (True, {}))
+        
+        if was_cached:
+            return components
+        else:
+            return _object_tracking_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_types, cmiss, cfa, cid, target_rfas)
+        
+    return object_tracking_congruence_component
+
+
+def _object_tracking_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_types, cmiss, cfa, cid, target_rfas):
+    # If object_types provided as non-empty array, only consider objects included in object_types
+    ro = r.objects if len(object_types) == 0 else filter(lambda o: o.objectType in object_types, r.objects)
+    so = s.objects if len(object_types) == 0 else filter(lambda o: o.objectType in object_types, s.objects)
+    
+    # For N_MODE computation, localizations spanning multiple files
+    # are treated independently
+    total_c, total_m, total_f, total_r = [], [], [], []
+    frame_alignment_records = []
+    correct_frame_alignment_records=[]
+    # We need to report out the ref filter localization for aggregate
+    # PMiss@RFA measurements
+    ref_filter_localization = {}
+#    obj_align={}
+#    FirstRun=True
+    for r, s, k in temporal_signal_pairs(r, s):
+        local_so_localizations = map(lambda o: o.localization.get(k, S()), so)
+        local_ro_localizations = map(lambda o: o.localization.get(k, S()), ro)
+        
+        sos_lookup = _object_signals_to_lookup(sys_filter(r, s), local_so_localizations)
+        ros_lookup = _object_signals_to_lookup(ref_filter(r, s), local_ro_localizations)
+        
+        ref_filter_localization[k] = ref_filter(r, s)
+        FirstRun=True
+        obj_align={}
+        for frame in sos_lookup.viewkeys() | ros_lookup.viewkeys():
+            sys = sos_lookup.get(frame, [])
+            ref = ros_lookup.get(frame, [])
+            
+            c, m, f = perform_alignment(ref, sys, obj_kernel_builder(sys))
+            #print "C: "
+            #print c
+            
+            #print "C: "
+            #print c
+            #print "REFOBJECT ID?"
+            #print c[0].ref.objectID
+            #print "SYSOBJECT ID?"
+            #print c[0].sys.objectID
+            #print "FRAME: "
+            #print frame
+            #c.append(obj_switch)
+            total_c.extend(c)
+            total_m.extend(m)
+            total_f.extend(f)
+            total_r.extend(ref)
+
+            for ar in c:
+                correct_frame_alignment_records.append((frame,ar))
+            for ar in c + m + f:
+                frame_alignment_records.append((frame, ar))
+
+        #print "correct_frame_alignment"
+        #print correct_frame_alignment_records
+
+    ref_filter_area = sum([ v.area() for v in ref_filter_localization.values() ])
+    
+    sweeper = build_sweeper(lambda r: r.sys.presenceConf, [ build_rfa_metric(ref_filter_area),
+                                                            build_pmiss_metric(),
+                                                            build_mode_metric(cmiss, cfa),
+                                                            build_mote_metric(correct_frame_alignment_records, lambda r: r.sys.presenceConf, cmiss, cfa, cid)])
+    sweep_recs = sweeper(total_c + total_m + total_f)
+    
+    # Filter out None mode scores (in the case of zero reference
+    # objects)
+    mode_scores = filter(lambda r: r[1] is not None, flatten_sweeper_records(sweep_recs, [ "mode" ]))
+    mote_scores = filter(lambda r: r[1] is not None, flatten_sweeper_records(sweep_recs, [ "mote" ]))
+    #   print "mote_scores"
+    #   print mote_scores
+    det_points = flatten_sweeper_records(sweep_recs, [ "rfa", "p_miss" ])
+    
+    min_mode = min(map(lambda x: x[1], mode_scores)) if len(mode_scores) > 0 else None
+    min_mote = min(map(lambda x: x[1], mote_scores)) if len(mote_scores) > 0 else None
+    
+    pmiss_at_rfa_measures = get_points_along_confidence_curve(sweep_recs, "rfa", lambda r: r["rfa"], "object-p_miss", lambda r: r["p_miss"], target_rfas)
+    
+    out_components = { "object_congruence": 1 - min_mode if min_mode is not None else None,
+                       "minMODE": min_mode,
+                       "MODE_records": mode_scores,
+                       "object_tracking_congruence": min_mote if min_mote is not None else None,
+                       "minMOTE": min_mote,
+                       "MOTE_records": mote_scores,
+                       "alignment_records": frame_alignment_records,
+                       "det_points": det_points,
+                       "ref_filter_localization": ref_filter_localization}
+    
+    return merge_dicts(out_components, pmiss_at_rfa_measures)
+
+
+

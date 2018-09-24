@@ -391,7 +391,34 @@ class TestMODE(TestMetrics):
         self.assertAlmostEqual(mode(self.c_1, self.m_1, self.f_1, self.wf_1, self.wf_2), float(26 + 2 * 28) / 32, places = 10)
         self.assertAlmostEqual(mode(self.c_1, self.m_1, self.f_1, self.wf_2, self.wf_2), float(2 * 26 + 2 * 28) / 32, places = 10)
 
+class TestMOTE(TestMetrics):
+        def setUp(self):
+            super(TestMOTE, self).setUp()
+            
+            self.c_1 = 6
+            self.c_2 = 0
+            
+            self.f_1 = 28
+            self.f_2 = 18
+            
+            self.m_1 = 26
+            self.m_2 = 32
 
+            self.id_1 = 3
+            self.id_2 = 6
+            
+            self.wf_1 = lambda x: x * 1
+            self.wf_2 = lambda x: x * 2
+            self.wf_3 = lambda x: x * 3
+        def test_mote(self):
+            self.assertAlmostEqual(mote(self.c_1, self.m_1, self.f_1, self.id_1, self.wf_1, self.wf_1, self.wf_1), float(57) / 32, places = 10)
+            self.assertAlmostEqual(mote(self.c_1, self.m_1, self.f_2, self.id_1, self.wf_1, self.wf_1, self.wf_1), float(47) / 32, places = 10)
+            self.assertAlmostEqual(mote(self.c_2, self.m_2, self.f_2, self.id_2, self.wf_1, self.wf_1, self.wf_1), float(56) / 32, places = 10)
+            
+            self.assertAlmostEqual(mote(self.c_1, self.m_1, self.f_1, self.id_1, self.wf_1, self.wf_2, self.wf_2), float(26 + 2 * 28 + 2 * 3) / 32, places = 10)
+            self.assertAlmostEqual(mote(self.c_1, self.m_1, self.f_1, self.id_2, self.wf_2, self.wf_2, self.wf_1), float(2 * 26 + 2 * 28 + 6) / 32, places = 10)
+            self.assertAlmostEqual(mote(self.c_1, self.m_1, self.f_1, self.id_2, self.wf_1, self.wf_2, self.wf_3), float(26 + 2 * 28 + 3 * 6) / 32, places = 10)
+            
 class AR():
     def __init__(self, conf, alignment):
         self.alignment = alignment

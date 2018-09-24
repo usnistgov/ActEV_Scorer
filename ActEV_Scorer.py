@@ -182,6 +182,7 @@ def check_file_index_congruence(log, system_output, file_index, ignore_extraneou
 def plot_dets(log, output_dir, det_point_records):
     figure_dir = "{}/figures".format(output_dir)
     mkdir_p(figure_dir)
+#    print det_point_records
     log(1, "[Info] Saving figures to directory '{}'".format(figure_dir))
     log(1, "[Info] Plotting combined DET curve")
     det_curve(det_point_records, "{}/DET_COMBINED.png".format(figure_dir))
@@ -208,6 +209,11 @@ def score_actev18_aod(args):
 
     score_basic(ActEV18_AOD, args)
 
+def score_actev18_aodt(args):
+    from actev18_aodt import ActEV18_AODT
+
+    score_basic(ActEV18_AODT, args)
+    
 def score_basic(protocol_class, args):
     verbosity_threshold = 1 if args.verbose else 0
     log = build_logger(verbosity_threshold)
@@ -295,6 +301,11 @@ if __name__ == '__main__':
     add_protocol_subparser("ActEV18_AOD",
                            dict(help="Scoring protocol for the ActEV18 Activity and Object Detection task"),
                            score_actev18_aod,
+                           base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
+
+    add_protocol_subparser("ActEV18_AODT",
+                           dict(help="Scoring protocol for the ActEV18 Activity and Object Detection and Tracking task"),
+                           score_actev18_aodt,
                            base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
 
     args = parser.parse_args()
