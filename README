@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.3.3
-Date: June 25, 2018
+Version: 0.3.4
+Date: September 24, 2018
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -256,6 +256,7 @@ Changelog:
   September 24, 2018 - Version 0.3.4
     - Added AODT Task
     - Added MOTE to output files
+    - Added integration test 8_0
     
 Contact:
 
