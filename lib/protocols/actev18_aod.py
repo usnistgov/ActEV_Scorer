@@ -66,6 +66,8 @@ class ActEV18_AOD(ActEV18_AD):
                                        "nmide.cost_fa": 1,
                                        "activity.epsilon_object_congruence": 1.0e-10,
                                        "activity.object_congruence_delta": 0.0,
+                                       "wpmiss.numerator": 8,
+                                       "wpmiss.denominator": 10,
                                        "object.epsilon_object-overlap_congruence": 1.0e-8,
                                        "object.epsilon_presenceconf_congruence": 1.0e-6,
                                        "object.spatial_overlap_delta": 0.5,

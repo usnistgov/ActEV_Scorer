@@ -2,5 +2,8 @@
   "nmide.ns_collar_size": 10,
   "activity.epsilon_temporal_congruence": 1e-08, 
   "activity.epsilon_presenceconf_congruence": 1e-06, 
-  "activity.temporal_overlap_delta": 0.2
+  "activity.temporal_overlap_delta": 0.2,
+  "wpmiss.numerator": 7,
+  "wpmiss.denominator": 9
+    
 }

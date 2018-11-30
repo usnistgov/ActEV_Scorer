@@ -13,6 +13,12 @@ Closing|p_miss@0.15rfa|0.0
 Closing|p_miss@0.1rfa|0.0
 Closing|p_miss@0.2rfa|0.0
 Closing|p_miss@1rfa|0.0
+Closing|w_p_miss@0.01rfa|1.0
+Closing|w_p_miss@0.03rfa|1.0
+Closing|w_p_miss@0.15rfa|0.727272727273
+Closing|w_p_miss@0.1rfa|0.727272727273
+Closing|w_p_miss@0.2rfa|0.727272727273
+Closing|w_p_miss@1rfa|0.727272727273
 Entering|n-mide|0.0173131118913
 Entering|n-mide@0.01rfa|0.0173131118913
 Entering|n-mide@0.03rfa|0.0173131118913
@@ -27,3 +33,9 @@ Entering|p_miss@0.15rfa|0.0
 Entering|p_miss@0.1rfa|0.0
 Entering|p_miss@0.2rfa|0.0
 Entering|p_miss@1rfa|0.0
+Entering|w_p_miss@0.01rfa|0.666666666667
+Entering|w_p_miss@0.03rfa|0.666666666667
+Entering|w_p_miss@0.15rfa|0.666666666667
+Entering|w_p_miss@0.1rfa|0.666666666667
+Entering|w_p_miss@0.2rfa|0.666666666667
+Entering|w_p_miss@1rfa|0.666666666667

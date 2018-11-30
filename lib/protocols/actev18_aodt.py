@@ -64,6 +64,8 @@ class ActEV18_AODT(ActEV18_AD):
                                        "nmide.ns_collar_size": 0,
                                        "nmide.cost_miss": 1,
                                        "nmide.cost_fa": 1,
+                                       "wpmiss.numerator": 8,
+                                       "wpmiss.denominator": 10,
                                        "activity.epsilon_object_congruence": 1.0e-10,
                                        "activity.epsilon_object_tracking_congruence": 1.0e-6, 
                                        "activity.object_congruence_delta": 0.0,

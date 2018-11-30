@@ -37,6 +37,20 @@ class TestPMiss(TestMetrics):
         self.assertAlmostEqual(p_miss(0, 0, 0), None, places=10)
         self.assertAlmostEqual(p_miss(len(self.c1), len(self.m2), 0), float(0) / 6, places=10)
 
+class TestWPMiss(TestMetrics):
+    def setUp(self):
+        super(TestWPMiss, self).setUp()
+        
+        self.c1 = [1, 2, 3, 4]
+        self.m1 = [10, 11]
+        
+        self.m2 = []
+        
+    def testNoPredicate(self):
+        self.assertAlmostEqual(w_p_miss(len(self.c1), len(self.m1), 0, 10, 8), float(10) / 16, places=10)
+        self.assertAlmostEqual(w_p_miss(0, 0, 0, 10, 8), None, places=10)
+        self.assertAlmostEqual(w_p_miss(len(self.c1), len(self.m2), 0, 10, 8), float(8) / 14, places=10)
+
 class TestRFA(TestMetrics):
     def setUp(self):
         super(TestRFA, self).setUp()

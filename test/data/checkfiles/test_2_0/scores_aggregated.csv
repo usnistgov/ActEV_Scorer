@@ -13,5 +13,11 @@ mean-p_miss@0.15rfa|0.89424973175
 mean-p_miss@0.1rfa|0.89424973175
 mean-p_miss@0.2rfa|0.877523148148
 mean-p_miss@1rfa|0.549461470768
+mean-w_p_miss@0.01rfa|0.951071143095
+mean-w_p_miss@0.03rfa|0.951071143095
+mean-w_p_miss@0.15rfa|0.852869655142
+mean-w_p_miss@0.1rfa|0.852869655142
+mean-w_p_miss@0.2rfa|0.841201155631
+mean-w_p_miss@1rfa|0.714125488985
 n-mide|0.149231723291
 n-mide_num_rejected|0

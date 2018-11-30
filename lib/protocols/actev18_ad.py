@@ -54,10 +54,13 @@ class ActEV18_AD(Default):
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,
                                        "activity.temporal_overlap_delta": 0.2,
                                        "activity.p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.w_p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.n_mide_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "nmide.ns_collar_size": 0,
                                        "nmide.cost_miss": 1,
-                                       "nmide.cost_fa": 1 }
+                                       "nmide.cost_fa": 1,
+                                       "wpmiss.numerator": 8,
+                                       "wpmiss.denominator": 10}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
@@ -111,9 +114,10 @@ class ActEV18_AD(Default):
 
         return _nmide
 
-    def compute_det_points_and_measures(self, alignment, rfa_denom, rfa_targets, nmide_targets):
+    def compute_det_points_and_measures(self, alignment, rfa_denom, rfa_targets, nmide_targets, wpmiss_denom, wpmiss_numer):
         sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [ build_rfa_metric(rfa_denom),
                                                                    build_pmiss_metric(),
+                                                                   build_wpmiss_metric(wpmiss_denom, wpmiss_numer),
                                                                    self.build_nmide_measure() ])
 
         det_points = sweeper(alignment)
@@ -124,6 +128,13 @@ class ActEV18_AD(Default):
                                                            "p_miss",
                                                            lambda r: r["p_miss"],
                                                            rfa_targets)
+        
+        wpmiss_measures = get_points_along_confidence_curve(det_points,
+                                                            "rfa",
+                                                            lambda r: r["rfa"],
+                                                            "w_p_miss",
+                                                            lambda r: r["w_p_miss"],
+                                                            rfa_targets)
 
         nmide_measures = get_points_along_confidence_curve(det_points,
                                                            "rfa",
@@ -132,15 +143,16 @@ class ActEV18_AD(Default):
                                                            lambda r: r["n-mide"],
                                                            nmide_targets,
                                                            None)
-
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, nmide_measures))
+        
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, wpmiss_measures)))
+    
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, nmide_targets, default_factorizations = []):
         def _r(init, item):
             p, m = init
             factorization, recs = item
 
-            det_points, measures = self.compute_det_points_and_measures(recs, rfa_denom_func(recs), rfa_targets, nmide_targets)
+            det_points, measures = self.compute_det_points_and_measures(recs, rfa_denom_func(recs), rfa_targets, nmide_targets, self.scoring_parameters["wpmiss.denominator"], self.scoring_parameters["wpmiss.numerator"])
 
             p["-".join(factorization)] = det_points
 

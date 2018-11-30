@@ -167,6 +167,14 @@ def build_n_mide_metric(file_frame_dur_lookup, ns_collar_size, cost_fn_miss = la
 
     return _n_mide
 
+def w_p_miss(num_c, num_m, num_f, denominator, numerator):
+    denom = num_m + num_c + denominator
+    numer = num_m + numerator
+    if num_m + num_c == 0:
+        return None
+    else:
+        return float(numer) / denom
+
 def p_miss(num_c, num_m, num_f):
     denom = num_m + num_c
     if denom == 0:
@@ -178,6 +186,11 @@ def build_pmiss_metric():
     def _p_miss(c, m, f):
         return { "p_miss": p_miss(len(c), len(m), len(f)) }
     return _p_miss
+
+def build_wpmiss_metric(denom, numer):
+    def _w_p_miss(c, m, f):
+        return { "w_p_miss": w_p_miss(len(c), len(m), len(f), denom, numer) }
+    return _w_p_miss
 
 def r_fa(num_c, num_m, num_f, denominator):
     return float(num_f) / denominator
@@ -339,6 +352,7 @@ def build_sweeper(conf_key_func, measure_funcs):
 def flatten_sweeper_records(recs, keys):
     return [ [ c ] + [ d[k] for k in keys ] for c, d in recs ]
 
-def build_det_sweeper(conf_key_func, rfa_denom):
-    return build_sweeper(conf_key_func, [ build_rfa_metric(rfa_denom),
-                                          build_pmiss_metric() ])
+#def build_det_sweeper(conf_key_func, rfa_denom):
+#    return build_sweeper(conf_key_func, [ build_rfa_metric(rfa_denom),
+#                                          build_pmiss_metric(),
+#                                          build_wpmiss_metric() ])
