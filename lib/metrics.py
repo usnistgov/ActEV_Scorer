@@ -37,6 +37,12 @@ from helpers import *
 
 def _signal_pairs(r, s, signal_accessor, key_join_op = set.union):
     rl, sl = r.localization, s.localization
+#    print "RL"
+#    print signal_accessor(rl, k)
+#    print "SL"
+#    print sl
+#    print rl
+#    print [ (signal_accessor(rl, k), signal_accessor(sl, k), k) for k in key_join_op(set(rl.keys()), set(sl.keys())) ]
     return [ (signal_accessor(rl, k), signal_accessor(sl, k), k) for k in key_join_op(set(rl.keys()), set(sl.keys())) ]
 
 def _temporal_signal_accessor(localization, k):
@@ -45,10 +51,25 @@ def _temporal_signal_accessor(localization, k):
     return S(localization.get(k, {}))
 
 def temporal_signal_pairs(r, s, key_join_op = set.union):
-    #print "return of temporal_signal_pairs"
-    #print _signal_pairs(r, s, _temporal_signal_accessor, key_join_op)
+#    print "before temporal_signal_pairs"
+#    print r
+#    print s
+#    print "return of temporal_signal_pairs"
+#    print _signal_pairs(r, s, _temporal_signal_accessor, key_join_op)
     return _signal_pairs(r, s, _temporal_signal_accessor, key_join_op)
 
+def _single_signal(s, signal_accessor, key_join_op=set.union):
+    sl = s.localization
+#    print "in _single_signal"
+#    print sl
+#    print [ (signal_accessor(sl, k), k) for k in  sl.keys() ][0]
+    return [ (signal_accessor(sl, k), k) for k in  sl.keys() ][0]
+
+def temporal_single_signal(s, key_join_op = set.union):
+#    print "in temporal_single_signal"
+#    print s
+    return _single_signal(s, _temporal_signal_accessor, key_join_op)
+    
 def temporal_intersection(r, s):
     #print "temporal_intersection r:"
     #print r
@@ -61,6 +82,7 @@ def temporal_union(r, s):
     return reduce(add, [ (r | s).area() for r, s, k in temporal_signal_pairs(r, s) ], 0)
 
 def temporal_fa(r, s):
+#    print "CALCULATING TEMPORAL_FA"
     return reduce(add, [ (s - (r & s)).area() for r, s, k in temporal_signal_pairs(r, s) ], 0)
 
 def temporal_miss(r, s):
@@ -161,12 +183,88 @@ def n_mide(aligned_pairs, file_framedur_lookup, ns_collar_size, cost_fn_miss, co
         return { "n-mide": float(reduce(add, mides)) / len(mides),
                  "n-mide_num_rejected": len(aligned_pairs) - len(mides) }
 
+
+def fa_meas(aligned_pairs, missed_ref, false_sys, file_framedur_lookup, ns_collar_size):
+        # Should consider another paramemter for for all files to consider
+        # for FA denominator calculation, in the case of cross-file
+        # activity instances
+        num_aligned = len(aligned_pairs) + len(missed_ref)
+        combined_ref=[b[0] for b in aligned_pairs] + [m for m in missed_ref] #works
+        ref_temp = [temporal_single_signal(r) for r in combined_ref ]
+        ref_temp_add=reduce(add, [r[0] for r in ref_temp])
+#        print "ref_temp_add"
+#        print ref_temp_add
+        not_ref=ref_temp_add.not_sig(file_framedur_lookup.get(ref_temp[0][1]))
+        nr_area=not_ref.area()
+#        print "not_ref"
+#        print not_ref
+        #print "not_ref area"
+        #print not_ref.area()
+        if nr_area == 0:
+            return { "newfa": None,
+                     "newfa_denom": None,
+                     "newfa_numer": None,
+                     "System_Sig": None,
+                     "Ref_Sig": None,
+                     "NR_Ref_Sig": None}
+        combined_sys = [b[1] for b in aligned_pairs] + [f for f in false_sys]
+        sys_temp = [temporal_single_signal(s) for s in combined_sys ]
+        sys_temp_add=reduce(add, [s[0] for s in sys_temp])
+#        print "sys_temp_add"
+#        print sys_temp_add
+        def _reducer(init,pair):
+            r, s = pair
+            inters = (r & s).area()
+            init = init + inters
+            return init
+        numer_pairs = [[not_ref, s[0] ] for s in sys_temp]
+#        print "number_pairs"
+#        print numer_pairs
+        numer = reduce(_reducer, numer_pairs, 0)#(not_ref & sys_temp_add).area()
+        #numer=temporal_intersection(not_ref, sys_temp_add)
+#        print "numer"
+#        print numer
+        denom=nr_area
+        return { "newfa": (float(numer) / denom),
+                 "newfa_denom": nr_area,
+                 "newfa_numer": numer,
+                 "System_Sig": sys_temp_add,
+                 "Ref_Sig": ref_temp_add,
+                 "NR_Ref_Sig": not_ref}
+
+
+    #def _reducer(init, pair):
+        #    r, s = pair
+        #    p_union=temporal_intersection(r, s)
+        #    print "p_union"
+        #    print p_union
+        #    init = init + p_union
+        #    return init
+       # 
+        #r_s_inter=reduce(_reducer, aligned_pairs, 0)
+        #print "nr_area"
+        #print not_ref
+        #print nr_area
+        #print "sys_temp_add.area()"
+        #print sys_temp_add.area()
+        #print "fa"
+        #print float(nr_area - sys_temp_add.area() - r_s_inter) / nr_area
+        #return { "fa": (float(nr_area - sys_temp_add.area() - r_s_inter) / nr_area),
+        #         "NR_area": nr_area}
+
+
 def build_n_mide_metric(file_frame_dur_lookup, ns_collar_size, cost_fn_miss = lambda x: 1 * x, cost_fn_fa = lambda x: 1 * x):
     def _n_mide(pairs):
         return n_mide(pairs, file_frame_dur_lookup, ns_collar_size, cost_fn_miss, cost_fn_fa)
 
     return _n_mide
 
+def build_fa_metric(file_frame_dur_lookup, ns_collar_size, cost_fn_miss = lambda x: 1 * x, cost_fn_fa = lambda x: 1 * x):
+        def _fa(pairs):
+            return fa_met(pairs, file_frame_dur_lookup, ns_collar_size, cost_fn_miss, cost_fn_fa)
+        
+        return _fa
+    
 def w_p_miss(num_c, num_m, num_f, denominator, numerator):
     denom = num_m + num_c + denominator
     numer = num_m + numerator
@@ -326,6 +424,10 @@ def build_sweeper(conf_key_func, measure_funcs):
         # num_f = len(f)
         #print "C Again:"
         #print c
+        #print "M:"
+        #print m
+        #print "f:"
+        #print f
         out_points = []
         current_c, current_f = [], []
 

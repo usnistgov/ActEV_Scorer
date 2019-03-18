@@ -96,6 +96,36 @@ class SparseSignal(dict):
 
         return area
 
+    def not_sig(self, framecnt):
+        new_s={}
+        one_flag=False
+        zero_flag=False
+        first=True
+        for t in sorted(self.keys()):
+            if first:
+                first=False
+                if t!=0:
+                    new_s[0]=1
+                    new_s[t]=0
+                    one_flag=True
+                else:
+                    one_flag=True
+                continue
+            if self[t] != 0 and one_flag == True and zero_flag == False:
+                continue
+            if self[t] == 0 and one_flag == True:
+                zero_flag=True
+                new_s[t]=1
+            if self[t] != 0 and zero_flag == True and one_flag == True:
+                zero_flag=False
+                new_s[t]=0
+            if self[t] != 0 and one_flag == False:
+                one_flag=True
+        if zero_flag == True:
+            new_s[framecnt]=0
+        return SparseSignal(new_s)
+            
+            
     def generate_collar(self, size):
         return reduce(lambda init, key: init | SparseSignal({key - size: 1, key + size: 0}),
                       self.normalize().keys(),
