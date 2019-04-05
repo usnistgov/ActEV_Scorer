@@ -44,6 +44,13 @@ def temporal_intersection_filter(r, s):
     ti = temporal_intersection(r, s)
     return (temporal_intersection(r, s) > 0, { "temporal_intersection": ti })
 
+def build_temporal_second_overlap_filter(threshold):
+    def _filter(r, s):
+        ti = temporal_intersection(r, s)
+        return (ti >= threshold, { "temporal_intersection": ti })
+    
+    return _filter
+
 def build_temporal_overlap_filter(threshold):
     def _filter(r, s):
         tiou = temporal_intersection_over_union(r, s)
@@ -52,7 +59,7 @@ def build_temporal_overlap_filter(threshold):
     return _filter
 
 def temporal_intersection_over_union_component(r, s, cache):
-    return { "temporal_intersection-over-union": cache.get("temporal_intersection-over-union", temporal_intersection_over_union(r, s)) }
+    return { "temporal_intersection-over-union": temporal_intersection_over_union(r, s) } #cache.get("temporal_intersection-over-union", temporal_intersection_over_union(r, s)) }
 
 def build_spatial_overlap_filter(threshold):
     def _filter(r, s):

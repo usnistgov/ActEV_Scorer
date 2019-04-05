@@ -1,4 +1,4 @@
-# actev18_ad.py
+# actev19_ad.py
 # Author(s): David Joy
 
 # This software was developed by employees of the National Institute of
@@ -45,7 +45,7 @@ from alignment import *
 from helpers import *
 from default import *
 
-class ActEV18_AD(Default):
+class ActEV19_AD(Default):
     @classmethod
     def get_schema_fn(cls):
         return "actev18_ad_schema.json"
@@ -67,11 +67,12 @@ class ActEV18_AD(Default):
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
-        super(ActEV18_AD, self).__init__(scoring_parameters, file_index, activity_index)
+        super(ActEV19_AD, self).__init__(scoring_parameters, file_index, activity_index)
+
         self.file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() for k, v in file_index.iteritems() }
         self.total_file_duration_minutes = sum([ float(frames) / file_index[k]["framerate"] for k, frames in self.file_framedur_lookup.iteritems()]) / float(60)
-        #self.file_framerate = [file_index[k]["framerate"] for k, v in file_index.iteritems()][0]
-        
+        self.file_framerate = [file_index[k]["framerate"] for k, v in file_index.iteritems()][0]
+
     # Warning ** this cohort generation function only works when
     # activity instances are localized to a single file!!  This is
     # enforced by the schemas for ActEV18_AD and ActEV18_AOD
@@ -86,11 +87,9 @@ class ActEV18_AD(Default):
             yield (ref_groups.get(k, []), sys_groups.get(k, []))
 
     def default_kernel_builder(self, refs, syss):
-        kernel = build_linear_combination_kernel([ build_temporal_overlap_filter(self.scoring_parameters["activity.temporal_overlap_delta"]) ],
-                                               [ temporal_intersection_over_union_component,
-                                                 build_sed_presenceconf_congruence(syss) ],
-                                               { "temporal_intersection-over-union": self.scoring_parameters["activity.epsilon_temporal_congruence"],
-                                                 "presenceconf_congruence": self.scoring_parameters["activity.epsilon_presenceconf_congruence"] })
+        kernel = build_linear_combination_kernel([ build_temporal_second_overlap_filter(self.file_framerate) ],
+                                               [ build_sed_presenceconf_congruence(syss) ],
+                                               { "presenceconf_congruence": self.scoring_parameters["activity.epsilon_presenceconf_congruence"] })
 
         # Kernel for AD doesn't change based on activity, just
         # returning the predefined kernel
@@ -215,6 +214,7 @@ class ActEV18_AD(Default):
 
     def compute_results(self, alignment):
         c, m, f = partition_alignment(alignment)
+
         #print c[0].ref
         #print c[0].sys
         ar_nmide_measure = self.build_ar_nmide_measure()

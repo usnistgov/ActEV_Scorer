@@ -199,6 +199,11 @@ def write_out_scoring_params(output_dir, params):
 
     return out_file
 
+def score_actev19_ad(args):
+    from actev19_ad import ActEV19_AD
+
+    score_basic(ActEV19_AD, args)
+    
 def score_actev18_ad(args):
     from actev18_ad import ActEV18_AD
 
@@ -294,6 +299,11 @@ if __name__ == '__main__':
         subp.set_defaults(func=func)
         return subp
 
+    add_protocol_subparser("ActEV19_AD",
+                           dict(help="Scoring protocol for the ActEV19 Activity Detection task"),
+                           score_actev19_ad,
+                           base_args)
+                           
     add_protocol_subparser("ActEV18_AD",
                            dict(help="Scoring protocol for the ActEV18 Activity Detection task"),
                            score_actev18_ad,

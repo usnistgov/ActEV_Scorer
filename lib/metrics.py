@@ -192,8 +192,6 @@ def fa_meas(aligned_pairs, missed_ref, false_sys, file_framedur_lookup, ns_colla
         combined_ref=[b[0] for b in aligned_pairs] + [m for m in missed_ref] #works
         ref_temp = [temporal_single_signal(r) for r in combined_ref ]
         ref_temp_add=reduce(add, [r[0] for r in ref_temp], S())
-#        print "ref_temp_add"
-#        print ref_temp_add
         combined_sys = [b[1] for b in aligned_pairs] + [f for f in false_sys]
         sys_temp = [temporal_single_signal(s) for s in combined_sys ]
         sys_temp_add=reduce(add, [s[0] for s in sys_temp], S())
@@ -203,10 +201,6 @@ def fa_meas(aligned_pairs, missed_ref, false_sys, file_framedur_lookup, ns_colla
         else:
             not_ref=ref_temp_add.not_sig(file_framedur_lookup.get(ref_temp[0][1]))
         nr_area=not_ref.area()
-#        print "not_ref"
-#        print not_ref
-        #print "not_ref area"
-        #print not_ref.area()
         if nr_area == 0:
             return { "newfa": None,
                      "newfa_denom": None,
@@ -214,23 +208,14 @@ def fa_meas(aligned_pairs, missed_ref, false_sys, file_framedur_lookup, ns_colla
                      "System_Sig": None,
                      "Ref_Sig": None,
                      "NR_Ref_Sig": None}
-#        combined_sys = [b[1] for b in aligned_pairs] + [f for f in false_sys]
-#        sys_temp = [temporal_single_signal(s) for s in combined_sys ]
-#        sys_temp_add=reduce(add, [s[0] for s in sys_temp], S())
-#        print "sys_temp_add"
-#        print sys_temp_add
+
         def _reducer(init,pair):
             r, s = pair
             inters = (r & s).area()
             init = init + inters
             return init
         numer_pairs = [[not_ref, s[0] ] for s in sys_temp]
-#        print "number_pairs"
-#        print numer_pairs
         numer = reduce(_reducer, numer_pairs, 0)#(not_ref & sys_temp_add).area()
-        #numer=temporal_intersection(not_ref, sys_temp_add)
-#        print "numer"
-#        print numer
         denom=nr_area
         return { "newfa": (float(numer) / denom),
                  "newfa_denom": nr_area,
