@@ -183,19 +183,57 @@ def n_mide(aligned_pairs, file_framedur_lookup, ns_collar_size, cost_fn_miss, co
         return { "n-mide": float(reduce(add, mides)) / len(mides),
                  "n-mide_num_rejected": len(aligned_pairs) - len(mides) }
 
+def special_join(signals):
+    #print "1 signals"
+    #print signals
+    if len(signals)==1:
+        return signals[0][0]
+    def _reducer(init, pair):
+        #print "pair"
+        #print pair
+        if len(pair) == 1:
+            init.append(pair[0])
+        else:
+            if isinstance(pair[0],tuple):
+                s1=pair[0][0]
+            else:
+                s1=pair[0]
+            #print "s1"
+            #print s1
+            if isinstance(pair[1],tuple):
+                s2=pair[1][0]
+            else:
+                s2=pair[1]
+            #print "s2"
+            #print s2
+            init.append(s1.join(s2,add))
+        return init
+    while len(signals)!=1:
+        gr_sig = [signals[i * 2:(i + 1) * 2] for i in range((len(signals) + 2 - 1) // 2 )]
+        #print "gr_sig"
+        #print gr_sig
+        signals=reduce(_reducer, gr_sig, [])
+        #print "2 signals"
+        #print signals
+    return signals[0]
+    
 
 def fa_meas(aligned_pairs, missed_ref, false_sys, file_framedur_lookup, ns_collar_size):
-        # Should consider another paramemter for for all files to consider
-        # for FA denominator calculation, in the case of cross-file
-        # activity instances
+        # Need to modify join, find ways to keep from doing full join each time.
+        # reference stays the same, calculated once. system, just need to include
+        # new false alarms
+        # 
         num_aligned = len(aligned_pairs) + len(missed_ref)
         combined_ref=[b[0] for b in aligned_pairs] + [m for m in missed_ref] #works
         ref_temp = [temporal_single_signal(r) for r in combined_ref ]
-        ref_temp_add=reduce(add, [r[0] for r in ref_temp], S())
+        #ref_temp_add=reduce(add, [r[0] for r in ref_temp], S())
+        ref_temp_add = special_join(ref_temp)
+        #print "ref_temp_add"
+        #print ref_temp_add
         combined_sys = [b[1] for b in aligned_pairs] + [f for f in false_sys]
         sys_temp = [temporal_single_signal(s) for s in combined_sys ]
-        sys_temp_add=reduce(add, [s[0] for s in sys_temp], S())
-
+        #sys_temp_add=reduce(add, [s[0] for s in sys_temp], S())
+        sys_temp_add = special_join(sys_temp)
         if len(combined_ref)==0:
             not_ref=ref_temp_add.not_sig(file_framedur_lookup.get(sys_temp[0][1]))
         else:
@@ -433,9 +471,14 @@ def build_sweeper(conf_key_func, measure_funcs):
                 current_c.append(current_m.pop())
             #print "current c"
             #print current_c
+            #print "current m"
+            #print current_m
             while len(remaining_f) > 0 and conf_key_func(remaining_f[-1]) >= conf:
+                #print "1 current f"
+                #print current_f
                 current_f.append(remaining_f.pop())
-
+                #print "2 current f"
+                #print current_f
             out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], {})))
         #print "OUT_POINTS: "
         #print out_points
