@@ -30,6 +30,7 @@
 # bundled with the code in compliance with the conditions of those
 # licenses.
 
+import itertools
 from operator import add
 from sparse_signal import SparseSignal as S
 from alignment_record import *
@@ -487,7 +488,7 @@ def add_sys_sig(init, newsig):
     if len(newsig)==0:
         return init
     #sys_temp = [temporal_single_signal(s) for s in newsig ] + [init[0]]
-    sys_temp_ret = [temporal_single_signal(s) for s in newsig ] + init
+    sys_temp_ret = itertools.chain([temporal_single_signal(s) for s in newsig ], init) #[temporal_single_signal(s) for s in newsig ] + init
     #sys_temp_add = special_join(sys_temp)
     return sys_temp_ret #[sys_temp_add, sys_temp_ret]
         
