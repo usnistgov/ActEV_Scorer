@@ -117,12 +117,13 @@ class ActEV19_AD(Default):
         return _nmide
     
     def build_fa_measure(self):
-        def _fa_meas(c, m, f):
-            return fa_meas([ (ar.ref, ar.sys) for ar in c ],
-                          [(ar.ref) for ar in m],
-                          [(ar.sys) for ar in f],
-                          self.file_framedur_lookup,
-                          self.scoring_parameters["fa.ns_collar_size"])
+        def _fa_meas(ref_sig, sys_sig):
+            return fa_meas(ref_sig, sys_sig)
+        #[ (ar.ref, ar.sys) for ar in c ],
+        #                  [(ar.ref) for ar in m],
+        #                  [(ar.sys) for ar in f],
+        #                  self.file_framedur_lookup,
+        #                  self.scoring_parameters["fa.ns_collar_size"])
         return _fa_meas
         
     def compute_det_points_and_measures(self, alignment, rfa_denom, rfa_targets, nmide_targets, fa_targets, wpmiss_denom, wpmiss_numer):
@@ -130,7 +131,7 @@ class ActEV19_AD(Default):
                                                                    build_pmiss_metric(),
                                                                    build_wpmiss_metric(wpmiss_denom, wpmiss_numer),
                                                                    self.build_nmide_measure(),
-                                                                   self.build_fa_measure()])
+                                                                   self.build_fa_measure()], self.file_framedur_lookup)
 
         det_points = sweeper(alignment)
         #print "det_points"
