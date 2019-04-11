@@ -159,34 +159,35 @@ class ActEV19_AD(Default):
                                                            nmide_targets,
                                                            None)
         
-#        fa_measures = get_points_along_confidence_curve(det_points,
-#                                                        "rfa",
-#                                                        lambda r: r["rfa"],
-#                                                        "fa",
-#                                                        lambda r: r["fa"],
-#                                                        fa_targets,
-#                                                        None)
+        #fa_measures = get_points_along_confidence_curve(det_points,
+        #                                                "fa",
+        #                                                lambda r: r["fa"],
+        #                                                "p_miss",
+        #                                                lambda r: r["p_miss"],
+        #                                                fa_targets,
+        #                                                None)
         
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "newfa", "newfa_denom", "newfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, wpmiss_measures)))
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, wpmiss_measures)))
     
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, nmide_targets, fa_targets, default_factorizations = []):
         def _r(init, item):
-            p, fa, m = init
+            p, t, fa, m = init
             factorization, recs = item
             f={}
-            det_points, fa_data, measures = self.compute_det_points_and_measures(recs, rfa_denom_func(recs), rfa_targets, nmide_targets, fa_targets, self.scoring_parameters["wpmiss.denominator"], self.scoring_parameters["wpmiss.numerator"])
+            det_points, tfa_det_points, fa_data, measures = self.compute_det_points_and_measures(recs, rfa_denom_func(recs), rfa_targets, nmide_targets, fa_targets, self.scoring_parameters["wpmiss.denominator"], self.scoring_parameters["wpmiss.numerator"])
 
             p["-".join(factorization)] = det_points
             f["-".join(factorization)] = fa_data
+            t["-".join(factorization)] = tfa_det_points
             
             for k in f:
                 for i in f[k]:
                     fa.append((k, i[0], "p_miss", i[2]))
                     fa.append((k, i[0], "rfa", i[1]))
-                    fa.append((k, i[0], "newfa", i[3]))
-                    fa.append((k, i[0], "newfa_denom", i[4]))
-                    fa.append((k, i[0], "newfa_numer", i[5]))
+                    fa.append((k, i[0], "tfa", i[3]))
+                    fa.append((k, i[0], "tfa_denom", i[4]))
+                    fa.append((k, i[0], "tfa_numer", i[5]))
 #            for k, v in f.iteritems():
 #                print k,v
                 #fa.append(factorization + (k, v))
@@ -195,10 +196,10 @@ class ActEV19_AD(Default):
             for _m, v in measures.iteritems():
                 m.append(factorization + (_m, v))
 
-            return (p, fa, m)
+            return (p, t, fa, m)
 
         grouped = merge_dicts({ k: [] for k in default_factorizations }, group_by_func(factorization_func, records))
-        return reduce(_r, grouped.iteritems(), ({}, [], []))
+        return reduce(_r, grouped.iteritems(), ({}, {}, [], []))
 
     def compute_record_means(self, records, selected_measures = None):
         raw_means = self.compute_means(records, selected_measures)
@@ -240,7 +241,7 @@ class ActEV19_AD(Default):
             return (rec.activity,)
 
         activity_nmides = self.compute_aggregate_measures(alignment, _activity_grouper, [ ar_nmide_measure ], self.default_activity_groups)
-        out_det_points, out_fa_data, det_measures = self.compute_aggregate_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.scoring_parameters["activity.fa_at_rfa_targets"], self.default_activity_groups)
+        out_det_points, out_tfa_det_points, out_fa_data, det_measures = self.compute_aggregate_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.scoring_parameters["activity.fa_at_rfa_targets"], self.default_activity_groups)
 #        print "out_det_points"
 #        print out_det_points
         # Overall level + Activity Aggregates + Pair Agg. Aggregates
@@ -261,5 +262,6 @@ class ActEV19_AD(Default):
                  "scores_by_activity": activity_results,
                  "scores_aggregated": activity_means + overall_nmide,
                  "det_point_records": out_det_points,
+                 "tfa_det_point_records": out_tfa_det_points,
                  "output_alignment_records": output_alignment_records,
                  "scores_by_activity_and_threshold": out_fa_data}

@@ -179,17 +179,22 @@ def check_file_index_congruence(log, system_output, file_index, ignore_extraneou
 
     return True
 
-def plot_dets(log, output_dir, det_point_records):
+def plot_dets(log, output_dir, det_point_records, tfa_det_point_records):
     figure_dir = "{}/figures".format(output_dir)
     mkdir_p(figure_dir)
-#    print det_point_records
     log(1, "[Info] Saving figures to directory '{}'".format(figure_dir))
-    log(1, "[Info] Plotting combined DET curve")
+    log(1, "[Info] Plotting combined DET curves")
     det_curve(det_point_records, "{}/DET_COMBINED.png".format(figure_dir))
+    if tfa_det_point_records != {}:
+        det_curve(tfa_det_point_records, "{}/DET_TFA_COMBINED.png".format(figure_dir))
 
     for k, v in det_point_records.iteritems():
         log(1, "[Info] Plotting DET curve for {}".format(k))
         det_curve({k: v}, "{}/DET_{}.png".format(figure_dir, k))
+
+    for t, f in tfa_det_point_records.iteritems():
+        log(1, "[Info] Plotting TFA DET curve for {}".format(t))
+        det_curve({t: f}, "{}/DET_TFA_{}.png".format(figure_dir, t))
 
     return figure_dir
 
@@ -273,7 +278,8 @@ def score_basic(protocol_class, args):
         write_records_as_csv("{}/object_alignment.csv".format(args.output_dir), ["activity", "ref_activity", "sys_activity", "frame", "ref_object_type", "sys_object_type", "mapped_ref_object_type", "mapped_sys_object_type", "alignment", "ref_object", "sys_object", "sys_presenceconf_score", "kernel_similarity", "kernel_components"], results.get("object_frame_alignment_records", []))
 
     if not args.disable_plotting:
-        plot_dets(log, args.output_dir, results.get("det_point_records", {}))
+        plot_dets(log, args.output_dir, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}))
+        #plot_dets(log, args.output_dir, results.get("tfa_det_point_records", {}))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Scoring script for the NIST ActEV evaluation")

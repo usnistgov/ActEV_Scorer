@@ -30,7 +30,7 @@
 # bundled with the code in compliance with the conditions of those
 # licenses.
 
-import itertools
+#import itertools
 from operator import add
 from sparse_signal import SparseSignal as S
 from alignment_record import *
@@ -247,9 +247,9 @@ def fa_meas(ref_sig, sys_sig): #aligned_pairs, missed_ref, false_sys, file_frame
         #sys_temp_add = sys_sig[0]
         sys_temp = sys_sig #[1]
         if nr_area == 0:
-            return { "newfa": None,
-                     "newfa_denom": None,
-                     "newfa_numer": None,
+            return { "tfa": None,
+                     "tfa_denom": None,
+                     "tfa_numer": None,
                      "System_Sig": None,
                      "Ref_Sig": None,
                      "NR_Ref_Sig": None}
@@ -262,9 +262,9 @@ def fa_meas(ref_sig, sys_sig): #aligned_pairs, missed_ref, false_sys, file_frame
         numer_pairs = [[not_ref, s[0] ] for s in sys_temp]
         numer = reduce(_reducer, numer_pairs, 0)#(not_ref & sys_temp_add).area()
         denom=nr_area
-        return { "newfa": (float(numer) / denom),
-                 "newfa_denom": nr_area,
-                 "newfa_numer": numer,
+        return { "tfa": (float(numer) / denom),
+                 "tfa_denom": nr_area,
+                 "tfa_numer": numer,
                  "System_Sig": sys_temp,
                  "Ref_Sig": ref_temp_add,
                  "NR_Ref_Sig": not_ref}
@@ -462,20 +462,18 @@ def build_ref_sig(aligned_pairs, missed_ref, file_framedur_lookup):
     num_aligned = len(aligned_pairs) + len(missed_ref)
     if num_aligned == 0:
         return [{},{},0]
-    combined_ref=[b for b in aligned_pairs] + [m for m in missed_ref] #works
-    ref_temp = [temporal_single_signal(r) for r in combined_ref ]
+    #combined_ref = itertools.chain([temporal_single_signal(b) for b in aligned_pairs], [temporal_single_signal(m) for m in missed_ref]) #[b for b in aligned_pairs] + [m for m in missed_ref] #works
+    ref_temp = [temporal_single_signal(b) for b in aligned_pairs ] + [ temporal_single_signal(m) for m in missed_ref ] #list(itertools.chain([temporal_single_signal(b) for b in aligned_pairs], [temporal_single_signal(m) for m in missed_ref])) #[temporal_single_signal(r) for r in combined_ref ]
     #ref_temp_add=reduce(add, [r[0] for r in ref_temp], S())
     ref_temp_add = special_join(ref_temp)
-    if len(combined_ref)==0:
-        not_ref=ref_temp_add.not_sig(file_framedur_lookup.get(sys_temp[0][1]))
-    else:
-        not_ref=ref_temp_add.not_sig(file_framedur_lookup.get(ref_temp[0][1]))
+    not_ref=ref_temp_add.not_sig(file_framedur_lookup.get(ref_temp[0][1]))
+    
     nr_area=not_ref.area()
 
     return[ref_temp_add, not_ref, nr_area]
 
 def build_sys_sig(syssig):
-    print "Building Sys Sig"
+    #print "Building Sys Sig"
     if len(syssig) == 0:
         return [{},[]]
     #combined_sys = [b[1] for b in aligned_pairs] + [f for f in false_sys]
@@ -488,7 +486,7 @@ def add_sys_sig(init, newsig):
     if len(newsig)==0:
         return init
     #sys_temp = [temporal_single_signal(s) for s in newsig ] + [init[0]]
-    sys_temp_ret = itertools.chain([temporal_single_signal(s) for s in newsig ], init) #[temporal_single_signal(s) for s in newsig ] + init
+    sys_temp_ret = [temporal_single_signal(s) for s in newsig ] + init # list(itertools.chain([temporal_single_signal(s) for s in newsig ], init)) #[temporal_single_signal(s) for s in newsig ] + init
     #sys_temp_add = special_join(sys_temp)
     return sys_temp_ret #[sys_temp_add, sys_temp_ret]
         

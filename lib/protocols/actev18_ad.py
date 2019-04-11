@@ -165,7 +165,7 @@ class ActEV18_AD(Default):
 #                                                        fa_targets,
 #                                                        None)
         
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "newfa", "newfa_denom", "newfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, wpmiss_measures)))
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, wpmiss_measures)))
     
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, nmide_targets, fa_targets, default_factorizations = []):
@@ -182,9 +182,9 @@ class ActEV18_AD(Default):
                 for i in f[k]:
                     fa.append((k, i[0], "p_miss", i[2]))
                     fa.append((k, i[0], "rfa", i[1]))
-                    fa.append((k, i[0], "newfa", i[3]))
-                    fa.append((k, i[0], "newfa_denom", i[4]))
-                    fa.append((k, i[0], "newfa_numer", i[5]))
+                    fa.append((k, i[0], "tfa", i[3]))
+                    fa.append((k, i[0], "tfa_denom", i[4]))
+                    fa.append((k, i[0], "tfa_numer", i[5]))
 #            for k, v in f.iteritems():
 #                print k,v
                 #fa.append(factorization + (k, v))
