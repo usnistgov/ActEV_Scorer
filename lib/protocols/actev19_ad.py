@@ -159,15 +159,15 @@ class ActEV19_AD(Default):
                                                            nmide_targets,
                                                            None)
         
-        #fa_measures = get_points_along_confidence_curve(det_points,
-        #                                                "fa",
-        #                                                lambda r: r["fa"],
-        #                                                "p_miss",
-        #                                                lambda r: r["p_miss"],
-        #                                                fa_targets,
-        #                                                None)
+        fa_measures = get_points_along_confidence_curve(det_points,
+                                                        "tfa",
+                                                        lambda r: r["tfa"],
+                                                        "p_miss",
+                                                        lambda r: r["p_miss"],
+                                                        fa_targets,
+                                                        None)
         
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, wpmiss_measures)))
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, fa_measures))))
     
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, nmide_targets, fa_targets, default_factorizations = []):
