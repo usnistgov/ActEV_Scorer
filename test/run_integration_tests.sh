@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source integration_tests.sh
+
 run_test test_1_0 "$checkfiles_dir/test_1_0"
 run_test test_1_1 "$checkfiles_dir/test_1_1"
 run_test test_1_2 "$checkfiles_dir/test_1_2"
@@ -21,3 +22,5 @@ run_test test_7_1 "$checkfiles_dir/test_7_1"
 run_test test_8_0 "$checkfiles_dir/test_8_0"
 run_test test_9_0 "$checkfiles_dir/test_9_0"
 run_test test_9_1 "$checkfiles_dir/test_9_1"
+run_test test_9_2 "$checkfiles_dir/test_9_2"
+run_test test_9_3 "$checkfiles_dir/test_9_3"
