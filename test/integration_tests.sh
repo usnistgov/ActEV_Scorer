@@ -294,3 +294,31 @@ test_8_0() {
 	-j \
 	-v
 }
+
+### ActEV19_Test
+test_9_0() {
+    ../ActEV_Scorer.py \
+	"ActEV19_AD" \
+	-s "data/test_9-0_fake-sysout.json" \
+	-r "data/test_9-0.json" \
+	-a "data/test_9-0_activity-index.json" \
+	-f "data/test_9-0_file-index.json" \
+	-F \
+	-o "$1" \
+	-d \
+	-v
+}
+
+### ActEV19_Test vs. ActEV18_AD
+test_9_1() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AD" \
+	-s "data/test_9-0_fake-sysout.json" \
+	-r "data/test_9-0.json" \
+	-a "data/test_9-0_activity-index.json" \
+	-f "data/test_9-0_file-index.json" \
+	-F \
+	-o "$1" \
+	-d \
+	-v
+}
