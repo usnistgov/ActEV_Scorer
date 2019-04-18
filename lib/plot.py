@@ -47,7 +47,7 @@ def _make_clamp(_min, _max):
 
     return clamp
 
-def det_curve(points_dict, out_fn):
+def det_curve(points_dict, out_fn, typ="standard"):
     ytick_values = [0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 0.95, 0.98, 0.99, 0.995, 0.999]
     ytick_labels = [ str(y * 100) for y in ytick_values ]
     ytick = norm.ppf(ytick_values)
@@ -77,7 +77,10 @@ def det_curve(points_dict, out_fn):
     plt.yticks(ytick, ytick_labels)
 
     plt.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0, fontsize='small')
-    plt.xlabel("Rate of false alarm (per minute)")
+    if typ=="tfa":
+        plt.xlabel("Time-Based False Alarm (%)")
+    else:
+        plt.xlabel("Rate of false alarm (per minute)")
     plt.ylabel("Probability of missed detection")
 
     plt.savefig(out_fn, bbox_inches="tight")

@@ -186,7 +186,7 @@ def plot_dets(log, output_dir, det_point_records, tfa_det_point_records):
     log(1, "[Info] Plotting combined DET curves")
     det_curve(det_point_records, "{}/DET_COMBINED.png".format(figure_dir))
     if tfa_det_point_records != {}:
-        det_curve(tfa_det_point_records, "{}/DET_TFA_COMBINED.png".format(figure_dir))
+        det_curve(tfa_det_point_records, "{}/DET_TFA_COMBINED.png".format(figure_dir), typ = "tfa")
 
     for k, v in det_point_records.iteritems():
         log(1, "[Info] Plotting DET curve for {}".format(k))
@@ -194,7 +194,7 @@ def plot_dets(log, output_dir, det_point_records, tfa_det_point_records):
 
     for t, f in tfa_det_point_records.iteritems():
         log(1, "[Info] Plotting TFA DET curve for {}".format(t))
-        det_curve({t: f}, "{}/DET_TFA_{}.png".format(figure_dir, t))
+        det_curve({t: f}, "{}/DET_TFA_{}.png".format(figure_dir, t), typ = "tfa")
 
     return figure_dir
 
