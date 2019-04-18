@@ -214,6 +214,16 @@ def score_actev18_ad(args):
 
     score_basic(ActEV18_AD, args)
 
+def score_actev18_ad_tfa(args):
+    from actev18_ad_tfa import ActEV18_AD_TFA
+
+    score_basic(ActEV18_AD_TFA, args)
+
+def score_actev18_ad_1secol(args):
+    from actev18_ad_1SecOL import ActEV18_AD_1SecOL
+    
+    score_basic(ActEV18_AD_1SecOL, args)
+    
 def score_actev18_aod(args):
     from actev18_aod import ActEV18_AOD
 
@@ -314,7 +324,17 @@ if __name__ == '__main__':
                            dict(help="Scoring protocol for the ActEV18 Activity Detection task"),
                            score_actev18_ad,
                            base_args)
-
+    
+    add_protocol_subparser("ActEV18_AD_TFA",
+                           dict(help="Scoring protocol for the ActEV18 Activity Detection task with Temporal False Alarm"),
+                           score_actev18_ad_tfa,
+                           base_args)
+    
+    add_protocol_subparser("ActEV18_AD_1SECOL",
+                           dict(help="Scoring protocol for the ActEV18 Activity Detection task with 1 Second Overlap Kernel Function"),
+                           score_actev18_ad_1secol,
+                           base_args)
+    
     add_protocol_subparser("ActEV18_AOD",
                            dict(help="Scoring protocol for the ActEV18 Activity and Object Detection task"),
                            score_actev18_aod,

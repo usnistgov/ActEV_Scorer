@@ -47,7 +47,8 @@ def temporal_intersection_filter(r, s):
 def build_temporal_second_overlap_filter(threshold):
     def _filter(r, s):
         ti = temporal_intersection(r, s)
-        return (ti >= threshold, { "temporal_intersection": ti })
+        #tiou = temporal_intersection_over_union(r, s)
+        return (ti >= threshold, { "temporal_intersection": ti }) #, "temporal_intersection-over-union": tiou })
     
     return _filter
 

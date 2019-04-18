@@ -63,7 +63,8 @@ class ActEV19_AD(Default):
                                        "nmide.cost_fa": 1,
                                        "wpmiss.numerator": 8,
                                        "wpmiss.denominator": 10,
-                                       "fa.ns_collar_size": 0 }
+                                       "fa.ns_collar_size": 0,
+                                       "scoring_protocol": "actev19_ad"}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
@@ -131,7 +132,7 @@ class ActEV19_AD(Default):
                                                                    build_pmiss_metric(),
                                                                    build_wpmiss_metric(wpmiss_denom, wpmiss_numer),
                                                                    self.build_nmide_measure(),
-                                                                   self.build_fa_measure()], self.file_framedur_lookup)
+                                                                   self.build_fa_measure()], file_framedur_lookup = self.file_framedur_lookup)
 
         det_points = sweeper(alignment)
         #print "det_points"

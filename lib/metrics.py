@@ -490,12 +490,15 @@ def add_sys_sig(init, newsig):
     #sys_temp_add = special_join(sys_temp)
     return sys_temp_ret #[sys_temp_add, sys_temp_ret]
         
-def build_sweeper(conf_key_func, measure_funcs, file_framedur_lookup):
+def build_sweeper(conf_key_func, measure_funcs, file_framedur_lookup=0):
     def _sweep(alignment_records):
         c, m, f = partition_alignment(alignment_records)
-        ref_sigs = build_ref_sig([ (ar.ref) for ar in c ],
-                                 [(ar.ref) for ar in m],
-                                 file_framedur_lookup )
+        
+        if file_framedur_lookup != 0:
+            ref_sigs = build_ref_sig([ (ar.ref) for ar in c ],
+                                     [(ar.ref) for ar in m],
+                                     file_framedur_lookup )
+            fa_func=measure_funcs.pop()
         #sys_sig = build_sys_sig([ (ar.sys) for ar in c ])
         #print "sys_sig"
         #print sys_sig
@@ -504,7 +507,8 @@ def build_sweeper(conf_key_func, measure_funcs, file_framedur_lookup):
         num_m = len(m)
         out_points = []
         current_c, current_f = [], []
-        fa_func=measure_funcs.pop()
+        
+        
         
         # m records don't need to be sorted as they have None
         # confidence scores
@@ -514,15 +518,21 @@ def build_sweeper(conf_key_func, measure_funcs, file_framedur_lookup):
         for conf in uniq_confs:
             newsig = []
             while len(current_m) > 0 and current_m[-1].alignment != "MD" and conf_key_func(current_m[-1]) >= conf:
-                newsig.append(current_m[-1])
+                if file_framedur_lookup != 0:
+                    newsig.append(current_m[-1])
                 current_c.append(current_m.pop())
             while len(remaining_f) > 0 and conf_key_func(remaining_f[-1]) >= conf:
-                newsig.append(remaining_f[-1])
+                if file_framedur_lookup != 0:
+                    newsig.append(remaining_f[-1])
                 current_f.append(remaining_f.pop())
-            sys_sig=add_sys_sig(sys_sig,[(ar.sys) for ar in newsig])
+            if file_framedur_lookup != 0:
+                sys_sig=add_sys_sig(sys_sig,[(ar.sys) for ar in newsig])
+                out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], fa_func(ref_sigs, sys_sig))))
+            else:
+                out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], {})))
             #print "sys_sig"
             #print sys_sig
-            out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], fa_func(ref_sigs, sys_sig))))
+            #out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], fa_func(ref_sigs, sys_sig))))
 
         return out_points
 

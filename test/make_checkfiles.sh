@@ -2,8 +2,8 @@
 
 source integration_tests.sh
 
-#test_1_0 "$checkfiles_dir/test_1_0" >"$checkfiles_dir/test_1_0/test_1_0.log"
-#test_1_1 "$checkfiles_dir/test_1_1" >"$checkfiles_dir/test_1_1/test_1_1.log"
+test_1_0 "$checkfiles_dir/test_1_0" >"$checkfiles_dir/test_1_0/test_1_0.log"
+test_1_1 "$checkfiles_dir/test_1_1" >"$checkfiles_dir/test_1_1/test_1_1.log"
 test_1_2 "$checkfiles_dir/test_1_2" >"$checkfiles_dir/test_1_2/test_1_2.log"
 test_2_0 "$checkfiles_dir/test_2_0" >"$checkfiles_dir/test_2_0/test_2_0.log"
 test_3_0 "$checkfiles_dir/test_3_0" >"$checkfiles_dir/test_3_0/test_3_0.log"
