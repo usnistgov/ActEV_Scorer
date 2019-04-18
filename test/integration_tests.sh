@@ -30,7 +30,7 @@ run_test() {
 	    mv "$f.new" "$f"
 	fi
     done
-    diff -r "$checkfile_outdir" "$compcheckfile_outdir"
+    diff --exclude \*png -r "$checkfile_outdir" "$compcheckfile_outdir"
     check_status
     
     echo "*** OK ***"
@@ -292,5 +292,84 @@ test_8_0() {
 	-o "$1" \
 	-d \
 	-j \
+	-v
+}
+
+### ActEV19_Test
+test_9_0() {
+    ../ActEV_Scorer.py \
+	"ActEV19_AD" \
+	-s "data/test_9-0_fake-sysout.json" \
+	-r "data/test_9-0.json" \
+	-a "data/test_9-0_activity-index.json" \
+	-f "data/test_9-0_file-index.json" \
+	-F \
+	-o "$1" \
+	-v
+}
+
+### ActEV19_Test vs. ActEV18_AD
+test_9_1() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AD" \
+	-s "data/test_9-0_fake-sysout.json" \
+	-r "data/test_9-0.json" \
+	-a "data/test_9-0_activity-index.json" \
+	-f "data/test_9-0_file-index.json" \
+	-F \
+	-o "$1" \
+	-d \
+	-v
+}
+
+### ActEV18_AD_1SECOL
+test_9_2() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AD_1SECOL" \
+	-s "data/test_9-0_fake-sysout.json" \
+	-r "data/test_9-0.json" \
+	-a "data/test_9-0_activity-index.json" \
+	-f "data/test_9-0_file-index.json" \
+	-F \
+	-o "$1" \
+	-d \
+	-v
+}
+
+### ActEV18_AD_TFA
+test_9_3() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AD_TFA" \
+	-s "data/test_9-0_fake-sysout.json" \
+	-r "data/test_9-0.json" \
+	-a "data/test_9-0_activity-index.json" \
+	-f "data/test_9-0_file-index.json" \
+	-F \
+	-o "$1" \
+	-d \
+	-v
+}
+
+### ActEV18_AD_TFA
+test_10_0() {
+    ../ActEV_Scorer.py \
+	   "ActEV18_AD_TFA" \
+	   -s "data/test_10-0_fake-sysout.json" \
+	   -r "data/test_10-0.json" \
+	   -a "data/test_10-0_activity-index.json" \
+	   -f "data/test_10-0_file-index.json" \
+	   -o "$1" \
+	   -v
+}
+
+### ActEV18_AD_1SECOL
+test_10_1() {
+    ../ActEV_Scorer.py \
+	"ActEV18_AD_1SECOL" \
+	-s "data/test_10-0_fake-sysout.json" \
+	-r "data/test_10-0.json" \
+	-a "data/test_10-0_activity-index.json" \
+	-f "data/test_10-0_file-index.json" \
+	-o "$1" \
 	-v
 }

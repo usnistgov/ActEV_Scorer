@@ -1,0 +1,40 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+      {
+	  "activity": "Closing",
+	  "activityID": 1,
+	  "presenceConf": 0.756,
+	  "localization": {
+              "VIRAT_S_000000.mp4": {
+		  "1": 1,
+		  "500": 0
+              }
+	  }
+      },
+      {
+	  "activity": "Closing",
+	  "activityID": 2,
+	  "presenceConf": 0.756,
+	  "localization": {
+              "VIRAT_S_000000.mp4": {
+		  "501": 1,
+		  "1000": 0
+              }
+	  }
+      },
+      {
+	  "activity": "Closing",
+	  "activityID": 3,
+	  "presenceConf": 0.756,
+	  "localization": {
+              "VIRAT_S_000000.mp4": {
+		  "960": 1,
+		  "1100": 0
+              }
+	  }
+      }
+  ]
+}

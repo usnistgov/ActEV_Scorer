@@ -16,6 +16,7 @@
     0.03, 
     0.01
   ], 
+  "scoring_protocol": "actev18_ad", 
   "activity.temporal_overlap_delta": 0.2, 
   "activity.epsilon_temporal_congruence": 1e-08, 
   "activity.epsilon_presenceconf_congruence": 1e-06, 

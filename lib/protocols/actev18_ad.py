@@ -60,7 +60,8 @@ class ActEV18_AD(Default):
                                        "nmide.cost_miss": 1,
                                        "nmide.cost_fa": 1,
                                        "wpmiss.numerator": 8,
-                                       "wpmiss.denominator": 10}
+                                       "wpmiss.denominator": 10,
+                                       "scoring_protocol": "actev18_ad"}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 

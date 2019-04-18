@@ -30,6 +30,7 @@
 # bundled with the code in compliance with the conditions of those
 # licenses.
 
+#import itertools
 from operator import add
 from sparse_signal import SparseSignal as S
 from alignment_record import *
@@ -37,6 +38,12 @@ from helpers import *
 
 def _signal_pairs(r, s, signal_accessor, key_join_op = set.union):
     rl, sl = r.localization, s.localization
+#    print "RL"
+#    print signal_accessor(rl, k)
+#    print "SL"
+#    print sl
+#    print rl
+#    print [ (signal_accessor(rl, k), signal_accessor(sl, k), k) for k in key_join_op(set(rl.keys()), set(sl.keys())) ]
     return [ (signal_accessor(rl, k), signal_accessor(sl, k), k) for k in key_join_op(set(rl.keys()), set(sl.keys())) ]
 
 def _temporal_signal_accessor(localization, k):
@@ -45,10 +52,25 @@ def _temporal_signal_accessor(localization, k):
     return S(localization.get(k, {}))
 
 def temporal_signal_pairs(r, s, key_join_op = set.union):
-    #print "return of temporal_signal_pairs"
-    #print _signal_pairs(r, s, _temporal_signal_accessor, key_join_op)
+#    print "before temporal_signal_pairs"
+#    print r
+#    print s
+#    print "return of temporal_signal_pairs"
+#    print _signal_pairs(r, s, _temporal_signal_accessor, key_join_op)
     return _signal_pairs(r, s, _temporal_signal_accessor, key_join_op)
 
+def _single_signal(s, signal_accessor, key_join_op=set.union):
+    sl = s.localization
+#    print "in _single_signal"
+#    print sl
+#    print [ (signal_accessor(sl, k), k) for k in  sl.keys() ][0]
+    return [ (signal_accessor(sl, k), k) for k in  sl.keys() ][0]
+
+def temporal_single_signal(s, key_join_op = set.union):
+#    print "in temporal_single_signal"
+#    print s
+    return _single_signal(s, _temporal_signal_accessor, key_join_op)
+    
 def temporal_intersection(r, s):
     #print "temporal_intersection r:"
     #print r
@@ -61,6 +83,7 @@ def temporal_union(r, s):
     return reduce(add, [ (r | s).area() for r, s, k in temporal_signal_pairs(r, s) ], 0)
 
 def temporal_fa(r, s):
+#    print "CALCULATING TEMPORAL_FA"
     return reduce(add, [ (s - (r & s)).area() for r, s, k in temporal_signal_pairs(r, s) ], 0)
 
 def temporal_miss(r, s):
@@ -161,12 +184,124 @@ def n_mide(aligned_pairs, file_framedur_lookup, ns_collar_size, cost_fn_miss, co
         return { "n-mide": float(reduce(add, mides)) / len(mides),
                  "n-mide_num_rejected": len(aligned_pairs) - len(mides) }
 
+def special_join(signals):
+    #print "1 signals"
+    #print signals
+    if len(signals)==1:
+        return signals[0][0]
+    def _reducer(init, pair):
+        #print "pair"
+        #print pair
+        if len(pair) == 1:
+            init.append(pair[0])
+        else:
+            if isinstance(pair[0],tuple):
+                s1=pair[0][0]
+            else:
+                s1=pair[0]
+            #print "s1"
+            #print s1
+            if isinstance(pair[1],tuple):
+                s2=pair[1][0]
+            else:
+                s2=pair[1]
+            #print "s2"
+            #print s2
+            init.append(s1.join(s2,add))
+        return init
+    while len(signals)!=1:
+        gr_sig = [signals[i * 2:(i + 1) * 2] for i in range((len(signals) + 2 - 1) // 2 )]
+        #print "gr_sig"
+        #print gr_sig
+        signals=reduce(_reducer, gr_sig, [])
+        #print "2 signals"
+        #print signals
+    return signals[0]
+    
+
+def fa_meas(ref_sig, sys_sig): #aligned_pairs, missed_ref, false_sys, file_framedur_lookup, ns_collar_size):
+        # Need to modify join, find ways to keep from doing full join each time.
+        # reference stays the same, calculated once. system, just need to include
+        # new false alarms
+        # 
+        #num_aligned = len(aligned_pairs) + len(missed_ref)
+        #combined_ref=[b[0] for b in aligned_pairs] + [m for m in missed_ref] #works
+        #ref_temp = [temporal_single_signal(r) for r in combined_ref ]
+        #ref_temp_add=reduce(add, [r[0] for r in ref_temp], S())
+        #ref_temp_add = special_join(ref_temp)
+        #print "ref_temp_add"
+        #print ref_temp_add
+        #combined_sys = [b[1] for b in aligned_pairs] + [f for f in false_sys]
+        #sys_temp = [temporal_single_signal(s) for s in combined_sys ]
+        #sys_temp_add=reduce(add, [s[0] for s in sys_temp], S())
+        #sys_temp_add = special_join(sys_temp)
+        #if len(combined_ref)==0:
+        #    not_ref=ref_temp_add.not_sig(file_framedur_lookup.get(sys_temp[0][1]))
+        #else:
+        #    not_ref=ref_temp_add.not_sig(file_framedur_lookup.get(ref_temp[0][1]))
+        #nr_area=not_ref.area()
+        #ref_temp_add, not_ref, nr_area
+        ref_temp_add = ref_sig[0]
+        not_ref = ref_sig[1]
+        nr_area = ref_sig[2]
+        #sys_temp_add = sys_sig[0]
+        sys_temp = sys_sig #[1]
+        if nr_area == 0:
+            return { "tfa": None,
+                     "tfa_denom": None,
+                     "tfa_numer": None,
+                     "System_Sig": None,
+                     "Ref_Sig": None,
+                     "NR_Ref_Sig": None}
+
+        def _reducer(init,pair):
+            r, s = pair
+            inters = (r & s).area()
+            init = init + inters
+            return init
+        numer_pairs = [[not_ref, s[0] ] for s in sys_temp]
+        numer = reduce(_reducer, numer_pairs, 0)#(not_ref & sys_temp_add).area()
+        denom=nr_area
+        return { "tfa": (float(numer) / denom),
+                 "tfa_denom": nr_area,
+                 "tfa_numer": numer,
+                 "System_Sig": sys_temp,
+                 "Ref_Sig": ref_temp_add,
+                 "NR_Ref_Sig": not_ref}
+
+
+    #def _reducer(init, pair):
+        #    r, s = pair
+        #    p_union=temporal_intersection(r, s)
+        #    print "p_union"
+        #    print p_union
+        #    init = init + p_union
+        #    return init
+       # 
+        #r_s_inter=reduce(_reducer, aligned_pairs, 0)
+        #print "nr_area"
+        #print not_ref
+        #print nr_area
+        #print "sys_temp_add.area()"
+        #print sys_temp_add.area()
+        #print "fa"
+        #print float(nr_area - sys_temp_add.area() - r_s_inter) / nr_area
+        #return { "fa": (float(nr_area - sys_temp_add.area() - r_s_inter) / nr_area),
+        #         "NR_area": nr_area}
+
+
 def build_n_mide_metric(file_frame_dur_lookup, ns_collar_size, cost_fn_miss = lambda x: 1 * x, cost_fn_fa = lambda x: 1 * x):
     def _n_mide(pairs):
         return n_mide(pairs, file_frame_dur_lookup, ns_collar_size, cost_fn_miss, cost_fn_fa)
 
     return _n_mide
 
+def build_fa_metric(file_frame_dur_lookup, ns_collar_size, cost_fn_miss = lambda x: 1 * x, cost_fn_fa = lambda x: 1 * x):
+        def _fa(pairs):
+            return fa_met(pairs, file_frame_dur_lookup, ns_collar_size, cost_fn_miss, cost_fn_fa)
+        
+        return _fa
+    
 def w_p_miss(num_c, num_m, num_f, denominator, numerator):
     denom = num_m + num_c + denominator
     numer = num_m + numerator
@@ -318,33 +453,87 @@ def build_mote_metric(frame_correct_align, conf_func, cost_fn_m = lambda x: 1 * 
         return { "mote": value }
     return _mote
 
-def build_sweeper(conf_key_func, measure_funcs):
+def build_ref_sig(aligned_pairs, missed_ref, file_framedur_lookup):
+    # Need to modify join, find ways to keep from doing full join each time.
+    # reference stays the same, calculated once. system, just need to include
+    # new false alarms
+    #
+    #print "Building Ref Sig"
+    num_aligned = len(aligned_pairs) + len(missed_ref)
+    if num_aligned == 0:
+        return [{},{},0]
+    #combined_ref = itertools.chain([temporal_single_signal(b) for b in aligned_pairs], [temporal_single_signal(m) for m in missed_ref]) #[b for b in aligned_pairs] + [m for m in missed_ref] #works
+    ref_temp = [temporal_single_signal(b) for b in aligned_pairs ] + [ temporal_single_signal(m) for m in missed_ref ] #list(itertools.chain([temporal_single_signal(b) for b in aligned_pairs], [temporal_single_signal(m) for m in missed_ref])) #[temporal_single_signal(r) for r in combined_ref ]
+    #ref_temp_add=reduce(add, [r[0] for r in ref_temp], S())
+    ref_temp_add = special_join(ref_temp)
+    not_ref=ref_temp_add.not_sig(file_framedur_lookup.get(ref_temp[0][1]))
+    
+    nr_area=not_ref.area()
+
+    return[ref_temp_add, not_ref, nr_area]
+
+def build_sys_sig(syssig):
+    #print "Building Sys Sig"
+    if len(syssig) == 0:
+        return [{},[]]
+    #combined_sys = [b[1] for b in aligned_pairs] + [f for f in false_sys]
+    sys_temp = [temporal_single_signal(s) for s in syssig ]
+    #sys_temp_add=reduce(add, [s[0] for s in sys_temp], S())
+    sys_temp_add = special_join(sys_temp)
+    return [sys_temp_add, sys_temp]
+
+def add_sys_sig(init, newsig):
+    if len(newsig)==0:
+        return init
+    #sys_temp = [temporal_single_signal(s) for s in newsig ] + [init[0]]
+    sys_temp_ret = [temporal_single_signal(s) for s in newsig ] + init # list(itertools.chain([temporal_single_signal(s) for s in newsig ], init)) #[temporal_single_signal(s) for s in newsig ] + init
+    #sys_temp_add = special_join(sys_temp)
+    return sys_temp_ret #[sys_temp_add, sys_temp_ret]
+        
+def build_sweeper(conf_key_func, measure_funcs, file_framedur_lookup=0):
     def _sweep(alignment_records):
         c, m, f = partition_alignment(alignment_records)
+        
+        if file_framedur_lookup != 0:
+            ref_sigs = build_ref_sig([ (ar.ref) for ar in c ],
+                                     [(ar.ref) for ar in m],
+                                     file_framedur_lookup )
+            fa_func=measure_funcs.pop()
+        #sys_sig = build_sys_sig([ (ar.sys) for ar in c ])
+        #print "sys_sig"
+        #print sys_sig
+        sys_sig=[]
         total_c = len(c)
         num_m = len(m)
-        # num_f = len(f)
-        #print "C Again:"
-        #print c
         out_points = []
         current_c, current_f = [], []
-
+        
+        
+        
         # m records don't need to be sorted as they have None
         # confidence scores
         current_m = m + sorted(c, None, conf_key_func)
         remaining_f = sorted(f, None, conf_key_func)
         uniq_confs = sorted(set(map(conf_key_func, c + f)), reverse = True)
         for conf in uniq_confs:
+            newsig = []
             while len(current_m) > 0 and current_m[-1].alignment != "MD" and conf_key_func(current_m[-1]) >= conf:
+                if file_framedur_lookup != 0:
+                    newsig.append(current_m[-1])
                 current_c.append(current_m.pop())
-            #print "current c"
-            #print current_c
             while len(remaining_f) > 0 and conf_key_func(remaining_f[-1]) >= conf:
+                if file_framedur_lookup != 0:
+                    newsig.append(remaining_f[-1])
                 current_f.append(remaining_f.pop())
+            if file_framedur_lookup != 0:
+                sys_sig=add_sys_sig(sys_sig,[(ar.sys) for ar in newsig])
+                out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], fa_func(ref_sigs, sys_sig))))
+            else:
+                out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], {})))
+            #print "sys_sig"
+            #print sys_sig
+            #out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], fa_func(ref_sigs, sys_sig))))
 
-            out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], {})))
-        #print "OUT_POINTS: "
-        #print out_points
         return out_points
 
     return _sweep
