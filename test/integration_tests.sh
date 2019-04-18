@@ -30,7 +30,7 @@ run_test() {
 	    mv "$f.new" "$f"
 	fi
     done
-    diff -r "$checkfile_outdir" "$compcheckfile_outdir"
+    diff --exclude \*png -r "$checkfile_outdir" "$compcheckfile_outdir"
     check_status
     
     echo "*** OK ***"
@@ -305,7 +305,6 @@ test_9_0() {
 	-f "data/test_9-0_file-index.json" \
 	-F \
 	-o "$1" \
-	-d \
 	-v
 }
 
