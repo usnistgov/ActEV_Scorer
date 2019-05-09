@@ -1,3 +1,5 @@
+args
+../ActEV_Scorer.py ActEV18_AD_1SECOL -s data/test_10-0_fake-sysout.json -r data/test_10-0.json -a data/test_10-0_activity-index.json -f data/test_10-0_file-index.json -o data/checkfiles/test_10_1 -v
 [Info] Command: ../ActEV_Scorer.py ActEV18_AD_1SECOL -s data/test_10-0_fake-sysout.json -r data/test_10-0.json -a data/test_10-0_activity-index.json -f data/test_10-0_file-index.json -o data/checkfiles/test_10_1 -v
 [Info] Loading system output file
 [Info] Loading activity index file

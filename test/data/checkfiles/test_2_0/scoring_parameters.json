@@ -20,6 +20,7 @@
   "activity.temporal_overlap_delta": 0.2, 
   "activity.epsilon_temporal_congruence": 1e-08, 
   "activity.epsilon_presenceconf_congruence": 1e-06, 
+  "command": "../ActEV_Scorer.py ActEV18_AD -s data/VIRAT_S_000001_fake-sysout.json -r data/VIRAT_S_000001.json -a data/VIRAT_S_000001_activity-index.json -f data/VIRAT_S_000001_file-index.json -o data/checkfiles/test_2_0 -d -v", 
   "activity.n_mide_at_rfa_targets": [
     1, 
     0.2, 

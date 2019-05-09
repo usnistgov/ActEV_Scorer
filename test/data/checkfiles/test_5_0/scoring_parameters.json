@@ -1,4 +1,10 @@
 {
+  "object.p_miss_at_rfa_targets": [
+    0.5, 
+    0.2, 
+    0.1, 
+    0.033
+  ], 
   "activity.w_p_miss_at_rfa_targets": [
     1, 
     0.2, 
@@ -19,14 +25,6 @@
     0.03, 
     0.01
   ], 
-  "object.spatial_overlap_delta": 0.5, 
-  "nmide.cost_fa": 1, 
-  "scoring_protocol": "actev18_ad", 
-  "nmide.ns_collar_size": 0, 
-  "activity.temporal_overlap_delta": 0.2, 
-  "activity.epsilon_temporal_congruence": 1e-08, 
-  "mode.cost_miss": 1, 
-  "activity.epsilon_presenceconf_congruence": 1e-06, 
   "activity.n_mide_at_rfa_targets": [
     1, 
     0.2, 
@@ -35,14 +33,17 @@
     0.03, 
     0.01
   ], 
+  "nmide.cost_fa": 1, 
+  "scoring_protocol": "actev18_ad", 
+  "activity.temporal_overlap_delta": 0.2, 
+  "activity.epsilon_temporal_congruence": 1e-08, 
+  "mode.cost_miss": 1, 
+  "object.spatial_overlap_delta": 0.5, 
+  "command": "../ActEV_Scorer.py ActEV18_AOD -s data/test_4-0_fake-sysout.json -r data/test_4-0.json -a data/test_5-0_activity-index.json -f data/test_4-0_file-index.json -o data/checkfiles/test_5_0 -d -j -v", 
   "activity.object_congruence_delta": 0.0, 
-  "object.p_miss_at_rfa_targets": [
-    0.5, 
-    0.2, 
-    0.1, 
-    0.033
-  ], 
   "activity.epsilon_object_congruence": 1e-10, 
+  "activity.epsilon_presenceconf_congruence": 1e-06, 
+  "nmide.ns_collar_size": 0, 
   "wpmiss.denominator": 10, 
   "wpmiss.numerator": 8
 }

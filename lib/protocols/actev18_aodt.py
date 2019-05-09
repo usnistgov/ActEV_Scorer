@@ -80,7 +80,7 @@ class ActEV18_AODT(ActEV18_AD):
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
-        super(ActEV18_AODT, self).__init__(scoring_parameters, file_index, activity_index)
+        super(ActEV18_AODT, self).__init__(scoring_parameters, file_index, activity_index, command)
 
     def default_kernel_builder(self, refs, syss):
 

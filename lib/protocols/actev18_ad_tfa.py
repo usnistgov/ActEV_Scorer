@@ -69,7 +69,7 @@ class ActEV18_AD_TFA(Default):
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
-        super(ActEV18_AD_TFA, self).__init__(scoring_parameters, file_index, activity_index)
+        super(ActEV18_AD_TFA, self).__init__(scoring_parameters, file_index, activity_index, command)
         self.file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() for k, v in file_index.iteritems() }
         self.total_file_duration_minutes = sum([ float(frames) / file_index[k]["framerate"] for k, frames in self.file_framedur_lookup.iteritems()]) / float(60)
         #self.file_framerate = [file_index[k]["framerate"] for k, v in file_index.iteritems()][0]
