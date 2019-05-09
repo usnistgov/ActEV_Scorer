@@ -49,7 +49,7 @@ class ActEV18_AD_1SecOL(Default):
     def get_schema_fn(cls):
         return "actev18_ad_schema.json"
 
-    def __init__(self, scoring_parameters, file_index, activity_index):
+    def __init__(self, scoring_parameters, file_index, activity_index, command):
         default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,
                                        "activity.temporal_overlap_delta": 0.2,
@@ -61,7 +61,8 @@ class ActEV18_AD_1SecOL(Default):
                                        "nmide.cost_fa": 1,
                                        "wpmiss.numerator": 8,
                                        "wpmiss.denominator": 10,
-                                       "scoring_protocol": "actev18_ad_1SecOL"}
+                                       "scoring_protocol": "actev18_ad_1SecOL",
+                                       "command": str(command)}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 

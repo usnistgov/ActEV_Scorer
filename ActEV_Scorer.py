@@ -252,7 +252,7 @@ def score_basic(protocol_class, args):
     activity_index = load_activity_index(log, args.activity_index)
     file_index = load_file_index(log, args.file_index)
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
-    protocol = protocol_class(input_scoring_parameters, file_index, activity_index)
+    protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
     system_output_schema = load_schema_for_protocol(log, protocol)
 
     validate_input(log, system_output, system_output_schema)
@@ -346,4 +346,6 @@ if __name__ == '__main__':
                            base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
 
     args = parser.parse_args()
+    print "args"
+    print " ".join(sys.argv)
     args.func(args)

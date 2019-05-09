@@ -50,7 +50,7 @@ class ActEV19_AD(Default):
     def get_schema_fn(cls):
         return "actev18_ad_schema.json"
 
-    def __init__(self, scoring_parameters, file_index, activity_index):
+    def __init__(self, scoring_parameters, file_index, activity_index, command):
         default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,
                                        "activity.temporal_overlap_delta": 0.2,
@@ -64,7 +64,8 @@ class ActEV19_AD(Default):
                                        "wpmiss.numerator": 8,
                                        "wpmiss.denominator": 10,
                                        "fa.ns_collar_size": 0,
-                                       "scoring_protocol": "actev19_ad"}
+                                       "scoring_protocol": "actev19_ad",
+                                       "command": str(command)}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
@@ -167,8 +168,16 @@ class ActEV19_AD(Default):
                                                         lambda r: r["p_miss"],
                                                         fa_targets,
                                                         None)
+
+        wpmiss_tfa_measures = get_points_along_confidence_curve(det_points,
+                                                                "tfa",
+                                                                lambda r: r["tfa"],
+                                                                "w_p_miss",
+                                                                lambda r: r["w_p_miss"],
+                                                                fa_targets,
+                                                                None)
         
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, fa_measures))))
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(fa_measures, wpmiss_tfa_measures)))))
     
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, nmide_targets, fa_targets, default_factorizations = []):

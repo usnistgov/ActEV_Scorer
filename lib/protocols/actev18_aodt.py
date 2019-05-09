@@ -55,7 +55,7 @@ class ActEV18_AODT(ActEV18_AD):
     def requires_object_localization(cls):
         return True
 
-    def __init__(self, scoring_parameters, file_index, activity_index):
+    def __init__(self, scoring_parameters, file_index, activity_index, command):
         default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,
                                        "activity.temporal_overlap_delta": 0.2,
@@ -75,7 +75,8 @@ class ActEV18_AODT(ActEV18_AD):
                                        "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
                                        "mode.cost_miss": 1,
                                        "mode.cost_fa": 1,
-                                       "mode.cost_id": 1}
+                                       "mode.cost_id": 1,
+                                       "command": str(command)}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
