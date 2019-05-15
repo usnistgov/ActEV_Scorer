@@ -214,6 +214,11 @@ def score_actev18_ad(args):
 
     score_basic(ActEV18_AD, args)
 
+def score_actev18pc_ad(args):
+    from actev18pc_ad import ActEV18PC_AD
+
+    score_basic(ActEV18PC_AD, args)
+    
 def score_actev18_ad_tfa(args):
     from actev18_ad_tfa import ActEV18_AD_TFA
 
@@ -323,6 +328,11 @@ if __name__ == '__main__':
     add_protocol_subparser("ActEV18_AD",
                            dict(help="Scoring protocol for the ActEV18 Activity Detection task"),
                            score_actev18_ad,
+                           base_args)
+
+    add_protocol_subparser("ActEV18PC_AD",
+                           dict(help="Scoring protocol for the ActEV18 Prize Challenge Activity Detection task"),
+                           score_actev18pc_ad,
                            base_args)
     
     add_protocol_subparser("ActEV18_AD_TFA",

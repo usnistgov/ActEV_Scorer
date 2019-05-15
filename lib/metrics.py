@@ -247,7 +247,7 @@ def fa_meas(ref_sig, sys_sig): #aligned_pairs, missed_ref, false_sys, file_frame
         #sys_temp_add = sys_sig[0]
         sys_temp = sys_sig #[1]
         if nr_area == 0:
-            return { "tfa": None,
+            return { "tfa": 1.0,
                      "tfa_denom": None,
                      "tfa_numer": None,
                      "System_Sig": None,
