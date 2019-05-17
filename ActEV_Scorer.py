@@ -356,6 +356,4 @@ if __name__ == '__main__':
                            base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
 
     args = parser.parse_args()
-    print "args"
-    print " ".join(sys.argv)
     args.func(args)

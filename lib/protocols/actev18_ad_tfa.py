@@ -163,8 +163,7 @@ class ActEV18_AD_TFA(Default):
                                                         lambda r: r["tfa"],
                                                         "p_miss",
                                                         lambda r: r["p_miss"],
-                                                        fa_targets,
-                                                        None)
+                                                        fa_targets)
         
         return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, fa_measures))))
     
