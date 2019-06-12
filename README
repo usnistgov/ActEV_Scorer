@@ -1,6 +1,6 @@
 ActEV Scoring Software
 Version: 0.3.4
-Date: September 24, 2018
+Date: June 12, 2019
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -107,7 +107,16 @@ Protocols:
   measures are computed:
     - MOTE - the Multiple Object Tracking Error for an object
       detection and tracking alignment.
-      
+
+  ActEV19_AD - Scoring protocol for the ActEV 2019 Activity Detection
+  task, the following measures are computed.  The difference between ActEV18_AD
+  and ActEV19_AD is correct instances require at least 1 second of overlap with
+  the reference and the use of Time-based False Alarms (TFA).
+    - PMiss at TFA for TFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
+    - NMIDE (**NOTE** currently using a no-score collar size of 0
+      frames, this will likely change in a future release)
+    - NMIDE at TFA for TFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
+    
 Output:
 
   The scoring script writes to several files in the specified
