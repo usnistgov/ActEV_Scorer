@@ -54,6 +54,7 @@ class ActEV19_AD(Default):
         default_scoring_parameters = { "activity.epsilon_presenceconf_congruence": 1.0,
                                        "activity.temporal_overlap_delta": 1,
                                        "activity.p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.auc_at_fa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.w_p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.n_mide_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.fa_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
@@ -173,8 +174,10 @@ class ActEV19_AD(Default):
                                                                 "w_p_miss",
                                                                 lambda r: r["w_p_miss"],
                                                                 fa_targets)
-        
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(fa_measures, wpmiss_tfa_measures)))))
+#        print det_points
+        auc_measure_t = get_auc(fa_measures, "tfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
+        auc_measure_r = get_auc(pmiss_measures, "rfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(fa_measures, merge_dicts(wpmiss_tfa_measures,merge_dicts(auc_measure_t,auc_measure_r)))))))
     
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, nmide_targets, fa_targets, default_factorizations = []):
@@ -183,7 +186,6 @@ class ActEV19_AD(Default):
             factorization, recs = item
             f={}
             det_points, tfa_det_points, fa_data, measures = self.compute_det_points_and_measures(recs, rfa_denom_func(recs), rfa_targets, nmide_targets, fa_targets, self.scoring_parameters["wpmiss.denominator"], self.scoring_parameters["wpmiss.numerator"])
-
             p["-".join(factorization)] = det_points
             f["-".join(factorization)] = fa_data
             t["-".join(factorization)] = tfa_det_points
@@ -202,7 +204,6 @@ class ActEV19_AD(Default):
                 
             for _m, v in measures.iteritems():
                 m.append(factorization + (_m, v))
-
             return (p, t, fa, m)
 
         grouped = merge_dicts({ k: [] for k in default_factorizations }, group_by_func(factorization_func, records))
@@ -249,8 +250,7 @@ class ActEV19_AD(Default):
 
         activity_nmides = self.compute_aggregate_measures(alignment, _activity_grouper, [ ar_nmide_measure ], self.default_activity_groups)
         out_det_points, out_tfa_det_points, out_fa_data, det_measures = self.compute_aggregate_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.scoring_parameters["activity.fa_at_rfa_targets"], self.default_activity_groups)
-#        print "out_det_points"
-#        print out_det_points
+        
         # Overall level + Activity Aggregates + Pair Agg. Aggregates
         def _empty_grouper(rec):
             return tuple() # empty tuple

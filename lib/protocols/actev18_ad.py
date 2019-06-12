@@ -54,6 +54,7 @@ class ActEV18_AD(Default):
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,
                                        "activity.temporal_overlap_delta": 0.2,
                                        "activity.p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.auc_at_fa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.w_p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.n_mide_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "nmide.ns_collar_size": 0,
@@ -145,8 +146,9 @@ class ActEV18_AD(Default):
                                                            lambda r: r["n-mide"],
                                                            nmide_targets,
                                                            None)
-        
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, wpmiss_measures)))
+        #auc_measure_t = get_auc(fa_measures, threshold = max(self.scoring_parameters["activity.auc_at_fa_targets"]))
+        auc_measure_r = get_auc(pmiss_measures, "rfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures,auc_measure_r))))
     
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, nmide_targets, default_factorizations = []):

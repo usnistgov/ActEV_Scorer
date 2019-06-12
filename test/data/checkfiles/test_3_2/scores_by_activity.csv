@@ -1,4 +1,10 @@
 activity|metric_name|metric_value
+Closing|AUC@0.01rfa|0.0
+Closing|AUC@0.03rfa|0.0
+Closing|AUC@0.15rfa|0.0
+Closing|AUC@0.1rfa|0.0
+Closing|AUC@0.2rfa|0.0
+Closing|AUC@1rfa|0.0
 Closing|n-mide|0.0333862899121
 Closing|n-mide@0.01rfa|None
 Closing|n-mide@0.03rfa|None
@@ -19,6 +25,12 @@ Closing|w_p_miss@0.15rfa|0.941176470588
 Closing|w_p_miss@0.1rfa|0.941176470588
 Closing|w_p_miss@0.2rfa|0.941176470588
 Closing|w_p_miss@1rfa|0.705882352941
+Closing_Trunk|AUC@0.01rfa|0.0
+Closing_Trunk|AUC@0.03rfa|0.0
+Closing_Trunk|AUC@0.15rfa|0.0
+Closing_Trunk|AUC@0.1rfa|0.0
+Closing_Trunk|AUC@0.2rfa|0.0
+Closing_Trunk|AUC@1rfa|0.0
 Closing_Trunk|n-mide|None
 Closing_Trunk|n-mide@0.01rfa|None
 Closing_Trunk|n-mide@0.03rfa|None
@@ -39,6 +51,12 @@ Closing_Trunk|w_p_miss@0.15rfa|0.833333333333
 Closing_Trunk|w_p_miss@0.1rfa|0.833333333333
 Closing_Trunk|w_p_miss@0.2rfa|0.833333333333
 Closing_Trunk|w_p_miss@1rfa|0.833333333333
+Entering|AUC@0.01rfa|0.0
+Entering|AUC@0.03rfa|0.0
+Entering|AUC@0.15rfa|0.0
+Entering|AUC@0.1rfa|0.0
+Entering|AUC@0.2rfa|0.0
+Entering|AUC@1rfa|0.0
 Entering|n-mide|0.0515484629057
 Entering|n-mide@0.01rfa|None
 Entering|n-mide@0.03rfa|None

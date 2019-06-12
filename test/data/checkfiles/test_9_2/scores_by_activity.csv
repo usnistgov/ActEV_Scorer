@@ -1,4 +1,10 @@
 activity|metric_name|metric_value
+Closing|AUC@0.01rfa|0.0
+Closing|AUC@0.03rfa|0.0
+Closing|AUC@0.15rfa|0.0
+Closing|AUC@0.1rfa|0.0
+Closing|AUC@0.2rfa|0.0
+Closing|AUC@1rfa|0.0
 Closing|n-mide|0.668769059544
 Closing|n-mide@0.01rfa|0.668769059544
 Closing|n-mide@0.03rfa|0.668769059544
@@ -19,6 +25,12 @@ Closing|w_p_miss@0.15rfa|0.615384615385
 Closing|w_p_miss@0.1rfa|0.615384615385
 Closing|w_p_miss@0.2rfa|0.615384615385
 Closing|w_p_miss@1rfa|0.615384615385
+Entering|AUC@0.01rfa|0.0
+Entering|AUC@0.03rfa|0.0
+Entering|AUC@0.15rfa|0.0
+Entering|AUC@0.1rfa|0.0
+Entering|AUC@0.2rfa|0.0
+Entering|AUC@1rfa|0.0
 Entering|n-mide|None
 Entering|n-mide@0.01rfa|None
 Entering|n-mide@0.03rfa|None
