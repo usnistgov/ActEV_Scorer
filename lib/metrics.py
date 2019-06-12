@@ -139,6 +139,39 @@ def spatial_intersection_over_union(r, s):
     # practise should never encounter this case
     return float(intersection) / union if union != 0 else 0.0
 
+def compute_auc(tfa_pmiss, thresh=1):
+    #'p_miss@1tfa': 0.5
+    """ Computes the area under curve (AUC) given FPR and TPR values
+    fpr: false positive rates
+    tpr: true positive rates
+    fpr_stop: fpr value for calculating partial AUC"""
+    xpoints = ['p_miss@0.01tfa', 'p_miss@0.03tfa', 'p_miss@0.1tfa', 'p_miss@0.15tfa', 'p_miss@0.2tfa', 'p_miss@1tfa']
+    fpr = [0.0, 0.01, 0.03, 0.1, 0.15, 0.2, 1]
+    oldkey = "none"
+    tnr = [1.0]
+    for xp in xpoints:
+        try:
+            tnr.append(tfa_pmiss[xp])
+            oldkey = xp
+        except:
+            if oldkey == "none":
+                tnr.append(1.0)
+            else:
+                tnr.append(tfa_pmiss[oldkey])
+    width = [x - fpr[i] for i, x in enumerate(fpr[1:]) if fpr[i + 1] <= thresh]
+    #width = [ 0.01, 0.02, 0.07, 0.05, 0.05, 0.8 ]
+    height = [(x + tnr[i]) / 2 for i, x in enumerate(tnr[1:])]
+    p_height = height[0:len(width)]
+    auc = sum([width[i] * (1 - p_height[i]) for i in range(0, len(width))])
+    return auc
+
+def get_auc(tfa_pmiss, typ, threshold=[ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ]):
+    auc = {}
+    for t in threshold:
+        ds = "AUC@" + str(t)+typ
+        auc[ds] = compute_auc(tfa_pmiss,thresh = t)
+    return auc
+
 # aligned_pairs should be a list of tuples being (reference, system);
 # where reference and system are each ActivityInstance objects
 def n_mide(aligned_pairs, file_framedur_lookup, ns_collar_size, cost_fn_miss, cost_fn_fa):
@@ -530,6 +563,8 @@ def build_sweeper(conf_key_func, measure_funcs, file_framedur_lookup=0):
                 out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], fa_func(ref_sigs, sys_sig))))
             else:
                 out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], {})))
+            #print "out_points"
+            #print out_points
             #print "sys_sig"
             #print sys_sig
             #out_points.append((conf, reduce(merge_dicts, [ m(current_c, current_m, current_f) for m in measure_funcs ], fa_func(ref_sigs, sys_sig))))

@@ -1,4 +1,12 @@
 {
+  "activity.auc_at_fa_targets": [
+    1, 
+    0.2, 
+    0.15, 
+    0.1, 
+    0.03, 
+    0.01
+  ], 
   "activity.p_miss_at_rfa_targets": [
     1, 
     0.2, 

@@ -8,7 +8,7 @@
     0.01
   ], 
   "fa.ns_collar_size": 0, 
-  "activity.fa_at_rfa_targets": [
+  "activity.auc_at_fa_targets": [
     1, 
     0.2, 
     0.15, 
@@ -40,5 +40,13 @@
   "nmide.cost_fa": 1, 
   "nmide.ns_collar_size": 0, 
   "wpmiss.denominator": 10, 
-  "wpmiss.numerator": 8
+  "wpmiss.numerator": 8, 
+  "activity.fa_at_rfa_targets": [
+    1, 
+    0.2, 
+    0.15, 
+    0.1, 
+    0.03, 
+    0.01
+  ]
 }

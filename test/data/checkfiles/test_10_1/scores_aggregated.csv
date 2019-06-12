@@ -1,4 +1,10 @@
 metric_name|metric_value
+mean-AUC@0.01rfa|0.0
+mean-AUC@0.03rfa|0.0
+mean-AUC@0.15rfa|0.0
+mean-AUC@0.1rfa|0.0
+mean-AUC@0.2rfa|0.0
+mean-AUC@1rfa|0.0
 mean-n-mide|0.584151217739
 mean-n-mide@0.01rfa|None
 mean-n-mide@0.03rfa|None
