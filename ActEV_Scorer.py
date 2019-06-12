@@ -208,12 +208,17 @@ def score_actev19_ad(args):
     from actev19_ad import ActEV19_AD
 
     score_basic(ActEV19_AD, args)
-    
+
 def score_actev18_ad(args):
     from actev18_ad import ActEV18_AD
 
     score_basic(ActEV18_AD, args)
 
+def score_actev18pc_ad(args):
+    from actev18pc_ad import ActEV18PC_AD
+
+    score_basic(ActEV18PC_AD, args)
+    
 def score_actev18_ad_tfa(args):
     from actev18_ad_tfa import ActEV18_AD_TFA
 
@@ -252,7 +257,7 @@ def score_basic(protocol_class, args):
     activity_index = load_activity_index(log, args.activity_index)
     file_index = load_file_index(log, args.file_index)
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
-    protocol = protocol_class(input_scoring_parameters, file_index, activity_index)
+    protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
     system_output_schema = load_schema_for_protocol(log, protocol)
 
     validate_input(log, system_output, system_output_schema)
@@ -319,10 +324,15 @@ if __name__ == '__main__':
                            dict(help="Scoring protocol for the ActEV19 Activity Detection task"),
                            score_actev19_ad,
                            base_args)
-                           
+    
     add_protocol_subparser("ActEV18_AD",
                            dict(help="Scoring protocol for the ActEV18 Activity Detection task"),
                            score_actev18_ad,
+                           base_args)
+
+    add_protocol_subparser("ActEV18PC_AD",
+                           dict(help="Scoring protocol for the ActEV18 Prize Challenge Activity Detection task"),
+                           score_actev18pc_ad,
                            base_args)
     
     add_protocol_subparser("ActEV18_AD_TFA",

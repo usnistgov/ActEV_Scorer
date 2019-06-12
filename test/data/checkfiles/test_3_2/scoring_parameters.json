@@ -7,6 +7,14 @@
     0.03, 
     0.01
   ], 
+  "activity.auc_at_fa_targets": [
+    1, 
+    0.2, 
+    0.15, 
+    0.1, 
+    0.03, 
+    0.01
+  ], 
   "nmide.cost_miss": 1, 
   "activity.p_miss_at_rfa_targets": [
     1, 
@@ -20,6 +28,7 @@
   "activity.temporal_overlap_delta": 0.2, 
   "activity.epsilon_temporal_congruence": 1e-08, 
   "activity.epsilon_presenceconf_congruence": 1e-06, 
+  "command": "../ActEV_Scorer.py ActEV18_AD -s data/test_3-2_fake-sysout.json -r data/test_3-2.json -a data/test_3-0_activity-index.json -f data/test_3-2_file-index.json -o data/checkfiles/test_3_2 -d -v", 
   "activity.n_mide_at_rfa_targets": [
     1, 
     0.2, 

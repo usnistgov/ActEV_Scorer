@@ -50,7 +50,7 @@ class Default(object):
     def requires_object_localization(cls):
         return False
 
-    def __init__(self, scoring_parameters, file_index, activity_index):
+    def __init__(self, scoring_parameters, file_index, activity_index, command):
         self.scoring_parameters = scoring_parameters
         self.file_index = file_index
         self.activity_index = activity_index

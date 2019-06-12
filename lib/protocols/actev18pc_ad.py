@@ -44,35 +44,33 @@ from alignment import *
 from helpers import *
 from default import *
 
-class ActEV18_AD_1SecOL(Default):
+class ActEV18PC_AD(Default):
     @classmethod
     def get_schema_fn(cls):
         return "actev18_ad_schema.json"
 
     def __init__(self, scoring_parameters, file_index, activity_index, command):
-        default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
-                                       "activity.epsilon_presenceconf_congruence": 1.0e-6,
+        default_scoring_parameters = { "activity.epsilon_temporal_congruence": 0,
+                                       "activity.epsilon_presenceconf_congruence": 1.0,
                                        "activity.temporal_overlap_delta": 0.2,
                                        "activity.p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.w_p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
-                                       "activity.auc_at_fa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.n_mide_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "nmide.ns_collar_size": 0,
                                        "nmide.cost_miss": 1,
                                        "nmide.cost_fa": 1,
                                        "wpmiss.numerator": 8,
                                        "wpmiss.denominator": 10,
-                                       "scoring_protocol": "actev18_ad_1SecOL",
+                                       "scoring_protocol": "actev18pc_ad",
                                        "command": str(command)}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
-        super(ActEV18_AD_1SecOL, self).__init__(scoring_parameters, file_index, activity_index, command)
+        super(ActEV18PC_AD, self).__init__(scoring_parameters, file_index, activity_index, command)
 
         self.file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() for k, v in file_index.iteritems() }
         self.total_file_duration_minutes = sum([ float(frames) / file_index[k]["framerate"] for k, frames in self.file_framedur_lookup.iteritems()]) / float(60)
-        self.file_framerate = [file_index[k]["framerate"] for k, v in file_index.iteritems()][0]
-        
+
     # Warning ** this cohort generation function only works when
     # activity instances are localized to a single file!!  This is
     # enforced by the schemas for ActEV18_AD and ActEV18_AOD
@@ -87,9 +85,11 @@ class ActEV18_AD_1SecOL(Default):
             yield (ref_groups.get(k, []), sys_groups.get(k, []))
 
     def default_kernel_builder(self, refs, syss):
-        kernel = build_linear_combination_kernel([ build_temporal_second_overlap_filter(self.file_framerate) ],
-                                               [ build_sed_presenceconf_congruence(syss) ],
-                                               { "presenceconf_congruence": self.scoring_parameters["activity.epsilon_presenceconf_congruence"] })
+        kernel = build_linear_combination_kernel([ build_temporal_overlap_filter(self.scoring_parameters["activity.temporal_overlap_delta"]) ],
+                                               [ temporal_intersection_over_union_component,
+                                                 build_sed_presenceconf_congruence(syss) ],
+                                               { "temporal_intersection-over-union": self.scoring_parameters["activity.epsilon_temporal_congruence"],
+                                                 "presenceconf_congruence": self.scoring_parameters["activity.epsilon_presenceconf_congruence"] })
 
         # Kernel for AD doesn't change based on activity, just
         # returning the predefined kernel
@@ -145,8 +145,8 @@ class ActEV18_AD_1SecOL(Default):
                                                            lambda r: r["n-mide"],
                                                            nmide_targets,
                                                            None)
-        auc_measure_r = get_auc(pmiss_measures, "rfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures,auc_measure_r))))
+        
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, wpmiss_measures)))
     
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, nmide_targets, default_factorizations = []):
