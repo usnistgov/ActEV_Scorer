@@ -170,6 +170,8 @@ def get_auc(tfa_pmiss, typ, threshold=[ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ]):
     for t in threshold:
         ds = "AUC@" + str(t)+typ
         auc[ds] = compute_auc(tfa_pmiss,thresh = t)
+        dsn = "nAUC@" + str(t)+typ
+        auc[dsn] = auc[ds] / t
     return auc
 
 # aligned_pairs should be a list of tuples being (reference, system);

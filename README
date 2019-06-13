@@ -1,6 +1,6 @@
 ActEV Scoring Software
 Version: 0.3.4
-Date: June 12, 2019
+Date: June 13, 2019
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -269,6 +269,9 @@ Changelog:
 
   June 12, 2019
     -Added AUC at the various tfa and rfa thresholds
+
+  June 13, 2019
+    -Add nAUC using nAUC@Xtfa = AUC@Xtfa / X
     
 Contact:
 

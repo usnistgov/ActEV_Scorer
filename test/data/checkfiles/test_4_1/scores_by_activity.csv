@@ -13,6 +13,12 @@ Closing|n-mide@0.1rfa|0.0
 Closing|n-mide@0.2rfa|0.0
 Closing|n-mide@1rfa|0.0
 Closing|n-mide_num_rejected|0
+Closing|nAUC@0.01rfa|0.0
+Closing|nAUC@0.03rfa|0.0
+Closing|nAUC@0.15rfa|0.0
+Closing|nAUC@0.1rfa|0.0
+Closing|nAUC@0.2rfa|0.0
+Closing|nAUC@1rfa|0.0
 Closing|p_miss@0.01rfa|1.0
 Closing|p_miss@0.03rfa|1.0
 Closing|p_miss@0.15rfa|0.0
@@ -39,6 +45,12 @@ Entering|n-mide@0.1rfa|0.0173131118913
 Entering|n-mide@0.2rfa|0.0173131118913
 Entering|n-mide@1rfa|0.0173131118913
 Entering|n-mide_num_rejected|0
+Entering|nAUC@0.01rfa|0.0
+Entering|nAUC@0.03rfa|0.0
+Entering|nAUC@0.15rfa|0.0
+Entering|nAUC@0.1rfa|0.0
+Entering|nAUC@0.2rfa|0.0
+Entering|nAUC@1rfa|0.0
 Entering|p_miss@0.01rfa|0.0
 Entering|p_miss@0.03rfa|0.0
 Entering|p_miss@0.15rfa|0.0
