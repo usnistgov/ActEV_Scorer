@@ -13,6 +13,12 @@ mean-n-mide@0.1rfa|None
 mean-n-mide@0.2rfa|None
 mean-n-mide@1rfa|0.0212786112445
 mean-n-mide_num_rejected|0.0
+mean-nAUC@0.01rfa|0.0
+mean-nAUC@0.03rfa|0.0
+mean-nAUC@0.15rfa|0.0
+mean-nAUC@0.1rfa|0.0
+mean-nAUC@0.2rfa|0.0
+mean-nAUC@1rfa|0.0
 mean-p_miss@0.01rfa|1.0
 mean-p_miss@0.03rfa|1.0
 mean-p_miss@0.15rfa|1.0
