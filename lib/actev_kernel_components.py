@@ -44,11 +44,21 @@ def temporal_intersection_filter(r, s):
     ti = temporal_intersection(r, s)
     return (temporal_intersection(r, s) > 0, { "temporal_intersection": ti })
 
-def build_temporal_second_overlap_filter(threshold):
+def build_temporal_second_overlap_filter(threshold, tioa_threshold="None"):
     def _filter(r, s):
-        ti = temporal_intersection(r, s)
-        #tiou = temporal_intersection_over_union(r, s)
-        return (ti >= threshold, { "temporal_intersection": ti }) #, "temporal_intersection-over-union": tiou })
+        if tioa_threshold != "None":
+            if (temporal_single_signal_area(r) < threshold and temporal_single_signal_area(s) < threshold) or (temporal_single_signal_area(r) >= threshold and temporal_single_signal_area(s) < threshold):
+                #do basic temporal overlap filter
+                tioa = temporal_intersection_over_area(r, s)
+                return (tioa >= tioa_threshold, { "temporal_intersection-over-area": tioa })
+            else:
+                ti = temporal_intersection(r, s)
+                #tiou = temporal_intersection_over_union(r, s)
+                return (ti >= threshold, { "temporal_intersection": ti }) #, "temporal_intersection-over-union": tiou })
+        else:
+            ti = temporal_intersection(r, s)
+            #tiou = temporal_intersection_over_union(r, s)
+            return (ti >= threshold, { "temporal_intersection": ti }) #, "temporal_intersection-over-union": tiou })
     
     return _filter
 

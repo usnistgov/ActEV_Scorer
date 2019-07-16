@@ -1,0 +1,27 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing",
+      "activityID": 1,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3100": 1,
+          "3120": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 2,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3500": 1,
+          "3540": 0
+        }
+      }
+    }
+  ]
+}

@@ -116,6 +116,16 @@ Protocols:
     - NMIDE (**NOTE** currently using a no-score collar size of 0
       frames, this will likely change in a future release)
     - NMIDE at TFA for TFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
+
+  ActEV19_AD_V2 - Scoring protocol for Version 2 of the ActEV 2019 Activity
+  Detection task, the following measures are computed. The difference
+  between ActEV19_AD and ActEV19_AD_V2 is correct instances require above a
+  specified percentage of the reference activity must be overlapped by the
+  system activity.
+    - PMiss at TFA for TFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
+    - NMIDE (**NOTE** currently using a no-score collar size of 0
+      frames, this will likely change in a future release)
+    - NMIDE at TFA for TFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
     
 Output:
 
