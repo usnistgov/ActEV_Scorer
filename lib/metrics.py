@@ -171,15 +171,15 @@ def compute_auc(tfa_pmiss, thresh=1):
     #width = [ 0.01, 0.02, 0.07, 0.05, 0.05, 0.8 ]
     height = [(x + tnr[i]) / 2 for i, x in enumerate(tnr[1:])]
     p_height = height[0:len(width)]
-    auc = sum([width[i] * (1 - p_height[i]) for i in range(0, len(width))])
+    auc = sum([width[i] * (p_height[i]) for i in range(0, len(width))])
     return auc
 
 def get_auc(tfa_pmiss, typ, threshold=[ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ]):
     auc = {}
     for t in threshold:
-        ds = "AUC@" + str(t)+typ
+        ds = "AUDC@" + str(t)+typ
         auc[ds] = compute_auc(tfa_pmiss,thresh = t)
-        dsn = "nAUC@" + str(t)+typ
+        dsn = "nAUDC@" + str(t)+typ
         auc[dsn] = auc[ds] / t
     return auc
 
