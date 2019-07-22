@@ -373,3 +373,46 @@ test_10_1() {
 	-o "$1" \
 	-v
 }
+test_11_0() {
+    ../ActEV_Scorer.py \
+       "ActEV19_AD_V2" \
+       -s "data/test_11-0_fake-sysout.json" \
+       -r "data/test_11-0.json" \
+       -a "data/test_9-0_activity-index.json" \
+       -f "data/test_11-0_file-index.json" \
+       -o "$1" \
+       -v
+}
+
+test_11_1() {
+    ../ActEV_Scorer.py \
+       "ActEV19_AD_V2" \
+       -s "data/test_11-1_fake-sysout.json" \
+       -r "data/test_11-0.json" \
+       -a "data/test_9-0_activity-index.json" \
+       -f "data/test_11-0_file-index.json" \
+       -o "$1" \
+       -v
+}
+
+test_11_2() {
+    ../ActEV_Scorer.py \
+       "ActEV19_AD_V2" \
+       -s "data/test_11-2_fake-sysout.json" \
+       -r "data/test_11-0.json" \
+       -a "data/test_9-0_activity-index.json" \
+       -f "data/test_11-0_file-index.json" \
+       -o "$1" \
+       -v
+}
+
+test_11_3() {
+    ../ActEV_Scorer.py \
+       "ActEV19_AD_V2" \
+       -s "data/test_11-3_fake-sysout.json" \
+       -r "data/test_11-0.json" \
+       -a "data/test_9-0_activity-index.json" \
+       -f "data/test_11-0_file-index.json" \
+       -o "$1" \
+       -v
+}

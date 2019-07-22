@@ -1,0 +1,11 @@
+activity|ref|sys|metric_name|metric_value
+Closing|1|2|temporal_fa|0
+Closing|1|2|temporal_intersection|20
+Closing|1|2|temporal_intersection-over-union|None
+Closing|1|2|temporal_miss|0
+Closing|1|2|temporal_union|20
+Entering|2|3|temporal_fa|0
+Entering|2|3|temporal_intersection|25
+Entering|2|3|temporal_intersection-over-union|None
+Entering|2|3|temporal_miss|15
+Entering|2|3|temporal_union|40

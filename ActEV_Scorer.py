@@ -209,6 +209,11 @@ def score_actev19_ad(args):
 
     score_basic(ActEV19_AD, args)
 
+def score_actev19_ad_v2(args):
+    from actev19_ad_v2 import ActEV19_AD_V2
+    
+    score_basic(ActEV19_AD_V2, args)
+    
 def score_actev18_ad(args):
     from actev18_ad import ActEV18_AD
 
@@ -323,6 +328,11 @@ if __name__ == '__main__':
     add_protocol_subparser("ActEV19_AD",
                            dict(help="Scoring protocol for the ActEV19 Activity Detection task"),
                            score_actev19_ad,
+                           base_args)
+    
+    add_protocol_subparser("ActEV19_AD_V2",
+                           dict(help="Scoring protocol for the ActEV19 V2 Activity Detection task"),
+                           score_actev19_ad_v2,
                            base_args)
     
     add_protocol_subparser("ActEV18_AD",

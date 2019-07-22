@@ -70,7 +70,11 @@ def temporal_single_signal(s, key_join_op = set.union):
 #    print "in temporal_single_signal"
 #    print s
     return _single_signal(s, _temporal_signal_accessor, key_join_op)
-    
+
+def temporal_single_signal_area(s, key_join_op = set.union):
+    si = _single_signal(s, _temporal_signal_accessor, key_join_op)
+    return si[0].area()
+
 def temporal_intersection(r, s):
     #print "temporal_intersection r:"
     #print r
@@ -78,6 +82,11 @@ def temporal_intersection(r, s):
     #print s
 #    print reduce(add, [ (r & s).area() for r, s, k in temporal_signal_pairs(r, s, set.intersection) ], 0)
     return reduce(add, [ (r & s).area() for r, s, k in temporal_signal_pairs(r, s, set.intersection) ], 0)
+
+def temporal_intersection_over_area(r, s):
+    ti = temporal_intersection(r, s)
+    r_area = temporal_single_signal_area(r)
+    return (ti * 1.0) / r_area
 
 def temporal_union(r, s):
     return reduce(add, [ (r | s).area() for r, s, k in temporal_signal_pairs(r, s) ], 0)
@@ -162,15 +171,15 @@ def compute_auc(tfa_pmiss, thresh=1):
     #width = [ 0.01, 0.02, 0.07, 0.05, 0.05, 0.8 ]
     height = [(x + tnr[i]) / 2 for i, x in enumerate(tnr[1:])]
     p_height = height[0:len(width)]
-    auc = sum([width[i] * (1 - p_height[i]) for i in range(0, len(width))])
+    auc = sum([width[i] * (p_height[i]) for i in range(0, len(width))])
     return auc
 
 def get_auc(tfa_pmiss, typ, threshold=[ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ]):
     auc = {}
     for t in threshold:
-        ds = "AUC@" + str(t)+typ
+        ds = "AUDC@" + str(t)+typ
         auc[ds] = compute_auc(tfa_pmiss,thresh = t)
-        dsn = "nAUC@" + str(t)+typ
+        dsn = "nAUDC@" + str(t)+typ
         auc[dsn] = auc[ds] / t
     return auc
 
