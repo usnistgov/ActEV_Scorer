@@ -1,4 +1,4 @@
-# actev19_ad_v3.py
+# actev_sdl_v1.py
 # Author(s): David Joy
 
 # This software was developed by employees of the National Institute of
@@ -45,7 +45,7 @@ from alignment import *
 from helpers import *
 from default import *
 
-class ActEV19_AD_V3(Default):
+class ActEV_SDL_V1(Default):
     @classmethod
     def get_schema_fn(cls):
         return "actev18_ad_schema.json"
@@ -69,7 +69,7 @@ class ActEV19_AD_V3(Default):
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
-        super(ActEV19_AD_V3, self).__init__(scoring_parameters, file_index, activity_index, command)
+        super(ActEV_SDL_V1, self).__init__(scoring_parameters, file_index, activity_index, command)
 
         self.file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() for k, v in file_index.iteritems() }
         self.total_file_duration_minutes = sum([ float(frames) / file_index[k]["framerate"] for k, frames in self.file_framedur_lookup.iteritems()]) / float(60)
