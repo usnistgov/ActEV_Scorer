@@ -255,14 +255,55 @@ def special_join(signals):
         return init
     while len(signals)!=1:
         gr_sig = [signals[i * 2:(i + 1) * 2] for i in range((len(signals) + 2 - 1) // 2 )]
-        #print "gr_sig"
-        #print gr_sig
+        print "gr_sig"
+        print gr_sig
         signals=reduce(_reducer, gr_sig, [])
         #print "2 signals"
         #print signals
     return signals[0]
     
-
+def fa_meas_v2(ref_sig, sys_sig):
+    ref_temp_add = ref_sig[0]
+    not_ref = ref_sig[1]
+    nr_area = ref_sig[2]
+    sys_temp = sys_sig #[1]
+    if nr_area == 0:
+        return { "tfa": 1.0,
+                 "tfa_denom": None,
+                 "tfa_numer": None,
+                 "System_Sig": None,
+                 "Ref_Sig": None,
+                 "NR_Ref_Sig": None}
+#    print "ref_temp_add"
+#    print ref_temp_add
+#    print "sys_temp"
+#    print sys_temp
+    sys_temp_add=reduce(add, [s[0] for s in sys_temp], S())
+#    print "sys_temp_add"
+#    print sys_temp_add
+    num_sig = sys_temp_add - ref_temp_add
+#    print "num_sig"
+#    print num_sig
+    numer=num_sig.area()
+#    print "numer"
+#    print numer
+#    def _reducer(init,pair):
+#        r, s = pair
+#        inters = (r & s).area()
+#        init = init + inters
+#        return init
+#    numer_pairs = [[not_ref, s[0] ] for s in sys_temp]
+#    numer = reduce(_reducer, numer_pairs, 0)#(not_ref & sys_temp_add).area()
+    denom=nr_area
+#    print "denom"
+#    print denom
+    return { "tfa": (float(numer) / denom),
+             "tfa_denom": nr_area,
+             "tfa_numer": numer,
+             "System_Sig": sys_temp,
+             "Ref_Sig": ref_temp_add,
+             "NR_Ref_Sig": not_ref}
+    
 def fa_meas(ref_sig, sys_sig): #aligned_pairs, missed_ref, false_sys, file_framedur_lookup, ns_collar_size):
         # Need to modify join, find ways to keep from doing full join each time.
         # reference stays the same, calculated once. system, just need to include
@@ -290,6 +331,10 @@ def fa_meas(ref_sig, sys_sig): #aligned_pairs, missed_ref, false_sys, file_frame
         nr_area = ref_sig[2]
         #sys_temp_add = sys_sig[0]
         sys_temp = sys_sig #[1]
+#        print "ref_temp_add"
+#        print ref_temp_add
+#        print "sys_temp"
+#        print sys_temp
         if nr_area == 0:
             return { "tfa": 1.0,
                      "tfa_denom": None,
@@ -508,8 +553,8 @@ def build_ref_sig(aligned_pairs, missed_ref, file_framedur_lookup):
         return [{},{},0]
     #combined_ref = itertools.chain([temporal_single_signal(b) for b in aligned_pairs], [temporal_single_signal(m) for m in missed_ref]) #[b for b in aligned_pairs] + [m for m in missed_ref] #works
     ref_temp = [temporal_single_signal(b) for b in aligned_pairs ] + [ temporal_single_signal(m) for m in missed_ref ] #list(itertools.chain([temporal_single_signal(b) for b in aligned_pairs], [temporal_single_signal(m) for m in missed_ref])) #[temporal_single_signal(r) for r in combined_ref ]
-    #ref_temp_add=reduce(add, [r[0] for r in ref_temp], S())
-    ref_temp_add = special_join(ref_temp)
+    ref_temp_add=reduce(add, [r[0] for r in ref_temp], S())
+    #ref_temp_add = reduce(add,ref_temp) #special_join(ref_temp)
     not_ref=ref_temp_add.not_sig(file_framedur_lookup.get(ref_temp[0][1]))
     
     nr_area=not_ref.area()
