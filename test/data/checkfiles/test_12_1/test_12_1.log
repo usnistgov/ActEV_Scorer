@@ -1,0 +1,18 @@
+[Info] Command: ../ActEV_Scorer.py ActEV19_AD_V2 -s data/test_12-0_fake-sysout.json -r data/test_12-0.json -a data/test_9-0_activity-index.json -f data/test_12-0_file-index.json -o data/checkfiles/test_12_1 -v
+[Info] Loading system output file
+[Info] Loading activity index file
+[Info] Loading file index file
+[Info] Loading JSON schema
+[Info] Validating system output against JSON schema
+[Info] System output validated successfully against JSON schema
+[Info] Checking file index against system's "filesProcessed"
+[Info] Validation successful
+[Info] Loading reference file
+[Info] Scoring ..
+[Info] Saving results to directory 'data/checkfiles/test_12_1'
+[Info] Saving figures to directory 'data/checkfiles/test_12_1/figures'
+[Info] Plotting combined DET curves
+[Info] Plotting DET curve for Closing
+[Info] Plotting DET curve for Entering
+[Info] Plotting TFA DET curve for Closing
+[Info] Plotting TFA DET curve for Entering
