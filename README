@@ -109,23 +109,20 @@ Protocols:
       detection and tracking alignment.
 
   ActEV19_AD - Scoring protocol for the ActEV 2019 Activity Detection
-  task, the following measures are computed.  The difference between ActEV18_AD
-  and ActEV19_AD is correct instances require at least 1 second of overlap with
-  the reference and the use of Time-based False Alarms (TFA).
-    - PMiss at TFA for TFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
-    - NMIDE (**NOTE** currently using a no-score collar size of 0
-      frames, this will likely change in a future release)
-    - NMIDE at TFA for TFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
+  task.  The difference between ActEV18_AD and ActEV19_AD is correct
+  instances require at least 1 second of overlap with the reference
+  and the use of Time-based False Alarms (TFA).
 
-  ActEV19_AD_V2 - Scoring protocol for Version 2 of the ActEV 2019 Activity
-  Detection task, the following measures are computed. The difference
-  between ActEV19_AD and ActEV19_AD_V2 is correct instances require above a
-  specified percentage of the reference activity must be overlapped by the
+  ActEV19_AD_V2 - Scoring protocol for Version 2 of the ActEV 2019
+  Activity Detection task. The difference between ActEV19_AD and
+  ActEV19_AD_V2 is correct instances require above a specified
+  percentage of the reference activity must be overlapped by the
   system activity.
-    - PMiss at TFA for TFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
-    - NMIDE (**NOTE** currently using a no-score collar size of 0
-      frames, this will likely change in a future release)
-    - NMIDE at TFA for TFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
+
+  ActEV_SDL_V1 - Scoring protocol for Version 1 of the ActEV Sequestered
+  Data Leaderboard Activity.  This version revises the computation of
+  Time-based False Alarm to include false alarm time during reference instances
+  when the system produces detections in excess of the reference instances.
     
 Output:
 
