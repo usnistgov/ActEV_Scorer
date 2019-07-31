@@ -1,0 +1,139 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing",
+      "activityID": 1,
+      "presenceConf": 1.0,
+      "alertFrame": 100,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "100": 1,
+          "175": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 2,
+      "presenceConf": 0.95,
+      "alertFrame": 300,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "300": 1,
+          "375": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 3,
+      "presenceConf": 0.9,
+      "alertFrame": 350,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "325": 1,
+          "425": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 4,
+      "presenceConf": 0.7,
+      "alertFrame": 700,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "700": 1,
+          "800": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 5,
+      "presenceConf": 0.7,
+      "alertFrame": 725,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "725": 1,
+          "800": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 6,
+      "presenceConf": 0.7,
+      "alertFrame": 450,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "750": 1,
+          "800": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 7,
+      "presenceConf": 0.5,
+      "alertFrame": 900,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "900": 1,
+          "1000": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 8,
+      "presenceConf": 0.5,
+      "alertFrame": 975,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "975": 1,
+          "1125": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 9,
+      "presenceConf": 0.5,
+      "alertFrame": 975,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "975": 1,
+          "1025": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 10,
+      "presenceConf": 0.4,
+      "alertFrame": 1200,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "1200": 1,
+          "1230": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 11,
+      "presenceConf": 0.4,
+      "alertFrame": 1235,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "1235": 1,
+          "1270": 0
+        }
+      }
+    }
+  ]
+}
