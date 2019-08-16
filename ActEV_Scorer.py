@@ -336,8 +336,8 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir):
         log(1, "[Info] Plotting combined {} DET curves".format(prefix))
         save_DET(dc_dict.values() + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINED"), {'xlabel': xlabel, 'title': "All activities"})
 
-    _export_records(dm_records_rfa, "RFA", "False Alarm Rate [%]")
-    _export_records(dm_records_tfa, "TFA", "Time-based False Alarm [%]")
+    _export_records(dm_records_rfa, "RFA", "False Alarm Rate")
+    _export_records(dm_records_tfa, "TFA", "Time-based False Alarm")
 
 def records_to_dm(records):
     dc_dict = {}
