@@ -438,3 +438,24 @@ test_12_1() {
        -o "$1" \
        -v
 }
+
+test_13_0() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V1" \
+	-s "data/test_13-0_fake-sysout.json" \
+	-r "data/test_13-0.json" \
+	-a "data/test_13-0_activity-index.json" \
+	-f "data/test_13-0_file-index.json" \
+	-o "$1" \
+	-v
+}
+test_13_1() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V1" \
+	-s "data/test_13-1_fake-sysout.json" \
+	-r "data/test_13-1.json" \
+	-a "data/test_13-0_activity-index.json" \
+	-f "data/test_13-1_file-index.json" \
+	-o "$1" \
+	-v
+}
