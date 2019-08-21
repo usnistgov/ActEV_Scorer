@@ -8,7 +8,7 @@
       "activityID": 1,
       "localization": {
         "VIRAT_S_000000.mp4": {
-          "1": 1,
+          "0": 1,
           "100": 0
         }
       }
@@ -18,7 +18,7 @@
       "activityID": 2,
       "localization": {
 	"VIRAT_S_000000.mp4": {
-	  "101": 1,
+	  "100": 1,
 	  "200": 0
 	}
       }
@@ -28,7 +28,7 @@
       "activityID": 3,
       "localization": {
       "VIRAT_S_000000.mp4": {
-          "201": 1,
+          "200": 1,
           "300": 0
         }
       }
@@ -38,7 +38,7 @@
 	  "activityID": 4,
 	  "localization": {
 	      "VIRAT_S_000000.mp4": {
-		  "301": 1,
+		  "300": 1,
 		  "400": 0
 	      }
 	  }
@@ -48,7 +48,7 @@
 	  "activityID": 5,
 	  "localization": {
 	      "VIRAT_S_000000.mp4": {
-		  "401": 1,
+		  "400": 1,
 		  "500": 0
 	      }
 	  }
@@ -58,7 +58,7 @@
 	  "activityID": 6,
 	  "localization": {
 	      "VIRAT_S_000000.mp4": {
-		  "501": 1,
+		  "500": 1,
 		  "600": 0
 	      }
 	  }
@@ -68,7 +68,7 @@
 	  "activityID": 7,
 	  "localization": {
 	      "VIRAT_S_000000.mp4": {
-		  "601": 1,
+		  "600": 1,
 		  "700": 0
 	      }
 	  }
@@ -78,7 +78,7 @@
 	  "activityID": 8,
 	  "localization": {
 	      "VIRAT_S_000000.mp4": {
-		  "701": 1,
+		  "700": 1,
 		  "800": 0
 	      }
 	  }
@@ -88,7 +88,7 @@
 	  "activityID": 9,
 	  "localization": {
 	      "VIRAT_S_000000.mp4": {
-		  "801": 1,
+		  "800": 1,
 		  "900": 0
 	      }
 	  }
@@ -98,7 +98,7 @@
 	  "activityID": 10,
 	  "localization": {
 	      "VIRAT_S_000000.mp4": {
-		  "901": 1,
+		  "900": 1,
 		  "1000": 0
 	      }
 	  }
