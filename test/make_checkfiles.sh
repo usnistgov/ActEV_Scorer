@@ -10,5 +10,6 @@ if [ ! "$1" = "" ] ; then
 fi
 for test in $tests ; do
     echo "make_checkfiles $test"
+    if [ ! -d $checkfiles_dir/$test ] ; then mkdir -p $checkfiles_dir/$test ; fi
     $test "$checkfiles_dir/$test" > "$checkfiles_dir/$test/$test.log"
 done
