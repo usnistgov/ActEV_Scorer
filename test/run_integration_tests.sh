@@ -1,36 +1,14 @@
 #!/bin/bash
 
-source integration_tests.sh
+. integration_tests.sh
 
-run_test test_1_0 "$checkfiles_dir/test_1_0"
-run_test test_1_1 "$checkfiles_dir/test_1_1"
-run_test test_1_2 "$checkfiles_dir/test_1_2"
-run_test test_2_0 "$checkfiles_dir/test_2_0"
-run_test test_3_0 "$checkfiles_dir/test_3_0"
-run_test test_3_1 "$checkfiles_dir/test_3_1"
-run_test test_3_2 "$checkfiles_dir/test_3_2"
-run_test test_4_0 "$checkfiles_dir/test_4_0"
-run_test test_4_1 "$checkfiles_dir/test_4_1"
-run_test test_4_2 "$checkfiles_dir/test_4_2"
-run_test test_5_0 "$checkfiles_dir/test_5_0"
-run_test test_5_1 "$checkfiles_dir/test_5_1"
-run_test test_5_2 "$checkfiles_dir/test_5_2"
-run_test test_5_3 "$checkfiles_dir/test_5_3"
-run_test test_6_0 "$checkfiles_dir/test_6_0"
-run_test test_7_0 "$checkfiles_dir/test_7_0"
-run_test test_7_1 "$checkfiles_dir/test_7_1"
-run_test test_8_0 "$checkfiles_dir/test_8_0"
-run_test test_9_0 "$checkfiles_dir/test_9_0"
-run_test test_9_1 "$checkfiles_dir/test_9_1"
-run_test test_9_2 "$checkfiles_dir/test_9_2"
-run_test test_9_3 "$checkfiles_dir/test_9_3"
-run_test test_10_0 "$checkfiles_dir/test_10_0"
-run_test test_10_1 "$checkfiles_dir/test_10_1"
-run_test test_11_0 "$checkfiles_dir/test_11_0"
-run_test test_11_1 "$checkfiles_dir/test_11_1"
-run_test test_11_2 "$checkfiles_dir/test_11_2"
-run_test test_11_3 "$checkfiles_dir/test_11_3"
-run_test test_12_0 "$checkfiles_dir/test_12_0"
-run_test test_12_1 "$checkfiles_dir/test_12_1"
-run_test test_13_0 "$checkfiles_dir/test_13_0"
-run_test test_13_1 "$checkfiles_dir/test_13_1"
+all_tests="test_1_0 test_1_1 test_1_2 test_2_0 test_3_0 test_3_1 test_3_2 test_4_0 test_4_1 test_4_2 test_5_0 test_5_1 test_5_2 test_5_3 test_6_0 test_7_0 test_7_1 test_8_0 test_9_0 test_9_1 test_9_2 test_9_3 test_10_0 test_10_1 test_11_0 test_11_1 test_11_2 test_11_3 test_12_0 test_12_1 test_13_0 test_13_1 test_13_2"
+
+tests="$all_tests"
+if [ ! "$1" = "" ] ; then
+    tests=$*
+fi
+for test in $tests ; do
+    run_test $test $checkfiles_dir/$test
+done
+
