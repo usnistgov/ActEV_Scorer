@@ -1,0 +1,20 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4",
+    "VIRAT_S_100000.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing",
+      "activityID": 101,
+      "presenceConf": 1.0,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_100000.mp4": {
+          "0": 1,
+          "100": 0
+        }
+      }
+    }
+  ]
+}

@@ -470,3 +470,14 @@ test_13_2() {
 	-v
 }
 
+test_13_3() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V1" \
+	-s "data/test_13-3_fake-sysout.json" \
+	-r "data/test_13-3.json" \
+	-a "data/test_13-0_activity-index.json" \
+	-f "data/test_13-2_file-index.json" \
+	-o "$1" \
+	-v
+}
+
