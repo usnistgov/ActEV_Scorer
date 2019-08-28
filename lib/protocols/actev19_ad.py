@@ -119,8 +119,8 @@ class ActEV19_AD(Default):
         return _nmide
     
     def build_fa_measure(self):
-        def _fa_meas(ref_sig, sys_sig):
-            return fa_meas(ref_sig, sys_sig)
+        def _fa_meas(ref_sig, sys_sig, sys_sig_add):
+            return fa_meas(ref_sig, sys_sig, sys_sig_add)
         #[ (ar.ref, ar.sys) for ar in c ],
         #                  [(ar.ref) for ar in m],
         #                  [(ar.sys) for ar in f],
