@@ -48,6 +48,8 @@ sys.path.append(protocols_path)
 from activity_instance import *
 from plot import *
 from helpers import *
+from datacontainer import DataContainer
+from render import Render
 
 def err_quit(msg, exit_status=1):
     print("[Error] {}".format(msg))
@@ -303,8 +305,61 @@ def score_basic(protocol_class, args):
         write_records_as_csv("{}/object_alignment.csv".format(args.output_dir), ["activity", "ref_activity", "sys_activity", "frame", "ref_object_type", "sys_object_type", "mapped_ref_object_type", "mapped_sys_object_type", "alignment", "ref_object", "sys_object", "sys_presenceconf_score", "kernel_similarity", "kernel_components"], results.get("object_frame_alignment_records", []))
 
     if not args.disable_plotting:
-        plot_dets(log, args.output_dir, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}))
-        #plot_dets(log, args.output_dir, results.get("tfa_det_point_records", {}))
+        export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir)
+        # plot_dets(log, args.output_dir, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}))
+        # plot_dets(log, args.output_dir, results.get("tfa_det_point_records", {}))
+
+def export_records(log, dm_records_rfa, dm_records_tfa, output_dir):
+    figure_dir = "{}/figures".format(output_dir)
+    mkdir_p(figure_dir)
+    log(1, "[Info] Saving figures to directory '{}'".format(figure_dir))
+
+    dm_dir = "{}/dm".format(output_dir)
+    mkdir_p(dm_dir)
+    log(1, "[Info] Saving dm files to directory '{}'".format(dm_dir))
+
+    def _export_records(records, prefix, xlabel):
+        dc_dict = records_to_dm(records)
+        for activity, dc in dc_dict.iteritems():
+            dc.activity = activity
+            dc.mode = prefix
+            save_dm(dc, dm_dir, "{}_{}.dm".format(prefix, activity))
+            log(1, "[Info] Plotting {} DET curve for {}".format(prefix, activity))
+            save_DET(dc, figure_dir, "DET_{}_{}.png".format(prefix, activity), {'xlabel': xlabel, 'title': activity})
+        mean_label = "{}_mean_byfa".format(prefix)
+        dc_agg = DataContainer.aggregate(dc_dict.values(), output_label=mean_label, average_resolution=500)
+        dc_agg.activity = "AGGREGATED"
+        dc_agg.mode = prefix
+        save_dm(dc_agg, dm_dir, "{}.dm".format(mean_label))
+        log(1, "[Info] Plotting mean {} curve".format(prefix))
+        save_DET(dc_agg, figure_dir, "DET_{}.png".format(mean_label), {'xlabel': xlabel, 'title': "Mean by FA"})
+        log(1, "[Info] Plotting combined {} DET curves".format(prefix))
+        save_DET(dc_dict.values() + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINED"), {'xlabel': xlabel, 'title': "All activities"})
+
+    _export_records(dm_records_rfa, "RFA", "False Alarm Rate")
+    _export_records(dm_records_tfa, "TFA", "Time-based False Alarm")
+
+def records_to_dm(records):
+    dc_dict = {}
+    for activity, records in records.iteritems():
+        fa_array = [e[1] for e in records]
+        fn_array = [e[2] for e in records]
+        threshold = [e[0] for e in records]
+        dc = DataContainer(fa_array, fn_array, threshold, label=activity)
+        dc.line_options['color'] = None
+        dc_dict[activity] = dc
+    return dc_dict
+
+def save_dm(dc, path, file_name):
+    dc.dump("{}/{}".format(path, file_name))
+
+def save_DET(dc, path, file_name, plot_options={}):
+    if isinstance(dc, DataContainer):
+        dc = [dc]
+    rd = Render(plot_type="det")
+    fig = rd.plot(dc, display=False, plot_options=plot_options)
+    fig.savefig("{}/{}".format(path, file_name))
+    rd.close_fig(fig)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Scoring script for the NIST ActEV evaluation")
