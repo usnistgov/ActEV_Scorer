@@ -121,8 +121,8 @@ class ActEV18_AD_TFA(Default):
         return _nmide
     
     def build_fa_measure(self):
-        def _fa_meas(ref_sig, sys_sig):
-            return fa_meas(ref_sig, sys_sig)
+        def _fa_meas(ref_sig, sys_sig, sys_sig_add):
+            return fa_meas(ref_sig, sys_sig, sys_sig_add)
 
         return _fa_meas
         
