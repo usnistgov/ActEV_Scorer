@@ -318,26 +318,35 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir):
     mkdir_p(dm_dir)
     log(1, "[Info] Saving dm files to directory '{}'".format(dm_dir))
 
-    def _export_records(records, prefix, xlabel):
+    def _export_records(records, prefix):
+        opts = {}
+
         dc_dict = records_to_dm(records)
         for activity, dc in dc_dict.iteritems():
             dc.activity = activity
-            dc.mode = prefix
+            dc.fa_label = prefix
+            dc.fn_label = "PMISS"
             save_dm(dc, dm_dir, "{}_{}.dm".format(prefix, activity))
             log(1, "[Info] Plotting {} DET curve for {}".format(prefix, activity))
-            save_DET(dc, figure_dir, "DET_{}_{}.png".format(prefix, activity), {'xlabel': xlabel, 'title': activity})
+            opts['title'] = activity
+            save_DET(dc, figure_dir, "DET_{}_{}.png".format(prefix, activity), opts)
+
         mean_label = "{}_mean_byfa".format(prefix)
         dc_agg = DataContainer.aggregate(dc_dict.values(), output_label=mean_label, average_resolution=500)
         dc_agg.activity = "AGGREGATED"
-        dc_agg.mode = prefix
+        dc_agg.fa_label = prefix
+        dc_agg.fn_label = "PMISS"
         save_dm(dc_agg, dm_dir, "{}.dm".format(mean_label))
         log(1, "[Info] Plotting mean {} curve".format(prefix))
-        save_DET(dc_agg, figure_dir, "DET_{}.png".format(mean_label), {'xlabel': xlabel, 'title': "Mean by FA"})
+        save_DET(dc_agg, figure_dir, "DET_{}.png".format(mean_label), opts)
         log(1, "[Info] Plotting combined {} DET curves".format(prefix))
-        save_DET(dc_dict.values() + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINED"), {'xlabel': xlabel, 'title': "All activities"})
+        opts['title'] = "All Activities"
+        save_DET(dc_dict.values(), figure_dir, "DET_{}_{}.png".format(prefix, "COMBINED"), opts)
+        opts['title'] = "All Activities and Aggregate"
+        save_DET(dc_dict.values() + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINEDAGG"), opts)
 
-    _export_records(dm_records_rfa, "RFA", "False Alarm Rate")
-    _export_records(dm_records_tfa, "TFA", "Time-based False Alarm")
+    _export_records(dm_records_rfa, "RFA")
+    _export_records(dm_records_tfa, "TFA")
 
 def records_to_dm(records):
     dc_dict = {}

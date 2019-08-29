@@ -42,6 +42,9 @@ def create_parser():
     parser.add_argument('-i', '--input', required=True,metavar = "str",
                         help=''.join(input_help))
 
+    parser.add_argument('--aggregate', metavar = "str", default = None,
+                        help='A list of line pairs to for an aggregtion curve.  If path is set, save to the specified file.'.join(input_help))
+
     parser.add_argument("--outputFolder", default='.',
                         help="Path to the output folder. (default: %(default)s)",metavar='')
 
@@ -284,7 +287,7 @@ def evaluate_input(args):
 
         except ValueError as e:
             if not all([len(x) == 2 for x in input_list]):
-                logger.error("ValueError: Invalid input format. All sub-lists must be a pair of two dictionnaries.\n-> {}".format(str(e)))
+                logger.error("ValueError: Invalid input format. All sub-lists must be a pair of two dictionaries.\n-> {}".format(str(e)))
             else:
                 logger.error("ValueError: {}".format(str(e)))
             DMRenderExit(logger)
@@ -297,12 +300,51 @@ def evaluate_input(args):
         logger.error("The input type does not match any of the following inputs:\n- .txt file containing one file path per line\n- .dm file\n- a list of pair [{'path':'path/to/dm_file','label':str,'show_label':bool}, **{any matplotlib.lines.Line2D properties}].\n")
         DMRenderExit(logger)
 
+    ### Assertions: All the fa_labels and fn_labels MUST by unique
+    fa_label = set([x.fa_label for x in DM_list])
+    fn_label = set([x.fn_label for x in DM_list])
+    assert (len(fa_label) == 1), "Error: DM files have mixed FA_labels {}".format(fa_label)
+    assert (len(fn_label) == 1), "Error: DM files have mixed FN_labels {}".format(fn_label)
+
+    if (args.aggregate is not None):
+        logger.debug("Creating aggregated Line")
+        try:
+            dm_data, dm_opts = literal_eval(args.aggregate)
+            print(dm_data)
+            print(dm_opts)
+            dm_obj = DataContainer.aggregate(DM_list, output_label="TFA_mean_byfa", average_resolution=500)
+            dm_obj.activity = "AGGREGATED"
+            dm_obj.fa_label = fa_label
+            dm_obj.fn_label = fn_label
+            dm_obj.label = dm_data['label'] if dm_data['label'] is not None else dm_obj.label
+            dm_obj.show_label = dm_data['show_label']
+            dm_obj.line_options = dm_opts
+            DM_list.append(dm_obj)
+            #DM_list.append(DM_list[0]) #dm_obj)
+
+            if dm_data['path'] is not None:
+                fname = "{}/{}".format(args.outputFolder, dm_data['path'])
+                logger.debug("Writing aggregated Line to {}".format(fname))
+                dm_obj.dump(fname)
+
+
+        except ValueError as e:
+            logger.error("ValueError: The aggrgate option had a value error {}".format(str(e)))
+            DMRenderExit(logger)
+
+        except SyntaxError as e:
+            logger.error("SyntaxError: The aggregate option provided is invalid.\n-> {}".format(str(e)))
+            DMRenderExit(logger)
+
+
+
+
     #*-* Options Processing *-*
 
     # General plot options
     if not args.plotOptionJsonFile:
         logger.info("Generating the default plot options...")
-        plot_opts = Render.gen_default_plot_options(args.plotType, plot_title = args.plotTitle)
+        plot_opts = Render.gen_default_plot_options(args.plotType, DM_list[0].fa_label, DM_list[0].fn_label, plot_title = args.plotTitle)
         
     else:
         logger.info("Loading of the plot options from the json config file...")

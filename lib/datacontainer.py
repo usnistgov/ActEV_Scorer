@@ -111,12 +111,14 @@ class DataContainer:
             dc_list_filtered = [dc for dc in dc_list if is_valid(dc)]
             
             if dc_list_filtered:
+                max_fa_list = [max(dc.fa) for dc in dc_list_filtered]
+                max_fa = max(max_fa_list)
                 if line_options is None:
                     default_line_options = DataContainer.get_default_line_options()
                     default_line_options["color"] = "green"
 
                 if method == "average":
-                    x = np.linspace(0, 1, average_resolution)
+                    x = np.linspace(0, max_fa, average_resolution)
                     ys = [np.interp(x, data.fa, data.fn) for data in dc_list_filtered]
                     return DataContainer(x, np.vstack(ys).mean(0), np.array([]), label=output_label, line_options=line_options)
         # print("Warning: No data container remained after filtering, returning an empty object")
