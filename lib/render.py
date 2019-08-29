@@ -33,6 +33,7 @@ class Render:
         return cur_plot_options
 
     def plot(self, data_list, annotations=[], plot_type=None, plot_options={}, display=True, multi_fig=False, auto_width=True):
+        assert len(data_list) > 0, "Error, DET plot called on empty list of object"
         if isinstance(data_list, list):
             plot_type = self.get_plot_type(plot_type=plot_type)
             plot_options = self.get_plot_options(plot_type, data_list[0].fa_label, data_list[0].fn_label, plot_options=plot_options)
