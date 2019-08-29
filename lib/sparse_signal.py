@@ -101,6 +101,11 @@ class SparseSignal(dict):
         one_flag=False
         zero_flag=False
         first=True
+        if self == {}:
+            return SparseSignal({0:1, framecnt:0})
+        
+        #print "self"
+        #print self
         for t in sorted(self.keys()):
             if first:
                 first=False

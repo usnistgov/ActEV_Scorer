@@ -32,7 +32,7 @@
 
 import sys
 import os
-
+import subprocess
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
 
@@ -74,7 +74,8 @@ class ActEV18_AOD(ActEV18_AD):
                                        "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
                                        "mode.cost_miss": 1,
                                        "mode.cost_fa": 1,
-                                       "command": str(command)}
+                                       "command": str(command),
+                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit"]).strip().split(" ")[0]}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 

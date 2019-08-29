@@ -53,7 +53,10 @@ def partition_alignment(alignment_records):
 class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
                                                     "sys",
                                                     "kernel_similarity",
-                                                    "kernel_components"])):
+                                                    "kernel_components", #)):
+                                                    "ref_local",
+                                                    "sys_local",
+                                                    "video_file"])):
     __slots__ = ()
 
     @property
@@ -68,7 +71,15 @@ class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
                 return "MD"
             else:
                 return "CD"
-
+    @property
+    def video(self):
+        if self.ref is None:
+            if self.sys is None:
+                return None
+            else:
+                return self.sys.localization.keys()[0]
+        else:
+            return self.ref.localization.keys()[0]
     @property
     def sys_presence_conf(self):
         if self.sys == None:
@@ -96,7 +107,6 @@ class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
         def _r(init, c):
             if c in self.kernel_components:
                 init[c] = self.kernel_components.get(c)
-
             return init
 
         # Want to yield out the JSON serialization of requested kernel

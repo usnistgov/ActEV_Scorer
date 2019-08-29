@@ -128,7 +128,6 @@ def build_linear_combination_kernel(filters, components, weights, initial_simila
 
 def perform_alignment(ref_instances, sys_instances, kernel, maximize = True):
     disallowed = {}
-
     max_sim = 0
     sim_matrix, component_matrix = [], []
     for s_i, s in enumerate(sys_instances):
@@ -168,12 +167,19 @@ def perform_alignment(ref_instances, sys_instances, kernel, maximize = True):
 
             unmapped_sys.remove(s_i)
             unmapped_ref.remove(r_i)
-            correct_detects.append(AlignmentRecord(ref_instances[r_i], sys_instances[s_i], sim_matrix[s_i][r_i], component_matrix[s_i][r_i]))
-
+            try:
+                correct_detects.append(AlignmentRecord(ref_instances[r_i], sys_instances[s_i], sim_matrix[s_i][r_i], component_matrix[s_i][r_i], ref_instances[r_i].localization, sys_instances[s_i].localization, sys_instances[s_i].localization.keys()[0]))
+            except:
+                correct_detects.append(AlignmentRecord(ref_instances[r_i], sys_instances[s_i], sim_matrix[s_i][r_i], component_matrix[s_i][r_i],None,None,None))
     for r_i in unmapped_ref:
-        missed_detects.append(AlignmentRecord(ref_instances[r_i], None, None, None))
+        try:
+            missed_detects.append(AlignmentRecord(ref_instances[r_i], None, None, None, ref_instances[r_i].localization, None, ref_instances[r_i].localization.keys()[0]))
+        except:
+            missed_detects.append(AlignmentRecord(ref_instances[r_i], None, None, None,None,None,None))
 
     for s_i in unmapped_sys:
-        false_alarms.append(AlignmentRecord(None, sys_instances[s_i], None, None))
-
+        try:
+            false_alarms.append(AlignmentRecord(None, sys_instances[s_i], None, None, None, sys_instances[s_i].localization,sys_instances[s_i].localization.keys()[0]))
+        except:
+            false_alarms.append(AlignmentRecord(None, sys_instances[s_i], None, None,None,None,None))
     return(correct_detects, missed_detects, false_alarms)
