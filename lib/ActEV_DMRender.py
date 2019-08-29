@@ -277,6 +277,8 @@ def evaluate_input(args):
         try:
             input_list = literal_eval(args.input)
             for dm_data, dm_opts in input_list:
+                logger.debug("dm_data: {}".format(dm_data))
+                logger.debug("dm_opts: {}".format(dm_opts))
                 dm_file_path = dm_data['path']
                 dm_obj = call_loader(dm_file_path, logger)
                 dm_obj.path = dm_file_path
