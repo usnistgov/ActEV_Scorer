@@ -33,6 +33,7 @@
 import sys
 import os
 from pprint import pprint
+import subprocess
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
@@ -65,7 +66,8 @@ class ActEV_SDL_V1(Default):
                                        "wpmiss.denominator": 10,
                                        "fa.ns_collar_size": 0,
                                        "scoring_protocol": "actev_sdl_v1",
-                                       "command": str(command)}
+                                       "command": str(command),
+                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit"]).strip().split(" ")[0]} #git show --oneline -s --no-abbrev-commit
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 

@@ -33,7 +33,7 @@
 import sys
 import os
 from pprint import pprint
-
+import subprocess
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
 
@@ -66,7 +66,8 @@ class ActEV18_AD_TFA(Default):
                                        "wpmiss.denominator": 10,
                                        "fa.ns_collar_size": 0,
                                        "scoring_protocol": "actev18_ad_tfa",
-                                       "command": str(command)}
+                                       "command": str(command),
+                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit"]).strip().split(" ")[0]}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
