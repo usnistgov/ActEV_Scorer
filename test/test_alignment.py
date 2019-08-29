@@ -101,11 +101,11 @@ class TestPerformAlignment(TestAlignment):
         #                      [9, 17, D, 33],
         #                      [17, 33, D, 65]]
 
-        self.corr_1 = [(1, 4, 5, { "multi": 4 }),
-                       (2, 8, 17, { "multi": 16 }),
-                       (4, 16, 65, { "multi": 64 })]
-        self.miss_1 = [(3, None, None, None)]
-        self.fa_1 = [(None, 2, None, None)]
+        self.corr_1 = [(1, 4, 5, { "multi": 4 }, None, None, None),
+                       (2, 8, 17, { "multi": 16 }, None, None, None),
+                       (4, 16, 65, { "multi": 64 }, None, None, None)]
+        self.miss_1 = [(3, None, None, None, None,None, None)]
+        self.fa_1 = [(None, 2, None, None,None, None, None)]
 
         def _filter_d(r_i, s_i):
             return (False, {})
@@ -113,14 +113,14 @@ class TestPerformAlignment(TestAlignment):
         self.kernel_d = build_linear_combination_kernel([_filter_d], [_comp_1_func], { "multi": 1 })
 
         self.corr_d = []
-        self.miss_d = [(1, None, None, None),
-                       (2, None, None, None),
-                       (3, None, None, None),
-                       (4, None, None, None)]
-        self.fa_d = [(None, 2, None, None),
-                     (None, 4, None, None),
-                     (None, 8, None, None),
-                     (None, 16, None, None)]
+        self.miss_d = [(1, None, None, None, None, None, None),
+                       (2, None, None, None, None, None, None),
+                       (3, None, None, None, None, None, None),
+                       (4, None, None, None, None, None, None)]
+        self.fa_d = [(None, 2, None, None, None, None, None),
+                     (None, 4, None, None, None, None, None),
+                     (None, 8, None, None, None, None, None),
+                     (None, 16, None, None, None, None, None)]
 
         def _filter_2(r_i, s_i):
             return (not (r_i == 3 and s_i == 8), {})
@@ -132,10 +132,10 @@ class TestPerformAlignment(TestAlignment):
         #                      [9, 17, D, 33],
         #                      [17, 33, 49, 65]]
 
-        self.corr_2 = [(1, 2, 3, { "multi": 2 }),
-                       (3, 4, 13, { "multi": 12 }),
-                       (2, 8, 17, { "multi": 16 }),
-                       (4, 16, 65, { "multi": 64 })]
+        self.corr_2 = [(1, 2, 3, { "multi": 2 }, None, None, None),
+                       (3, 4, 13, { "multi": 12 }, None, None, None),
+                       (2, 8, 17, { "multi": 16 }, None, None, None),
+                       (4, 16, 65, { "multi": 64 }, None, None, None)]
         self.miss_2 = []
         self.fa_2 = []
 
@@ -157,15 +157,14 @@ class TestPerformAlignment(TestAlignment):
         #                               [D, D, 6],
         #                               [D, D, 7]]
 
-        self.corr_u = [(3, 3, 7, { "add": 6 }),
-                       (2, 1, 4, { "add": 3 })]
-        self.miss_u = [(1, None, None, None)]
-        self.fa_u = [(None, 2, None, None)]
+        self.corr_u = [(3, 3, 7, { "add": 6 }, None, None, None),
+                       (2, 1, 4, { "add": 3 },None, None, None)]
+        self.miss_u = [(1, None, None, None,None, None, None)]
+        self.fa_u = [(None, 2, None, None,None, None, None)]
 
     def assertAlignment(self, observed, expected):
         obs_corr, obs_miss, obs_fa = observed
         exp_corr, exp_miss, exp_fa = expected
-
         self.assertItemsEqual(obs_corr, exp_corr)
         self.assertItemsEqual(obs_miss, exp_miss)
         self.assertItemsEqual(obs_fa, exp_fa)

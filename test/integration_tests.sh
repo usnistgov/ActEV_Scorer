@@ -30,7 +30,7 @@ run_test() {
 	    mv "$f.new" "$f"
 	fi
     done
-    diff --exclude \*png -I "command" -r "$checkfile_outdir" "$compcheckfile_outdir"
+    diff --exclude \*png -I "command" -I "git.commit" -r "$checkfile_outdir" "$compcheckfile_outdir"
     check_status
     
     echo "*** OK ***"

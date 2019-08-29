@@ -33,7 +33,7 @@
 import sys
 import os
 from pprint import pprint
-
+import subprocess
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
 
@@ -65,7 +65,8 @@ class ActEV19_AD_V2(Default):
                                        "wpmiss.denominator": 10,
                                        "fa.ns_collar_size": 0,
                                        "scoring_protocol": "actev19_ad_v2",
-                                       "command": str(command)}
+                                       "command": str(command),
+                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit"]).strip().split(" ")[0]}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
@@ -119,8 +120,8 @@ class ActEV19_AD_V2(Default):
         return _nmide
     
     def build_fa_measure(self):
-        def _fa_meas(ref_sig, sys_sig):
-            return fa_meas(ref_sig, sys_sig)
+        def _fa_meas(ref_sig, sys_sig, sys_sig_add):
+            return fa_meas(ref_sig, sys_sig, sys_sig_add)
         #[ (ar.ref, ar.sys) for ar in c ],
         #                  [(ar.ref) for ar in m],
         #                  [(ar.sys) for ar in f],

@@ -49,6 +49,7 @@
     0.01
   ], 
   "nmide.cost_miss": 1, 
+  "git.commit": "6faecf8ca1d688ab1643381cd9d4c2b7a55a0786", 
   "activity.p_miss_at_rfa_targets": [
     1, 
     0.95, 
@@ -74,9 +75,13 @@
     0.01
   ], 
   "activity.temporal_overlap_delta": 0.5, 
-  "scoring_protocol": "actev19_ad_v3", 
+  "scoring_protocol": "actev_sdl_v1", 
   "activity.epsilon_presenceconf_congruence": 1.0, 
   "command": "../ActEV_Scorer.py ActEV_SDL_V1 -s data/test_13-2_fake-sysout.json -r data/test_13-2.json -a data/test_13-0_activity-index.json -f data/test_13-2_file-index.json -o data/checkfiles/test_13_2 -v", 
+  "wpmiss.numerator": 8, 
+  "nmide.cost_fa": 1, 
+  "nmide.ns_collar_size": 0, 
+  "wpmiss.denominator": 10, 
   "activity.n_mide_at_rfa_targets": [
     1, 
     0.95, 
@@ -101,10 +106,6 @@
     0.03, 
     0.01
   ], 
-  "nmide.cost_fa": 1, 
-  "nmide.ns_collar_size": 0, 
-  "wpmiss.denominator": 10, 
-  "wpmiss.numerator": 8, 
   "activity.fa_at_rfa_targets": [
     1, 
     0.95, 
