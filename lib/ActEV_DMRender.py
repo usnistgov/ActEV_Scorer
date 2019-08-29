@@ -310,8 +310,6 @@ def evaluate_input(args):
         logger.debug("Creating aggregated Line")
         try:
             dm_data, dm_opts = literal_eval(args.aggregate)
-            print(dm_data)
-            print(dm_opts)
             dm_obj = DataContainer.aggregate(DM_list, output_label="TFA_mean_byfa", average_resolution=500)
             dm_obj.activity = "AGGREGATED"
             dm_obj.fa_label = fa_label
