@@ -314,8 +314,8 @@ def evaluate_input(args):
             dm_data, dm_opts = literal_eval(args.aggregate)
             dm_obj = DataContainer.aggregate(DM_list, output_label="TFA_mean_byfa", average_resolution=500)
             dm_obj.activity = "AGGREGATED"
-            dm_obj.fa_label = fa_label
-            dm_obj.fn_label = fn_label
+            dm_obj.fa_label = fa_label.pop()
+            dm_obj.fn_label = fn_label.pop()
             dm_obj.label = dm_data['label'] if dm_data['label'] is not None else dm_obj.label
             dm_obj.show_label = dm_data['show_label']
             dm_obj.line_options = dm_opts
