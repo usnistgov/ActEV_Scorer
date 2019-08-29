@@ -285,6 +285,7 @@ def evaluate_input(args):
                 dm_obj.label = dm_data['label'] if dm_data['label'] is not None else dm_obj.label
                 dm_obj.show_label = dm_data['show_label']
                 dm_obj.line_options = dm_opts
+                dm_obj.line_options['label'] = dm_obj.label
                 DM_list.append(dm_obj)
 
         except ValueError as e:
@@ -395,7 +396,7 @@ def outputFigure(figure, outputFolder, outputFileNameSuffix, plotType):
         os.makedirs(outputFolder)
 
     # Figure Output
-    fig_filename_tmplt = "{file_suffix}_{plot_type}_{plot_id}.pdf".format(file_suffix=outputFileNameSuffix,
+    fig_filename_tmplt = "{file_suffix}_{plot_type}_{plot_id}.png".format(file_suffix=outputFileNameSuffix,
                                                                           plot_type=plotType,
                                                                           plot_id="{plot_id}")
     
