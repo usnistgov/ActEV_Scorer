@@ -11,6 +11,10 @@
 [Info] Scoring ..
 [Info] Saving results to directory 'data/checkfiles/test_13_3'
 [Info] Saving figures to directory 'data/checkfiles/test_13_3/figures'
-[Info] Plotting combined DET curves
-[Info] Plotting DET curve for Closing
+[Info] Saving dm files to directory 'data/checkfiles/test_13_3/dm'
+[Info] Plotting RFA DET curve for Closing
+[Info] Plotting mean RFA curve
+[Info] Plotting combined RFA DET curves
 [Info] Plotting TFA DET curve for Closing
+[Info] Plotting mean TFA curve
+[Info] Plotting combined TFA DET curves
