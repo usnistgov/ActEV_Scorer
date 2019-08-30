@@ -67,7 +67,7 @@ class ActEV_SDL_V1(Default):
                                        "fa.ns_collar_size": 0,
                                        "scoring_protocol": "actev_sdl_v1",
                                        "command": str(command),
-                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit"]).strip().split(" ")[0]} #git show --oneline -s --no-abbrev-commit
+                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()} #.split(" ")[0]} #git show --oneline -s --no-abbrev-commit --pretty=format:%H--%aI
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 

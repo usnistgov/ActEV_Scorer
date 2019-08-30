@@ -75,7 +75,7 @@ class ActEV18_AOD(ActEV18_AD):
                                        "mode.cost_miss": 1,
                                        "mode.cost_fa": 1,
                                        "command": str(command),
-                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit"]).strip().split(" ")[0]}
+                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 

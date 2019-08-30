@@ -279,6 +279,11 @@ Changelog:
 
   June 13, 2019
     -Add nAUC using nAUC@Xtfa = AUC@Xtfa / X
+
+  August 30, 2019
+    -Added git.commit info to scoring parameters
+    -Fixed tfa calculation
+    -Added DMRender for graphing 
     
 Contact:
 
