@@ -7,6 +7,7 @@
     0.03, 
     0.01
   ], 
+  "git.commit": "6faecf8ca1d688ab1643381cd9d4c2b7a55a0786", 
   "activity.p_miss_at_rfa_targets": [
     1, 
     0.2, 

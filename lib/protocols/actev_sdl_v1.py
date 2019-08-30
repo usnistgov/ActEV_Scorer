@@ -33,6 +33,7 @@
 import sys
 import os
 from pprint import pprint
+import subprocess
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
@@ -64,8 +65,9 @@ class ActEV_SDL_V1(Default):
                                        "wpmiss.numerator": 8,
                                        "wpmiss.denominator": 10,
                                        "fa.ns_collar_size": 0,
-                                       "scoring_protocol": "actev19_ad_v3",
-                                       "command": str(command)}
+                                       "scoring_protocol": "actev_sdl_v1",
+                                       "command": str(command),
+                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit"]).strip().split(" ")[0]} #git show --oneline -s --no-abbrev-commit
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 
@@ -119,8 +121,8 @@ class ActEV_SDL_V1(Default):
         return _nmide
     
     def build_fa_measure(self):
-        def _fa_meas(ref_sig, sys_sig):
-            return fa_meas_v2(ref_sig, sys_sig)
+        def _fa_meas(ref_sig, sys_sig, sys_sig_add):
+            return fa_meas_v2(ref_sig, sys_sig, sys_sig_add)
         #[ (ar.ref, ar.sys) for ar in c ],
         #                  [(ar.ref) for ar in m],
         #                  [(ar.sys) for ar in f],
@@ -174,7 +176,7 @@ class ActEV_SDL_V1(Default):
                                                                 "w_p_miss",
                                                                 lambda r: r["w_p_miss"],
                                                                 fa_targets)
-#        print det_points
+
         auc_measure_t = get_auc(fa_measures, "tfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
         auc_measure_r = get_auc(pmiss_measures, "rfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
         return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(fa_measures, merge_dicts(wpmiss_tfa_measures,merge_dicts(auc_measure_t,auc_measure_r)))))))
