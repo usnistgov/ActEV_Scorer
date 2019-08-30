@@ -13,10 +13,14 @@
 [Info] Saving figures to directory 'data/checkfiles/test_11_3/figures'
 [Info] Saving dm files to directory 'data/checkfiles/test_11_3/dm'
 [Info] Plotting RFA DET curve for Closing
+[Info] Plotting mean RFA curve
+[Info] Plotting combined RFA DET curves
 [Info] Plotting RFA DET curve for Entering
 [Info] Plotting mean RFA curve
 [Info] Plotting combined RFA DET curves
 [Info] Plotting TFA DET curve for Closing
+[Info] Plotting mean TFA curve
+[Info] Plotting combined TFA DET curves
 [Info] Plotting TFA DET curve for Entering
 [Info] Plotting mean TFA curve
 [Info] Plotting combined TFA DET curves
