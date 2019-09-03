@@ -672,6 +672,13 @@ def build_sweeper(conf_key_func, measure_funcs, file_framedur_lookup=0):
         current_m = m + sorted(c, None, conf_key_func)
         remaining_f = sorted(f, None, conf_key_func)
         uniq_confs = sorted(set(map(conf_key_func, c + f)), reverse = True)
+
+        if (len(uniq_confs) > 1024):
+            le = len(uniq_confs) 
+            indices = np.round(np.linspace(0,len(uniq_confs)-1, min(len(uniq_confs), 1024))).astype(int)
+            uniq_confs = list(np.array(uniq_confs)[indices])
+            print("[Info] Reducing to {} unique  confidence scores for Sweeping to {} [{},{}] unique confidence scores".format(le, len(uniq_confs), uniq_confs[0], uniq_confs[-1]))
+
         for conf in uniq_confs:
             newsig = {}
             #newsig = []
