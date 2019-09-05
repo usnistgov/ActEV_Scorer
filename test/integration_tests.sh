@@ -490,7 +490,7 @@ test_14_0() {
 	-a "data/test_10-0_activity-index.json" \
 	-f "data/test_10-0_file-index.json" \
 	-o "$1" \
-	-u 2 \
+	-t 2 \
 	-d \
         -v
 }

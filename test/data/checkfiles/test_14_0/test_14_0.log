@@ -1,4 +1,4 @@
-[Info] Command: ../ActEV_Scorer.py ActEV_SDL_V1 -s data/test_10-0_fake-sysout.json -r data/test_10-0.json -a data/test_10-0_activity-index.json -f data/test_10-0_file-index.json -o data/checkfiles/test_14_0 -u 2 -d -v
+[Info] Command: ../ActEV_Scorer.py ActEV_SDL_V1 -s data/test_10-0_fake-sysout.json -r data/test_10-0.json -a data/test_10-0_activity-index.json -f data/test_10-0_file-index.json -o data/checkfiles/test_14_0 -t 2 -d -v
 [Info] Loading system output file
 [Info] Loading activity index file
 [Info] Loading file index file

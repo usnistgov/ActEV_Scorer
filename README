@@ -1,6 +1,6 @@
 ActEV Scoring Software
-Version: 0.4.0
-Date: August 30, 2019
+Version: 0.4.1
+Date: September 5, 2019
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -78,6 +78,10 @@ Option description:
   files.  Note that extraneous files in this sense are those not
   included in the FILE_INDEX
 
+  -t DET_Point_Resolution - Optional; if enabled, this will change
+  the number of points used for the det curves to be the input
+  integer value rather than the max
+  
 Protocols:
 
   ActEV18_AD - Scoring protocol for the ActEV 2018 Activity Detection
@@ -286,7 +290,7 @@ Changelog:
     -Added DMRender for graphing 
 
   September 5, 2019
-    -Added -u option to limit the number of unique confidence
+    -Added -t option for det point resolution
       scores to use for processing
     -Added test 14-0
     
