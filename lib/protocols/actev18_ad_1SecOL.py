@@ -117,11 +117,11 @@ class ActEV18_AD_1SecOL(Default):
 
         return _nmide
 
-    def compute_det_points_and_measures(self, alignment, rfa_denom, rfa_targets, nmide_targets, wpmiss_denom, wpmiss_numer):
+    def compute_det_points_and_measures(self, alignment, rfa_denom, uniq_conf, rfa_targets, nmide_targets, wpmiss_denom, wpmiss_numer):
         sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [ build_rfa_metric(rfa_denom),
                                                                    build_pmiss_metric(),
                                                                    build_wpmiss_metric(wpmiss_denom, wpmiss_numer),
-                                                                   self.build_nmide_measure() ])
+                                                                   self.build_nmide_measure() ], uniq_conf)
 
         det_points = sweeper(alignment)
 
@@ -150,12 +150,12 @@ class ActEV18_AD_1SecOL(Default):
         return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures,auc_measure_r))))
     
 
-    def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, nmide_targets, default_factorizations = []):
+    def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, rfa_targets, nmide_targets, default_factorizations = []):
         def _r(init, item):
             p, m = init
             factorization, recs = item
 
-            det_points, measures = self.compute_det_points_and_measures(recs, rfa_denom_func(recs), rfa_targets, nmide_targets, self.scoring_parameters["wpmiss.denominator"], self.scoring_parameters["wpmiss.numerator"])
+            det_points, measures = self.compute_det_points_and_measures(recs, rfa_denom_func(recs), uniq_conf, rfa_targets, nmide_targets, self.scoring_parameters["wpmiss.denominator"], self.scoring_parameters["wpmiss.numerator"])
 
             p["-".join(factorization)] = det_points
 
@@ -180,7 +180,7 @@ class ActEV18_AD_1SecOL(Default):
 
         return reduce(_r, raw_means, [])
 
-    def compute_results(self, alignment):
+    def compute_results(self, alignment, uniq_conf):
         c, m, f = partition_alignment(alignment)
 
         ar_nmide_measure = self.build_ar_nmide_measure()
@@ -205,7 +205,7 @@ class ActEV18_AD_1SecOL(Default):
             return (rec.activity,)
 
         activity_nmides = self.compute_aggregate_measures(alignment, _activity_grouper, [ ar_nmide_measure ], self.default_activity_groups)
-        out_det_points, det_measures = self.compute_aggregate_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.default_activity_groups)
+        out_det_points, det_measures = self.compute_aggregate_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, uniq_conf, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.default_activity_groups)
 
         # Overall level + Activity Aggregates + Pair Agg. Aggregates
         def _empty_grouper(rec):

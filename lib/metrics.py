@@ -31,6 +31,7 @@
 # licenses.
 
 #import itertools
+import numpy as np
 from operator import add
 from sparse_signal import SparseSignal as S
 from alignment_record import *
@@ -627,7 +628,7 @@ def add_sys_sig(init, newsig):
     #sys_temp_add = special_join(sys_temp)
     return sys_temp_ret #[sys_temp_add, sys_temp_ret]
         
-def build_sweeper(conf_key_func, measure_funcs, file_framedur_lookup=0):
+def build_sweeper(conf_key_func, measure_funcs, uniq_conf_limit=0, file_framedur_lookup=0):
     def _sweep(alignment_records):
         c, m, f = partition_alignment(alignment_records)
         sys_sig = {}
@@ -672,6 +673,14 @@ def build_sweeper(conf_key_func, measure_funcs, file_framedur_lookup=0):
         current_m = m + sorted(c, None, conf_key_func)
         remaining_f = sorted(f, None, conf_key_func)
         uniq_confs = sorted(set(map(conf_key_func, c + f)), reverse = True)
+        
+        if uniq_conf_limit != 0:
+            if (len(uniq_confs) > uniq_conf_limit):
+                le = len(uniq_confs) 
+                indices = np.round(np.linspace(0,len(uniq_confs)-1, min(len(uniq_confs), uniq_conf_limit))).astype(int)
+                uniq_confs = list(np.array(uniq_confs)[indices])
+                print("[Info] Reducing to {} unique  confidence scores for Sweeping to {} [{},{}] unique confidence scores".format(le, len(uniq_confs), uniq_confs[0], uniq_confs[-1]))
+
         for conf in uniq_confs:
             newsig = {}
             #newsig = []

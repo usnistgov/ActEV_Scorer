@@ -474,7 +474,7 @@ class TestSweeper(TestMetrics):
         return ar.sys_presence_conf
 
     def test_build_sweeper(self):
-        sweeper = build_sweeper(self.conf_lkup, [ self.pmiss, self.build_rfa(10) ])
+        sweeper = build_sweeper(self.conf_lkup, [ self.pmiss, self.build_rfa(10) ], 0)
 
         self.assertItemsEqual(sweeper(self.recs_1), [ (0.5, { "p_miss": float(2) / 4, "rfa": float(2) / 10 }),
                                                       (0.7, { "p_miss": float(2) / 4, "rfa": float(1) / 10 }),

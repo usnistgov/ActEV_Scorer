@@ -481,3 +481,16 @@ test_13_3() {
 	-v
 }
 
+#Testing Unique Conf limit input (-u)
+test_14_0() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V1" \
+	-s "data/test_10-0_fake-sysout.json" \
+	-r "data/test_10-0.json" \
+	-a "data/test_10-0_activity-index.json" \
+	-f "data/test_10-0_file-index.json" \
+	-o "$1" \
+	-t 2 \
+	-d \
+        -v
+}

@@ -285,7 +285,7 @@ def score_basic(protocol_class, args):
 
     log(1, "[Info] Scoring ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
-    results = protocol.compute_results(alignment)
+    results = protocol.compute_results(alignment, args.det_point_resolution)
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
 
@@ -379,6 +379,7 @@ if __name__ == '__main__':
                  [["-r", "--reference-file"], dict(help="Reference JSON file", type=str)],
                  [["-a", "--activity-index"], dict(help="Activity index JSON file", type=str, required=True)],
                  [["-f", "--file-index"], dict(help="file index JSON file", type=str, required=True)],
+                 [["-t", "--det-point-resolution"], dict(help="Number of Unique confidence scores to use", type=int, default=0, required=False)],
                  [["-F", "--ignore-extraneous-files"], dict(help="Ignore system detection localizations for files not included in the file index", action="store_true")],
                  [["-o", "--output-dir"], dict(help="Output directory for results", type=str)],
                  [["-d", "--disable-plotting"], dict(help="Disable DET Curve plotting of results", action="store_true")],
