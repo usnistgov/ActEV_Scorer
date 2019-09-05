@@ -284,6 +284,11 @@ Changelog:
     -Added git.commit info to scoring parameters
     -Fixed tfa calculation
     -Added DMRender for graphing 
+
+  September 5, 2019
+    -Added -u option to limit the number of unique confidence
+      scores to use for processing
+    -Added test 14-0
     
 Contact:
 

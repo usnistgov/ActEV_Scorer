@@ -154,9 +154,9 @@ class ActEV18_AODT(ActEV18_AD):
 
         return _configure_kernel_for_activity
 
-    def compute_obj_det_points_and_measures(self, alignment, rfa_denom, rfa_targets):
+    def compute_obj_det_points_and_measures(self, alignment, rfa_denom, uniq_conf, rfa_targets):
         sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [ build_rfa_metric(rfa_denom),
-                                                                   build_pmiss_metric() ])
+                                                                   build_pmiss_metric() ], uniq_conf)
 
         det_points = sweeper(alignment)
 
@@ -169,7 +169,7 @@ class ActEV18_AODT(ActEV18_AD):
 
         return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), pmiss_measures)
 
-    def compute_aggregate_obj_det_points_and_measures(self, records, factorization_func, rfa_denom_func, rfa_targets, default_factorizations = None):
+    def compute_aggregate_obj_det_points_and_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, rfa_targets, default_factorizations = None):
         # Build concat object alignment records
         def _concat_align_recs(init, ar):
             init.extend(map(lambda x: x[1], ar.kernel_components["alignment_records"]))
@@ -181,7 +181,7 @@ class ActEV18_AODT(ActEV18_AD):
 
             combined_alignment_records = reduce(_concat_align_recs, recs, [])
 
-            det_points, measures = self.compute_obj_det_points_and_measures(combined_alignment_records, rfa_denom_func(recs), rfa_targets)
+            det_points, measures = self.compute_obj_det_points_and_measures(combined_alignment_records, rfa_denom_func(recs), uniq_conf, rfa_targets)
 
             p["-".join(factorization)] = det_points
 
@@ -192,11 +192,11 @@ class ActEV18_AODT(ActEV18_AD):
 
         return reduce(_r, group_by_func(factorization_func, records, default_groups = default_factorizations).iteritems(), ({}, []))
 
-    def compute_results(self, alignment):
+    def compute_results(self, alignment, uniq_conf):
         c, m, f = partition_alignment(alignment)
 
         # Building off of the metrics computed for AD
-        ad_results = super(ActEV18_AODT, self).compute_results(alignment)
+        ad_results = super(ActEV18_AODT, self).compute_results(alignment, uniq_conf)
         #print ad_results
         def _object_frame_alignment_records(init, kv):
             activity, recs = kv
@@ -256,7 +256,7 @@ class ActEV18_AODT(ActEV18_AD):
 #            print [v.area() for v in reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {}).values() ]
             return sum([ v.area() for v in reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {}).values() ])
 
-        activity_obj_det_points, activity_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _activity_grouper, _rfa_denom_fn, self.scoring_parameters["object.p_miss_at_rfa_targets"], self.default_activity_groups)
+        activity_obj_det_points, activity_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _activity_grouper, _rfa_denom_fn, uniq_conf, self.scoring_parameters["object.p_miss_at_rfa_targets"], self.default_activity_groups)
 
         def _pair_metric_means(init, res):
             a, ress = res
@@ -274,7 +274,7 @@ class ActEV18_AODT(ActEV18_AD):
 
         obj_activity_means = reduce(_pair_metric_means, group_by_func(lambda t: t[0], aod_pair_results, default_groups = self.activity_index.keys()).iteritems(), [])
 
-        agg_obj_det_points, agg_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _empty_grouper, _rfa_denom_fn, self.scoring_parameters["object.p_miss_at_rfa_targets"], [ tuple() ])
+        agg_obj_det_points, agg_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _empty_grouper, _rfa_denom_fn, uniq_conf, self.scoring_parameters["object.p_miss_at_rfa_targets"], [ tuple() ])
 
         agg_obj_activity_means = self.compute_record_means(obj_activity_means)
 
