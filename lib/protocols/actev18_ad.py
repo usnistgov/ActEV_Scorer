@@ -64,7 +64,7 @@ class ActEV18_AD(Default):
                                        "wpmiss.denominator": 10,
                                        "scoring_protocol": "actev18_ad",
                                        "command": str(command),
-                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
+                                       "git.commit": subprocess.check_output(["git", "--git-dir="+ os.path.join(lib_path, "../")+".git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 

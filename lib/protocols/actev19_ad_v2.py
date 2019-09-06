@@ -66,7 +66,7 @@ class ActEV19_AD_V2(Default):
                                        "fa.ns_collar_size": 0,
                                        "scoring_protocol": "actev19_ad_v2",
                                        "command": str(command),
-                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
+                                       "git.commit": subprocess.check_output(["git", "--git-dir="+ os.path.join(lib_path, "../")+".git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
 

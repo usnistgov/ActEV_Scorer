@@ -44,7 +44,7 @@ I-1
 I0
 tp19
 bI00
-S'\x00\x00\x00\x00\x00\x00\x00\x00'
+S'\x1a\xa4A\x1a\xa4A\x9a?'
 p20
 tp21
 bsS'line_options'
