@@ -3,6 +3,8 @@ mean-AUDC@0.01rfa|0.01
 mean-AUDC@0.01tfa|0.00928571428571
 mean-AUDC@0.03rfa|0.03
 mean-AUDC@0.03tfa|0.0264285714286
+mean-AUDC@0.04rfa|0.03
+mean-AUDC@0.04tfa|0.0264285714286
 mean-AUDC@0.05rfa|0.03
 mean-AUDC@0.05tfa|0.0264285714286
 mean-AUDC@0.15rfa|0.15
@@ -46,6 +48,7 @@ mean-AUDC@1tfa|0.726928571429
 mean-n-mide|0.203267973856
 mean-n-mide@0.01rfa|0.25
 mean-n-mide@0.03rfa|0.25
+mean-n-mide@0.04rfa|0.25
 mean-n-mide@0.05rfa|0.25
 mean-n-mide@0.15rfa|0.25
 mean-n-mide@0.1rfa|0.25
@@ -71,6 +74,8 @@ mean-nAUDC@0.01rfa|1.0
 mean-nAUDC@0.01tfa|0.928571428571
 mean-nAUDC@0.03rfa|1.0
 mean-nAUDC@0.03tfa|0.880952380952
+mean-nAUDC@0.04rfa|0.75
+mean-nAUDC@0.04tfa|0.660714285714
 mean-nAUDC@0.05rfa|0.6
 mean-nAUDC@0.05tfa|0.528571428571
 mean-nAUDC@0.15rfa|1.0
@@ -115,6 +120,8 @@ mean-p_miss@0.01rfa|0.857142857143
 mean-p_miss@0.01tfa|0.857142857143
 mean-p_miss@0.03rfa|0.857142857143
 mean-p_miss@0.03tfa|0.857142857143
+mean-p_miss@0.04rfa|0.857142857143
+mean-p_miss@0.04tfa|0.857142857143
 mean-p_miss@0.05rfa|0.857142857143
 mean-p_miss@0.05tfa|0.857142857143
 mean-p_miss@0.15rfa|0.857142857143
@@ -159,6 +166,8 @@ mean-w_p_miss@0.01rfa|0.882352941176
 mean-w_p_miss@0.01tfa|0.882352941176
 mean-w_p_miss@0.03rfa|0.882352941176
 mean-w_p_miss@0.03tfa|0.882352941176
+mean-w_p_miss@0.04rfa|0.882352941176
+mean-w_p_miss@0.04tfa|0.882352941176
 mean-w_p_miss@0.05rfa|0.882352941176
 mean-w_p_miss@0.05tfa|0.882352941176
 mean-w_p_miss@0.15rfa|0.882352941176

@@ -54,11 +54,11 @@ class ActEV_SDL_V1(Default):
     def __init__(self, scoring_parameters, file_index, activity_index, command):
         default_scoring_parameters = { "activity.epsilon_presenceconf_congruence": 1.0,
                                        "activity.temporal_overlap_delta": 0.5,
-                                       "activity.p_miss_at_rfa_targets":   [ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05,  0.03, 0.01 ],
-                                       "activity.auc_at_fa_targets":       [ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05,  0.03, 0.01 ],
-                                       "activity.w_p_miss_at_rfa_targets": [ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05,  0.03, 0.01 ],
-                                       "activity.n_mide_at_rfa_targets":   [ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05,  0.03, 0.01 ],
-                                       "activity.fa_at_rfa_targets":       [ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05,  0.03, 0.01 ],
+                                       "activity.p_miss_at_rfa_targets":   [ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.04, 0.03, 0.01 ],
+                                       "activity.auc_at_fa_targets":       [ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.04, 0.03, 0.01 ],
+                                       "activity.w_p_miss_at_rfa_targets": [ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.04, 0.03, 0.01 ],
+                                       "activity.n_mide_at_rfa_targets":   [ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.04, 0.03, 0.01 ],
+                                       "activity.fa_at_rfa_targets":       [ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.04, 0.03, 0.01 ],
                                        "nmide.ns_collar_size": 0,
                                        "nmide.cost_miss": 1,
                                        "nmide.cost_fa": 1,
@@ -67,10 +67,9 @@ class ActEV_SDL_V1(Default):
                                        "fa.ns_collar_size": 0,
                                        "scoring_protocol": "actev_sdl_v1",
                                        "command": str(command),
-                                       "git.commit": subprocess.check_output(["git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()} #.split(" ")[0]} #git show --oneline -s --no-abbrev-commit --pretty=format:%H--%aI
+                                       "git.commit": subprocess.check_output(["git", "--git-dir="+ os.path.join(lib_path, "../")+".git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()} #.split(" ")[0]} #git show --oneline -s --no-abbrev-commit --pretty=format:%H--%aI
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
-
         super(ActEV_SDL_V1, self).__init__(scoring_parameters, file_index, activity_index, command)
 
         self.file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() for k, v in file_index.iteritems() }
