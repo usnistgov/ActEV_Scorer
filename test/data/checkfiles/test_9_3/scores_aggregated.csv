@@ -10,7 +10,7 @@ mean-AUDC@0.1tfa|0.1
 mean-AUDC@0.2rfa|0.2
 mean-AUDC@0.2tfa|0.2
 mean-AUDC@1rfa|1.0
-mean-AUDC@1tfa|0.866666666667
+mean-AUDC@1tfa|0.991666666667
 mean-n-mide|0.001
 mean-n-mide@0.01rfa|None
 mean-n-mide@0.03rfa|None
@@ -30,7 +30,7 @@ mean-nAUDC@0.1tfa|1.0
 mean-nAUDC@0.2rfa|1.0
 mean-nAUDC@0.2tfa|1.0
 mean-nAUDC@1rfa|1.0
-mean-nAUDC@1tfa|0.866666666667
+mean-nAUDC@1tfa|0.991666666667
 mean-p_miss@0.01rfa|1.0
 mean-p_miss@0.01tfa|1.0
 mean-p_miss@0.03rfa|1.0

@@ -148,16 +148,21 @@ def spatial_intersection_over_union(r, s):
     # practise should never encounter this case
     return float(intersection) / union if union != 0 else 0.0
 
-def compute_auc(tfa_pmiss, thresh=1):
+def compute_auc(tfa_pmiss, typ, thresh=1):
     #'p_miss@1tfa': 0.5
     """ Computes the area under curve (AUC) given FPR and TPR values
     fpr: false positive rates
     tpr: true positive rates
     fpr_stop: fpr value for calculating partial AUC"""
-    xpoints = ['p_miss@0.01tfa', 'p_miss@0.03tfa', 'p_miss@0.1tfa', 'p_miss@0.15tfa', 'p_miss@0.2tfa', 'p_miss@1tfa']
-    fpr = [0.0, 0.01, 0.03, 0.1, 0.15, 0.2, 1]
+    if typ == "tfa": #[ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.04, 0.03, 0.01]
+        xpoints = ['p_miss@0.01tfa', 'p_miss@0.03tfa', 'p_miss@0.04tfa', 'p_miss@0.05tfa', 'p_miss@0.1tfa', 'p_miss@0.15tfa', 'p_miss@0.2tfa', 'p_miss@0.25tfa', 'p_miss@0.3tfa', 'p_miss@0.35tfa','p_miss@0.4tfa', 'p_miss@0.45tfa', 'p_miss@0.5tfa', 'p_miss@0.55tfa', 'p_miss@0.6tfa','p_miss@0.65tfa', 'p_miss@0.7tfa', 'p_miss@0.75tfa', 'p_miss@0.8tfa', 'p_miss@0.85tfa', 'p_miss@0.9tfa', 'p_miss@0.95tfa','p_miss@1tfa']
+    else:
+        xpoints = ['p_miss@0.01rfa', 'p_miss@0.03rfa', 'p_miss@0.04rfa', 'p_miss@0.05rfa', 'p_miss@0.1rfa', 'p_miss@0.15rfa', 'p_miss@0.2rfa', 'p_miss@0.25rfa', 'p_miss@0.3rfa', 'p_miss@0.35rfa','p_miss@0.4rfa', 'p_miss@0.45rfa', 'p_miss@0.5rfa', 'p_miss@0.55rfa', 'p_miss@0.6rfa','p_miss@0.65rfa', 'p_miss@0.7rfa', 'p_miss@0.75rfa', 'p_miss@0.8rfa', 'p_miss@0.85rfa', 'p_miss@0.9rfa', 'p_miss@0.95rfa','p_miss@1rfa']
+    
+    fpr = [0.0, 0.01, 0.03, 0.04, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.60, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
     oldkey = "none"
     tnr = [1.0]
+
     for xp in xpoints:
         try:
             tnr.append(tfa_pmiss[xp])
@@ -168,7 +173,9 @@ def compute_auc(tfa_pmiss, thresh=1):
             else:
                 tnr.append(tfa_pmiss[oldkey])
     width = [x - fpr[i] for i, x in enumerate(fpr[1:]) if fpr[i + 1] <= thresh]
-    #width = [ 0.01, 0.02, 0.07, 0.05, 0.05, 0.8 ]
+    #print "width"
+    #print width
+    #width = [0.01, 0.02, 0.01, 0.01, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05] #[ 0.01, 0.02, 0.07, 0.05, 0.05, 0.8 ]
     height = [(x + tnr[i]) / 2 for i, x in enumerate(tnr[1:])]
     p_height = height[0:len(width)]
     auc = sum([width[i] * (p_height[i]) for i in range(0, len(width))])
@@ -178,7 +185,7 @@ def get_auc(tfa_pmiss, typ, threshold=[ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ]):
     auc = {}
     for t in threshold:
         ds = "AUDC@" + str(t)+typ
-        auc[ds] = compute_auc(tfa_pmiss,thresh = t)
+        auc[ds] = compute_auc(tfa_pmiss, typ, thresh = t)
         dsn = "nAUDC@" + str(t)+typ
         auc[dsn] = auc[ds] / t
     return auc
