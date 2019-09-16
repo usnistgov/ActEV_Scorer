@@ -1,0 +1,147 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing",
+      "activityID": 1,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "0": 1,
+          "100": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 2,
+      "localization": {
+	"VIRAT_S_000000.mp4": {
+	  "100": 1,
+	  "200": 0
+	}
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 3,
+      "localization": {
+      "VIRAT_S_000000.mp4": {
+          "200": 1,
+          "300": 0
+        }
+      }
+    },
+      {
+	  "activity": "Closing",
+	  "activityID": 4,
+	  "localization": {
+	      "VIRAT_S_000000.mp4": {
+		  "300": 1,
+		  "400": 0
+	      }
+	  }
+      },
+      {
+	  "activity": "Closing",
+	  "activityID": 5,
+	  "localization": {
+	      "VIRAT_S_000000.mp4": {
+		  "400": 1,
+		  "500": 0
+	      }
+	  }
+      },
+      {
+	  "activity": "Closing",
+	  "activityID": 6,
+	  "localization": {
+	      "VIRAT_S_000000.mp4": {
+		  "500": 1,
+		  "600": 0
+	      }
+	  }
+      },
+      {
+	  "activity": "Closing",
+	  "activityID": 7,
+	  "localization": {
+	      "VIRAT_S_000000.mp4": {
+		  "600": 1,
+		  "700": 0
+	      }
+	  }
+      },
+      {
+	  "activity": "Closing",
+	  "activityID": 8,
+	  "localization": {
+	      "VIRAT_S_000000.mp4": {
+		  "700": 1,
+		  "800": 0
+	      }
+	  }
+      },
+      {
+	  "activity": "Entering",
+	  "activityID": 1,
+	  "localization": {
+	      "VIRAT_S_000000.mp4": {
+		  "0": 1,
+		  "100": 0
+	      }
+	  }
+      },
+      {
+	  "activity": "Entering",
+	  "activityID": 2,
+	  "localization": {
+	      "VIRAT_S_000000.mp4": {
+		  "100": 1,
+		  "200": 0
+	      }
+	  }
+      },
+      {
+	  "activity": "Entering",
+	  "activityID": 3,
+	  "localization": {
+	      "VIRAT_S_000000.mp4": {
+		  "200": 1,
+		  "300": 0
+	      }
+	  }
+      },
+      {
+	  "activity": "Entering",
+	  "activityID": 4,
+	  "localization": {
+	      "VIRAT_S_000000.mp4": {
+		  "300": 1,
+		  "400": 0
+	      }
+	  }
+      },
+      {
+	  "activity": "Entering",
+	  "activityID": 5,
+	  "localization": {
+	      "VIRAT_S_000000.mp4": {
+		  "400": 1,
+		  "500": 0
+	      }
+	  }
+      },
+      {
+	  "activity": "Entering",
+	  "activityID": 6,
+	  "localization": {
+	      "VIRAT_S_000000.mp4": {
+		  "500": 1,
+		  "600": 0
+	      }
+	  }
+      }
+  ]
+}

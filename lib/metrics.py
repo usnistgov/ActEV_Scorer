@@ -155,11 +155,11 @@ def compute_auc(tfa_pmiss, typ, thresh=1):
     tpr: true positive rates
     fpr_stop: fpr value for calculating partial AUC"""
     if typ == "tfa": #[ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.04, 0.03, 0.01]
-        xpoints = ['p_miss@0.01tfa', 'p_miss@0.03tfa', 'p_miss@0.04tfa', 'p_miss@0.05tfa', 'p_miss@0.1tfa', 'p_miss@0.15tfa', 'p_miss@0.2tfa', 'p_miss@0.25tfa', 'p_miss@0.3tfa', 'p_miss@0.35tfa','p_miss@0.4tfa', 'p_miss@0.45tfa', 'p_miss@0.5tfa', 'p_miss@0.55tfa', 'p_miss@0.6tfa','p_miss@0.65tfa', 'p_miss@0.7tfa', 'p_miss@0.75tfa', 'p_miss@0.8tfa', 'p_miss@0.85tfa', 'p_miss@0.9tfa', 'p_miss@0.95tfa','p_miss@1tfa']
+        xpoints = ['p_miss@0.01tfa', 'p_miss@0.03tfa', 'p_miss@0.1tfa', 'p_miss@0.15tfa', 'p_miss@0.2rfa', 'p_miss@1tfa'] #'p_miss@0.04tfa', 'p_miss@0.05tfa', 'p_miss@0.1tfa', 'p_miss@0.15tfa', 'p_miss@0.2tfa', 'p_miss@0.25tfa', 'p_miss@0.3tfa', 'p_miss@0.35tfa','p_miss@0.4tfa', 'p_miss@0.45tfa', 'p_miss@0.5tfa', 'p_miss@0.55tfa', 'p_miss@0.6tfa','p_miss@0.65tfa', 'p_miss@0.7tfa', 'p_miss@0.75tfa', 'p_miss@0.8tfa', 'p_miss@0.85tfa', 'p_miss@0.9tfa', 'p_miss@0.95tfa','p_miss@1tfa']
     else:
-        xpoints = ['p_miss@0.01rfa', 'p_miss@0.03rfa', 'p_miss@0.04rfa', 'p_miss@0.05rfa', 'p_miss@0.1rfa', 'p_miss@0.15rfa', 'p_miss@0.2rfa', 'p_miss@0.25rfa', 'p_miss@0.3rfa', 'p_miss@0.35rfa','p_miss@0.4rfa', 'p_miss@0.45rfa', 'p_miss@0.5rfa', 'p_miss@0.55rfa', 'p_miss@0.6rfa','p_miss@0.65rfa', 'p_miss@0.7rfa', 'p_miss@0.75rfa', 'p_miss@0.8rfa', 'p_miss@0.85rfa', 'p_miss@0.9rfa', 'p_miss@0.95rfa','p_miss@1rfa']
+        xpoints = ['p_miss@0.01rfa', 'p_miss@0.03rfa', 'p_miss@0.1rfa', 'p_miss@0.15rfa', 'p_miss@0.2rfa', 'p_miss@1rfa'] #'p_miss@0.04rfa', 'p_miss@0.05rfa', 'p_miss@0.1rfa', 'p_miss@0.15rfa', 'p_miss@0.2rfa', 'p_miss@0.25rfa', 'p_miss@0.3rfa', 'p_miss@0.35rfa','p_miss@0.4rfa', 'p_miss@0.45rfa', 'p_miss@0.5rfa', 'p_miss@0.55rfa', 'p_miss@0.6rfa','p_miss@0.65rfa', 'p_miss@0.7rfa', 'p_miss@0.75rfa', 'p_miss@0.8rfa', 'p_miss@0.85rfa', 'p_miss@0.9rfa', 'p_miss@0.95rfa','p_miss@1rfa']
     
-    fpr = [0.0, 0.01, 0.03, 0.04, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.60, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
+    fpr = [0.0, 0.01, 0.03, 0.1, 0.15, 0.2, 1] #0.04, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.60, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
     oldkey = "none"
     tnr = [1.0]
 
@@ -181,6 +181,106 @@ def compute_auc(tfa_pmiss, typ, thresh=1):
     auc = sum([width[i] * (p_height[i]) for i in range(0, len(width))])
     return auc
 
+def compute_auc_new(pmiss, fa, thresh=1):
+    fa_sum = 0
+    prev_x = 0
+    prev_y = 1
+    cur_x = 0
+    cur_y = 0
+    cnt = 0
+    print "pmiss"
+    print pmiss
+    print "fa"
+    print fa
+    if len(fa)!=0:
+        while cnt < len(fa):
+            if thresh < fa[cnt]:
+                break
+            if fa[cnt] == 0:
+                prev_x = fa[cnt]
+                prev_y = pmiss[cnt]
+                cnt = cnt +1
+                continue
+            #if fa_sum == 0:
+            cur_x = fa[cnt]
+            cur_y = pmiss[cnt]
+            
+            fa_sum = fa_sum + (0.5 * (prev_y + cur_y) * (abs(cur_x - prev_x)))
+            prev_x =  cur_x
+            prev_y = cur_y
+            cnt = cnt +1
+            if cnt == len(fa):
+                #d_thresh_done = True
+                break
+    
+    if cnt != 0 and thresh == fa[cnt - 1]:
+        return fa_sum #audc_meas.append((activity, 'AUDC@' + str(t) + typ.lower(), fa_sum))
+        #audc_meas.append((activity, 'nAUDC@' + str(t) + typ.lower(), fa_sum/t))
+        #continue
+    if cnt >= len(fa):
+        #no next point,
+        #d_thresh_done = True
+        fa_sum =  fa_sum + (prev_y * (thresh - prev_x))
+        return fa_sum
+        #audc_meas.append((activity, 'AUDC@' + str(t) + typ.lower(), fa_sum))
+        #audc_meas.append((activity, 'nAUDC@' + str(t) + typ.lower(), fa_sum/t))
+        #prev_x = t
+        #continue
+    cur_x = thresh
+    m = (prev_y - pmiss[cnt]) / (prev_x - fa[cnt])
+    b = prev_y - (m * prev_x)
+    cur_y = (cur_x * m) + b
+    fa_sum = fa_sum + (0.5 * (prev_y + cur_y) * (abs(cur_x - prev_x)))
+    return fa_sum
+    #audc_meas.append((activity, 'AUDC@' + str(t) + typ.lower(), fa_sum))
+    #audc_meas.append((activity, 'nAUDC@' + str(t) + typ.lower(), fa_sum/t))
+    #prev_x = cur_x
+    #prev_y = cur_y
+
+def get_auc_new(dm_data, typ, activity, threshold=[ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ]): 
+    d_thresh = dm_data.fa #threshold
+    fa = dm_data.fa
+    pmiss = dm_data.fn
+    cnt = 0
+    audc_meas = []
+    #naudc_meas = []
+    d_thresh_done = False
+    #if len(d_thresh) == 0:
+    #    d_thresh_done = True
+    threshold.sort()
+    #print threshold
+    #print pmiss
+    for t in threshold:
+        #print "threshold"
+        #print t
+        audc = compute_auc_new(pmiss, fa, thresh=t)
+        audc_meas.append((activity, 'AUDC@' + str(t) + typ.lower(), audc))
+        audc_meas.append((activity, 'nAUDC@' + str(t) + typ.lower(), float(audc)/t))
+    return audc_meas
+
+def compute_auc_mean(auc):
+    sum = 0
+    for v in auc:
+        sum = sum + v
+
+    return float(sum)/len(auc)
+
+def get_auc_mean(auc_data):
+    values = {}
+    auc_mean = []
+    for d in auc_data:
+        if d[1] not in values:
+            values[d[1]] = [d[2]]
+        else:
+            values[d[1]].append(d[2])
+
+    for key, item in values.iteritems():
+        auc_mean.append(("mean-" + key, compute_auc_mean(item)))
+
+    return auc_mean
+    
+    
+    
 def get_auc(tfa_pmiss, typ, threshold=[ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ]):
     auc = {}
     for t in threshold:

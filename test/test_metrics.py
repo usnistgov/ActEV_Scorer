@@ -56,11 +56,26 @@ class TestAUC(TestMetrics):
         super(TestAUC, self).setUp()
 
     def testAUC(self):
-        self.assertAlmostEqual(compute_auc({'p_miss@0.01tfa': 1.0, 'p_miss@0.03tfa': 1.0, 'p_miss@0.1tfa': 1.0, 'p_miss@0.15tfa': 1.0, 'p_miss@0.2tfa': 1.0, 'p_miss@1tfa': 1.0}, "tfa"), float(1) / 1, places=10)
-        self.assertAlmostEqual(compute_auc({'p_miss@0.01tfa': 1.0, 'p_miss@0.03tfa': 1.0, 'p_miss@0.1tfa': 0.5, 'p_miss@0.15tfa': 0.5, 'p_miss@0.2tfa': 0.5, 'p_miss@1tfa': 0.5}, "tfa"), (0.03 + 0.02 + (0.75 * 0.05) + (0.9 * 0.5)), places=10)
-        self.assertAlmostEqual(compute_auc({'p_miss@0.01tfa': 0.5, 'p_miss@0.03tfa': 0.5, 'p_miss@0.1tfa': 0.5, 'p_miss@0.15tfa': 0.5, 'p_miss@0.2tfa': 0.5, 'p_miss@1tfa': 0.5}, "tfa"), (.0075 + (.99 * .5)), places=10)
-        self.assertAlmostEqual(compute_auc({'p_miss@0.01tfa': 0.5, 'p_miss@0.03tfa': 0.5, 'p_miss@0.1tfa': 0.5, 'p_miss@0.15tfa': 0.5}, "tfa"), (.0075 + (.99 * .5)), places=10)
-        self.assertAlmostEqual(compute_auc({'p_miss@0.01tfa': 0.5, 'p_miss@0.03tfa': 0.5, 'p_miss@0.1tfa': 0.5, 'p_miss@0.15tfa': 0.5, 'p_miss@0.2tfa': 0.5, 'p_miss@1tfa': 0.5}, "tfa", thresh = 0.15), (.0075 + (0.14 * .5)), places=10)
+        #self.assertAlmostEqual(compute_auc({'p_miss@0.01tfa': 1.0, 'p_miss@0.03tfa': 1.0, 'p_miss@0.1tfa': 1.0, 'p_miss@0.15tfa': 1.0, 'p_miss@0.2tfa': 1.0, 'p_miss@1tfa': 1.0}, "tfa"), float(1) / 1, places=10)
+        #self.assertAlmostEqual(compute_auc({'p_miss@0.01tfa': 1.0, 'p_miss@0.03tfa': 1.0, 'p_miss@0.1tfa': 0.5, 'p_miss@0.15tfa': 0.5, 'p_miss@0.2tfa': 0.5, 'p_miss@1tfa': 0.5}, "tfa"), (0.03 + 0.02 + (0.75 * 0.05) + (0.9 * 0.5)), places=10)
+        #self.assertAlmostEqual(compute_auc({'p_miss@0.01tfa': 0.5, 'p_miss@0.03tfa': 0.5, 'p_miss@0.1tfa': 0.5, 'p_miss@0.15tfa': 0.5, 'p_miss@0.2tfa': 0.5, 'p_miss@1tfa': 0.5}, "tfa"), (.0075 + (.99 * .5)), places=10)
+        #self.assertAlmostEqual(compute_auc({'p_miss@0.01tfa': 0.5, 'p_miss@0.03tfa': 0.5, 'p_miss@0.1tfa': 0.5, 'p_miss@0.15tfa': 0.5}, "tfa"), (.0075 + (.99 * .5)), places=10)
+        #self.assertAlmostEqual(compute_auc({'p_miss@0.01tfa': 0.5, 'p_miss@0.03tfa': 0.5, 'p_miss@0.1tfa': 0.5, 'p_miss@0.15tfa': 0.5, 'p_miss@0.2tfa': 0.5, 'p_miss@1tfa': 0.5}, "tfa", thresh = 0.15), (.0075 + (0.14 * .5)), places=10)
+        self.assertAlmostEqual(compute_auc_new([1.0,1.0,1.0],[0.1,0.2,1]), float(1) / 1, places=10)
+        self.assertAlmostEqual(compute_auc_new([1.0, 1.0, 1.0, 1.0, 1.0, 1.0], [0.01, 0.03, 0.1, 0.15, 0.2, 1]), float(1) / 1, places=10)
+        self.assertAlmostEqual(compute_auc_new([1.0, 1.0, 0.5, 0.5, 0.5, 0.5], [0.01, 0.03, 0.1, 0.15, 0.2, 1]), (0.03 + (0.75 * 0.07) + (0.9 * 0.5)), places=10)
+        self.assertAlmostEqual(compute_auc_new([0.5, 0.5, 0.5, 0.5, 0.5, 0.5], [0.01, 0.03, 0.1, 0.15, 0.2, 1]), (.0075 + (.99 * .5)), places=10)
+        self.assertAlmostEqual(compute_auc_new([0.5, 0.5, 0.5, 0.5], [0.01, 0.03, 0.1, 0.15]), (.0075 + (.99 * .5)), places=10)
+        self.assertAlmostEqual(compute_auc_new([0.5, 0.5, 0.5, 0.5, 0.5, 0.5], [0.01, 0.03, 0.1, 0.15, 0.2, 1], thresh = 0.15), (.0075 + (0.14 * .5)), places=10)
+        self.assertAlmostEqual(compute_auc_new([0.5, 0.5, 0.5, 0.5, 0.5, 0.5], [0.01, 0.03, 0.1, 0.15, 0.2, 1], thresh = 0.05), (.0075 + (0.04 * .5)), places=10)
+        self.assertAlmostEqual(compute_auc_new([0.7, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], [0.0, 0.01, 0.03, 0.1, 0.15, 0.2, 1]),(.006 + (0.99 * .5)), places=10)
+        self.assertAlmostEqual(compute_auc_new([], []), float(1) / 1, places=10)
+        self.assertAlmostEqual(compute_auc_new([0.5], [0.2], thresh = 0.1), (.5 * .1 * (1 + .75)), places=10)
+        self.assertAlmostEqual(compute_auc_new([0.5], [0.2], thresh = 0.4),(.5 * .2 * (1 + .5))  + (.2 * .5), places=10)
+        self.assertAlmostEqual(compute_auc_mean([0.5, 0]), (0.5) / 2, places=10)
+        self.assertAlmostEqual(compute_auc_mean([0.5, 0.75, 0.06, 1]), (0.5+.75+.06+1) / 4, places=10)
+        #compute_auc_new(pmiss, fa, thresh=1)
+        
         
 class TestRFA(TestMetrics):
     def setUp(self):

@@ -176,9 +176,10 @@ class ActEV_SDL_V1(Default):
                                                                 lambda r: r["w_p_miss"],
                                                                 fa_targets)
 
-        auc_measure_t = get_auc(fa_measures, "tfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
-        auc_measure_r = get_auc(pmiss_measures, "rfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(fa_measures, merge_dicts(wpmiss_tfa_measures,merge_dicts(auc_measure_t,auc_measure_r)))))))
+        #auc_measure_t = get_auc(fa_measures, "tfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
+        #auc_measure_r = get_auc(pmiss_measures, "rfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
+        #return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(fa_measures, merge_dicts(wpmiss_tfa_measures,merge_dicts(auc_measure_t,auc_measure_r)))))))
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(fa_measures, wpmiss_tfa_measures)))))
     
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, rfa_targets, nmide_targets, fa_targets, default_factorizations = []):
