@@ -288,7 +288,8 @@ def score_basic(protocol_class, args):
     results = protocol.compute_results(alignment, args.det_point_resolution)
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
-    
+    audc_by_activity = []
+    mean_audc = []
     if not args.disable_plotting:
         export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir)
         audc_by_activity, mean_audc = protocol.compute_auc(args.output_dir)

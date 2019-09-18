@@ -3,6 +3,8 @@ Closing|AUDC@0.01rfa|0.01
 Closing|AUDC@0.01tfa|0.01
 Closing|AUDC@0.03rfa|0.03
 Closing|AUDC@0.03tfa|0.03
+Closing|AUDC@0.04rfa|0.04
+Closing|AUDC@0.04tfa|0.04
 Closing|AUDC@0.05rfa|0.05
 Closing|AUDC@0.05tfa|0.05
 Closing|AUDC@0.15rfa|0.15
@@ -71,6 +73,8 @@ Closing|nAUDC@0.01rfa|1.0
 Closing|nAUDC@0.01tfa|1.0
 Closing|nAUDC@0.03rfa|1.0
 Closing|nAUDC@0.03tfa|1.0
+Closing|nAUDC@0.04rfa|1.0
+Closing|nAUDC@0.04tfa|1.0
 Closing|nAUDC@0.05rfa|1.0
 Closing|nAUDC@0.05tfa|1.0
 Closing|nAUDC@0.15rfa|1.0
@@ -203,6 +207,8 @@ Entering|AUDC@0.01rfa|0.01
 Entering|AUDC@0.01tfa|0.01
 Entering|AUDC@0.03rfa|0.03
 Entering|AUDC@0.03tfa|0.03
+Entering|AUDC@0.04rfa|0.04
+Entering|AUDC@0.04tfa|0.04
 Entering|AUDC@0.05rfa|0.05
 Entering|AUDC@0.05tfa|0.05
 Entering|AUDC@0.15rfa|0.15
@@ -271,6 +277,8 @@ Entering|nAUDC@0.01rfa|1.0
 Entering|nAUDC@0.01tfa|1.0
 Entering|nAUDC@0.03rfa|1.0
 Entering|nAUDC@0.03tfa|1.0
+Entering|nAUDC@0.04rfa|1.0
+Entering|nAUDC@0.04tfa|1.0
 Entering|nAUDC@0.05rfa|1.0
 Entering|nAUDC@0.05tfa|1.0
 Entering|nAUDC@0.15rfa|1.0

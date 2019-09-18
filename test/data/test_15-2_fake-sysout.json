@@ -101,18 +101,6 @@
       },
       {
 	  "activity": "Closing",
-	  "activityID": 9,
-	  "presenceConf": 0.6,
-	  "alertFrame": 100,
-	  "localization": {
-	      "VIRAT_S_000000.mp4": {
-		  "400": 1,
-		  "500": 0
-	      }
-	  }
-      },
-      {
-	  "activity": "Closing",
 	  "activityID": 10,
 	  "presenceConf": 0.6,
 	  "alertFrame": 100,
@@ -139,30 +127,6 @@
 	  "activity": "Closing",
 	  "activityID": 12,
 	  "presenceConf": 0.5,
-	  "alertFrame": 100,
-	  "localization": {
-	      "VIRAT_S_000000.mp4": {
-		  "1100": 1,
-		  "1200": 0
-	      }
-	  }
-      },
-      {
-	  "activity": "Closing",
-	  "activityID": 13,
-	  "presenceConf": 0.4,
-	  "alertFrame": 100,
-	  "localization": {
-	      "VIRAT_S_000000.mp4": {
-		  "600": 1,
-		  "700": 0
-	      }
-	  }
-      },
-      {
-	  "activity": "Closing",
-	  "activityID": 14,
-	  "presenceConf": 0.4,
 	  "alertFrame": 100,
 	  "localization": {
 	      "VIRAT_S_000000.mp4": {

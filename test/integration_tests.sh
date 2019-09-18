@@ -495,13 +495,48 @@ test_14_0() {
         -v
 }
 
-
+#Small test
 test_15_0() {
     ../ActEV_Scorer.py \
 	"ActEV_SDL_V1" \
 	-s "data/test_15-0_fake-sysout.json" \
 	-r "data/test_15-0.json" \
 	-a "data/test_15-0_activity-index.json" \
+	-f "data/test_15-0_file-index.json" \
+	-o "$1" \
+	-v
+}
+#larger test
+test_15_1() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V1" \
+	-s "data/test_15-1_fake-sysout.json" \
+	-r "data/test_15-1.json" \
+	-a "data/test_15-0_activity-index.json" \
+	-f "data/test_15-0_file-index.json" \
+	-o "$1" \
+	-v
+}
+
+#Test averaging
+test_15_2() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V1" \
+	-s "data/test_15-2_fake-sysout.json" \
+	-r "data/test_15-2.json" \
+	-a "data/test_15-2_activity-index.json" \
+	-f "data/test_15-0_file-index.json" \
+	-o "$1" \
+	-v
+}
+
+#Test when there are no instances in ref. 
+test_15_3() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V1" \
+	-s "data/test_15-3_fake-sysout.json" \
+	-r "data/test_15-3.json" \
+	-a "data/test_15-2_activity-index.json" \
 	-f "data/test_15-0_file-index.json" \
 	-o "$1" \
 	-v

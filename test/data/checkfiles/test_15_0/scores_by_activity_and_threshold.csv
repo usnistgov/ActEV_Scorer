@@ -1,0 +1,16 @@
+activity|score_threshold|metric_name|metric_value
+Closing|0.5|p_miss|0.5
+Closing|0.5|rfa|0.45
+Closing|0.5|tfa|0.008
+Closing|0.5|tfa_denom|3750
+Closing|0.5|tfa_numer|30
+Closing|0.796|p_miss|0.5
+Closing|0.796|rfa|0.0
+Closing|0.796|tfa|0.0
+Closing|0.796|tfa_denom|3750
+Closing|0.796|tfa_numer|0
+Closing|0.874|p_miss|0.75
+Closing|0.874|rfa|0.0
+Closing|0.874|tfa|0.0
+Closing|0.874|tfa_denom|3750
+Closing|0.874|tfa_numer|0

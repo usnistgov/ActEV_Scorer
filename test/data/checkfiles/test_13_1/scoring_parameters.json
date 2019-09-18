@@ -51,7 +51,7 @@
     0.01
   ], 
   "nmide.cost_miss": 1, 
-  "git.commit": "c56e6ba81d415a13da0ef3eb19e61e5a59b02d7d--2019-09-06T14:05:55-04:00", 
+  "git.commit": "eda92f59e6163a3ea32274d85f94db0af1322381--2019-09-16T11:44:31-04:00", 
   "activity.p_miss_at_rfa_targets": [
     1, 
     0.95, 

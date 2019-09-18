@@ -188,11 +188,10 @@ def compute_auc_new(pmiss, fa, thresh=1):
     cur_x = 0
     cur_y = 0
     cnt = 0
-    print "pmiss"
-    print pmiss
-    print "fa"
-    print fa
+    
     if len(fa)!=0:
+        if np.isnan(pmiss[0]):
+            return "None"
         while cnt < len(fa):
             if thresh < fa[cnt]:
                 break
@@ -237,7 +236,7 @@ def compute_auc_new(pmiss, fa, thresh=1):
     #prev_x = cur_x
     #prev_y = cur_y
 
-def get_auc_new(dm_data, typ, activity, threshold=[ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ]): 
+def get_auc_new(dm_data, typ, activity, threshold=[ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.04, 0.03, 0.01 ]): #[ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ]): 
     d_thresh = dm_data.fa #threshold
     fa = dm_data.fa
     pmiss = dm_data.fn
@@ -255,7 +254,10 @@ def get_auc_new(dm_data, typ, activity, threshold=[ 1, 0.2, 0.15, 0.1, 0.03, 0.0
         #print t
         audc = compute_auc_new(pmiss, fa, thresh=t)
         audc_meas.append((activity, 'AUDC@' + str(t) + typ.lower(), audc))
-        audc_meas.append((activity, 'nAUDC@' + str(t) + typ.lower(), float(audc)/t))
+        if audc == "None":
+            audc_meas.append((activity, 'nAUDC@' + str(t) + typ.lower(), "None"))
+        else:
+            audc_meas.append((activity, 'nAUDC@' + str(t) + typ.lower(), float(audc)/t))
     return audc_meas
 
 def compute_auc_mean(auc):
@@ -269,6 +271,8 @@ def get_auc_mean(auc_data):
     values = {}
     auc_mean = []
     for d in auc_data:
+        if d[2] == "None":
+            continue
         if d[1] not in values:
             values[d[1]] = [d[2]]
         else:
