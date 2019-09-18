@@ -13,10 +13,8 @@
 [Info] Saving figures to directory 'data/checkfiles/test_10_1/figures'
 [Info] Saving dm files to directory 'data/checkfiles/test_10_1/dm'
 [Info] Plotting RFA DET curve for Closing
-[Info] Plotting mean RFA curve
-[Info] Plotting combined RFA DET curves
 [Info] Plotting RFA DET curve for Opening
-[Info] Plotting mean RFA curve
+[Info] Plotting mean RFA curve for 2 activities
 [Info] Plotting combined RFA DET curves
 [Errno 2] No such file or directory: 'data/checkfiles/test_10_1/dm/TFA_Closing.dm'
 data/checkfiles/test_10_1/dm/TFA_Closing.dmDNE
