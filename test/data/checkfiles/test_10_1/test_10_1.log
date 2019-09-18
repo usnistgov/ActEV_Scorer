@@ -18,3 +18,7 @@
 [Info] Plotting RFA DET curve for Opening
 [Info] Plotting mean RFA curve
 [Info] Plotting combined RFA DET curves
+[Errno 2] No such file or directory: 'data/checkfiles/test_10_1/dm/TFA_Closing.dm'
+data/checkfiles/test_10_1/dm/TFA_Closing.dmDNE
+[Errno 2] No such file or directory: 'data/checkfiles/test_10_1/dm/TFA_Opening.dm'
+data/checkfiles/test_10_1/dm/TFA_Opening.dmDNE

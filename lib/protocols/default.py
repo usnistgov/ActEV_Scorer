@@ -40,6 +40,7 @@ from metrics import *
 from alignment_record import *
 from alignment import *
 from helpers import *
+from datacontainer import DataContainer
 
 class Default(object):
     @classmethod
@@ -119,7 +120,24 @@ class Default(object):
             return init
 
         return reduce(_r, group_by_func(factorization_func, records, default_groups = default_factorizations).iteritems(), [])
+    
+    def compute_auc(self, output_dir):
 
+        prefix = ["RFA", "TFA"]
+        auc_data = []
+        mean_auc = []
+        for p in prefix:
+            for activity, activity_properties in self.activity_index.iteritems():
+                try:
+                    dm_data = DataContainer.load(output_dir+"/dm/"+"{}_{}.dm".format(p, activity))
+                    auc_data = auc_data + get_auc_new(dm_data, p, activity)
+                except Exception as E:
+                    print E
+                    print output_dir+"/dm/"+"{}_{}.dm".format(p, activity) +"DNE"
+        mean_auc =  get_auc_mean(auc_data)
+        return auc_data, mean_auc
+    
+    
     def compute_atomic_measures(self, records, rec_map_func, measures = None):
         if measures is None:
             measures = self.default_pair_measures()

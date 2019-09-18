@@ -1,10 +1,4 @@
 metric_name|metric_value
-mean-AUDC@0.01rfa|0.01
-mean-AUDC@0.03rfa|0.03
-mean-AUDC@0.15rfa|0.15
-mean-AUDC@0.1rfa|0.1
-mean-AUDC@0.2rfa|0.2
-mean-AUDC@1rfa|1.0
 mean-n-mide|0.668769059544
 mean-n-mide@0.01rfa|0.668769059544
 mean-n-mide@0.03rfa|0.668769059544
@@ -13,12 +7,6 @@ mean-n-mide@0.1rfa|0.668769059544
 mean-n-mide@0.2rfa|0.668769059544
 mean-n-mide@1rfa|0.668769059544
 mean-n-mide_num_rejected|0.0
-mean-nAUDC@0.01rfa|1.0
-mean-nAUDC@0.03rfa|1.0
-mean-nAUDC@0.15rfa|1.0
-mean-nAUDC@0.1rfa|1.0
-mean-nAUDC@0.2rfa|1.0
-mean-nAUDC@1rfa|1.0
 mean-p_miss@0.01rfa|0.5
 mean-p_miss@0.03rfa|0.5
 mean-p_miss@0.15rfa|0.5
