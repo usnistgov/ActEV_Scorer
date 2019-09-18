@@ -1,0 +1,61 @@
+activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
+Closing|CD|1|1|1.0|2.0|{"presenceconf_congruence": 1.0}
+Closing|CD|10|19|0.1|1.0|{"presenceconf_congruence": 0.0}
+Closing|CD|1010|1019|0.1|1.0|{"presenceconf_congruence": 0.0}
+Closing|CD|102|103|0.9|1.88888888889|{"presenceconf_congruence": 0.888888888888889}
+Closing|CD|103|105|0.8|1.77777777778|{"presenceconf_congruence": 0.7777777777777778}
+Closing|CD|104|107|0.7|1.66666666667|{"presenceconf_congruence": 0.6666666666666666}
+Closing|CD|105|109|0.6|1.55555555556|{"presenceconf_congruence": 0.5555555555555556}
+Closing|CD|106|1011|0.5|1.44444444444|{"presenceconf_congruence": 0.4444444444444445}
+Closing|CD|107|1013|0.4|1.33333333333|{"presenceconf_congruence": 0.33333333333333337}
+Closing|CD|108|1015|0.3|1.22222222222|{"presenceconf_congruence": 0.2222222222222222}
+Closing|CD|109|1017|0.2|1.11111111111|{"presenceconf_congruence": 0.11111111111111112}
+Closing|CD|1091|101|1.0|2.0|{"presenceconf_congruence": 1.0}
+Closing|CD|2|3|0.9|1.88888888889|{"presenceconf_congruence": 0.888888888888889}
+Closing|CD|3|5|0.8|1.77777777778|{"presenceconf_congruence": 0.7777777777777778}
+Closing|CD|4|7|0.7|1.66666666667|{"presenceconf_congruence": 0.6666666666666666}
+Closing|CD|5|9|0.6|1.55555555556|{"presenceconf_congruence": 0.5555555555555556}
+Closing|CD|6|11|0.5|1.44444444444|{"presenceconf_congruence": 0.4444444444444445}
+Closing|CD|7|13|0.4|1.33333333333|{"presenceconf_congruence": 0.33333333333333337}
+Closing|CD|8|15|0.3|1.22222222222|{"presenceconf_congruence": 0.2222222222222222}
+Closing|CD|9|17|0.2|1.11111111111|{"presenceconf_congruence": 0.11111111111111112}
+Closing|FA|None|10|0.6|None|None
+Closing|FA|None|1010|0.6|None|None
+Closing|FA|None|1012|0.5|None|None
+Closing|FA|None|1014|0.4|None|None
+Closing|FA|None|1016|0.3|None|None
+Closing|FA|None|1018|0.2|None|None
+Closing|FA|None|102|1.0|None|None
+Closing|FA|None|1020|0.1|None|None
+Closing|FA|None|104|0.9|None|None
+Closing|FA|None|106|0.8|None|None
+Closing|FA|None|108|0.7|None|None
+Closing|FA|None|12|0.5|None|None
+Closing|FA|None|14|0.4|None|None
+Closing|FA|None|16|0.3|None|None
+Closing|FA|None|18|0.2|None|None
+Closing|FA|None|2|1.0|None|None
+Closing|FA|None|20|0.1|None|None
+Closing|FA|None|4|0.9|None|None
+Closing|FA|None|6|0.8|None|None
+Closing|FA|None|8|0.7|None|None
+Opening|MD|2001|None|None|None|None
+Opening|MD|20010|None|None|None|None
+Opening|MD|2001010|None|None|None|None
+Opening|MD|200102|None|None|None|None
+Opening|MD|200103|None|None|None|None
+Opening|MD|200104|None|None|None|None
+Opening|MD|200105|None|None|None|None
+Opening|MD|200106|None|None|None|None
+Opening|MD|200107|None|None|None|None
+Opening|MD|200108|None|None|None|None
+Opening|MD|200109|None|None|None|None
+Opening|MD|2001091|None|None|None|None
+Opening|MD|2002|None|None|None|None
+Opening|MD|2003|None|None|None|None
+Opening|MD|2004|None|None|None|None
+Opening|MD|2005|None|None|None|None
+Opening|MD|2006|None|None|None|None
+Opening|MD|2007|None|None|None|None
+Opening|MD|2008|None|None|None|None
+Opening|MD|2009|None|None|None|None

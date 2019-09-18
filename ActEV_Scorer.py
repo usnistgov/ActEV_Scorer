@@ -339,19 +339,19 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir):
                 opts['title'] = activity
                 save_DET(dc, figure_dir, "DET_{}_{}.png".format(prefix, activity), opts)
 
-                mean_label = "{}_mean_byfa".format(prefix)
-                dc_agg = DataContainer.aggregate(dc_dict.values(), output_label=mean_label, average_resolution=500)
-                dc_agg.activity = "AGGREGATED"
-                dc_agg.fa_label = prefix
-                dc_agg.fn_label = "PMISS"
-                save_dm(dc_agg, dm_dir, "{}.dm".format(mean_label))
-                log(1, "[Info] Plotting mean {} curve".format(prefix))
-                save_DET(dc_agg, figure_dir, "DET_{}.png".format(mean_label), opts)
-                log(1, "[Info] Plotting combined {} DET curves".format(prefix))
-                opts['title'] = "All Activities"
-                save_DET(dc_dict.values(), figure_dir, "DET_{}_{}.png".format(prefix, "COMBINED"), opts)
-                opts['title'] = "All Activities and Aggregate"
-                save_DET(dc_dict.values() + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINEDAGG"), opts)
+            mean_label = "{}_mean_byfa".format(prefix)
+            dc_agg = DataContainer.aggregate(dc_dict.values(), output_label=mean_label, average_resolution=500)
+            dc_agg.activity = "AGGREGATED"
+            dc_agg.fa_label = prefix
+            dc_agg.fn_label = "PMISS"
+            save_dm(dc_agg, dm_dir, "{}.dm".format(mean_label))
+            log(1, "[Info] Plotting mean {} curve for {} activities".format(prefix, len(dc_dict.values())))
+            save_DET(dc_agg, figure_dir, "DET_{}.png".format(mean_label), opts)
+            log(1, "[Info] Plotting combined {} DET curves".format(prefix))
+            opts['title'] = "All Activities"
+            save_DET(dc_dict.values(), figure_dir, "DET_{}_{}.png".format(prefix, "COMBINED"), opts)
+            opts['title'] = "All Activities and Aggregate"
+            save_DET(dc_dict.values() + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINEDAGG"), opts)
 
     _export_records(dm_records_rfa, "RFA")
     _export_records(dm_records_tfa, "TFA")

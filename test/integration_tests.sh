@@ -481,6 +481,18 @@ test_13_3() {
 	-v
 }
 
+### Tests for vempty system output for an activity
+test_13_4() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V1" \
+	-s "data/test_13-2_fake-sysout.json" \
+	-r "data/test_13-4.json" \
+	-a "data/test_13-4_activity-index.json" \
+	-f "data/test_13-2_file-index.json" \
+	-o "$1" \
+	-v
+}
+
 #Testing Unique Conf limit input (-u)
 test_14_0() {
     ../ActEV_Scorer.py \
