@@ -124,15 +124,20 @@ def load_schema_for_protocol(log, protocol):
 
     return load_json(schema_path)
 
-def parse_activities(deserialized_json, file_index, load_objects = False, ignore_extraneous = False):
+def parse_activities(deserialized_json, file_index, load_objects = False, ignore_extraneous = False, ignore_missing = False):
     activity_instances = [ ActivityInstance(a, load_objects) for a in deserialized_json.get("activities", []) ]
 
-    if ignore_extraneous:
+    if ignore_extraneous or ignore_missing:
         extraneous_files = set(deserialized_json.get("filesProcessed", [])) - file_index.viewkeys()
+        missing_files = file_index.viewkeys() - set(deserialized_json.get("filesProcessed", []))
 
         def _r(init, a):
-            for f in extraneous_files & a.localization.viewkeys():
-                del a.localization[f]
+            if ignore_extraneous:
+                for f in extraneous_files & a.localization.viewkeys():
+                    del a.localization[f]
+            if ignore_missing:
+                for f in missing_files & a.localization.viewkeys():
+                    del a.localization[f]
 
             # Throw out activity instances only localized to
             # "extraneous" files
@@ -157,7 +162,7 @@ def validate_input(log, system_output, system_output_schema):
     return True
 
 # Check system "filesProcessed" vs file index
-def check_file_index_congruence(log, system_output, file_index, ignore_extraneous = False):
+def check_file_index_congruence(log, system_output, file_index, ignore_extraneous = False, ignore_missing = False):
     sys_files = set(system_output.get("filesProcessed", []))
     index_files = set(file_index.keys())
 
@@ -165,19 +170,20 @@ def check_file_index_congruence(log, system_output, file_index, ignore_extraneou
     extraneous = sys_files - index_files
 
     log(1, "[Info] Checking file index against system's \"filesProcessed\"")
-    for m in missing:
-        log(0, "[Error] Missing file '{}' from system's \"filesProcessed\"".format(m))
 
-    if ignore_extraneous:
+    error = False
+    if not ignore_extraneous:
+        if len(extraneous) > 0:
+            for e in extraneous:
+                log(0, "[Error] Extraneous file '{}' in system's \"filesProcessed\"".format(e))
+            error = True
+    if not ignore_missing:
         if len(missing) > 0:
-            err_quit("System \"filesProcessed\" and file index are incongruent. Aborting!")
-
-    else:
-        for e in extraneous:
-            log(0, "[Error] Extraneous file '{}' in system's \"filesProcessed\"".format(e))
-
-        if len(missing) + len(extraneous) > 0:
-            err_quit("System \"filesProcessed\" and file index are incongruent. Aborting!")
+            for m in missing:
+                log(0, "[Error] Missing file '{}' from system's \"filesProcessed\"".format(m))
+            error = True
+    if error:
+        err_quit("System \"filesProcessed\" and file index are incongruent. Aborting!")
 
     return True
 
@@ -273,15 +279,15 @@ def score_basic(protocol_class, args):
     system_output_schema = load_schema_for_protocol(log, protocol)
 
     validate_input(log, system_output, system_output_schema)
-    check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files)
+    check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
     log(1, "[Info] Validation successful")
 
     if args.validation_only:
         exit(0)
 
-    system_activities = parse_activities(system_output, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files)
+    system_activities = parse_activities(system_output, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
     reference = load_reference(log, args.reference_file)
-    reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files)
+    reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
 
     log(1, "[Info] Scoring ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
@@ -389,6 +395,7 @@ if __name__ == '__main__':
                  [["-f", "--file-index"], dict(help="file index JSON file", type=str, required=True)],
                  [["-t", "--det-point-resolution"], dict(help="Number of Unique confidence scores to use", type=int, default=0, required=False)],
                  [["-F", "--ignore-extraneous-files"], dict(help="Ignore system detection localizations for files not included in the file index", action="store_true")],
+                 [["-m", "--ignore-missing-files"], dict(help="Ignore system detection localizations for files not included in the system output", action="store_true")],
                  [["-o", "--output-dir"], dict(help="Output directory for results", type=str)],
                  [["-d", "--disable-plotting"], dict(help="Disable DET Curve plotting of results", action="store_true")],
                  [["-v", "--verbose"], dict(help="Toggle verbose log output", action="store_true")],
