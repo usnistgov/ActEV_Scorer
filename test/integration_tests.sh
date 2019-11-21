@@ -505,6 +505,18 @@ test_13_5() {
 	-v \
 	--ignore-missing-files
 }
+### Test for instances < .5 sec
+test_13_6() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V1" \
+	-s "data/test_13-6_fake-sysout.json" \
+	-r "data/test_13-6.json" \
+	-a "data/test_13-6_activity-index.json" \
+	-f "data/test_13-6_file-index.json" \
+	-o "$1" \
+	-v \
+	--ignore-missing-files
+}
 
 #Testing Unique Conf limit input (-u)
 test_14_0() {
