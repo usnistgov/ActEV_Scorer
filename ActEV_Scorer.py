@@ -226,6 +226,11 @@ def score_actev_sdl_v1(args):
     from actev_sdl_v1 import ActEV_SDL_V1
     
     score_basic(ActEV_SDL_V1, args)
+
+def score_actev_sdl_v2(args):
+    from actev_sdl_v2 import ActEV_SDL_V2
+    
+    score_basic(ActEV_SDL_V2, args)
     
 def score_actev18_ad(args):
     from actev18_ad import ActEV18_AD
@@ -424,7 +429,12 @@ if __name__ == '__main__':
                            dict(help="Scoring protocol for the ActEV SDL V1 Activity Detection task"),
                            score_actev_sdl_v1,
                            base_args)
-        
+    
+    add_protocol_subparser("ActEV_SDL_V2",
+                           dict(help="Scoring protocol for the ActEV SDL V2 Activity Detection task"),
+                           score_actev_sdl_v2,
+                           base_args)
+    
     add_protocol_subparser("ActEV18_AD",
                            dict(help="Scoring protocol for the ActEV18 Activity Detection task"),
                            score_actev18_ad,

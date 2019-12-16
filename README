@@ -1,6 +1,6 @@
 ActEV Scoring Software
 Version: 0.4.2
-Date: September 18, 2019
+Date: December 16, 2019
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
@@ -296,7 +296,10 @@ Changelog:
   September 18, 2019
     -AUDC now calculated using dm files
     -Added tests 15-0, 15-1, 15-2, 15-3
-    
+  December 16, 2019
+    -Added Actev_SDL_V2 protocol
+    -Added tests 11-4, 11-5
+
 Contact:
 
   Please send any issues, questions, or comments to
