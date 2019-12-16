@@ -1,0 +1,104 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing",
+      "activityID": 100105,
+      "presenceConf": 0.99999999999999,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "100": 1,
+          "105": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 100109,
+      "presenceConf": 0.99999999999999,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "100": 1,
+          "109": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 100110,
+      "presenceConf": 0.0000000000000001,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "100": 1,
+          "110": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 290305,
+      "presenceConf": 0.99999999999999,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "290": 1,
+          "305": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 295310,
+      "presenceConf": 0.99999999999999,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "295": 1,
+          "310": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 295320,
+      "presenceConf": 0.99999999999999,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "290": 1,
+          "320": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 300320,
+      "presenceConf": 0.99999999999999,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "300": 1,
+          "320": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 300330,
+      "presenceConf": 0.000000000000000001,
+      "alertFrame": 3062,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "300": 1,
+          "330": 0
+        }
+      }
+    }
+      
+  ]
+}

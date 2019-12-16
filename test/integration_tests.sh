@@ -417,6 +417,28 @@ test_11_3() {
        -v
 }
 
+test_11_4() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V2" \
+       -s "data/test_11-4_fake-sysout.json" \
+       -r "data/test_11-4.json" \
+       -a "data/test_9-0_activity-index.json" \
+       -f "data/test_11-0_file-index.json" \
+       -o "$1" \
+       -v
+}
+
+test_11_5() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V1" \
+	-s "data/test_11-4_fake-sysout.json" \
+	-r "data/test_11-4.json" \
+	-a "data/test_9-0_activity-index.json" \
+	-f "data/test_11-0_file-index.json" \
+	-o "$1" \
+	-v
+}
+
 test_12_0() {
     ../ActEV_Scorer.py \
        "ActEV_SDL_V1" \
@@ -501,6 +523,18 @@ test_13_5() {
 	-r "data/test_13-2.json" \
 	-a "data/test_13-0_activity-index.json" \
 	-f "data/test_13-2_file-index.json" \
+	-o "$1" \
+	-v \
+	--ignore-missing-files
+}
+### Test for instances < .5 sec
+test_13_6() {
+    ../ActEV_Scorer.py \
+	"ActEV_SDL_V1" \
+	-s "data/test_13-6_fake-sysout.json" \
+	-r "data/test_13-6.json" \
+	-a "data/test_13-6_activity-index.json" \
+	-f "data/test_13-6_file-index.json" \
 	-o "$1" \
 	-v \
 	--ignore-missing-files

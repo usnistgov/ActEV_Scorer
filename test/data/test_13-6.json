@@ -1,0 +1,37 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing",
+      "activityID": 100020,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "100": 1,
+          "120": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 200030,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "200": 1,
+          "230": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 300060,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "300": 1,
+          "360": 0
+        }
+      }
+    }
+  ]
+}
