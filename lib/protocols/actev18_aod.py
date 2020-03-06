@@ -33,6 +33,7 @@
 import sys
 import os
 import subprocess
+from functools import reduce
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
 
@@ -178,12 +179,12 @@ class ActEV18_AOD(ActEV18_AD):
 
             p["-".join(factorization)] = det_points
 
-            for _m, v in measures.iteritems():
+            for _m, v in measures.items():
                 m.append(factorization + ("object-{}".format(_m), v))
 
             return (p, m)
 
-        return reduce(_r, group_by_func(factorization_func, records, default_groups = default_factorizations).iteritems(), ({}, []))
+        return reduce(_r, group_by_func(factorization_func, records, default_groups = default_factorizations).items(), ({}, []))
 
     def compute_results(self, alignment, uniq_conf):
         c, m, f = partition_alignment(alignment)
@@ -216,7 +217,7 @@ class ActEV18_AOD(ActEV18_AD):
             init.extend(reduce(add, map(_m, filter(lambda r: r.alignment == "CD", recs)), []))
             return init
 
-        object_frame_alignment_records = reduce(_object_frame_alignment_records, group_by_func(lambda rec: rec.activity, alignment).iteritems(), [])
+        object_frame_alignment_records = reduce(_object_frame_alignment_records, group_by_func(lambda rec: rec.activity, alignment).items(), [])
 
         def _obj_pmiss_at_rfa(targ):
             t = "object-p_miss@{}rfa".format(targ)
@@ -263,7 +264,7 @@ class ActEV18_AOD(ActEV18_AD):
 
             return init
 
-        obj_activity_means = reduce(_pair_metric_means, group_by_func(lambda t: t[0], aod_pair_results, default_groups = self.activity_index.keys()).iteritems(), [])
+        obj_activity_means = reduce(_pair_metric_means, group_by_func(lambda t: t[0], aod_pair_results, default_groups = self.activity_index.keys()).items(), [])
 
         agg_obj_det_points, agg_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _empty_grouper, _rfa_denom_fn, uniq_conf, self.scoring_parameters["object.p_miss_at_rfa_targets"], [ tuple() ])
 

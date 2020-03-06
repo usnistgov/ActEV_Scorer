@@ -30,6 +30,8 @@
 # bundled with the code in compliance with the conditions of those
 # licenses.
 
+from functools import reduce
+
 from metrics import *
 from activity_instance import *
 from sparse_signal import SparseSignal as S
@@ -203,7 +205,7 @@ def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_
 
         ref_filter_localization[k] = ref_filter(r, s)
 
-        for frame in sos_lookup.viewkeys() | ros_lookup.viewkeys():
+        for frame in sos_lookup.keys() | ros_lookup.keys():
             sys = sos_lookup.get(frame, [])
             ref = ros_lookup.get(frame, [])
 
@@ -234,7 +236,7 @@ def _object_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter, object_
 
     # Filter out None mode scores (in the case of zero reference
     # objects)
-    mode_scores = filter(lambda r: r[1] is not None, flatten_sweeper_records(sweep_recs, [ "mode" ]))
+    mode_scores = list(filter(lambda r: r[1] is not None, flatten_sweeper_records(sweep_recs, [ "mode" ])))
 
     det_points = flatten_sweeper_records(sweep_recs, [ "rfa", "p_miss" ])
 
@@ -310,7 +312,7 @@ def _object_tracking_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter
         ref_filter_localization[k] = ref_filter(r, s)
         FirstRun=True
         obj_align={}
-        for frame in sos_lookup.viewkeys() | ros_lookup.viewkeys():
+        for frame in sos_lookup.keys() | ros_lookup.keys():
             sys = sos_lookup.get(frame, [])
             ref = ros_lookup.get(frame, [])
             

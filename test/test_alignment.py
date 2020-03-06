@@ -157,17 +157,19 @@ class TestPerformAlignment(TestAlignment):
         #                               [D, D, 6],
         #                               [D, D, 7]]
 
-        self.corr_u = [(3, 3, 7, { "add": 6 }, None, None, None),
-                       (2, 1, 4, { "add": 3 },None, None, None)]
+        #self.corr_u = [(3, 3, 7, { "add": 6 }, None, None, None),
+        #               (2, 1, 4, { "add": 3 },None, None, None)]
+        self.corr_u = [(2, 1, 4, { "add": 3 }, None, None, None),
+                       (3, 3, 7, { "add": 6 },None, None, None)]
         self.miss_u = [(1, None, None, None,None, None, None)]
         self.fa_u = [(None, 2, None, None,None, None, None)]
 
     def assertAlignment(self, observed, expected):
         obs_corr, obs_miss, obs_fa = observed
         exp_corr, exp_miss, exp_fa = expected
-        self.assertItemsEqual(obs_corr, exp_corr)
-        self.assertItemsEqual(obs_miss, exp_miss)
-        self.assertItemsEqual(obs_fa, exp_fa)
+        self.assertEqual(obs_corr, exp_corr)
+        self.assertEqual(obs_miss, exp_miss)
+        self.assertEqual(obs_fa, exp_fa)
 
     def test_alignment(self):
         self.assertAlignment(perform_alignment(self.ref_instances_1, self.sys_instances_1, self.kernel_multi), (self.corr_1, self.miss_1, self.fa_1))
@@ -185,7 +187,11 @@ class TestPerformAlignment(TestAlignment):
         # If using DISALLOWED alone, the "munkres" library can't solve
         # a matrix with possible assignments less than max(M, N).  The
         # alignment function should cover this case
-        self.assertAlignment(perform_alignment(self.ref_instances_u, self.sys_instances_u, self.kernel_u), (self.corr_u, self.miss_u, self.fa_u))
+        observed = perform_alignment(self.ref_instances_u, self.sys_instances_u, self.kernel_u)
+        expected = (self.corr_u, self.miss_u, self.fa_u)
+        # print(str(observed[0][0]))
+        # print(str(expected[0][0]))
+        self.assertAlignment(observed, expected)
 
 if __name__ == '__main__':
     unittest.main()

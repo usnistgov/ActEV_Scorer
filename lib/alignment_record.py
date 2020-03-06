@@ -31,6 +31,7 @@
 # licenses.
 
 from collections import namedtuple, OrderedDict
+from functools import reduce
 
 import json
 
@@ -77,9 +78,9 @@ class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
             if self.sys is None:
                 return None
             else:
-                return self.sys.localization.keys()[0]
+                return list(self.sys.localization)[0]
         else:
-            return self.ref.localization.keys()[0]
+            return list(self.ref.localization)[0]
     @property
     def sys_presence_conf(self):
         if self.sys == None:
@@ -114,3 +115,17 @@ class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
         # important for our integration tests.
         #print json.dumps(reduce(_r, reported_components, OrderedDict())) if self.kernel_components else None
         yield json.dumps(reduce(_r, reported_components, OrderedDict())) if self.kernel_components else None
+
+    def __eq__(self, value):
+        '''print('MDR')
+        print(self.ref)
+        print(value[0])
+        print(self.sys)
+        print(value[1])'''
+        return self.ref == value[0] and \
+               self.sys == value[1] and \
+               self.kernel_similarity == value[2] and \
+               self.kernel_components == value[3] and \
+               self.ref_local == value[4] and \
+               self.sys_local == value[5] and \
+               self.video_file == value[6]
