@@ -1,45 +1,45 @@
 {
-  "activity.w_p_miss_at_rfa_targets": [
-    1, 
-    0.2, 
-    0.15, 
-    0.1, 
-    0.03, 
-    0.01
-  ], 
   "activity.auc_at_fa_targets": [
-    1, 
-    0.2, 
-    0.15, 
-    0.1, 
-    0.03, 
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
     0.01
-  ], 
-  "nmide.cost_miss": 1, 
-  "git.commit": "4279b991b2c7bdd3f311009b2c0336715def70ca--2019-09-18T15:54:07-04:00", 
-  "activity.p_miss_at_rfa_targets": [
-    1, 
-    0.2, 
-    0.15, 
-    0.1, 
-    0.03, 
-    0.01
-  ], 
-  "scoring_protocol": "actev18_ad_1SecOL", 
-  "activity.temporal_overlap_delta": 0.2, 
-  "activity.epsilon_temporal_congruence": 1e-08, 
-  "activity.epsilon_presenceconf_congruence": 1e-06, 
-  "command": "../ActEV_Scorer.py ActEV18_AD_1SECOL -s data/test_10-0_fake-sysout.json -r data/test_10-0.json -a data/test_10-0_activity-index.json -f data/test_10-0_file-index.json -o data/checkfiles/test_10_1 -v", 
+  ],
+  "activity.epsilon_presenceconf_congruence": 1e-06,
+  "activity.epsilon_temporal_congruence": 1e-08,
   "activity.n_mide_at_rfa_targets": [
-    1, 
-    0.2, 
-    0.15, 
-    0.1, 
-    0.03, 
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
     0.01
-  ], 
-  "nmide.cost_fa": 1, 
-  "nmide.ns_collar_size": 0, 
-  "wpmiss.denominator": 10, 
+  ],
+  "activity.p_miss_at_rfa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.temporal_overlap_delta": 0.2,
+  "activity.w_p_miss_at_rfa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "command": "../ActEV_Scorer.py ActEV18_AD_1SECOL -s data/test_10-0_fake-sysout.json -r data/test_10-0.json -a data/test_10-0_activity-index.json -f data/test_10-0_file-index.json -o data/checkfiles/test_10_1 -v",
+  "git.commit": "4279b991b2c7bdd3f311009b2c0336715def70ca--2019-09-18T15:54:07-04:00",
+  "nmide.cost_fa": 1,
+  "nmide.cost_miss": 1,
+  "nmide.ns_collar_size": 0,
+  "scoring_protocol": "actev18_ad_1SecOL",
+  "wpmiss.denominator": 10,
   "wpmiss.numerator": 8
 }
