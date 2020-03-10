@@ -491,14 +491,10 @@ class TestSweeper(TestMetrics):
     def test_build_sweeper(self):
         sweeper = build_sweeper(self.conf_lkup, [ self.pmiss, self.build_rfa(10) ], 0)
 
-        #self.assertEqual(sweeper(self.recs_1), [ (0.5, { "p_miss": float(2) / 4, "rfa": float(2) / 10 }),
-        #                                              (0.7, { "p_miss": float(2) / 4, "rfa": float(1) / 10 }),
-        #                                              (0.8, { "p_miss": float(3) / 4, "rfa": float(1) / 10 }),
-        #                                              (1.0, { "p_miss": float(4) / 4, "rfa": float(1) / 10 }) ])
-        self.assertEqual(sweeper(self.recs_1), [ (1.0, { "p_miss": float(4) / 4, "rfa": float(1) / 10 }),
-                                                      (0.8, { "p_miss": float(3) / 4, "rfa": float(1) / 10 }),
+        self.assertCountEqual(sweeper(self.recs_1), [ (0.5, { "p_miss": float(2) / 4, "rfa": float(2) / 10 }),
                                                       (0.7, { "p_miss": float(2) / 4, "rfa": float(1) / 10 }),
-                                                      (0.5, { "p_miss": float(2) / 4, "rfa": float(2) / 10 }) ])
+                                                      (0.8, { "p_miss": float(3) / 4, "rfa": float(1) / 10 }),
+                                                      (1.0, { "p_miss": float(4) / 4, "rfa": float(1) / 10 }) ])
 
 if __name__ == '__main__':
     unittest.main()
