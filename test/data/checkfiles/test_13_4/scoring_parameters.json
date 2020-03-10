@@ -24,7 +24,7 @@
     0.03,
     0.01
   ],
-  "activity.epsilon_presenceconf_congruence": 1,
+  "activity.epsilon_presenceconf_congruence": 1.0,
   "activity.fa_at_rfa_targets": [
     1,
     0.95,
@@ -128,7 +128,7 @@
   ],
   "command": "../ActEV_Scorer.py ActEV_SDL_V1 -s data/test_13-2_fake-sysout.json -r data/test_13-4.json -a data/test_13-4_activity-index.json -f data/test_13-2_file-index.json -o data/checkfiles/test_13_4 -v",
   "fa.ns_collar_size": 0,
-  "git.commit": "4279b991b2c7bdd3f311009b2c0336715def70ca--2019-09-18T15:54:07-04:00",
+  "git.commit": "69202c5eb497411c34d870bee00927b54a250778--2020-03-10T11:38:28-04:00",
   "nmide.cost_fa": 1,
   "nmide.cost_miss": 1,
   "nmide.ns_collar_size": 0,
