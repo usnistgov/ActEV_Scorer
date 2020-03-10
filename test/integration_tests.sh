@@ -20,7 +20,7 @@ run_test() {
 
     echo "** Running integration test '$test' **"
     log_fn="$compcheckfile_outdir/$test.log"
-    $test "$compcheckfile_outdir" >"$log_fn"
+		$test "$compcheckfile_outdir" >"$log_fn"
     check_status
 
     # Replace paths in logfile
@@ -30,7 +30,8 @@ run_test() {
 	    mv "$f.new" "$f"
 	fi
     done
-    diff --exclude \*dm --exclude \*png -I "command" -I "git.commit" -r "$checkfile_outdir" "$compcheckfile_outdir"
+    # diff --exclude \*dm --exclude \*png -I "command" -I "git.commit" -r "$checkfile_outdir" "$compcheckfile_outdir"
+    python3 diff.py "$checkfile_outdir" "$compcheckfile_outdir"
     check_status
     
     echo "*** OK ***"

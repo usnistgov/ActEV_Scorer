@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 # ActEV_Scorer.py
 # Author(s): David Joy
@@ -39,6 +39,7 @@ import argparse
 import json
 import jsonschema
 from operator import add
+from functools import reduce
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
 sys.path.append(lib_path)
@@ -86,15 +87,27 @@ def yield_file_to_function(file_path, function):
         err_quit("{}. Aborting!".format(ioerr))
 
 def write_records_as_csv(out_path, field_names, records, sep = "|"):
+    def listify(records):
+        l_records = records
+        if isinstance(records, (map, tuple, list)):
+            l_records = list(records)
+            for i in range(len(l_records)):
+                l_records[i] = listify(l_records[i])
+        return l_records
+
+    l_records = listify(records)
+    sorted_rec = sorted(l_records)
+
     def _write_recs(out_f):
-        for rec in [field_names] + sorted(map(lambda v: map(str, v), records)):
+        #for rec in [field_names] + sorted(map(lambda v: list(map(str, v)), records)):
+        for rec in [field_names] + sorted_rec:
             out_f.write("{}\n".format(sep.join(map(str, rec))))
 
     yield_file_to_function(out_path, _write_recs)
 
 def serialize_as_json(out_path, out_object):
     def _write_json(out_f):
-        out_f.write("{}\n".format(json.dumps(out_object, indent=2)))
+        out_f.write("{}\n".format(json.dumps(out_object, indent=2, sort_keys=True)))
 
     yield_file_to_function(out_path, _write_json)
 
@@ -128,15 +141,15 @@ def parse_activities(deserialized_json, file_index, load_objects = False, ignore
     activity_instances = [ ActivityInstance(a, load_objects) for a in deserialized_json.get("activities", []) ]
 
     if ignore_extraneous or ignore_missing:
-        extraneous_files = set(deserialized_json.get("filesProcessed", [])) - file_index.viewkeys()
-        missing_files = file_index.viewkeys() - set(deserialized_json.get("filesProcessed", []))
+        extraneous_files = set(deserialized_json.get("filesProcessed", [])) - file_index.keys()
+        missing_files = file_index.keys() - set(deserialized_json.get("filesProcessed", []))
 
         def _r(init, a):
             if ignore_extraneous:
-                for f in extraneous_files & a.localization.viewkeys():
+                for f in extraneous_files & a.localization.keys():
                     del a.localization[f]
             if ignore_missing:
-                for f in missing_files & a.localization.viewkeys():
+                for f in missing_files & a.localization.keys():
                     del a.localization[f]
 
             # Throw out activity instances only localized to
@@ -196,11 +209,11 @@ def plot_dets(log, output_dir, det_point_records, tfa_det_point_records):
     if tfa_det_point_records != {}:
         det_curve(tfa_det_point_records, "{}/DET_TFA_COMBINED.png".format(figure_dir), typ = "tfa")
 
-    for k, v in det_point_records.iteritems():
+    for k, v in det_point_records.items():
         log(1, "[Info] Plotting DET curve for {}".format(k))
         det_curve({k: v}, "{}/DET_{}.png".format(figure_dir, k))
 
-    for t, f in tfa_det_point_records.iteritems():
+    for t, f in tfa_det_point_records.items():
         log(1, "[Info] Plotting TFA DET curve for {}".format(t))
         det_curve({t: f}, "{}/DET_TFA_{}.png".format(figure_dir, t), typ = "tfa")
 
@@ -208,6 +221,9 @@ def plot_dets(log, output_dir, det_point_records, tfa_det_point_records):
 
 def write_out_scoring_params(output_dir, params):
     out_file = "{}/scoring_parameters.json".format(output_dir)
+    for key in sorted(params.keys()):
+        if type(params[key])==bytes:
+            params[key] = str(params[key])[2:-1]
     serialize_as_json(out_file, params)
 
     return out_file
@@ -297,11 +313,13 @@ def score_basic(protocol_class, args):
     log(1, "[Info] Scoring ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
     results = protocol.compute_results(alignment, args.det_point_resolution)
+    #print(str(type(results)), file=sys.stderr)
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
     audc_by_activity = []
     mean_audc = []
     if not args.disable_plotting:
+        
         export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir)
         audc_by_activity, mean_audc = protocol.compute_auc(args.output_dir)
         
@@ -341,7 +359,7 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir):
         opts = {}
         if (len(records) > 0):
             dc_dict = records_to_dm(records)
-            for activity, dc in dc_dict.iteritems():
+            for activity, dc in dc_dict.items():
                 dc.activity = activity
                 dc.fa_label = prefix
                 dc.fn_label = "PMISS"
@@ -362,14 +380,14 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir):
             opts['title'] = "All Activities"
             save_DET(dc_dict.values(), figure_dir, "DET_{}_{}.png".format(prefix, "COMBINED"), opts)
             opts['title'] = "All Activities and Aggregate"
-            save_DET(dc_dict.values() + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINEDAGG"), opts)
+            save_DET(list(dc_dict.values()) + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINEDAGG"), opts)
 
     _export_records(dm_records_rfa, "RFA")
     _export_records(dm_records_tfa, "TFA")
 
 def records_to_dm(records):
     dc_dict = {}
-    for activity, records in records.iteritems():
+    for activity, records in records.items():
         fa_array = [e[1] for e in records]
         fn_array = [e[2] for e in records]
         threshold = [e[0] for e in records]
@@ -382,6 +400,8 @@ def save_dm(dc, path, file_name):
     dc.dump("{}/{}".format(path, file_name))
 
 def save_DET(dc, path, file_name, plot_options={}):
+    if type(dc) is {}.values().__class__:
+        dc = list(dc)
     if isinstance(dc, DataContainer):
         dc = [dc]
     rd = Render(plot_type="det")

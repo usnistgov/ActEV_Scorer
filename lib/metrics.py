@@ -36,6 +36,7 @@ from operator import add
 from sparse_signal import SparseSignal as S
 from alignment_record import *
 from helpers import *
+from functools import reduce
 
 def _signal_pairs(r, s, signal_accessor, key_join_op = set.union):
     rl, sl = r.localization, s.localization
@@ -278,7 +279,7 @@ def get_auc_mean(auc_data):
         else:
             values[d[1]].append(d[2])
 
-    for key, item in values.iteritems():
+    for key, item in values.items():
         auc_mean.append(("mean-" + key, compute_auc_mean(item)))
 
     return auc_mean
@@ -366,8 +367,8 @@ def special_join(signals):
         return init
     while len(signals)!=1:
         gr_sig = [signals[i * 2:(i + 1) * 2] for i in range((len(signals) + 2 - 1) // 2 )]
-        print "gr_sig"
-        print gr_sig
+        print("gr_sig")
+        print(gr_sig)
         signals=reduce(_reducer, gr_sig, [])
         #print "2 signals"
         #print signals
@@ -384,7 +385,7 @@ def fa_meas_v2(ref_sig, sys_sig, sys_sig_add):
     ref_temp_add_all = ref_sig[0]
     not_ref_all = ref_sig[1]
     nr_area_all = ref_sig[2]
-    for key,value in ref_temp_add_all.iteritems(): #ref_sig.iteritems():
+    for key,value in ref_temp_add_all.items(): #ref_sig.items():
         ref_temp_add = value
         not_ref = not_ref_all[key]
         nr_area = nr_area_all[key]
@@ -447,7 +448,7 @@ def fa_meas(ref_sig, sys_sig, sys_sig_add): #aligned_pairs, missed_ref, false_sy
         nr_area_all = ref_sig[2]
         denom_sum = 0
         numer_sum = 0
-        for key,value in ref_temp_add_all.iteritems(): #ref_sig.iteritems():
+        for key,value in ref_temp_add_all.items(): #ref_sig.items():
             ref_temp_add = value
             not_ref = not_ref_all[key]
             nr_area = nr_area_all[key]
@@ -594,7 +595,7 @@ def get_points_along_confidence_curve(points, x_label, x_key, y_label, y_key, x_
     last_y = None
     last_x = 0.0
     exact_match = False
-    sorted_points = sorted([ (ds, x_key(m), y_key(m)) for ds, m in points ], None, lambda x: x[0])
+    sorted_points = sorted([ (ds, x_key(m), y_key(m)) for ds, m in points ], key=lambda x: x[0])
     while True:
         if x is not None:
             if abs(x - curr_targ) < 1e-10:
@@ -631,9 +632,9 @@ def get_points_along_confidence_curve(points, x_label, x_key, y_label, y_key, x_
     return out_metrics
 
 def mean_exclude_none(values):
-    fv = filter(lambda v: v is not None, values)
+    fv = list(filter(lambda v: v is not None, values))
     return { "mean": float(reduce(add, fv, 0)) / len(fv) if len(fv) > 0 else None,
-             "mean_num_rejected": len(values) - len(fv) }
+             "mean_num_rejected": len(list(values)) - len(fv) if type(values) == map else len(values) - len(fv)}
 
 def mode(num_c, num_m, num_f, cost_m, cost_f):
     return float(cost_m(num_m) + cost_f(num_f)) / (num_c + num_m)
@@ -699,7 +700,7 @@ def build_ref_sig(ref, file_framedur_lookup):#(aligned_pairs, missed_ref, file_f
     nr_area = {}
     if ref == {}: #num_aligned == 0:
         return [{},{},{}]
-    for key,value in ref.iteritems():
+    for key,value in ref.items():
      
         ref_temp = [temporal_single_signal(b) for b in value ]
         ref_temp_add[key] = reduce(add, [r[0] for r in ref_temp], S())
@@ -781,8 +782,8 @@ def build_sweeper(conf_key_func, measure_funcs, uniq_conf_limit=0, file_framedur
         
         # m records don't need to be sorted as they have None
         # confidence scores
-        current_m = m + sorted(c, None, conf_key_func)
-        remaining_f = sorted(f, None, conf_key_func)
+        current_m = m + sorted(c, key=conf_key_func)
+        remaining_f = sorted(f, key=conf_key_func)
         uniq_confs = sorted(set(map(conf_key_func, c + f)), reverse = True)
         
         if uniq_conf_limit != 0:
@@ -810,7 +811,7 @@ def build_sweeper(conf_key_func, measure_funcs, uniq_conf_limit=0, file_framedur
                 current_f.append(remaining_f.pop())
             if file_framedur_lookup != 0:
                 if newsig != {}: #0:
-                    for key,value in newsig.iteritems():
+                    for key,value in newsig.items():
                         newsig_tem[key] = add_sys_sig(sys_sig[key],[(ar.sys) for ar in newsig[key]])
                         sys_sig[key] = sys_sig[key] + newsig_tem[key]
                         sys_sig_add[key] = reduce(add, [s[0] for s in newsig_tem[key]], sys_sig_add[key])

@@ -1,4 +1,4 @@
 activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
 Closing|CD|1|2|0.874|2.0|{"presenceconf_congruence": 1.0}
 Closing|FA|None|1|0.796|None|None
-Entering|CD|2|3|0.8|1.05128205128|{"presenceconf_congruence": 0.05128205128205136}
+Entering|CD|2|3|0.8|1.0512820512820513|{"presenceconf_congruence": 0.05128205128205136}

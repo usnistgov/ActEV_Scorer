@@ -2,7 +2,7 @@ activity|metric_name|metric_value
 Closing|mean-object-p_miss@0.033rfa|1.0
 Closing|mean-object-p_miss@0.1rfa|1.0
 Closing|mean-object-p_miss@0.2rfa|1.0
-Closing|mean-object-p_miss@0.5rfa|0.0
+Closing|mean-object-p_miss@0.5rfa|1.0
 Closing|n-mide|0.0
 Closing|n-mide@0.01rfa|0.0
 Closing|n-mide@0.03rfa|0.0
@@ -21,12 +21,12 @@ Closing|p_miss@0.15rfa|0.0
 Closing|p_miss@0.1rfa|0.0
 Closing|p_miss@0.2rfa|0.0
 Closing|p_miss@1rfa|0.0
-Closing|w_p_miss@0.01rfa|0.727272727273
-Closing|w_p_miss@0.03rfa|0.727272727273
-Closing|w_p_miss@0.15rfa|0.727272727273
-Closing|w_p_miss@0.1rfa|0.727272727273
-Closing|w_p_miss@0.2rfa|0.727272727273
-Closing|w_p_miss@1rfa|0.727272727273
+Closing|w_p_miss@0.01rfa|0.7272727272727273
+Closing|w_p_miss@0.03rfa|0.7272727272727273
+Closing|w_p_miss@0.15rfa|0.7272727272727273
+Closing|w_p_miss@0.1rfa|0.7272727272727273
+Closing|w_p_miss@0.2rfa|0.7272727272727273
+Closing|w_p_miss@1rfa|0.7272727272727273
 Entering|mean-object-p_miss@0.033rfa|1.0
 Entering|mean-object-p_miss@0.1rfa|1.0
 Entering|mean-object-p_miss@0.2rfa|1.0
