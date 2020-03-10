@@ -1,9 +1,10 @@
 MAKE=make
 
-make:
+install:
 	@(echo "** Installing dependencies **\n")
-	(sudo apt install -y python3 python3-dev)
+	(sudo apt install -y python3 python3-dev python3-pip)
 	(python3 -m pip install -r requirements.txt)
+	@(echo "** Dependencies successfully installed**\n")
 
 check:
 	@(echo "** Running UnitTests **\n")
