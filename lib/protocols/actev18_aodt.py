@@ -90,8 +90,8 @@ class ActEV18_AODT(ActEV18_AD):
         simple_temporal_overlap_filter = build_temporal_overlap_filter(self.scoring_parameters["activity.temporal_overlap_delta"])
 
         def _r(init, sys):
-            localization_vals = reduce(add, map(lambda x: x.localization.values(), sys.objects), [])
-            init.extend(reduce(add, map(lambda x: x.values(), localization_vals), []))
+            localization_vals = reduce(add, map(lambda x: list(x.localization.values()), sys.objects), [])
+            init.extend(reduce(add, map(lambda x: list(x.values()), localization_vals), []))
 
             return init
 
@@ -210,18 +210,22 @@ class ActEV18_AODT(ActEV18_AD):
                     sys_object_type = ar.sys.objectType if ar.sys is not None else None
                     mapped_type = object_type_map.get(ref_object_type if ref_object_type is not None else sys_object_type,
                                                       ref_object_type if ref_object_type is not None else sys_object_type)
-                    return map(str, [activity,
+                    return list(map(str, [activity,
                                      item.ref,
                                      item.sys,
                                      frame,
                                      ref_object_type,
                                      sys_object_type,
                                      object_type_map.get(ref_object_type, ref_object_type) if ref_object_type is not None else None,
-                                     object_type_map.get(sys_object_type, sys_object_type) if sys_object_type is not None else None]) + [ x for x in ar.iter_with_extended_properties(["spatial_intersection-over-union", "presenceconf_congruence"]) ]
+                                     object_type_map.get(sys_object_type, sys_object_type) if sys_object_type is not None else None])) + list([ x for x in ar.iter_with_extended_properties(["spatial_intersection-over-union", "presenceconf_congruence"]) ])
 
                 return map(_subm, item.kernel_components.get("alignment_records", []))
 
-            init.extend(reduce(add, map(_m, filter(lambda r: r.alignment == "CD", recs)), []))
+            l = []
+            for entry in list(map(_m, filter(lambda r: r.alignment == "CD", recs))):
+                l.append(entry)
+            init.extend(l)
+            #init.extend(reduce(add, list(map(_m, filter(lambda r: r.alignment == "CD", recs))), []))
             return init
 
         object_frame_alignment_records = reduce(_object_frame_alignment_records, group_by_func(lambda rec: rec.activity, alignment).items(), [])
@@ -230,7 +234,7 @@ class ActEV18_AODT(ActEV18_AD):
             t = "object-p_miss@{}rfa".format(targ)
             return self.build_simple_measure(lambda x: (x.kernel_components.get(t),), t, identity)
         
-        aod_pair_measures = [ self.build_simple_measure(lambda x: (x.kernel_components.get("minMOTE"),), "minMOTE", identity)] + [ self.build_simple_measure(lambda x: (x.kernel_components.get("minMODE"),), "minMODE", identity)] + map(_obj_pmiss_at_rfa, self.scoring_parameters["object.p_miss_at_rfa_targets"])
+        aod_pair_measures = [ self.build_simple_measure(lambda x: (x.kernel_components.get("minMOTE"),), "minMOTE", identity)] + [ self.build_simple_measure(lambda x: (x.kernel_components.get("minMODE"),), "minMODE", identity)] + list(map(_obj_pmiss_at_rfa, self.scoring_parameters["object.p_miss_at_rfa_targets"]))
         #print "aod_pair_measures"
         #print aod_pair_measures
         def _pair_properties_map(rec):

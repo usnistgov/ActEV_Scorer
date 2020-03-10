@@ -352,8 +352,8 @@ def _object_tracking_congruence(r, s, obj_kernel_builder, ref_filter, sys_filter
     
     # Filter out None mode scores (in the case of zero reference
     # objects)
-    mode_scores = filter(lambda r: r[1] is not None, flatten_sweeper_records(sweep_recs, [ "mode" ]))
-    mote_scores = filter(lambda r: r[1] is not None, flatten_sweeper_records(sweep_recs, [ "mote" ]))
+    mode_scores = list(filter(lambda r: r[1] is not None, flatten_sweeper_records(sweep_recs, [ "mode" ])))
+    mote_scores = list(filter(lambda r: r[1] is not None, flatten_sweeper_records(sweep_recs, [ "mote" ])))
     #   print "mote_scores"
     #   print mote_scores
     det_points = flatten_sweeper_records(sweep_recs, [ "rfa", "p_miss" ])

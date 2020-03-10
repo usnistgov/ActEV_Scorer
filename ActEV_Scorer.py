@@ -87,15 +87,27 @@ def yield_file_to_function(file_path, function):
         err_quit("{}. Aborting!".format(ioerr))
 
 def write_records_as_csv(out_path, field_names, records, sep = "|"):
+    def listify(records):
+        l_records = records
+        if isinstance(records, (map, tuple, list)):
+            l_records = list(records)
+            for i in range(len(l_records)):
+                l_records[i] = listify(l_records[i])
+        return l_records
+
+    l_records = listify(records)
+    sorted_rec = sorted(l_records)
+
     def _write_recs(out_f):
-        for rec in [field_names] + map(lambda v: sorted(map(str, v)), records):
+        #for rec in [field_names] + sorted(map(lambda v: list(map(str, v)), records)):
+        for rec in [field_names] + sorted_rec:
             out_f.write("{}\n".format(sep.join(map(str, rec))))
 
     yield_file_to_function(out_path, _write_recs)
 
 def serialize_as_json(out_path, out_object):
     def _write_json(out_f):
-        out_f.write("{}\n".format(json.dumps(out_object, indent=2)))
+        out_f.write("{}\n".format(json.dumps(out_object, indent=2, sort_keys=True)))
 
     yield_file_to_function(out_path, _write_json)
 
@@ -209,7 +221,7 @@ def plot_dets(log, output_dir, det_point_records, tfa_det_point_records):
 
 def write_out_scoring_params(output_dir, params):
     out_file = "{}/scoring_parameters.json".format(output_dir)
-    for key in params:
+    for key in sorted(params.keys()):
         if type(params[key])==bytes:
             params[key] = str(params[key])[2:-1]
     serialize_as_json(out_file, params)
@@ -301,11 +313,13 @@ def score_basic(protocol_class, args):
     log(1, "[Info] Scoring ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
     results = protocol.compute_results(alignment, args.det_point_resolution)
+    #print(str(type(results)), file=sys.stderr)
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
     audc_by_activity = []
     mean_audc = []
     if not args.disable_plotting:
+        
         export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir)
         audc_by_activity, mean_audc = protocol.compute_auc(args.output_dir)
         
@@ -366,7 +380,7 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir):
             opts['title'] = "All Activities"
             save_DET(dc_dict.values(), figure_dir, "DET_{}_{}.png".format(prefix, "COMBINED"), opts)
             opts['title'] = "All Activities and Aggregate"
-            save_DET(dc_dict.values() + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINEDAGG"), opts)
+            save_DET(list(dc_dict.values()) + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINEDAGG"), opts)
 
     _export_records(dm_records_rfa, "RFA")
     _export_records(dm_records_tfa, "TFA")
@@ -386,6 +400,8 @@ def save_dm(dc, path, file_name):
     dc.dump("{}/{}".format(path, file_name))
 
 def save_DET(dc, path, file_name, plot_options={}):
+    if type(dc) is {}.values().__class__:
+        dc = list(dc)
     if isinstance(dc, DataContainer):
         dc = [dc]
     rd = Render(plot_type="det")

@@ -81,7 +81,7 @@ class ActEV_SDL_V1(Default):
     # enforced by the schemas for ActEV18_AD and ActEV18_AOD
     def default_cohort_gen(self, refs, syss):
         def _localization_file_grouper(instance):
-            return list(instance.localization[0]
+            return list(instance.localization)[0]
 
         ref_groups = group_by_func(_localization_file_grouper, refs)
         sys_groups = group_by_func(_localization_file_grouper, syss)
@@ -137,8 +137,6 @@ class ActEV_SDL_V1(Default):
                                                                    self.build_fa_measure()], uniq_conf, file_framedur_lookup = self.file_framedur_lookup)
 
         det_points = sweeper(alignment)
-        #print "det_points"
-        #pprint(det_points)
 
         pmiss_measures = get_points_along_confidence_curve(det_points,
                                                            "rfa",
