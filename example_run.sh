@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-python3 -m pip 
+make install
 
 python3 ActEV_Scorer.py \
 	ActEV18_AD \
