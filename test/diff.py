@@ -67,21 +67,23 @@ def main():
             out_file = os.path.join(out_folder, file_name)
             debug('Comparing REF: %s with OUT: %s' % (ref_file, out_file))
             # If JSON, need to sort keys
-            is_json = re.match(r"\.json$", file_name)
+            is_json = re.match(r".*\.json$", file_name)
             if is_json:
                 debug("JSON file detected")
+                tmp_ref_file = "/tmp/scorer_tmp_ref.json"
+                tmp_out_file = "/tmp/scorer_tmp_out.json"
                 # os.system("jq . -S {0} > /tmp/scorer_tmp_ref && mv /tmp/scorer_tmp {0}".format(ref_file))
                 # os.system("jq . -S {0} > /tmp/scorer_tmp_out && mv /tmp/scorer_tmp {0}".format(out_file))
-                c0 = os.system("jq . -S {0} > /tmp/scorer_tmp_ref".format(ref_file))
-                c1 = os.system("jq . -S {0} > /tmp/scorer_tmp_out".format(out_file))
+                c0 = os.system("jq . -S {0} > {1}".format(ref_file, tmp_ref_file))
+                c1 = os.system("jq . -S {0} > {1}".format(out_file, tmp_out_file))
                 if c0 or c1:
                     debug("Error during executing commands: %s" % ("jq . -S {0} > /tmp/scorer_tmp_ref".format(ref_file)))
                     exit(1)
                 debug("Sorted json written under /tmp")
             try:
                 if is_json:
-                    ref = "/tmp/scorer_tmp_ref"
-                    out = "/tmp/scorer_tmp_out"
+                    ref = open(tmp_ref_file, 'r')
+                    out = open(tmp_out_file, 'r')
                 else:
                     ref = open(os.path.join(ref_folder, file_name), 'r')
                     out = open(os.path.join(out_folder, file_name), 'r')
@@ -114,8 +116,8 @@ def main():
                 ref.close()
                 out.close()
                 if is_json:
-                    os.remove(ref)
-                    os.remove(out)
+                    os.remove(tmp_ref_file)
+                    os.remove(tmp_out_file)
 
 
 if __name__ == "__main__":
