@@ -19,7 +19,7 @@ a system output file adhering to the JSON format defined in the ActEV evaluation
 
   This package assumes a Unix-like environment. Included Python files are written for Python 3.
 
-  1) Install Python 3 and required dependencies using `make install`
+  1) Install Python 3, `jq` and required dependencies using `make install`
   2) Run the tests (optional, but strongly recommended) using `make check`
 
 ### Option description

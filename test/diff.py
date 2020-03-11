@@ -60,13 +60,20 @@ def main():
     for file_name in os.listdir(ref_folder):
         # diff --exclude \*dm --exclude \*png --exclude \*log
         if os.path.isfile(os.path.join(ref_folder, file_name)) and not re.match(r".*\.(dm|png|log)$", file_name):
-            # If JSON, need to sort keys before opening it
-            if re.match(r"\.json$", file_name):
-                os.system("jq . -S {0} > /tmp/scorer_tmp && mv /tmp/scorer_tmp {0}".format(os.path.join(out_folder, file_name)))
-                os.system("jq . -S {0} > /tmp/scorer_tmp && mv /tmp/scorer_tmp {0}".format(os.path.join(ref_folder, file_name)))
+            ref_file = os.path.join(ref_folder, file_name)
+            out_file = os.path.join(out_folder, file_name)
+            # If JSON, need to sort keys
+            is_json = re.match(r"\.json$", file_name)
+            if is_json:
+                os.system("jq . -S {0} > /tmp/scorer_tmp_ref && mv /tmp/scorer_tmp {0}".format(ref_file))
+                os.system("jq . -S {0} > /tmp/scorer_tmp_ref && mv /tmp/scorer_tmp {0}".format(out_file))
             try:
-                ref = open(os.path.join(ref_folder, file_name), 'r')
-                out = open(os.path.join(out_folder, file_name), 'r')
+                if is_json:
+                    ref = "/tmp/scorer_tmp_ref"
+                    out = "/tmp/scorer_tmp_out"
+                else:
+                    ref = open(os.path.join(ref_folder, file_name), 'r')
+                    out = open(os.path.join(out_folder, file_name), 'r')
                 line_nbr = 1
                 for ref_line in ref.readlines():
                     out_line = out.readline()
@@ -94,6 +101,9 @@ def main():
             finally:
                 ref.close()
                 out.close()
+                if is_json:
+                    os.remove(ref)
+                    os.remove(out)
 
 
 if __name__ == "__main__":

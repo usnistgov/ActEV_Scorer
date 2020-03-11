@@ -2,7 +2,7 @@ MAKE=make
 
 install:
 	@(echo "** Installing dependencies **\n")
-	(sudo apt install -y python3 python3-dev python3-pip)
+	(sudo apt install -y python3 python3-dev python3-pip jq)
 	(python3 -m pip install -r requirements.txt)
 	@(echo "** Dependencies successfully installed**\n")
 
