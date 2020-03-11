@@ -40,6 +40,14 @@ import os
 import re
 
 
+def line_count(fd):
+    cpt = 0
+    for l in fd.readlines():
+        cpt += 1
+    fd.seek(0)
+    return cpt
+
+
 def main():
     # Checking arguments
     if len(sys.argv) != 3:
@@ -88,6 +96,12 @@ def main():
                     ref = open(os.path.join(ref_folder, file_name), 'r')
                     out = open(os.path.join(out_folder, file_name), 'r')
                 debug("Reading files: %s and %s" % (ref_file, out_file))
+                #################################################################################
+                # Checking lines number
+                if line_count(ref) != line_count(out):
+                    print("{0} and {1} line number differ.".format(ref_file, out_file))
+                    sys.exit(1)
+                # Reading
                 line_nbr = 1
                 for ref_line in ref.readlines():
                     out_line = out.readline()
@@ -109,6 +123,7 @@ def main():
                                         eprint(file_name, line_nbr, ref_line, out_line)
                                         sys.exit(1)
                     line_nbr += 1
+                #################################################################################
             except FileNotFoundError as e:
                 print("Missing file {}".format(e.filename), file=sys.stderr)
                 sys.exit(1)
