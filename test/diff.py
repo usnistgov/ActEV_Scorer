@@ -59,7 +59,8 @@ def main():
 
     for file_name in os.listdir(ref_folder):
         # diff --exclude \*dm --exclude \*png --exclude \*log
-        if os.path.isfile(file_name) and not re.match(r".*\.(dm|png|log)$", file_name):
+        if os.path.isfile(os.path.join(ref_folder, file_name)) and not re.match(r".*\.(dm|png|log)$", file_name):
+            print('Reading %s' % (file_name))
             try:
                 ref = open(os.path.join(ref_folder, file_name), 'r')
                 out = open(os.path.join(out_folder, file_name), 'r')
