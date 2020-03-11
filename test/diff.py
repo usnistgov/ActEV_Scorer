@@ -60,7 +60,10 @@ def main():
     for file_name in os.listdir(ref_folder):
         # diff --exclude \*dm --exclude \*png --exclude \*log
         if os.path.isfile(os.path.join(ref_folder, file_name)) and not re.match(r".*\.(dm|png|log)$", file_name):
-            print('Reading %s' % (file_name))
+            # If JSON, need to sort keys before opening it
+            if re.match(r"\.json$", file_name):
+                os.system("jq . -S {0} > /tmp/scorer_tmp && mv /tmp/scorer_tmp {0}".format(os.path.join(out_folder, file_name)))
+                os.system("jq . -S {0} > /tmp/scorer_tmp && mv /tmp/scorer_tmp {0}".format(os.path.join(ref_folder, file_name)))
             try:
                 ref = open(os.path.join(ref_folder, file_name), 'r')
                 out = open(os.path.join(out_folder, file_name), 'r')
