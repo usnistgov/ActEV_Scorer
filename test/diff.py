@@ -54,6 +54,9 @@ def main():
                 Found:    %s
             """ % (os.path.join(out_folder, fn), ln, rl, ol), file=sys.stderr)
 
+    def debug(msg):
+        print('[DEBUG] %s' % (msg))
+
     # Checking content
     # diff --exclude \*dm --exclude \*png -I "command" -I "git.commit" -r "$checkfile_outdir" "$compcheckfile_outdir"
 
@@ -62,11 +65,19 @@ def main():
         if os.path.isfile(os.path.join(ref_folder, file_name)) and not re.match(r".*\.(dm|png|log)$", file_name):
             ref_file = os.path.join(ref_folder, file_name)
             out_file = os.path.join(out_folder, file_name)
+            debug('Comparing REF: %s with OUT: %s' % (ref_file, out_file))
             # If JSON, need to sort keys
             is_json = re.match(r"\.json$", file_name)
             if is_json:
-                os.system("jq . -S {0} > /tmp/scorer_tmp_ref && mv /tmp/scorer_tmp {0}".format(ref_file))
-                os.system("jq . -S {0} > /tmp/scorer_tmp_ref && mv /tmp/scorer_tmp {0}".format(out_file))
+                debug("JSON file detected")
+                # os.system("jq . -S {0} > /tmp/scorer_tmp_ref && mv /tmp/scorer_tmp {0}".format(ref_file))
+                # os.system("jq . -S {0} > /tmp/scorer_tmp_out && mv /tmp/scorer_tmp {0}".format(out_file))
+                c0 = os.system("jq . -S {0} > /tmp/scorer_tmp_ref".format(ref_file))
+                c1 = os.system("jq . -S {0} > /tmp/scorer_tmp_out".format(out_file))
+                if c0 or c1:
+                    debug("Error during executing commands: %s" % ("jq . -S {0} > /tmp/scorer_tmp_ref".format(ref_file)))
+                    exit(1)
+                debug("Sorted json written under /tmp")
             try:
                 if is_json:
                     ref = "/tmp/scorer_tmp_ref"
@@ -74,6 +85,7 @@ def main():
                 else:
                     ref = open(os.path.join(ref_folder, file_name), 'r')
                     out = open(os.path.join(out_folder, file_name), 'r')
+                debug("Reading files: %s and %s" % (ref_file, out_file))
                 line_nbr = 1
                 for ref_line in ref.readlines():
                     out_line = out.readline()
