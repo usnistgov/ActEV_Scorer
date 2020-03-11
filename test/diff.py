@@ -40,14 +40,6 @@ import os
 import re
 
 
-def eprint(fn, ln, rl, ol):
-    print("""
-          Difference found in file %s line %d.
-            Expected: %s
-            Found:    %s
-          """ % (fn, ln, rl, ol), file=sys.stderr)
-
-
 def main():
     # Checking arguments
     if len(sys.argv) != 3:
@@ -55,12 +47,19 @@ def main():
     ref_folder = sys.argv[1]
     out_folder = sys.argv[2]
 
+    def eprint(fn, ln, rl, ol):
+        print("""
+            Difference found in file %s line %d.
+                Expected: %s
+                Found:    %s
+            """ % (os.path.join(out_folder, fn), ln, rl, ol), file=sys.stderr)
+
     # Checking content
     # diff --exclude \*dm --exclude \*png -I "command" -I "git.commit" -r "$checkfile_outdir" "$compcheckfile_outdir"
 
     for file_name in os.listdir(ref_folder):
         # diff --exclude \*dm --exclude \*png --exclude \*log
-        if re.match(r".*\.[dm|png|log]$", file_name) is not None:
+        if os.path.isfile(file_name) and not re.match(r".*\.(dm|png|log)$", file_name):
             try:
                 ref = open(os.path.join(ref_folder, file_name), 'r')
                 out = open(os.path.join(out_folder, file_name), 'r')
@@ -68,7 +67,7 @@ def main():
                 for ref_line in ref.readlines():
                     out_line = out.readline()
                     # diff -I "command" -I "git.commit"
-                    if not "command" in ref_line and not "git.command" in ref_line:
+                    if not re.match(r"[command|git\.commit]", ref_line):
                         if ref_line != out_line:
                             # it could be because of higher precision checking for
                             # floats
@@ -84,12 +83,9 @@ def main():
                                     if abs(round(float(ref_floats[i]), 11) - round(float(out_floats[i]), 11)) > 1e-09:
                                         eprint(file_name, line_nbr, ref_line, out_line)
                                         sys.exit(1)
-                        else:
-                            eprint(file_name, line_nbr, ref_line, out_line)
-                            sys.exit(1)
                     line_nbr += 1
             except FileNotFoundError as e:
-                print("Missing file %s".format(e.filename), file=sys.stderr)
+                print("Missing file {}".format(e.filename), file=sys.stderr)
                 sys.exit(1)
             finally:
                 ref.close()
