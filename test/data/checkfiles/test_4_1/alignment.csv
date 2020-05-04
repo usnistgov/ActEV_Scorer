@@ -1,5 +1,5 @@
 activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
-Closing|CD|1|1|0.756|1.00000086246|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.8524590163934425}
+Closing|CD|1|1|0.756|1.0000008624590164|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.8524590163934425}
 Closing|FA|None|2|0.774|None|None
 Entering|CD|2|3|0.652|1.00000001|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.0}
-Entering|CD|3|4|0.769|1.00000096777|{"temporal_intersection-over-union": 0.875, "presenceconf_congruence": 0.9590163934426229}
+Entering|CD|3|4|0.769|1.0000009677663935|{"temporal_intersection-over-union": 0.875, "presenceconf_congruence": 0.9590163934426229}

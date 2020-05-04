@@ -4,11 +4,6 @@ Closing|1|1|temporal_intersection|100
 Closing|1|1|temporal_intersection-over-union|None
 Closing|1|1|temporal_miss|0
 Closing|1|1|temporal_union|100
-Closing|10|19|temporal_fa|0
-Closing|10|19|temporal_intersection|100
-Closing|10|19|temporal_intersection-over-union|None
-Closing|10|19|temporal_miss|0
-Closing|10|19|temporal_union|100
 Closing|2|3|temporal_fa|0
 Closing|2|3|temporal_intersection|100
 Closing|2|3|temporal_intersection-over-union|None
@@ -49,3 +44,8 @@ Closing|9|17|temporal_intersection|100
 Closing|9|17|temporal_intersection-over-union|None
 Closing|9|17|temporal_miss|0
 Closing|9|17|temporal_union|100
+Closing|10|19|temporal_fa|0
+Closing|10|19|temporal_intersection|100
+Closing|10|19|temporal_intersection-over-union|None
+Closing|10|19|temporal_miss|0
+Closing|10|19|temporal_union|100

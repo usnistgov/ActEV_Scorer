@@ -1,53 +1,53 @@
 {
-  "activity.w_p_miss_at_rfa_targets": [
-    1, 
-    0.2, 
-    0.15, 
-    0.1, 
-    0.03, 
-    0.01
-  ], 
-  "fa.ns_collar_size": 0, 
   "activity.auc_at_fa_targets": [
-    1, 
-    0.2, 
-    0.15, 
-    0.1, 
-    0.03, 
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
     0.01
-  ], 
-  "nmide.cost_miss": 1, 
-  "git.commit": "4279b991b2c7bdd3f311009b2c0336715def70ca--2019-09-18T15:54:07-04:00", 
-  "activity.p_miss_at_rfa_targets": [
-    1, 
-    0.2, 
-    0.15, 
-    0.1, 
-    0.03, 
-    0.01
-  ], 
-  "activity.temporal_overlap_delta": 1, 
-  "scoring_protocol": "actev19_ad", 
-  "activity.epsilon_presenceconf_congruence": 1.0, 
-  "command": "../ActEV_Scorer.py ActEV19_AD -s data/test_9-0_fake-sysout.json -r data/test_9-0.json -a data/test_9-0_activity-index.json -f data/test_9-0_file-index.json -F -o data/checkfiles/test_9_0 -v", 
-  "wpmiss.numerator": 8, 
-  "nmide.cost_fa": 1, 
-  "nmide.ns_collar_size": 0, 
-  "wpmiss.denominator": 10, 
-  "activity.n_mide_at_rfa_targets": [
-    1, 
-    0.2, 
-    0.15, 
-    0.1, 
-    0.03, 
-    0.01
-  ], 
+  ],
+  "activity.epsilon_presenceconf_congruence": 1.0,
   "activity.fa_at_rfa_targets": [
-    1, 
-    0.2, 
-    0.15, 
-    0.1, 
-    0.03, 
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
     0.01
-  ]
+  ],
+  "activity.n_mide_at_rfa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.p_miss_at_rfa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.temporal_overlap_delta": 1,
+  "activity.w_p_miss_at_rfa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "command": "../ActEV_Scorer.py ActEV19_AD -s data/test_9-0_fake-sysout.json -r data/test_9-0.json -a data/test_9-0_activity-index.json -f data/test_9-0_file-index.json -F -o data/checkfiles/test_9_0 -v",
+  "fa.ns_collar_size": 0,
+  "git.commit": "69202c5eb497411c34d870bee00927b54a250778--2020-03-10T11:38:28-04:00",
+  "nmide.cost_fa": 1,
+  "nmide.cost_miss": 1,
+  "nmide.ns_collar_size": 0,
+  "scoring_protocol": "actev19_ad",
+  "wpmiss.denominator": 10,
+  "wpmiss.numerator": 8
 }

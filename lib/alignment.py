@@ -35,7 +35,7 @@ from operator import and_
 
 from alignment_record import AlignmentRecord
 from helpers import *
-
+from functools import reduce
 
 
 
@@ -71,7 +71,7 @@ def build_actev19_linear_combination_kernel(filters, components, weights, initia
                 #print component_values.get(key,0)
                 return init + weight * component_values.get(key, 0)
         
-            sim = reduce(_r, weights.iteritems(), initial_similarity)
+            sim = reduce(_r, weights.items(), initial_similarity)
             #print "SIM: %s" %str(sim)
             return (sim, component_values)
         else:
@@ -116,7 +116,7 @@ def build_linear_combination_kernel(filters, components, weights, initial_simila
                     #print component_values.get(key,0)
                 return init + weight * component_values.get(key, 0)
 
-            sim = reduce(_r, weights.iteritems(), initial_similarity)
+            sim = reduce(_r, weights.items(), initial_similarity)
             #print "SIM: %s" %str(sim)
             return (sim, component_values)
         else:
@@ -168,18 +168,18 @@ def perform_alignment(ref_instances, sys_instances, kernel, maximize = True):
             unmapped_sys.remove(s_i)
             unmapped_ref.remove(r_i)
             try:
-                correct_detects.append(AlignmentRecord(ref_instances[r_i], sys_instances[s_i], sim_matrix[s_i][r_i], component_matrix[s_i][r_i], ref_instances[r_i].localization, sys_instances[s_i].localization, sys_instances[s_i].localization.keys()[0]))
+                correct_detects.append(AlignmentRecord(ref_instances[r_i], sys_instances[s_i], sim_matrix[s_i][r_i], component_matrix[s_i][r_i], ref_instances[r_i].localization, sys_instances[s_i].localization, list(sys_instances[s_i].localization)[0]))
             except:
                 correct_detects.append(AlignmentRecord(ref_instances[r_i], sys_instances[s_i], sim_matrix[s_i][r_i], component_matrix[s_i][r_i],None,None,None))
     for r_i in unmapped_ref:
         try:
-            missed_detects.append(AlignmentRecord(ref_instances[r_i], None, None, None, ref_instances[r_i].localization, None, ref_instances[r_i].localization.keys()[0]))
+            missed_detects.append(AlignmentRecord(ref_instances[r_i], None, None, None, ref_instances[r_i].localization, None, list(ref_instances[r_i].localization)[0]))
         except:
             missed_detects.append(AlignmentRecord(ref_instances[r_i], None, None, None,None,None,None))
 
     for s_i in unmapped_sys:
         try:
-            false_alarms.append(AlignmentRecord(None, sys_instances[s_i], None, None, None, sys_instances[s_i].localization,sys_instances[s_i].localization.keys()[0]))
+            false_alarms.append(AlignmentRecord(None, sys_instances[s_i], None, None, None, sys_instances[s_i].localization, list(sys_instances[s_i].localization)[0]))
         except:
             false_alarms.append(AlignmentRecord(None, sys_instances[s_i], None, None,None,None,None))
     return(correct_detects, missed_detects, false_alarms)

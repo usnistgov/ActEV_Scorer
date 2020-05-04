@@ -1,7 +1,8 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import sys
 import os
+from functools import reduce
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../lib")
 sys.path.append(lib_path)

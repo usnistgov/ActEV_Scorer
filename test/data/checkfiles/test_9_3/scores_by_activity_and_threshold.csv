@@ -1,6 +1,6 @@
 activity|score_threshold|metric_name|metric_value
-Closing|0.756|p_miss|0.333333333333
-Closing|0.756|rfa|1.63785259327
+Closing|0.756|p_miss|0.3333333333333333
+Closing|0.756|rfa|1.6378525932666061
 Closing|0.756|tfa|0.99
 Closing|0.756|tfa_denom|100
 Closing|0.756|tfa_numer|99

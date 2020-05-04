@@ -1,9 +1,9 @@
 activity|ref|sys|metric_name|metric_value
-Closing|1|1|minMODE|0.357142857143
+Closing|1|1|minMODE|0.35714285714285715
 Closing|1|1|object-p_miss@0.033rfa|0.5
 Closing|1|1|object-p_miss@0.1rfa|0.5
 Closing|1|1|object-p_miss@0.2rfa|0.5
-Closing|1|1|object-p_miss@0.5rfa|0.178571428571
+Closing|1|1|object-p_miss@0.5rfa|0.17857142857142858
 Closing|1|1|temporal_fa|0
 Closing|1|1|temporal_intersection|28
 Closing|1|1|temporal_intersection-over-union|1.0
