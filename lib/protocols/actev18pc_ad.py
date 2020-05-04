@@ -33,7 +33,6 @@
 import sys
 import os
 import subprocess
-from functools import reduce
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
 
@@ -70,20 +69,20 @@ class ActEV18PC_AD(Default):
 
         super(ActEV18PC_AD, self).__init__(scoring_parameters, file_index, activity_index, command)
 
-        self.file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].items() }).area() for k, v in file_index.items() }
-        self.total_file_duration_minutes = sum([ float(frames) / file_index[k]["framerate"] for k, frames in self.file_framedur_lookup.items()]) / float(60)
+        self.file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].iteritems() }).area() for k, v in file_index.iteritems() }
+        self.total_file_duration_minutes = sum([ float(frames) / file_index[k]["framerate"] for k, frames in self.file_framedur_lookup.iteritems()]) / float(60)
 
     # Warning ** this cohort generation function only works when
     # activity instances are localized to a single file!!  This is
     # enforced by the schemas for ActEV18_AD and ActEV18_AOD
     def default_cohort_gen(self, refs, syss):
         def _localization_file_grouper(instance):
-            return list(instance.localization)[0]
+            return instance.localization.keys()[0]
 
         ref_groups = group_by_func(_localization_file_grouper, refs)
         sys_groups = group_by_func(_localization_file_grouper, syss)
 
-        for k in ref_groups.keys() | sys_groups.keys():
+        for k in ref_groups.viewkeys() | sys_groups.viewkeys():
             yield (ref_groups.get(k, []), sys_groups.get(k, []))
 
     def default_kernel_builder(self, refs, syss):
@@ -160,13 +159,13 @@ class ActEV18PC_AD(Default):
 
             p["-".join(factorization)] = det_points
 
-            for _m, v in measures.items():
+            for _m, v in measures.iteritems():
                 m.append(factorization + (_m, v))
 
             return (p, m)
 
         grouped = merge_dicts({ k: [] for k in default_factorizations }, group_by_func(factorization_func, records))
-        return reduce(_r, grouped.items(), ({}, []))
+        return reduce(_r, grouped.iteritems(), ({}, []))
 
     def compute_record_means(self, records, selected_measures = None):
         raw_means = self.compute_means(records, selected_measures)

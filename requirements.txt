@@ -1,4 +1,0 @@
-munkres==1.0.12
-scipy==1.4.1
-matplotlib==3.2.0
-jsonschema==2.5.1

@@ -32,7 +32,7 @@
 
 import sys
 import os
-from functools import reduce
+
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
 
@@ -55,7 +55,7 @@ class Default(object):
         self.scoring_parameters = scoring_parameters
         self.file_index = file_index
         self.activity_index = activity_index
-        self.default_activity_groups = [ (k,) for k in self.activity_index.keys() ]
+        self.default_activity_groups = [ (k,) for k in self.activity_index.viewkeys() ]
 
     # assumes syss, and refs are simple lists of activities
     def default_cohort_gen(self, refs, syss):
@@ -83,7 +83,7 @@ class Default(object):
         sys_by_act = group_by_func(activity_getter, system_activities)
 
         alignment_recs = []
-        for activity, activity_properties in self.activity_index.items():
+        for activity, activity_properties in self.activity_index.iteritems():
             refs = ref_by_act.get(activity, [])
             syss = sys_by_act.get(activity, [])
 
@@ -114,12 +114,12 @@ class Default(object):
         def _r(init, item):
             factorization, recs = item
 
-            for mv in self.compute_measures(recs, measures).items():
+            for mv in self.compute_measures(recs, measures).iteritems():
                 init.append(factorization + mv)
 
             return init
 
-        return reduce(_r, group_by_func(factorization_func, records, default_groups = default_factorizations).items(), [])
+        return reduce(_r, group_by_func(factorization_func, records, default_groups = default_factorizations).iteritems(), [])
     
     def compute_auc(self, output_dir):
 
@@ -127,13 +127,13 @@ class Default(object):
         auc_data = []
         mean_auc = []
         for p in prefix:
-            for activity, activity_properties in self.activity_index.items():
+            for activity, activity_properties in self.activity_index.iteritems():
                 try:
                     dm_data = DataContainer.load(output_dir+"/dm/"+"{}_{}.dm".format(p, activity))
                     auc_data = auc_data + get_auc_new(dm_data, p, activity)
                 except Exception as E:
-                    print(E)
-                    print(output_dir+"/dm/"+"{}_{}.dm".format(p, activity) +"DNE")
+                    print E
+                    print output_dir+"/dm/"+"{}_{}.dm".format(p, activity) +"DNE"
         mean_auc =  get_auc_mean(auc_data)
         return auc_data, mean_auc
     
@@ -143,7 +143,7 @@ class Default(object):
             measures = self.default_pair_measures()
 
         def _r(init, rec):
-            for mv in self.compute_measures(rec, measures).items():
+            for mv in self.compute_measures(rec, measures).iteritems():
                 init.append(rec_map_func(rec) + mv)
 
             return init

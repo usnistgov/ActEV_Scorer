@@ -1,14 +1,14 @@
 activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
 Closing|CD|1|1|1.0|2.0|{"presenceconf_congruence": 1.0}
 Closing|CD|10|19|0.1|1.0|{"presenceconf_congruence": 0.0}
-Closing|CD|2|3|0.9|1.8888888888888888|{"presenceconf_congruence": 0.888888888888889}
-Closing|CD|3|5|0.8|1.7777777777777777|{"presenceconf_congruence": 0.7777777777777778}
-Closing|CD|4|7|0.7|1.6666666666666665|{"presenceconf_congruence": 0.6666666666666666}
-Closing|CD|5|9|0.6|1.5555555555555556|{"presenceconf_congruence": 0.5555555555555556}
-Closing|CD|6|11|0.5|1.4444444444444444|{"presenceconf_congruence": 0.4444444444444445}
-Closing|CD|7|13|0.4|1.3333333333333335|{"presenceconf_congruence": 0.33333333333333337}
-Closing|CD|8|15|0.3|1.2222222222222223|{"presenceconf_congruence": 0.2222222222222222}
-Closing|CD|9|17|0.2|1.1111111111111112|{"presenceconf_congruence": 0.11111111111111112}
+Closing|CD|2|3|0.9|1.88888888889|{"presenceconf_congruence": 0.888888888888889}
+Closing|CD|3|5|0.8|1.77777777778|{"presenceconf_congruence": 0.7777777777777778}
+Closing|CD|4|7|0.7|1.66666666667|{"presenceconf_congruence": 0.6666666666666666}
+Closing|CD|5|9|0.6|1.55555555556|{"presenceconf_congruence": 0.5555555555555556}
+Closing|CD|6|11|0.5|1.44444444444|{"presenceconf_congruence": 0.4444444444444445}
+Closing|CD|7|13|0.4|1.33333333333|{"presenceconf_congruence": 0.33333333333333337}
+Closing|CD|8|15|0.3|1.22222222222|{"presenceconf_congruence": 0.2222222222222222}
+Closing|CD|9|17|0.2|1.11111111111|{"presenceconf_congruence": 0.11111111111111112}
 Closing|FA|None|10|0.6|None|None
 Closing|FA|None|12|0.5|None|None
 Closing|FA|None|14|0.4|None|None

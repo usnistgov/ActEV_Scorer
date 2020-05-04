@@ -12,11 +12,11 @@
 [Info] Saving results to directory 'data/checkfiles/test_11_0'
 [Info] Saving figures to directory 'data/checkfiles/test_11_0/figures'
 [Info] Saving dm files to directory 'data/checkfiles/test_11_0/dm'
-[Info] Plotting RFA DET curve for Entering
 [Info] Plotting RFA DET curve for Closing
+[Info] Plotting RFA DET curve for Entering
 [Info] Plotting mean RFA curve for 2 activities
 [Info] Plotting combined RFA DET curves
-[Info] Plotting TFA DET curve for Entering
 [Info] Plotting TFA DET curve for Closing
+[Info] Plotting TFA DET curve for Entering
 [Info] Plotting mean TFA curve for 2 activities
 [Info] Plotting combined TFA DET curves

@@ -32,7 +32,6 @@
 
 from operator import add, sub
 from itertools import repeat
-from functools import reduce
 
 class SparseSignal(dict):
     def __init__(self, *args, **kwargs):

@@ -37,8 +37,8 @@ from sparse_signal import SparseSignal as S
 # is a nested dictionary of the form { "<filename>": { "<frame_num>":
 # value } }
 def _localization_key_converter(localization, value_mapper = lambda x: x):
-    return { k: { int(_k): value_mapper(_v) for _k, _v in v.items() }
-             for k, v in localization.items() }
+    return { k: { int(_k): value_mapper(_v) for _k, _v in v.iteritems() }
+             for k, v in localization.iteritems() }
 
 def _bounding_box_to_signal(bounding_box):
     x, y, w, h = map(lambda e: bounding_box[e], ("x", "y", "w", "h"))
@@ -59,7 +59,7 @@ class ActivityInstance():
         self.activityID = dictionary["activityID"]
         self.presenceConf = dictionary.get("presenceConf", None)
         self.localization = _localization_key_converter(dictionary["localization"])
-        if load_objects and "objects" in dictionary:
+        if load_objects and dictionary.has_key("objects"):
             self.objects = [ ObjectInstance(o) for o in dictionary["objects"] ]
         else:
             self.objects = None

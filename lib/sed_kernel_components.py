@@ -31,12 +31,11 @@
 # licenses.
 
 def build_sed_presenceconf_congruence(sys_instances):
-    sys_instances_list = list(sys_instances)
-    if len(sys_instances_list) == 1:
+    if len(sys_instances) == 1:
         def _congruence(r, s, cache):
             return { "presenceconf_congruence": 1.0 }
-    elif len(sys_instances_list) > 1:
-        sys_presence_confs = [ s.presenceConf for s in sys_instances_list ]
+    elif len(sys_instances) > 1:
+        sys_presence_confs = [ s.presenceConf for s in sys_instances ]
         min_presence_conf = min(sys_presence_confs)
         sys_conf_range = max(sys_presence_confs) - min_presence_conf
 

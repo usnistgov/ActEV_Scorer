@@ -32,10 +32,6 @@
 
 # Optional default_groups ensures the inclusion of the
 # specified groups in the output dictionary
-
-from functools import reduce
-
-
 def group_by_func(key_func, items, map_func = None, default_groups = None):
     def _r(h, x):
         h.setdefault(key_func(x), []).append(x if map_func == None else map_func(x))
@@ -55,7 +51,7 @@ def dict_to_records(d, value_map = None):
 
         return init
 
-    return reduce(_r, d.items(), [])
+    return reduce(_r, d.iteritems(), [])
 
 def merge_dicts(a, b, conflict_func = None):
     def _r(init, k):
@@ -69,7 +65,7 @@ def merge_dicts(a, b, conflict_func = None):
 
         return init
 
-    return reduce(_r, a.keys() | b.keys(), {})
+    return reduce(_r, a.viewkeys() | b.viewkeys(), {})
 
 def identity(x):
     return x

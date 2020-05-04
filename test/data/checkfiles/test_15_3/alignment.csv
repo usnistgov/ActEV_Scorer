@@ -1,10 +1,10 @@
 activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
 Closing|CD|1|1|1.0|2.0|{"presenceconf_congruence": 1.0}
-Closing|CD|2|3|0.9|1.8333333333333335|{"presenceconf_congruence": 0.8333333333333334}
-Closing|CD|3|5|0.8|1.6666666666666667|{"presenceconf_congruence": 0.6666666666666667}
+Closing|CD|2|3|0.9|1.83333333333|{"presenceconf_congruence": 0.8333333333333334}
+Closing|CD|3|5|0.8|1.66666666667|{"presenceconf_congruence": 0.6666666666666667}
 Closing|CD|4|7|0.7|1.5|{"presenceconf_congruence": 0.4999999999999999}
-Closing|CD|5|9|0.6|1.3333333333333333|{"presenceconf_congruence": 0.33333333333333326}
-Closing|CD|6|11|0.5|1.1666666666666665|{"presenceconf_congruence": 0.16666666666666663}
+Closing|CD|5|9|0.6|1.33333333333|{"presenceconf_congruence": 0.33333333333333326}
+Closing|CD|6|11|0.5|1.16666666667|{"presenceconf_congruence": 0.16666666666666663}
 Closing|CD|7|13|0.4|1.0|{"presenceconf_congruence": 0.0}
 Closing|FA|None|10|0.6|None|None
 Closing|FA|None|12|0.5|None|None

@@ -2,7 +2,7 @@ metric_name|metric_value
 mean-mean-object-p_miss@0.033rfa|1.0
 mean-mean-object-p_miss@0.1rfa|1.0
 mean-mean-object-p_miss@0.2rfa|1.0
-mean-mean-object-p_miss@0.5rfa|1.0
+mean-mean-object-p_miss@0.5rfa|0.5
 mean-n-mide|0.0
 mean-n-mide@0.01rfa|0.0
 mean-n-mide@0.03rfa|0.0
@@ -21,12 +21,12 @@ mean-p_miss@0.15rfa|0.5
 mean-p_miss@0.1rfa|0.5
 mean-p_miss@0.2rfa|0.5
 mean-p_miss@1rfa|0.5
-mean-w_p_miss@0.01rfa|0.8636363636363636
-mean-w_p_miss@0.03rfa|0.8636363636363636
-mean-w_p_miss@0.15rfa|0.8636363636363636
-mean-w_p_miss@0.1rfa|0.8636363636363636
-mean-w_p_miss@0.2rfa|0.8636363636363636
-mean-w_p_miss@1rfa|0.8636363636363636
+mean-w_p_miss@0.01rfa|0.863636363636
+mean-w_p_miss@0.03rfa|0.863636363636
+mean-w_p_miss@0.15rfa|0.863636363636
+mean-w_p_miss@0.1rfa|0.863636363636
+mean-w_p_miss@0.2rfa|0.863636363636
+mean-w_p_miss@1rfa|0.863636363636
 n-mide|0.0
 n-mide_num_rejected|0
 object-p_miss@0.033rfa|1.0

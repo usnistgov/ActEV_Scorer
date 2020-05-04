@@ -82,11 +82,10 @@ class Render:
         get_y = lambda fn, plot_type: norm.ppf(fn) if plot_type == "det" else 1 - fn
 
         for obj in data_list:
-            if not True in np.isnan(np.array(obj.fn)):
-                x = obj.fa
-                y = get_y(obj.fn, plot_type)
-                y[y == np.inf] = infinity
-                plt.plot(x, y, **obj.line_options)
+            x = obj.fa
+            y = get_y(obj.fn, plot_type)
+            y[y == np.inf] = infinity
+            plt.plot(x, y, **obj.line_options)
 
         # if plot_type.lower() == "det":
         #     plt.plot((1, 0), 'b--', lw=1)

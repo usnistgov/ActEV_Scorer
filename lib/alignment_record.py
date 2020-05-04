@@ -31,7 +31,6 @@
 # licenses.
 
 from collections import namedtuple, OrderedDict
-from functools import reduce
 
 import json
 
@@ -78,9 +77,9 @@ class AlignmentRecord(namedtuple("ActivityRecord", ["ref",
             if self.sys is None:
                 return None
             else:
-                return list(self.sys.localization)[0]
+                return self.sys.localization.keys()[0]
         else:
-            return list(self.ref.localization)[0]
+            return self.ref.localization.keys()[0]
     @property
     def sys_presence_conf(self):
         if self.sys == None:

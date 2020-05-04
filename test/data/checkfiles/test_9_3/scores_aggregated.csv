@@ -18,7 +18,7 @@ mean-p_miss@0.1tfa|1.0
 mean-p_miss@0.2rfa|1.0
 mean-p_miss@0.2tfa|1.0
 mean-p_miss@1rfa|1.0
-mean-p_miss@1tfa|0.6666666666666666
+mean-p_miss@1tfa|0.666666666667
 mean-w_p_miss@0.01rfa|1.0
 mean-w_p_miss@0.03rfa|1.0
 mean-w_p_miss@0.15rfa|1.0

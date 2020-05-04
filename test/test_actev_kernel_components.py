@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2
 
 import sys
 import os
@@ -90,7 +90,7 @@ class TestActEVKernelComponents(unittest.TestCase):
         obs_b, obs_d = obs
         exp_b, exp_d = exp
         self.assertEqual(obs_b, exp_b)
-        for k in obs_d.keys() | exp_d.keys():
+        for k in obs_d.viewkeys() | exp_d.viewkeys():
             self.assertAlmostEqual(obs_d[k], exp_d[k], places=10)
 
 class TestTemporalIntersectionFilter(TestActEVKernelComponents):
