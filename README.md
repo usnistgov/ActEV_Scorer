@@ -19,7 +19,7 @@ a system output file adhering to the JSON format defined in the ActEV evaluation
 
   This package assumes a Unix-like environment. Included Python files are written for Python 3.7
 
-  1) Install Python 3.7, `jq` and required dependencies using `make install`
+  1) Install Python 3.7+, `jq` and required dependencies using `make install_pip` or `make install_conda`
   2) Run the tests (optional, but strongly recommended) using `make check`
 
 ### Option description
