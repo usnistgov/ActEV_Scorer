@@ -1,6 +1,6 @@
-# ActEV Scorer scripts
+# ActEV Scorer - human_error scripts
 
-A bunch of useful scripts when using ActEV Scorer.
+A bunch of useful scripts when using ActEV_Scorer to highlight human errors.
 
 ## Table of content
 
