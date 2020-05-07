@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# generate_DETcurve_per_activity.py
+# generate_DETcurve_mean.py
 # Author(s): Baptiste Chocot
 
 # This software was developed by employees of the National Institute of
@@ -74,9 +74,6 @@ def main():
         '-r', '--reference', help="Directory of the reference Scorer output",
         type=str, required=True)
     parser.add_argument(
-        '-a', '--activity-index', help="List of activities to plot curves.",
-        type=str, required=True)
-    parser.add_argument(
         '-o', '--output', help="Output directory to save plots.",
         type=str, required=False, default='.')
     parser.add_argument(
@@ -84,74 +81,55 @@ def main():
         type=str, required=False, default='DET')
     args = parser.parse_args()
 
-    with open(args.activity_index, 'r') as f:
-        activities = list(json.load(f).keys())
-
     if not os.path.isdir(args.output):
         os.mkdir(args.output)
 
-    for activity in activities:
-        # Init
-        out_path = os.path.join(args.output, activity)
-        if not os.path.isdir(out_path):
-            os.mkdir(out_path)
-        systems = [os.path.join(args.input, thing)
-                   for thing in os.listdir(args.input)
-                   if os.path.isdir(os.path.join(args.input, thing))]
-        for system in systems:
-            system_name = system.split(os.path.sep)[-1]
-            dms = [os.path.join(system, 'dm', thing)
-                   for thing in os.listdir(os.path.join(system, 'dm'))
-                   if os.path.isfile(os.path.join(system, 'dm', thing))
-                   and re.findall(r'TFA_%s\.dm$' % (activity), os.path.join(
-                    system, 'dm', thing))]
-            # Plot curves
-            for i in range(len(dms)):
-                os.system(
-                    command % (
-                        DIR, dms[i], out_path,
-                        "%s_%s_%i" % (system_name, activity, i),
-                        args.curve_type))
-        # Finally, sumup curve ; building render args
-        rargs = []
+    out_path = args.output
+    if not os.path.isdir(out_path):
+        os.mkdir(out_path)
 
-        def get_label(path):
-            try:
-                with open(os.path.join(path, 'label.txt'), 'r') as f:
-                    label = f.readline().split('\n')[0]
-                return label
-            except Exception:  # no label.txt file
-                if re.findall('/', path):
-                    candidate = path.split(os.path.sep)[-1]
-                    return candidate if candidate != '' \
-                        else path.split(os.path.sep)[-2]
-                else:
-                    return path
+    systems = [os.path.join(args.input, thing)
+                for thing in os.listdir(args.input)
+                if os.path.isdir(os.path.join(args.input, thing))]
 
-        for system in systems:
-            dm_args = {}
-            dm_args['path'] = os.path.join(
-                system, 'dm', 'TFA_%s.dm' % (activity))
-            dm_args['label'] = get_label(system)
-            dm_args['show_label'] = True
-            plot_args = {'linewidth': 2, 'markersize': 24}
-            rargs.append([dm_args, plot_args])
-        # Adding references
-        references = [os.path.join(args.reference, thing)
-                      for thing in os.listdir(args.reference)
-                      if os.path.isdir(os.path.join(args.reference, thing))]
-        for reference in references:
-            rargs.append([{
-                'path': os.path.join(
-                    reference, 'dm', 'TFA_%s.dm' % (activity)),
-                'label': get_label(reference),
-                'show_label': True}, {
-                    'linestyle': 'solid', 'marker': '.', 'markersize': 24}])
+    rargs = []
 
-        # print(rargs)
-        os.system(command % (DIR, '"%s"' % (str(rargs)), out_path,
-                  "%s_all" % (activity), args.curve_type) +
-                  " --plotTitle " + activity)
+    def get_label(path):
+        try:
+            with open(os.path.join(path, 'label.txt'), 'r') as f:
+                label = f.readline().split('\n')[0]
+            return label
+        except Exception:  # no label.txt file
+            if re.findall('/', path):
+                candidate = path.split(os.path.sep)[-1]
+                return candidate if candidate != '' \
+                    else path.split(os.path.sep)[-2]
+            else:
+                return path
+
+    for system in systems:
+        dm_args = {}
+        dm_args['path'] = os.path.join(system, 'dm', 'TFA_mean_byfa.dm')
+        dm_args['label'] = get_label(system)
+        dm_args['show_label'] = True
+        plot_args = {'linewidth': 2, 'markersize': 24}
+        rargs.append([dm_args, plot_args])
+    # Adding references
+    references = [os.path.join(args.reference, thing)
+                    for thing in os.listdir(args.reference)
+                    if os.path.isdir(os.path.join(args.reference, thing))]
+    for reference in references:
+        rargs.append([{
+            'path': os.path.join(
+                reference, 'dm', 'TFA_mean_byfa.dm'),
+            'label': get_label(reference),
+            'show_label': True}, {
+                'linestyle': 'solid', 'marker': '.', 'markersize': 4}])
+
+    # print(rargs)
+    os.system(command % (DIR, '"%s"' % (str(rargs)), out_path,
+                "mean_byfa", args.curve_type) +
+                " --plotTitle mean_byfa")
 
 
 if __name__ == '__main__':
