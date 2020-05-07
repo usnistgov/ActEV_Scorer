@@ -45,9 +45,9 @@ Arguments:
               - System2/
               - etc
 * `-r, --reference`: Directory of several Scorer outputs used as references.
-  
 * `-a, --activity-index`: List of activities to plot DET curves for.
 * `-o, --output`: Output directory to save plots.
+* `-c, --curve-type`: Type of curve to plot (Default "DET", can also be "ROC").
 
 N.B.: If you want custom labels for sumup DET curves (both sys and ref), you
 can add a `label.txt` file in each folder. The content of the first line will
@@ -114,15 +114,17 @@ def main():
                         args.curveType))
         # Finally, sumup curve ; building render args
         rargs = []
+
         def get_label(path):
             try:
                 with open(os.path.join(path, 'label.txt'), 'r') as f:
                     label = f.readline().split('\n')[0]
                 return label
-            except:  # no label.txt file
+            except Exception:  # no label.txt file
                 if re.findall('/', path):
                     candidate = path.split(os.path.sep)[-1]
-                    return candidate if candidate != '' else path.split(os.path.sep)[-2]
+                    return candidate if candidate != '' \
+                        else path.split(os.path.sep)[-2]
                 else:
                     return path
 
@@ -132,16 +134,25 @@ def main():
                 system, 'dm', 'TFA_%s.dm' % (activity))
             dm_args['label'] = get_label(system)
             dm_args['show_label'] = True
-            plot_args = {'linewidth':2, 'markersize': 24}
+            plot_args = {'linewidth': 2, 'markersize': 24}
             rargs.append([dm_args, plot_args])
         # Adding references
-        references = [os.path.join(args.reference, thing) for thing in os.listdir(args.reference) if os.path.isdir(os.path.join(args.reference, thing))]
+        references = [os.path.join(args.reference, thing)
+                      for thing in os.listdir(args.reference)
+                      if os.path.isdir(os.path.join(args.reference, thing))]
         for reference in references:
-            rargs.append([{'path': os.path.join(reference, 'dm', 'TFA_%s.dm' % (activity)), 'label': get_label(reference), 'show_label': True}, {'linestyle': 'solid', 'marker': '.', 'markersize': 24}])
+            rargs.append([{
+                'path': os.path.join(
+                    reference, 'dm', 'TFA_%s.dm' % (activity)),
+                'label': get_label(reference),
+                'show_label': True}, {
+                    'linestyle': 'solid', 'marker': '.', 'markersize': 24}])
 
         # print(rargs)
         os.system(command % (DIR, '"%s"' % (str(rargs)), out_path,
-            "%s_all" % (activity), args.curveType) + " --plotTitle " + activity)
+                  "%s_all" % (activity), args.curveType) +
+                  " --plotTitle " + activity)
+
 
 if __name__ == '__main__':
     main()
