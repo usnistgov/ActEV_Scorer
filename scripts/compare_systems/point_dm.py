@@ -33,9 +33,9 @@
 # licenses.
 
 import argparse
-from datacontainer import DataContainer
 import sys
 sys.path.append('/Users/bnc8/Desktop/ActEV_Scorer/lib')
+from datacontainer import DataContainer
 
 
 def single_point_dm(fa_point, fn_point, threshold, file_name,
