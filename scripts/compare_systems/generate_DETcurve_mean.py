@@ -89,8 +89,8 @@ def main():
         os.mkdir(out_path)
 
     systems = [os.path.join(args.input, thing)
-                for thing in os.listdir(args.input)
-                if os.path.isdir(os.path.join(args.input, thing))]
+               for thing in os.listdir(args.input)
+               if os.path.isdir(os.path.join(args.input, thing))]
 
     rargs = []
 
@@ -116,8 +116,8 @@ def main():
         rargs.append([dm_args, plot_args])
     # Adding references
     references = [os.path.join(args.reference, thing)
-                    for thing in os.listdir(args.reference)
-                    if os.path.isdir(os.path.join(args.reference, thing))]
+                  for thing in os.listdir(args.reference)
+                  if os.path.isdir(os.path.join(args.reference, thing))]
     for reference in references:
         rargs.append([{
             'path': os.path.join(
@@ -126,10 +126,8 @@ def main():
             'show_label': True}, {
                 'linestyle': 'solid', 'marker': '.', 'markersize': 4}])
 
-    # print(rargs)
     os.system(command % (DIR, '"%s"' % (str(rargs)), out_path,
-                "mean_byfa", args.curve_type) +
-                " --plotTitle mean_byfa")
+              "mean_byfa", args.curve_type) + " --plotTitle mean_byfa")
 
 
 if __name__ == '__main__':
