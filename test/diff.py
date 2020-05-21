@@ -47,6 +47,14 @@ def line_count(fd):
     fd.seek(0)
     return cpt
 
+def fopen(path):
+    fd = open(path, 'r')
+    try:
+        fd.readlines()
+    except UnicodeDecodeError:
+        fd.close()
+        fd = open(path, 'r', encoding='latin1')
+    return fd
 
 def main():
     if len(sys.argv) != 3:
@@ -78,9 +86,9 @@ def main():
                 if is_json:
                     ref = open(tmp_ref_file, 'r')
                     out = open(tmp_out_file, 'r')
-                else:
-                    ref = open(os.path.join(ref_folder, file_name), 'r')
-                    out = open(os.path.join(out_folder, file_name), 'r')
+                else:  # some files are dumped in latin1 encoding so we are using local fopen
+                    ref = fopen(os.path.join(ref_folder, file_name), 'r')
+                    out = fopen(os.path.join(out_folder, file_name), 'r')
                 # Checking lines number
                 if line_count(ref) != line_count(out):
                     print("{0} and {1} line number differ.".format(ref_file, out_file))
