@@ -121,8 +121,8 @@ class DataContainer:
                 if method == "average":
                     x = np.linspace(0, max_fa, average_resolution)
                     ys = np.vstack([np.interp(x, data.fa, data.fn) for data in dc_list_filtered])
-                    if len(ys) == 0 or np.isclose(ys.sum(), 0):
-                        stds = np.array([0]*len(ys))
+                    if np.isclose(ys.sum(), 0):
+                        stds = np.array([0]*ys.shape[0])
                     else:
                         stds = np.std(ys, axis=0, ddof=1)
                         stds = stds / math.sqrt(n)
