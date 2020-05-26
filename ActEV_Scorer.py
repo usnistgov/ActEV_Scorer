@@ -312,9 +312,11 @@ def score_basic(protocol_class, args):
 
     log(1, "[Info] Scoring ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
-    try:
+
+    from actev_sdl_v2 import ActEV_SDL_V2
+    if isinstance(protocol, ActEV_SDL_V2):
         results = protocol.compute_results(alignment, args.det_point_resolution, args.processes_number)
-    except TypeError:
+    else:
         results = protocol.compute_results(alignment, args.det_point_resolution)
     #print(str(type(results)), file=sys.stderr)
     mkdir_p(args.output_dir)
