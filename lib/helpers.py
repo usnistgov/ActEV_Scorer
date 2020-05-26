@@ -33,6 +33,7 @@
 # Optional default_groups ensures the inclusion of the
 # specified groups in the output dictionary
 
+import dill
 from functools import reduce
 
 
@@ -73,3 +74,9 @@ def merge_dicts(a, b, conflict_func = None):
 
 def identity(x):
     return x
+
+def unserialize_sweeper(args):
+    (sfct, alignments) = args
+    fct = dill.loads(sfct)
+    return fct(alignments)
+

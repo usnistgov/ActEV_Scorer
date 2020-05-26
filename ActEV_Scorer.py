@@ -312,7 +312,10 @@ def score_basic(protocol_class, args):
 
     log(1, "[Info] Scoring ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
-    results = protocol.compute_results(alignment, args.det_point_resolution)
+    try:
+        results = protocol.compute_results(alignment, args.det_point_resolution, args.processes_number)
+    except TypeError:
+        results = protocol.compute_results(alignment, args.det_point_resolution)
     #print(str(type(results)), file=sys.stderr)
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
@@ -425,7 +428,8 @@ if __name__ == '__main__':
                  [["-d", "--disable-plotting"], dict(help="Disable DET Curve plotting of results", action="store_true")],
                  [["-v", "--verbose"], dict(help="Toggle verbose log output", action="store_true")],
                  [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)],
-                 [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],]
+                 [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],
+                 [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=1)],]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)

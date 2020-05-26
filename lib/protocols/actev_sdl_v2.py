@@ -34,6 +34,8 @@ import sys
 import os
 from pprint import pprint
 import subprocess
+import dill
+import multiprocessing
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
@@ -136,9 +138,23 @@ class ActEV_SDL_V2(Default):
                                                                    self.build_nmide_measure(),
                                                                    self.build_fa_measure()], uniq_conf, file_framedur_lookup = self.file_framedur_lookup)
 
-        det_points = sweeper(alignment)
-        #print "det_points"
-        #pprint(det_points)
+        ar_list = {}
+        for ac in alignment:
+            try:
+                ar_list[ac.video_file].append(ac)
+            except KeyError:
+                ar_list[ac.video_file] = [ac]
+        pool = multiprocessing.Pool(self.pn)
+        serialized_sweeper = dill.dumps(sweeper)
+        alignments = list(ar_list.values())
+        proc_args = []
+        for ar in alignments:
+            proc_args.append((serialized_sweeper, ar))
+        det_res = pool.map(unserialize_sweeper, proc_args)
+        det_points = []
+        for array in det_res:
+            det_points.extend(array)
+
 
         pmiss_measures = get_points_along_confidence_curve(det_points,
                                                            "rfa",
@@ -225,11 +241,10 @@ class ActEV_SDL_V2(Default):
 
         return reduce(_r, raw_means, [])
 
-    def compute_results(self, alignment, uniq_conf):
+    def compute_results(self, alignment, uniq_conf, pn):
+        self.pn = pn
         c, m, f = partition_alignment(alignment)
 
-        #print c[0].ref
-        #print c[0].sys
         ar_nmide_measure = self.build_ar_nmide_measure()
 
         def _pair_arg_map(rec):

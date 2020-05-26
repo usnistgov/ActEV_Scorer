@@ -87,8 +87,8 @@ def main():
                     ref = open(tmp_ref_file, 'r')
                     out = open(tmp_out_file, 'r')
                 else:  # some files are dumped in latin1 encoding so we are using local fopen
-                    ref = fopen(os.path.join(ref_folder, file_name), 'r')
-                    out = fopen(os.path.join(out_folder, file_name), 'r')
+                    ref = fopen(os.path.join(ref_folder, file_name))
+                    out = fopen(os.path.join(out_folder, file_name))
                 # Checking lines number
                 if line_count(ref) != line_count(out):
                     print("{0} and {1} line number differ.".format(ref_file, out_file))
