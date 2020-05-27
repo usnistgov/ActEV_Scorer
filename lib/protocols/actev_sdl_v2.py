@@ -137,24 +137,7 @@ class ActEV_SDL_V2(Default):
                                                                    build_wpmiss_metric(wpmiss_denom, wpmiss_numer),
                                                                    self.build_nmide_measure(),
                                                                    self.build_fa_measure()], uniq_conf, file_framedur_lookup = self.file_framedur_lookup)
-
-        ar_list = {}
-        for ac in alignment:
-            try:
-                ar_list[ac.video_file].append(ac)
-            except KeyError:
-                ar_list[ac.video_file] = [ac]
-        pool = multiprocessing.Pool(self.pn)
-        serialized_sweeper = dill.dumps(sweeper)
-        alignments = list(ar_list.values())
-        proc_args = []
-        for ar in alignments:
-            proc_args.append((serialized_sweeper, ar))
-        det_res = pool.map(unserialize_sweeper, proc_args)
-        det_points = []
-        for array in det_res:
-            det_points.extend(array)
-
+        det_points = sweeper(alignment)
 
         pmiss_measures = get_points_along_confidence_curve(det_points,
                                                            "rfa",
@@ -216,17 +199,25 @@ class ActEV_SDL_V2(Default):
                     fa.append((k, ii, "tfa", i[3]))
                     fa.append((k, ii, "tfa_denom", i[4]))
                     fa.append((k, ii, "tfa_numer", i[5]))
-#            for k, v in f.items():
-#                print k,v
-                #fa.append(factorization + (k, v))
-                #for k in f.keys():
                 
             for _m, v in measures.items():
                 m.append(factorization + (_m, v))
             return (p, t, fa, m)
 
         grouped = merge_dicts({ k: [] for k in default_factorizations }, group_by_func(factorization_func, records))
-        return reduce(_r, grouped.items(), ({}, {}, [], []))
+        _r_srlz = dill.dumps(_r)
+        args = []
+        # ca ne va pas du tout, faut bien faire la liste des arguments la nan ?
+        for key in grouped:
+            args.append((_r_srlz, (key, grouped[key]), ({}, {}, [], [])))
+        res = multiprocessing.Pool().map(unserialize_fct, args)
+        p, t, fa, m = {}, {}, [], []
+        for entry in res:
+            p.update(entry[0])
+            t.update(entry[1])
+            fa.extend(entry[2])
+            m.extend(entry[3])
+        return (p, t, fa, m)
 
     def compute_record_means(self, records, selected_measures = None):
         raw_means = self.compute_means(records, selected_measures)
@@ -267,8 +258,10 @@ class ActEV_SDL_V2(Default):
             return (rec.activity,)
 
         activity_nmides = self.compute_aggregate_measures(alignment, _activity_grouper, [ ar_nmide_measure ], self.default_activity_groups)
-        out_det_points, out_tfa_det_points, out_fa_data, det_measures = self.compute_aggregate_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, uniq_conf, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.scoring_parameters["activity.fa_at_rfa_targets"], self.default_activity_groups)
-        
+        out_det_points, out_tfa_det_points, out_fa_data, det_measures = self.compute_aggregate_det_points_and_measures(
+            alignment, _activity_grouper,
+            lambda x: self.total_file_duration_minutes, uniq_conf, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.scoring_parameters["activity.fa_at_rfa_targets"], self.default_activity_groups)
+
         # Overall level + Activity Aggregates + Pair Agg. Aggregates
         def _empty_grouper(rec):
             return tuple() # empty tuple

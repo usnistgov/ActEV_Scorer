@@ -75,8 +75,13 @@ def merge_dicts(a, b, conflict_func = None):
 def identity(x):
     return x
 
-def unserialize_sweeper(args):
-    (sfct, alignments) = args
+def unserialize_fct(args):
+    (sfct, (activity, iterable), init) = args
+    #import sys
+    #buffer = "FCT:\n"
+    #buffer += activity[0] + '\n'
+    #buffer += str({activity[0]: iterable}.items()) + '\n'
+    #print(buffer, file=sys.stderr)
     fct = dill.loads(sfct)
-    return fct(alignments)
+    return fct(init, (activity, iterable))
 
