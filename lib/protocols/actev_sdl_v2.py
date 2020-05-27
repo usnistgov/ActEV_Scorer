@@ -210,7 +210,7 @@ class ActEV_SDL_V2(Default):
         # ca ne va pas du tout, faut bien faire la liste des arguments la nan ?
         for key in grouped:
             args.append((_r_srlz, (key, grouped[key]), ({}, {}, [], [])))
-        res = multiprocessing.Pool().map(unserialize_fct, args)
+        res = multiprocessing.Pool(self.pn).map(unserialize_fct, args)
         p, t, fa, m = {}, {}, [], []
         for entry in res:
             p.update(entry[0])
