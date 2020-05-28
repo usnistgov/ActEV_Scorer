@@ -211,7 +211,7 @@ class ActEV_SDL_V2(Default):
 
             msum = 0
             pid = str(os.getpid())
-            with open("debug.log", "w") as dbg:
+            with open("debug.log", "a") as dbg:
                 print(pid + "LOCALS", file=dbg)
                 for var in locals():
                     size = getsize(var)
