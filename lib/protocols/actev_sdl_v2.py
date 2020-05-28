@@ -210,6 +210,8 @@ class ActEV_SDL_V2(Default):
                     objects = get_referents(*need_referents)
                 return size
 
+ 4903553596
+14712510234
             msum = 0
             pid = str(os.getpid())
             with open("debug.log", "a") as dbg:
@@ -218,13 +220,13 @@ class ActEV_SDL_V2(Default):
                 for var in loc:
                     size = getsize(loc[var])
                     msum += size
-                    print(pid + str(var) + ' ' + size, file=dbg)
+                    print(pid + str(var) + ' ' + str(size), file=dbg)
                 print(pid + "GLOBALS", file=dbg)
                 glo = globals().copy()
                 for var in glo:
                     size = getsize(glo[var])
                     msum += size
-                    print(pid + str(var) + ' ' + size, file=dbg)
+                    print(pid + str(var) + ' ' + str(size), file=dbg)
                 print(pid + "total: " + str(msum), file=dbg)
             # end debug
 
