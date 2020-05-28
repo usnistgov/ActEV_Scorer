@@ -87,7 +87,7 @@ class DataContainer:
         """
         with open(path, 'rb') as file:
             if sys.version_info[0] >= 3:
-                obj = pickle.load(file, encoding='latin1') 
+                obj = pickle.load(file, encoding='latin1')
             else:
                 obj = pickle.load(file)
         return obj
