@@ -87,8 +87,8 @@ def main():
                     ref = open(tmp_ref_file, 'r')
                     out = open(tmp_out_file, 'r')
                 else:  # some files are dumped in latin1 encoding so we are using local fopen
-                    ref = fopen(os.path.join(ref_folder, file_name), 'r')
-                    out = fopen(os.path.join(out_folder, file_name), 'r')
+                    ref = fopen(os.path.join(ref_folder, file_name))
+                    out = fopen(os.path.join(out_folder, file_name))
                 # Checking lines number
                 if line_count(ref) != line_count(out):
                     print("{0} and {1} line number differ.".format(ref_file, out_file))
@@ -115,12 +115,14 @@ def main():
                                         eprint(file_name, line_nbr, ref_line, out_line)
                                         sys.exit(1)
                     line_nbr += 1
-            except FileNotFoundError as e:
-                print("Missing file {}".format(e.filename), file=sys.stderr)
-                sys.exit(1)
-            finally:
                 ref.close()
                 out.close()
+            except FileNotFoundError as e:
+                print("Missing file {}".format(e.filename), file=sys.stderr)
+                if ref:  # if second open fails, ref is opened
+                    ref.close(0)
+                sys.exit(1)
+            finally:
                 if is_json:
                     os.remove(tmp_ref_file)
                     os.remove(tmp_out_file)
