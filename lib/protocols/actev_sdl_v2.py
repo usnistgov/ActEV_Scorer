@@ -182,6 +182,49 @@ class ActEV_SDL_V2(Default):
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, rfa_targets, nmide_targets, fa_targets, default_factorizations = []):
         def _r(init, item):
+            # Debug
+            from types import ModuleType, FunctionType
+            from gc import get_referents
+
+            # Custom objects know their class.
+            # Function objects seem to know way too much, including modules.
+            # Exclude modules as well.
+            BLACKLIST = type, ModuleType, FunctionType
+
+
+            def getsize(obj):
+                """sum size of object & members."""
+                if isinstance(obj, BLACKLIST):
+                    raise TypeError('getsize() does not take argument of type: '+ str(type(obj)))
+                seen_ids = set()
+                size = 0
+                objects = [obj]
+                while objects:
+                    need_referents = []
+                    for obj in objects:
+                        if not isinstance(obj, BLACKLIST) and id(obj) not in seen_ids:
+                            seen_ids.add(id(obj))
+                            size += sys.getsizeof(obj)
+                            need_referents.append(obj)
+                    objects = get_referents(*need_referents)
+                return size
+
+            msum = 0
+            pid = str(os.getpid())
+            with open("debug.log", "w") as dbg:
+                print(pid + "LOCALS", file=dbg)
+                for var in locals():
+                    size = getsize(var)
+                    msum += size
+                    print(pid + str(var) + ' ' + size, file=dbg)
+                print(pid + "GLOBALS", file=dbg)
+                for var in globals():
+                    size = getsize(var)
+                    msum += size
+                    print(pid + str(var) + ' ' + size, file=dbg)
+                print(pid + "total: " + str(msum), file=dbg)
+            # end debug
+
             p, t, fa, m = init
             factorization, recs = item
             f={}
@@ -206,53 +249,12 @@ class ActEV_SDL_V2(Default):
         grouped = merge_dicts({ k: [] for k in default_factorizations }, group_by_func(factorization_func, records))
         _r_srlz = dill.dumps(_r)
         args = []
-        # ca ne va pas du tout, faut bien faire la liste des arguments la nan ?
         for key in grouped:
             args.append((_r_srlz, (key, grouped[key]), ({}, {}, [], [])))
 
-        # Debug
-        from types import ModuleType, FunctionType
-        from gc import get_referents
-
-        # Custom objects know their class.
-        # Function objects seem to know way too much, including modules.
-        # Exclude modules as well.
-        BLACKLIST = type, ModuleType, FunctionType
-
-
-        def getsize(obj):
-            """sum size of object & members."""
-            if isinstance(obj, BLACKLIST):
-                raise TypeError('getsize() does not take argument of type: '+ str(type(obj)))
-            seen_ids = set()
-            size = 0
-            objects = [obj]
-            while objects:
-                need_referents = []
-                for obj in objects:
-                    if not isinstance(obj, BLACKLIST) and id(obj) not in seen_ids:
-                        seen_ids.add(id(obj))
-                        size += sys.getsizeof(obj)
-                        need_referents.append(obj)
-                objects = get_referents(*need_referents)
-            return size
-
-        msum = 0
-        with open("debug.log", "w") as dbg:
-            print("LOCALS", file=dbg)
-            for var in locals():
-                size = getsize(var)
-                msum += size
-                print(str(var), size, file=dbg)
-            print("GLOBALS", file=dbg)
-            for var in globals():
-                size = getsize(var)
-                msum += size
-                print(str(var), size, file=dbg)
-            print("total: " + str(msum), file=dbg)
-
         # Freeing memory
         del grouped
+        del records
 
         pool = multiprocessing.Pool(self.pn)
         res = pool.map(unserialize_fct, args)
