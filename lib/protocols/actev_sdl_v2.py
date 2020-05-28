@@ -32,7 +32,6 @@
 
 import sys
 import os
-from pprint import pprint
 import subprocess
 import dill
 import multiprocessing
@@ -210,7 +209,55 @@ class ActEV_SDL_V2(Default):
         # ca ne va pas du tout, faut bien faire la liste des arguments la nan ?
         for key in grouped:
             args.append((_r_srlz, (key, grouped[key]), ({}, {}, [], [])))
-        res = multiprocessing.Pool(self.pn).map(unserialize_fct, args)
+
+        # Debug
+        from types import ModuleType, FunctionType
+        from gc import get_referents
+
+        # Custom objects know their class.
+        # Function objects seem to know way too much, including modules.
+        # Exclude modules as well.
+        BLACKLIST = type, ModuleType, FunctionType
+
+
+        def getsize(obj):
+            """sum size of object & members."""
+            if isinstance(obj, BLACKLIST):
+                raise TypeError('getsize() does not take argument of type: '+ str(type(obj)))
+            seen_ids = set()
+            size = 0
+            objects = [obj]
+            while objects:
+                need_referents = []
+                for obj in objects:
+                    if not isinstance(obj, BLACKLIST) and id(obj) not in seen_ids:
+                        seen_ids.add(id(obj))
+                        size += sys.getsizeof(obj)
+                        need_referents.append(obj)
+                objects = get_referents(*need_referents)
+            return size
+
+        msum = 0
+        with open("debug.log", "w") as dbg:
+            print("LOCALS", file=dbg)
+            for var in locals():
+                size = getsize(var)
+                msum += size
+                print(str(var), size, file=dbg)
+            print("GLOBALS", file=dbg)
+            for var in globals():
+                size = getsize(var)
+                msum += size
+                print(str(var), size, file=dbg)
+            print("total: " + str(msum), file=dbg)
+
+        # Freeing memory
+        del grouped
+
+        pool = multiprocessing.Pool(self.pn)
+        res = pool.map(unserialize_fct, args)
+        pool.close()
+
         p, t, fa, m = {}, {}, [], []
         for entry in res:
             p.update(entry[0])
