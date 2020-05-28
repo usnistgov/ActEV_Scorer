@@ -83,6 +83,14 @@ class Default(object):
         sys_by_act = group_by_func(activity_getter, system_activities)
 
         alignment_recs = []
+        # begin: for logging purposes
+        i = 0
+        inst_nbr = 0
+        sys_nbr = 0
+        for activity, activity_properties in self.activity_index.items():
+            inst_nbr += len(sys_by_act.get(activity, []))
+        # end: for logging purposes
+
         for activity, activity_properties in self.activity_index.items():
             refs = ref_by_act.get(activity, [])
             syss = sys_by_act.get(activity, [])
@@ -100,6 +108,10 @@ class Default(object):
                 alignment_recs.extend(c)
                 alignment_recs.extend(m)
                 alignment_recs.extend(f)
+            
+            i += 1
+            sys_nbr += len(syss)
+            self.log(1, "[Debug] Activity computing progress: %.2f%%" % (round((sys_nbr / inst_nbr) * 100, 2)))
 
         return alignment_recs
 
