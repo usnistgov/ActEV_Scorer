@@ -313,12 +313,21 @@ def score_basic(protocol_class, args):
     log(1, "[Info] Scoring ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
 
+    # Freeing memory before forking
+    del system_output
+    del activity_index
+    del file_index
+    del input_scoring_parameters
+    del system_output_schema
+    del system_activities
+    del reference
+    del reference_activities
+
     from actev_sdl_v2 import ActEV_SDL_V2
     if isinstance(protocol, ActEV_SDL_V2):
         results = protocol.compute_results(alignment, args.det_point_resolution, args.processes_number)
     else:
         results = protocol.compute_results(alignment, args.det_point_resolution)
-    #print(str(type(results)), file=sys.stderr)
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
     audc_by_activity = []
