@@ -195,7 +195,8 @@ class ActEV_SDL_V2(Default):
             def getsize(obj):
                 """sum size of object & members."""
                 if isinstance(obj, BLACKLIST):
-                    raise TypeError('getsize() does not take argument of type: '+ str(type(obj)))
+                    #raise TypeError('getsize() does not take argument of type: '+ str(type(obj)))
+                    return sys.getsizeof(obj)
                 seen_ids = set()
                 size = 0
                 objects = [obj]
@@ -212,14 +213,16 @@ class ActEV_SDL_V2(Default):
             msum = 0
             pid = str(os.getpid())
             with open("debug.log", "a") as dbg:
+                loc = locals().copy()
                 print(pid + "LOCALS", file=dbg)
-                for var in locals():
-                    size = getsize(var)
+                for var in loc:
+                    size = getsize(loc[var])
                     msum += size
                     print(pid + str(var) + ' ' + size, file=dbg)
                 print(pid + "GLOBALS", file=dbg)
-                for var in globals():
-                    size = getsize(var)
+                glo = globals().copy()
+                for var in glo:
+                    size = getsize(glo[var])
                     msum += size
                     print(pid + str(var) + ' ' + size, file=dbg)
                 print(pid + "total: " + str(msum), file=dbg)
