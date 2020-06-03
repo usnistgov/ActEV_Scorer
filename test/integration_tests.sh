@@ -601,3 +601,15 @@ test_15_3() {
     -o "$1" \
     -v
 }
+
+# multiprocessing test
+test_16_0() {
+    ../ActEV_Scorer.py \
+    "ActEV_SDL_V2" \
+       -s "data/test_11-4_fake-sysout.json" \
+       -r "data/test_11-4.json" \
+       -a "data/test_9-0_activity-index.json" \
+       -f "data/test_11-0_file-index.json" \
+       -o "$1" \
+       -v
+}
