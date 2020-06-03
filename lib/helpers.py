@@ -75,13 +75,12 @@ def merge_dicts(a, b, conflict_func = None):
 def identity(x):
     return x
 
-def unserialize_fct(args):
+def unserialize_fct_alg(args):
+    (sfct, activity, props) = args
+    fct = dill.loads(sfct)
+    return fct(activity, props)
+
+def unserialize_fct_res(args):
     (sfct, (activity, iterable), init) = args
-    #import sys
-    #buffer = "FCT:\n"
-    #buffer += activity[0] + '\n'
-    #buffer += str({activity[0]: iterable}.items()) + '\n'
-    #print(buffer, file=sys.stderr)
     fct = dill.loads(sfct)
     return fct(init, (activity, iterable))
-

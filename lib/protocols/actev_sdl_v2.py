@@ -214,7 +214,7 @@ class ActEV_SDL_V2(Default):
         del records
 
         pool = multiprocessing.Pool(self.pn)
-        res = pool.map(unserialize_fct, args)
+        res = pool.map(unserialize_fct_res, args)
         pool.close()
 
         p, t, fa, m = {}, {}, [], []
@@ -238,9 +238,7 @@ class ActEV_SDL_V2(Default):
 
         return reduce(_r, raw_means, [])
 
-    def compute_results(self, alignment, uniq_conf, pn):
-        self.pn = pn
-
+    def compute_results(self, alignment, uniq_conf):
         # Activity level + Pair Aggregates
         def _activity_grouper(rec):
             return (rec.activity,)

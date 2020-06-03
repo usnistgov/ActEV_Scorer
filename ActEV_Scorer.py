@@ -297,6 +297,7 @@ def score_basic(protocol_class, args):
     file_index = load_file_index(log, args.file_index)
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
     protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
+    protocol.pn = args.processes_number
     system_output_schema = load_schema_for_protocol(log, protocol)
 
     validate_input(log, system_output, system_output_schema)
@@ -310,24 +311,19 @@ def score_basic(protocol_class, args):
     reference = load_reference(log, args.reference_file)
     reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
 
-    log(1, "[Info] Scoring ..")
-    alignment = protocol.compute_alignment(system_activities, reference_activities)
-
-    # Freeing memory before forking
+    log(1, "[Info] Computing alignments ..")
     del system_output
     del activity_index
     del file_index
     del input_scoring_parameters
     del system_output_schema
-    del system_activities
     del reference
+    alignment = protocol.compute_alignment(system_activities, reference_activities)
+    log(1, '[Info] Scoring ..')
+    del system_activities
     del reference_activities
+    results = protocol.compute_results(alignment, args.det_point_resolution)
 
-    from actev_sdl_v2 import ActEV_SDL_V2
-    if isinstance(protocol, ActEV_SDL_V2):
-        results = protocol.compute_results(alignment, args.det_point_resolution, args.processes_number)
-    else:
-        results = protocol.compute_results(alignment, args.det_point_resolution)
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
     audc_by_activity = []

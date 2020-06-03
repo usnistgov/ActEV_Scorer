@@ -33,6 +33,8 @@
 import sys
 import os
 from functools import reduce
+import dill
+import multiprocessing
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
 
@@ -82,26 +84,31 @@ class Default(object):
         ref_by_act = group_by_func(activity_getter, reference_activities)
         sys_by_act = group_by_func(activity_getter, system_activities)
 
-        alignment_recs = []
-        for activity, activity_properties in self.activity_index.items():
+        def _f(activity, activity_properties):
+            alignment_recs = []
             refs = ref_by_act.get(activity, [])
             syss = sys_by_act.get(activity, [])
 
-            # Second phase of kernel building, taking into account the
-            # activity
-#            print "BEFORE KERNEL"
             kernel = kernel_builder(activity, activity_properties, refs, syss)
-#            print "AFTER KERNEL"
             for rs, ss in cohort_gen(refs, syss):
-#                print "BEFORE ALIGNMENT"
                 c, m, f = perform_alignment(rs, ss, kernel)
-#                print "AFTER ALIGNMENT"
-
                 alignment_recs.extend(c)
                 alignment_recs.extend(m)
                 alignment_recs.extend(f)
+            return alignment_recs
+        serialized_f = dill.dumps(_f)
 
-        return alignment_recs
+        args = []
+        for activity, props in self.activity_index.items():
+            args.append((serialized_f, activity, props))
+        pool = multiprocessing.Pool(self.pn)
+        alignment_recs = pool.map(unserialize_fct_alg, args)
+        pool.close()
+        alignment = []
+        for rec in alignment_recs:
+            alignment.extend(rec)
+        return alignment
+
 
     def compute_measures(self, record, measures):
         return reduce(merge_dicts, [ m(record) for m in measures ], {})
