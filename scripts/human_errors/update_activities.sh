@@ -1,5 +1,7 @@
-# helpers.py
-# Author(s): David Joy
+#!/bin/bash
+
+# update_activities.sh
+# Author(s): Baptiste Chocot
 
 # This software was developed by employees of the National Institute of
 # Standards and Technology (NIST), an agency of the Federal
@@ -30,57 +32,27 @@
 # bundled with the code in compliance with the conditions of those
 # licenses.
 
-# Optional default_groups ensures the inclusion of the
-# specified groups in the output dictionary
+# This script updates activity names in a reference file. Any occurrence of an
+# old activity name will be replaced by the corresponding new one. Output will
+# be written in the same directory than the input file (likely
+# `<file>.updated.json`).
 
-import dill
-from functools import reduce
+if [ $# -ne 1 ]; then
+    echo 'usage: $0 <ref_json_file>'
+    exit 1
+fi
 
+pattern="json$"
+if [[ $1 =~ $pattern ]]; then
+    OUT="$(echo $1 | sed s/json$/updated.json/)"
+else
+    OUT="$1.updated"
+fi
+cp $1 $OUT
 
-def group_by_func(key_func, items, map_func = None, default_groups = None):
-    def _r(h, x):
-        h.setdefault(key_func(x), []).append(x if map_func == None else map_func(x))
-        return h
-
-    grouped = reduce(_r, items, {})
-    if default_groups is None:
-        return grouped
-    else:
-        return merge_dicts({ k: [] for k in default_groups }, grouped)
-
-def dict_to_records(d, value_map = None):
-    def _r(init, kv):
-        k, v = kv
-        for _v in v:
-            init.append([k] + (_v if value_map == None else value_map(_v)))
-
-        return init
-
-    return reduce(_r, d.items(), [])
-
-def merge_dicts(a, b, conflict_func = None):
-    def _r(init, k):
-        if k in a:
-            if k in b:
-                init[k] = conflict_func(a[k], b[k]) if conflict_func else b[k]
-            else:
-                init[k] = a[k]
-        else:
-            init[k] = b[k]
-
-        return init
-
-    return reduce(_r, a.keys() | b.keys(), {})
-
-def identity(x):
-    return x
-
-def unserialize_fct_alg(args):
-    (sfct, activity, props) = args
-    fct = dill.loads(sfct)
-    return fct(activity, props)
-
-def unserialize_fct_res(args):
-    (sfct, (activity, iterable), init) = args
-    fct = dill.loads(sfct)
-    return fct(init, (activity, iterable))
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+for map in `cat $DIR/data/2019_to_2020_activity_map.csv` ; do
+    from=`echo $map | awk -F',' '{print $1}'`
+    to=`echo $map | awk -F',' '{print $2}'`
+    sed -i '' "s/\"$from\"/\"$to\"/g" $OUT
+done

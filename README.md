@@ -1,8 +1,8 @@
 # ActEV Scoring Software
 
-## Version: 0.5.0
+## Version: 0.5.1
 
-## Date: May 01, 2020
+## Date: June 17, 2020
 
 ------------------------
 
@@ -19,7 +19,7 @@ a system output file adhering to the JSON format defined in the ActEV evaluation
 
   This package assumes a Unix-like environment. Included Python files are written for Python 3.7
 
-  1) Install Python 3.7, `jq` and required dependencies using `make install`
+  1) Install Python 3.7+, `jq` and required dependencies using `make install_pip` or `make install_conda`
   2) Run the tests (optional, but strongly recommended) using `make check`
 
 ### Option description
@@ -37,6 +37,7 @@ SCORING_PROTOCOL - Positional argument, from a fixed set of values (e.g. ActEV18
 * `-V` - Optional; if enabled, the SYSTEM_OUTPUT_FILE will be validated but not scored.  REFERENCE_FILE and OUTPUT_DIR parameters are not required if this option is enabled
 * `-F` - Optional; if enabled, ignores extraneous "filesProcessed" and ignores system and reference instance localizations for extraneous files.  Note that extraneous files in this sense are those not included in the FILE_INDEX
 * `-t` DET_Point_Resolution - Optional; if enabled, this will change the number of points used for the det curves to be the input integer value rather than the max
+* `-n` - Optional; if set, define the number of processes to use for alignments and results computation.
 
 #### Protocols
 
@@ -192,6 +193,10 @@ May 01, 2020 - Version 0.5.0
   * UNIX `diff` is no longer used during tests. A custom one is used due to the difference of floats precision between Python 2 and 3.
 * Updated README and made it more user-friendly, using MarkDown
 * Added `install` recipe for Makefile
+
+June 17, 2020 - Version 0.5.1
+
+* Add parallelization
 
 ### Contact
 

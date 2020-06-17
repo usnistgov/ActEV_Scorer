@@ -1,5 +1,7 @@
-# helpers.py
-# Author(s): David Joy
+#!/usr/bin/env python3
+
+# ref_to_sysout.py
+# Author(s): Baptiste Chocot
 
 # This software was developed by employees of the National Institute of
 # Standards and Technology (NIST), an agency of the Federal
@@ -30,57 +32,43 @@
 # bundled with the code in compliance with the conditions of those
 # licenses.
 
-# Optional default_groups ensures the inclusion of the
-# specified groups in the output dictionary
+"""
+This script turns a reference file into a *system output*-like file. The output
+file will be stored in the same directory than the input file.
+"""
 
-import dill
-from functools import reduce
+import sys
+import os
+import json
+import re
 
 
-def group_by_func(key_func, items, map_func = None, default_groups = None):
-    def _r(h, x):
-        h.setdefault(key_func(x), []).append(x if map_func == None else map_func(x))
-        return h
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print("usage: {} <ref_json_file>".format(sys.argv[0]), file=sys.stderr)
+        sys.exit(1)
 
-    grouped = reduce(_r, items, {})
-    if default_groups is None:
-        return grouped
-    else:
-        return merge_dicts({ k: [] for k in default_groups }, grouped)
+    ref_file_name = sys.argv[1]
+    output = re.sub(r'json$', 'sysout.json', ref_file_name) if re.search(
+        r'json$', ref_file_name) else ref_file_name + '.reduced'
 
-def dict_to_records(d, value_map = None):
-    def _r(init, kv):
-        k, v = kv
-        for _v in v:
-            init.append([k] + (_v if value_map == None else value_map(_v)))
+    with open(ref_file_name, 'r') as rf:
+        data = json.load(rf)
+    # Creating sysout file according to references
+    sysout = {}
+    sysout['filesProcessed'] = data['filesProcessed']
+    activities = []
+    for ref_act in data['activities']:
+        act = {}
+        act['activity'] = ref_act['activity']
+        act['activityID'] = ref_act['activityID']
+        act['presenceConf'] = 1.0
+        act['alertFrame'] = 1
+        act['localization'] = ref_act['localization']
+        activities.append(act)
+    sysout['activities'] = activities
 
-        return init
+    with open(output, 'w') as of:
+        json.dump(sysout, of, indent=4)
 
-    return reduce(_r, d.items(), [])
-
-def merge_dicts(a, b, conflict_func = None):
-    def _r(init, k):
-        if k in a:
-            if k in b:
-                init[k] = conflict_func(a[k], b[k]) if conflict_func else b[k]
-            else:
-                init[k] = a[k]
-        else:
-            init[k] = b[k]
-
-        return init
-
-    return reduce(_r, a.keys() | b.keys(), {})
-
-def identity(x):
-    return x
-
-def unserialize_fct_alg(args):
-    (sfct, activity, props) = args
-    fct = dill.loads(sfct)
-    return fct(activity, props)
-
-def unserialize_fct_res(args):
-    (sfct, (activity, iterable), init) = args
-    fct = dill.loads(sfct)
-    return fct(init, (activity, iterable))
+    print('Done.')

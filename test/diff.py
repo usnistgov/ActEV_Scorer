@@ -47,9 +47,16 @@ def line_count(fd):
     fd.seek(0)
     return cpt
 
+def fopen(path):
+    fd = open(path, 'r')
+    try:
+        fd.readlines()
+    except UnicodeDecodeError:
+        fd.close()
+        fd = open(path, 'r', encoding='latin1')
+    return fd
 
 def main():
-    # Checking arguments
     if len(sys.argv) != 3:
         sys.exit(1)
     ref_folder = sys.argv[1]
@@ -62,41 +69,26 @@ def main():
                 Found:    %s
             """ % (os.path.join(out_folder, fn), ln, rl, ol), file=sys.stderr)
 
-    def debug(msg):
-        print('[DEBUG] %s' % (msg))
-
-    # Checking content
-    # diff --exclude \*dm --exclude \*png -I "command" -I "git.commit" -r "$checkfile_outdir" "$compcheckfile_outdir"
-
     for file_name in os.listdir(ref_folder):
-        # diff --exclude \*dm --exclude \*png --exclude \*log
         if os.path.isfile(os.path.join(ref_folder, file_name)) and not re.match(r".*\.(dm|png|log)$", file_name):
             ref_file = os.path.join(ref_folder, file_name)
             out_file = os.path.join(out_folder, file_name)
-            debug('Comparing REF: %s with OUT: %s' % (ref_file, out_file))
             # If JSON, need to sort keys
             is_json = re.match(r".*\.json$", file_name)
             if is_json:
-                debug("JSON file detected")
                 tmp_ref_file = "/tmp/scorer_tmp_ref.json"
                 tmp_out_file = "/tmp/scorer_tmp_out.json"
-                # os.system("jq . -S {0} > /tmp/scorer_tmp_ref && mv /tmp/scorer_tmp {0}".format(ref_file))
-                # os.system("jq . -S {0} > /tmp/scorer_tmp_out && mv /tmp/scorer_tmp {0}".format(out_file))
                 c0 = os.system("jq . -S {0} > {1}".format(ref_file, tmp_ref_file))
                 c1 = os.system("jq . -S {0} > {1}".format(out_file, tmp_out_file))
                 if c0 or c1:
-                    debug("Error during executing commands: %s" % ("jq . -S {0} > /tmp/scorer_tmp_ref".format(ref_file)))
                     exit(1)
-                debug("Sorted json written under /tmp")
             try:
                 if is_json:
                     ref = open(tmp_ref_file, 'r')
                     out = open(tmp_out_file, 'r')
-                else:
-                    ref = open(os.path.join(ref_folder, file_name), 'r')
-                    out = open(os.path.join(out_folder, file_name), 'r')
-                debug("Reading files: %s and %s" % (ref_file, out_file))
-                #################################################################################
+                else:  # some files are dumped in latin1 encoding so we are using local fopen
+                    ref = fopen(os.path.join(ref_folder, file_name))
+                    out = fopen(os.path.join(out_folder, file_name))
                 # Checking lines number
                 if line_count(ref) != line_count(out):
                     print("{0} and {1} line number differ.".format(ref_file, out_file))
@@ -123,13 +115,14 @@ def main():
                                         eprint(file_name, line_nbr, ref_line, out_line)
                                         sys.exit(1)
                     line_nbr += 1
-                #################################################################################
-            except FileNotFoundError as e:
-                print("Missing file {}".format(e.filename), file=sys.stderr)
-                sys.exit(1)
-            finally:
                 ref.close()
                 out.close()
+            except FileNotFoundError as e:
+                print("Missing file {}".format(e.filename), file=sys.stderr)
+                if ref:  # if second open fails, ref is opened
+                    ref.close(0)
+                sys.exit(1)
+            finally:
                 if is_json:
                     os.remove(tmp_ref_file)
                     os.remove(tmp_out_file)

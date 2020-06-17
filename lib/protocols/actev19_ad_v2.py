@@ -194,11 +194,12 @@ class ActEV19_AD_V2(Default):
             
             for k in f:
                 for i in f[k]:
-                    fa.append((k, i[0], "p_miss", i[2]))
-                    fa.append((k, i[0], "rfa", i[1]))
-                    fa.append((k, i[0], "tfa", i[3]))
-                    fa.append((k, i[0], "tfa_denom", i[4]))
-                    fa.append((k, i[0], "tfa_numer", i[5]))
+                    ii = i[0] if 'e' in str(i[0]) else round(i[0], 5)
+                    fa.append((k, ii, "p_miss", i[2]))
+                    fa.append((k, ii, "rfa", i[1]))
+                    fa.append((k, ii, "tfa", i[3]))
+                    fa.append((k, ii, "tfa_denom", i[4]))
+                    fa.append((k, ii, "tfa_numer", i[5]))
 #            for k, v in f.items():
 #                print k,v
                 #fa.append(factorization + (k, v))

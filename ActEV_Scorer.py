@@ -51,17 +51,11 @@ from plot import *
 from helpers import *
 from datacontainer import DataContainer
 from render import Render
+from logger import build_logger
 
 def err_quit(msg, exit_status=1):
     print("[Error] {}".format(msg))
     exit(exit_status)
-
-def build_logger(verbosity_threshold=0):
-    def _log(depth, msg):
-        if depth <= verbosity_threshold:
-            print(msg)
-
-    return _log
 
 def load_json(json_fn):
     try:
@@ -112,7 +106,6 @@ def serialize_as_json(out_path, out_object):
     yield_file_to_function(out_path, _write_json)
 
 def load_system_output(log, system_output_file):
-    log(1, "[Info] Loading system output file")
     return load_json(system_output_file)
 
 def load_reference(log, reference_file):
@@ -297,6 +290,7 @@ def score_basic(protocol_class, args):
     file_index = load_file_index(log, args.file_index)
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
     protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
+    protocol.pn = args.processes_number
     system_output_schema = load_schema_for_protocol(log, protocol)
 
     validate_input(log, system_output, system_output_schema)
@@ -310,10 +304,19 @@ def score_basic(protocol_class, args):
     reference = load_reference(log, args.reference_file)
     reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
 
-    log(1, "[Info] Scoring ..")
+    log(1, "[Info] Computing alignments ..")
+    del system_output
+    del activity_index
+    del file_index
+    del input_scoring_parameters
+    del system_output_schema
+    del reference
     alignment = protocol.compute_alignment(system_activities, reference_activities)
+    log(1, '[Info] Scoring ..')
+    del system_activities
+    del reference_activities
     results = protocol.compute_results(alignment, args.det_point_resolution)
-    #print(str(type(results)), file=sys.stderr)
+
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
     audc_by_activity = []
@@ -425,7 +428,8 @@ if __name__ == '__main__':
                  [["-d", "--disable-plotting"], dict(help="Disable DET Curve plotting of results", action="store_true")],
                  [["-v", "--verbose"], dict(help="Toggle verbose log output", action="store_true")],
                  [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)],
-                 [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],]
+                 [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],
+                 [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=1)],]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)

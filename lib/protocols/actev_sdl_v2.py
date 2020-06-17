@@ -32,8 +32,9 @@
 
 import sys
 import os
-from pprint import pprint
 import subprocess
+import dill
+import multiprocessing
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
@@ -135,10 +136,7 @@ class ActEV_SDL_V2(Default):
                                                                    build_wpmiss_metric(wpmiss_denom, wpmiss_numer),
                                                                    self.build_nmide_measure(),
                                                                    self.build_fa_measure()], uniq_conf, file_framedur_lookup = self.file_framedur_lookup)
-
         det_points = sweeper(alignment)
-        #print "det_points"
-        #pprint(det_points)
 
         pmiss_measures = get_points_along_confidence_curve(det_points,
                                                            "rfa",
@@ -194,22 +192,38 @@ class ActEV_SDL_V2(Default):
             
             for k in f:
                 for i in f[k]:
-                    fa.append((k, i[0], "p_miss", i[2]))
-                    fa.append((k, i[0], "rfa", i[1]))
-                    fa.append((k, i[0], "tfa", i[3]))
-                    fa.append((k, i[0], "tfa_denom", i[4]))
-                    fa.append((k, i[0], "tfa_numer", i[5]))
-#            for k, v in f.items():
-#                print k,v
-                #fa.append(factorization + (k, v))
-                #for k in f.keys():
+                    ii = i[0] if 'e' in str(i[0]) else round(i[0], 5)
+                    fa.append((k, ii, "p_miss", i[2]))
+                    fa.append((k, ii, "rfa", i[1]))
+                    fa.append((k, ii, "tfa", i[3]))
+                    fa.append((k, ii, "tfa_denom", i[4]))
+                    fa.append((k, ii, "tfa_numer", i[5]))
                 
             for _m, v in measures.items():
                 m.append(factorization + (_m, v))
             return (p, t, fa, m)
 
         grouped = merge_dicts({ k: [] for k in default_factorizations }, group_by_func(factorization_func, records))
-        return reduce(_r, grouped.items(), ({}, {}, [], []))
+        _r_srlz = dill.dumps(_r)
+        args = []
+        for key in grouped:
+            args.append((_r_srlz, (key, grouped[key]), ({}, {}, [], [])))
+
+        # Freeing memory
+        del grouped
+        del records
+
+        pool = multiprocessing.Pool(self.pn)
+        res = pool.map(unserialize_fct_res, args)
+        pool.close()
+
+        p, t, fa, m = {}, {}, [], []
+        for entry in res:
+            p.update(entry[0])
+            t.update(entry[1])
+            fa.extend(entry[2])
+            m.extend(entry[3])
+        return (p, t, fa, m)
 
     def compute_record_means(self, records, selected_measures = None):
         raw_means = self.compute_means(records, selected_measures)
@@ -225,12 +239,26 @@ class ActEV_SDL_V2(Default):
         return reduce(_r, raw_means, [])
 
     def compute_results(self, alignment, uniq_conf):
-        c, m, f = partition_alignment(alignment)
+        # Activity level + Pair Aggregates
+        def _activity_grouper(rec):
+            return (rec.activity,)
 
-        #print c[0].ref
-        #print c[0].sys
+        out_det_points, out_tfa_det_points, out_fa_data, det_measures = self.compute_aggregate_det_points_and_measures(
+            alignment, _activity_grouper,
+            lambda x: self.total_file_duration_minutes, uniq_conf, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.scoring_parameters["activity.fa_at_rfa_targets"], self.default_activity_groups)
+
+        # Overall level + Activity Aggregates + Pair Agg. Aggregates
+        def _empty_grouper(rec):
+            return tuple() # empty tuple
+
         ar_nmide_measure = self.build_ar_nmide_measure()
+        activity_nmides = self.compute_aggregate_measures(alignment, _activity_grouper, [ ar_nmide_measure ], self.default_activity_groups)
+        activity_results = activity_nmides + det_measures
 
+        overall_nmide = self.compute_aggregate_measures(alignment, _empty_grouper, [ ar_nmide_measure ])
+        activity_means = self.compute_record_means(activity_results)
+
+        # Pairs
         def _pair_arg_map(rec):
             return (rec.ref, rec.sys)
 
@@ -240,31 +268,14 @@ class ActEV_SDL_V2(Default):
                           self.build_simple_measure(_pair_arg_map, "temporal_miss", temporal_miss),
                           self.build_simple_measure(lambda x: (x.kernel_components.get("temporal_intersection-over-union"),), "temporal_intersection-over-union", identity) ]
 
-        # Pairs
+        c, m, f = partition_alignment(alignment)
         def _pair_properties_map(rec):
             return (rec.activity, rec.ref.activityID, rec.sys.activityID)
-
         pair_results = self.compute_atomic_measures(c, _pair_properties_map, pair_measures)
 
-        # Activity level + Pair Aggregates
-        def _activity_grouper(rec):
-            return (rec.activity,)
-
-        activity_nmides = self.compute_aggregate_measures(alignment, _activity_grouper, [ ar_nmide_measure ], self.default_activity_groups)
-        out_det_points, out_tfa_det_points, out_fa_data, det_measures = self.compute_aggregate_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, uniq_conf, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.scoring_parameters["activity.fa_at_rfa_targets"], self.default_activity_groups)
-        
-        # Overall level + Activity Aggregates + Pair Agg. Aggregates
-        def _empty_grouper(rec):
-            return tuple() # empty tuple
-
-        activity_results = activity_nmides + det_measures
-#        print activity_results
-        overall_nmide = self.compute_aggregate_measures(alignment, _empty_grouper, [ ar_nmide_measure ])
-        activity_means = self.compute_record_means(activity_results)
-
+        # Output alignment records
         def _align_rec_mapper(rec):
             return (rec.activity,) + tuple(rec.iter_with_extended_properties(["temporal_intersection-over-union", "presenceconf_congruence"]))
-
         output_alignment_records = map(_align_rec_mapper, alignment)
 
         return { "pair_metrics": pair_results,
