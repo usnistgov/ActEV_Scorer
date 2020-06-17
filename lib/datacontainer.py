@@ -2,6 +2,7 @@
 import sys
 import pickle
 import numpy as np
+import math
 from collections import OrderedDict
 
 class DataContainer:
@@ -86,7 +87,7 @@ class DataContainer:
         """
         with open(path, 'rb') as file:
             if sys.version_info[0] >= 3:
-                obj = pickle.load(file, encoding='latin1') 
+                obj = pickle.load(file, encoding='latin1')
             else:
                 obj = pickle.load(file)
         return obj
@@ -119,8 +120,14 @@ class DataContainer:
 
                 if method == "average":
                     x = np.linspace(0, max_fa, average_resolution)
+                    ys = np.vstack([np.interp(x, data.fa, data.fn) for data in dc_list_filtered])
+                    stds = np.std(ys, axis=0, ddof=0)
+                    n = len(ys)
+                    stds = stds / math.sqrt(n)
+                    stds = 1.96 * stds
                     ys = [np.interp(x, data.fa, data.fn) for data in dc_list_filtered]
-                    return DataContainer(x, (np.vstack(ys).sum(0) + len(dc_list) - len(dc_list_filtered)) / len(dc_list), np.array([]), label=output_label, line_options=line_options)
+                    aggregated_dc = DataContainer(x, (np.vstack(ys).sum(0) + len(dc_list) - len(dc_list_filtered)) / len(dc_list), np.array([]), label=output_label, line_options=line_options)
+                    aggregated_dc.std_array = stds
+                    return aggregated_dc
         # print("Warning: No data container remained after filtering, returning an empty object")
         return DataContainer(np.array([]), np.array([]), np.array([]), label=output_label, line_options=None)
- 

@@ -84,8 +84,21 @@ class Default(object):
         ref_by_act = group_by_func(activity_getter, reference_activities)
         sys_by_act = group_by_func(activity_getter, system_activities)
 
+<<<<<<< HEAD
         def _f(activity, activity_properties):
             alignment_recs = []
+=======
+        alignment_recs = []
+        # begin: for logging purposes
+        i = 0
+        inst_nbr = 0
+        sys_nbr = 0
+        for activity, activity_properties in self.activity_index.items():
+            inst_nbr += len(sys_by_act.get(activity, []))
+        # end: for logging purposes
+
+        for activity, activity_properties in self.activity_index.items():
+>>>>>>> 6da703e7636192796c85b5e93f74a0a907a3b073
             refs = ref_by_act.get(activity, [])
             syss = sys_by_act.get(activity, [])
 
@@ -95,6 +108,7 @@ class Default(object):
                 alignment_recs.extend(c)
                 alignment_recs.extend(m)
                 alignment_recs.extend(f)
+<<<<<<< HEAD
             return alignment_recs
         serialized_f = dill.dumps(_f)
 
@@ -108,6 +122,12 @@ class Default(object):
         for rec in alignment_recs:
             alignment.extend(rec)
         return alignment
+=======
+            
+            i += 1
+            sys_nbr += len(syss)
+            self.log(1, "[Debug] Activity computing progress: %.2f%%" % (round((sys_nbr / inst_nbr) * 100, 2)))
+>>>>>>> 6da703e7636192796c85b5e93f74a0a907a3b073
 
 
     def compute_measures(self, record, measures):

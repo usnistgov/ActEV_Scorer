@@ -51,17 +51,11 @@ from plot import *
 from helpers import *
 from datacontainer import DataContainer
 from render import Render
+from logger import build_logger
 
 def err_quit(msg, exit_status=1):
     print("[Error] {}".format(msg))
     exit(exit_status)
-
-def build_logger(verbosity_threshold=0):
-    def _log(depth, msg):
-        if depth <= verbosity_threshold:
-            print(msg)
-
-    return _log
 
 def load_json(json_fn):
     try:
@@ -112,7 +106,6 @@ def serialize_as_json(out_path, out_object):
     yield_file_to_function(out_path, _write_json)
 
 def load_system_output(log, system_output_file):
-    log(1, "[Info] Loading system output file")
     return load_json(system_output_file)
 
 def load_reference(log, reference_file):
