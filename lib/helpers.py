@@ -33,6 +33,7 @@
 # Optional default_groups ensures the inclusion of the
 # specified groups in the output dictionary
 
+import dill
 from functools import reduce
 
 
@@ -73,3 +74,13 @@ def merge_dicts(a, b, conflict_func = None):
 
 def identity(x):
     return x
+
+def unserialize_fct_alg(args):
+    (sfct, activity, props) = args
+    fct = dill.loads(sfct)
+    return fct(activity, props)
+
+def unserialize_fct_res(args):
+    (sfct, (activity, iterable), init) = args
+    fct = dill.loads(sfct)
+    return fct(init, (activity, iterable))
