@@ -611,5 +611,5 @@ test_16_0() {
        -a "data/test_9-0_activity-index.json" \
        -f "data/test_11-0_file-index.json" \
        -o "$1" \
-       -v
+       -v -n 4
 }

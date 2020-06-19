@@ -7,9 +7,8 @@
 [Info] Checking file index against system's "filesProcessed"
 [Info] Validation successful
 [Info] Loading reference file
+[Info] Computing alignments ..
 [Info] Scoring ..
-[Debug] Activity computing progress: 100.00%
-[Debug] Activity computing progress: 100.00%
 [Info] Saving results to directory 'data/checkfiles/test_9_0'
 [Info] Saving figures to directory 'data/checkfiles/test_9_0/figures'
 [Info] Saving dm files to directory 'data/checkfiles/test_9_0/dm'
