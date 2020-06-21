@@ -29,8 +29,9 @@ class Render:
             sys.exit(1)
 
     def get_plot_options(self, plot_type, fa_label, fp_label, plot_options={}):
-        cur_plot_options = merge_dicts(self.gen_default_plot_options(
-            plot_type, fa_label, fp_label), self.plot_options)
+        cur_plot_options = merge_dicts(
+            self.gen_default_plot_options(plot_type, fa_label, fp_label),
+            self.plot_options)
         cur_plot_options = merge_dicts(cur_plot_options, plot_options)
         return cur_plot_options
 
