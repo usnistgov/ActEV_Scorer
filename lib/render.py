@@ -117,6 +117,8 @@ class Render:
         plt.xscale(plot_options["xscale"])
         plt.xticks(plot_options["xticks"], plot_options["xticks_labels"],
                    fontsize=plot_options['xticks_label_size'])
+        if plot_options.get("yscale"):
+            plt.yscale(plot_options["yscale"])
         plt.yticks(plot_options["yticks"], plot_options["yticks_labels"],
                    fontsize=plot_options['yticks_label_size'])
         plt.title(

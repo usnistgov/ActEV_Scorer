@@ -191,8 +191,9 @@ def validate_plot_options(plot_options):
     Note: The dictionnary should contain at most the following keys
             'title', 'suptitle', 'title_fontsize', 'suptitle_fontsize',
             'xlim', 'ylim', 'xticks', 'yticks', 'xticks_size', 'yticks_size',
-            'xticks_label_size', 'yticks_label_size',
-            'xlabel', 'xlabel_fontsize', 'ylabel', 'ylabel_fontsize', 'xscale'
+            'xticks_labels', 'yticks_labels', 'xticks_label_size',
+            'yticks_label_size', 'xlabel', 'xlabel_fontsize', 'ylabel',
+            'ylabel_fontsize', 'xscale', 'yscale'
         See the matplotlib documentation for a description of those parameters.
     """
 
@@ -209,9 +210,10 @@ def validate_plot_options(plot_options):
     logger.info("Validating global plot options...")
     valid_options = [
         'title', 'suptitle', 'title_fontsize', 'suptitle_fontsize', 'xlim',
-        'ylim', 'xticks', 'yticks', 'xticks_size', 'yticks_size',
-        'xticks_label_size', 'yticks_label_size', 'xlabel', 'xlabel_fontsize',
-        'ylabel', 'ylabel_fontsize', 'xscale']
+        'ylim', 'xticks', 'yticks', 'xticks_labels', 'yticks_labels',
+        'xticks_size', 'yticks_size', 'xticks_label_size', 'yticks_label_size',
+        'xlabel', 'xlabel_fontsize', 'ylabel', 'ylabel_fontsize', 'xscale',
+        'yscale']
     try:
         # Handle plot options validation here
         for opt in plot_options.keys():
