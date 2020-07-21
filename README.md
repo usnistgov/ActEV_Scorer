@@ -1,8 +1,8 @@
 # ActEV Scoring Software
 
-## Version: 0.5.1
+## Version: 0.5.2
 
-## Date: June 17, 2020
+## Date: July 21, 2020
 
 ------------------------
 
@@ -38,6 +38,7 @@ SCORING_PROTOCOL - Positional argument, from a fixed set of values (e.g. ActEV18
 * `-F` - Optional; if enabled, ignores extraneous "filesProcessed" and ignores system and reference instance localizations for extraneous files.  Note that extraneous files in this sense are those not included in the FILE_INDEX
 * `-t` DET_Point_Resolution - Optional; if enabled, this will change the number of points used for the det curves to be the input integer value rather than the max
 * `-n` - Optional; if set, define the number of processes to use for alignments and results computation.
+* `-N` - Optional; if set, `get_y` will return `fn` instead of `norm.ppf(fn)` (for DET curves only).
 
 #### Protocols
 
@@ -197,6 +198,10 @@ May 01, 2020 - Version 0.5.0
 June 17, 2020 - Version 0.5.1
 
 * Add parallelization
+
+July 21, 2020 - Version 0.5.2
+
+* Enhance `get_y` behavior
 
 ### Contact
 
