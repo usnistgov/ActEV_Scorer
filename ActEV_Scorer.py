@@ -429,7 +429,7 @@ if __name__ == '__main__':
                  [["-v", "--verbose"], dict(help="Toggle verbose log output", action="store_true")],
                  [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)],
                  [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],
-                 [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=1)],]
+                 [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=8)],]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)
