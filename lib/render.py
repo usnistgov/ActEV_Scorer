@@ -36,8 +36,9 @@ class Render:
         return cur_plot_options
 
     def plot(self, data_list, annotations=[], plot_type=None, plot_options={},
-             display=True, multi_fig=False, auto_width=True):
+             display=True, multi_fig=False, auto_width=True, no_ppf=False):
         assert len(data_list) > 0, "Error, plot called on empty objects list"
+        self.no_ppf = no_ppf
         if isinstance(data_list, list):
             plot_type = self.get_plot_type(plot_type=plot_type)
             plot_options = self.get_plot_options(
@@ -94,7 +95,9 @@ class Render:
             figsize=figure_size, dpi=120, facecolor='w', edgecolor='k')
 
         def get_y(fn, plot_type):
-            return norm.ppf(fn) if plot_type == "det" else 1 - fn
+            if plot_type != "det":
+                return 1 - fn
+            return fn if self.no_ppf else norm.ppf(fn)
 
         for obj in data_list:
             if True not in np.isnan(np.array(obj.fn)):
