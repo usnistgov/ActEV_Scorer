@@ -613,3 +613,15 @@ test_16_0() {
        -o "$1" \
        -v -n 4
 }
+
+# no ppf test
+test_17_0() {
+    ../ActEV_Scorer.py \
+    "ActEV_SDL_V2" \
+       -s "data/test_11-4_fake-sysout.json" \
+       -r "data/test_11-4.json" \
+       -a "data/test_9-0_activity-index.json" \
+       -f "data/test_11-0_file-index.json" \
+       -o "$1" \
+       -v -N
+}

@@ -9,4 +9,4 @@ python3 ActEV_Scorer.py \
 	-a test/data/VIRAT_S_000000_activity-index.json \
 	-f test/data/VIRAT_S_000000_file-index.json \
 	-o example_run-output \
-	-v -n 4
+	-v -n 4 -N
