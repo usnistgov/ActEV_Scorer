@@ -40,6 +40,7 @@ import json
 import jsonschema
 from operator import add
 from functools import reduce
+from tempfile import NamedTemporaryFile
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
 sys.path.append(lib_path)
@@ -270,7 +271,7 @@ def score_actev18_aodt(args):
     from actev18_aodt import ActEV18_AODT
 
     score_basic(ActEV18_AODT, args)
-    
+
 def score_basic(protocol_class, args):
     verbosity_threshold = 1 if args.verbose else 0
     log = build_logger(verbosity_threshold)
@@ -285,13 +286,22 @@ def score_basic(protocol_class, args):
         if args.output_dir is None:
             err_quit("Missing required OUTPUT_DIR argument (-o, --output-dir).  Aborting!")
 
-    system_output = load_system_output(log, args.system_output_file)
     activity_index = load_activity_index(log, args.activity_index)
     file_index = load_file_index(log, args.file_index)
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
     protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
     protocol.pn = args.processes_number
     system_output_schema = load_schema_for_protocol(log, protocol)
+
+    log(1, "[Info] Loading activities and references")
+    if args.prune_system_output:
+        tmp = NamedTemporaryFile()
+        command = "python3 %s -i %s -o %s -m %d -v" % (
+            os.path.join(lib_path, "ActivitiesFilePruner.py"), os.path.join(args.system_output_file), tmp.name, args.prune_system_output)
+        os.system(command)
+        system_output = load_system_output(log, tmp.name)
+    else:
+        system_output = load_system_output(log, args.system_output_file)
 
     validate_input(log, system_output, system_output_schema)
     check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
@@ -341,13 +351,6 @@ def score_basic(protocol_class, args):
     if vars(args).get("dump_object_alignment_records", False):
         write_records_as_csv("{}/object_alignment.csv".format(args.output_dir), ["activity", "ref_activity", "sys_activity", "frame", "ref_object_type", "sys_object_type", "mapped_ref_object_type", "mapped_sys_object_type", "alignment", "ref_object", "sys_object", "sys_presenceconf_score", "kernel_similarity", "kernel_components"], results.get("object_frame_alignment_records", []))
 
-    #if not args.disable_plotting:
-    #    export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir)
-    #    audc = protocol.compute_auc(args.output_dir)
-    #if not args.disable_plotting:
-    #    export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir)
-        # plot_dets(log, args.output_dir, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}))
-        # plot_dets(log, args.output_dir, results.get("tfa_det_point_records", {}))
 
 def export_records(log, dm_records_rfa, dm_records_tfa, output_dir, no_ppf):
     figure_dir = "{}/figures".format(output_dir)
@@ -430,7 +433,8 @@ if __name__ == '__main__':
                  [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)],
                  [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],
                  [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=8)],
-                 [["-N", "--no-ppf"], dict(help="If set, Y axis will be `fn` instead of `norm.ppf(fn)`", action="store_true")],]
+                 [["-N", "--no-ppf"], dict(help="If set, Y axis will be `fn` instead of `norm.ppf(fn)`", action="store_true")],
+                 [["-P", "--prune-system-output"], dict(help=("Prune"), type=int)],]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)

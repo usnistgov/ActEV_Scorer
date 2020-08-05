@@ -1,0 +1,45 @@
+{
+  "activity.auc_at_fa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.epsilon_presenceconf_congruence": 1e-06,
+  "activity.epsilon_temporal_congruence": 1e-08,
+  "activity.n_mide_at_rfa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.p_miss_at_rfa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.temporal_overlap_delta": 0.2,
+  "activity.w_p_miss_at_rfa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "command": "../ActEV_Scorer.py ActEV18_AD -s /Users/bnc8/Desktop/ActEV_Scorer/test//data/VIRAT_S_000000_fake-sysout.json -r data/VIRAT_S_000000.json -a data/VIRAT_S_000000_activity-index.json -f data/VIRAT_S_000000_file-index.json -o compcheckfiles/test_18_0 -v -P 1000",
+  "git.commit": "a88ddbd54f8b94c419e043d7a74670ddb6f3af2b--2020-07-21T11:35:50-04:00",
+  "nmide.cost_fa": 1,
+  "nmide.cost_miss": 1,
+  "nmide.ns_collar_size": 0,
+  "scoring_protocol": "actev18_ad",
+  "wpmiss.denominator": 10,
+  "wpmiss.numerator": 8
+}

@@ -625,3 +625,17 @@ test_17_0() {
        -o "$1" \
        -v -N
 }
+
+# Pruning test
+test_path="$(cd "$(dirname "$1")"; pwd -P)/$(basename "$1")"
+
+test_18_0() {
+    ../ActEV_Scorer.py \
+    "ActEV18_AD" \
+       -s "$test_path/data/VIRAT_S_000000_fake-sysout.json" \
+       -r "data/VIRAT_S_000000.json" \
+       -a "data/VIRAT_S_000000_activity-index.json" \
+       -f "data/VIRAT_S_000000_file-index.json" \
+       -o "$1" \
+       -v -P 1000
+}
