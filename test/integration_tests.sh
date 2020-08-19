@@ -611,5 +611,17 @@ test_16_0() {
        -a "data/test_9-0_activity-index.json" \
        -f "data/test_11-0_file-index.json" \
        -o "$1" \
-       -v
+       -v -n 4
+}
+
+# Pruning test
+test_18_0() {
+    ../ActEV_Scorer.py \
+    "ActEV18_AD" \
+       -s "data/VIRAT_S_000000_fake-sysout.json" \
+       -r "data/VIRAT_S_000000.json" \
+       -a "data/VIRAT_S_000000_activity-index.json" \
+       -f "data/VIRAT_S_000000_file-index.json" \
+       -o "$1" \
+       -v -P 0.8
 }

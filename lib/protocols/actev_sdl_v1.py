@@ -91,7 +91,7 @@ class ActEV_SDL_V1(Default):
 
     def default_kernel_builder(self, refs, syss):
         kernel = build_linear_combination_kernel([ build_temporal_second_overlap_filter(self.file_framerate, self.scoring_parameters["activity.temporal_overlap_delta"]) ],
-                                               [ build_sed_presenceconf_congruence(syss) ],
+                                               [ build_sed_presenceconf_congruence(syss, minmax=self.minmax) ],
                                                { "presenceconf_congruence": self.scoring_parameters["activity.epsilon_presenceconf_congruence"] })
 
         # Kernel for AD doesn't change based on activity, just

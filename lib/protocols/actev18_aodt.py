@@ -86,7 +86,7 @@ class ActEV18_AODT(ActEV18_AD):
 
     def default_kernel_builder(self, refs, syss):
 
-        act_presenceconf_congruence = build_sed_presenceconf_congruence(syss)
+        act_presenceconf_congruence = build_sed_presenceconf_congruence(syss, minmax=self.minmax)
         simple_temporal_overlap_filter = build_temporal_overlap_filter(self.scoring_parameters["activity.temporal_overlap_delta"])
 
         def _r(init, sys):
@@ -98,7 +98,7 @@ class ActEV18_AODT(ActEV18_AD):
         # Have to filter out empty ObjectLocalizationFrames here
         global_sys_obj_localizations = filter(lambda x: x.presenceConf is not None, reduce(_r, syss, []))
 
-        obj_presenceconf_congruence = build_sed_presenceconf_congruence(global_sys_obj_localizations)
+        obj_presenceconf_congruence = build_sed_presenceconf_congruence(global_sys_obj_localizations, minmax=self.minmax)
         simple_spatial_overlap_filter = build_simple_spatial_overlap_filter(self.scoring_parameters["object.spatial_overlap_delta"])
 
         mode_cost_miss = self.scoring_parameters["mode.cost_miss"]

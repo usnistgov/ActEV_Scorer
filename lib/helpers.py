@@ -33,11 +33,11 @@
 # Optional default_groups ensures the inclusion of the
 # specified groups in the output dictionary
 
-import dill
+from dill import loads
 from functools import reduce
 
 
-def group_by_func(key_func, items, map_func = None, default_groups = None):
+def group_by_func(key_func, items, map_func=None, default_groups=None):
     def _r(h, x):
         h.setdefault(key_func(x), []).append(x if map_func == None else map_func(x))
         return h
@@ -48,7 +48,7 @@ def group_by_func(key_func, items, map_func = None, default_groups = None):
     else:
         return merge_dicts({ k: [] for k in default_groups }, grouped)
 
-def dict_to_records(d, value_map = None):
+def dict_to_records(d, value_map=None):
     def _r(init, kv):
         k, v = kv
         for _v in v:
@@ -58,7 +58,7 @@ def dict_to_records(d, value_map = None):
 
     return reduce(_r, d.items(), [])
 
-def merge_dicts(a, b, conflict_func = None):
+def merge_dicts(a, b, conflict_func=None):
     def _r(init, k):
         if k in a:
             if k in b:
@@ -77,10 +77,10 @@ def identity(x):
 
 def unserialize_fct_alg(args):
     (sfct, activity, props) = args
-    fct = dill.loads(sfct)
+    fct = loads(sfct)
     return fct(activity, props)
 
 def unserialize_fct_res(args):
     (sfct, (activity, iterable), init) = args
-    fct = dill.loads(sfct)
+    fct = loads(sfct)
     return fct(init, (activity, iterable))

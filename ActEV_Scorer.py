@@ -52,6 +52,7 @@ from helpers import *
 from datacontainer import DataContainer
 from render import Render
 from logger import build_logger
+from ActivitiesFilePruner import prune
 
 def err_quit(msg, exit_status=1):
     print("[Error] {}".format(msg))
@@ -93,7 +94,6 @@ def write_records_as_csv(out_path, field_names, records, sep = "|"):
     sorted_rec = sorted(l_records)
 
     def _write_recs(out_f):
-        #for rec in [field_names] + sorted(map(lambda v: list(map(str, v)), records)):
         for rec in [field_names] + sorted_rec:
             out_f.write("{}\n".format(sep.join(map(str, rec))))
 
@@ -102,7 +102,6 @@ def write_records_as_csv(out_path, field_names, records, sep = "|"):
 def serialize_as_json(out_path, out_object):
     def _write_json(out_f):
         out_f.write("{}\n".format(json.dumps(out_object, indent=2, sort_keys=True)))
-
     yield_file_to_function(out_path, _write_json)
 
 def load_system_output(log, system_output_file):
@@ -127,7 +126,6 @@ def load_scoring_parameters(log, scoring_parameters_file):
 def load_schema_for_protocol(log, protocol):
     log(1, "[Info] Loading JSON schema")
     schema_path = "{}/{}".format(protocols_path, protocol.get_schema_fn())
-
     return load_json(schema_path)
 
 def parse_activities(deserialized_json, file_index, load_objects = False, ignore_extraneous = False, ignore_missing = False):
@@ -223,58 +221,47 @@ def write_out_scoring_params(output_dir, params):
 
 def score_actev19_ad(args):
     from actev19_ad import ActEV19_AD
-
     score_basic(ActEV19_AD, args)
 
 def score_actev19_ad_v2(args):
     from actev19_ad_v2 import ActEV19_AD_V2
-    
     score_basic(ActEV19_AD_V2, args)
 
 def score_actev_sdl_v1(args):
     from actev_sdl_v1 import ActEV_SDL_V1
-    
     score_basic(ActEV_SDL_V1, args)
 
 def score_actev_sdl_v2(args):
     from actev_sdl_v2 import ActEV_SDL_V2
-    
     score_basic(ActEV_SDL_V2, args)
     
 def score_actev18_ad(args):
     from actev18_ad import ActEV18_AD
-
     score_basic(ActEV18_AD, args)
 
 def score_actev18pc_ad(args):
     from actev18pc_ad import ActEV18PC_AD
-
     score_basic(ActEV18PC_AD, args)
-    
+
 def score_actev18_ad_tfa(args):
     from actev18_ad_tfa import ActEV18_AD_TFA
-
     score_basic(ActEV18_AD_TFA, args)
 
 def score_actev18_ad_1secol(args):
     from actev18_ad_1SecOL import ActEV18_AD_1SecOL
-    
     score_basic(ActEV18_AD_1SecOL, args)
     
 def score_actev18_aod(args):
     from actev18_aod import ActEV18_AOD
-
     score_basic(ActEV18_AOD, args)
 
 def score_actev18_aodt(args):
     from actev18_aodt import ActEV18_AODT
-
     score_basic(ActEV18_AODT, args)
     
 def score_basic(protocol_class, args):
     verbosity_threshold = 1 if args.verbose else 0
     log = build_logger(verbosity_threshold)
-
     log(1, "[Info] Command: {}".format(" ".join(sys.argv)))
 
     if not args.validation_only:
@@ -291,7 +278,15 @@ def score_basic(protocol_class, args):
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
     protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
     protocol.pn = args.processes_number
+    protocol.minmax = None
     system_output_schema = load_schema_for_protocol(log, protocol)
+
+    log(1, "[Info] Loading activities and references")
+    if args.prune_system_output:
+        system_output, minmax = prune(args.system_output_file, args.prune_system_output, file_index, log)
+        protocol.minmax = minmax
+    else:
+        system_output = load_system_output(log, args.system_output_file)
 
     validate_input(log, system_output, system_output_schema)
     check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
@@ -305,16 +300,8 @@ def score_basic(protocol_class, args):
     reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
 
     log(1, "[Info] Computing alignments ..")
-    del system_output
-    del activity_index
-    del file_index
-    del input_scoring_parameters
-    del system_output_schema
-    del reference
     alignment = protocol.compute_alignment(system_activities, reference_activities)
     log(1, '[Info] Scoring ..')
-    del system_activities
-    del reference_activities
     results = protocol.compute_results(alignment, args.det_point_resolution)
 
     mkdir_p(args.output_dir)
@@ -322,32 +309,18 @@ def score_basic(protocol_class, args):
     audc_by_activity = []
     mean_audc = []
     if not args.disable_plotting:
-        
         export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir)
         audc_by_activity, mean_audc = protocol.compute_auc(args.output_dir)
-        
+
     write_out_scoring_params(args.output_dir, protocol.scoring_parameters)
-
     write_records_as_csv("{}/alignment.csv".format(args.output_dir), ["activity", "alignment", "ref", "sys", "sys_presenceconf_score", "kernel_similarity", "kernel_components"], results.get("output_alignment_records", []))
-
     write_records_as_csv("{}/pair_metrics.csv".format(args.output_dir), ["activity", "ref", "sys", "metric_name", "metric_value"], results.get("pair_metrics", []))
-
     write_records_as_csv("{}/scores_by_activity.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], results.get("scores_by_activity", []) + audc_by_activity)
-
     write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], results.get("scores_aggregated", []) + mean_audc)
-
     write_records_as_csv("{}/scores_by_activity_and_threshold.csv".format(args.output_dir), [ "activity", "score_threshold", "metric_name", "metric_value" ], results.get("scores_by_activity_and_threshold", []))
 
     if vars(args).get("dump_object_alignment_records", False):
         write_records_as_csv("{}/object_alignment.csv".format(args.output_dir), ["activity", "ref_activity", "sys_activity", "frame", "ref_object_type", "sys_object_type", "mapped_ref_object_type", "mapped_sys_object_type", "alignment", "ref_object", "sys_object", "sys_presenceconf_score", "kernel_similarity", "kernel_components"], results.get("object_frame_alignment_records", []))
-
-    #if not args.disable_plotting:
-    #    export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir)
-    #    audc = protocol.compute_auc(args.output_dir)
-    #if not args.disable_plotting:
-    #    export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir)
-        # plot_dets(log, args.output_dir, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}))
-        # plot_dets(log, args.output_dir, results.get("tfa_det_point_records", {}))
 
 def export_records(log, dm_records_rfa, dm_records_tfa, output_dir):
     figure_dir = "{}/figures".format(output_dir)
@@ -429,7 +402,8 @@ if __name__ == '__main__':
                  [["-v", "--verbose"], dict(help="Toggle verbose log output", action="store_true")],
                  [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)],
                  [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],
-                 [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=1)],]
+                 [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=1)],
+                 [["-P", "--prune-system-output"], dict(help=("Prune system output before processing it."), type=float)],]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)
