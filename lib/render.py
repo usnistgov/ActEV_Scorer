@@ -105,6 +105,11 @@ class Render:
                 y = get_y(obj.fn, plot_type)
                 y[y == np.inf] = infinity
                 plt.plot(x, y, **obj.line_options)
+                if plot_options.get("confidence_interval") and hasattr(obj, 'std_array'):
+                    plt.fill_between(x, y-obj.std_array, y+obj.std_array,
+                                     edgecolor=obj.line_options['color'],
+                                     facecolor=obj.line_options['color'],
+                                     alpha=0.4)
 
         if len(data_list) == 1:
             for annotation in annotations:
@@ -122,6 +127,7 @@ class Render:
                    fontsize=plot_options['xticks_label_size'])
         if plot_options.get("yscale"):
             plt.yscale(plot_options["yscale"])
+
         plt.yticks(plot_options["yticks"], plot_options["yticks_labels"],
                    fontsize=plot_options['yticks_label_size'])
         plt.title(
