@@ -30,7 +30,7 @@
 # bundled with the code in compliance with the conditions of those
 # licenses.
 
-def build_sed_presenceconf_congruence(sys_instances):
+def build_sed_presenceconf_congruence(sys_instances, minmax=None):
     sys_instances_list = list(sys_instances)
     if len(sys_instances_list) == 1:
         def _congruence(r, s, cache):
@@ -45,7 +45,12 @@ def build_sed_presenceconf_congruence(sys_instances):
                 return { "presenceconf_congruence": 1.0 }
         else:
             def _congruence(r, s, cache):
-                return { "presenceconf_congruence": float(s.presenceConf - min_presence_conf) / sys_conf_range }
+                if minmax is None:
+                    return { "presenceconf_congruence": float(s.presenceConf - min_presence_conf) / sys_conf_range }
+                else:
+                    new_mpc = minmax[0]
+                    new_scr = minmax[1] - new_mpc
+                    return { "presenceconf_congruence": float(s.presenceConf - new_mpc) / new_scr }
     else:
         def _congruence(r, s, cache):
             return { "presenceconf_congruence": None }

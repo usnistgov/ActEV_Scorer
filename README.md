@@ -1,8 +1,8 @@
 # ActEV Scoring Software
 
-## Version: 0.5.1
+## Version: 0.5.2
 
-## Date: June 17, 2020
+## Date: August 19, 2020
 
 ------------------------
 
@@ -38,6 +38,7 @@ SCORING_PROTOCOL - Positional argument, from a fixed set of values (e.g. ActEV18
 * `-F` - Optional; if enabled, ignores extraneous "filesProcessed" and ignores system and reference instance localizations for extraneous files.  Note that extraneous files in this sense are those not included in the FILE_INDEX
 * `-t` DET_Point_Resolution - Optional; if enabled, this will change the number of points used for the det curves to be the input integer value rather than the max
 * `-n` - Optional; if set, define the number of processes to use for alignments and results computation.
+* `-P PERCENTAGE` - Optional; if set, the system output will be pruned, keeping maximum `MAX_FRAMES` of instances per activity.
 
 #### Protocols
 
@@ -197,6 +198,10 @@ May 01, 2020 - Version 0.5.0
 June 17, 2020 - Version 0.5.1
 
 * Add parallelization
+
+August 19, 2020 - Version 0.5.2
+
+* Add pruning option
 
 ### Contact
 

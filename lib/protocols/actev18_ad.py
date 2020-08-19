@@ -90,7 +90,7 @@ class ActEV18_AD(Default):
     def default_kernel_builder(self, refs, syss):
         kernel = build_linear_combination_kernel([ build_temporal_overlap_filter(self.scoring_parameters["activity.temporal_overlap_delta"]) ],
                                                [ temporal_intersection_over_union_component,
-                                                 build_sed_presenceconf_congruence(syss) ],
+                                                 build_sed_presenceconf_congruence(syss, minmax=self.minmax) ],
                                                { "temporal_intersection-over-union": self.scoring_parameters["activity.epsilon_temporal_congruence"],
                                                  "presenceconf_congruence": self.scoring_parameters["activity.epsilon_presenceconf_congruence"] })
 
