@@ -47,7 +47,7 @@ def prune(sysout: str, percentage: int, fi: dict, log) -> dict:
             counts[act] = {'presconf': {}}
         if (pconf not in counts[act]['presconf']):
             counts[act]['presconf'][pconf] = []
-        counts[act]['presconf'][pconf].append(dur)
+            counts[act]['presconf'][pconf].append(dur)
 
     # Report the counts
     for _act, count in counts.items():
@@ -66,7 +66,7 @@ def prune(sysout: str, percentage: int, fi: dict, log) -> dict:
                 count['thresh_num'] = count['num']
                 count['thresh_dur'] = count['dur_sum']
         log(1, "{} reduction={:f} tot_n={:d} thresh(num,dur,presc)=({:d},{:d},{:f}) presC(min,dur_sum,max)=({:f},{:d},{:f})".format(
-            act, ((count['num'] - count['thresh_num']) / count['num']),
+            _act, ((count['num'] - count['thresh_num']) / count['num']),
             count['num'], count['thresh_num'], count['thresh_dur'],
             count['thresh'], count['min'], count['dur_sum'],
             count['max']))
