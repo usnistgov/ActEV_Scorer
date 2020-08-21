@@ -88,10 +88,11 @@ class Render:
                 y[y == np.inf] = infinity
                 plt.plot(x, y, **obj.line_options)
 
-        # if plot_type.lower() == "det":
-        #     plt.plot((1, 0), 'b--', lw=1)
-        # elif plot_type.lower() == "roc":
-        #     plt.plot((0, 1), 'b--', lw=1)
+                if plot_options.get("confidence_interval") and hasattr(obj, 'std_array'):
+                    plt.fill_between(x, y-obj.std_array, y+obj.std_array,
+                                     edgecolor=obj.line_options['color'],
+                                     facecolor=obj.line_options['color'],
+                                     alpha=0.4)
 
         if len(data_list) == 1:
             for annotation in annotations:
