@@ -47,7 +47,7 @@ def prune(sysout: str, percentage: int, fi: dict, log) -> dict:
             counts[act] = {'presconf': {}}
         if (pconf not in counts[act]['presconf']):
             counts[act]['presconf'][pconf] = []
-            counts[act]['presconf'][pconf].append(dur)
+        counts[act]['presconf'][pconf].append(dur)
 
     # Report the counts
     for _act, count in counts.items():
