@@ -77,6 +77,9 @@ def create_parser():
     parser.add_argument("--display", action="store_true",
                         help="Display plots")
 
+    parser.add_argument("--confidenceInterval", action="store_true",
+                        help="Give aggregated plots confidence interval")
+
     parser.add_argument("--multiFigs", action="store_true",
                         help="Generate plots (with only one curve) per a \
                             partition")
@@ -433,6 +436,9 @@ def evaluate_input(args):
             logger.error("FileNotFoundError: No such file or directory: '{}'\
                 ".format(args.lineOptionJsonFile))
             DMRenderExit(logger)
+
+    if args.confidenceInterval:
+        plot_opts['confidence_interval'] = True
 
     return DM_list, plot_opts
 
