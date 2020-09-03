@@ -1,7 +1,5 @@
 import json
 import argparse
-import copy
-
 
 def boundingbox_merge(my_data, aggre_type):
     if aggre_type == 'activity':
@@ -81,16 +79,17 @@ def boundingbox_merge(my_data, aggre_type):
                             height_set.add(int(object_dict_list[n][m]['h']) + int(object_dict_list[n][m]['y']))
                             x_set.add(int(object_dict_list[n][m]['x']))
                             y_set.add(int(object_dict_list[n][m]['y']))
-                    min_x = min(x_set)
-                    min_y = min(y_set)
-                    max_w = max(width_set)
-                    max_h = max(height_set)
-                    max_w = max_w - min_x
-                    max_h = max_h - min_y
-                    frame_entry = {'boundingBox': {'h': max_h, 'w': max_w, 'x': min_x, 'y': min_y}}
-                    if last_active_frame != frame_entry:
-                        frames_dict[str(m)] = frame_entry
-                        last_active_frame = frame_entry
+                    if x_set:
+                        min_x = min(x_set)
+                        min_y = min(y_set)
+                        max_w = max(width_set)
+                        max_h = max(height_set)
+                        max_w = max_w - min_x
+                        max_h = max_h - min_y
+                        frame_entry = {'boundingBox': {'h': max_h, 'w': max_w, 'x': min_x, 'y': min_y}}
+                        if last_active_frame != frame_entry:
+                            frames_dict[str(m)] = frame_entry
+                            last_active_frame = frame_entry
                 frames_dict[str(end_frame)] = {}
                 my_data['activities'][i]['objects'][0]['localization'][loc_id] = frames_dict
 
