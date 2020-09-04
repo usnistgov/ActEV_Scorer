@@ -1,75 +1,119 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "$version": "ActEV18_AD_v1",
-  "definitions": {
-    "temporal_localization": {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$version": "ActEV18_file_v03",
+  "type": "object",
+  "patternProperties": {
+    "^[A-Za-z_0-9\\-\\.]+.(mp4|avi)$": {
       "type": "object",
-      "patternProperties": {
-        "^[A-Za-z0-9_\\-\\.]+$": {
-          "type": "object",
-          "patternProperties": {
-            "^[0-9]+$": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 1
-            }
-          },
-          "minProperties": 2,
-          "additionalProperties": false
-        }
-      },
-      "minProperties": 1,
-      "maxProperties": 1,
-      "additionalProperties": false
-    },
-    "activity_instance": {
-      "type": "object",
+      "required": [
+        "framerate",
+        "camera_type",
+        "filename"
+      ],
+      "additionalProperties": false,
       "properties": {
-        "activity": {
-          "type": "string"
+        "facility_id": {
+          "type": "string",
+          "pattern": "^[UK]F[0-9]+$"
         },
-        "alertFrame": {
-          "type": "integer"
-        },
-        "presenceConf": {
+        "framerate": {
           "type": "number"
         },
-        "activityID": {
+        "camera_id": {
+          "type": "string"
+        },
+        "camera_model": {
+          "type": "string"
+        },
+        "camera_resolution": {
+          "type": "string"
+        },
+        "camera_set_id": {
+          "type": "string"
+        },
+        "clip_id": {
+          "type": "string"
+        },
+        "begin_time": {
+          "type": "string"
+        },
+        "end_time": {
+          "type": "string"
+        },
+        "datetime": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "camera_type": {
+          "type": "string",
+          "enum": [
+            "EO",
+            "EO_NIR",
+            "IR"
+          ]
+        },
+        "filename": {
+          "type": "string"
+        },
+        "ktrd_filename": {
+          "type": "string"
+        },
+        "recording_site": {
+          "type": "string"
+        },
+        "frame_offset_precision_to_reference_clip_id": {
           "type": "integer"
         },
-        "localization": {
-          "$ref": "#/definitions/temporal_localization"
+        "frame_offset_to_reference_clip_id": {
+          "type": "integer"
+        },
+        "reference_camera_id": {
+          "type": "string"
+        },
+        "reference_clip_id": {
+          "type": "string"
+        },
+        "reference_filename": {
+          "type": "string"
+        },
+        "reference_file_index_key": {
+          "type": "string"
+        },
+        "krtd_filename": {
+          "type": "string"
+        },
+        "slot_date_time": {
+          "type": "string"
+        },
+        "ply": {
+          "type": "object",
+            "id": "ply",
+            "properties": {
+                "hi-res": {
+                    "type": "string",
+                    "id": "hi-res"
+                },
+                "low-res": {
+                    "type": "string",
+                    "id": "low-res"
+                }
+            }
+        },
+        "selected": {
+          "type": "object",
+          "patternProperties": {
+            "^[0-9]": {
+              "type": "integer",
+              "enum": [
+                1,
+                0
+              ]
+            }
+          }
         }
-      },
-      "required": [
-        "activity",
-        "presenceConf",
-        "activityID",
-        "localization"
-      ]
-    },
-    "filename": {
-      "type": "string",
-      "pattern": "^[A-Za-z0-9_\\-\\.]+$"
-    }
-  },
-  "type": "object",
-  "properties": {
-    "filesProcessed": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/filename"
-      }
-    },
-    "activities": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/activity_instance"
       }
     }
-  },
-  "required": [
-    "filesProcessed",
-    "activities"
-  ]
+  }
 }
