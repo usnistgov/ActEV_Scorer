@@ -1,8 +1,8 @@
 # ActEV Scoring Software
 
-## Version: 0.5.2
+## Version: 0.5.3
 
-## Date: August 19, 2020
+## Date: September 11, 2020
 
 ------------------------
 
@@ -202,6 +202,10 @@ June 17, 2020 - Version 0.5.1
 August 19, 2020 - Version 0.5.2
 
 * Add pruning option
+
+September 11, 2020 - Version 0.5.3
+
+* Added metric computations for xxx@0.02TFA
 
 ### Contact
 

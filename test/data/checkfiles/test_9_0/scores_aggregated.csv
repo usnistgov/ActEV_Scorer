@@ -1,6 +1,8 @@
 metric_name|metric_value
 mean-AUDC@0.01rfa|0.005
 mean-AUDC@0.01tfa|0.009974747474747477
+mean-AUDC@0.02rfa|0.01
+mean-AUDC@0.02tfa|0.0198989898989899
 mean-AUDC@0.03rfa|0.015
 mean-AUDC@0.03tfa|0.02977272727272727
 mean-AUDC@0.04rfa|0.02
@@ -55,6 +57,8 @@ mean-n-mide@1rfa|0.6687690595436839
 mean-n-mide_num_rejected|0.0
 mean-nAUDC@0.01rfa|0.5
 mean-nAUDC@0.01tfa|0.9974747474747476
+mean-nAUDC@0.02rfa|0.5
+mean-nAUDC@0.02tfa|0.9949494949494949
 mean-nAUDC@0.03rfa|0.5
 mean-nAUDC@0.03tfa|0.9924242424242424
 mean-nAUDC@0.04rfa|0.5

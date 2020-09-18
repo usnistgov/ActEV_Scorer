@@ -1,5 +1,6 @@
 activity|metric_name|metric_value
 Closing|AUDC@0.01rfa|0.01
+Closing|AUDC@0.02rfa|0.02
 Closing|AUDC@0.03rfa|0.03
 Closing|AUDC@0.04rfa|0.04
 Closing|AUDC@0.05rfa|0.05
@@ -31,6 +32,7 @@ Closing|n-mide@0.2rfa|None
 Closing|n-mide@1rfa|0.03441857829138062
 Closing|n-mide_num_rejected|0
 Closing|nAUDC@0.01rfa|1.0
+Closing|nAUDC@0.02rfa|1.0
 Closing|nAUDC@0.03rfa|1.0
 Closing|nAUDC@0.04rfa|1.0
 Closing|nAUDC@0.05rfa|1.0
@@ -66,6 +68,7 @@ Closing|w_p_miss@0.1rfa|0.9090909090909091
 Closing|w_p_miss@0.2rfa|0.9090909090909091
 Closing|w_p_miss@1rfa|0.7272727272727273
 Closing_Trunk|AUDC@0.01rfa|0.01
+Closing_Trunk|AUDC@0.02rfa|0.02
 Closing_Trunk|AUDC@0.03rfa|0.03
 Closing_Trunk|AUDC@0.04rfa|0.04
 Closing_Trunk|AUDC@0.05rfa|0.05
@@ -97,6 +100,7 @@ Closing_Trunk|n-mide@0.2rfa|None
 Closing_Trunk|n-mide@1rfa|None
 Closing_Trunk|n-mide_num_rejected|0
 Closing_Trunk|nAUDC@0.01rfa|1.0
+Closing_Trunk|nAUDC@0.02rfa|1.0
 Closing_Trunk|nAUDC@0.03rfa|1.0
 Closing_Trunk|nAUDC@0.04rfa|1.0
 Closing_Trunk|nAUDC@0.05rfa|1.0
@@ -132,6 +136,7 @@ Closing_Trunk|w_p_miss@0.1rfa|0.8181818181818182
 Closing_Trunk|w_p_miss@0.2rfa|0.8181818181818182
 Closing_Trunk|w_p_miss@1rfa|0.8181818181818182
 Entering|AUDC@0.01rfa|0.01
+Entering|AUDC@0.02rfa|0.02
 Entering|AUDC@0.03rfa|0.03
 Entering|AUDC@0.04rfa|0.04
 Entering|AUDC@0.05rfa|0.05
@@ -163,6 +168,7 @@ Entering|n-mide@0.2rfa|None
 Entering|n-mide@1rfa|0.00813864419762543
 Entering|n-mide_num_rejected|0
 Entering|nAUDC@0.01rfa|1.0
+Entering|nAUDC@0.02rfa|1.0
 Entering|nAUDC@0.03rfa|1.0
 Entering|nAUDC@0.04rfa|1.0
 Entering|nAUDC@0.05rfa|1.0
@@ -198,6 +204,7 @@ Entering|w_p_miss@0.1rfa|0.8666666666666667
 Entering|w_p_miss@0.2rfa|0.8666666666666667
 Entering|w_p_miss@1rfa|0.8
 Exiting|AUDC@0.01rfa|0.01
+Exiting|AUDC@0.02rfa|0.02
 Exiting|AUDC@0.03rfa|0.03
 Exiting|AUDC@0.04rfa|0.04
 Exiting|AUDC@0.05rfa|0.05
@@ -229,6 +236,7 @@ Exiting|n-mide@0.2rfa|None
 Exiting|n-mide@1rfa|None
 Exiting|n-mide_num_rejected|0
 Exiting|nAUDC@0.01rfa|1.0
+Exiting|nAUDC@0.02rfa|1.0
 Exiting|nAUDC@0.03rfa|1.0
 Exiting|nAUDC@0.04rfa|1.0
 Exiting|nAUDC@0.05rfa|1.0
@@ -264,6 +272,7 @@ Exiting|w_p_miss@0.1rfa|0.875
 Exiting|w_p_miss@0.2rfa|0.875
 Exiting|w_p_miss@1rfa|0.875
 Interacts|AUDC@0.01rfa|0.01
+Interacts|AUDC@0.02rfa|0.02
 Interacts|AUDC@0.03rfa|0.03
 Interacts|AUDC@0.04rfa|0.04
 Interacts|AUDC@0.05rfa|0.05
@@ -295,6 +304,7 @@ Interacts|n-mide@0.2rfa|None
 Interacts|n-mide@1rfa|0.05198731236956611
 Interacts|n-mide_num_rejected|0
 Interacts|nAUDC@0.01rfa|1.0
+Interacts|nAUDC@0.02rfa|1.0
 Interacts|nAUDC@0.03rfa|1.0
 Interacts|nAUDC@0.04rfa|1.0
 Interacts|nAUDC@0.05rfa|1.0
@@ -330,6 +340,7 @@ Interacts|w_p_miss@0.1rfa|1.0
 Interacts|w_p_miss@0.2rfa|0.8571428571428571
 Interacts|w_p_miss@1rfa|0.7857142857142857
 Loading|AUDC@0.01rfa|0.01
+Loading|AUDC@0.02rfa|0.02
 Loading|AUDC@0.03rfa|0.03
 Loading|AUDC@0.04rfa|0.04
 Loading|AUDC@0.05rfa|0.05
@@ -361,6 +372,7 @@ Loading|n-mide@0.2rfa|None
 Loading|n-mide@1rfa|0.09823070402942162
 Loading|n-mide_num_rejected|0
 Loading|nAUDC@0.01rfa|1.0
+Loading|nAUDC@0.02rfa|1.0
 Loading|nAUDC@0.03rfa|1.0
 Loading|nAUDC@0.04rfa|1.0
 Loading|nAUDC@0.05rfa|1.0
@@ -396,6 +408,7 @@ Loading|w_p_miss@0.1rfa|0.8181818181818182
 Loading|w_p_miss@0.2rfa|0.8181818181818182
 Loading|w_p_miss@1rfa|0.7272727272727273
 Open_Trunk|AUDC@0.01rfa|0.01
+Open_Trunk|AUDC@0.02rfa|0.02
 Open_Trunk|AUDC@0.03rfa|0.03
 Open_Trunk|AUDC@0.04rfa|0.04
 Open_Trunk|AUDC@0.05rfa|0.05
@@ -427,6 +440,7 @@ Open_Trunk|n-mide@0.2rfa|None
 Open_Trunk|n-mide@1rfa|None
 Open_Trunk|n-mide_num_rejected|0
 Open_Trunk|nAUDC@0.01rfa|1.0
+Open_Trunk|nAUDC@0.02rfa|1.0
 Open_Trunk|nAUDC@0.03rfa|1.0
 Open_Trunk|nAUDC@0.04rfa|1.0
 Open_Trunk|nAUDC@0.05rfa|1.0
@@ -462,6 +476,7 @@ Open_Trunk|w_p_miss@0.1rfa|0.8181818181818182
 Open_Trunk|w_p_miss@0.2rfa|0.8181818181818182
 Open_Trunk|w_p_miss@1rfa|0.8181818181818182
 Opening|AUDC@0.01rfa|0.01
+Opening|AUDC@0.02rfa|0.02
 Opening|AUDC@0.03rfa|0.03
 Opening|AUDC@0.04rfa|0.04
 Opening|AUDC@0.05rfa|0.05
@@ -493,6 +508,7 @@ Opening|n-mide@0.2rfa|None
 Opening|n-mide@1rfa|0.040095625149414296
 Opening|n-mide_num_rejected|0
 Opening|nAUDC@0.01rfa|1.0
+Opening|nAUDC@0.02rfa|1.0
 Opening|nAUDC@0.03rfa|1.0
 Opening|nAUDC@0.04rfa|1.0
 Opening|nAUDC@0.05rfa|1.0
@@ -528,6 +544,7 @@ Opening|w_p_miss@0.1rfa|0.9090909090909091
 Opening|w_p_miss@0.2rfa|0.9090909090909091
 Opening|w_p_miss@1rfa|0.8636363636363636
 Person_Person_Interaction|AUDC@0.01rfa|0.01
+Person_Person_Interaction|AUDC@0.02rfa|0.02
 Person_Person_Interaction|AUDC@0.03rfa|0.03
 Person_Person_Interaction|AUDC@0.04rfa|0.04
 Person_Person_Interaction|AUDC@0.05rfa|0.05
@@ -559,6 +576,7 @@ Person_Person_Interaction|n-mide@0.2rfa|None
 Person_Person_Interaction|n-mide@1rfa|0.0001434583014537108
 Person_Person_Interaction|n-mide_num_rejected|0
 Person_Person_Interaction|nAUDC@0.01rfa|1.0
+Person_Person_Interaction|nAUDC@0.02rfa|1.0
 Person_Person_Interaction|nAUDC@0.03rfa|1.0
 Person_Person_Interaction|nAUDC@0.04rfa|1.0
 Person_Person_Interaction|nAUDC@0.05rfa|1.0
@@ -594,6 +612,7 @@ Person_Person_Interaction|w_p_miss@0.1rfa|0.875
 Person_Person_Interaction|w_p_miss@0.2rfa|0.875
 Person_Person_Interaction|w_p_miss@1rfa|0.8125
 Pull|AUDC@0.01rfa|0.01
+Pull|AUDC@0.02rfa|0.02
 Pull|AUDC@0.03rfa|0.03
 Pull|AUDC@0.04rfa|0.04
 Pull|AUDC@0.05rfa|0.05
@@ -625,6 +644,7 @@ Pull|n-mide@0.2rfa|0.037472828075791234
 Pull|n-mide@1rfa|0.037472828075791234
 Pull|n-mide_num_rejected|0
 Pull|nAUDC@0.01rfa|1.0
+Pull|nAUDC@0.02rfa|1.0
 Pull|nAUDC@0.03rfa|1.0
 Pull|nAUDC@0.04rfa|1.0
 Pull|nAUDC@0.05rfa|1.0
@@ -660,6 +680,7 @@ Pull|w_p_miss@0.1rfa|0.7857142857142857
 Pull|w_p_miss@0.2rfa|0.7857142857142857
 Pull|w_p_miss@1rfa|0.7857142857142857
 Push|AUDC@0.01rfa|0.01
+Push|AUDC@0.02rfa|0.02
 Push|AUDC@0.03rfa|0.03
 Push|AUDC@0.04rfa|0.04
 Push|AUDC@0.05rfa|0.05
@@ -691,6 +712,7 @@ Push|n-mide@0.2rfa|None
 Push|n-mide@1rfa|None
 Push|n-mide_num_rejected|0
 Push|nAUDC@0.01rfa|1.0
+Push|nAUDC@0.02rfa|1.0
 Push|nAUDC@0.03rfa|1.0
 Push|nAUDC@0.04rfa|1.0
 Push|nAUDC@0.05rfa|1.0
@@ -726,6 +748,7 @@ Push|w_p_miss@0.1rfa|0.8333333333333334
 Push|w_p_miss@0.2rfa|0.8333333333333334
 Push|w_p_miss@1rfa|0.8333333333333334
 SetDown|AUDC@0.01rfa|0.01
+SetDown|AUDC@0.02rfa|0.02
 SetDown|AUDC@0.03rfa|0.03
 SetDown|AUDC@0.04rfa|0.04
 SetDown|AUDC@0.05rfa|0.05
@@ -757,6 +780,7 @@ SetDown|n-mide@0.2rfa|0.02009573958831977
 SetDown|n-mide@1rfa|0.02009573958831977
 SetDown|n-mide_num_rejected|0
 SetDown|nAUDC@0.01rfa|1.0
+SetDown|nAUDC@0.02rfa|1.0
 SetDown|nAUDC@0.03rfa|1.0
 SetDown|nAUDC@0.04rfa|1.0
 SetDown|nAUDC@0.05rfa|1.0
@@ -792,6 +816,7 @@ SetDown|w_p_miss@0.1rfa|0.75
 SetDown|w_p_miss@0.2rfa|0.75
 SetDown|w_p_miss@1rfa|0.75
 Talking|AUDC@0.01rfa|0.01
+Talking|AUDC@0.02rfa|0.02
 Talking|AUDC@0.03rfa|0.03
 Talking|AUDC@0.04rfa|0.04
 Talking|AUDC@0.05rfa|0.05
@@ -823,6 +848,7 @@ Talking|n-mide@0.2rfa|0.0455501568896731
 Talking|n-mide@1rfa|0.14153825127061448
 Talking|n-mide_num_rejected|0
 Talking|nAUDC@0.01rfa|1.0
+Talking|nAUDC@0.02rfa|1.0
 Talking|nAUDC@0.03rfa|1.0
 Talking|nAUDC@0.04rfa|1.0
 Talking|nAUDC@0.05rfa|1.0
@@ -858,6 +884,7 @@ Talking|w_p_miss@0.1rfa|0.8235294117647058
 Talking|w_p_miss@0.2rfa|0.8235294117647058
 Talking|w_p_miss@1rfa|0.7058823529411765
 Transport_HeavyCarry|AUDC@0.01rfa|0.01
+Transport_HeavyCarry|AUDC@0.02rfa|0.02
 Transport_HeavyCarry|AUDC@0.03rfa|0.03
 Transport_HeavyCarry|AUDC@0.04rfa|0.04
 Transport_HeavyCarry|AUDC@0.05rfa|0.05
@@ -889,6 +916,7 @@ Transport_HeavyCarry|n-mide@0.2rfa|None
 Transport_HeavyCarry|n-mide@1rfa|0.19642857142857142
 Transport_HeavyCarry|n-mide_num_rejected|0
 Transport_HeavyCarry|nAUDC@0.01rfa|1.0
+Transport_HeavyCarry|nAUDC@0.02rfa|1.0
 Transport_HeavyCarry|nAUDC@0.03rfa|1.0
 Transport_HeavyCarry|nAUDC@0.04rfa|1.0
 Transport_HeavyCarry|nAUDC@0.05rfa|1.0
@@ -924,6 +952,7 @@ Transport_HeavyCarry|w_p_miss@0.1rfa|0.875
 Transport_HeavyCarry|w_p_miss@0.2rfa|0.875
 Transport_HeavyCarry|w_p_miss@1rfa|0.8125
 Unloading|AUDC@0.01rfa|0.01
+Unloading|AUDC@0.02rfa|0.02
 Unloading|AUDC@0.03rfa|0.03
 Unloading|AUDC@0.04rfa|0.04
 Unloading|AUDC@0.05rfa|0.05
@@ -955,6 +984,7 @@ Unloading|n-mide@0.2rfa|None
 Unloading|n-mide@1rfa|None
 Unloading|n-mide_num_rejected|0
 Unloading|nAUDC@0.01rfa|1.0
+Unloading|nAUDC@0.02rfa|1.0
 Unloading|nAUDC@0.03rfa|1.0
 Unloading|nAUDC@0.04rfa|1.0
 Unloading|nAUDC@0.05rfa|1.0
@@ -990,6 +1020,7 @@ Unloading|w_p_miss@0.1rfa|0.8571428571428571
 Unloading|w_p_miss@0.2rfa|0.8571428571428571
 Unloading|w_p_miss@1rfa|0.8571428571428571
 activity_carrying|AUDC@0.01rfa|0.01
+activity_carrying|AUDC@0.02rfa|0.02
 activity_carrying|AUDC@0.03rfa|0.03
 activity_carrying|AUDC@0.04rfa|0.04
 activity_carrying|AUDC@0.05rfa|0.05
@@ -1021,6 +1052,7 @@ activity_carrying|n-mide@0.2rfa|None
 activity_carrying|n-mide@1rfa|0.03442288250070606
 activity_carrying|n-mide_num_rejected|0
 activity_carrying|nAUDC@0.01rfa|1.0
+activity_carrying|nAUDC@0.02rfa|1.0
 activity_carrying|nAUDC@0.03rfa|1.0
 activity_carrying|nAUDC@0.04rfa|1.0
 activity_carrying|nAUDC@0.05rfa|1.0
@@ -1056,6 +1088,7 @@ activity_carrying|w_p_miss@0.1rfa|0.8571428571428571
 activity_carrying|w_p_miss@0.2rfa|0.8571428571428571
 activity_carrying|w_p_miss@1rfa|0.6428571428571429
 activity_gesturing|AUDC@0.01rfa|0.01
+activity_gesturing|AUDC@0.02rfa|0.02
 activity_gesturing|AUDC@0.03rfa|0.03
 activity_gesturing|AUDC@0.04rfa|0.04
 activity_gesturing|AUDC@0.05rfa|0.05
@@ -1087,6 +1120,7 @@ activity_gesturing|n-mide@0.2rfa|None
 activity_gesturing|n-mide@1rfa|0.02231786871473702
 activity_gesturing|n-mide_num_rejected|0
 activity_gesturing|nAUDC@0.01rfa|1.0
+activity_gesturing|nAUDC@0.02rfa|1.0
 activity_gesturing|nAUDC@0.03rfa|1.0
 activity_gesturing|nAUDC@0.04rfa|1.0
 activity_gesturing|nAUDC@0.05rfa|1.0
@@ -1122,6 +1156,7 @@ activity_gesturing|w_p_miss@0.1rfa|0.9090909090909091
 activity_gesturing|w_p_miss@0.2rfa|0.9090909090909091
 activity_gesturing|w_p_miss@1rfa|0.7727272727272727
 activity_running|AUDC@0.01rfa|0.01
+activity_running|AUDC@0.02rfa|0.02
 activity_running|AUDC@0.03rfa|0.03
 activity_running|AUDC@0.04rfa|0.04
 activity_running|AUDC@0.05rfa|0.05
@@ -1153,6 +1188,7 @@ activity_running|n-mide@0.2rfa|None
 activity_running|n-mide@1rfa|0.17391304347826086
 activity_running|n-mide_num_rejected|0
 activity_running|nAUDC@0.01rfa|1.0
+activity_running|nAUDC@0.02rfa|1.0
 activity_running|nAUDC@0.03rfa|1.0
 activity_running|nAUDC@0.04rfa|1.0
 activity_running|nAUDC@0.05rfa|1.0
@@ -1188,6 +1224,7 @@ activity_running|w_p_miss@0.1rfa|0.875
 activity_running|w_p_miss@0.2rfa|0.875
 activity_running|w_p_miss@1rfa|0.8125
 activity_standing|AUDC@0.01rfa|0.009642857142857144
+activity_standing|AUDC@0.02rfa|0.019285714285714288
 activity_standing|AUDC@0.03rfa|0.02892857142857143
 activity_standing|AUDC@0.04rfa|0.038571428571428576
 activity_standing|AUDC@0.05rfa|0.048214285714285716
@@ -1219,6 +1256,7 @@ activity_standing|n-mide@0.2rfa|0.05796776089655725
 activity_standing|n-mide@1rfa|0.11508936568893056
 activity_standing|n-mide_num_rejected|0
 activity_standing|nAUDC@0.01rfa|0.9642857142857144
+activity_standing|nAUDC@0.02rfa|0.9642857142857144
 activity_standing|nAUDC@0.03rfa|0.9642857142857143
 activity_standing|nAUDC@0.04rfa|0.9642857142857144
 activity_standing|nAUDC@0.05rfa|0.9642857142857143
@@ -1254,6 +1292,7 @@ activity_standing|w_p_miss@0.1rfa|0.9393939393939394
 activity_standing|w_p_miss@0.2rfa|0.8636363636363636
 activity_standing|w_p_miss@1rfa|0.803030303030303
 activity_walking|AUDC@0.01rfa|0.008870967741935484
+activity_walking|AUDC@0.02rfa|0.017741935483870968
 activity_walking|AUDC@0.03rfa|0.02661290322580645
 activity_walking|AUDC@0.04rfa|0.035483870967741936
 activity_walking|AUDC@0.05rfa|0.04435483870967742
@@ -1285,6 +1324,7 @@ activity_walking|n-mide@0.2rfa|0.12633750575486444
 activity_walking|n-mide@1rfa|0.13662843296155608
 activity_walking|n-mide_num_rejected|0
 activity_walking|nAUDC@0.01rfa|0.8870967741935484
+activity_walking|nAUDC@0.02rfa|0.8870967741935484
 activity_walking|nAUDC@0.03rfa|0.8870967741935484
 activity_walking|nAUDC@0.04rfa|0.8870967741935484
 activity_walking|nAUDC@0.05rfa|0.8870967741935484
@@ -1320,6 +1360,7 @@ activity_walking|w_p_miss@0.1rfa|0.8171759259259259
 activity_walking|w_p_miss@0.2rfa|0.6666666666666666
 activity_walking|w_p_miss@1rfa|0.5833333333333334
 specialized_miscellaneous|AUDC@0.01rfa|0.01
+specialized_miscellaneous|AUDC@0.02rfa|0.02
 specialized_miscellaneous|AUDC@0.03rfa|0.03
 specialized_miscellaneous|AUDC@0.04rfa|0.04
 specialized_miscellaneous|AUDC@0.05rfa|0.05
@@ -1351,6 +1392,7 @@ specialized_miscellaneous|n-mide@0.2rfa|0.1957489349730729
 specialized_miscellaneous|n-mide@1rfa|0.1957489349730729
 specialized_miscellaneous|n-mide_num_rejected|0
 specialized_miscellaneous|nAUDC@0.01rfa|1.0
+specialized_miscellaneous|nAUDC@0.02rfa|1.0
 specialized_miscellaneous|nAUDC@0.03rfa|1.0
 specialized_miscellaneous|nAUDC@0.04rfa|1.0
 specialized_miscellaneous|nAUDC@0.05rfa|1.0
@@ -1386,6 +1428,7 @@ specialized_miscellaneous|w_p_miss@0.1rfa|0.7272727272727273
 specialized_miscellaneous|w_p_miss@0.2rfa|0.7272727272727273
 specialized_miscellaneous|w_p_miss@1rfa|0.7272727272727273
 specialized_talking_phone|AUDC@0.01rfa|0.01
+specialized_talking_phone|AUDC@0.02rfa|0.02
 specialized_talking_phone|AUDC@0.03rfa|0.03
 specialized_talking_phone|AUDC@0.04rfa|0.04
 specialized_talking_phone|AUDC@0.05rfa|0.05
@@ -1417,6 +1460,7 @@ specialized_talking_phone|n-mide@0.2rfa|None
 specialized_talking_phone|n-mide@1rfa|0.40604711634282653
 specialized_talking_phone|n-mide_num_rejected|0
 specialized_talking_phone|nAUDC@0.01rfa|1.0
+specialized_talking_phone|nAUDC@0.02rfa|1.0
 specialized_talking_phone|nAUDC@0.03rfa|1.0
 specialized_talking_phone|nAUDC@0.04rfa|1.0
 specialized_talking_phone|nAUDC@0.05rfa|1.0
@@ -1452,6 +1496,7 @@ specialized_talking_phone|w_p_miss@0.1rfa|0.8461538461538461
 specialized_talking_phone|w_p_miss@0.2rfa|0.8461538461538461
 specialized_talking_phone|w_p_miss@1rfa|0.6153846153846154
 specialized_texting_phone|AUDC@0.01rfa|0.008
+specialized_texting_phone|AUDC@0.02rfa|0.016
 specialized_texting_phone|AUDC@0.03rfa|0.024
 specialized_texting_phone|AUDC@0.04rfa|0.032
 specialized_texting_phone|AUDC@0.05rfa|0.04000000000000001
@@ -1483,6 +1528,7 @@ specialized_texting_phone|n-mide@0.2rfa|0.42039976658508366
 specialized_texting_phone|n-mide@1rfa|0.315311783228299
 specialized_texting_phone|n-mide_num_rejected|0
 specialized_texting_phone|nAUDC@0.01rfa|0.8
+specialized_texting_phone|nAUDC@0.02rfa|0.8
 specialized_texting_phone|nAUDC@0.03rfa|0.8
 specialized_texting_phone|nAUDC@0.04rfa|0.8
 specialized_texting_phone|nAUDC@0.05rfa|0.8000000000000002
@@ -1518,6 +1564,7 @@ specialized_texting_phone|w_p_miss@0.1rfa|0.6666666666666666
 specialized_texting_phone|w_p_miss@0.2rfa|0.6666666666666666
 specialized_texting_phone|w_p_miss@1rfa|0.6
 vehicle_moving|AUDC@0.01rfa|0.008390438596491228
+vehicle_moving|AUDC@0.02rfa|0.016719649122807018
 vehicle_moving|AUDC@0.03rfa|0.024987631578947365
 vehicle_moving|AUDC@0.04rfa|0.03319438596491228
 vehicle_moving|AUDC@0.05rfa|0.04133991228070175
@@ -1549,6 +1596,7 @@ vehicle_moving|n-mide@0.2rfa|0.09428939745746456
 vehicle_moving|n-mide@1rfa|0.10112593275620278
 vehicle_moving|n-mide_num_rejected|0
 vehicle_moving|nAUDC@0.01rfa|0.8390438596491228
+vehicle_moving|nAUDC@0.02rfa|0.8359824561403508
 vehicle_moving|nAUDC@0.03rfa|0.8329210526315789
 vehicle_moving|nAUDC@0.04rfa|0.8298596491228071
 vehicle_moving|nAUDC@0.05rfa|0.826798245614035
@@ -1584,6 +1632,7 @@ vehicle_moving|w_p_miss@0.1rfa|0.7931034482758621
 vehicle_moving|w_p_miss@0.2rfa|0.7241379310344828
 vehicle_moving|w_p_miss@1rfa|0.5172413793103449
 vehicle_starting|AUDC@0.01rfa|0.01
+vehicle_starting|AUDC@0.02rfa|0.02
 vehicle_starting|AUDC@0.03rfa|0.03
 vehicle_starting|AUDC@0.04rfa|0.04
 vehicle_starting|AUDC@0.05rfa|0.05
@@ -1615,6 +1664,7 @@ vehicle_starting|n-mide@0.2rfa|None
 vehicle_starting|n-mide@1rfa|0.03511170126380751
 vehicle_starting|n-mide_num_rejected|0
 vehicle_starting|nAUDC@0.01rfa|1.0
+vehicle_starting|nAUDC@0.02rfa|1.0
 vehicle_starting|nAUDC@0.03rfa|1.0
 vehicle_starting|nAUDC@0.04rfa|1.0
 vehicle_starting|nAUDC@0.05rfa|1.0
@@ -1650,6 +1700,7 @@ vehicle_starting|w_p_miss@0.1rfa|0.9166666666666666
 vehicle_starting|w_p_miss@0.2rfa|0.9166666666666666
 vehicle_starting|w_p_miss@1rfa|0.8333333333333334
 vehicle_stopping|AUDC@0.01rfa|0.009444444444444445
+vehicle_stopping|AUDC@0.02rfa|0.01888888888888889
 vehicle_stopping|AUDC@0.03rfa|0.028333333333333332
 vehicle_stopping|AUDC@0.04rfa|0.03777777777777778
 vehicle_stopping|AUDC@0.05rfa|0.04722222222222222
@@ -1681,6 +1732,7 @@ vehicle_stopping|n-mide@0.2rfa|0.0
 vehicle_stopping|n-mide@1rfa|0.02223779365876511
 vehicle_stopping|n-mide_num_rejected|0
 vehicle_stopping|nAUDC@0.01rfa|0.9444444444444444
+vehicle_stopping|nAUDC@0.02rfa|0.9444444444444444
 vehicle_stopping|nAUDC@0.03rfa|0.9444444444444444
 vehicle_stopping|nAUDC@0.04rfa|0.9444444444444444
 vehicle_stopping|nAUDC@0.05rfa|0.9444444444444444
@@ -1716,6 +1768,7 @@ vehicle_stopping|w_p_miss@0.1rfa|0.8928571428571429
 vehicle_stopping|w_p_miss@0.2rfa|0.8928571428571429
 vehicle_stopping|w_p_miss@1rfa|0.6428571428571429
 vehicle_turning_left|AUDC@0.01rfa|0.01
+vehicle_turning_left|AUDC@0.02rfa|0.02
 vehicle_turning_left|AUDC@0.03rfa|0.03
 vehicle_turning_left|AUDC@0.04rfa|0.04
 vehicle_turning_left|AUDC@0.05rfa|0.05
@@ -1747,6 +1800,7 @@ vehicle_turning_left|n-mide@0.2rfa|None
 vehicle_turning_left|n-mide@1rfa|0.007097876206961935
 vehicle_turning_left|n-mide_num_rejected|0
 vehicle_turning_left|nAUDC@0.01rfa|1.0
+vehicle_turning_left|nAUDC@0.02rfa|1.0
 vehicle_turning_left|nAUDC@0.03rfa|1.0
 vehicle_turning_left|nAUDC@0.04rfa|1.0
 vehicle_turning_left|nAUDC@0.05rfa|1.0
@@ -1782,6 +1836,7 @@ vehicle_turning_left|w_p_miss@0.1rfa|0.8947368421052632
 vehicle_turning_left|w_p_miss@0.2rfa|0.8947368421052632
 vehicle_turning_left|w_p_miss@1rfa|0.631578947368421
 vehicle_turning_right|AUDC@0.01rfa|0.01
+vehicle_turning_right|AUDC@0.02rfa|0.02
 vehicle_turning_right|AUDC@0.03rfa|0.03
 vehicle_turning_right|AUDC@0.04rfa|0.04
 vehicle_turning_right|AUDC@0.05rfa|0.05
@@ -1813,6 +1868,7 @@ vehicle_turning_right|n-mide@0.2rfa|0.06621794871794873
 vehicle_turning_right|n-mide@1rfa|0.08416798537439413
 vehicle_turning_right|n-mide_num_rejected|0
 vehicle_turning_right|nAUDC@0.01rfa|1.0
+vehicle_turning_right|nAUDC@0.02rfa|1.0
 vehicle_turning_right|nAUDC@0.03rfa|1.0
 vehicle_turning_right|nAUDC@0.04rfa|1.0
 vehicle_turning_right|nAUDC@0.05rfa|1.0

@@ -1,6 +1,8 @@
 activity|metric_name|metric_value
 Closing|AUDC@0.01rfa|0.009916666666666667
 Closing|AUDC@0.01tfa|0.0099505
+Closing|AUDC@0.02rfa|0.01966666666666667
+Closing|AUDC@0.02tfa|0.019802
 Closing|AUDC@0.03rfa|0.029249999999999998
 Closing|AUDC@0.03tfa|0.029554499999999997
 Closing|AUDC@0.04rfa|0.03866666666666667
@@ -72,6 +74,8 @@ Closing|n-mide@1rfa|1.0
 Closing|n-mide_num_rejected|0
 Closing|nAUDC@0.01rfa|0.9916666666666667
 Closing|nAUDC@0.01tfa|0.9950499999999999
+Closing|nAUDC@0.02rfa|0.9833333333333334
+Closing|nAUDC@0.02tfa|0.9901
 Closing|nAUDC@0.03rfa|0.975
 Closing|nAUDC@0.03tfa|0.98515
 Closing|nAUDC@0.04rfa|0.9666666666666667

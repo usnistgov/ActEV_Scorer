@@ -1,6 +1,8 @@
 activity|metric_name|metric_value
 Closing|AUDC@0.01rfa|0.009994444444444445
 Closing|AUDC@0.01tfa|0.00995
+Closing|AUDC@0.02rfa|0.01997777777777778
+Closing|AUDC@0.02tfa|0.0198
 Closing|AUDC@0.03rfa|0.029949999999999997
 Closing|AUDC@0.03tfa|0.02955
 Closing|AUDC@0.04rfa|0.03991111111111111
@@ -72,6 +74,8 @@ Closing|n-mide@1rfa|0.0
 Closing|n-mide_num_rejected|0
 Closing|nAUDC@0.01rfa|0.9994444444444445
 Closing|nAUDC@0.01tfa|0.995
+Closing|nAUDC@0.02rfa|0.9988888888888889
+Closing|nAUDC@0.02tfa|0.9900000000000001
 Closing|nAUDC@0.03rfa|0.9983333333333333
 Closing|nAUDC@0.03tfa|0.985
 Closing|nAUDC@0.04rfa|0.9977777777777778
@@ -210,6 +214,8 @@ Closing|w_p_miss@1rfa|0.8592592592592593
 Closing|w_p_miss@1tfa|0.26666666666666666
 Opening|AUDC@0.01rfa|0.01
 Opening|AUDC@0.01tfa|0.01
+Opening|AUDC@0.02rfa|0.02
+Opening|AUDC@0.02tfa|0.02
 Opening|AUDC@0.03rfa|0.03
 Opening|AUDC@0.03tfa|0.03
 Opening|AUDC@0.04rfa|0.04
@@ -281,6 +287,8 @@ Opening|n-mide@1rfa|None
 Opening|n-mide_num_rejected|0
 Opening|nAUDC@0.01rfa|1.0
 Opening|nAUDC@0.01tfa|1.0
+Opening|nAUDC@0.02rfa|1.0
+Opening|nAUDC@0.02tfa|1.0
 Opening|nAUDC@0.03rfa|1.0
 Opening|nAUDC@0.03tfa|1.0
 Opening|nAUDC@0.04rfa|1.0

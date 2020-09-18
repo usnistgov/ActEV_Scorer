@@ -3,34 +3,34 @@
 [Info] Loading file index file
 [Info] Loading JSON schema
 [Info] Loading activities and references
-Loading reduction=0.061224 tot_n=49 thresh(num,dur,presc)=(46,16473,0.039000) presC(min,dur_sum,max)=(0.004000,18350,0.997000)
-Loading reduction=0.000000 tot_n=32 thresh(num,dur,presc)=(32,12607,0.068000) presC(min,dur_sum,max)=(0.068000,12607,0.992000)
-Loading reduction=0.351852 tot_n=54 thresh(num,dur,presc)=(35,16256,0.521000) presC(min,dur_sum,max)=(0.092000,24981,0.987000)
-Loading reduction=0.238095 tot_n=42 thresh(num,dur,presc)=(32,16428,0.241000) presC(min,dur_sum,max)=(0.050000,21522,0.992000)
-Loading reduction=0.728571 tot_n=70 thresh(num,dur,presc)=(19,11958,0.821000) presC(min,dur_sum,max)=(0.031000,33469,0.982000)
-Loading reduction=0.480000 tot_n=75 thresh(num,dur,presc)=(39,16720,0.612000) presC(min,dur_sum,max)=(0.021000,33027,0.990000)
+vehicle_stopping reduction=0.061224 tot_n=49 thresh(num,dur,presc)=(46,16473,0.039000) presC(min,dur_sum,max)=(0.004000,18350,0.997000)
+Closing reduction=0.000000 tot_n=32 thresh(num,dur,presc)=(32,12607,0.068000) presC(min,dur_sum,max)=(0.068000,12607,0.992000)
+vehicle_moving reduction=0.351852 tot_n=54 thresh(num,dur,presc)=(35,16256,0.521000) presC(min,dur_sum,max)=(0.092000,24981,0.987000)
+Push reduction=0.238095 tot_n=42 thresh(num,dur,presc)=(32,16428,0.241000) presC(min,dur_sum,max)=(0.050000,21522,0.992000)
+activity_standing reduction=0.728571 tot_n=70 thresh(num,dur,presc)=(19,11958,0.821000) presC(min,dur_sum,max)=(0.031000,33469,0.982000)
+activity_walking reduction=0.480000 tot_n=75 thresh(num,dur,presc)=(39,16720,0.612000) presC(min,dur_sum,max)=(0.021000,33027,0.990000)
 Loading reduction=0.000000 tot_n=27 thresh(num,dur,presc)=(27,13990,0.151000) presC(min,dur_sum,max)=(0.151000,13990,0.946000)
-Loading reduction=0.354167 tot_n=48 thresh(num,dur,presc)=(31,16246,0.416000) presC(min,dur_sum,max)=(0.019000,26267,0.959000)
-Loading reduction=0.162791 tot_n=43 thresh(num,dur,presc)=(36,16313,0.139000) presC(min,dur_sum,max)=(0.032000,19133,0.960000)
-Loading reduction=0.042553 tot_n=47 thresh(num,dur,presc)=(45,16627,0.116000) presC(min,dur_sum,max)=(0.009000,17270,0.998000)
-Loading reduction=0.305556 tot_n=36 thresh(num,dur,presc)=(25,16058,0.308000) presC(min,dur_sum,max)=(0.028000,20273,0.994000)
-Loading reduction=0.420290 tot_n=69 thresh(num,dur,presc)=(40,16675,0.452000) presC(min,dur_sum,max)=(0.022000,29528,0.978000)
-Loading reduction=0.295455 tot_n=44 thresh(num,dur,presc)=(31,16275,0.374000) presC(min,dur_sum,max)=(0.024000,23290,0.997000)
-Loading reduction=0.264151 tot_n=53 thresh(num,dur,presc)=(39,16134,0.434000) presC(min,dur_sum,max)=(0.076000,22454,0.986000)
-Loading reduction=0.300000 tot_n=50 thresh(num,dur,presc)=(35,16409,0.381000) presC(min,dur_sum,max)=(0.026000,24253,0.948000)
-Loading reduction=0.214286 tot_n=42 thresh(num,dur,presc)=(33,16218,0.215000) presC(min,dur_sum,max)=(0.005000,21533,0.970000)
-Loading reduction=0.179487 tot_n=39 thresh(num,dur,presc)=(32,16106,0.124000) presC(min,dur_sum,max)=(0.005000,20328,0.979000)
-Loading reduction=0.173913 tot_n=46 thresh(num,dur,presc)=(38,16710,0.268000) presC(min,dur_sum,max)=(0.021000,20911,0.983000)
-Loading reduction=0.285714 tot_n=42 thresh(num,dur,presc)=(30,16278,0.316000) presC(min,dur_sum,max)=(0.002000,22292,0.995000)
-Loading reduction=0.518519 tot_n=54 thresh(num,dur,presc)=(26,16402,0.526000) presC(min,dur_sum,max)=(0.016000,31816,1.000000)
-Loading reduction=0.047619 tot_n=42 thresh(num,dur,presc)=(40,16525,0.050000) presC(min,dur_sum,max)=(0.035000,17428,0.987000)
-Loading reduction=0.309524 tot_n=42 thresh(num,dur,presc)=(29,16119,0.337000) presC(min,dur_sum,max)=(0.095000,23833,0.978000)
-Loading reduction=0.433962 tot_n=53 thresh(num,dur,presc)=(30,16596,0.391000) presC(min,dur_sum,max)=(0.020000,29330,0.959000)
-Loading reduction=0.159091 tot_n=44 thresh(num,dur,presc)=(37,16742,0.149000) presC(min,dur_sum,max)=(0.027000,19619,0.994000)
-Loading reduction=0.276596 tot_n=47 thresh(num,dur,presc)=(34,16622,0.334000) presC(min,dur_sum,max)=(0.011000,21351,0.994000)
-Loading reduction=0.489362 tot_n=47 thresh(num,dur,presc)=(24,16462,0.480000) presC(min,dur_sum,max)=(0.053000,29101,0.999000)
-Loading reduction=0.000000 tot_n=41 thresh(num,dur,presc)=(41,16632,0.016000) presC(min,dur_sum,max)=(0.016000,16632,0.996000)
-Loading reduction=0.081081 tot_n=37 thresh(num,dur,presc)=(34,16730,0.115000) presC(min,dur_sum,max)=(0.020000,18347,0.990000)
+vehicle_turning_right reduction=0.354167 tot_n=48 thresh(num,dur,presc)=(31,16246,0.416000) presC(min,dur_sum,max)=(0.019000,26267,0.959000)
+Transport_HeavyCarry reduction=0.162791 tot_n=43 thresh(num,dur,presc)=(36,16313,0.139000) presC(min,dur_sum,max)=(0.032000,19133,0.960000)
+activity_gesturing reduction=0.042553 tot_n=47 thresh(num,dur,presc)=(45,16627,0.116000) presC(min,dur_sum,max)=(0.009000,17270,0.998000)
+specialized_texting_phone reduction=0.305556 tot_n=36 thresh(num,dur,presc)=(25,16058,0.308000) presC(min,dur_sum,max)=(0.028000,20273,0.994000)
+Person_Person_Interaction reduction=0.420290 tot_n=69 thresh(num,dur,presc)=(40,16675,0.452000) presC(min,dur_sum,max)=(0.022000,29528,0.978000)
+specialized_miscellaneous reduction=0.295455 tot_n=44 thresh(num,dur,presc)=(31,16275,0.374000) presC(min,dur_sum,max)=(0.024000,23290,0.997000)
+activity_running reduction=0.264151 tot_n=53 thresh(num,dur,presc)=(39,16134,0.434000) presC(min,dur_sum,max)=(0.076000,22454,0.986000)
+vehicle_starting reduction=0.300000 tot_n=50 thresh(num,dur,presc)=(35,16409,0.381000) presC(min,dur_sum,max)=(0.026000,24253,0.948000)
+Entering reduction=0.214286 tot_n=42 thresh(num,dur,presc)=(33,16218,0.215000) presC(min,dur_sum,max)=(0.005000,21533,0.970000)
+SetDown reduction=0.179487 tot_n=39 thresh(num,dur,presc)=(32,16106,0.124000) presC(min,dur_sum,max)=(0.005000,20328,0.979000)
+Opening reduction=0.173913 tot_n=46 thresh(num,dur,presc)=(38,16710,0.268000) presC(min,dur_sum,max)=(0.021000,20911,0.983000)
+Exiting reduction=0.285714 tot_n=42 thresh(num,dur,presc)=(30,16278,0.316000) presC(min,dur_sum,max)=(0.002000,22292,0.995000)
+activity_carrying reduction=0.518519 tot_n=54 thresh(num,dur,presc)=(26,16402,0.526000) presC(min,dur_sum,max)=(0.016000,31816,1.000000)
+vehicle_turning_left reduction=0.047619 tot_n=42 thresh(num,dur,presc)=(40,16525,0.050000) presC(min,dur_sum,max)=(0.035000,17428,0.987000)
+Open_Trunk reduction=0.309524 tot_n=42 thresh(num,dur,presc)=(29,16119,0.337000) presC(min,dur_sum,max)=(0.095000,23833,0.978000)
+Talking reduction=0.433962 tot_n=53 thresh(num,dur,presc)=(30,16596,0.391000) presC(min,dur_sum,max)=(0.020000,29330,0.959000)
+Unloading reduction=0.159091 tot_n=44 thresh(num,dur,presc)=(37,16742,0.149000) presC(min,dur_sum,max)=(0.027000,19619,0.994000)
+specialized_talking_phone reduction=0.276596 tot_n=47 thresh(num,dur,presc)=(34,16622,0.334000) presC(min,dur_sum,max)=(0.011000,21351,0.994000)
+Interacts reduction=0.489362 tot_n=47 thresh(num,dur,presc)=(24,16462,0.480000) presC(min,dur_sum,max)=(0.053000,29101,0.999000)
+Pull reduction=0.000000 tot_n=41 thresh(num,dur,presc)=(41,16632,0.016000) presC(min,dur_sum,max)=(0.016000,16632,0.996000)
+Closing_Trunk reduction=0.081081 tot_n=37 thresh(num,dur,presc)=(34,16730,0.115000) presC(min,dur_sum,max)=(0.020000,18347,0.990000)
 [Info] Validating system output against JSON schema
 [Info] System output validated successfully against JSON schema
 [Info] Checking file index against system's "filesProcessed"
@@ -41,34 +41,34 @@ Loading reduction=0.081081 tot_n=37 thresh(num,dur,presc)=(34,16730,0.115000) pr
 [Info] Saving results to directory 'data/checkfiles/test_18_0'
 [Info] Saving figures to directory 'data/checkfiles/test_18_0/figures'
 [Info] Saving dm files to directory 'data/checkfiles/test_18_0/dm'
-[Info] Plotting RFA DET curve for activity_running
-[Info] Plotting RFA DET curve for specialized_texting_phone
+[Info] Plotting RFA DET curve for Interacts
 [Info] Plotting RFA DET curve for activity_standing
 [Info] Plotting RFA DET curve for activity_carrying
-[Info] Plotting RFA DET curve for specialized_talking_phone
-[Info] Plotting RFA DET curve for vehicle_moving
 [Info] Plotting RFA DET curve for vehicle_turning_right
+[Info] Plotting RFA DET curve for activity_walking
+[Info] Plotting RFA DET curve for SetDown
+[Info] Plotting RFA DET curve for Unloading
+[Info] Plotting RFA DET curve for Exiting
+[Info] Plotting RFA DET curve for vehicle_turning_left
+[Info] Plotting RFA DET curve for Closing_Trunk
 [Info] Plotting RFA DET curve for Push
 [Info] Plotting RFA DET curve for Loading
-[Info] Plotting RFA DET curve for Person_Person_Interaction
-[Info] Plotting RFA DET curve for Closing
-[Info] Plotting RFA DET curve for Interacts
-[Info] Plotting RFA DET curve for activity_walking
 [Info] Plotting RFA DET curve for Pull
-[Info] Plotting RFA DET curve for Opening
 [Info] Plotting RFA DET curve for Talking
+[Info] Plotting RFA DET curve for Transport_HeavyCarry
 [Info] Plotting RFA DET curve for activity_gesturing
 [Info] Plotting RFA DET curve for vehicle_stopping
-[Info] Plotting RFA DET curve for Open_Trunk
-[Info] Plotting RFA DET curve for SetDown
-[Info] Plotting RFA DET curve for Exiting
-[Info] Plotting RFA DET curve for Entering
-[Info] Plotting RFA DET curve for Closing_Trunk
+[Info] Plotting RFA DET curve for activity_running
 [Info] Plotting RFA DET curve for vehicle_starting
-[Info] Plotting RFA DET curve for Unloading
+[Info] Plotting RFA DET curve for Closing
+[Info] Plotting RFA DET curve for Open_Trunk
+[Info] Plotting RFA DET curve for Person_Person_Interaction
+[Info] Plotting RFA DET curve for specialized_texting_phone
+[Info] Plotting RFA DET curve for Opening
+[Info] Plotting RFA DET curve for Entering
+[Info] Plotting RFA DET curve for vehicle_moving
+[Info] Plotting RFA DET curve for specialized_talking_phone
 [Info] Plotting RFA DET curve for specialized_miscellaneous
-[Info] Plotting RFA DET curve for vehicle_turning_left
-[Info] Plotting RFA DET curve for Transport_HeavyCarry
 [Info] Plotting mean RFA curve for 28 activities
 [Info] Plotting combined RFA DET curves
 [Errno 2] No such file or directory: 'data/checkfiles/test_18_0/dm/TFA_Closing.dm'

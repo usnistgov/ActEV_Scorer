@@ -128,7 +128,7 @@
   ],
   "command": "../ActEV_Scorer.py ActEV_SDL_V1 -s data/test_13-0_fake-sysout.json -r data/test_13-0.json -a data/test_13-0_activity-index.json -f data/test_13-0_file-index.json -o data/checkfiles/test_13_0 -v",
   "fa.ns_collar_size": 0,
-  "git.commit": "69202c5eb497411c34d870bee00927b54a250778--2020-03-10T11:38:28-04:00",
+  "git.commit": "6285d0225049d818f1653e395ed38c8f1602607e--2020-09-04T17:11:46-04:00",
   "nmide.cost_fa": 1,
   "nmide.cost_miss": 1,
   "nmide.ns_collar_size": 0,
