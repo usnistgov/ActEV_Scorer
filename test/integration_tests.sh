@@ -626,7 +626,7 @@ test_18_0() {
        -v -P 0.8
 }
 
-# no score regions test
+# no score regions test - Compared to test_1_0
 test_19_0() {
     ../ActEV_Scorer.py \
     "ActEV18_AD" \
@@ -638,6 +638,7 @@ test_19_0() {
        -v
 }
 
+# no score regions test - Compared to test_16_0
 test_19_1() {
     ../ActEV_Scorer.py \
     "ActEV_SDL_V2" \
