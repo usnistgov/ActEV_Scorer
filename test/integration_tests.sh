@@ -625,3 +625,15 @@ test_18_0() {
        -o "$1" \
        -v -P 0.8
 }
+
+# no score regions test
+test_19_0() {
+    ../ActEV_Scorer.py \
+    "ActEV18_AD" \
+       -s "data/VIRAT_S_000000_fake-sysout.json" \
+       -r "data/VIRAT_S_000000.json" \
+       -a "data/VIRAT_S_000000_activity-index.json" \
+       -f "data/VIRAT_S_000000_file-index_no-score.json" \
+       -o "$1" \
+       -v
+}
