@@ -34,6 +34,16 @@ from operator import add, sub
 from itertools import repeat
 from functools import reduce
 
+def _sorted(iterable):
+    i = list(iterable)
+    if len(i) != 0:
+        if isinstance(i[0], int):
+            return sorted(i)
+        else:  # str:
+            return map(lambda x: str(x), sorted(map(lambda x: int(x), iterable)))
+    else:
+        return []
+
 class SparseSignal(dict):
     def __init__(self, *args, **kwargs):
         super(SparseSignal, self).__init__(*args, **kwargs)
@@ -44,7 +54,7 @@ class SparseSignal(dict):
         self_val, other_val = default, default
         last_val = default
 
-        for key in sorted(set(self.keys()) | set(other.keys())):
+        for key in _sorted(set(self.keys()) | set(other.keys())):
             self_val = self.get(key, self_val)
             other_val = other.get(key, other_val)
 

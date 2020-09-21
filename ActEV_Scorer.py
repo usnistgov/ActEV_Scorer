@@ -53,6 +53,7 @@ from datacontainer import DataContainer
 from render import Render
 from logger import build_logger
 from ActivitiesFilePruner import prune
+from sparse_signal import SparseSignal
 
 def err_quit(msg, exit_status=1):
     print("[Error] {}".format(msg))
@@ -129,7 +130,24 @@ def load_schema_for_protocol(log, protocol):
     return load_json(schema_path)
 
 def parse_activities(deserialized_json, file_index, load_objects = False, ignore_extraneous = False, ignore_missing = False):
-    activity_instances = [ ActivityInstance(a, load_objects) for a in deserialized_json.get("activities", []) ]
+    raw_instances = [ a for a in deserialized_json.get("activities", []) ]
+    if args.filter_no_score_regions:
+        filtered_instances = []
+        for inst in raw_instances:
+            fn = list(inst['localization'].keys())[0]
+            frames = SparseSignal(inst['localization'][fn])
+            try:
+                f_frames = SparseSignal(file_index[fn]['selected'])
+                #print(frames, f_frames, (f_frames | frames), file=sys.stderr)
+                if (f_frames | frames) == f_frames:
+                    filtered_instances.append(inst)
+                #else:
+                    #print(frames, f_frames, (f_frames | frames), file=sys.stderr)
+            except KeyError:
+                print('keyerror', fn, file=sys.stderr)
+        activity_instances = [ ActivityInstance(a, load_objects) for a in filtered_instances ]
+    else:
+        activity_instances = [ ActivityInstance(a, load_objects) for a in raw_instances ]
 
     if ignore_extraneous or ignore_missing:
         extraneous_files = set(deserialized_json.get("filesProcessed", [])) - file_index.keys()
@@ -403,7 +421,8 @@ if __name__ == '__main__':
                  [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)],
                  [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],
                  [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=1)],
-                 [["-P", "--prune-system-output"], dict(help=("Prune system output before processing it."), type=float)],]
+                 [["-P", "--prune-system-output"], dict(help=("Prune system output before processing it."), type=float)],
+                 [["-N", "--filter-no-score-regions"], dict(help="Don't keep instances which overlap no-score regions.", action="store_true", default=False)],]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)
