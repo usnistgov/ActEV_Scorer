@@ -89,6 +89,17 @@ class TestSparseSignal(unittest.TestCase):
         self.assertEqual(self.s1 & self.sb1, self.s1)
         self.assertEqual(self.s1 & self.si1, S({45: 1, 60: 0}))
 
+    def testUnion(self):
+        self.assertEqual(self.se | self.se, self.se)
+        self.assertEqual(self.s1 | self.s1, self.s1)
+        self.assertEqual(self.s1 | self.s2, S({0: 1, 10: 0, 30: 1, 60: 0}))
+        self.assertEqual(self.s2 | self.s1, S({0: 1, 10: 0, 30: 1, 60: 0}))
+        self.assertEqual(self.s1 | self.s5 | self.s6, self.s7)
+        self.assertEqual(self.s5 | self.s7, self.s7)
+        self.assertEqual(self.s7 | self.s5, self.s7)
+        self.assertEqual(S({'0': 1, '20941': 0}) | S({'19337': 1, '19352': 0}), S({'0': 1, '20941': 0}))
+        self.assertEqual(S({'0': 1, '20941': 0}) | S({'4288': 1, '4636': 0}), S({'0': 1, '20941': 0}))
+
     def testSubtraction(self):
         self.assertEqual(self.s1 - self.se, self.s1)
         self.assertEqual(self.se - self.s1, self.se)
