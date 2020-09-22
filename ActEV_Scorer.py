@@ -40,6 +40,7 @@ import json
 import jsonschema
 from operator import add
 from functools import reduce
+from tempfile import NamedTemporaryFile
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
 sys.path.append(lib_path)
@@ -276,7 +277,7 @@ def score_actev18_aod(args):
 def score_actev18_aodt(args):
     from actev18_aodt import ActEV18_AODT
     score_basic(ActEV18_AODT, args)
-    
+
 def score_basic(protocol_class, args):
     verbosity_threshold = 1 if args.verbose else 0
     log = build_logger(verbosity_threshold)
@@ -290,7 +291,6 @@ def score_basic(protocol_class, args):
         if args.output_dir is None:
             err_quit("Missing required OUTPUT_DIR argument (-o, --output-dir).  Aborting!")
 
-    system_output = load_system_output(log, args.system_output_file)
     activity_index = load_activity_index(log, args.activity_index)
     file_index = load_file_index(log, args.file_index)
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
@@ -327,7 +327,7 @@ def score_basic(protocol_class, args):
     audc_by_activity = []
     mean_audc = []
     if not args.disable_plotting:
-        export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir)
+        export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir, args.no_ppf)
         audc_by_activity, mean_audc = protocol.compute_auc(args.output_dir)
 
     write_out_scoring_params(args.output_dir, protocol.scoring_parameters)
@@ -340,7 +340,8 @@ def score_basic(protocol_class, args):
     if vars(args).get("dump_object_alignment_records", False):
         write_records_as_csv("{}/object_alignment.csv".format(args.output_dir), ["activity", "ref_activity", "sys_activity", "frame", "ref_object_type", "sys_object_type", "mapped_ref_object_type", "mapped_sys_object_type", "alignment", "ref_object", "sys_object", "sys_presenceconf_score", "kernel_similarity", "kernel_components"], results.get("object_frame_alignment_records", []))
 
-def export_records(log, dm_records_rfa, dm_records_tfa, output_dir):
+
+def export_records(log, dm_records_rfa, dm_records_tfa, output_dir, no_ppf):
     figure_dir = "{}/figures".format(output_dir)
     mkdir_p(figure_dir)
     log(1, "[Info] Saving figures to directory '{}'".format(figure_dir))
@@ -360,7 +361,7 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir):
                 save_dm(dc, dm_dir, "{}_{}.dm".format(prefix, activity))
                 log(1, "[Info] Plotting {} DET curve for {}".format(prefix, activity))
                 opts['title'] = activity
-                save_DET(dc, figure_dir, "DET_{}_{}.png".format(prefix, activity), opts)
+                save_DET(dc, figure_dir, "DET_{}_{}.png".format(prefix, activity), no_ppf, opts)
 
             mean_label = "{}_mean_byfa".format(prefix)
             dc_agg = DataContainer.aggregate(dc_dict.values(), output_label=mean_label, average_resolution=500)
@@ -369,12 +370,12 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir):
             dc_agg.fn_label = "PMISS"
             save_dm(dc_agg, dm_dir, "{}.dm".format(mean_label))
             log(1, "[Info] Plotting mean {} curve for {} activities".format(prefix, len(dc_dict.values())))
-            save_DET(dc_agg, figure_dir, "DET_{}.png".format(mean_label), opts)
+            save_DET(dc_agg, figure_dir, "DET_{}.png".format(mean_label), no_ppf, opts)
             log(1, "[Info] Plotting combined {} DET curves".format(prefix))
             opts['title'] = "All Activities"
-            save_DET(dc_dict.values(), figure_dir, "DET_{}_{}.png".format(prefix, "COMBINED"), opts)
+            save_DET(dc_dict.values(), figure_dir, "DET_{}_{}.png".format(prefix, "COMBINED"), no_ppf, opts)
             opts['title'] = "All Activities and Aggregate"
-            save_DET(list(dc_dict.values()) + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINEDAGG"), opts)
+            save_DET(list(dc_dict.values()) + [dc_agg], figure_dir, "DET_{}_{}.png".format(prefix, "COMBINEDAGG"), no_ppf, opts)
 
     _export_records(dm_records_rfa, "RFA")
     _export_records(dm_records_tfa, "TFA")
@@ -393,13 +394,13 @@ def records_to_dm(records):
 def save_dm(dc, path, file_name):
     dc.dump("{}/{}".format(path, file_name))
 
-def save_DET(dc, path, file_name, plot_options={}):
+def save_DET(dc, path, file_name, no_ppf, plot_options={}):
     if type(dc) is {}.values().__class__:
         dc = list(dc)
     if isinstance(dc, DataContainer):
         dc = [dc]
     rd = Render(plot_type="det")
-    fig = rd.plot(dc, display=False, plot_options=plot_options)
+    fig = rd.plot(dc, display=False, plot_options=plot_options, no_ppf=no_ppf)
     fig.savefig("{}/{}".format(path, file_name))
     rd.close_fig(fig)
 
@@ -420,9 +421,10 @@ if __name__ == '__main__':
                  [["-v", "--verbose"], dict(help="Toggle verbose log output", action="store_true")],
                  [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)],
                  [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],
-                 [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=1)],
                  [["-P", "--prune-system-output"], dict(help=("Prune system output before processing it."), type=float)],
-                 [["-N", "--filter-no-score-regions"], dict(help="Don't keep instances which overlap no-score regions.", action="store_true", default=False)],]
+                 [["-R", "--filter-no-score-regions"], dict(help="Don't keep instances which overlap no-score regions.", action="store_true", default=False)],
+                 [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=8)],
+                 [["-N", "--no-ppf"], dict(help="If set, Y axis will be `fn` instead of `norm.ppf(fn)`", action="store_true")],]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)

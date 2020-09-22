@@ -1,4 +1,4 @@
-[Info] Command: ../ActEV_Scorer.py ActEV_SDL_V2 -s data/test_11-4_fake-sysout.json -r data/test_11-4.json -a data/test_9-0_activity-index.json -f data/test_19-1_file-index.json -o data/checkfiles/test_19_1 -v
+[Info] Command: ../ActEV_Scorer.py ActEV_SDL_V2 -s data/test_11-4_fake-sysout.json -r data/test_11-4.json -a data/test_9-0_activity-index.json -f data/test_19-1_file-index.json -o data/checkfiles/test_19_1 -v -R
 [Info] Loading activity index file
 [Info] Loading file index file
 [Info] Loading JSON schema
@@ -13,11 +13,11 @@
 [Info] Saving results to directory 'data/checkfiles/test_19_1'
 [Info] Saving figures to directory 'data/checkfiles/test_19_1/figures'
 [Info] Saving dm files to directory 'data/checkfiles/test_19_1/dm'
-[Info] Plotting RFA DET curve for Closing
 [Info] Plotting RFA DET curve for Entering
+[Info] Plotting RFA DET curve for Closing
 [Info] Plotting mean RFA curve for 2 activities
 [Info] Plotting combined RFA DET curves
-[Info] Plotting TFA DET curve for Closing
 [Info] Plotting TFA DET curve for Entering
+[Info] Plotting TFA DET curve for Closing
 [Info] Plotting mean TFA curve for 2 activities
 [Info] Plotting combined TFA DET curves

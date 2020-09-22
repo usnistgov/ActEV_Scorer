@@ -39,24 +39,27 @@ from functools import reduce
 
 def group_by_func(key_func, items, map_func=None, default_groups=None):
     def _r(h, x):
-        h.setdefault(key_func(x), []).append(x if map_func == None else map_func(x))
+        h.setdefault(key_func(x), []).append(
+            x if map_func is None else map_func(x))
         return h
 
     grouped = reduce(_r, items, {})
     if default_groups is None:
         return grouped
     else:
-        return merge_dicts({ k: [] for k in default_groups }, grouped)
+        return merge_dicts({k: [] for k in default_groups}, grouped)
+
 
 def dict_to_records(d, value_map=None):
     def _r(init, kv):
         k, v = kv
         for _v in v:
-            init.append([k] + (_v if value_map == None else value_map(_v)))
+            init.append([k] + (_v if value_map is None else value_map(_v)))
 
         return init
 
     return reduce(_r, d.items(), [])
+
 
 def merge_dicts(a, b, conflict_func=None):
     def _r(init, k):
@@ -72,13 +75,16 @@ def merge_dicts(a, b, conflict_func=None):
 
     return reduce(_r, a.keys() | b.keys(), {})
 
+
 def identity(x):
     return x
+
 
 def unserialize_fct_alg(args):
     (sfct, activity, props) = args
     fct = loads(sfct)
     return fct(activity, props)
+
 
 def unserialize_fct_res(args):
     (sfct, (activity, iterable), init) = args
