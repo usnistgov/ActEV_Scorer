@@ -30,7 +30,7 @@ class Render:
 
     def get_plot_options(self, plot_type, fa_label, fp_label, plot_options={}):
         cur_plot_options = merge_dicts(
-            self.gen_default_plot_options(plot_type, fa_label, fp_label),
+            self.gen_default_plot_options(plot_type, fa_label, fp_label, no_ppf=self.no_ppf),
             self.plot_options)
         cur_plot_options = merge_dicts(cur_plot_options, plot_options)
         return cur_plot_options
@@ -163,7 +163,7 @@ class Render:
 
     @staticmethod
     def gen_default_plot_options(plot_type, fa_label, fn_label,
-                                 plot_title=None):
+                                 plot_title=None, no_ppf=False):
         """This function generates JSON file to customize the plot.
         path: JSON file name along with the path
         plot_type: either DET or ROC"""
@@ -206,11 +206,18 @@ class Render:
             plot_opts["xlim"] = (plot_opts["xticks"][0],
                                  plot_opts["xticks"][-1])
             plot_opts["ylabel"] = "Prob. of Miss Detection"
-            plot_opts["yticks"] = norm.ppf([0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 0.9,
-                                            0.95, 0.98, 0.99, 0.995, 0.999])
-            plot_opts["yticks_labels"] = [
-                '0.05', '0.10', '0.20', '0.40', '0.60', '0.80', '0.90', '0.95',
-                '0.98', '0.99', '0.995', '0.999']
+            if no_ppf:
+                plot_opts["yticks"] = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6,
+                                                0.7, 0.8, 0.9, 1.0]
+                plot_opts["yticks_labels"] = [
+                    '0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7',
+                    '0.8', '0.9', '1.0']
+            else:
+                plot_opts["yticks"] = norm.ppf([0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 0.9,
+                                                0.95, 0.98, 0.99, 0.995, 0.999])
+                plot_opts["yticks_labels"] = [
+                    '0.05', '0.10', '0.20', '0.40', '0.60', '0.80', '0.90', '0.95',
+                    '0.98', '0.99', '0.995', '0.999']
             plot_opts["ylim"] = (plot_opts["yticks"][0],
                                  plot_opts["yticks"][-1])
 
