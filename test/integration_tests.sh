@@ -606,58 +606,58 @@ test_15_3() {
 test_16_0() {
     ../ActEV_Scorer.py \
     "ActEV_SDL_V2" \
-       -s "data/test_11-4_fake-sysout.json" \
-       -r "data/test_11-4.json" \
-       -a "data/test_9-0_activity-index.json" \
-       -f "data/test_11-0_file-index.json" \
-       -o "$1" \
-       -v -n 4
+    -s "data/test_11-4_fake-sysout.json" \
+    -r "data/test_11-4.json" \
+    -a "data/test_9-0_activity-index.json" \
+    -f "data/test_11-0_file-index.json" \
+    -o "$1" \
+    -v -n 4
 }
 
 # no ppf test
 test_17_0() {
     ../ActEV_Scorer.py \
-    "ActEV_SDL_V2" \
-       -s "data/test_11-4_fake-sysout.json" \
-       -r "data/test_11-4.json" \
-       -a "data/test_9-0_activity-index.json" \
-       -f "data/test_11-0_file-index.json" \
-       -o "$1" \
-       -v -N
+    "ActEV_SDL_V1" \
+    -s "data/test_15-1_fake-sysout.json" \
+    -r "data/test_15-1.json" \
+    -a "data/test_15-0_activity-index.json" \
+    -f "data/test_15-0_file-index.json" \
+    -o "$1" -p "data/test_17-0_plot-option.json"\
+    -v -N
 }
 
 # Pruning test
 test_18_0() {
     ../ActEV_Scorer.py \
     "ActEV18_AD" \
-       -s "data/VIRAT_S_000000_fake-sysout.json" \
-       -r "data/VIRAT_S_000000.json" \
-       -a "data/VIRAT_S_000000_activity-index.json" \
-       -f "data/VIRAT_S_000000_file-index.json" \
-       -o "$1" \
-       -v -P 0.8
+    -s "data/VIRAT_S_000000_fake-sysout.json" \
+    -r "data/VIRAT_S_000000.json" \
+    -a "data/VIRAT_S_000000_activity-index.json" \
+    -f "data/VIRAT_S_000000_file-index.json" \
+    -o "$1" \
+    -v -P 0.8
 }
 
 # no score regions test - Compared to test_1_0
 test_19_0() {
     ../ActEV_Scorer.py \
     "ActEV18_AD" \
-       -s "data/VIRAT_S_000000_fake-sysout.json" \
-       -r "data/VIRAT_S_000000.json" \
-       -a "data/VIRAT_S_000000_activity-index.json" \
-       -f "data/VIRAT_S_000000_file-index_no-score.json" \
-       -o "$1" \
-       -v -R
+    -s "data/VIRAT_S_000000_fake-sysout.json" \
+    -r "data/VIRAT_S_000000.json" \
+    -a "data/VIRAT_S_000000_activity-index.json" \
+    -f "data/VIRAT_S_000000_file-index_no-score.json" \
+    -o "$1" \
+    -v -R
 }
 
 # no score regions test - Compared to test_16_0
 test_19_1() {
     ../ActEV_Scorer.py \
     "ActEV_SDL_V2" \
-       -s "data/test_11-4_fake-sysout.json" \
-       -r "data/test_11-4.json" \
-       -a "data/test_9-0_activity-index.json" \
-       -f "data/test_19-1_file-index.json" \
-       -o "$1" \
-       -v -R
+    -s "data/test_11-4_fake-sysout.json" \
+    -r "data/test_11-4.json" \
+    -a "data/test_9-0_activity-index.json" \
+    -f "data/test_19-1_file-index.json" \
+    -o "$1" \
+    -v -R
 }
