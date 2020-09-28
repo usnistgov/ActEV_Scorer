@@ -1,0 +1,45 @@
+{
+  "activity.auc_at_fa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.epsilon_presenceconf_congruence": 1e-06,
+  "activity.epsilon_temporal_congruence": 1e-08,
+  "activity.n_mide_at_rfa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.p_miss_at_rfa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.temporal_overlap_delta": 0.2,
+  "activity.w_p_miss_at_rfa_targets": [
+    1,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "command": "../ActEV_Scorer.py ActEV18_AD -s data/test_20-0_fake-sysout.json -r data/test_20-0.json -a data/test_20-0_activity-index.json -f data/test_20-0_file-index.json -o compcheckfiles/test_20_0 -v",
+  "git.commit": "ce854ad20513170259a849d7f0401cf22dac94fe--2020-09-28T18:28:02-04:00",
+  "nmide.cost_fa": 1,
+  "nmide.cost_miss": 1,
+  "nmide.ns_collar_size": 0,
+  "scoring_protocol": "actev18_ad",
+  "wpmiss.denominator": 10,
+  "wpmiss.numerator": 8
+}

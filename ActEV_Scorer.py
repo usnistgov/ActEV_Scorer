@@ -41,7 +41,8 @@ import jsonschema
 from operator import add
 from functools import reduce
 import ijson
-import shutils
+import shutil
+import dill
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
 sys.path.append(lib_path)
@@ -193,11 +194,27 @@ def check_file_index_congruence(log, system_output, file_index, ignore_extraneou
 
     return True
 
+alignment_id = 0
 def dump_alignments(alignment):
-    pass
+    global alignment_id
+    path = '.tmp_align'
+    try:
+        os.mkdir(path)
+    except FileExistsError:
+        pass
+    with open(os.path.join(path, str(alignment_id)), 'wb') as fd:
+        dill.dump(alignment, fd)
+    alignment_id += 1
 
 def merge_alignments():
-    pass
+    path = '.tmp_align'
+    alignment = []
+    for root, dirs, files in os.walk(path):
+        for f in files:
+            with open(os.path.join(path, f), 'rb') as fd:
+                alignment.extend(dill.load(fd))
+    shutil.rmtree(path)
+    return alignment
 
 def plot_dets(log, output_dir, det_point_records, tfa_det_point_records):
     figure_dir = "{}/figures".format(output_dir)
@@ -291,14 +308,20 @@ def score_basic(protocol_class, args):
     if args.large_input:
         # Seperate instances by file, export alignments 1b1, then merge them and compute results
         for filename in list(file_index.keys()):
-            log(1, "[Info] Extracting activities from %s" % (filename))
-            with open(args.system_output_file, 'r'):
-                objs = ijson.items('activities.item')
-                activities = [o for o in objs if list(o['localization'].keys())[0] == filename]
+            log(1, "[Info] Extracting activities (%s)" % (filename))
+            with open(args.system_output_file, 'r') as fd:
+                objs = ijson.items(fd, 'activities.item')
+                fp = ijson.items(fd, 'filesProcessed.item')
+                activities = {}
+                activities['filesProcessed'] = list(fp)
+                fd.seek(0)
+                activities['activities'] = list(o for o in objs if list(o['localization'].keys())[0] == filename)
+                for inst in activities['activities']:
+                    inst['presenceConf'] = float(inst['presenceConf'])
             # WARNING If pruning, prune here.
             log(1, "[Info] Loading activities and references (%s)" % (filename))
             validate_input(log, activities, system_output_schema)
-            check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
+            check_file_index_congruence(log, activities, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
             log(1, "[Info] Validation successful (%s)" % (filename))
 
             if args.validation_only:
@@ -308,12 +331,14 @@ def score_basic(protocol_class, args):
             reference = load_reference(log, args.reference_file)
             reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
 
-            log(1, "[Info] Computing alignments .. (%s)")
+            log(1, "[Info] Computing alignments .. (%s)" % (filename))
             alignment = protocol.compute_alignment(system_activities, reference_activities)
             dump_alignments(alignment)
         alignment = merge_alignments()
+        log(1, alignment)
         log(1, '[Info] Scoring ..')
         results = protocol.compute_results(alignment, args.det_point_resolution)
+        log(1, results)
 
     else:
         log(1, "[Info] Loading activities and references")
