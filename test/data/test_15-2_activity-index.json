@@ -6,9 +6,9 @@
     ]
   },
     "Entering": {
-	"objectTypes": [
-	    "person",
-	    "vehicle"
-	]
+    "objectTypes": [
+          "person",
+          "vehicle"
+      ]
     }
 }
