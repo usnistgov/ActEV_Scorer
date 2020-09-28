@@ -40,6 +40,8 @@ import json
 import jsonschema
 from operator import add
 from functools import reduce
+import ijson
+import shutils
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
 sys.path.append(lib_path)
@@ -191,6 +193,12 @@ def check_file_index_congruence(log, system_output, file_index, ignore_extraneou
 
     return True
 
+def dump_alignments(alignment):
+    pass
+
+def merge_alignments():
+    pass
+
 def plot_dets(log, output_dir, det_point_records, tfa_det_point_records):
     figure_dir = "{}/figures".format(output_dir)
     mkdir_p(figure_dir)
@@ -272,7 +280,6 @@ def score_basic(protocol_class, args):
         if args.output_dir is None:
             err_quit("Missing required OUTPUT_DIR argument (-o, --output-dir).  Aborting!")
 
-    system_output = load_system_output(log, args.system_output_file)
     activity_index = load_activity_index(log, args.activity_index)
     file_index = load_file_index(log, args.file_index)
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
@@ -281,28 +288,58 @@ def score_basic(protocol_class, args):
     protocol.minmax = None
     system_output_schema = load_schema_for_protocol(log, protocol)
 
-    log(1, "[Info] Loading activities and references")
-    if args.prune_system_output:
-        system_output, minmax = prune(args.system_output_file, args.prune_system_output, file_index, log)
-        protocol.minmax = minmax
-    else:
-        system_output = load_system_output(log, args.system_output_file)
+    if args.large_input:
+        # Seperate instances by file, export alignments 1b1, then merge them and compute results
+        for filename in list(file_index.keys()):
+            log(1, "[Info] Extracting activities from %s" % (filename))
+            with open(args.system_output_file, 'r'):
+                objs = ijson.items('activities.item')
+                activities = [o for o in objs if list(o['localization'].keys())[0] == filename]
+            # WARNING If pruning, prune here.
+            log(1, "[Info] Loading activities and references (%s)" % (filename))
+            validate_input(log, activities, system_output_schema)
+            check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
+            log(1, "[Info] Validation successful (%s)" % (filename))
 
-    validate_input(log, system_output, system_output_schema)
-    check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
-    log(1, "[Info] Validation successful")
+            if args.validation_only:
+                continue
+
+            system_activities = parse_activities(activities, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
+            reference = load_reference(log, args.reference_file)
+            reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
+
+            log(1, "[Info] Computing alignments .. (%s)")
+            alignment = protocol.compute_alignment(system_activities, reference_activities)
+            dump_alignments(alignment)
+        alignment = merge_alignments()
+        log(1, '[Info] Scoring ..')
+        results = protocol.compute_results(alignment, args.det_point_resolution)
+
+    else:
+        log(1, "[Info] Loading activities and references")
+        system_output = load_system_output(log, args.system_output_file)
+        if args.prune_system_output:
+            system_output, minmax = prune(args.system_output_file, args.prune_system_output, file_index, log)
+            protocol.minmax = minmax
+
+        validate_input(log, system_output, system_output_schema)
+        check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
+        log(1, "[Info] Validation successful")
+
+        if args.validation_only:
+            exit(0)
+
+        system_activities = parse_activities(system_output, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
+        reference = load_reference(log, args.reference_file)
+        reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
+
+        log(1, "[Info] Computing alignments ..")
+        alignment = protocol.compute_alignment(system_activities, reference_activities)
+        log(1, '[Info] Scoring ..')
+        results = protocol.compute_results(alignment, args.det_point_resolution)
 
     if args.validation_only:
         exit(0)
-
-    system_activities = parse_activities(system_output, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
-    reference = load_reference(log, args.reference_file)
-    reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
-
-    log(1, "[Info] Computing alignments ..")
-    alignment = protocol.compute_alignment(system_activities, reference_activities)
-    log(1, '[Info] Scoring ..')
-    results = protocol.compute_results(alignment, args.det_point_resolution)
 
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
@@ -403,7 +440,8 @@ if __name__ == '__main__':
                  [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)],
                  [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],
                  [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=1)],
-                 [["-P", "--prune-system-output"], dict(help=("Prune system output before processing it."), type=float)],]
+                 [["-P", "--prune-system-output"], dict(help=("Prune system output before processing it."), type=float)],
+                 [["-L", "--large-input"], dict(help="Help processing large system outputs. (Takes longer to process)", action="store_true")],]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)
