@@ -649,3 +649,15 @@ test_19_1() {
        -o "$1" \
        -v
 }
+
+# Split large input. Files are the merge of VIRAT 0 and 1 ones
+test_20_0() {
+    ../ActEV_Scorer.py \
+    "ActEV18_AD" \
+       -s "data/test_20-0_fake-sysout.json" \
+       -r "data/test_20-0.json" \
+       -a "data/test_20-0_activity-index.json" \
+       -f "data/test_20-0_file-index.json" \
+       -o "$1" \
+       -v -L
+}
