@@ -1,0 +1,22 @@
+activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
+Loading|FA|None|627|0.166|None|None
+Loading|FA|None|740|0.588|None|None
+Opening|FA|None|956|0.695|None|None
+Opening|FA|None|992|0.021|None|None
+Person_Person_Interaction|FA|None|1008|0.129|None|None
+Person_Person_Interaction|FA|None|660|0.023|None|None
+Person_Person_Interaction|FA|None|993|0.398|None|None
+Pull|FA|None|892|0.502|None|None
+Push|FA|None|195|0.714|None|None
+Talking|FA|None|527|0.474|None|None
+Unloading|FA|None|1137|0.127|None|None
+activity_carrying|FA|None|468|0.068|None|None
+activity_gesturing|FA|None|174|0.461|None|None
+activity_running|FA|None|683|0.521|None|None
+activity_walking|CD|190|37|0.603|1.6271551724137931|{"presenceconf_congruence": 0.6271551724137931}
+activity_walking|CD|191|1147|0.72|1.7532327586206895|{"presenceconf_congruence": 0.7532327586206896}
+activity_walking|FA|None|671|0.364|None|None
+specialized_miscellaneous|FA|None|282|0.585|None|None
+specialized_texting_phone|FA|None|1131|0.239|None|None
+vehicle_stopping|FA|None|1174|0.949|None|None
+vehicle_turning_right|FA|None|658|0.79|None|None

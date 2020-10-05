@@ -1,0 +1,11 @@
+activity|ref|sys|metric_name|metric_value
+activity_walking|190|37|temporal_fa|1
+activity_walking|190|37|temporal_intersection|1
+activity_walking|190|37|temporal_intersection-over-union|None
+activity_walking|190|37|temporal_miss|0
+activity_walking|190|37|temporal_union|2
+activity_walking|191|1147|temporal_fa|101
+activity_walking|191|1147|temporal_intersection|1
+activity_walking|191|1147|temporal_intersection-over-union|None
+activity_walking|191|1147|temporal_miss|0
+activity_walking|191|1147|temporal_union|102
