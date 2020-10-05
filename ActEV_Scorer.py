@@ -307,21 +307,28 @@ def score_basic(protocol_class, args):
 
     if args.large_input:
         # Seperate instances by file, export alignments 1b1, then merge them and compute results
+        alignment = []
+        #for activity in list(activity_index.keys()):
         for filename in list(file_index.keys()):
+            #log(1, "[Info] Extracting activities (%s)" % (activity))
             log(1, "[Info] Extracting activities (%s)" % (filename))
             with open(args.system_output_file, 'r') as fd:
                 objs = ijson.items(fd, 'activities.item')
+                fd.seek(0)
                 fp = ijson.items(fd, 'filesProcessed.item')
                 activities = {}
                 activities['filesProcessed'] = list(fp)
                 fd.seek(0)
+                #activities['activities'] = list(o for o in objs if o['activity'] == activity)
                 activities['activities'] = list(o for o in objs if list(o['localization'].keys())[0] == filename)
                 for inst in activities['activities']:
                     inst['presenceConf'] = float(inst['presenceConf'])
             # WARNING If pruning, prune here.
+            #log(1, "[Info] Loading activities and references (%s)" % (activity))
             log(1, "[Info] Loading activities and references (%s)" % (filename))
             validate_input(log, activities, system_output_schema)
             check_file_index_congruence(log, activities, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
+            #log(1, "[Info] Validation successful (%s)" % (activity))
             log(1, "[Info] Validation successful (%s)" % (filename))
 
             if args.validation_only:
@@ -331,10 +338,11 @@ def score_basic(protocol_class, args):
             reference = load_reference(log, args.reference_file)
             reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
 
+            #log(1, "[Info] Computing alignments .. (%s)" % (activity))
             log(1, "[Info] Computing alignments .. (%s)" % (filename))
-            alignment = protocol.compute_alignment(system_activities, reference_activities)
-            dump_alignments(alignment)
-        alignment = merge_alignments()
+            alignment.extend(protocol.compute_alignment(system_activities, reference_activities))
+            #dump_alignments(alignment)
+        #alignment = merge_alignments()
         log(1, alignment)
         log(1, '[Info] Scoring ..')
         results = protocol.compute_results(alignment, args.det_point_resolution)

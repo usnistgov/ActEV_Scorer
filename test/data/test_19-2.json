@@ -1,0 +1,57 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "activity_walking",
+      "activityID": 182,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "1": 1,
+          "704": 0
+        }
+      }
+    },
+    {
+      "activity": "activity_walking",
+      "activityID": 190,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "90": 1,
+          "91": 0
+        }
+      }
+    },
+    {
+      "activity": "activity_walking",
+      "activityID": 191,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "906": 1,
+          "907": 0
+        }
+      }
+    },
+    {
+      "activity": "activity_standing",
+      "activityID": 224,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "1": 1,
+          "90": 0
+        }
+      }
+    },
+    {
+      "activity": "activity_standing",
+      "activityID": 225,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "91": 1,
+          "906": 0
+        }
+      }
+    }
+  ]
+}
