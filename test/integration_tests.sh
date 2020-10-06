@@ -673,3 +673,15 @@ test_19_2() {
     -o "$1" \
     -v -R
 }
+
+# Same one without the no-score region
+test_19_3() {
+    ../ActEV_Scorer.py \
+    "ActEV_SDL_V2" \
+    -s "data/test_19-2_fake-sysout.json" \
+    -r "data/test_19-2.json" \
+    -a "data/test_19-2_activity-index.json" \
+    -f "data/test_19-2_file-index.json" \
+    -o "$1" \
+    -v
+}

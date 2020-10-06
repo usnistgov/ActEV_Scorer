@@ -1,0 +1,55 @@
+[Info] Command: ../ActEV_Scorer.py ActEV_SDL_V2 -s data/test_19-2_fake-sysout.json -r data/test_19-2.json -a data/test_19-2_activity-index.json -f data/test_19-2_file-index.json -o data/checkfiles/test_19_3 -v
+[Info] Loading activity index file
+[Info] Loading file index file
+[Info] Loading JSON schema
+[Info] Loading activities and references
+[Info] Validating system output against JSON schema
+[Info] System output validated successfully against JSON schema
+[Info] Checking file index against system's "filesProcessed"
+[Info] Validation successful
+[Info] Loading reference file
+[Info] Computing alignments ..
+[Info] Scoring ..
+[Info] Saving results to directory 'data/checkfiles/test_19_3'
+[Info] Saving figures to directory 'data/checkfiles/test_19_3/figures'
+[Info] Saving dm files to directory 'data/checkfiles/test_19_3/dm'
+[Info] Plotting RFA DET curve for Opening
+[Info] Plotting RFA DET curve for Pull
+[Info] Plotting RFA DET curve for Talking
+[Info] Plotting RFA DET curve for Unloading
+[Info] Plotting RFA DET curve for activity_walking
+[Info] Plotting RFA DET curve for Push
+[Info] Plotting RFA DET curve for vehicle_turning_right
+[Info] Plotting RFA DET curve for Person_Person_Interaction
+[Info] Plotting RFA DET curve for activity_gesturing
+[Info] Plotting RFA DET curve for vehicle_stopping
+[Info] Plotting RFA DET curve for activity_carrying
+[Info] Plotting RFA DET curve for Transport_HeavyCarry
+[Info] Plotting RFA DET curve for activity_running
+[Info] Plotting RFA DET curve for Loading
+[Info] Plotting RFA DET curve for specialized_miscellaneous
+[Info] Plotting RFA DET curve for specialized_talking_phone
+[Info] Plotting RFA DET curve for SetDown
+[Info] Plotting RFA DET curve for specialized_texting_phone
+[Info] Plotting mean RFA curve for 18 activities
+[Info] Plotting combined RFA DET curves
+[Info] Plotting TFA DET curve for Opening
+[Info] Plotting TFA DET curve for Pull
+[Info] Plotting TFA DET curve for Talking
+[Info] Plotting TFA DET curve for Unloading
+[Info] Plotting TFA DET curve for activity_walking
+[Info] Plotting TFA DET curve for Push
+[Info] Plotting TFA DET curve for vehicle_turning_right
+[Info] Plotting TFA DET curve for Person_Person_Interaction
+[Info] Plotting TFA DET curve for activity_gesturing
+[Info] Plotting TFA DET curve for vehicle_stopping
+[Info] Plotting TFA DET curve for activity_carrying
+[Info] Plotting TFA DET curve for Transport_HeavyCarry
+[Info] Plotting TFA DET curve for activity_running
+[Info] Plotting TFA DET curve for Loading
+[Info] Plotting TFA DET curve for specialized_miscellaneous
+[Info] Plotting TFA DET curve for specialized_talking_phone
+[Info] Plotting TFA DET curve for SetDown
+[Info] Plotting TFA DET curve for specialized_texting_phone
+[Info] Plotting mean TFA curve for 18 activities
+[Info] Plotting combined TFA DET curves
