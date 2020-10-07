@@ -5,51 +5,121 @@
   "activities": [
     {
       "activity": "activity_walking",
-      "activityID": 182,
+      "activityID": 2,
       "localization": {
         "VIRAT_S_000000.mp4": {
-          "1": 1,
-          "704": 0
+          "25": 1,
+          "86": 0
         }
       }
     },
     {
       "activity": "activity_walking",
-      "activityID": 190,
+      "activityID": 5,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "53": 1,
+          "110": 0
+        }
+      }
+    },
+    {
+      "activity": "activity_walking",
+      "activityID": 37,
       "localization": {
         "VIRAT_S_000000.mp4": {
           "90": 1,
-          "91": 0
+          "130": 0
         }
       }
     },
     {
-      "activity": "activity_walking",
-      "activityID": 191,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "906": 1,
-          "907": 0
-        }
-      }
-    },
-    {
-      "activity": "activity_standing",
-      "activityID": 224,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "1": 1,
-          "90": 0
-        }
-      }
-    },
-    {
-      "activity": "activity_standing",
-      "activityID": 225,
+      "activity": "activity_gesturing",
+      "activityID": 174,
       "localization": {
         "VIRAT_S_000000.mp4": {
           "91": 1,
-          "906": 0
+          "180": 0
+        }
+      }
+    },
+    {
+      "activity": "Unloading",
+      "activityID": 177,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "113": 1,
+          "188": 0
+        }
+      }
+    },
+    {
+      "activity": "specialized_talking_phone",
+      "activityID": 188,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "129": 1,
+          "200": 0
+        }
+      }
+    },
+    {
+      "activity": "Push",
+      "activityID": 195,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "135": 1,
+          "205": 0
+        }
+      }
+    },
+    {
+      "activity": "specialized_miscellaneous",
+      "activityID": 282,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "151": 1,
+          "252": 0
+        }
+      }
+    },
+    {
+      "activity": "activity_carrying",
+      "activityID": 468,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "180": 1,
+          "300": 0
+        }
+      }
+    },
+    {
+      "activity": "Talking",
+      "activityID": 527,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "198": 1,
+          "312": 0
+        }
+      }
+    },
+    {
+      "activity": "Loading",
+      "activityID": 627,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "202": 1,
+          "287": 0
+        }
+      }
+    },
+    {
+      "activity": "vehicle_turning_right",
+      "activityID": 658,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "237": 1,
+          "300": 0
         }
       }
     }

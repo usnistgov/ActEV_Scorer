@@ -5,13 +5,25 @@
   "activities": [
     {
       "activity": "activity_walking",
+      "activityID": 2,
+      "presenceConf": 0.764,
+      "alertFrame": 86,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "25": 1,
+          "86": 0
+        }
+      }
+    },
+    {
+      "activity": "activity_walking",
       "activityID": 5,
       "presenceConf": 0.958,
-      "alertFrame": 781,
+      "alertFrame": 110,
       "localization": {
         "VIRAT_S_000000.mp4": {
           "53": 1,
-          "781": 0
+          "110": 0
         }
       }
     },
@@ -19,11 +31,11 @@
       "activity": "activity_walking",
       "activityID": 37,
       "presenceConf": 0.603,
-      "alertFrame": 92,
+      "alertFrame": 130,
       "localization": {
         "VIRAT_S_000000.mp4": {
           "90": 1,
-          "92": 0
+          "130": 0
         }
       }
     },
@@ -31,11 +43,11 @@
       "activity": "activity_gesturing",
       "activityID": 174,
       "presenceConf": 0.461,
-      "alertFrame": 865,
+      "alertFrame": 180,
       "localization": {
         "VIRAT_S_000000.mp4": {
-          "289": 1,
-          "865": 0
+          "91": 1,
+          "180": 0
         }
       }
     },
@@ -43,11 +55,11 @@
       "activity": "Unloading",
       "activityID": 177,
       "presenceConf": 0.916,
-      "alertFrame": 985,
+      "alertFrame": 188,
       "localization": {
         "VIRAT_S_000000.mp4": {
-          "84": 1,
-          "985": 0
+          "113": 1,
+          "188": 0
         }
       }
     },
@@ -55,11 +67,11 @@
       "activity": "specialized_talking_phone",
       "activityID": 188,
       "presenceConf": 0.096,
-      "alertFrame": 339,
+      "alertFrame": 200,
       "localization": {
         "VIRAT_S_000000.mp4": {
-          "6": 1,
-          "339": 0
+          "129": 1,
+          "200": 0
         }
       }
     },
@@ -67,11 +79,11 @@
       "activity": "Push",
       "activityID": 195,
       "presenceConf": 0.714,
-      "alertFrame": 798,
+      "alertFrame": 205,
       "localization": {
         "VIRAT_S_000000.mp4": {
-          "394": 1,
-          "798": 0
+          "135": 1,
+          "205": 0
         }
       }
     },
@@ -79,11 +91,11 @@
       "activity": "specialized_miscellaneous",
       "activityID": 282,
       "presenceConf": 0.585,
-      "alertFrame": 831,
+      "alertFrame": 252,
       "localization": {
         "VIRAT_S_000000.mp4": {
-          "270": 1,
-          "831": 0
+          "151": 1,
+          "252": 0
         }
       }
     },
@@ -91,11 +103,11 @@
       "activity": "activity_carrying",
       "activityID": 468,
       "presenceConf": 0.068,
-      "alertFrame": 594,
+      "alertFrame": 300,
       "localization": {
         "VIRAT_S_000000.mp4": {
-          "499": 1,
-          "594": 0
+          "180": 1,
+          "300": 0
         }
       }
     },
@@ -103,11 +115,11 @@
       "activity": "Talking",
       "activityID": 527,
       "presenceConf": 0.474,
-      "alertFrame": 612,
+      "alertFrame": 312,
       "localization": {
         "VIRAT_S_000000.mp4": {
-          "291": 1,
-          "612": 0
+          "198": 1,
+          "312": 0
         }
       }
     },
@@ -115,11 +127,11 @@
       "activity": "Loading",
       "activityID": 627,
       "presenceConf": 0.166,
-      "alertFrame": 937,
+      "alertFrame": 287,
       "localization": {
         "VIRAT_S_000000.mp4": {
-          "579": 1,
-          "937": 0
+          "202": 1,
+          "287": 0
         }
       }
     },
@@ -127,203 +139,11 @@
       "activity": "vehicle_turning_right",
       "activityID": 658,
       "presenceConf": 0.79,
-      "alertFrame": 478,
+      "alertFrame": 300,
       "localization": {
         "VIRAT_S_000000.mp4": {
-          "332": 1,
-          "478": 0
-        }
-      }
-    },
-    {
-      "activity": "Person_Person_Interaction",
-      "activityID": 660,
-      "presenceConf": 0.023,
-      "alertFrame": 862,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "398": 1,
-          "862": 0
-        }
-      }
-    },
-    {
-      "activity": "activity_walking",
-      "activityID": 671,
-      "presenceConf": 0.364,
-      "alertFrame": 810,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "229": 1,
-          "810": 0
-        }
-      }
-    },
-    {
-      "activity": "activity_running",
-      "activityID": 683,
-      "presenceConf": 0.521,
-      "alertFrame": 602,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "278": 1,
-          "602": 0
-        }
-      }
-    },
-    {
-      "activity": "Loading",
-      "activityID": 740,
-      "presenceConf": 0.588,
-      "alertFrame": 763,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "657": 1,
-          "763": 0
-        }
-      }
-    },
-    {
-      "activity": "SetDown",
-      "activityID": 769,
-      "presenceConf": 0.286,
-      "alertFrame": 776,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "186": 1,
-          "776": 0
-        }
-      }
-    },
-    {
-      "activity": "Pull",
-      "activityID": 892,
-      "presenceConf": 0.502,
-      "alertFrame": 733,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "497": 1,
-          "733": 0
-        }
-      }
-    },
-    {
-      "activity": "Opening",
-      "activityID": 956,
-      "presenceConf": 0.695,
-      "alertFrame": 875,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "537": 1,
-          "875": 0
-        }
-      }
-    },
-    {
-      "activity": "Transport_HeavyCarry",
-      "activityID": 972,
-      "presenceConf": 0.359,
-      "alertFrame": 450,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "121": 1,
-          "450": 0
-        }
-      }
-    },
-    {
-      "activity": "Opening",
-      "activityID": 992,
-      "presenceConf": 0.021,
-      "alertFrame": 572,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "211": 1,
-          "572": 0
-        }
-      }
-    },
-    {
-      "activity": "Person_Person_Interaction",
-      "activityID": 993,
-      "presenceConf": 0.398,
-      "alertFrame": 984,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "738": 1,
-          "984": 0
-        }
-      }
-    },
-    {
-      "activity": "Person_Person_Interaction",
-      "activityID": 1008,
-      "presenceConf": 0.129,
-      "alertFrame": 856,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "203": 1,
-          "856": 0
-        }
-      }
-    },
-    {
-      "activity": "activity_carrying",
-      "activityID": 1127,
-      "presenceConf": 0.728,
-      "alertFrame": 884,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "67": 1,
-          "884": 0
-        }
-      }
-    },
-    {
-      "activity": "specialized_texting_phone",
-      "activityID": 1131,
-      "presenceConf": 0.239,
-      "alertFrame": 828,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "808": 1,
-          "828": 0
-        }
-      }
-    },
-    {
-      "activity": "Unloading",
-      "activityID": 1137,
-      "presenceConf": 0.127,
-      "alertFrame": 989,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "666": 1,
-          "989": 0
-        }
-      }
-    },
-    {
-      "activity": "activity_walking",
-      "activityID": 1147,
-      "presenceConf": 0.72,
-      "alertFrame": 910,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "808": 1,
-          "910": 0
-        }
-      }
-    },
-    {
-      "activity": "vehicle_stopping",
-      "activityID": 1174,
-      "presenceConf": 0.949,
-      "alertFrame": 474,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "408": 1,
-          "474": 0
+          "237": 1,
+          "300": 0
         }
       }
     }

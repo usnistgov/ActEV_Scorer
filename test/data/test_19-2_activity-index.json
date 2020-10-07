@@ -1,20 +1,12 @@
 {
   "Loading": {},
-  "Opening": {},
-  "Person_Person_Interaction": {},
-  "Pull": {},
   "Push": {},
-  "SetDown": {},
   "Talking": {},
-  "Transport_HeavyCarry": {},
   "Unloading": {},
   "activity_carrying": {},
   "activity_gesturing": {},
-  "activity_running": {},
   "activity_walking": {},
   "specialized_miscellaneous": {},
   "specialized_talking_phone": {},
-  "specialized_texting_phone": {},
-  "vehicle_stopping": {},
   "vehicle_turning_right": {}
 }
