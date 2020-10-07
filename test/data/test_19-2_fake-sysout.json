@@ -146,6 +146,202 @@
           "300": 0
         }
       }
+    },
+    {
+      "activity": "activity_walking",
+      "activityID": 660,
+      "presenceConf": 0.764,
+      "alertFrame": 93,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "25": 1,
+          "86": 0,
+          "88": 1,
+          "93": 0
+        }
+      }
+    },
+    {
+      "activity": "vehicle_turning_right",
+      "activityID": 661,
+      "presenceConf": 0.764,
+      "alertFrame": 114,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "12": 1,
+          "80": 0,
+          "93": 1,
+          "114": 0
+        }
+      }
+    },
+    {
+      "activity": "Unloading",
+      "activityID": 662,
+      "presenceConf": 0.764,
+      "alertFrame": 167,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "53": 1,
+          "79": 0,
+          "114": 1,
+          "167": 0
+        }
+      }
+    },
+    {
+      "activity": "Talking",
+      "activityID": 663,
+      "presenceConf": 0.764,
+      "alertFrame": 202,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "53": 1,
+          "79": 0,
+          "114": 1,
+          "202": 0
+        }
+      }
+    },
+    {
+      "activity": "Talking",
+      "activityID": 664,
+      "presenceConf": 0.764,
+      "alertFrame": 281,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "42": 1,
+          "71": 0,
+          "201": 1,
+          "281": 0
+        }
+      }
+    },
+    {
+      "activity": "Push",
+      "activityID": 665,
+      "presenceConf": 0.764,
+      "alertFrame": 371,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "201": 1,
+          "281": 0,
+          "342": 1,
+          "371": 0
+        }
+      }
+    },
+    {
+      "activity": "Push",
+      "activityID": 667,
+      "presenceConf": 0.764,
+      "alertFrame": 179,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "78": 1,
+          "132": 0,
+          "144": 1,
+          "179": 0
+        }
+      }
+    },
+    {
+      "activity": "Push",
+      "activityID": 668,
+      "presenceConf": 0.764,
+      "alertFrame": 231,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "78": 1,
+          "132": 0,
+          "144": 1,
+          "231": 0
+        }
+      }
+    },
+    {
+      "activity": "specialized_miscellaneous",
+      "activityID": 669,
+      "presenceConf": 0.764,
+      "alertFrame": 231,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "78": 1,
+          "132": 0,
+          "205": 1,
+          "231": 0
+        }
+      }
+    },
+    {
+      "activity": "specialized_miscellaneous",
+      "activityID": 670,
+      "presenceConf": 0.764,
+      "alertFrame": 199,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "112": 1,
+          "156": 0,
+          "175": 1,
+          "199": 0
+        }
+      }
+    },
+    {
+      "activity": "specialized_miscellaneous",
+      "activityID": 671,
+      "presenceConf": 0.764,
+      "alertFrame": 255,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "112": 1,
+          "156": 0,
+          "175": 1,
+          "255": 0
+        }
+      }
+    },
+    {
+      "activity": "activity_carrying",
+      "activityID": 672,
+      "presenceConf": 0.764,
+      "alertFrame": 245,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "112": 1,
+          "156": 0,
+          "191": 1,
+          "245": 0
+        }
+      }
+    },
+    {
+      "activity": "activity_carrying",
+      "activityID": 673,
+      "presenceConf": 0.764,
+      "alertFrame": 245,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "112": 1,
+          "156": 0,
+          "209": 1,
+          "245": 0
+        }
+      }
+    },
+    {
+      "activity": "activity_carrying",
+      "activityID": 673,
+      "presenceConf": 0.764,
+      "alertFrame": 345,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "112": 1,
+          "202": 0,
+          "300": 1,
+          "345": 0
+        }
+      }
     }
   ]
 }

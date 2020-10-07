@@ -1,13 +1,27 @@
 activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
 Loading|CD|627|627|0.166|1.1101123595505618|{"presenceconf_congruence": 0.11011235955056181}
 Push|CD|195|195|0.714|1.7258426966292135|{"presenceconf_congruence": 0.7258426966292134}
+Push|CD|665|665|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
+Push|CD|667|667|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
+Push|CD|668|668|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
 Talking|CD|527|527|0.474|1.456179775280899|{"presenceconf_congruence": 0.45617977528089887}
+Talking|CD|663|663|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
+Talking|CD|664|664|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
 Unloading|CD|177|177|0.916|1.9528089887640452|{"presenceconf_congruence": 0.9528089887640452}
+Unloading|CD|662|662|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
 activity_carrying|CD|468|468|0.068|1.0|{"presenceconf_congruence": 0.0}
+activity_carrying|CD|672|672|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
+activity_carrying|CD|673|673|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
+activity_carrying|CD|673|673|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
 activity_gesturing|CD|174|174|0.461|1.4415730337078652|{"presenceconf_congruence": 0.4415730337078652}
 activity_walking|CD|2|2|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
 activity_walking|CD|37|37|0.603|1.601123595505618|{"presenceconf_congruence": 0.601123595505618}
 activity_walking|CD|5|5|0.958|2.0|{"presenceconf_congruence": 1.0}
+activity_walking|CD|660|660|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
 specialized_miscellaneous|CD|282|282|0.585|1.5808988764044942|{"presenceconf_congruence": 0.5808988764044943}
+specialized_miscellaneous|CD|669|669|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
+specialized_miscellaneous|CD|670|670|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
+specialized_miscellaneous|CD|671|671|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
 specialized_talking_phone|CD|188|188|0.096|1.0314606741573034|{"presenceconf_congruence": 0.03146067415730337}
 vehicle_turning_right|CD|658|658|0.79|1.8112359550561798|{"presenceconf_congruence": 0.8112359550561798}
+vehicle_turning_right|CD|661|661|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
