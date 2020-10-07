@@ -1,28 +1,13 @@
 activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
-Loading|FA|None|627|0.166|None|None
-Loading|FA|None|740|0.588|None|None
-Opening|FA|None|956|0.695|None|None
-Opening|FA|None|992|0.021|None|None
-Person_Person_Interaction|FA|None|1008|0.129|None|None
-Person_Person_Interaction|FA|None|660|0.023|None|None
-Person_Person_Interaction|FA|None|993|0.398|None|None
-Pull|FA|None|892|0.502|None|None
-Push|FA|None|195|0.714|None|None
-SetDown|FA|None|769|0.286|None|None
-Talking|FA|None|527|0.474|None|None
-Transport_HeavyCarry|FA|None|972|0.359|None|None
-Unloading|FA|None|1137|0.127|None|None
-Unloading|FA|None|177|0.916|None|None
-activity_carrying|FA|None|1127|0.728|None|None
-activity_carrying|FA|None|468|0.068|None|None
-activity_gesturing|FA|None|174|0.461|None|None
-activity_running|FA|None|683|0.521|None|None
-activity_walking|CD|182|5|0.958|2.0|{"presenceconf_congruence": 1.0}
-activity_walking|CD|190|37|0.603|1.6211312700106724|{"presenceconf_congruence": 0.6211312700106724}
-activity_walking|CD|191|1147|0.72|1.7459978655282817|{"presenceconf_congruence": 0.7459978655282817}
-activity_walking|FA|None|671|0.364|None|None
-specialized_miscellaneous|FA|None|282|0.585|None|None
-specialized_talking_phone|FA|None|188|0.096|None|None
-specialized_texting_phone|FA|None|1131|0.239|None|None
-vehicle_stopping|FA|None|1174|0.949|None|None
-vehicle_turning_right|FA|None|658|0.79|None|None
+Loading|CD|627|627|0.166|1.1101123595505618|{"presenceconf_congruence": 0.11011235955056181}
+Push|CD|195|195|0.714|1.7258426966292135|{"presenceconf_congruence": 0.7258426966292134}
+Talking|CD|527|527|0.474|1.456179775280899|{"presenceconf_congruence": 0.45617977528089887}
+Unloading|CD|177|177|0.916|1.9528089887640452|{"presenceconf_congruence": 0.9528089887640452}
+activity_carrying|CD|468|468|0.068|1.0|{"presenceconf_congruence": 0.0}
+activity_gesturing|CD|174|174|0.461|1.4415730337078652|{"presenceconf_congruence": 0.4415730337078652}
+activity_walking|CD|2|2|0.764|1.7820224719101123|{"presenceconf_congruence": 0.7820224719101124}
+activity_walking|CD|37|37|0.603|1.601123595505618|{"presenceconf_congruence": 0.601123595505618}
+activity_walking|CD|5|5|0.958|2.0|{"presenceconf_congruence": 1.0}
+specialized_miscellaneous|CD|282|282|0.585|1.5808988764044942|{"presenceconf_congruence": 0.5808988764044943}
+specialized_talking_phone|CD|188|188|0.096|1.0314606741573034|{"presenceconf_congruence": 0.03146067415730337}
+vehicle_turning_right|CD|658|658|0.79|1.8112359550561798|{"presenceconf_congruence": 0.8112359550561798}
