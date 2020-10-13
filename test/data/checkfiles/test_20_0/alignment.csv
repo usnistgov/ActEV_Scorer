@@ -1,10 +1,10 @@
 activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
-Closing|CD|301|1207|0.877|1.877|{"presenceconf_congruence": 0.877}
-Closing|CD|302|1138|0.747|1.7469999999999999|{"presenceconf_congruence": 0.747}
-Closing|CD|304|1345|0.521|1.521|{"presenceconf_congruence": 0.521}
-Closing|CD|305|1147|0.903|1.903|{"presenceconf_congruence": 0.903}
-Closing|CD|306|1139|0.962|1.962|{"presenceconf_congruence": 0.962}
-Closing|CD|307|2233|0.393|1.393|{"presenceconf_congruence": 0.393}
+Closing|CD|343|1396|0.877|1.877|{"presenceconf_congruence": 0.877}
+Closing|CD|344|1327|0.747|1.7469999999999999|{"presenceconf_congruence": 0.747}
+Closing|CD|346|1534|0.521|1.521|{"presenceconf_congruence": 0.521}
+Closing|CD|347|1336|0.903|1.903|{"presenceconf_congruence": 0.903}
+Closing|CD|348|1328|0.962|1.962|{"presenceconf_congruence": 0.962}
+Closing|CD|349|2422|0.393|1.393|{"presenceconf_congruence": 0.393}
 Closing|CD|60|792|0.708|1.708|{"presenceconf_congruence": 0.708}
 Closing|CD|61|1|0.756|1.756|{"presenceconf_congruence": 0.756}
 Closing|CD|63|1248|0.499|1.499|{"presenceconf_congruence": 0.499}
@@ -20,46 +20,46 @@ Closing|FA|None|1035|0.068|None|None
 Closing|FA|None|1062|0.318|None|None
 Closing|FA|None|1132|0.306|None|None
 Closing|FA|None|1260|0.682|None|None
-Closing|FA|None|1270|0.307|None|None
 Closing|FA|None|1273|0.422|None|None
-Closing|FA|None|1304|0.811|None|None
 Closing|FA|None|1309|0.153|None|None
 Closing|FA|None|1311|0.622|None|None
-Closing|FA|None|1325|0.126|None|None
-Closing|FA|None|1328|0.174|None|None
-Closing|FA|None|1368|0.365|None|None
-Closing|FA|None|1375|0.116|None|None
-Closing|FA|None|1389|0.016|None|None
-Closing|FA|None|1411|0.673|None|None
-Closing|FA|None|1438|0.636|None|None
-Closing|FA|None|1468|0.898|None|None
-Closing|FA|None|1503|0.5|None|None
-Closing|FA|None|1527|0.318|None|None
-Closing|FA|None|1533|0.456|None|None
-Closing|FA|None|1552|0.767|None|None
-Closing|FA|None|1570|0.328|None|None
-Closing|FA|None|1606|0.534|None|None
-Closing|FA|None|1615|0.75|None|None
-Closing|FA|None|1624|0.041|None|None
-Closing|FA|None|1641|0.668|None|None
-Closing|FA|None|1656|0.66|None|None
-Closing|FA|None|1660|0.289|None|None
-Closing|FA|None|1669|0.304|None|None
-Closing|FA|None|1674|0.079|None|None
-Closing|FA|None|1684|0.106|None|None
-Closing|FA|None|1711|0.24|None|None
-Closing|FA|None|1789|0.157|None|None
-Closing|FA|None|1793|0.111|None|None
-Closing|FA|None|1802|0.715|None|None
-Closing|FA|None|1826|0.302|None|None
-Closing|FA|None|1904|0.522|None|None
-Closing|FA|None|1923|0.296|None|None
-Closing|FA|None|1940|0.126|None|None
-Closing|FA|None|1982|0.314|None|None
-Closing|FA|None|1983|0.142|None|None
-Closing|FA|None|2109|0.051|None|None
-Closing|FA|None|2160|0.427|None|None
-Closing|FA|None|2204|0.238|None|None
+Closing|FA|None|1459|0.307|None|None
+Closing|FA|None|1493|0.811|None|None
+Closing|FA|None|1514|0.126|None|None
+Closing|FA|None|1517|0.174|None|None
+Closing|FA|None|1557|0.365|None|None
+Closing|FA|None|1564|0.116|None|None
+Closing|FA|None|1578|0.016|None|None
+Closing|FA|None|1600|0.673|None|None
+Closing|FA|None|1627|0.636|None|None
+Closing|FA|None|1657|0.898|None|None
+Closing|FA|None|1692|0.5|None|None
+Closing|FA|None|1716|0.318|None|None
+Closing|FA|None|1722|0.456|None|None
+Closing|FA|None|1741|0.767|None|None
+Closing|FA|None|1759|0.328|None|None
+Closing|FA|None|1795|0.534|None|None
+Closing|FA|None|1804|0.75|None|None
+Closing|FA|None|1813|0.041|None|None
+Closing|FA|None|1830|0.668|None|None
+Closing|FA|None|1845|0.66|None|None
+Closing|FA|None|1849|0.289|None|None
+Closing|FA|None|1858|0.304|None|None
+Closing|FA|None|1863|0.079|None|None
+Closing|FA|None|1873|0.106|None|None
+Closing|FA|None|1900|0.24|None|None
+Closing|FA|None|1978|0.157|None|None
+Closing|FA|None|1982|0.111|None|None
+Closing|FA|None|1991|0.715|None|None
+Closing|FA|None|2015|0.302|None|None
+Closing|FA|None|2093|0.522|None|None
+Closing|FA|None|2112|0.296|None|None
+Closing|FA|None|2129|0.126|None|None
+Closing|FA|None|2171|0.314|None|None
+Closing|FA|None|2172|0.142|None|None
+Closing|FA|None|2298|0.051|None|None
+Closing|FA|None|2349|0.427|None|None
+Closing|FA|None|2393|0.238|None|None
 Closing|FA|None|242|0.946|None|None
 Closing|FA|None|250|0.654|None|None
 Closing|FA|None|254|0.931|None|None
@@ -74,7 +74,7 @@ Closing|FA|None|744|0.462|None|None
 Closing|FA|None|776|0.682|None|None
 Closing|FA|None|896|0.069|None|None
 Closing|FA|None|981|0.376|None|None
-Closing|MD|303|None|None|None|None
+Closing|MD|345|None|None|None|None
 Closing|MD|62|None|None|None|None
 Closing|MD|65|None|None|None|None
 Closing_Trunk|CD|19|240|0.96|1.96|{"presenceconf_congruence": 0.96}
@@ -114,10 +114,10 @@ Closing_Trunk|FA|None|676|0.113|None|None
 Closing_Trunk|FA|None|688|0.173|None|None
 Closing_Trunk|FA|None|755|0.02|None|None
 Closing_Trunk|FA|None|778|0.606|None|None
-Entering|CD|290|1929|0.655|1.655|{"presenceconf_congruence": 0.655}
-Entering|CD|291|1166|0.869|1.869|{"presenceconf_congruence": 0.869}
-Entering|CD|292|1191|0.669|1.669|{"presenceconf_congruence": 0.669}
-Entering|CD|293|1528|0.988|1.988|{"presenceconf_congruence": 0.988}
+Entering|CD|332|2118|0.655|1.655|{"presenceconf_congruence": 0.655}
+Entering|CD|333|1355|0.869|1.869|{"presenceconf_congruence": 0.869}
+Entering|CD|334|1380|0.669|1.669|{"presenceconf_congruence": 0.669}
+Entering|CD|335|1717|0.988|1.988|{"presenceconf_congruence": 0.988}
 Entering|CD|43|197|0.894|1.8940000000000001|{"presenceconf_congruence": 0.894}
 Entering|CD|44|27|0.769|1.7690000000000001|{"presenceconf_congruence": 0.769}
 Entering|CD|46|1136|0.955|1.955|{"presenceconf_congruence": 0.955}
@@ -128,65 +128,65 @@ Entering|FA|None|1173|0.639|None|None
 Entering|FA|None|1202|0.218|None|None
 Entering|FA|None|1228|0.572|None|None
 Entering|FA|None|1249|0.947|None|None
-Entering|FA|None|1251|0.611|None|None
-Entering|FA|None|1268|0.94|None|None
-Entering|FA|None|1272|0.341|None|None
-Entering|FA|None|1281|0.258|None|None
-Entering|FA|None|1282|0.515|None|None
 Entering|FA|None|1297|0.352|None|None
 Entering|FA|None|1298|0.913|None|None
-Entering|FA|None|1300|0.928|None|None
 Entering|FA|None|1310|0.226|None|None
-Entering|FA|None|1393|0.221|None|None
-Entering|FA|None|1428|0.193|None|None
-Entering|FA|None|1474|0.566|None|None
-Entering|FA|None|1478|0.596|None|None
-Entering|FA|None|1531|0.844|None|None
+Entering|FA|None|1440|0.611|None|None
+Entering|FA|None|1457|0.94|None|None
+Entering|FA|None|1461|0.341|None|None
+Entering|FA|None|1470|0.258|None|None
+Entering|FA|None|1471|0.515|None|None
+Entering|FA|None|1489|0.928|None|None
 Entering|FA|None|156|0.909|None|None
-Entering|FA|None|1563|0.025|None|None
-Entering|FA|None|1564|0.991|None|None
-Entering|FA|None|1577|0.225|None|None
-Entering|FA|None|1587|0.428|None|None
-Entering|FA|None|1609|0.703|None|None
-Entering|FA|None|1611|0.108|None|None
-Entering|FA|None|1681|0.126|None|None
-Entering|FA|None|1688|0.969|None|None
-Entering|FA|None|1692|0.755|None|None
-Entering|FA|None|1706|0.347|None|None
-Entering|FA|None|1713|0.065|None|None
-Entering|FA|None|1720|0.0|None|None
-Entering|FA|None|1746|0.401|None|None
-Entering|FA|None|1777|0.569|None|None
-Entering|FA|None|1795|0.463|None|None
-Entering|FA|None|1801|0.748|None|None
-Entering|FA|None|1805|0.728|None|None
-Entering|FA|None|1813|0.975|None|None
-Entering|FA|None|1816|0.072|None|None
-Entering|FA|None|1830|0.744|None|None
-Entering|FA|None|1861|0.631|None|None
-Entering|FA|None|1864|0.971|None|None
-Entering|FA|None|1875|0.494|None|None
-Entering|FA|None|1956|0.099|None|None
-Entering|FA|None|1959|0.193|None|None
-Entering|FA|None|1969|0.638|None|None
-Entering|FA|None|1978|0.97|None|None
-Entering|FA|None|1997|0.07|None|None
+Entering|FA|None|1582|0.221|None|None
+Entering|FA|None|1617|0.193|None|None
+Entering|FA|None|1663|0.566|None|None
+Entering|FA|None|1667|0.596|None|None
+Entering|FA|None|1720|0.844|None|None
+Entering|FA|None|1752|0.025|None|None
+Entering|FA|None|1753|0.991|None|None
+Entering|FA|None|1766|0.225|None|None
+Entering|FA|None|1776|0.428|None|None
+Entering|FA|None|1798|0.703|None|None
+Entering|FA|None|1800|0.108|None|None
+Entering|FA|None|1870|0.126|None|None
+Entering|FA|None|1877|0.969|None|None
+Entering|FA|None|1881|0.755|None|None
+Entering|FA|None|1895|0.347|None|None
+Entering|FA|None|1902|0.065|None|None
+Entering|FA|None|1909|0.0|None|None
+Entering|FA|None|1935|0.401|None|None
+Entering|FA|None|1966|0.569|None|None
+Entering|FA|None|1984|0.463|None|None
+Entering|FA|None|1990|0.748|None|None
+Entering|FA|None|1994|0.728|None|None
+Entering|FA|None|2002|0.975|None|None
+Entering|FA|None|2005|0.072|None|None
 Entering|FA|None|201|0.036|None|None
-Entering|FA|None|2031|0.043|None|None
-Entering|FA|None|2057|0.79|None|None
-Entering|FA|None|2059|0.027|None|None
-Entering|FA|None|2067|0.827|None|None
-Entering|FA|None|2102|0.361|None|None
-Entering|FA|None|2107|0.812|None|None
-Entering|FA|None|2135|0.654|None|None
-Entering|FA|None|2157|0.152|None|None
+Entering|FA|None|2019|0.744|None|None
+Entering|FA|None|2050|0.631|None|None
+Entering|FA|None|2053|0.971|None|None
+Entering|FA|None|2064|0.494|None|None
+Entering|FA|None|2145|0.099|None|None
+Entering|FA|None|2148|0.193|None|None
+Entering|FA|None|2158|0.638|None|None
+Entering|FA|None|2167|0.97|None|None
+Entering|FA|None|2186|0.07|None|None
 Entering|FA|None|219|0.68|None|None
-Entering|FA|None|2195|0.979|None|None
-Entering|FA|None|2223|0.273|None|None
-Entering|FA|None|2225|0.449|None|None
-Entering|FA|None|2240|0.79|None|None
-Entering|FA|None|2243|0.473|None|None
-Entering|FA|None|2250|0.338|None|None
+Entering|FA|None|2220|0.043|None|None
+Entering|FA|None|2246|0.79|None|None
+Entering|FA|None|2248|0.027|None|None
+Entering|FA|None|2256|0.827|None|None
+Entering|FA|None|2291|0.361|None|None
+Entering|FA|None|2296|0.812|None|None
+Entering|FA|None|2324|0.654|None|None
+Entering|FA|None|2346|0.152|None|None
+Entering|FA|None|2384|0.979|None|None
+Entering|FA|None|2412|0.273|None|None
+Entering|FA|None|2414|0.449|None|None
+Entering|FA|None|2429|0.79|None|None
+Entering|FA|None|2432|0.473|None|None
+Entering|FA|None|2439|0.338|None|None
 Entering|FA|None|280|0.842|None|None
 Entering|FA|None|378|0.621|None|None
 Entering|FA|None|387|0.97|None|None
@@ -214,9 +214,9 @@ Entering|FA|None|885|0.055|None|None
 Entering|FA|None|979|0.816|None|None
 Entering|FA|None|990|0.902|None|None
 Entering|MD|45|None|None|None|None
-Exiting|CD|287|1219|0.829|1.829|{"presenceconf_congruence": 0.829}
-Exiting|CD|288|1160|0.824|1.8239999999999998|{"presenceconf_congruence": 0.824}
-Exiting|CD|289|1198|0.555|1.5550000000000002|{"presenceconf_congruence": 0.555}
+Exiting|CD|329|1408|0.829|1.829|{"presenceconf_congruence": 0.829}
+Exiting|CD|330|1349|0.824|1.8239999999999998|{"presenceconf_congruence": 0.824}
+Exiting|CD|331|1387|0.555|1.5550000000000002|{"presenceconf_congruence": 0.555}
 Exiting|CD|38|185|0.957|1.9569999999999999|{"presenceconf_congruence": 0.957}
 Exiting|CD|39|1226|0.536|1.536|{"presenceconf_congruence": 0.536}
 Exiting|CD|41|515|0.974|1.974|{"presenceconf_congruence": 0.974}
@@ -229,52 +229,52 @@ Exiting|FA|None|1186|0.827|None|None
 Exiting|FA|None|1207|0.586|None|None
 Exiting|FA|None|1215|0.44|None|None
 Exiting|FA|None|1230|0.608|None|None
-Exiting|FA|None|1274|0.814|None|None
 Exiting|FA|None|1280|0.019|None|None
 Exiting|FA|None|1284|0.464|None|None
 Exiting|FA|None|1285|0.263|None|None
-Exiting|FA|None|1322|0.516|None|None
-Exiting|FA|None|1373|0.868|None|None
-Exiting|FA|None|1427|0.784|None|None
-Exiting|FA|None|1432|0.591|None|None
-Exiting|FA|None|1453|0.131|None|None
-Exiting|FA|None|1460|0.864|None|None
-Exiting|FA|None|1475|0.288|None|None
-Exiting|FA|None|1477|0.844|None|None
-Exiting|FA|None|1484|0.597|None|None
-Exiting|FA|None|1492|0.026|None|None
-Exiting|FA|None|1512|0.781|None|None
+Exiting|FA|None|1463|0.814|None|None
+Exiting|FA|None|1511|0.516|None|None
 Exiting|FA|None|153|0.486|None|None
-Exiting|FA|None|1534|0.468|None|None
-Exiting|FA|None|1553|0.545|None|None
-Exiting|FA|None|1575|0.652|None|None
-Exiting|FA|None|1603|0.102|None|None
-Exiting|FA|None|1605|0.459|None|None
-Exiting|FA|None|1673|0.702|None|None
-Exiting|FA|None|1698|0.557|None|None
-Exiting|FA|None|1714|0.301|None|None
-Exiting|FA|None|1750|0.743|None|None
+Exiting|FA|None|1562|0.868|None|None
+Exiting|FA|None|1616|0.784|None|None
+Exiting|FA|None|1621|0.591|None|None
+Exiting|FA|None|1642|0.131|None|None
+Exiting|FA|None|1649|0.864|None|None
+Exiting|FA|None|1664|0.288|None|None
+Exiting|FA|None|1666|0.844|None|None
+Exiting|FA|None|1673|0.597|None|None
+Exiting|FA|None|1681|0.026|None|None
+Exiting|FA|None|1701|0.781|None|None
+Exiting|FA|None|1723|0.468|None|None
+Exiting|FA|None|1742|0.545|None|None
 Exiting|FA|None|176|0.316|None|None
-Exiting|FA|None|1767|0.068|None|None
-Exiting|FA|None|1794|0.387|None|None
-Exiting|FA|None|1797|0.367|None|None
-Exiting|FA|None|1812|0.767|None|None
-Exiting|FA|None|1838|0.533|None|None
-Exiting|FA|None|1932|0.151|None|None
-Exiting|FA|None|1953|0.436|None|None
-Exiting|FA|None|1963|0.393|None|None
-Exiting|FA|None|1998|0.677|None|None
-Exiting|FA|None|2013|0.047|None|None
-Exiting|FA|None|2056|0.759|None|None
+Exiting|FA|None|1764|0.652|None|None
+Exiting|FA|None|1792|0.102|None|None
+Exiting|FA|None|1794|0.459|None|None
+Exiting|FA|None|1862|0.702|None|None
+Exiting|FA|None|1887|0.557|None|None
+Exiting|FA|None|1903|0.301|None|None
+Exiting|FA|None|1939|0.743|None|None
+Exiting|FA|None|1956|0.068|None|None
+Exiting|FA|None|1983|0.387|None|None
+Exiting|FA|None|1986|0.367|None|None
+Exiting|FA|None|2001|0.767|None|None
+Exiting|FA|None|2027|0.533|None|None
 Exiting|FA|None|206|0.21|None|None
 Exiting|FA|None|208|0.029|None|None
-Exiting|FA|None|2081|0.124|None|None
-Exiting|FA|None|2090|0.214|None|None
-Exiting|FA|None|2192|0.539|None|None
-Exiting|FA|None|2201|0.523|None|None
-Exiting|FA|None|2245|0.999|None|None
+Exiting|FA|None|2121|0.151|None|None
+Exiting|FA|None|2142|0.436|None|None
+Exiting|FA|None|2152|0.393|None|None
+Exiting|FA|None|2187|0.677|None|None
+Exiting|FA|None|2202|0.047|None|None
+Exiting|FA|None|2245|0.759|None|None
+Exiting|FA|None|2270|0.124|None|None
+Exiting|FA|None|2279|0.214|None|None
 Exiting|FA|None|229|0.983|None|None
 Exiting|FA|None|233|0.186|None|None
+Exiting|FA|None|2381|0.539|None|None
+Exiting|FA|None|2390|0.523|None|None
+Exiting|FA|None|2434|0.999|None|None
 Exiting|FA|None|253|0.799|None|None
 Exiting|FA|None|301|0.226|None|None
 Exiting|FA|None|302|0.148|None|None
@@ -301,14 +301,14 @@ Exiting|MD|40|None|None|None|None
 Interacts|CD|14|534|0.999|1.999|{"presenceconf_congruence": 0.999}
 Interacts|CD|16|576|0.761|1.7610000000000001|{"presenceconf_congruence": 0.761}
 Interacts|CD|17|121|0.849|1.849|{"presenceconf_congruence": 0.849}
-Interacts|CD|269|1264|0.833|1.833|{"presenceconf_congruence": 0.833}
-Interacts|CD|271|1145|0.685|1.685|{"presenceconf_congruence": 0.685}
-Interacts|CD|272|1908|0.605|1.605|{"presenceconf_congruence": 0.605}
-Interacts|CD|273|2049|0.559|1.5590000000000002|{"presenceconf_congruence": 0.559}
-Interacts|CD|274|1173|0.593|1.593|{"presenceconf_congruence": 0.593}
-Interacts|CD|277|2156|0.799|1.799|{"presenceconf_congruence": 0.799}
-Interacts|CD|278|1220|0.87|1.87|{"presenceconf_congruence": 0.87}
-Interacts|CD|279|1231|0.864|1.8639999999999999|{"presenceconf_congruence": 0.864}
+Interacts|CD|311|1453|0.833|1.833|{"presenceconf_congruence": 0.833}
+Interacts|CD|313|1334|0.685|1.685|{"presenceconf_congruence": 0.685}
+Interacts|CD|314|2097|0.605|1.605|{"presenceconf_congruence": 0.605}
+Interacts|CD|315|2238|0.559|1.5590000000000002|{"presenceconf_congruence": 0.559}
+Interacts|CD|316|1362|0.593|1.593|{"presenceconf_congruence": 0.593}
+Interacts|CD|319|2345|0.799|1.799|{"presenceconf_congruence": 0.799}
+Interacts|CD|320|1409|0.87|1.87|{"presenceconf_congruence": 0.87}
+Interacts|CD|321|1420|0.864|1.8639999999999999|{"presenceconf_congruence": 0.864}
 Interacts|FA|None|1000|0.984|None|None
 Interacts|FA|None|1033|0.737|None|None
 Interacts|FA|None|1034|0.881|None|None
@@ -318,55 +318,55 @@ Interacts|FA|None|1117|0.283|None|None
 Interacts|FA|None|1169|0.68|None|None
 Interacts|FA|None|1170|0.437|None|None
 Interacts|FA|None|1171|0.944|None|None
-Interacts|FA|None|1209|0.746|None|None
 Interacts|FA|None|1252|0.727|None|None
 Interacts|FA|None|1261|0.337|None|None
-Interacts|FA|None|1292|0.098|None|None
 Interacts|FA|None|1294|0.368|None|None
-Interacts|FA|None|1298|0.02|None|None
-Interacts|FA|None|1299|0.194|None|None
-Interacts|FA|None|1327|0.355|None|None
-Interacts|FA|None|1336|0.739|None|None
-Interacts|FA|None|1341|0.764|None|None
-Interacts|FA|None|1384|0.914|None|None
-Interacts|FA|None|1400|0.149|None|None
-Interacts|FA|None|1448|0.487|None|None
-Interacts|FA|None|1449|0.552|None|None
-Interacts|FA|None|1483|0.892|None|None
-Interacts|FA|None|1540|0.743|None|None
-Interacts|FA|None|1549|0.398|None|None
+Interacts|FA|None|1398|0.746|None|None
+Interacts|FA|None|1481|0.098|None|None
+Interacts|FA|None|1487|0.02|None|None
+Interacts|FA|None|1488|0.194|None|None
+Interacts|FA|None|1516|0.355|None|None
+Interacts|FA|None|1525|0.739|None|None
+Interacts|FA|None|1530|0.764|None|None
 Interacts|FA|None|155|0.661|None|None
-Interacts|FA|None|1556|0.188|None|None
-Interacts|FA|None|1560|0.729|None|None
-Interacts|FA|None|1639|0.347|None|None
-Interacts|FA|None|1650|0.074|None|None
-Interacts|FA|None|1667|0.238|None|None
-Interacts|FA|None|1678|1.0|None|None
-Interacts|FA|None|1716|0.51|None|None
-Interacts|FA|None|1807|0.986|None|None
-Interacts|FA|None|1818|0.434|None|None
+Interacts|FA|None|1573|0.914|None|None
+Interacts|FA|None|1589|0.149|None|None
+Interacts|FA|None|1637|0.487|None|None
+Interacts|FA|None|1638|0.552|None|None
+Interacts|FA|None|1672|0.892|None|None
+Interacts|FA|None|1729|0.743|None|None
+Interacts|FA|None|1738|0.398|None|None
+Interacts|FA|None|1745|0.188|None|None
+Interacts|FA|None|1749|0.729|None|None
+Interacts|FA|None|1828|0.347|None|None
 Interacts|FA|None|183|0.462|None|None
-Interacts|FA|None|1831|0.048|None|None
-Interacts|FA|None|1862|0.643|None|None
+Interacts|FA|None|1839|0.074|None|None
+Interacts|FA|None|1856|0.238|None|None
+Interacts|FA|None|1867|1.0|None|None
 Interacts|FA|None|187|0.12|None|None
-Interacts|FA|None|1880|0.994|None|None
-Interacts|FA|None|1885|0.662|None|None
-Interacts|FA|None|1915|0.822|None|None
-Interacts|FA|None|1921|0.689|None|None
-Interacts|FA|None|1928|0.372|None|None
-Interacts|FA|None|1955|0.294|None|None
-Interacts|FA|None|2007|0.072|None|None
-Interacts|FA|None|2009|0.647|None|None
-Interacts|FA|None|2023|0.092|None|None
-Interacts|FA|None|2024|0.937|None|None
-Interacts|FA|None|2030|0.075|None|None
-Interacts|FA|None|2051|0.473|None|None
-Interacts|FA|None|2054|0.242|None|None
-Interacts|FA|None|2069|0.661|None|None
-Interacts|FA|None|2086|0.524|None|None
-Interacts|FA|None|2124|0.503|None|None
-Interacts|FA|None|2180|0.342|None|None
-Interacts|FA|None|2232|0.852|None|None
+Interacts|FA|None|1905|0.51|None|None
+Interacts|FA|None|1996|0.986|None|None
+Interacts|FA|None|2007|0.434|None|None
+Interacts|FA|None|2020|0.048|None|None
+Interacts|FA|None|2051|0.643|None|None
+Interacts|FA|None|2069|0.994|None|None
+Interacts|FA|None|2074|0.662|None|None
+Interacts|FA|None|2104|0.822|None|None
+Interacts|FA|None|2110|0.689|None|None
+Interacts|FA|None|2117|0.372|None|None
+Interacts|FA|None|2144|0.294|None|None
+Interacts|FA|None|2196|0.072|None|None
+Interacts|FA|None|2198|0.647|None|None
+Interacts|FA|None|2212|0.092|None|None
+Interacts|FA|None|2213|0.937|None|None
+Interacts|FA|None|2219|0.075|None|None
+Interacts|FA|None|2240|0.473|None|None
+Interacts|FA|None|2243|0.242|None|None
+Interacts|FA|None|2258|0.661|None|None
+Interacts|FA|None|2275|0.524|None|None
+Interacts|FA|None|2313|0.503|None|None
+Interacts|FA|None|2369|0.342|None|None
+Interacts|FA|None|2421|0.852|None|None
 Interacts|FA|None|275|0.48|None|None
 Interacts|FA|None|291|0.527|None|None
 Interacts|FA|None|312|0.376|None|None
@@ -397,9 +397,9 @@ Interacts|FA|None|878|0.666|None|None
 Interacts|FA|None|905|0.367|None|None
 Interacts|FA|None|940|0.466|None|None
 Interacts|MD|15|None|None|None|None
-Interacts|MD|270|None|None|None|None
-Interacts|MD|275|None|None|None|None
-Interacts|MD|276|None|None|None|None
+Interacts|MD|312|None|None|None|None
+Interacts|MD|317|None|None|None|None
+Interacts|MD|318|None|None|None|None
 Loading|CD|20|7|0.775|1.775|{"presenceconf_congruence": 0.775}
 Loading|FA|None|1002|0.263|None|None
 Loading|FA|None|1074|0.316|None|None
@@ -427,66 +427,66 @@ Loading|FA|None|922|0.773|None|None
 Loading|FA|None|943|0.614|None|None
 Loading|FA|None|971|0.869|None|None
 Loading|FA|None|976|0.66|None|None
-Object_Transfer|CD|282|1894|0.937|1.937|{"presenceconf_congruence": 0.937}
-Object_Transfer|FA|None|1193|0.667|None|None
-Object_Transfer|FA|None|1277|0.679|None|None
-Object_Transfer|FA|None|1278|0.874|None|None
-Object_Transfer|FA|None|1286|0.171|None|None
-Object_Transfer|FA|None|1303|0.108|None|None
-Object_Transfer|FA|None|1305|0.088|None|None
-Object_Transfer|FA|None|1310|0.584|None|None
-Object_Transfer|FA|None|1326|0.143|None|None
-Object_Transfer|FA|None|1335|0.053|None|None
-Object_Transfer|FA|None|1343|0.727|None|None
-Object_Transfer|FA|None|1388|0.536|None|None
-Object_Transfer|FA|None|1390|0.159|None|None
-Object_Transfer|FA|None|1397|0.998|None|None
-Object_Transfer|FA|None|1443|0.34|None|None
-Object_Transfer|FA|None|1510|0.645|None|None
-Object_Transfer|FA|None|1514|0.212|None|None
-Object_Transfer|FA|None|1516|0.648|None|None
-Object_Transfer|FA|None|1551|0.63|None|None
-Object_Transfer|FA|None|1569|0.665|None|None
-Object_Transfer|FA|None|1584|0.577|None|None
-Object_Transfer|FA|None|1617|0.878|None|None
-Object_Transfer|FA|None|1646|0.189|None|None
-Object_Transfer|FA|None|1648|0.568|None|None
-Object_Transfer|FA|None|1658|0.424|None|None
-Object_Transfer|FA|None|1666|0.193|None|None
-Object_Transfer|FA|None|1672|0.923|None|None
-Object_Transfer|FA|None|1685|0.147|None|None
-Object_Transfer|FA|None|1700|0.849|None|None
-Object_Transfer|FA|None|1727|0.947|None|None
-Object_Transfer|FA|None|1734|0.07|None|None
-Object_Transfer|FA|None|1735|0.84|None|None
-Object_Transfer|FA|None|1753|0.427|None|None
-Object_Transfer|FA|None|1763|0.722|None|None
-Object_Transfer|FA|None|1766|0.541|None|None
-Object_Transfer|FA|None|1822|0.383|None|None
-Object_Transfer|FA|None|1870|0.192|None|None
-Object_Transfer|FA|None|1872|0.558|None|None
-Object_Transfer|FA|None|1892|0.817|None|None
-Object_Transfer|FA|None|1971|0.071|None|None
-Object_Transfer|FA|None|1974|0.422|None|None
-Object_Transfer|FA|None|1976|0.855|None|None
-Object_Transfer|FA|None|1991|0.452|None|None
-Object_Transfer|FA|None|1992|0.474|None|None
-Object_Transfer|FA|None|2004|0.392|None|None
-Object_Transfer|FA|None|2017|0.445|None|None
-Object_Transfer|FA|None|2078|0.229|None|None
-Object_Transfer|FA|None|2123|0.813|None|None
-Object_Transfer|FA|None|2136|0.801|None|None
-Object_Transfer|FA|None|2142|0.769|None|None
-Object_Transfer|FA|None|2148|0.409|None|None
-Object_Transfer|FA|None|2154|0.772|None|None
-Object_Transfer|FA|None|2164|0.496|None|None
-Object_Transfer|FA|None|2167|0.096|None|None
-Object_Transfer|FA|None|2171|0.785|None|None
-Object_Transfer|FA|None|2177|0.237|None|None
-Object_Transfer|FA|None|2197|0.819|None|None
-Object_Transfer|FA|None|2215|0.49|None|None
-Object_Transfer|FA|None|2248|0.166|None|None
-Object_Transfer|MD|283|None|None|None|None
+Object_Transfer|CD|324|2083|0.937|1.937|{"presenceconf_congruence": 0.937}
+Object_Transfer|FA|None|1382|0.667|None|None
+Object_Transfer|FA|None|1466|0.679|None|None
+Object_Transfer|FA|None|1467|0.874|None|None
+Object_Transfer|FA|None|1475|0.171|None|None
+Object_Transfer|FA|None|1492|0.108|None|None
+Object_Transfer|FA|None|1494|0.088|None|None
+Object_Transfer|FA|None|1499|0.584|None|None
+Object_Transfer|FA|None|1515|0.143|None|None
+Object_Transfer|FA|None|1524|0.053|None|None
+Object_Transfer|FA|None|1532|0.727|None|None
+Object_Transfer|FA|None|1577|0.536|None|None
+Object_Transfer|FA|None|1579|0.159|None|None
+Object_Transfer|FA|None|1586|0.998|None|None
+Object_Transfer|FA|None|1632|0.34|None|None
+Object_Transfer|FA|None|1699|0.645|None|None
+Object_Transfer|FA|None|1703|0.212|None|None
+Object_Transfer|FA|None|1705|0.648|None|None
+Object_Transfer|FA|None|1740|0.63|None|None
+Object_Transfer|FA|None|1758|0.665|None|None
+Object_Transfer|FA|None|1773|0.577|None|None
+Object_Transfer|FA|None|1806|0.878|None|None
+Object_Transfer|FA|None|1835|0.189|None|None
+Object_Transfer|FA|None|1837|0.568|None|None
+Object_Transfer|FA|None|1847|0.424|None|None
+Object_Transfer|FA|None|1855|0.193|None|None
+Object_Transfer|FA|None|1861|0.923|None|None
+Object_Transfer|FA|None|1874|0.147|None|None
+Object_Transfer|FA|None|1889|0.849|None|None
+Object_Transfer|FA|None|1916|0.947|None|None
+Object_Transfer|FA|None|1923|0.07|None|None
+Object_Transfer|FA|None|1924|0.84|None|None
+Object_Transfer|FA|None|1942|0.427|None|None
+Object_Transfer|FA|None|1952|0.722|None|None
+Object_Transfer|FA|None|1955|0.541|None|None
+Object_Transfer|FA|None|2011|0.383|None|None
+Object_Transfer|FA|None|2059|0.192|None|None
+Object_Transfer|FA|None|2061|0.558|None|None
+Object_Transfer|FA|None|2081|0.817|None|None
+Object_Transfer|FA|None|2160|0.071|None|None
+Object_Transfer|FA|None|2163|0.422|None|None
+Object_Transfer|FA|None|2165|0.855|None|None
+Object_Transfer|FA|None|2180|0.452|None|None
+Object_Transfer|FA|None|2181|0.474|None|None
+Object_Transfer|FA|None|2193|0.392|None|None
+Object_Transfer|FA|None|2206|0.445|None|None
+Object_Transfer|FA|None|2267|0.229|None|None
+Object_Transfer|FA|None|2312|0.813|None|None
+Object_Transfer|FA|None|2325|0.801|None|None
+Object_Transfer|FA|None|2331|0.769|None|None
+Object_Transfer|FA|None|2337|0.409|None|None
+Object_Transfer|FA|None|2343|0.772|None|None
+Object_Transfer|FA|None|2353|0.496|None|None
+Object_Transfer|FA|None|2356|0.096|None|None
+Object_Transfer|FA|None|2360|0.785|None|None
+Object_Transfer|FA|None|2366|0.237|None|None
+Object_Transfer|FA|None|2386|0.819|None|None
+Object_Transfer|FA|None|2404|0.49|None|None
+Object_Transfer|FA|None|2437|0.166|None|None
+Object_Transfer|MD|325|None|None|None|None
 Open_Trunk|CD|18|758|0.729|1.729|{"presenceconf_congruence": 0.729}
 Open_Trunk|FA|None|1027|0.287|None|None
 Open_Trunk|FA|None|1047|0.337|None|None
@@ -529,11 +529,11 @@ Open_Trunk|FA|None|895|0.452|None|None
 Open_Trunk|FA|None|906|0.281|None|None
 Open_Trunk|FA|None|921|0.532|None|None
 Open_Trunk|FA|None|966|0.399|None|None
-Opening|CD|294|1143|0.884|1.884|{"presenceconf_congruence": 0.884}
-Opening|CD|296|1221|0.502|1.502|{"presenceconf_congruence": 0.502}
-Opening|CD|298|2199|0.291|1.291|{"presenceconf_congruence": 0.291}
-Opening|CD|299|1133|0.629|1.629|{"presenceconf_congruence": 0.629}
-Opening|CD|300|1170|0.6|1.6|{"presenceconf_congruence": 0.6}
+Opening|CD|336|1332|0.884|1.884|{"presenceconf_congruence": 0.884}
+Opening|CD|338|1410|0.502|1.502|{"presenceconf_congruence": 0.502}
+Opening|CD|340|2388|0.291|1.291|{"presenceconf_congruence": 0.291}
+Opening|CD|341|1322|0.629|1.629|{"presenceconf_congruence": 0.629}
+Opening|CD|342|1359|0.6|1.6|{"presenceconf_congruence": 0.6}
 Opening|CD|48|29|0.58|1.58|{"presenceconf_congruence": 0.58}
 Opening|CD|49|565|0.663|1.663|{"presenceconf_congruence": 0.663}
 Opening|CD|51|1223|0.733|1.733|{"presenceconf_congruence": 0.733}
@@ -549,60 +549,60 @@ Opening|FA|None|1101|0.242|None|None
 Opening|FA|None|1145|0.346|None|None
 Opening|FA|None|1191|0.461|None|None
 Opening|FA|None|1194|0.655|None|None
-Opening|FA|None|1255|0.757|None|None
-Opening|FA|None|1259|0.913|None|None
 Opening|FA|None|1290|0.127|None|None
-Opening|FA|None|1349|0.227|None|None
-Opening|FA|None|1370|0.104|None|None
-Opening|FA|None|1380|0.825|None|None
-Opening|FA|None|1392|0.998|None|None
-Opening|FA|None|1396|0.843|None|None
-Opening|FA|None|1409|0.521|None|None
-Opening|FA|None|1412|0.032|None|None
-Opening|FA|None|1440|0.443|None|None
-Opening|FA|None|1463|0.087|None|None
-Opening|FA|None|1473|0.337|None|None
-Opening|FA|None|1486|0.241|None|None
-Opening|FA|None|1490|0.441|None|None
-Opening|FA|None|1493|0.118|None|None
-Opening|FA|None|1520|0.756|None|None
-Opening|FA|None|1539|0.857|None|None
-Opening|FA|None|1543|0.957|None|None
-Opening|FA|None|1579|0.135|None|None
-Opening|FA|None|1594|0.353|None|None
-Opening|FA|None|1595|0.748|None|None
-Opening|FA|None|1599|0.567|None|None
-Opening|FA|None|1602|0.059|None|None
-Opening|FA|None|1626|0.52|None|None
-Opening|FA|None|1628|0.545|None|None
-Opening|FA|None|1633|0.484|None|None
-Opening|FA|None|1647|0.536|None|None
-Opening|FA|None|1676|0.224|None|None
-Opening|FA|None|1687|0.593|None|None
-Opening|FA|None|1699|0.509|None|None
-Opening|FA|None|1723|0.063|None|None
-Opening|FA|None|1741|0.285|None|None
-Opening|FA|None|1779|0.679|None|None
-Opening|FA|None|1781|0.489|None|None
-Opening|FA|None|1796|0.075|None|None
-Opening|FA|None|1833|0.078|None|None
-Opening|FA|None|1879|0.179|None|None
-Opening|FA|None|1890|0.912|None|None
-Opening|FA|None|1899|0.841|None|None
+Opening|FA|None|1444|0.757|None|None
+Opening|FA|None|1448|0.913|None|None
+Opening|FA|None|1538|0.227|None|None
+Opening|FA|None|1559|0.104|None|None
+Opening|FA|None|1569|0.825|None|None
+Opening|FA|None|1581|0.998|None|None
+Opening|FA|None|1585|0.843|None|None
+Opening|FA|None|1598|0.521|None|None
+Opening|FA|None|1601|0.032|None|None
+Opening|FA|None|1629|0.443|None|None
+Opening|FA|None|1652|0.087|None|None
+Opening|FA|None|1662|0.337|None|None
+Opening|FA|None|1675|0.241|None|None
+Opening|FA|None|1679|0.441|None|None
+Opening|FA|None|1682|0.118|None|None
+Opening|FA|None|1709|0.756|None|None
+Opening|FA|None|1728|0.857|None|None
+Opening|FA|None|1732|0.957|None|None
+Opening|FA|None|1768|0.135|None|None
+Opening|FA|None|1783|0.353|None|None
+Opening|FA|None|1784|0.748|None|None
+Opening|FA|None|1788|0.567|None|None
+Opening|FA|None|1791|0.059|None|None
+Opening|FA|None|1815|0.52|None|None
+Opening|FA|None|1817|0.545|None|None
+Opening|FA|None|1822|0.484|None|None
+Opening|FA|None|1836|0.536|None|None
+Opening|FA|None|1865|0.224|None|None
+Opening|FA|None|1876|0.593|None|None
+Opening|FA|None|1888|0.509|None|None
 Opening|FA|None|190|0.181|None|None
-Opening|FA|None|1945|0.927|None|None
-Opening|FA|None|1954|0.532|None|None
-Opening|FA|None|1996|0.499|None|None
-Opening|FA|None|2074|0.389|None|None
-Opening|FA|None|2159|0.829|None|None
-Opening|FA|None|2161|0.024|None|None
-Opening|FA|None|2162|0.976|None|None
-Opening|FA|None|2163|0.151|None|None
-Opening|FA|None|2188|0.755|None|None
-Opening|FA|None|2193|0.769|None|None
-Opening|FA|None|2200|0.615|None|None
-Opening|FA|None|2205|0.588|None|None
+Opening|FA|None|1912|0.063|None|None
+Opening|FA|None|1930|0.285|None|None
+Opening|FA|None|1968|0.679|None|None
+Opening|FA|None|1970|0.489|None|None
+Opening|FA|None|1985|0.075|None|None
+Opening|FA|None|2022|0.078|None|None
+Opening|FA|None|2068|0.179|None|None
+Opening|FA|None|2079|0.912|None|None
+Opening|FA|None|2088|0.841|None|None
+Opening|FA|None|2134|0.927|None|None
+Opening|FA|None|2143|0.532|None|None
+Opening|FA|None|2185|0.499|None|None
+Opening|FA|None|2263|0.389|None|None
 Opening|FA|None|227|0.597|None|None
+Opening|FA|None|2348|0.829|None|None
+Opening|FA|None|2350|0.024|None|None
+Opening|FA|None|2351|0.976|None|None
+Opening|FA|None|2352|0.151|None|None
+Opening|FA|None|2377|0.755|None|None
+Opening|FA|None|2382|0.769|None|None
+Opening|FA|None|2389|0.615|None|None
+Opening|FA|None|2394|0.588|None|None
 Opening|FA|None|245|0.117|None|None
 Opening|FA|None|267|0.922|None|None
 Opening|FA|None|298|0.268|None|None
@@ -631,18 +631,18 @@ Opening|FA|None|950|0.645|None|None
 Opening|FA|None|956|0.695|None|None
 Opening|FA|None|967|0.29|None|None
 Opening|FA|None|992|0.021|None|None
-Opening|MD|295|None|None|None|None
-Opening|MD|297|None|None|None|None
+Opening|MD|337|None|None|None|None
+Opening|MD|339|None|None|None|None
 Opening|MD|50|None|None|None|None
 Opening|MD|53|None|None|None|None
 Opening|MD|55|None|None|None|None
 Person_Person_Interaction|CD|11|70|0.822|1.822|{"presenceconf_congruence": 0.822}
 Person_Person_Interaction|CD|12|1120|0.934|1.9340000000000002|{"presenceconf_congruence": 0.934}
 Person_Person_Interaction|CD|13|462|0.84|1.8399999999999999|{"presenceconf_congruence": 0.84}
-Person_Person_Interaction|CD|265|1187|0.824|1.8239999999999998|{"presenceconf_congruence": 0.824}
-Person_Person_Interaction|CD|266|1127|0.675|1.675|{"presenceconf_congruence": 0.675}
-Person_Person_Interaction|CD|267|1236|0.722|1.722|{"presenceconf_congruence": 0.722}
-Person_Person_Interaction|CD|268|2125|0.959|1.959|{"presenceconf_congruence": 0.959}
+Person_Person_Interaction|CD|307|1376|0.824|1.8239999999999998|{"presenceconf_congruence": 0.824}
+Person_Person_Interaction|CD|308|1316|0.675|1.675|{"presenceconf_congruence": 0.675}
+Person_Person_Interaction|CD|309|1425|0.722|1.722|{"presenceconf_congruence": 0.722}
+Person_Person_Interaction|CD|310|2314|0.959|1.959|{"presenceconf_congruence": 0.959}
 Person_Person_Interaction|CD|8|639|0.663|1.663|{"presenceconf_congruence": 0.663}
 Person_Person_Interaction|CD|9|285|0.549|1.549|{"presenceconf_congruence": 0.549}
 Person_Person_Interaction|FA|None|1008|0.129|None|None
@@ -656,56 +656,56 @@ Person_Person_Interaction|FA|None|1213|0.8|None|None
 Person_Person_Interaction|FA|None|1232|0.27|None|None
 Person_Person_Interaction|FA|None|1279|0.328|None|None
 Person_Person_Interaction|FA|None|1292|0.07|None|None
-Person_Person_Interaction|FA|None|1309|0.951|None|None
-Person_Person_Interaction|FA|None|1311|0.394|None|None
-Person_Person_Interaction|FA|None|1333|0.848|None|None
-Person_Person_Interaction|FA|None|1452|0.31|None|None
-Person_Person_Interaction|FA|None|1461|0.947|None|None
-Person_Person_Interaction|FA|None|1508|0.261|None|None
-Person_Person_Interaction|FA|None|1513|0.001|None|None
-Person_Person_Interaction|FA|None|1515|0.562|None|None
-Person_Person_Interaction|FA|None|1538|0.555|None|None
+Person_Person_Interaction|FA|None|1498|0.951|None|None
+Person_Person_Interaction|FA|None|1500|0.394|None|None
+Person_Person_Interaction|FA|None|1522|0.848|None|None
 Person_Person_Interaction|FA|None|154|0.777|None|None
-Person_Person_Interaction|FA|None|1554|0.285|None|None
-Person_Person_Interaction|FA|None|1562|0.683|None|None
-Person_Person_Interaction|FA|None|1582|0.346|None|None
-Person_Person_Interaction|FA|None|1583|0.915|None|None
-Person_Person_Interaction|FA|None|1586|0.463|None|None
-Person_Person_Interaction|FA|None|1588|0.583|None|None
-Person_Person_Interaction|FA|None|1616|0.688|None|None
-Person_Person_Interaction|FA|None|1637|0.996|None|None
-Person_Person_Interaction|FA|None|1643|0.173|None|None
-Person_Person_Interaction|FA|None|1668|0.6|None|None
-Person_Person_Interaction|FA|None|1682|0.77|None|None
+Person_Person_Interaction|FA|None|1641|0.31|None|None
+Person_Person_Interaction|FA|None|1650|0.947|None|None
+Person_Person_Interaction|FA|None|1697|0.261|None|None
+Person_Person_Interaction|FA|None|1702|0.001|None|None
+Person_Person_Interaction|FA|None|1704|0.562|None|None
+Person_Person_Interaction|FA|None|1727|0.555|None|None
 Person_Person_Interaction|FA|None|173|0.337|None|None
-Person_Person_Interaction|FA|None|1731|0.628|None|None
-Person_Person_Interaction|FA|None|1740|0.469|None|None
-Person_Person_Interaction|FA|None|1786|0.883|None|None
-Person_Person_Interaction|FA|None|1811|0.661|None|None
-Person_Person_Interaction|FA|None|1824|0.134|None|None
+Person_Person_Interaction|FA|None|1743|0.285|None|None
+Person_Person_Interaction|FA|None|1751|0.683|None|None
+Person_Person_Interaction|FA|None|1771|0.346|None|None
+Person_Person_Interaction|FA|None|1772|0.915|None|None
+Person_Person_Interaction|FA|None|1775|0.463|None|None
+Person_Person_Interaction|FA|None|1777|0.583|None|None
+Person_Person_Interaction|FA|None|1805|0.688|None|None
+Person_Person_Interaction|FA|None|1826|0.996|None|None
+Person_Person_Interaction|FA|None|1832|0.173|None|None
 Person_Person_Interaction|FA|None|184|0.203|None|None
-Person_Person_Interaction|FA|None|1842|0.482|None|None
-Person_Person_Interaction|FA|None|1846|0.82|None|None
-Person_Person_Interaction|FA|None|1881|0.213|None|None
-Person_Person_Interaction|FA|None|1887|0.548|None|None
+Person_Person_Interaction|FA|None|1857|0.6|None|None
+Person_Person_Interaction|FA|None|1871|0.77|None|None
 Person_Person_Interaction|FA|None|19|0.516|None|None
-Person_Person_Interaction|FA|None|1901|0.461|None|None
-Person_Person_Interaction|FA|None|1910|0.661|None|None
-Person_Person_Interaction|FA|None|1936|0.169|None|None
-Person_Person_Interaction|FA|None|1952|0.744|None|None
-Person_Person_Interaction|FA|None|1977|0.287|None|None
-Person_Person_Interaction|FA|None|2044|0.333|None|None
-Person_Person_Interaction|FA|None|2048|0.395|None|None
-Person_Person_Interaction|FA|None|2089|0.363|None|None
-Person_Person_Interaction|FA|None|2098|0.942|None|None
-Person_Person_Interaction|FA|None|2101|0.885|None|None
-Person_Person_Interaction|FA|None|2131|0.53|None|None
-Person_Person_Interaction|FA|None|2151|0.303|None|None
-Person_Person_Interaction|FA|None|2166|0.216|None|None
-Person_Person_Interaction|FA|None|2169|0.22|None|None
-Person_Person_Interaction|FA|None|2179|0.885|None|None
-Person_Person_Interaction|FA|None|2196|0.488|None|None
+Person_Person_Interaction|FA|None|1920|0.628|None|None
+Person_Person_Interaction|FA|None|1929|0.469|None|None
+Person_Person_Interaction|FA|None|1975|0.883|None|None
+Person_Person_Interaction|FA|None|2000|0.661|None|None
+Person_Person_Interaction|FA|None|2013|0.134|None|None
+Person_Person_Interaction|FA|None|2031|0.482|None|None
+Person_Person_Interaction|FA|None|2035|0.82|None|None
+Person_Person_Interaction|FA|None|2070|0.213|None|None
+Person_Person_Interaction|FA|None|2076|0.548|None|None
+Person_Person_Interaction|FA|None|2090|0.461|None|None
+Person_Person_Interaction|FA|None|2099|0.661|None|None
+Person_Person_Interaction|FA|None|2125|0.169|None|None
+Person_Person_Interaction|FA|None|2141|0.744|None|None
+Person_Person_Interaction|FA|None|2166|0.287|None|None
+Person_Person_Interaction|FA|None|2233|0.333|None|None
+Person_Person_Interaction|FA|None|2237|0.395|None|None
+Person_Person_Interaction|FA|None|2278|0.363|None|None
+Person_Person_Interaction|FA|None|2287|0.942|None|None
+Person_Person_Interaction|FA|None|2290|0.885|None|None
 Person_Person_Interaction|FA|None|23|0.537|None|None
+Person_Person_Interaction|FA|None|2320|0.53|None|None
+Person_Person_Interaction|FA|None|2340|0.303|None|None
+Person_Person_Interaction|FA|None|2355|0.216|None|None
+Person_Person_Interaction|FA|None|2358|0.22|None|None
+Person_Person_Interaction|FA|None|2368|0.885|None|None
+Person_Person_Interaction|FA|None|2385|0.488|None|None
 Person_Person_Interaction|FA|None|252|0.709|None|None
 Person_Person_Interaction|FA|None|266|0.385|None|None
 Person_Person_Interaction|FA|None|338|0.022|None|None
@@ -879,18 +879,18 @@ SetDown|FA|None|975|0.391|None|None
 SetDown|FA|None|994|0.917|None|None
 Talking|CD|1|281|0.915|1.915|{"presenceconf_congruence": 0.915}
 Talking|CD|2|71|0.892|1.892|{"presenceconf_congruence": 0.892}
-Talking|CD|251|1172|0.943|1.943|{"presenceconf_congruence": 0.943}
-Talking|CD|252|1163|0.875|1.875|{"presenceconf_congruence": 0.875}
-Talking|CD|253|2050|0.635|1.635|{"presenceconf_congruence": 0.635}
-Talking|CD|256|1161|0.532|1.532|{"presenceconf_congruence": 0.532}
-Talking|CD|257|1909|0.03|1.03|{"presenceconf_congruence": 0.03}
-Talking|CD|259|1385|0.87|1.87|{"presenceconf_congruence": 0.87}
-Talking|CD|260|1218|0.639|1.639|{"presenceconf_congruence": 0.639}
-Talking|CD|261|1704|0.787|1.787|{"presenceconf_congruence": 0.787}
-Talking|CD|262|1719|0.97|1.97|{"presenceconf_congruence": 0.97}
-Talking|CD|263|1712|0.56|1.56|{"presenceconf_congruence": 0.56}
-Talking|CD|264|2000|0.68|1.6800000000000002|{"presenceconf_congruence": 0.68}
+Talking|CD|293|1361|0.943|1.943|{"presenceconf_congruence": 0.943}
+Talking|CD|294|1352|0.875|1.875|{"presenceconf_congruence": 0.875}
+Talking|CD|295|2239|0.635|1.635|{"presenceconf_congruence": 0.635}
+Talking|CD|298|1350|0.532|1.532|{"presenceconf_congruence": 0.532}
+Talking|CD|299|2098|0.03|1.03|{"presenceconf_congruence": 0.03}
 Talking|CD|3|85|0.943|1.943|{"presenceconf_congruence": 0.943}
+Talking|CD|301|1574|0.87|1.87|{"presenceconf_congruence": 0.87}
+Talking|CD|302|1407|0.639|1.639|{"presenceconf_congruence": 0.639}
+Talking|CD|303|1893|0.787|1.787|{"presenceconf_congruence": 0.787}
+Talking|CD|304|1908|0.97|1.97|{"presenceconf_congruence": 0.97}
+Talking|CD|305|1901|0.56|1.56|{"presenceconf_congruence": 0.56}
+Talking|CD|306|2189|0.68|1.6800000000000002|{"presenceconf_congruence": 0.68}
 Talking|CD|4|87|0.566|1.5659999999999998|{"presenceconf_congruence": 0.566}
 Talking|CD|5|1040|0.524|1.524|{"presenceconf_congruence": 0.524}
 Talking|CD|6|487|0.406|1.4060000000000001|{"presenceconf_congruence": 0.406}
@@ -900,60 +900,60 @@ Talking|FA|None|1058|0.565|None|None
 Talking|FA|None|1061|0.786|None|None
 Talking|FA|None|1114|0.089|None|None
 Talking|FA|None|1130|0.082|None|None
-Talking|FA|None|1130|0.577|None|None
 Talking|FA|None|1152|0.268|None|None
 Talking|FA|None|1165|0.404|None|None
 Talking|FA|None|1172|0.078|None|None
 Talking|FA|None|1210|0.694|None|None
 Talking|FA|None|1245|0.197|None|None
-Talking|FA|None|1258|0.343|None|None
-Talking|FA|None|1266|0.512|None|None
-Talking|FA|None|1306|0.511|None|None
-Talking|FA|None|1346|0.081|None|None
-Talking|FA|None|1365|0.444|None|None
-Talking|FA|None|1378|0.391|None|None
-Talking|FA|None|1383|0.529|None|None
-Talking|FA|None|1387|0.208|None|None
-Talking|FA|None|1403|0.829|None|None
-Talking|FA|None|1406|0.519|None|None
-Talking|FA|None|1408|0.063|None|None
-Talking|FA|None|1455|0.322|None|None
-Talking|FA|None|1518|0.017|None|None
-Talking|FA|None|1557|0.565|None|None
-Talking|FA|None|1578|0.061|None|None
+Talking|FA|None|1319|0.577|None|None
+Talking|FA|None|1447|0.343|None|None
+Talking|FA|None|1455|0.512|None|None
+Talking|FA|None|1495|0.511|None|None
+Talking|FA|None|1535|0.081|None|None
+Talking|FA|None|1554|0.444|None|None
+Talking|FA|None|1567|0.391|None|None
+Talking|FA|None|1572|0.529|None|None
+Talking|FA|None|1576|0.208|None|None
 Talking|FA|None|158|0.527|None|None
-Talking|FA|None|1675|0.185|None|None
-Talking|FA|None|1743|0.613|None|None
-Talking|FA|None|1757|0.019|None|None
-Talking|FA|None|1761|0.832|None|None
-Talking|FA|None|1768|0.12|None|None
-Talking|FA|None|1800|0.829|None|None
+Talking|FA|None|1592|0.829|None|None
+Talking|FA|None|1595|0.519|None|None
+Talking|FA|None|1597|0.063|None|None
+Talking|FA|None|1644|0.322|None|None
+Talking|FA|None|1707|0.017|None|None
+Talking|FA|None|1746|0.565|None|None
+Talking|FA|None|1767|0.061|None|None
 Talking|FA|None|186|0.897|None|None
-Talking|FA|None|1860|0.643|None|None
-Talking|FA|None|1873|0.564|None|None
-Talking|FA|None|1884|0.369|None|None
-Talking|FA|None|1912|0.346|None|None
-Talking|FA|None|1919|0.294|None|None
-Talking|FA|None|1925|0.782|None|None
-Talking|FA|None|1930|0.154|None|None
-Talking|FA|None|1931|0.217|None|None
-Talking|FA|None|1935|0.656|None|None
-Talking|FA|None|1986|0.588|None|None
-Talking|FA|None|2003|0.569|None|None
-Talking|FA|None|2055|0.456|None|None
-Talking|FA|None|2066|0.88|None|None
+Talking|FA|None|1864|0.185|None|None
+Talking|FA|None|1932|0.613|None|None
+Talking|FA|None|1946|0.019|None|None
+Talking|FA|None|1950|0.832|None|None
+Talking|FA|None|1957|0.12|None|None
+Talking|FA|None|1989|0.829|None|None
+Talking|FA|None|2049|0.643|None|None
+Talking|FA|None|2062|0.564|None|None
 Talking|FA|None|207|0.249|None|None
-Talking|FA|None|2070|0.412|None|None
-Talking|FA|None|2079|0.423|None|None
-Talking|FA|None|2092|0.635|None|None
-Talking|FA|None|2112|0.291|None|None
-Talking|FA|None|2140|0.495|None|None
-Talking|FA|None|2146|0.343|None|None
-Talking|FA|None|2149|0.54|None|None
-Talking|FA|None|2178|0.965|None|None
-Talking|FA|None|2216|0.728|None|None
-Talking|FA|None|2229|0.677|None|None
-Talking|FA|None|2234|0.376|None|None
+Talking|FA|None|2073|0.369|None|None
+Talking|FA|None|2101|0.346|None|None
+Talking|FA|None|2108|0.294|None|None
+Talking|FA|None|2114|0.782|None|None
+Talking|FA|None|2119|0.154|None|None
+Talking|FA|None|2120|0.217|None|None
+Talking|FA|None|2124|0.656|None|None
+Talking|FA|None|2175|0.588|None|None
+Talking|FA|None|2192|0.569|None|None
+Talking|FA|None|2244|0.456|None|None
+Talking|FA|None|2255|0.88|None|None
+Talking|FA|None|2259|0.412|None|None
+Talking|FA|None|2268|0.423|None|None
+Talking|FA|None|2281|0.635|None|None
+Talking|FA|None|2301|0.291|None|None
+Talking|FA|None|2329|0.495|None|None
+Talking|FA|None|2335|0.343|None|None
+Talking|FA|None|2338|0.54|None|None
+Talking|FA|None|2367|0.965|None|None
+Talking|FA|None|2405|0.728|None|None
+Talking|FA|None|2418|0.677|None|None
+Talking|FA|None|2423|0.376|None|None
 Talking|FA|None|243|0.685|None|None
 Talking|FA|None|246|0.713|None|None
 Talking|FA|None|300|0.039|None|None
@@ -987,63 +987,63 @@ Talking|FA|None|912|0.81|None|None
 Talking|FA|None|915|0.372|None|None
 Talking|FA|None|930|0.891|None|None
 Talking|FA|None|947|0.299|None|None
-Talking|MD|254|None|None|None|None
-Talking|MD|255|None|None|None|None
-Talking|MD|258|None|None|None|None
+Talking|MD|296|None|None|None|None
+Talking|MD|297|None|None|None|None
+Talking|MD|300|None|None|None|None
 Transport_HeavyCarry|CD|25|1126|0.882|1.8820000000000001|{"presenceconf_congruence": 0.882}
 Transport_HeavyCarry|CD|26|1044|0.874|1.874|{"presenceconf_congruence": 0.874}
 Transport_HeavyCarry|CD|27|537|0.696|1.696|{"presenceconf_congruence": 0.696}
 Transport_HeavyCarry|CD|28|11|0.519|1.5190000000000001|{"presenceconf_congruence": 0.519}
-Transport_HeavyCarry|CD|284|1347|0.912|1.912|{"presenceconf_congruence": 0.912}
-Transport_HeavyCarry|CD|285|2097|0.984|1.984|{"presenceconf_congruence": 0.984}
-Transport_HeavyCarry|CD|286|1177|0.579|1.579|{"presenceconf_congruence": 0.579}
 Transport_HeavyCarry|CD|29|113|0.888|1.888|{"presenceconf_congruence": 0.888}
 Transport_HeavyCarry|CD|30|408|0.191|1.191|{"presenceconf_congruence": 0.191}
+Transport_HeavyCarry|CD|326|1536|0.912|1.912|{"presenceconf_congruence": 0.912}
+Transport_HeavyCarry|CD|327|2286|0.984|1.984|{"presenceconf_congruence": 0.984}
+Transport_HeavyCarry|CD|328|1366|0.579|1.579|{"presenceconf_congruence": 0.579}
 Transport_HeavyCarry|FA|None|105|0.668|None|None
 Transport_HeavyCarry|FA|None|1069|0.923|None|None
 Transport_HeavyCarry|FA|None|1142|0.96|None|None
 Transport_HeavyCarry|FA|None|1208|0.21|None|None
 Transport_HeavyCarry|FA|None|1211|0.162|None|None
 Transport_HeavyCarry|FA|None|1278|0.059|None|None
-Transport_HeavyCarry|FA|None|1289|0.564|None|None
-Transport_HeavyCarry|FA|None|1308|0.4|None|None
-Transport_HeavyCarry|FA|None|1319|0.082|None|None
-Transport_HeavyCarry|FA|None|1351|0.027|None|None
-Transport_HeavyCarry|FA|None|1372|0.938|None|None
-Transport_HeavyCarry|FA|None|1386|0.156|None|None
-Transport_HeavyCarry|FA|None|1435|0.779|None|None
-Transport_HeavyCarry|FA|None|1451|0.453|None|None
-Transport_HeavyCarry|FA|None|1495|0.942|None|None
-Transport_HeavyCarry|FA|None|1525|0.453|None|None
-Transport_HeavyCarry|FA|None|1535|0.38|None|None
-Transport_HeavyCarry|FA|None|1550|0.27|None|None
-Transport_HeavyCarry|FA|None|1591|0.042|None|None
-Transport_HeavyCarry|FA|None|1604|0.72|None|None
-Transport_HeavyCarry|FA|None|1657|0.64|None|None
-Transport_HeavyCarry|FA|None|1694|0.117|None|None
-Transport_HeavyCarry|FA|None|1745|0.887|None|None
-Transport_HeavyCarry|FA|None|1748|0.952|None|None
-Transport_HeavyCarry|FA|None|1751|0.411|None|None
-Transport_HeavyCarry|FA|None|1803|0.539|None|None
-Transport_HeavyCarry|FA|None|1836|0.919|None|None
-Transport_HeavyCarry|FA|None|1841|0.178|None|None
-Transport_HeavyCarry|FA|None|1847|0.345|None|None
-Transport_HeavyCarry|FA|None|1855|0.177|None|None
-Transport_HeavyCarry|FA|None|1871|0.954|None|None
-Transport_HeavyCarry|FA|None|1876|0.288|None|None
-Transport_HeavyCarry|FA|None|1878|0.664|None|None
-Transport_HeavyCarry|FA|None|1924|0.89|None|None
-Transport_HeavyCarry|FA|None|1926|0.677|None|None
-Transport_HeavyCarry|FA|None|1985|0.318|None|None
-Transport_HeavyCarry|FA|None|1987|0.679|None|None
-Transport_HeavyCarry|FA|None|2008|0.7|None|None
-Transport_HeavyCarry|FA|None|2077|0.068|None|None
-Transport_HeavyCarry|FA|None|2094|0.161|None|None
-Transport_HeavyCarry|FA|None|2139|0.777|None|None
-Transport_HeavyCarry|FA|None|2150|0.199|None|None
-Transport_HeavyCarry|FA|None|2175|0.717|None|None
+Transport_HeavyCarry|FA|None|1478|0.564|None|None
+Transport_HeavyCarry|FA|None|1497|0.4|None|None
+Transport_HeavyCarry|FA|None|1508|0.082|None|None
+Transport_HeavyCarry|FA|None|1540|0.027|None|None
+Transport_HeavyCarry|FA|None|1561|0.938|None|None
+Transport_HeavyCarry|FA|None|1575|0.156|None|None
+Transport_HeavyCarry|FA|None|1624|0.779|None|None
+Transport_HeavyCarry|FA|None|1640|0.453|None|None
+Transport_HeavyCarry|FA|None|1684|0.942|None|None
+Transport_HeavyCarry|FA|None|1714|0.453|None|None
+Transport_HeavyCarry|FA|None|1724|0.38|None|None
+Transport_HeavyCarry|FA|None|1739|0.27|None|None
+Transport_HeavyCarry|FA|None|1780|0.042|None|None
+Transport_HeavyCarry|FA|None|1793|0.72|None|None
+Transport_HeavyCarry|FA|None|1846|0.64|None|None
+Transport_HeavyCarry|FA|None|1883|0.117|None|None
+Transport_HeavyCarry|FA|None|1934|0.887|None|None
+Transport_HeavyCarry|FA|None|1937|0.952|None|None
+Transport_HeavyCarry|FA|None|1940|0.411|None|None
+Transport_HeavyCarry|FA|None|1992|0.539|None|None
+Transport_HeavyCarry|FA|None|2025|0.919|None|None
+Transport_HeavyCarry|FA|None|2030|0.178|None|None
+Transport_HeavyCarry|FA|None|2036|0.345|None|None
+Transport_HeavyCarry|FA|None|2044|0.177|None|None
+Transport_HeavyCarry|FA|None|2060|0.954|None|None
+Transport_HeavyCarry|FA|None|2065|0.288|None|None
+Transport_HeavyCarry|FA|None|2067|0.664|None|None
+Transport_HeavyCarry|FA|None|2113|0.89|None|None
+Transport_HeavyCarry|FA|None|2115|0.677|None|None
+Transport_HeavyCarry|FA|None|2174|0.318|None|None
+Transport_HeavyCarry|FA|None|2176|0.679|None|None
+Transport_HeavyCarry|FA|None|2197|0.7|None|None
 Transport_HeavyCarry|FA|None|220|0.139|None|None
-Transport_HeavyCarry|FA|None|2219|0.388|None|None
+Transport_HeavyCarry|FA|None|2266|0.068|None|None
+Transport_HeavyCarry|FA|None|2283|0.161|None|None
+Transport_HeavyCarry|FA|None|2328|0.777|None|None
+Transport_HeavyCarry|FA|None|2339|0.199|None|None
+Transport_HeavyCarry|FA|None|2364|0.717|None|None
+Transport_HeavyCarry|FA|None|2408|0.388|None|None
 Transport_HeavyCarry|FA|None|270|0.528|None|None
 Transport_HeavyCarry|FA|None|314|0.892|None|None
 Transport_HeavyCarry|FA|None|374|0.045|None|None
@@ -1078,8 +1078,8 @@ Unloading|CD|21|850|0.845|1.845|{"presenceconf_congruence": 0.845}
 Unloading|CD|22|75|0.666|1.666|{"presenceconf_congruence": 0.666}
 Unloading|CD|23|939|0.691|1.6909999999999998|{"presenceconf_congruence": 0.691}
 Unloading|CD|24|1272|0.803|1.803|{"presenceconf_congruence": 0.803}
-Unloading|CD|280|1180|0.886|1.8860000000000001|{"presenceconf_congruence": 0.886}
-Unloading|CD|281|2241|0.601|1.601|{"presenceconf_congruence": 0.601}
+Unloading|CD|322|1369|0.886|1.8860000000000001|{"presenceconf_congruence": 0.886}
+Unloading|CD|323|2430|0.601|1.601|{"presenceconf_congruence": 0.601}
 Unloading|FA|None|1029|0.982|None|None
 Unloading|FA|None|1059|0.132|None|None
 Unloading|FA|None|110|0.552|None|None
@@ -1092,58 +1092,58 @@ Unloading|FA|None|1195|0.397|None|None
 Unloading|FA|None|1196|0.767|None|None
 Unloading|FA|None|1222|0.421|None|None
 Unloading|FA|None|1233|0.421|None|None
-Unloading|FA|None|1252|0.535|None|None
 Unloading|FA|None|1254|0.227|None|None
 Unloading|FA|None|1256|0.562|None|None
 Unloading|FA|None|1274|0.784|None|None
 Unloading|FA|None|1283|0.645|None|None
-Unloading|FA|None|1301|0.38|None|None
 Unloading|FA|None|1302|0.079|None|None
-Unloading|FA|None|1313|0.767|None|None
-Unloading|FA|None|1332|0.218|None|None
-Unloading|FA|None|1350|0.604|None|None
-Unloading|FA|None|1402|0.819|None|None
-Unloading|FA|None|1421|0.832|None|None
-Unloading|FA|None|1424|0.628|None|None
-Unloading|FA|None|1491|0.638|None|None
-Unloading|FA|None|1555|0.859|None|None
+Unloading|FA|None|1441|0.535|None|None
+Unloading|FA|None|1490|0.38|None|None
+Unloading|FA|None|1502|0.767|None|None
+Unloading|FA|None|1521|0.218|None|None
+Unloading|FA|None|1539|0.604|None|None
 Unloading|FA|None|157|0.743|None|None
-Unloading|FA|None|1596|0.638|None|None
-Unloading|FA|None|1623|0.739|None|None
-Unloading|FA|None|1625|0.433|None|None
-Unloading|FA|None|1627|0.901|None|None
-Unloading|FA|None|1651|0.194|None|None
-Unloading|FA|None|1701|0.877|None|None
+Unloading|FA|None|1591|0.819|None|None
+Unloading|FA|None|1610|0.832|None|None
+Unloading|FA|None|1613|0.628|None|None
+Unloading|FA|None|1680|0.638|None|None
+Unloading|FA|None|1744|0.859|None|None
 Unloading|FA|None|177|0.916|None|None
-Unloading|FA|None|1770|0.379|None|None
-Unloading|FA|None|1791|0.247|None|None
-Unloading|FA|None|1821|0.133|None|None
-Unloading|FA|None|1825|0.723|None|None
-Unloading|FA|None|1829|0.01|None|None
-Unloading|FA|None|1867|0.633|None|None
-Unloading|FA|None|1882|0.557|None|None
-Unloading|FA|None|1900|0.884|None|None
-Unloading|FA|None|1902|0.374|None|None
-Unloading|FA|None|1906|0.729|None|None
-Unloading|FA|None|1913|0.892|None|None
-Unloading|FA|None|1949|0.136|None|None
-Unloading|FA|None|1957|0.656|None|None
-Unloading|FA|None|1960|0.601|None|None
-Unloading|FA|None|1967|0.437|None|None
-Unloading|FA|None|2015|0.569|None|None
+Unloading|FA|None|1785|0.638|None|None
+Unloading|FA|None|1812|0.739|None|None
+Unloading|FA|None|1814|0.433|None|None
+Unloading|FA|None|1816|0.901|None|None
+Unloading|FA|None|1840|0.194|None|None
+Unloading|FA|None|1890|0.877|None|None
+Unloading|FA|None|1959|0.379|None|None
+Unloading|FA|None|1980|0.247|None|None
+Unloading|FA|None|2010|0.133|None|None
+Unloading|FA|None|2014|0.723|None|None
+Unloading|FA|None|2018|0.01|None|None
 Unloading|FA|None|204|0.427|None|None
-Unloading|FA|None|2053|0.024|None|None
-Unloading|FA|None|2099|0.184|None|None
-Unloading|FA|None|2105|0.554|None|None
+Unloading|FA|None|2056|0.633|None|None
+Unloading|FA|None|2071|0.557|None|None
+Unloading|FA|None|2089|0.884|None|None
+Unloading|FA|None|2091|0.374|None|None
+Unloading|FA|None|2095|0.729|None|None
+Unloading|FA|None|2102|0.892|None|None
 Unloading|FA|None|212|0.335|None|None
-Unloading|FA|None|2153|0.629|None|None
-Unloading|FA|None|2168|0.23|None|None
-Unloading|FA|None|2181|0.023|None|None
-Unloading|FA|None|2186|0.185|None|None
-Unloading|FA|None|2208|0.953|None|None
-Unloading|FA|None|2218|0.64|None|None
-Unloading|FA|None|2235|0.171|None|None
+Unloading|FA|None|2138|0.136|None|None
+Unloading|FA|None|2146|0.656|None|None
+Unloading|FA|None|2149|0.601|None|None
+Unloading|FA|None|2156|0.437|None|None
+Unloading|FA|None|2204|0.569|None|None
+Unloading|FA|None|2242|0.024|None|None
+Unloading|FA|None|2288|0.184|None|None
+Unloading|FA|None|2294|0.554|None|None
 Unloading|FA|None|231|0.18|None|None
+Unloading|FA|None|2342|0.629|None|None
+Unloading|FA|None|2357|0.23|None|None
+Unloading|FA|None|2370|0.023|None|None
+Unloading|FA|None|2375|0.185|None|None
+Unloading|FA|None|2397|0.953|None|None
+Unloading|FA|None|2407|0.64|None|None
+Unloading|FA|None|2424|0.171|None|None
 Unloading|FA|None|261|0.1|None|None
 Unloading|FA|None|279|0.642|None|None
 Unloading|FA|None|333|0.551|None|None
@@ -1162,11 +1162,11 @@ Unloading|FA|None|936|0.255|None|None
 Unloading|FA|None|973|0.213|None|None
 Unloading|FA|None|988|0.475|None|None
 Unloading|FA|None|989|0.821|None|None
-activity_carrying|CD|374|1224|0.792|1.792|{"presenceconf_congruence": 0.792}
-activity_carrying|CD|375|1178|0.749|1.749|{"presenceconf_congruence": 0.749}
-activity_carrying|CD|376|1128|0.704|1.704|{"presenceconf_congruence": 0.704}
-activity_carrying|CD|377|2158|0.668|1.6680000000000001|{"presenceconf_congruence": 0.668}
-activity_carrying|CD|379|1758|0.983|1.983|{"presenceconf_congruence": 0.983}
+activity_carrying|CD|416|1413|0.792|1.792|{"presenceconf_congruence": 0.792}
+activity_carrying|CD|417|1367|0.749|1.749|{"presenceconf_congruence": 0.749}
+activity_carrying|CD|418|1317|0.704|1.704|{"presenceconf_congruence": 0.704}
+activity_carrying|CD|419|2347|0.668|1.6680000000000001|{"presenceconf_congruence": 0.668}
+activity_carrying|CD|421|1947|0.983|1.983|{"presenceconf_congruence": 0.983}
 activity_carrying|CD|83|927|0.925|1.925|{"presenceconf_congruence": 0.925}
 activity_carrying|CD|84|124|0.866|1.866|{"presenceconf_congruence": 0.866}
 activity_carrying|CD|85|36|0.88|1.88|{"presenceconf_congruence": 0.88}
@@ -1178,63 +1178,63 @@ activity_carrying|FA|None|1105|0.402|None|None
 activity_carrying|FA|None|1111|0.906|None|None
 activity_carrying|FA|None|1127|0.728|None|None
 activity_carrying|FA|None|1133|0.667|None|None
-activity_carrying|FA|None|1152|0.56|None|None
 activity_carrying|FA|None|1163|0.877|None|None
 activity_carrying|FA|None|1179|0.594|None|None
 activity_carrying|FA|None|1224|0.369|None|None
 activity_carrying|FA|None|1240|0.788|None|None
 activity_carrying|FA|None|1244|0.526|None|None
-activity_carrying|FA|None|1253|0.198|None|None
 activity_carrying|FA|None|1263|0.324|None|None
-activity_carrying|FA|None|1275|0.349|None|None
-activity_carrying|FA|None|1290|0.223|None|None
-activity_carrying|FA|None|1291|0.36|None|None
 activity_carrying|FA|None|1295|0.4|None|None
 activity_carrying|FA|None|1304|0.829|None|None
 activity_carrying|FA|None|1308|0.926|None|None
-activity_carrying|FA|None|1315|0.422|None|None
-activity_carrying|FA|None|1337|0.483|None|None
-activity_carrying|FA|None|1348|0.729|None|None
-activity_carrying|FA|None|1354|0.399|None|None
-activity_carrying|FA|None|1413|0.612|None|None
-activity_carrying|FA|None|1423|0.048|None|None
-activity_carrying|FA|None|1436|0.916|None|None
-activity_carrying|FA|None|1450|0.744|None|None
-activity_carrying|FA|None|1456|0.484|None|None
-activity_carrying|FA|None|1459|0.287|None|None
-activity_carrying|FA|None|1472|0.468|None|None
-activity_carrying|FA|None|1500|0.63|None|None
-activity_carrying|FA|None|1507|0.088|None|None
-activity_carrying|FA|None|1529|0.438|None|None
-activity_carrying|FA|None|1585|0.973|None|None
-activity_carrying|FA|None|1589|0.283|None|None
-activity_carrying|FA|None|1654|0.092|None|None
-activity_carrying|FA|None|1693|0.18|None|None
-activity_carrying|FA|None|1705|0.788|None|None
-activity_carrying|FA|None|1728|0.28|None|None
-activity_carrying|FA|None|1739|0.834|None|None
-activity_carrying|FA|None|1776|0.732|None|None
-activity_carrying|FA|None|1866|0.403|None|None
-activity_carrying|FA|None|1877|0.175|None|None
-activity_carrying|FA|None|1937|0.143|None|None
-activity_carrying|FA|None|1939|0.041|None|None
-activity_carrying|FA|None|1944|0.645|None|None
-activity_carrying|FA|None|1950|0.648|None|None
-activity_carrying|FA|None|1988|0.013|None|None
-activity_carrying|FA|None|1994|0.796|None|None
-activity_carrying|FA|None|1999|0.932|None|None
-activity_carrying|FA|None|2027|0.229|None|None
-activity_carrying|FA|None|2033|0.965|None|None
-activity_carrying|FA|None|2047|0.659|None|None
-activity_carrying|FA|None|2088|0.588|None|None
-activity_carrying|FA|None|2104|0.281|None|None
-activity_carrying|FA|None|2126|0.543|None|None
-activity_carrying|FA|None|2133|0.543|None|None
-activity_carrying|FA|None|2202|0.41|None|None
-activity_carrying|FA|None|2222|0.502|None|None
-activity_carrying|FA|None|2237|0.686|None|None
-activity_carrying|FA|None|2244|0.351|None|None
+activity_carrying|FA|None|1341|0.56|None|None
+activity_carrying|FA|None|1442|0.198|None|None
+activity_carrying|FA|None|1464|0.349|None|None
+activity_carrying|FA|None|1479|0.223|None|None
+activity_carrying|FA|None|1480|0.36|None|None
+activity_carrying|FA|None|1504|0.422|None|None
+activity_carrying|FA|None|1526|0.483|None|None
+activity_carrying|FA|None|1537|0.729|None|None
+activity_carrying|FA|None|1543|0.399|None|None
+activity_carrying|FA|None|1602|0.612|None|None
+activity_carrying|FA|None|1612|0.048|None|None
+activity_carrying|FA|None|1625|0.916|None|None
+activity_carrying|FA|None|1639|0.744|None|None
+activity_carrying|FA|None|1645|0.484|None|None
+activity_carrying|FA|None|1648|0.287|None|None
+activity_carrying|FA|None|1661|0.468|None|None
+activity_carrying|FA|None|1689|0.63|None|None
+activity_carrying|FA|None|1696|0.088|None|None
+activity_carrying|FA|None|1718|0.438|None|None
+activity_carrying|FA|None|1774|0.973|None|None
+activity_carrying|FA|None|1778|0.283|None|None
+activity_carrying|FA|None|1843|0.092|None|None
+activity_carrying|FA|None|1882|0.18|None|None
+activity_carrying|FA|None|1894|0.788|None|None
+activity_carrying|FA|None|1917|0.28|None|None
+activity_carrying|FA|None|1928|0.834|None|None
+activity_carrying|FA|None|1965|0.732|None|None
+activity_carrying|FA|None|2055|0.403|None|None
+activity_carrying|FA|None|2066|0.175|None|None
+activity_carrying|FA|None|2126|0.143|None|None
+activity_carrying|FA|None|2128|0.041|None|None
+activity_carrying|FA|None|2133|0.645|None|None
+activity_carrying|FA|None|2139|0.648|None|None
+activity_carrying|FA|None|2177|0.013|None|None
+activity_carrying|FA|None|2183|0.796|None|None
+activity_carrying|FA|None|2188|0.932|None|None
+activity_carrying|FA|None|2216|0.229|None|None
+activity_carrying|FA|None|2222|0.965|None|None
+activity_carrying|FA|None|2236|0.659|None|None
+activity_carrying|FA|None|2277|0.588|None|None
+activity_carrying|FA|None|2293|0.281|None|None
+activity_carrying|FA|None|2315|0.543|None|None
+activity_carrying|FA|None|2322|0.543|None|None
 activity_carrying|FA|None|237|0.216|None|None
+activity_carrying|FA|None|2391|0.41|None|None
+activity_carrying|FA|None|2411|0.502|None|None
+activity_carrying|FA|None|2426|0.686|None|None
+activity_carrying|FA|None|2433|0.351|None|None
 activity_carrying|FA|None|268|0.387|None|None
 activity_carrying|FA|None|290|0.601|None|None
 activity_carrying|FA|None|296|0.061|None|None
@@ -1268,7 +1268,7 @@ activity_carrying|FA|None|727|0.7|None|None
 activity_carrying|FA|None|753|0.161|None|None
 activity_carrying|FA|None|797|0.236|None|None
 activity_carrying|FA|None|891|0.331|None|None
-activity_carrying|MD|378|None|None|None|None
+activity_carrying|MD|420|None|None|None|None
 activity_gesturing|CD|280|83|0.52|1.52|{"presenceconf_congruence": 0.52}
 activity_gesturing|CD|281|47|0.871|1.871|{"presenceconf_congruence": 0.871}
 activity_gesturing|CD|282|79|0.537|1.537|{"presenceconf_congruence": 0.537}
@@ -1278,34 +1278,34 @@ activity_gesturing|CD|287|107|0.734|1.734|{"presenceconf_congruence": 0.734}
 activity_gesturing|CD|288|97|0.679|1.679|{"presenceconf_congruence": 0.679}
 activity_gesturing|CD|289|455|0.854|1.854|{"presenceconf_congruence": 0.854}
 activity_gesturing|CD|291|189|0.985|1.9849999999999999|{"presenceconf_congruence": 0.985}
-activity_gesturing|CD|386|2214|0.57|1.5699999999999998|{"presenceconf_congruence": 0.57}
-activity_gesturing|CD|387|1481|0.163|1.163|{"presenceconf_congruence": 0.163}
-activity_gesturing|CD|388|1223|0.827|1.827|{"presenceconf_congruence": 0.827}
-activity_gesturing|CD|390|1293|0.521|1.521|{"presenceconf_congruence": 0.521}
-activity_gesturing|CD|391|1171|0.875|1.875|{"presenceconf_congruence": 0.875}
-activity_gesturing|CD|392|1192|0.939|1.939|{"presenceconf_congruence": 0.939}
-activity_gesturing|CD|394|1164|0.939|1.939|{"presenceconf_congruence": 0.939}
-activity_gesturing|CD|397|1210|0.966|1.966|{"presenceconf_congruence": 0.966}
-activity_gesturing|CD|398|1196|0.922|1.9220000000000002|{"presenceconf_congruence": 0.922}
-activity_gesturing|CD|400|1157|0.971|1.971|{"presenceconf_congruence": 0.971}
-activity_gesturing|CD|401|1257|0.623|1.623|{"presenceconf_congruence": 0.623}
-activity_gesturing|CD|402|1183|0.883|1.883|{"presenceconf_congruence": 0.883}
-activity_gesturing|CD|403|1948|0.911|1.911|{"presenceconf_congruence": 0.911}
-activity_gesturing|CD|404|1571|0.278|1.278|{"presenceconf_congruence": 0.278}
-activity_gesturing|CD|406|1181|0.614|1.6139999999999999|{"presenceconf_congruence": 0.614}
-activity_gesturing|CD|407|1827|0.507|1.5070000000000001|{"presenceconf_congruence": 0.507}
-activity_gesturing|CD|408|2176|0.515|1.5150000000000001|{"presenceconf_congruence": 0.515}
-activity_gesturing|CD|409|1238|0.742|1.742|{"presenceconf_congruence": 0.742}
-activity_gesturing|CD|410|1204|0.651|1.651|{"presenceconf_congruence": 0.651}
-activity_gesturing|CD|412|1248|0.773|1.7730000000000001|{"presenceconf_congruence": 0.773}
-activity_gesturing|CD|414|1153|0.721|1.721|{"presenceconf_congruence": 0.721}
-activity_gesturing|CD|415|1524|0.733|1.733|{"presenceconf_congruence": 0.733}
-activity_gesturing|CD|416|1234|0.506|1.506|{"presenceconf_congruence": 0.506}
-activity_gesturing|CD|417|1245|0.598|1.5979999999999999|{"presenceconf_congruence": 0.598}
-activity_gesturing|CD|419|1775|0.041|1.041|{"presenceconf_congruence": 0.041}
-activity_gesturing|CD|421|1690|0.553|1.553|{"presenceconf_congruence": 0.553}
-activity_gesturing|CD|422|1201|0.709|1.709|{"presenceconf_congruence": 0.709}
-activity_gesturing|CD|424|2127|0.644|1.6440000000000001|{"presenceconf_congruence": 0.644}
+activity_gesturing|CD|428|2403|0.57|1.5699999999999998|{"presenceconf_congruence": 0.57}
+activity_gesturing|CD|429|1670|0.163|1.163|{"presenceconf_congruence": 0.163}
+activity_gesturing|CD|430|1412|0.827|1.827|{"presenceconf_congruence": 0.827}
+activity_gesturing|CD|432|1482|0.521|1.521|{"presenceconf_congruence": 0.521}
+activity_gesturing|CD|433|1360|0.875|1.875|{"presenceconf_congruence": 0.875}
+activity_gesturing|CD|434|1381|0.939|1.939|{"presenceconf_congruence": 0.939}
+activity_gesturing|CD|436|1353|0.939|1.939|{"presenceconf_congruence": 0.939}
+activity_gesturing|CD|439|1399|0.966|1.966|{"presenceconf_congruence": 0.966}
+activity_gesturing|CD|440|1385|0.922|1.9220000000000002|{"presenceconf_congruence": 0.922}
+activity_gesturing|CD|442|1346|0.971|1.971|{"presenceconf_congruence": 0.971}
+activity_gesturing|CD|443|1446|0.623|1.623|{"presenceconf_congruence": 0.623}
+activity_gesturing|CD|444|1372|0.883|1.883|{"presenceconf_congruence": 0.883}
+activity_gesturing|CD|445|2137|0.911|1.911|{"presenceconf_congruence": 0.911}
+activity_gesturing|CD|446|1760|0.278|1.278|{"presenceconf_congruence": 0.278}
+activity_gesturing|CD|448|1370|0.614|1.6139999999999999|{"presenceconf_congruence": 0.614}
+activity_gesturing|CD|449|2016|0.507|1.5070000000000001|{"presenceconf_congruence": 0.507}
+activity_gesturing|CD|450|2365|0.515|1.5150000000000001|{"presenceconf_congruence": 0.515}
+activity_gesturing|CD|451|1427|0.742|1.742|{"presenceconf_congruence": 0.742}
+activity_gesturing|CD|452|1393|0.651|1.651|{"presenceconf_congruence": 0.651}
+activity_gesturing|CD|454|1437|0.773|1.7730000000000001|{"presenceconf_congruence": 0.773}
+activity_gesturing|CD|456|1342|0.721|1.721|{"presenceconf_congruence": 0.721}
+activity_gesturing|CD|457|1713|0.733|1.733|{"presenceconf_congruence": 0.733}
+activity_gesturing|CD|458|1423|0.506|1.506|{"presenceconf_congruence": 0.506}
+activity_gesturing|CD|459|1434|0.598|1.5979999999999999|{"presenceconf_congruence": 0.598}
+activity_gesturing|CD|461|1964|0.041|1.041|{"presenceconf_congruence": 0.041}
+activity_gesturing|CD|463|1879|0.553|1.553|{"presenceconf_congruence": 0.553}
+activity_gesturing|CD|464|1390|0.709|1.709|{"presenceconf_congruence": 0.709}
+activity_gesturing|CD|466|2316|0.644|1.6440000000000001|{"presenceconf_congruence": 0.644}
 activity_gesturing|FA|None|1019|0.009|None|None
 activity_gesturing|FA|None|1054|0.123|None|None
 activity_gesturing|FA|None|1096|0.559|None|None
@@ -1313,48 +1313,48 @@ activity_gesturing|FA|None|12|0.762|None|None
 activity_gesturing|FA|None|1216|0.875|None|None
 activity_gesturing|FA|None|1234|0.95|None|None
 activity_gesturing|FA|None|1258|0.65|None|None
-activity_gesturing|FA|None|1263|0.085|None|None
-activity_gesturing|FA|None|1284|0.798|None|None
-activity_gesturing|FA|None|1316|0.088|None|None
-activity_gesturing|FA|None|1320|0.042|None|None
-activity_gesturing|FA|None|1321|0.887|None|None
-activity_gesturing|FA|None|1340|0.57|None|None
-activity_gesturing|FA|None|1398|0.414|None|None
-activity_gesturing|FA|None|1405|0.856|None|None
-activity_gesturing|FA|None|1410|0.767|None|None
-activity_gesturing|FA|None|1419|0.952|None|None
-activity_gesturing|FA|None|1420|0.022|None|None
-activity_gesturing|FA|None|1480|0.373|None|None
-activity_gesturing|FA|None|1504|0.969|None|None
-activity_gesturing|FA|None|1511|0.65|None|None
-activity_gesturing|FA|None|1572|0.858|None|None
-activity_gesturing|FA|None|1576|0.552|None|None
+activity_gesturing|FA|None|1452|0.085|None|None
+activity_gesturing|FA|None|1473|0.798|None|None
+activity_gesturing|FA|None|1505|0.088|None|None
+activity_gesturing|FA|None|1509|0.042|None|None
+activity_gesturing|FA|None|1510|0.887|None|None
+activity_gesturing|FA|None|1529|0.57|None|None
+activity_gesturing|FA|None|1587|0.414|None|None
+activity_gesturing|FA|None|1594|0.856|None|None
+activity_gesturing|FA|None|1599|0.767|None|None
+activity_gesturing|FA|None|1608|0.952|None|None
+activity_gesturing|FA|None|1609|0.022|None|None
 activity_gesturing|FA|None|162|0.325|None|None
-activity_gesturing|FA|None|1634|0.272|None|None
-activity_gesturing|FA|None|1670|0.049|None|None
-activity_gesturing|FA|None|1695|0.849|None|None
-activity_gesturing|FA|None|1696|0.485|None|None
+activity_gesturing|FA|None|1669|0.373|None|None
+activity_gesturing|FA|None|1693|0.969|None|None
+activity_gesturing|FA|None|1700|0.65|None|None
 activity_gesturing|FA|None|174|0.461|None|None
-activity_gesturing|FA|None|1765|0.694|None|None
-activity_gesturing|FA|None|1782|0.243|None|None
-activity_gesturing|FA|None|1785|0.373|None|None
+activity_gesturing|FA|None|1761|0.858|None|None
+activity_gesturing|FA|None|1765|0.552|None|None
 activity_gesturing|FA|None|182|0.252|None|None
-activity_gesturing|FA|None|1834|0.419|None|None
-activity_gesturing|FA|None|1863|0.487|None|None
-activity_gesturing|FA|None|1911|0.362|None|None
-activity_gesturing|FA|None|1916|0.703|None|None
-activity_gesturing|FA|None|1927|0.465|None|None
-activity_gesturing|FA|None|1989|0.759|None|None
-activity_gesturing|FA|None|2026|0.822|None|None
-activity_gesturing|FA|None|2045|0.424|None|None
-activity_gesturing|FA|None|2071|0.069|None|None
-activity_gesturing|FA|None|2100|0.36|None|None
-activity_gesturing|FA|None|2110|0.729|None|None
+activity_gesturing|FA|None|1823|0.272|None|None
+activity_gesturing|FA|None|1859|0.049|None|None
+activity_gesturing|FA|None|1884|0.849|None|None
+activity_gesturing|FA|None|1885|0.485|None|None
+activity_gesturing|FA|None|1954|0.694|None|None
+activity_gesturing|FA|None|1971|0.243|None|None
+activity_gesturing|FA|None|1974|0.373|None|None
+activity_gesturing|FA|None|2023|0.419|None|None
+activity_gesturing|FA|None|2052|0.487|None|None
+activity_gesturing|FA|None|2100|0.362|None|None
+activity_gesturing|FA|None|2105|0.703|None|None
+activity_gesturing|FA|None|2116|0.465|None|None
 activity_gesturing|FA|None|213|0.401|None|None
-activity_gesturing|FA|None|2210|0.817|None|None
-activity_gesturing|FA|None|2221|0.944|None|None
-activity_gesturing|FA|None|2242|0.015|None|None
+activity_gesturing|FA|None|2178|0.759|None|None
+activity_gesturing|FA|None|2215|0.822|None|None
+activity_gesturing|FA|None|2234|0.424|None|None
 activity_gesturing|FA|None|225|0.677|None|None
+activity_gesturing|FA|None|2260|0.069|None|None
+activity_gesturing|FA|None|2289|0.36|None|None
+activity_gesturing|FA|None|2299|0.729|None|None
+activity_gesturing|FA|None|2399|0.817|None|None
+activity_gesturing|FA|None|2410|0.944|None|None
+activity_gesturing|FA|None|2431|0.015|None|None
 activity_gesturing|FA|None|257|0.583|None|None
 activity_gesturing|FA|None|264|0.687|None|None
 activity_gesturing|FA|None|303|0.299|None|None
@@ -1384,18 +1384,18 @@ activity_gesturing|FA|None|995|0.949|None|None
 activity_gesturing|MD|283|None|None|None|None
 activity_gesturing|MD|286|None|None|None|None
 activity_gesturing|MD|290|None|None|None|None
-activity_gesturing|MD|389|None|None|None|None
-activity_gesturing|MD|393|None|None|None|None
-activity_gesturing|MD|395|None|None|None|None
-activity_gesturing|MD|396|None|None|None|None
-activity_gesturing|MD|399|None|None|None|None
-activity_gesturing|MD|405|None|None|None|None
-activity_gesturing|MD|411|None|None|None|None
-activity_gesturing|MD|413|None|None|None|None
-activity_gesturing|MD|418|None|None|None|None
-activity_gesturing|MD|420|None|None|None|None
-activity_gesturing|MD|423|None|None|None|None
-activity_gesturing|MD|425|None|None|None|None
+activity_gesturing|MD|431|None|None|None|None
+activity_gesturing|MD|435|None|None|None|None
+activity_gesturing|MD|437|None|None|None|None
+activity_gesturing|MD|438|None|None|None|None
+activity_gesturing|MD|441|None|None|None|None
+activity_gesturing|MD|447|None|None|None|None
+activity_gesturing|MD|453|None|None|None|None
+activity_gesturing|MD|455|None|None|None|None
+activity_gesturing|MD|460|None|None|None|None
+activity_gesturing|MD|462|None|None|None|None
+activity_gesturing|MD|465|None|None|None|None
+activity_gesturing|MD|467|None|None|None|None
 activity_running|CD|156|103|0.664|1.6640000000000001|{"presenceconf_congruence": 0.664}
 activity_running|CD|157|22|0.782|1.782|{"presenceconf_congruence": 0.782}
 activity_running|CD|158|100|0.673|1.673|{"presenceconf_congruence": 0.673}
@@ -1450,63 +1450,63 @@ activity_running|FA|None|964|0.097|None|None
 activity_running|FA|None|968|0.782|None|None
 activity_running|FA|None|977|0.747|None|None
 activity_running|MD|160|None|None|None|None
-activity_sitting|CD|490|1136|0.874|1.874|{"presenceconf_congruence": 0.874}
-activity_sitting|CD|491|1283|0.659|1.659|{"presenceconf_congruence": 0.659}
-activity_sitting|CD|492|1229|0.987|1.987|{"presenceconf_congruence": 0.987}
-activity_sitting|FA|None|1260|0.925|None|None
-activity_sitting|FA|None|1265|0.517|None|None
-activity_sitting|FA|None|1295|0.148|None|None
-activity_sitting|FA|None|1296|0.06|None|None
-activity_sitting|FA|None|1312|0.308|None|None
-activity_sitting|FA|None|1323|0.13|None|None
-activity_sitting|FA|None|1331|0.509|None|None
-activity_sitting|FA|None|1366|0.376|None|None
-activity_sitting|FA|None|1376|0.607|None|None
-activity_sitting|FA|None|1394|0.787|None|None
-activity_sitting|FA|None|1401|0.75|None|None
-activity_sitting|FA|None|1437|0.916|None|None
-activity_sitting|FA|None|1442|0.425|None|None
-activity_sitting|FA|None|1464|0.167|None|None
-activity_sitting|FA|None|1469|0.597|None|None
-activity_sitting|FA|None|1505|0.142|None|None
-activity_sitting|FA|None|1521|0.634|None|None
-activity_sitting|FA|None|1530|0.623|None|None
-activity_sitting|FA|None|1568|0.484|None|None
-activity_sitting|FA|None|1574|0.238|None|None
-activity_sitting|FA|None|1614|0.801|None|None
-activity_sitting|FA|None|1619|0.944|None|None
-activity_sitting|FA|None|1632|0.441|None|None
-activity_sitting|FA|None|1638|0.012|None|None
-activity_sitting|FA|None|1652|0.842|None|None
-activity_sitting|FA|None|1683|0.846|None|None
-activity_sitting|FA|None|1689|0.047|None|None
-activity_sitting|FA|None|1708|0.581|None|None
-activity_sitting|FA|None|1717|0.412|None|None
-activity_sitting|FA|None|1721|0.715|None|None
-activity_sitting|FA|None|1733|0.564|None|None
-activity_sitting|FA|None|1752|0.895|None|None
-activity_sitting|FA|None|1771|0.718|None|None
-activity_sitting|FA|None|1788|0.413|None|None
-activity_sitting|FA|None|1819|0.41|None|None
-activity_sitting|FA|None|1820|0.719|None|None
-activity_sitting|FA|None|1828|0.24|None|None
-activity_sitting|FA|None|1839|0.762|None|None
-activity_sitting|FA|None|1844|0.276|None|None
-activity_sitting|FA|None|1865|0.059|None|None
-activity_sitting|FA|None|1896|0.04|None|None
-activity_sitting|FA|None|1984|0.75|None|None
-activity_sitting|FA|None|1995|0.598|None|None
-activity_sitting|FA|None|2036|0.145|None|None
-activity_sitting|FA|None|2040|0.129|None|None
-activity_sitting|FA|None|2075|0.541|None|None
-activity_sitting|FA|None|2111|0.962|None|None
-activity_sitting|FA|None|2113|0.653|None|None
-activity_sitting|FA|None|2121|0.895|None|None
-activity_sitting|FA|None|2144|0.744|None|None
-activity_sitting|FA|None|2185|0.943|None|None
-activity_sitting|FA|None|2189|0.382|None|None
-activity_sitting|FA|None|2209|0.773|None|None
-activity_sitting|FA|None|2212|0.441|None|None
+activity_sitting|CD|532|1325|0.874|1.874|{"presenceconf_congruence": 0.874}
+activity_sitting|CD|533|1472|0.659|1.659|{"presenceconf_congruence": 0.659}
+activity_sitting|CD|534|1418|0.987|1.987|{"presenceconf_congruence": 0.987}
+activity_sitting|FA|None|1449|0.925|None|None
+activity_sitting|FA|None|1454|0.517|None|None
+activity_sitting|FA|None|1484|0.148|None|None
+activity_sitting|FA|None|1485|0.06|None|None
+activity_sitting|FA|None|1501|0.308|None|None
+activity_sitting|FA|None|1512|0.13|None|None
+activity_sitting|FA|None|1520|0.509|None|None
+activity_sitting|FA|None|1555|0.376|None|None
+activity_sitting|FA|None|1565|0.607|None|None
+activity_sitting|FA|None|1583|0.787|None|None
+activity_sitting|FA|None|1590|0.75|None|None
+activity_sitting|FA|None|1626|0.916|None|None
+activity_sitting|FA|None|1631|0.425|None|None
+activity_sitting|FA|None|1653|0.167|None|None
+activity_sitting|FA|None|1658|0.597|None|None
+activity_sitting|FA|None|1694|0.142|None|None
+activity_sitting|FA|None|1710|0.634|None|None
+activity_sitting|FA|None|1719|0.623|None|None
+activity_sitting|FA|None|1757|0.484|None|None
+activity_sitting|FA|None|1763|0.238|None|None
+activity_sitting|FA|None|1803|0.801|None|None
+activity_sitting|FA|None|1808|0.944|None|None
+activity_sitting|FA|None|1821|0.441|None|None
+activity_sitting|FA|None|1827|0.012|None|None
+activity_sitting|FA|None|1841|0.842|None|None
+activity_sitting|FA|None|1872|0.846|None|None
+activity_sitting|FA|None|1878|0.047|None|None
+activity_sitting|FA|None|1897|0.581|None|None
+activity_sitting|FA|None|1906|0.412|None|None
+activity_sitting|FA|None|1910|0.715|None|None
+activity_sitting|FA|None|1922|0.564|None|None
+activity_sitting|FA|None|1941|0.895|None|None
+activity_sitting|FA|None|1960|0.718|None|None
+activity_sitting|FA|None|1977|0.413|None|None
+activity_sitting|FA|None|2008|0.41|None|None
+activity_sitting|FA|None|2009|0.719|None|None
+activity_sitting|FA|None|2017|0.24|None|None
+activity_sitting|FA|None|2028|0.762|None|None
+activity_sitting|FA|None|2033|0.276|None|None
+activity_sitting|FA|None|2054|0.059|None|None
+activity_sitting|FA|None|2085|0.04|None|None
+activity_sitting|FA|None|2173|0.75|None|None
+activity_sitting|FA|None|2184|0.598|None|None
+activity_sitting|FA|None|2225|0.145|None|None
+activity_sitting|FA|None|2229|0.129|None|None
+activity_sitting|FA|None|2264|0.541|None|None
+activity_sitting|FA|None|2300|0.962|None|None
+activity_sitting|FA|None|2302|0.653|None|None
+activity_sitting|FA|None|2310|0.895|None|None
+activity_sitting|FA|None|2333|0.744|None|None
+activity_sitting|FA|None|2374|0.943|None|None
+activity_sitting|FA|None|2378|0.382|None|None
+activity_sitting|FA|None|2398|0.773|None|None
+activity_sitting|FA|None|2401|0.441|None|None
 activity_standing|CD|226|65|0.534|1.534|{"presenceconf_congruence": 0.534}
 activity_standing|CD|227|646|0.841|1.841|{"presenceconf_congruence": 0.841}
 activity_standing|CD|228|72|0.964|1.964|{"presenceconf_congruence": 0.964}
@@ -1547,94 +1547,94 @@ activity_standing|CD|274|923|0.359|1.359|{"presenceconf_congruence": 0.359}
 activity_standing|CD|275|4|0.934|1.9340000000000002|{"presenceconf_congruence": 0.934}
 activity_standing|CD|278|8|0.982|1.982|{"presenceconf_congruence": 0.982}
 activity_standing|CD|279|209|0.203|1.203|{"presenceconf_congruence": 0.203}
-activity_standing|CD|432|1755|0.693|1.693|{"presenceconf_congruence": 0.693}
-activity_standing|CD|433|1233|0.731|1.7309999999999999|{"presenceconf_congruence": 0.731}
-activity_standing|CD|434|1247|0.9|1.9|{"presenceconf_congruence": 0.9}
-activity_standing|CD|435|1175|0.684|1.6840000000000002|{"presenceconf_congruence": 0.684}
-activity_standing|CD|436|2032|0.543|1.5430000000000001|{"presenceconf_congruence": 0.543}
-activity_standing|CD|437|1222|0.867|1.867|{"presenceconf_congruence": 0.867}
-activity_standing|CD|438|1279|0.505|1.505|{"presenceconf_congruence": 0.505}
-activity_standing|CD|439|1131|0.603|1.603|{"presenceconf_congruence": 0.603}
-activity_standing|CD|440|1302|0.743|1.7429999999999999|{"presenceconf_congruence": 0.743}
-activity_standing|CD|441|1532|0.008|1.008|{"presenceconf_congruence": 0.008}
-activity_standing|CD|442|1240|0.675|1.675|{"presenceconf_congruence": 0.675}
-activity_standing|CD|443|1135|0.964|1.964|{"presenceconf_congruence": 0.964}
-activity_standing|CD|444|1215|0.785|1.7850000000000001|{"presenceconf_congruence": 0.785}
-activity_standing|CD|445|1144|0.638|1.638|{"presenceconf_congruence": 0.638}
-activity_standing|CD|448|1200|0.745|1.745|{"presenceconf_congruence": 0.745}
-activity_standing|CD|449|1205|0.622|1.6219999999999999|{"presenceconf_congruence": 0.622}
-activity_standing|CD|450|1165|0.814|1.814|{"presenceconf_congruence": 0.814}
-activity_standing|CD|451|1736|0.787|1.787|{"presenceconf_congruence": 0.787}
-activity_standing|CD|452|2217|0.778|1.778|{"presenceconf_congruence": 0.778}
-activity_standing|CD|453|2119|0.022|1.022|{"presenceconf_congruence": 0.022}
-activity_standing|CD|454|1225|0.963|1.963|{"presenceconf_congruence": 0.963}
-activity_standing|CD|456|1190|0.62|1.62|{"presenceconf_congruence": 0.62}
-activity_standing|CD|457|1434|0.807|1.807|{"presenceconf_congruence": 0.807}
-activity_standing|CD|458|2025|0.78|1.78|{"presenceconf_congruence": 0.78}
-activity_standing|CD|459|1993|0.9|1.9|{"presenceconf_congruence": 0.9}
-activity_standing|CD|460|1151|0.784|1.784|{"presenceconf_congruence": 0.784}
-activity_standing|CD|461|1158|0.812|1.812|{"presenceconf_congruence": 0.812}
-activity_standing|CD|462|1206|0.594|1.5939999999999999|{"presenceconf_congruence": 0.594}
-activity_standing|CD|463|1244|0.52|1.52|{"presenceconf_congruence": 0.52}
-activity_standing|CD|464|1318|0.879|1.879|{"presenceconf_congruence": 0.879}
-activity_standing|CD|467|1374|0.993|1.9929999999999999|{"presenceconf_congruence": 0.993}
-activity_standing|CD|468|1561|0.845|1.845|{"presenceconf_congruence": 0.845}
-activity_standing|CD|469|1644|0.879|1.879|{"presenceconf_congruence": 0.879}
-activity_standing|CD|470|1149|0.998|1.998|{"presenceconf_congruence": 0.998}
-activity_standing|CD|471|1211|0.961|1.9609999999999999|{"presenceconf_congruence": 0.961}
-activity_standing|CD|472|1159|0.692|1.692|{"presenceconf_congruence": 0.692}
-activity_standing|CD|473|2108|0.736|1.736|{"presenceconf_congruence": 0.736}
-activity_standing|CD|475|1237|0.833|1.833|{"presenceconf_congruence": 0.833}
-activity_standing|CD|476|1895|0.884|1.884|{"presenceconf_congruence": 0.884}
-activity_standing|CD|477|1186|0.973|1.9729999999999999|{"presenceconf_congruence": 0.973}
-activity_standing|CD|478|1379|0.37|1.37|{"presenceconf_congruence": 0.37}
-activity_standing|CD|479|1273|0.649|1.649|{"presenceconf_congruence": 0.649}
-activity_standing|CD|480|1212|0.795|1.795|{"presenceconf_congruence": 0.795}
-activity_standing|CD|481|1334|0.637|1.637|{"presenceconf_congruence": 0.637}
-activity_standing|CD|482|1851|0.867|1.867|{"presenceconf_congruence": 0.867}
-activity_standing|CD|483|1645|0.635|1.635|{"presenceconf_congruence": 0.635}
+activity_standing|CD|474|1944|0.693|1.693|{"presenceconf_congruence": 0.693}
+activity_standing|CD|475|1422|0.731|1.7309999999999999|{"presenceconf_congruence": 0.731}
+activity_standing|CD|476|1436|0.9|1.9|{"presenceconf_congruence": 0.9}
+activity_standing|CD|477|1364|0.684|1.6840000000000002|{"presenceconf_congruence": 0.684}
+activity_standing|CD|478|2221|0.543|1.5430000000000001|{"presenceconf_congruence": 0.543}
+activity_standing|CD|479|1411|0.867|1.867|{"presenceconf_congruence": 0.867}
+activity_standing|CD|480|1468|0.505|1.505|{"presenceconf_congruence": 0.505}
+activity_standing|CD|481|1320|0.603|1.603|{"presenceconf_congruence": 0.603}
+activity_standing|CD|482|1491|0.743|1.7429999999999999|{"presenceconf_congruence": 0.743}
+activity_standing|CD|483|1721|0.008|1.008|{"presenceconf_congruence": 0.008}
+activity_standing|CD|484|1429|0.675|1.675|{"presenceconf_congruence": 0.675}
+activity_standing|CD|485|1324|0.964|1.964|{"presenceconf_congruence": 0.964}
+activity_standing|CD|486|1404|0.785|1.7850000000000001|{"presenceconf_congruence": 0.785}
+activity_standing|CD|487|1333|0.638|1.638|{"presenceconf_congruence": 0.638}
+activity_standing|CD|490|1389|0.745|1.745|{"presenceconf_congruence": 0.745}
+activity_standing|CD|491|1394|0.622|1.6219999999999999|{"presenceconf_congruence": 0.622}
+activity_standing|CD|492|1354|0.814|1.814|{"presenceconf_congruence": 0.814}
+activity_standing|CD|493|1925|0.787|1.787|{"presenceconf_congruence": 0.787}
+activity_standing|CD|494|2406|0.778|1.778|{"presenceconf_congruence": 0.778}
+activity_standing|CD|495|2308|0.022|1.022|{"presenceconf_congruence": 0.022}
+activity_standing|CD|496|1414|0.963|1.963|{"presenceconf_congruence": 0.963}
+activity_standing|CD|498|1379|0.62|1.62|{"presenceconf_congruence": 0.62}
+activity_standing|CD|499|1623|0.807|1.807|{"presenceconf_congruence": 0.807}
+activity_standing|CD|500|2214|0.78|1.78|{"presenceconf_congruence": 0.78}
+activity_standing|CD|501|2182|0.9|1.9|{"presenceconf_congruence": 0.9}
+activity_standing|CD|502|1340|0.784|1.784|{"presenceconf_congruence": 0.784}
+activity_standing|CD|503|1347|0.812|1.812|{"presenceconf_congruence": 0.812}
+activity_standing|CD|504|1395|0.594|1.5939999999999999|{"presenceconf_congruence": 0.594}
+activity_standing|CD|505|1433|0.52|1.52|{"presenceconf_congruence": 0.52}
+activity_standing|CD|506|1507|0.879|1.879|{"presenceconf_congruence": 0.879}
+activity_standing|CD|509|1563|0.993|1.9929999999999999|{"presenceconf_congruence": 0.993}
+activity_standing|CD|510|1750|0.845|1.845|{"presenceconf_congruence": 0.845}
+activity_standing|CD|511|1833|0.879|1.879|{"presenceconf_congruence": 0.879}
+activity_standing|CD|512|1338|0.998|1.998|{"presenceconf_congruence": 0.998}
+activity_standing|CD|513|1400|0.961|1.9609999999999999|{"presenceconf_congruence": 0.961}
+activity_standing|CD|514|1348|0.692|1.692|{"presenceconf_congruence": 0.692}
+activity_standing|CD|515|2297|0.736|1.736|{"presenceconf_congruence": 0.736}
+activity_standing|CD|517|1426|0.833|1.833|{"presenceconf_congruence": 0.833}
+activity_standing|CD|518|2084|0.884|1.884|{"presenceconf_congruence": 0.884}
+activity_standing|CD|519|1375|0.973|1.9729999999999999|{"presenceconf_congruence": 0.973}
+activity_standing|CD|520|1568|0.37|1.37|{"presenceconf_congruence": 0.37}
+activity_standing|CD|521|1462|0.649|1.649|{"presenceconf_congruence": 0.649}
+activity_standing|CD|522|1401|0.795|1.795|{"presenceconf_congruence": 0.795}
+activity_standing|CD|523|1523|0.637|1.637|{"presenceconf_congruence": 0.637}
+activity_standing|CD|524|2040|0.867|1.867|{"presenceconf_congruence": 0.867}
+activity_standing|CD|525|1834|0.635|1.635|{"presenceconf_congruence": 0.635}
 activity_standing|FA|None|1023|0.771|None|None
 activity_standing|FA|None|1078|0.838|None|None
 activity_standing|FA|None|1088|0.234|None|None
 activity_standing|FA|None|1116|0.557|None|None
-activity_standing|FA|None|1176|0.618|None|None
 activity_standing|FA|None|1192|0.187|None|None
-activity_standing|FA|None|1269|0.303|None|None
 activity_standing|FA|None|128|0.745|None|None
 activity_standing|FA|None|1296|0.83|None|None
-activity_standing|FA|None|1307|0.002|None|None
-activity_standing|FA|None|1430|0.706|None|None
-activity_standing|FA|None|1445|0.044|None|None
-activity_standing|FA|None|1489|0.211|None|None
+activity_standing|FA|None|1365|0.618|None|None
+activity_standing|FA|None|1458|0.303|None|None
 activity_standing|FA|None|149|0.418|None|None
-activity_standing|FA|None|1502|0.537|None|None
-activity_standing|FA|None|1523|0.062|None|None
-activity_standing|FA|None|1536|0.994|None|None
-activity_standing|FA|None|1547|0.316|None|None
-activity_standing|FA|None|1580|0.133|None|None
-activity_standing|FA|None|1608|0.6|None|None
-activity_standing|FA|None|1635|0.094|None|None
-activity_standing|FA|None|1661|0.586|None|None
-activity_standing|FA|None|1744|0.519|None|None
-activity_standing|FA|None|1749|0.061|None|None
+activity_standing|FA|None|1496|0.002|None|None
+activity_standing|FA|None|1619|0.706|None|None
+activity_standing|FA|None|1634|0.044|None|None
+activity_standing|FA|None|1678|0.211|None|None
+activity_standing|FA|None|1691|0.537|None|None
+activity_standing|FA|None|1712|0.062|None|None
+activity_standing|FA|None|1725|0.994|None|None
+activity_standing|FA|None|1736|0.316|None|None
+activity_standing|FA|None|1769|0.133|None|None
+activity_standing|FA|None|1797|0.6|None|None
 activity_standing|FA|None|18|0.619|None|None
-activity_standing|FA|None|1817|0.086|None|None
-activity_standing|FA|None|1848|0.343|None|None
-activity_standing|FA|None|1856|0.104|None|None
-activity_standing|FA|None|1918|0.42|None|None
-activity_standing|FA|None|1951|0.207|None|None
-activity_standing|FA|None|1968|0.279|None|None
-activity_standing|FA|None|1980|0.254|None|None
-activity_standing|FA|None|2020|0.39|None|None
-activity_standing|FA|None|2064|0.426|None|None
-activity_standing|FA|None|2072|0.024|None|None
-activity_standing|FA|None|2152|0.998|None|None
+activity_standing|FA|None|1824|0.094|None|None
+activity_standing|FA|None|1850|0.586|None|None
+activity_standing|FA|None|1933|0.519|None|None
+activity_standing|FA|None|1938|0.061|None|None
+activity_standing|FA|None|2006|0.086|None|None
+activity_standing|FA|None|2037|0.343|None|None
+activity_standing|FA|None|2045|0.104|None|None
+activity_standing|FA|None|2107|0.42|None|None
+activity_standing|FA|None|2140|0.207|None|None
+activity_standing|FA|None|2157|0.279|None|None
+activity_standing|FA|None|2169|0.254|None|None
 activity_standing|FA|None|218|0.828|None|None
-activity_standing|FA|None|2182|0.594|None|None
-activity_standing|FA|None|2224|0.319|None|None
-activity_standing|FA|None|2226|0.136|None|None
-activity_standing|FA|None|2238|0.365|None|None
+activity_standing|FA|None|2209|0.39|None|None
+activity_standing|FA|None|2253|0.426|None|None
 activity_standing|FA|None|226|0.486|None|None
+activity_standing|FA|None|2261|0.024|None|None
+activity_standing|FA|None|2341|0.998|None|None
+activity_standing|FA|None|2371|0.594|None|None
+activity_standing|FA|None|2413|0.319|None|None
+activity_standing|FA|None|2415|0.136|None|None
+activity_standing|FA|None|2427|0.365|None|None
 activity_standing|FA|None|249|0.709|None|None
 activity_standing|FA|None|308|0.64|None|None
 activity_standing|FA|None|448|0.841|None|None
@@ -1670,12 +1670,12 @@ activity_standing|MD|269|None|None|None|None
 activity_standing|MD|272|None|None|None|None
 activity_standing|MD|276|None|None|None|None
 activity_standing|MD|277|None|None|None|None
-activity_standing|MD|446|None|None|None|None
-activity_standing|MD|447|None|None|None|None
-activity_standing|MD|455|None|None|None|None
-activity_standing|MD|465|None|None|None|None
-activity_standing|MD|466|None|None|None|None
-activity_standing|MD|474|None|None|None|None
+activity_standing|MD|488|None|None|None|None
+activity_standing|MD|489|None|None|None|None
+activity_standing|MD|497|None|None|None|None
+activity_standing|MD|507|None|None|None|None
+activity_standing|MD|508|None|None|None|None
+activity_standing|MD|516|None|None|None|None
 activity_walking|CD|162|6|0.612|1.612|{"presenceconf_congruence": 0.612}
 activity_walking|CD|163|9|0.514|1.514|{"presenceconf_congruence": 0.514}
 activity_walking|CD|166|785|0.896|1.896|{"presenceconf_congruence": 0.896}
@@ -1725,76 +1725,76 @@ activity_walking|CD|219|1091|0.56|1.56|{"presenceconf_congruence": 0.56}
 activity_walking|CD|220|1073|0.736|1.736|{"presenceconf_congruence": 0.736}
 activity_walking|CD|221|99|0.523|1.5230000000000001|{"presenceconf_congruence": 0.523}
 activity_walking|CD|223|101|0.863|1.863|{"presenceconf_congruence": 0.863}
-activity_walking|CD|320|1241|0.539|1.5390000000000001|{"presenceconf_congruence": 0.539}
-activity_walking|CD|321|1199|0.954|1.954|{"presenceconf_congruence": 0.954}
-activity_walking|CD|324|1202|0.914|1.9140000000000001|{"presenceconf_congruence": 0.914}
-activity_walking|CD|325|2203|0.994|1.994|{"presenceconf_congruence": 0.994}
-activity_walking|CD|326|1154|0.672|1.6720000000000002|{"presenceconf_congruence": 0.672}
-activity_walking|CD|328|1246|0.806|1.806|{"presenceconf_congruence": 0.806}
-activity_walking|CD|329|1126|0.724|1.724|{"presenceconf_congruence": 0.724}
-activity_walking|CD|332|1217|0.65|1.65|{"presenceconf_congruence": 0.65}
-activity_walking|CD|333|1691|0.574|1.5739999999999998|{"presenceconf_congruence": 0.574}
-activity_walking|CD|336|1203|0.719|1.7189999999999999|{"presenceconf_congruence": 0.719}
-activity_walking|CD|337|1216|0.895|1.895|{"presenceconf_congruence": 0.895}
-activity_walking|CD|338|1167|0.571|1.571|{"presenceconf_congruence": 0.571}
-activity_walking|CD|339|1858|0.926|1.9260000000000002|{"presenceconf_congruence": 0.926}
-activity_walking|CD|341|1814|0.83|1.83|{"presenceconf_congruence": 0.83}
-activity_walking|CD|343|1214|0.805|1.8050000000000002|{"presenceconf_congruence": 0.805}
-activity_walking|CD|344|1148|0.6|1.6|{"presenceconf_congruence": 0.6}
-activity_walking|CD|345|1845|0.862|1.862|{"presenceconf_congruence": 0.862}
-activity_walking|CD|346|1414|0.785|1.7850000000000001|{"presenceconf_congruence": 0.785}
-activity_walking|CD|347|2206|0.417|1.417|{"presenceconf_congruence": 0.417}
-activity_walking|CD|348|1317|0.654|1.654|{"presenceconf_congruence": 0.654}
-activity_walking|CD|349|1182|0.844|1.8439999999999999|{"presenceconf_congruence": 0.844}
-activity_walking|CD|351|1169|0.815|1.815|{"presenceconf_congruence": 0.815}
-activity_walking|CD|352|1189|0.863|1.863|{"presenceconf_congruence": 0.863}
-activity_walking|CD|353|1680|0.089|1.089|{"presenceconf_congruence": 0.089}
-activity_walking|CD|354|1137|0.812|1.812|{"presenceconf_congruence": 0.812}
-activity_walking|CD|355|1150|0.53|1.53|{"presenceconf_congruence": 0.53}
-activity_walking|CD|356|1404|0.773|1.7730000000000001|{"presenceconf_congruence": 0.773}
-activity_walking|CD|357|1243|0.921|1.921|{"presenceconf_congruence": 0.921}
-activity_walking|CD|358|1724|0.72|1.72|{"presenceconf_congruence": 0.72}
-activity_walking|CD|359|1429|0.269|1.2690000000000001|{"presenceconf_congruence": 0.269}
-activity_walking|CD|360|1156|0.748|1.748|{"presenceconf_congruence": 0.748}
-activity_walking|CD|361|1226|0.662|1.662|{"presenceconf_congruence": 0.662}
-activity_walking|CD|362|1132|0.554|1.554|{"presenceconf_congruence": 0.554}
-activity_walking|CD|364|2174|0.62|1.62|{"presenceconf_congruence": 0.62}
-activity_walking|CD|365|2172|0.429|1.429|{"presenceconf_congruence": 0.429}
-activity_walking|CD|366|2103|0.023|1.023|{"presenceconf_congruence": 0.023}
-activity_walking|CD|367|1141|0.909|1.909|{"presenceconf_congruence": 0.909}
-activity_walking|CD|368|2002|0.402|1.4020000000000001|{"presenceconf_congruence": 0.402}
-activity_walking|CD|369|1964|0.809|1.8090000000000002|{"presenceconf_congruence": 0.809}
-activity_walking|CD|370|1179|0.77|1.77|{"presenceconf_congruence": 0.77}
-activity_walking|CD|371|1129|0.692|1.692|{"presenceconf_congruence": 0.692}
-activity_walking|CD|372|1208|0.617|1.617|{"presenceconf_congruence": 0.617}
+activity_walking|CD|362|1430|0.539|1.5390000000000001|{"presenceconf_congruence": 0.539}
+activity_walking|CD|363|1388|0.954|1.954|{"presenceconf_congruence": 0.954}
+activity_walking|CD|366|1391|0.914|1.9140000000000001|{"presenceconf_congruence": 0.914}
+activity_walking|CD|367|2392|0.994|1.994|{"presenceconf_congruence": 0.994}
+activity_walking|CD|368|1343|0.672|1.6720000000000002|{"presenceconf_congruence": 0.672}
+activity_walking|CD|370|1435|0.806|1.806|{"presenceconf_congruence": 0.806}
+activity_walking|CD|371|1315|0.724|1.724|{"presenceconf_congruence": 0.724}
+activity_walking|CD|374|1406|0.65|1.65|{"presenceconf_congruence": 0.65}
+activity_walking|CD|375|1880|0.574|1.5739999999999998|{"presenceconf_congruence": 0.574}
+activity_walking|CD|378|1392|0.719|1.7189999999999999|{"presenceconf_congruence": 0.719}
+activity_walking|CD|379|1405|0.895|1.895|{"presenceconf_congruence": 0.895}
+activity_walking|CD|380|1356|0.571|1.571|{"presenceconf_congruence": 0.571}
+activity_walking|CD|381|2047|0.926|1.9260000000000002|{"presenceconf_congruence": 0.926}
+activity_walking|CD|383|2003|0.83|1.83|{"presenceconf_congruence": 0.83}
+activity_walking|CD|385|1403|0.805|1.8050000000000002|{"presenceconf_congruence": 0.805}
+activity_walking|CD|386|1337|0.6|1.6|{"presenceconf_congruence": 0.6}
+activity_walking|CD|387|2034|0.862|1.862|{"presenceconf_congruence": 0.862}
+activity_walking|CD|388|1603|0.785|1.7850000000000001|{"presenceconf_congruence": 0.785}
+activity_walking|CD|389|2395|0.417|1.417|{"presenceconf_congruence": 0.417}
+activity_walking|CD|390|1506|0.654|1.654|{"presenceconf_congruence": 0.654}
+activity_walking|CD|391|1371|0.844|1.8439999999999999|{"presenceconf_congruence": 0.844}
+activity_walking|CD|393|1358|0.815|1.815|{"presenceconf_congruence": 0.815}
+activity_walking|CD|394|1378|0.863|1.863|{"presenceconf_congruence": 0.863}
+activity_walking|CD|395|1869|0.089|1.089|{"presenceconf_congruence": 0.089}
+activity_walking|CD|396|1326|0.812|1.812|{"presenceconf_congruence": 0.812}
+activity_walking|CD|397|1339|0.53|1.53|{"presenceconf_congruence": 0.53}
+activity_walking|CD|398|1593|0.773|1.7730000000000001|{"presenceconf_congruence": 0.773}
+activity_walking|CD|399|1432|0.921|1.921|{"presenceconf_congruence": 0.921}
+activity_walking|CD|400|1913|0.72|1.72|{"presenceconf_congruence": 0.72}
+activity_walking|CD|401|1618|0.269|1.2690000000000001|{"presenceconf_congruence": 0.269}
+activity_walking|CD|402|1345|0.748|1.748|{"presenceconf_congruence": 0.748}
+activity_walking|CD|403|1415|0.662|1.662|{"presenceconf_congruence": 0.662}
+activity_walking|CD|404|1321|0.554|1.554|{"presenceconf_congruence": 0.554}
+activity_walking|CD|406|2363|0.62|1.62|{"presenceconf_congruence": 0.62}
+activity_walking|CD|407|2361|0.429|1.429|{"presenceconf_congruence": 0.429}
+activity_walking|CD|408|2292|0.023|1.023|{"presenceconf_congruence": 0.023}
+activity_walking|CD|409|1330|0.909|1.909|{"presenceconf_congruence": 0.909}
+activity_walking|CD|410|2191|0.402|1.4020000000000001|{"presenceconf_congruence": 0.402}
+activity_walking|CD|411|2153|0.809|1.8090000000000002|{"presenceconf_congruence": 0.809}
+activity_walking|CD|412|1368|0.77|1.77|{"presenceconf_congruence": 0.77}
+activity_walking|CD|413|1318|0.692|1.692|{"presenceconf_congruence": 0.692}
+activity_walking|CD|414|1397|0.617|1.617|{"presenceconf_congruence": 0.617}
 activity_walking|FA|None|1050|0.211|None|None
 activity_walking|FA|None|1122|0.629|None|None
 activity_walking|FA|None|1219|0.625|None|None
 activity_walking|FA|None|1301|0.317|None|None
 activity_walking|FA|None|1307|0.1|None|None
-activity_walking|FA|None|1371|0.349|None|None
-activity_walking|FA|None|1446|0.35|None|None
-activity_walking|FA|None|1462|0.086|None|None
-activity_walking|FA|None|1485|0.418|None|None
-activity_walking|FA|None|1497|0.382|None|None
-activity_walking|FA|None|1506|0.288|None|None
-activity_walking|FA|None|1542|0.837|None|None
-activity_walking|FA|None|1618|0.081|None|None
-activity_walking|FA|None|1620|0.826|None|None
-activity_walking|FA|None|1664|0.574|None|None
-activity_walking|FA|None|1697|0.912|None|None
-activity_walking|FA|None|1709|0.021|None|None
-activity_walking|FA|None|1715|0.675|None|None
-activity_walking|FA|None|1725|0.567|None|None
-activity_walking|FA|None|1780|0.177|None|None
-activity_walking|FA|None|1966|0.956|None|None
-activity_walking|FA|None|1970|0.233|None|None
-activity_walking|FA|None|2028|0.734|None|None
-activity_walking|FA|None|2085|0.402|None|None
-activity_walking|FA|None|2096|0.232|None|None
-activity_walking|FA|None|2137|0.088|None|None
-activity_walking|FA|None|2173|0.427|None|None
-activity_walking|FA|None|2231|0.103|None|None
+activity_walking|FA|None|1560|0.349|None|None
+activity_walking|FA|None|1635|0.35|None|None
+activity_walking|FA|None|1651|0.086|None|None
+activity_walking|FA|None|1674|0.418|None|None
+activity_walking|FA|None|1686|0.382|None|None
+activity_walking|FA|None|1695|0.288|None|None
+activity_walking|FA|None|1731|0.837|None|None
+activity_walking|FA|None|1807|0.081|None|None
+activity_walking|FA|None|1809|0.826|None|None
+activity_walking|FA|None|1853|0.574|None|None
+activity_walking|FA|None|1886|0.912|None|None
+activity_walking|FA|None|1898|0.021|None|None
+activity_walking|FA|None|1904|0.675|None|None
+activity_walking|FA|None|1914|0.567|None|None
+activity_walking|FA|None|1969|0.177|None|None
+activity_walking|FA|None|2155|0.956|None|None
+activity_walking|FA|None|2159|0.233|None|None
+activity_walking|FA|None|2217|0.734|None|None
+activity_walking|FA|None|2274|0.402|None|None
+activity_walking|FA|None|2285|0.232|None|None
+activity_walking|FA|None|2326|0.088|None|None
+activity_walking|FA|None|2362|0.427|None|None
+activity_walking|FA|None|2420|0.103|None|None
 activity_walking|FA|None|263|0.557|None|None
 activity_walking|FA|None|274|0.225|None|None
 activity_walking|FA|None|309|0.926|None|None
@@ -1829,18 +1829,18 @@ activity_walking|MD|204|None|None|None|None
 activity_walking|MD|212|None|None|None|None
 activity_walking|MD|213|None|None|None|None
 activity_walking|MD|222|None|None|None|None
-activity_walking|MD|322|None|None|None|None
-activity_walking|MD|323|None|None|None|None
-activity_walking|MD|327|None|None|None|None
-activity_walking|MD|330|None|None|None|None
-activity_walking|MD|331|None|None|None|None
-activity_walking|MD|334|None|None|None|None
-activity_walking|MD|335|None|None|None|None
-activity_walking|MD|340|None|None|None|None
-activity_walking|MD|342|None|None|None|None
-activity_walking|MD|350|None|None|None|None
-activity_walking|MD|363|None|None|None|None
+activity_walking|MD|364|None|None|None|None
+activity_walking|MD|365|None|None|None|None
+activity_walking|MD|369|None|None|None|None
+activity_walking|MD|372|None|None|None|None
 activity_walking|MD|373|None|None|None|None
+activity_walking|MD|376|None|None|None|None
+activity_walking|MD|377|None|None|None|None
+activity_walking|MD|382|None|None|None|None
+activity_walking|MD|384|None|None|None|None
+activity_walking|MD|392|None|None|None|None
+activity_walking|MD|405|None|None|None|None
+activity_walking|MD|415|None|None|None|None
 specialized_miscellaneous|CD|292|474|0.968|1.968|{"presenceconf_congruence": 0.968}
 specialized_miscellaneous|FA|None|1030|0.108|None|None
 specialized_miscellaneous|FA|None|1052|0.216|None|None
@@ -1888,7 +1888,7 @@ specialized_miscellaneous|FA|None|999|0.696|None|None
 specialized_talking_phone|CD|111|422|0.898|1.8980000000000001|{"presenceconf_congruence": 0.898}
 specialized_talking_phone|CD|112|880|0.853|1.853|{"presenceconf_congruence": 0.853}
 specialized_talking_phone|CD|113|342|0.938|1.938|{"presenceconf_congruence": 0.938}
-specialized_talking_phone|CD|308|1195|0.991|1.991|{"presenceconf_congruence": 0.991}
+specialized_talking_phone|CD|350|1384|0.991|1.991|{"presenceconf_congruence": 0.991}
 specialized_talking_phone|FA|None|1018|0.136|None|None
 specialized_talking_phone|FA|None|108|0.502|None|None
 specialized_talking_phone|FA|None|1099|0.401|None|None
@@ -1896,51 +1896,51 @@ specialized_talking_phone|FA|None|1118|0.586|None|None
 specialized_talking_phone|FA|None|1185|0.16|None|None
 specialized_talking_phone|FA|None|1229|0.521|None|None
 specialized_talking_phone|FA|None|1243|0.108|None|None
-specialized_talking_phone|FA|None|1254|0.916|None|None
 specialized_talking_phone|FA|None|1276|0.326|None|None
-specialized_talking_phone|FA|None|1287|0.662|None|None
-specialized_talking_phone|FA|None|1297|0.721|None|None
-specialized_talking_phone|FA|None|1360|0.222|None|None
-specialized_talking_phone|FA|None|1362|0.159|None|None
-specialized_talking_phone|FA|None|1364|0.003|None|None
-specialized_talking_phone|FA|None|1382|0.122|None|None
-specialized_talking_phone|FA|None|1416|0.635|None|None
-specialized_talking_phone|FA|None|1417|0.25|None|None
-specialized_talking_phone|FA|None|1425|0.294|None|None
-specialized_talking_phone|FA|None|1466|0.186|None|None
-specialized_talking_phone|FA|None|1467|0.159|None|None
-specialized_talking_phone|FA|None|1545|0.786|None|None
-specialized_talking_phone|FA|None|1548|0.444|None|None
-specialized_talking_phone|FA|None|1640|0.36|None|None
-specialized_talking_phone|FA|None|1665|0.841|None|None
-specialized_talking_phone|FA|None|1679|0.401|None|None
-specialized_talking_phone|FA|None|1747|0.554|None|None
-specialized_talking_phone|FA|None|1832|0.934|None|None
+specialized_talking_phone|FA|None|1443|0.916|None|None
+specialized_talking_phone|FA|None|1476|0.662|None|None
+specialized_talking_phone|FA|None|1486|0.721|None|None
+specialized_talking_phone|FA|None|1549|0.222|None|None
+specialized_talking_phone|FA|None|1551|0.159|None|None
+specialized_talking_phone|FA|None|1553|0.003|None|None
+specialized_talking_phone|FA|None|1571|0.122|None|None
+specialized_talking_phone|FA|None|1605|0.635|None|None
+specialized_talking_phone|FA|None|1606|0.25|None|None
+specialized_talking_phone|FA|None|1614|0.294|None|None
+specialized_talking_phone|FA|None|1655|0.186|None|None
+specialized_talking_phone|FA|None|1656|0.159|None|None
+specialized_talking_phone|FA|None|1734|0.786|None|None
+specialized_talking_phone|FA|None|1737|0.444|None|None
+specialized_talking_phone|FA|None|1829|0.36|None|None
+specialized_talking_phone|FA|None|1854|0.841|None|None
+specialized_talking_phone|FA|None|1868|0.401|None|None
 specialized_talking_phone|FA|None|188|0.096|None|None
-specialized_talking_phone|FA|None|1897|0.055|None|None
 specialized_talking_phone|FA|None|191|0.345|None|None
-specialized_talking_phone|FA|None|1914|0.612|None|None
-specialized_talking_phone|FA|None|1938|0.131|None|None
-specialized_talking_phone|FA|None|1941|0.158|None|None
-specialized_talking_phone|FA|None|1961|0.099|None|None
-specialized_talking_phone|FA|None|1962|0.799|None|None
-specialized_talking_phone|FA|None|2005|0.315|None|None
-specialized_talking_phone|FA|None|2006|0.046|None|None
-specialized_talking_phone|FA|None|2019|0.914|None|None
-specialized_talking_phone|FA|None|2060|0.407|None|None
-specialized_talking_phone|FA|None|2065|0.598|None|None
-specialized_talking_phone|FA|None|2087|0.244|None|None
-specialized_talking_phone|FA|None|2114|0.145|None|None
-specialized_talking_phone|FA|None|2117|0.637|None|None
-specialized_talking_phone|FA|None|2120|0.334|None|None
-specialized_talking_phone|FA|None|2122|0.656|None|None
-specialized_talking_phone|FA|None|2165|0.951|None|None
-specialized_talking_phone|FA|None|2183|0.783|None|None
-specialized_talking_phone|FA|None|2198|0.031|None|None
-specialized_talking_phone|FA|None|2207|0.208|None|None
-specialized_talking_phone|FA|None|2220|0.881|None|None
-specialized_talking_phone|FA|None|2251|0.531|None|None
+specialized_talking_phone|FA|None|1936|0.554|None|None
+specialized_talking_phone|FA|None|2021|0.934|None|None
+specialized_talking_phone|FA|None|2086|0.055|None|None
+specialized_talking_phone|FA|None|2103|0.612|None|None
+specialized_talking_phone|FA|None|2127|0.131|None|None
+specialized_talking_phone|FA|None|2130|0.158|None|None
+specialized_talking_phone|FA|None|2150|0.099|None|None
+specialized_talking_phone|FA|None|2151|0.799|None|None
+specialized_talking_phone|FA|None|2194|0.315|None|None
+specialized_talking_phone|FA|None|2195|0.046|None|None
+specialized_talking_phone|FA|None|2208|0.914|None|None
+specialized_talking_phone|FA|None|2249|0.407|None|None
+specialized_talking_phone|FA|None|2254|0.598|None|None
+specialized_talking_phone|FA|None|2276|0.244|None|None
 specialized_talking_phone|FA|None|230|0.948|None|None
+specialized_talking_phone|FA|None|2303|0.145|None|None
+specialized_talking_phone|FA|None|2306|0.637|None|None
+specialized_talking_phone|FA|None|2309|0.334|None|None
+specialized_talking_phone|FA|None|2311|0.656|None|None
+specialized_talking_phone|FA|None|2354|0.951|None|None
+specialized_talking_phone|FA|None|2372|0.783|None|None
+specialized_talking_phone|FA|None|2387|0.031|None|None
+specialized_talking_phone|FA|None|2396|0.208|None|None
+specialized_talking_phone|FA|None|2409|0.881|None|None
+specialized_talking_phone|FA|None|2440|0.531|None|None
 specialized_talking_phone|FA|None|262|0.36|None|None
 specialized_talking_phone|FA|None|306|0.011|None|None
 specialized_talking_phone|FA|None|324|0.372|None|None
@@ -1974,7 +1974,7 @@ specialized_talking_phone|FA|None|970|0.448|None|None
 specialized_talking_phone|FA|None|982|0.978|None|None
 specialized_talking_phone|FA|None|983|0.088|None|None
 specialized_talking_phone|FA|None|985|0.094|None|None
-specialized_texting_phone|CD|319|1441|0.914|1.9140000000000001|{"presenceconf_congruence": 0.914}
+specialized_texting_phone|CD|361|1630|0.914|1.9140000000000001|{"presenceconf_congruence": 0.914}
 specialized_texting_phone|CD|87|238|0.232|1.232|{"presenceconf_congruence": 0.232}
 specialized_texting_phone|CD|88|566|0.649|1.649|{"presenceconf_congruence": 0.649}
 specialized_texting_phone|CD|89|1212|0.951|1.951|{"presenceconf_congruence": 0.951}
@@ -1986,53 +1986,53 @@ specialized_texting_phone|FA|None|1094|0.162|None|None
 specialized_texting_phone|FA|None|1131|0.239|None|None
 specialized_texting_phone|FA|None|1155|0.731|None|None
 specialized_texting_phone|FA|None|1164|0.425|None|None
-specialized_texting_phone|FA|None|1213|0.654|None|None
 specialized_texting_phone|FA|None|1225|0.808|None|None
 specialized_texting_phone|FA|None|1268|0.066|None|None
-specialized_texting_phone|FA|None|1271|0.309|None|None
-specialized_texting_phone|FA|None|1399|0.11|None|None
-specialized_texting_phone|FA|None|1407|0.574|None|None
-specialized_texting_phone|FA|None|1433|0.735|None|None
-specialized_texting_phone|FA|None|1439|0.902|None|None
+specialized_texting_phone|FA|None|1402|0.654|None|None
 specialized_texting_phone|FA|None|146|0.654|None|None
-specialized_texting_phone|FA|None|1465|0.614|None|None
-specialized_texting_phone|FA|None|1487|0.074|None|None
-specialized_texting_phone|FA|None|1494|0.981|None|None
-specialized_texting_phone|FA|None|1537|0.604|None|None
-specialized_texting_phone|FA|None|1592|0.334|None|None
-specialized_texting_phone|FA|None|1600|0.022|None|None
-specialized_texting_phone|FA|None|1607|0.658|None|None
-specialized_texting_phone|FA|None|1612|0.979|None|None
-specialized_texting_phone|FA|None|1621|0.914|None|None
-specialized_texting_phone|FA|None|1653|0.636|None|None
-specialized_texting_phone|FA|None|1671|0.485|None|None
-specialized_texting_phone|FA|None|1702|0.489|None|None
-specialized_texting_phone|FA|None|1707|0.112|None|None
-specialized_texting_phone|FA|None|1732|0.084|None|None
-specialized_texting_phone|FA|None|1737|0.415|None|None
-specialized_texting_phone|FA|None|1760|0.067|None|None
-specialized_texting_phone|FA|None|1772|0.467|None|None
-specialized_texting_phone|FA|None|1799|0.252|None|None
-specialized_texting_phone|FA|None|1810|0.783|None|None
-specialized_texting_phone|FA|None|1835|0.386|None|None
-specialized_texting_phone|FA|None|1849|0.119|None|None
-specialized_texting_phone|FA|None|1853|0.914|None|None
-specialized_texting_phone|FA|None|1854|0.027|None|None
-specialized_texting_phone|FA|None|1868|0.436|None|None
-specialized_texting_phone|FA|None|1889|0.375|None|None
-specialized_texting_phone|FA|None|1917|0.211|None|None
-specialized_texting_phone|FA|None|1933|0.306|None|None
-specialized_texting_phone|FA|None|2018|0.122|None|None
-specialized_texting_phone|FA|None|2037|0.32|None|None
-specialized_texting_phone|FA|None|2042|0.147|None|None
-specialized_texting_phone|FA|None|2106|0.472|None|None
-specialized_texting_phone|FA|None|2118|0.998|None|None
-specialized_texting_phone|FA|None|2155|0.508|None|None
+specialized_texting_phone|FA|None|1460|0.309|None|None
+specialized_texting_phone|FA|None|1588|0.11|None|None
+specialized_texting_phone|FA|None|1596|0.574|None|None
+specialized_texting_phone|FA|None|1622|0.735|None|None
+specialized_texting_phone|FA|None|1628|0.902|None|None
+specialized_texting_phone|FA|None|1654|0.614|None|None
+specialized_texting_phone|FA|None|1676|0.074|None|None
+specialized_texting_phone|FA|None|1683|0.981|None|None
+specialized_texting_phone|FA|None|1726|0.604|None|None
+specialized_texting_phone|FA|None|1781|0.334|None|None
+specialized_texting_phone|FA|None|1789|0.022|None|None
+specialized_texting_phone|FA|None|1796|0.658|None|None
+specialized_texting_phone|FA|None|1801|0.979|None|None
+specialized_texting_phone|FA|None|1810|0.914|None|None
+specialized_texting_phone|FA|None|1842|0.636|None|None
+specialized_texting_phone|FA|None|1860|0.485|None|None
+specialized_texting_phone|FA|None|1891|0.489|None|None
+specialized_texting_phone|FA|None|1896|0.112|None|None
+specialized_texting_phone|FA|None|1921|0.084|None|None
+specialized_texting_phone|FA|None|1926|0.415|None|None
+specialized_texting_phone|FA|None|1949|0.067|None|None
+specialized_texting_phone|FA|None|1961|0.467|None|None
+specialized_texting_phone|FA|None|1988|0.252|None|None
+specialized_texting_phone|FA|None|1999|0.783|None|None
+specialized_texting_phone|FA|None|2024|0.386|None|None
+specialized_texting_phone|FA|None|2038|0.119|None|None
+specialized_texting_phone|FA|None|2042|0.914|None|None
+specialized_texting_phone|FA|None|2043|0.027|None|None
+specialized_texting_phone|FA|None|2057|0.436|None|None
+specialized_texting_phone|FA|None|2078|0.375|None|None
+specialized_texting_phone|FA|None|2106|0.211|None|None
+specialized_texting_phone|FA|None|2122|0.306|None|None
 specialized_texting_phone|FA|None|216|0.804|None|None
-specialized_texting_phone|FA|None|2194|0.574|None|None
-specialized_texting_phone|FA|None|2213|0.764|None|None
+specialized_texting_phone|FA|None|2207|0.122|None|None
 specialized_texting_phone|FA|None|222|0.246|None|None
+specialized_texting_phone|FA|None|2226|0.32|None|None
+specialized_texting_phone|FA|None|2231|0.147|None|None
+specialized_texting_phone|FA|None|2295|0.472|None|None
+specialized_texting_phone|FA|None|2307|0.998|None|None
 specialized_texting_phone|FA|None|234|0.037|None|None
+specialized_texting_phone|FA|None|2344|0.508|None|None
+specialized_texting_phone|FA|None|2383|0.574|None|None
+specialized_texting_phone|FA|None|2402|0.764|None|None
 specialized_texting_phone|FA|None|244|0.336|None|None
 specialized_texting_phone|FA|None|265|0.028|None|None
 specialized_texting_phone|FA|None|292|0.053|None|None
@@ -2063,14 +2063,14 @@ vehicle_moving|CD|107|131|0.793|1.7930000000000001|{"presenceconf_congruence": 0
 vehicle_moving|CD|108|549|0.859|1.859|{"presenceconf_congruence": 0.859}
 vehicle_moving|CD|109|2|0.937|1.937|{"presenceconf_congruence": 0.937}
 vehicle_moving|CD|110|341|0.869|1.869|{"presenceconf_congruence": 0.869}
-vehicle_moving|CD|309|1787|0.931|1.931|{"presenceconf_congruence": 0.931}
-vehicle_moving|CD|310|1722|0.415|1.415|{"presenceconf_congruence": 0.415}
-vehicle_moving|CD|312|1893|0.322|1.322|{"presenceconf_congruence": 0.322}
-vehicle_moving|CD|313|1197|0.837|1.837|{"presenceconf_congruence": 0.837}
-vehicle_moving|CD|314|2043|0.952|1.952|{"presenceconf_congruence": 0.952}
-vehicle_moving|CD|315|1155|0.84|1.8399999999999999|{"presenceconf_congruence": 0.84}
-vehicle_moving|CD|317|1168|0.604|1.604|{"presenceconf_congruence": 0.604}
-vehicle_moving|CD|318|1622|0.344|1.3439999999999999|{"presenceconf_congruence": 0.344}
+vehicle_moving|CD|351|1976|0.931|1.931|{"presenceconf_congruence": 0.931}
+vehicle_moving|CD|352|1911|0.415|1.415|{"presenceconf_congruence": 0.415}
+vehicle_moving|CD|354|2082|0.322|1.322|{"presenceconf_congruence": 0.322}
+vehicle_moving|CD|355|1386|0.837|1.837|{"presenceconf_congruence": 0.837}
+vehicle_moving|CD|356|2232|0.952|1.952|{"presenceconf_congruence": 0.952}
+vehicle_moving|CD|357|1344|0.84|1.8399999999999999|{"presenceconf_congruence": 0.84}
+vehicle_moving|CD|359|1357|0.604|1.604|{"presenceconf_congruence": 0.604}
+vehicle_moving|CD|360|1811|0.344|1.3439999999999999|{"presenceconf_congruence": 0.344}
 vehicle_moving|CD|92|938|0.825|1.825|{"presenceconf_congruence": 0.825}
 vehicle_moving|CD|93|765|0.834|1.834|{"presenceconf_congruence": 0.834}
 vehicle_moving|CD|94|955|0.963|1.963|{"presenceconf_congruence": 0.963}
@@ -2085,54 +2085,54 @@ vehicle_moving|FA|None|1093|0.284|None|None
 vehicle_moving|FA|None|1100|0.139|None|None
 vehicle_moving|FA|None|1123|0.809|None|None
 vehicle_moving|FA|None|1176|0.958|None|None
-vehicle_moving|FA|None|1188|0.613|None|None
 vehicle_moving|FA|None|1189|0.553|None|None
 vehicle_moving|FA|None|1203|0.696|None|None
 vehicle_moving|FA|None|1231|0.477|None|None
 vehicle_moving|FA|None|1250|0.336|None|None
 vehicle_moving|FA|None|1259|0.516|None|None
-vehicle_moving|FA|None|1267|0.539|None|None
 vehicle_moving|FA|None|1270|0.271|None|None
-vehicle_moving|FA|None|1285|0.567|None|None
 vehicle_moving|FA|None|13|0.512|None|None
-vehicle_moving|FA|None|1329|0.155|None|None
-vehicle_moving|FA|None|1352|0.395|None|None
-vehicle_moving|FA|None|1357|0.71|None|None
-vehicle_moving|FA|None|1363|0.107|None|None
+vehicle_moving|FA|None|1377|0.613|None|None
 vehicle_moving|FA|None|142|0.935|None|None
 vehicle_moving|FA|None|145|0.713|None|None
-vehicle_moving|FA|None|1482|0.266|None|None
-vehicle_moving|FA|None|1565|0.88|None|None
-vehicle_moving|FA|None|1598|0.663|None|None
+vehicle_moving|FA|None|1456|0.539|None|None
+vehicle_moving|FA|None|1474|0.567|None|None
+vehicle_moving|FA|None|1518|0.155|None|None
+vehicle_moving|FA|None|1541|0.395|None|None
+vehicle_moving|FA|None|1546|0.71|None|None
+vehicle_moving|FA|None|1552|0.107|None|None
 vehicle_moving|FA|None|161|0.351|None|None
-vehicle_moving|FA|None|1629|0.954|None|None
-vehicle_moving|FA|None|1642|0.345|None|None
-vehicle_moving|FA|None|1649|0.23|None|None
 vehicle_moving|FA|None|166|0.632|None|None
-vehicle_moving|FA|None|1710|0.491|None|None
-vehicle_moving|FA|None|1729|0.931|None|None
-vehicle_moving|FA|None|1730|0.941|None|None
-vehicle_moving|FA|None|1756|0.803|None|None
-vehicle_moving|FA|None|1774|0.041|None|None
-vehicle_moving|FA|None|1778|0.572|None|None
-vehicle_moving|FA|None|1783|0.009|None|None
-vehicle_moving|FA|None|1850|0.949|None|None
-vehicle_moving|FA|None|1857|0.181|None|None
-vehicle_moving|FA|None|1886|0.568|None|None
-vehicle_moving|FA|None|1898|0.75|None|None
-vehicle_moving|FA|None|1920|0.791|None|None
-vehicle_moving|FA|None|1972|0.634|None|None
-vehicle_moving|FA|None|1990|0.654|None|None
-vehicle_moving|FA|None|2038|0.866|None|None
-vehicle_moving|FA|None|2083|0.438|None|None
-vehicle_moving|FA|None|2116|0.843|None|None
-vehicle_moving|FA|None|2128|0.749|None|None
-vehicle_moving|FA|None|2129|0.6|None|None
-vehicle_moving|FA|None|2145|0.633|None|None
-vehicle_moving|FA|None|2147|0.492|None|None
-vehicle_moving|FA|None|2170|0.214|None|None
-vehicle_moving|FA|None|2239|0.768|None|None
-vehicle_moving|FA|None|2249|0.991|None|None
+vehicle_moving|FA|None|1671|0.266|None|None
+vehicle_moving|FA|None|1754|0.88|None|None
+vehicle_moving|FA|None|1787|0.663|None|None
+vehicle_moving|FA|None|1818|0.954|None|None
+vehicle_moving|FA|None|1831|0.345|None|None
+vehicle_moving|FA|None|1838|0.23|None|None
+vehicle_moving|FA|None|1899|0.491|None|None
+vehicle_moving|FA|None|1918|0.931|None|None
+vehicle_moving|FA|None|1919|0.941|None|None
+vehicle_moving|FA|None|1945|0.803|None|None
+vehicle_moving|FA|None|1963|0.041|None|None
+vehicle_moving|FA|None|1967|0.572|None|None
+vehicle_moving|FA|None|1972|0.009|None|None
+vehicle_moving|FA|None|2039|0.949|None|None
+vehicle_moving|FA|None|2046|0.181|None|None
+vehicle_moving|FA|None|2075|0.568|None|None
+vehicle_moving|FA|None|2087|0.75|None|None
+vehicle_moving|FA|None|2109|0.791|None|None
+vehicle_moving|FA|None|2161|0.634|None|None
+vehicle_moving|FA|None|2179|0.654|None|None
+vehicle_moving|FA|None|2227|0.866|None|None
+vehicle_moving|FA|None|2272|0.438|None|None
+vehicle_moving|FA|None|2305|0.843|None|None
+vehicle_moving|FA|None|2317|0.749|None|None
+vehicle_moving|FA|None|2318|0.6|None|None
+vehicle_moving|FA|None|2334|0.633|None|None
+vehicle_moving|FA|None|2336|0.492|None|None
+vehicle_moving|FA|None|2359|0.214|None|None
+vehicle_moving|FA|None|2428|0.768|None|None
+vehicle_moving|FA|None|2438|0.991|None|None
 vehicle_moving|FA|None|319|0.751|None|None
 vehicle_moving|FA|None|331|0.815|None|None
 vehicle_moving|FA|None|332|0.275|None|None
@@ -2151,8 +2151,8 @@ vehicle_moving|FA|None|719|0.218|None|None
 vehicle_moving|FA|None|900|0.913|None|None
 vehicle_moving|FA|None|914|0.763|None|None
 vehicle_moving|FA|None|998|0.481|None|None
-vehicle_moving|MD|311|None|None|None|None
-vehicle_moving|MD|316|None|None|None|None
+vehicle_moving|MD|353|None|None|None|None
+vehicle_moving|MD|358|None|None|None|None
 vehicle_starting|CD|124|370|0.902|1.9020000000000001|{"presenceconf_congruence": 0.902}
 vehicle_starting|CD|125|819|0.293|1.293|{"presenceconf_congruence": 0.293}
 vehicle_starting|CD|126|81|0.868|1.8679999999999999|{"presenceconf_congruence": 0.868}
@@ -2163,12 +2163,12 @@ vehicle_starting|CD|134|607|0.89|1.8900000000000001|{"presenceconf_congruence": 
 vehicle_starting|CD|135|572|0.357|1.357|{"presenceconf_congruence": 0.357}
 vehicle_starting|CD|136|59|0.849|1.849|{"presenceconf_congruence": 0.849}
 vehicle_starting|CD|137|24|0.723|1.7229999999999999|{"presenceconf_congruence": 0.723}
-vehicle_starting|CD|484|2052|0.518|1.518|{"presenceconf_congruence": 0.518}
-vehicle_starting|CD|485|1593|0.891|1.891|{"presenceconf_congruence": 0.891}
-vehicle_starting|CD|486|1249|0.634|1.634|{"presenceconf_congruence": 0.634}
-vehicle_starting|CD|487|2227|0.815|1.815|{"presenceconf_congruence": 0.815}
-vehicle_starting|CD|488|1943|0.767|1.767|{"presenceconf_congruence": 0.767}
-vehicle_starting|CD|489|1250|0.91|1.9100000000000001|{"presenceconf_congruence": 0.91}
+vehicle_starting|CD|526|2241|0.518|1.518|{"presenceconf_congruence": 0.518}
+vehicle_starting|CD|527|1782|0.891|1.891|{"presenceconf_congruence": 0.891}
+vehicle_starting|CD|528|1438|0.634|1.634|{"presenceconf_congruence": 0.634}
+vehicle_starting|CD|529|2416|0.815|1.815|{"presenceconf_congruence": 0.815}
+vehicle_starting|CD|530|2132|0.767|1.767|{"presenceconf_congruence": 0.767}
+vehicle_starting|CD|531|1439|0.91|1.9100000000000001|{"presenceconf_congruence": 0.91}
 vehicle_starting|FA|None|1012|0.327|None|None
 vehicle_starting|FA|None|1039|0.937|None|None
 vehicle_starting|FA|None|1042|0.381|None|None
@@ -2177,48 +2177,48 @@ vehicle_starting|FA|None|1067|0.841|None|None
 vehicle_starting|FA|None|1072|0.603|None|None
 vehicle_starting|FA|None|1129|0.509|None|None
 vehicle_starting|FA|None|1138|0.16|None|None
-vehicle_starting|FA|None|1146|0.725|None|None
 vehicle_starting|FA|None|1160|0.607|None|None
-vehicle_starting|FA|None|1162|0.538|None|None
 vehicle_starting|FA|None|1199|0.948|None|None
-vehicle_starting|FA|None|1242|0.624|None|None
-vehicle_starting|FA|None|1276|0.204|None|None
-vehicle_starting|FA|None|1280|0.292|None|None
 vehicle_starting|FA|None|1299|0.063|None|None
 vehicle_starting|FA|None|1312|0.319|None|None
-vehicle_starting|FA|None|1355|0.805|None|None
-vehicle_starting|FA|None|1358|0.523|None|None
-vehicle_starting|FA|None|1367|0.927|None|None
-vehicle_starting|FA|None|1369|0.595|None|None
-vehicle_starting|FA|None|1422|0.545|None|None
-vehicle_starting|FA|None|1470|0.014|None|None
-vehicle_starting|FA|None|1476|0.026|None|None
-vehicle_starting|FA|None|1498|0.92|None|None
-vehicle_starting|FA|None|1509|0.343|None|None
-vehicle_starting|FA|None|1544|0.46|None|None
-vehicle_starting|FA|None|1546|0.2|None|None
-vehicle_starting|FA|None|1558|0.146|None|None
-vehicle_starting|FA|None|1559|0.397|None|None
-vehicle_starting|FA|None|1567|0.042|None|None
-vehicle_starting|FA|None|1610|0.305|None|None
-vehicle_starting|FA|None|1631|0.314|None|None
-vehicle_starting|FA|None|1686|0.072|None|None
-vehicle_starting|FA|None|1726|0.939|None|None
-vehicle_starting|FA|None|1738|0.56|None|None
-vehicle_starting|FA|None|1790|0.093|None|None
-vehicle_starting|FA|None|1874|0.827|None|None
-vehicle_starting|FA|None|1891|0.552|None|None
-vehicle_starting|FA|None|1905|0.781|None|None
+vehicle_starting|FA|None|1335|0.725|None|None
+vehicle_starting|FA|None|1351|0.538|None|None
+vehicle_starting|FA|None|1431|0.624|None|None
+vehicle_starting|FA|None|1465|0.204|None|None
+vehicle_starting|FA|None|1469|0.292|None|None
+vehicle_starting|FA|None|1544|0.805|None|None
+vehicle_starting|FA|None|1547|0.523|None|None
+vehicle_starting|FA|None|1556|0.927|None|None
+vehicle_starting|FA|None|1558|0.595|None|None
+vehicle_starting|FA|None|1611|0.545|None|None
+vehicle_starting|FA|None|1659|0.014|None|None
+vehicle_starting|FA|None|1665|0.026|None|None
+vehicle_starting|FA|None|1687|0.92|None|None
+vehicle_starting|FA|None|1698|0.343|None|None
+vehicle_starting|FA|None|1733|0.46|None|None
+vehicle_starting|FA|None|1735|0.2|None|None
+vehicle_starting|FA|None|1747|0.146|None|None
+vehicle_starting|FA|None|1748|0.397|None|None
+vehicle_starting|FA|None|1756|0.042|None|None
+vehicle_starting|FA|None|1799|0.305|None|None
+vehicle_starting|FA|None|1820|0.314|None|None
+vehicle_starting|FA|None|1875|0.072|None|None
+vehicle_starting|FA|None|1915|0.939|None|None
+vehicle_starting|FA|None|1927|0.56|None|None
 vehicle_starting|FA|None|193|0.394|None|None
-vehicle_starting|FA|None|1981|0.607|None|None
-vehicle_starting|FA|None|2016|0.136|None|None
+vehicle_starting|FA|None|1979|0.093|None|None
 vehicle_starting|FA|None|202|0.396|None|None
-vehicle_starting|FA|None|2034|0.093|None|None
-vehicle_starting|FA|None|2061|0.212|None|None
-vehicle_starting|FA|None|2080|0.424|None|None
-vehicle_starting|FA|None|2091|0.811|None|None
-vehicle_starting|FA|None|2132|0.159|None|None
-vehicle_starting|FA|None|2191|0.451|None|None
+vehicle_starting|FA|None|2063|0.827|None|None
+vehicle_starting|FA|None|2080|0.552|None|None
+vehicle_starting|FA|None|2094|0.781|None|None
+vehicle_starting|FA|None|2170|0.607|None|None
+vehicle_starting|FA|None|2205|0.136|None|None
+vehicle_starting|FA|None|2223|0.093|None|None
+vehicle_starting|FA|None|2250|0.212|None|None
+vehicle_starting|FA|None|2269|0.424|None|None
+vehicle_starting|FA|None|2280|0.811|None|None
+vehicle_starting|FA|None|2321|0.159|None|None
+vehicle_starting|FA|None|2380|0.451|None|None
 vehicle_starting|FA|None|241|0.269|None|None
 vehicle_starting|FA|None|259|0.834|None|None
 vehicle_starting|FA|None|278|0.026|None|None
@@ -2263,15 +2263,14 @@ vehicle_stopping|CD|151|1043|0.903|1.903|{"presenceconf_congruence": 0.903}
 vehicle_stopping|CD|153|236|0.965|1.9649999999999999|{"presenceconf_congruence": 0.965}
 vehicle_stopping|CD|154|130|0.814|1.814|{"presenceconf_congruence": 0.814}
 vehicle_stopping|CD|155|106|0.997|1.9969999999999999|{"presenceconf_congruence": 0.997}
-vehicle_stopping|CD|493|1184|0.773|1.7730000000000001|{"presenceconf_congruence": 0.773}
-vehicle_stopping|CD|495|1230|0.807|1.807|{"presenceconf_congruence": 0.807}
-vehicle_stopping|CD|496|1581|0.965|1.9649999999999999|{"presenceconf_congruence": 0.965}
-vehicle_stopping|CD|497|1194|0.793|1.7930000000000001|{"presenceconf_congruence": 0.793}
-vehicle_stopping|CD|498|1808|0.976|1.976|{"presenceconf_congruence": 0.976}
-vehicle_stopping|CD|499|1965|0.545|1.545|{"presenceconf_congruence": 0.545}
-vehicle_stopping|CD|500|1922|0.194|1.194|{"presenceconf_congruence": 0.194}
+vehicle_stopping|CD|535|1373|0.773|1.7730000000000001|{"presenceconf_congruence": 0.773}
+vehicle_stopping|CD|537|1419|0.807|1.807|{"presenceconf_congruence": 0.807}
+vehicle_stopping|CD|538|1770|0.965|1.9649999999999999|{"presenceconf_congruence": 0.965}
+vehicle_stopping|CD|539|1383|0.793|1.7930000000000001|{"presenceconf_congruence": 0.793}
+vehicle_stopping|CD|540|1997|0.976|1.976|{"presenceconf_congruence": 0.976}
+vehicle_stopping|CD|541|2154|0.545|1.545|{"presenceconf_congruence": 0.545}
+vehicle_stopping|CD|542|2111|0.194|1.194|{"presenceconf_congruence": 0.194}
 vehicle_stopping|FA|None|1084|0.955|None|None
-vehicle_stopping|FA|None|1134|0.65|None|None
 vehicle_stopping|FA|None|1150|0.848|None|None
 vehicle_stopping|FA|None|1159|0.67|None|None
 vehicle_stopping|FA|None|1161|0.942|None|None
@@ -2279,50 +2278,51 @@ vehicle_stopping|FA|None|1174|0.949|None|None
 vehicle_stopping|FA|None|1182|0.437|None|None
 vehicle_stopping|FA|None|1187|0.187|None|None
 vehicle_stopping|FA|None|1218|0.389|None|None
-vehicle_stopping|FA|None|1256|0.76|None|None
 vehicle_stopping|FA|None|1257|0.168|None|None
-vehicle_stopping|FA|None|1288|0.066|None|None
 vehicle_stopping|FA|None|1306|0.004|None|None
-vehicle_stopping|FA|None|1314|0.017|None|None
-vehicle_stopping|FA|None|1342|0.035|None|None
-vehicle_stopping|FA|None|1395|0.393|None|None
-vehicle_stopping|FA|None|1415|0.858|None|None
-vehicle_stopping|FA|None|1418|0.299|None|None
-vehicle_stopping|FA|None|1454|0.528|None|None
-vehicle_stopping|FA|None|1457|0.104|None|None
+vehicle_stopping|FA|None|1323|0.65|None|None
+vehicle_stopping|FA|None|1445|0.76|None|None
 vehicle_stopping|FA|None|147|0.227|None|None
-vehicle_stopping|FA|None|1499|0.417|None|None
-vehicle_stopping|FA|None|1517|0.07|None|None
-vehicle_stopping|FA|None|1526|0.635|None|None
-vehicle_stopping|FA|None|1566|0.671|None|None
-vehicle_stopping|FA|None|1590|0.948|None|None
-vehicle_stopping|FA|None|1597|0.106|None|None
-vehicle_stopping|FA|None|1742|0.291|None|None
-vehicle_stopping|FA|None|1754|0.412|None|None
-vehicle_stopping|FA|None|1764|0.334|None|None
-vehicle_stopping|FA|None|1769|0.433|None|None
-vehicle_stopping|FA|None|1792|0.811|None|None
-vehicle_stopping|FA|None|1809|0.489|None|None
-vehicle_stopping|FA|None|1815|0.341|None|None
-vehicle_stopping|FA|None|1840|0.062|None|None
-vehicle_stopping|FA|None|1934|0.0|None|None
-vehicle_stopping|FA|None|1947|0.94|None|None
-vehicle_stopping|FA|None|1973|0.411|None|None
-vehicle_stopping|FA|None|2001|0.68|None|None
-vehicle_stopping|FA|None|2010|0.602|None|None
-vehicle_stopping|FA|None|2012|0.206|None|None
+vehicle_stopping|FA|None|1477|0.066|None|None
+vehicle_stopping|FA|None|1503|0.017|None|None
+vehicle_stopping|FA|None|1531|0.035|None|None
+vehicle_stopping|FA|None|1584|0.393|None|None
+vehicle_stopping|FA|None|1604|0.858|None|None
+vehicle_stopping|FA|None|1607|0.299|None|None
+vehicle_stopping|FA|None|1643|0.528|None|None
+vehicle_stopping|FA|None|1646|0.104|None|None
+vehicle_stopping|FA|None|1688|0.417|None|None
+vehicle_stopping|FA|None|1706|0.07|None|None
+vehicle_stopping|FA|None|1715|0.635|None|None
+vehicle_stopping|FA|None|1755|0.671|None|None
+vehicle_stopping|FA|None|1779|0.948|None|None
+vehicle_stopping|FA|None|1786|0.106|None|None
+vehicle_stopping|FA|None|1931|0.291|None|None
+vehicle_stopping|FA|None|1943|0.412|None|None
+vehicle_stopping|FA|None|1953|0.334|None|None
+vehicle_stopping|FA|None|1958|0.433|None|None
+vehicle_stopping|FA|None|1981|0.811|None|None
+vehicle_stopping|FA|None|1998|0.489|None|None
+vehicle_stopping|FA|None|2004|0.341|None|None
+vehicle_stopping|FA|None|2029|0.062|None|None
 vehicle_stopping|FA|None|203|0.605|None|None
-vehicle_stopping|FA|None|2046|0.838|None|None
 vehicle_stopping|FA|None|205|0.677|None|None
-vehicle_stopping|FA|None|2058|0.066|None|None
-vehicle_stopping|FA|None|2063|0.821|None|None
-vehicle_stopping|FA|None|2082|0.994|None|None
-vehicle_stopping|FA|None|2095|0.016|None|None
-vehicle_stopping|FA|None|2115|0.36|None|None
-vehicle_stopping|FA|None|2138|0.829|None|None
-vehicle_stopping|FA|None|2143|0.041|None|None
-vehicle_stopping|FA|None|2228|0.206|None|None
-vehicle_stopping|FA|None|2230|0.413|None|None
+vehicle_stopping|FA|None|2123|0.0|None|None
+vehicle_stopping|FA|None|2136|0.94|None|None
+vehicle_stopping|FA|None|2162|0.411|None|None
+vehicle_stopping|FA|None|2190|0.68|None|None
+vehicle_stopping|FA|None|2199|0.602|None|None
+vehicle_stopping|FA|None|2201|0.206|None|None
+vehicle_stopping|FA|None|2235|0.838|None|None
+vehicle_stopping|FA|None|2247|0.066|None|None
+vehicle_stopping|FA|None|2252|0.821|None|None
+vehicle_stopping|FA|None|2271|0.994|None|None
+vehicle_stopping|FA|None|2284|0.016|None|None
+vehicle_stopping|FA|None|2304|0.36|None|None
+vehicle_stopping|FA|None|2327|0.829|None|None
+vehicle_stopping|FA|None|2332|0.041|None|None
+vehicle_stopping|FA|None|2417|0.206|None|None
+vehicle_stopping|FA|None|2419|0.413|None|None
 vehicle_stopping|FA|None|255|0.848|None|None
 vehicle_stopping|FA|None|313|0.072|None|None
 vehicle_stopping|FA|None|328|0.674|None|None
@@ -2349,12 +2349,12 @@ vehicle_stopping|MD|139|None|None|None|None
 vehicle_stopping|MD|141|None|None|None|None
 vehicle_stopping|MD|147|None|None|None|None
 vehicle_stopping|MD|152|None|None|None|None
-vehicle_stopping|MD|494|None|None|None|None
-vehicle_turning_left|CD|427|1140|0.532|1.532|{"presenceconf_congruence": 0.532}
-vehicle_turning_left|CD|428|1228|0.674|1.674|{"presenceconf_congruence": 0.674}
-vehicle_turning_left|CD|429|1239|0.939|1.939|{"presenceconf_congruence": 0.939}
-vehicle_turning_left|CD|430|1142|0.51|1.51|{"presenceconf_congruence": 0.51}
-vehicle_turning_left|CD|431|2187|0.991|1.991|{"presenceconf_congruence": 0.991}
+vehicle_stopping|MD|536|None|None|None|None
+vehicle_turning_left|CD|469|1329|0.532|1.532|{"presenceconf_congruence": 0.532}
+vehicle_turning_left|CD|470|1417|0.674|1.674|{"presenceconf_congruence": 0.674}
+vehicle_turning_left|CD|471|1428|0.939|1.939|{"presenceconf_congruence": 0.939}
+vehicle_turning_left|CD|472|1331|0.51|1.51|{"presenceconf_congruence": 0.51}
+vehicle_turning_left|CD|473|2376|0.991|1.991|{"presenceconf_congruence": 0.991}
 vehicle_turning_left|CD|74|1037|0.672|1.6720000000000002|{"presenceconf_congruence": 0.672}
 vehicle_turning_left|CD|75|111|0.82|1.8199999999999998|{"presenceconf_congruence": 0.82}
 vehicle_turning_left|CD|76|41|0.888|1.888|{"presenceconf_congruence": 0.888}
@@ -2372,49 +2372,49 @@ vehicle_turning_left|FA|None|1200|0.905|None|None
 vehicle_turning_left|FA|None|1209|0.621|None|None
 vehicle_turning_left|FA|None|1221|0.338|None|None
 vehicle_turning_left|FA|None|1246|0.089|None|None
-vehicle_turning_left|FA|None|1262|0.861|None|None
-vehicle_turning_left|FA|None|1294|0.844|None|None
-vehicle_turning_left|FA|None|1344|0.893|None|None
-vehicle_turning_left|FA|None|1377|0.872|None|None
-vehicle_turning_left|FA|None|1381|0.144|None|None
-vehicle_turning_left|FA|None|1426|0.95|None|None
-vehicle_turning_left|FA|None|1431|0.359|None|None
-vehicle_turning_left|FA|None|1444|0.568|None|None
-vehicle_turning_left|FA|None|1488|0.336|None|None
-vehicle_turning_left|FA|None|1501|0.636|None|None
-vehicle_turning_left|FA|None|1519|0.513|None|None
-vehicle_turning_left|FA|None|1522|0.56|None|None
-vehicle_turning_left|FA|None|1541|0.429|None|None
-vehicle_turning_left|FA|None|1636|0.766|None|None
-vehicle_turning_left|FA|None|1659|0.586|None|None
-vehicle_turning_left|FA|None|1662|0.024|None|None
+vehicle_turning_left|FA|None|1451|0.861|None|None
+vehicle_turning_left|FA|None|1483|0.844|None|None
+vehicle_turning_left|FA|None|1533|0.893|None|None
+vehicle_turning_left|FA|None|1566|0.872|None|None
+vehicle_turning_left|FA|None|1570|0.144|None|None
+vehicle_turning_left|FA|None|1615|0.95|None|None
+vehicle_turning_left|FA|None|1620|0.359|None|None
+vehicle_turning_left|FA|None|1633|0.568|None|None
+vehicle_turning_left|FA|None|1677|0.336|None|None
 vehicle_turning_left|FA|None|169|0.906|None|None
-vehicle_turning_left|FA|None|1703|0.301|None|None
-vehicle_turning_left|FA|None|1759|0.598|None|None
-vehicle_turning_left|FA|None|1762|0.433|None|None
-vehicle_turning_left|FA|None|1784|0.905|None|None
-vehicle_turning_left|FA|None|1798|0.124|None|None
-vehicle_turning_left|FA|None|1806|0.131|None|None
-vehicle_turning_left|FA|None|1843|0.234|None|None
-vehicle_turning_left|FA|None|1883|0.763|None|None
-vehicle_turning_left|FA|None|1888|0.106|None|None
-vehicle_turning_left|FA|None|1903|0.277|None|None
-vehicle_turning_left|FA|None|1907|0.101|None|None
-vehicle_turning_left|FA|None|1958|0.06|None|None
-vehicle_turning_left|FA|None|1975|0.253|None|None
-vehicle_turning_left|FA|None|1979|0.135|None|None
-vehicle_turning_left|FA|None|2011|0.994|None|None
-vehicle_turning_left|FA|None|2014|0.8|None|None
-vehicle_turning_left|FA|None|2021|0.882|None|None
-vehicle_turning_left|FA|None|2073|0.478|None|None
-vehicle_turning_left|FA|None|2093|0.761|None|None
-vehicle_turning_left|FA|None|2134|0.289|None|None
-vehicle_turning_left|FA|None|2141|0.708|None|None
-vehicle_turning_left|FA|None|2236|0.828|None|None
-vehicle_turning_left|FA|None|2246|0.83|None|None
-vehicle_turning_left|FA|None|2247|0.992|None|None
+vehicle_turning_left|FA|None|1690|0.636|None|None
+vehicle_turning_left|FA|None|1708|0.513|None|None
+vehicle_turning_left|FA|None|1711|0.56|None|None
+vehicle_turning_left|FA|None|1730|0.429|None|None
+vehicle_turning_left|FA|None|1825|0.766|None|None
+vehicle_turning_left|FA|None|1848|0.586|None|None
+vehicle_turning_left|FA|None|1851|0.024|None|None
+vehicle_turning_left|FA|None|1892|0.301|None|None
+vehicle_turning_left|FA|None|1948|0.598|None|None
+vehicle_turning_left|FA|None|1951|0.433|None|None
+vehicle_turning_left|FA|None|1973|0.905|None|None
+vehicle_turning_left|FA|None|1987|0.124|None|None
+vehicle_turning_left|FA|None|1995|0.131|None|None
+vehicle_turning_left|FA|None|2032|0.234|None|None
+vehicle_turning_left|FA|None|2072|0.763|None|None
+vehicle_turning_left|FA|None|2077|0.106|None|None
+vehicle_turning_left|FA|None|2092|0.277|None|None
+vehicle_turning_left|FA|None|2096|0.101|None|None
+vehicle_turning_left|FA|None|2147|0.06|None|None
+vehicle_turning_left|FA|None|2164|0.253|None|None
+vehicle_turning_left|FA|None|2168|0.135|None|None
+vehicle_turning_left|FA|None|2200|0.994|None|None
+vehicle_turning_left|FA|None|2203|0.8|None|None
+vehicle_turning_left|FA|None|2210|0.882|None|None
+vehicle_turning_left|FA|None|2262|0.478|None|None
+vehicle_turning_left|FA|None|2282|0.761|None|None
 vehicle_turning_left|FA|None|232|0.091|None|None
+vehicle_turning_left|FA|None|2323|0.289|None|None
+vehicle_turning_left|FA|None|2330|0.708|None|None
 vehicle_turning_left|FA|None|235|0.592|None|None
+vehicle_turning_left|FA|None|2425|0.828|None|None
+vehicle_turning_left|FA|None|2435|0.83|None|None
+vehicle_turning_left|FA|None|2436|0.992|None|None
 vehicle_turning_left|FA|None|294|0.143|None|None
 vehicle_turning_left|FA|None|336|0.316|None|None
 vehicle_turning_left|FA|None|363|0.067|None|None
@@ -2437,7 +2437,7 @@ vehicle_turning_left|FA|None|911|0.886|None|None
 vehicle_turning_left|FA|None|918|0.633|None|None
 vehicle_turning_left|FA|None|959|0.17|None|None
 vehicle_turning_left|FA|None|965|0.051|None|None
-vehicle_turning_left|MD|426|None|None|None|None
+vehicle_turning_left|MD|468|None|None|None|None
 vehicle_turning_left|MD|81|None|None|None|None
 vehicle_turning_left|MD|82|None|None|None|None
 vehicle_turning_right|CD|114|133|0.954|1.954|{"presenceconf_congruence": 0.954}
@@ -2450,12 +2450,12 @@ vehicle_turning_right|CD|120|283|0.911|1.911|{"presenceconf_congruence": 0.911}
 vehicle_turning_right|CD|121|1032|0.177|1.177|{"presenceconf_congruence": 0.177}
 vehicle_turning_right|CD|122|102|0.742|1.742|{"presenceconf_congruence": 0.742}
 vehicle_turning_right|CD|123|605|0.496|1.496|{"presenceconf_congruence": 0.496}
-vehicle_turning_right|CD|380|1185|0.627|1.627|{"presenceconf_congruence": 0.627}
-vehicle_turning_right|CD|381|2039|0.607|1.607|{"presenceconf_congruence": 0.607}
-vehicle_turning_right|CD|382|1235|0.703|1.7029999999999998|{"presenceconf_congruence": 0.703}
-vehicle_turning_right|CD|383|1227|0.601|1.601|{"presenceconf_congruence": 0.601}
-vehicle_turning_right|CD|384|1232|0.917|1.917|{"presenceconf_congruence": 0.917}
-vehicle_turning_right|CD|385|1174|0.75|1.75|{"presenceconf_congruence": 0.75}
+vehicle_turning_right|CD|422|1374|0.627|1.627|{"presenceconf_congruence": 0.627}
+vehicle_turning_right|CD|423|2228|0.607|1.607|{"presenceconf_congruence": 0.607}
+vehicle_turning_right|CD|424|1424|0.703|1.7029999999999998|{"presenceconf_congruence": 0.703}
+vehicle_turning_right|CD|425|1416|0.601|1.601|{"presenceconf_congruence": 0.601}
+vehicle_turning_right|CD|426|1421|0.917|1.917|{"presenceconf_congruence": 0.917}
+vehicle_turning_right|CD|427|1363|0.75|1.75|{"presenceconf_congruence": 0.75}
 vehicle_turning_right|FA|None|1010|0.582|None|None
 vehicle_turning_right|FA|None|1011|0.47|None|None
 vehicle_turning_right|FA|None|1024|0.817|None|None
@@ -2465,54 +2465,54 @@ vehicle_turning_right|FA|None|1135|0.956|None|None
 vehicle_turning_right|FA|None|1149|0.284|None|None
 vehicle_turning_right|FA|None|1239|0.404|None|None
 vehicle_turning_right|FA|None|1251|0.535|None|None
-vehicle_turning_right|FA|None|1261|0.377|None|None
 vehicle_turning_right|FA|None|1300|0.862|None|None
 vehicle_turning_right|FA|None|1305|0.686|None|None
-vehicle_turning_right|FA|None|1324|0.631|None|None
-vehicle_turning_right|FA|None|1330|0.214|None|None
-vehicle_turning_right|FA|None|1338|0.791|None|None
-vehicle_turning_right|FA|None|1339|0.833|None|None
-vehicle_turning_right|FA|None|1353|0.556|None|None
-vehicle_turning_right|FA|None|1356|0.807|None|None
-vehicle_turning_right|FA|None|1359|0.327|None|None
-vehicle_turning_right|FA|None|1361|0.468|None|None
-vehicle_turning_right|FA|None|1391|0.323|None|None
-vehicle_turning_right|FA|None|1447|0.69|None|None
-vehicle_turning_right|FA|None|1458|0.072|None|None
-vehicle_turning_right|FA|None|1471|0.34|None|None
-vehicle_turning_right|FA|None|1479|0.957|None|None
-vehicle_turning_right|FA|None|1496|0.325|None|None
+vehicle_turning_right|FA|None|1450|0.377|None|None
+vehicle_turning_right|FA|None|1513|0.631|None|None
+vehicle_turning_right|FA|None|1519|0.214|None|None
 vehicle_turning_right|FA|None|152|0.416|None|None
-vehicle_turning_right|FA|None|1573|0.517|None|None
-vehicle_turning_right|FA|None|1601|0.166|None|None
-vehicle_turning_right|FA|None|1613|0.844|None|None
+vehicle_turning_right|FA|None|1527|0.791|None|None
+vehicle_turning_right|FA|None|1528|0.833|None|None
+vehicle_turning_right|FA|None|1542|0.556|None|None
+vehicle_turning_right|FA|None|1545|0.807|None|None
+vehicle_turning_right|FA|None|1548|0.327|None|None
+vehicle_turning_right|FA|None|1550|0.468|None|None
+vehicle_turning_right|FA|None|1580|0.323|None|None
 vehicle_turning_right|FA|None|163|0.359|None|None
-vehicle_turning_right|FA|None|1630|0.408|None|None
-vehicle_turning_right|FA|None|1655|0.709|None|None
-vehicle_turning_right|FA|None|1663|0.977|None|None
-vehicle_turning_right|FA|None|1677|0.243|None|None
-vehicle_turning_right|FA|None|1718|0.329|None|None
-vehicle_turning_right|FA|None|1773|0.933|None|None
-vehicle_turning_right|FA|None|1804|0.154|None|None
-vehicle_turning_right|FA|None|1823|0.366|None|None
-vehicle_turning_right|FA|None|1837|0.105|None|None
-vehicle_turning_right|FA|None|1852|0.275|None|None
-vehicle_turning_right|FA|None|1859|0.791|None|None
-vehicle_turning_right|FA|None|1869|0.328|None|None
-vehicle_turning_right|FA|None|1942|0.104|None|None
-vehicle_turning_right|FA|None|1946|0.236|None|None
-vehicle_turning_right|FA|None|2022|0.281|None|None
-vehicle_turning_right|FA|None|2029|0.493|None|None
-vehicle_turning_right|FA|None|2035|0.841|None|None
-vehicle_turning_right|FA|None|2041|0.224|None|None
-vehicle_turning_right|FA|None|2062|0.804|None|None
-vehicle_turning_right|FA|None|2068|0.992|None|None
-vehicle_turning_right|FA|None|2076|0.456|None|None
-vehicle_turning_right|FA|None|2084|0.608|None|None
-vehicle_turning_right|FA|None|2130|0.08|None|None
-vehicle_turning_right|FA|None|2184|0.564|None|None
-vehicle_turning_right|FA|None|2190|0.528|None|None
-vehicle_turning_right|FA|None|2211|0.561|None|None
+vehicle_turning_right|FA|None|1636|0.69|None|None
+vehicle_turning_right|FA|None|1647|0.072|None|None
+vehicle_turning_right|FA|None|1660|0.34|None|None
+vehicle_turning_right|FA|None|1668|0.957|None|None
+vehicle_turning_right|FA|None|1685|0.325|None|None
+vehicle_turning_right|FA|None|1762|0.517|None|None
+vehicle_turning_right|FA|None|1790|0.166|None|None
+vehicle_turning_right|FA|None|1802|0.844|None|None
+vehicle_turning_right|FA|None|1819|0.408|None|None
+vehicle_turning_right|FA|None|1844|0.709|None|None
+vehicle_turning_right|FA|None|1852|0.977|None|None
+vehicle_turning_right|FA|None|1866|0.243|None|None
+vehicle_turning_right|FA|None|1907|0.329|None|None
+vehicle_turning_right|FA|None|1962|0.933|None|None
+vehicle_turning_right|FA|None|1993|0.154|None|None
+vehicle_turning_right|FA|None|2012|0.366|None|None
+vehicle_turning_right|FA|None|2026|0.105|None|None
+vehicle_turning_right|FA|None|2041|0.275|None|None
+vehicle_turning_right|FA|None|2048|0.791|None|None
+vehicle_turning_right|FA|None|2058|0.328|None|None
+vehicle_turning_right|FA|None|2131|0.104|None|None
+vehicle_turning_right|FA|None|2135|0.236|None|None
+vehicle_turning_right|FA|None|2211|0.281|None|None
+vehicle_turning_right|FA|None|2218|0.493|None|None
+vehicle_turning_right|FA|None|2224|0.841|None|None
+vehicle_turning_right|FA|None|2230|0.224|None|None
+vehicle_turning_right|FA|None|2251|0.804|None|None
+vehicle_turning_right|FA|None|2257|0.992|None|None
+vehicle_turning_right|FA|None|2265|0.456|None|None
+vehicle_turning_right|FA|None|2273|0.608|None|None
+vehicle_turning_right|FA|None|2319|0.08|None|None
+vehicle_turning_right|FA|None|2373|0.564|None|None
+vehicle_turning_right|FA|None|2379|0.528|None|None
+vehicle_turning_right|FA|None|2400|0.561|None|None
 vehicle_turning_right|FA|None|248|0.842|None|None
 vehicle_turning_right|FA|None|256|0.399|None|None
 vehicle_turning_right|FA|None|304|0.264|None|None

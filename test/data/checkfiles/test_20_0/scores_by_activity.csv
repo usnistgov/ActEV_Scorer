@@ -47,7 +47,7 @@ Closing|AUDC@0.9rfa|0.547489893142521
 Closing|AUDC@0.9tfa|0.27254576561382976
 Closing|AUDC@1rfa|0.5774669273255264
 Closing|AUDC@1tfa|0.2883352392980403
-Closing|n-mide|0.053438374817054
+Closing|n-mide|0.053438374817054005
 Closing|n-mide@0.01rfa|None
 Closing|n-mide@0.02rfa|None
 Closing|n-mide@0.03rfa|None
@@ -483,7 +483,7 @@ Entering|AUDC@0.9rfa|0.7019473494410384
 Entering|AUDC@0.9tfa|0.3501882118658473
 Entering|AUDC@1rfa|0.7575029049965939
 Entering|AUDC@1tfa|0.36129932297695844
-Entering|n-mide|0.11413998921177959
+Entering|n-mide|0.11413998921177956
 Entering|n-mide@0.01rfa|None
 Entering|n-mide@0.02rfa|None
 Entering|n-mide@0.03rfa|None
@@ -1791,7 +1791,7 @@ Opening|AUDC@0.9rfa|0.8414884127014256
 Opening|AUDC@0.9tfa|0.5647965223362159
 Opening|AUDC@1rfa|0.9204357811224784
 Opening|AUDC@1tfa|0.5914527231725335
-Opening|n-mide|0.07029137000022613
+Opening|n-mide|0.07029137000022614
 Opening|n-mide@0.01rfa|None
 Opening|n-mide@0.02rfa|None
 Opening|n-mide@0.03rfa|None
@@ -2009,7 +2009,7 @@ Person_Person_Interaction|AUDC@0.9rfa|0.6317526144969349
 Person_Person_Interaction|AUDC@0.9tfa|0.3094819519526798
 Person_Person_Interaction|AUDC@1rfa|0.6726289217454022
 Person_Person_Interaction|AUDC@1tfa|0.31948195195267987
-Person_Person_Interaction|n-mide|0.040474234812432314
+Person_Person_Interaction|n-mide|0.04047423481243231
 Person_Person_Interaction|n-mide@0.01rfa|None
 Person_Person_Interaction|n-mide@0.02rfa|None
 Person_Person_Interaction|n-mide@0.03rfa|None
@@ -2881,7 +2881,7 @@ Talking|AUDC@0.9rfa|0.5847663695842565
 Talking|AUDC@0.9tfa|0.44384361283315993
 Talking|AUDC@1rfa|0.6371473219652088
 Talking|AUDC@1tfa|0.4636616287313152
-Talking|n-mide|0.25380490917004117
+Talking|n-mide|0.2538049091700411
 Talking|n-mide@0.01rfa|0.8129149064574532
 Talking|n-mide@0.02rfa|0.8129149064574532
 Talking|n-mide@0.03rfa|0.8129149064574532
@@ -3535,7 +3535,7 @@ activity_carrying|AUDC@0.9rfa|0.6404075009015507
 activity_carrying|AUDC@0.9tfa|0.3490037923581944
 activity_carrying|AUDC@1rfa|0.6812838081500181
 activity_carrying|AUDC@1tfa|0.35900379235819435
-activity_carrying|n-mide|0.41950308178279655
+activity_carrying|n-mide|0.4195030817827965
 activity_carrying|n-mide@0.01rfa|None
 activity_carrying|n-mide@0.02rfa|None
 activity_carrying|n-mide@0.03rfa|None
@@ -4407,7 +4407,7 @@ activity_standing|AUDC@0.9rfa|0.5229023921144368
 activity_standing|AUDC@0.9tfa|0.6386234900049056
 activity_standing|AUDC@1rfa|0.5571182433786112
 activity_standing|AUDC@1tfa|0.6735943440336032
-activity_standing|n-mide|0.32628243391549355
+activity_standing|n-mide|0.3262824339154935
 activity_standing|n-mide@0.01rfa|None
 activity_standing|n-mide@0.02rfa|None
 activity_standing|n-mide@0.03rfa|None
@@ -4625,12 +4625,12 @@ activity_walking|AUDC@0.9rfa|0.46830303294079617
 activity_walking|AUDC@0.9tfa|0.4325574529430793
 activity_walking|AUDC@1rfa|0.4953647860527004
 activity_walking|AUDC@1tfa|0.45924545171509634
-activity_walking|n-mide|0.3149978203711232
+activity_walking|n-mide|0.3149978203711234
 activity_walking|n-mide@0.01rfa|0.27814887605859295
 activity_walking|n-mide@0.02rfa|0.27814887605859295
 activity_walking|n-mide@0.03rfa|0.27814887605859295
 activity_walking|n-mide@0.04rfa|0.27814887605859295
-activity_walking|n-mide@0.05rfa|0.29323908815250577
+activity_walking|n-mide@0.05rfa|0.2932390881525058
 activity_walking|n-mide@0.15rfa|0.3183255380107432
 activity_walking|n-mide@0.1rfa|0.36590757337806323
 activity_walking|n-mide@0.25rfa|0.2598515418376042
@@ -6151,7 +6151,7 @@ vehicle_turning_left|AUDC@0.9rfa|0.708770284890011
 vehicle_turning_left|AUDC@0.9tfa|0.4436904028834863
 vehicle_turning_left|AUDC@1rfa|0.7687702848900111
 vehicle_turning_left|AUDC@1tfa|0.46369040288348634
-vehicle_turning_left|n-mide|0.021345553202206154
+vehicle_turning_left|n-mide|0.021345553202206158
 vehicle_turning_left|n-mide@0.01rfa|None
 vehicle_turning_left|n-mide@0.02rfa|None
 vehicle_turning_left|n-mide@0.03rfa|None
@@ -6369,7 +6369,7 @@ vehicle_turning_right|AUDC@0.9rfa|0.6615105481428056
 vehicle_turning_right|AUDC@0.9tfa|0.33609565629600074
 vehicle_turning_right|AUDC@1rfa|0.7049675441759826
 vehicle_turning_right|AUDC@1tfa|0.3454551408397995
-vehicle_turning_right|n-mide|0.11168490414629598
+vehicle_turning_right|n-mide|0.11168490414629596
 vehicle_turning_right|n-mide@0.01rfa|None
 vehicle_turning_right|n-mide@0.02rfa|None
 vehicle_turning_right|n-mide@0.03rfa|None
