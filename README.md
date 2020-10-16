@@ -40,7 +40,7 @@ SCORING_PROTOCOL - Positional argument, from a fixed set of values (e.g. ActEV18
 * `-P PERCENTAGE` - Optional; if set, the system output will be pruned, keeping maximum `MAX_FRAMES` of instances per activity.
 * `-R` - Optional; if set, filter instances that overlap no score regions.
 * `-n` - Optional; if set, define the number of processes to use for alignments and results computation.
-* `-N` - Optional; if set, `get_y` will return `fn` instead of `norm.ppf(fn)` (for DET curves only).
+* `-c` - Optional; if set, specify the path for the plotting parameters JSON file (see test_17_0 for an example).
 
 #### Protocols
 
