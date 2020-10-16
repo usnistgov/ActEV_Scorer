@@ -622,8 +622,8 @@ test_17_0() {
     -r "data/test_15-1.json" \
     -a "data/test_15-0_activity-index.json" \
     -f "data/test_15-0_file-index.json" \
-    -o "$1" -p "data/test_17-0_plot-option.json"\
-    -v -N
+    -o "$1" -c "data/test_17-0_plot-option.json" \
+    -v
 }
 
 # Pruning test
