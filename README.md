@@ -214,6 +214,11 @@ September 21, 2020 - Version 0.5.4
 
 * Added --filter-no-score-regions option
 
+October 16, 2020 - Version 0.5.5
+
+* Removed `--no-ppf` option as it is now the default behavior.
+* Add `--plotting-parameters-file` option.
+
 ### Contact
 
 Please send any issues, questions, or comments to [actev-nist@nist.gov](mailto:actev-nist@nist.gov)

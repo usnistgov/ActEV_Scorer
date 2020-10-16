@@ -47,7 +47,7 @@ def _make_clamp(_min, _max):
 
     return clamp
 
-def det_curve(points_dict, out_fn, typ="standard"):
+def det_curve(points_dict, out_fn, typ="standard", plot_options=None):
     ytick_values = [0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 0.95, 0.98, 0.99, 0.995, 0.999]
     ytick_labels = [ str(y * 100) for y in ytick_values ]
     ytick = norm.ppf(ytick_values)

@@ -30,15 +30,14 @@ class Render:
 
     def get_plot_options(self, plot_type, fa_label, fp_label, plot_options={}):
         cur_plot_options = merge_dicts(
-            self.gen_default_plot_options(plot_type, fa_label, fp_label, no_ppf=self.no_ppf),
-            self.plot_options)
+            self.gen_default_plot_options(plot_type, fa_label, fp_label),
+            plot_options)
         cur_plot_options = merge_dicts(cur_plot_options, plot_options)
         return cur_plot_options
 
     def plot(self, data_list, annotations=[], plot_type=None, plot_options={},
-             display=True, multi_fig=False, auto_width=True, no_ppf=False):
+             display=True, multi_fig=False, auto_width=True):
         assert len(data_list) > 0, "Error, plot called on empty objects list"
-        self.no_ppf = no_ppf
         if isinstance(data_list, list):
             plot_type = self.get_plot_type(plot_type=plot_type)
             plot_options = self.get_plot_options(
@@ -97,7 +96,7 @@ class Render:
         def get_y(fn, plot_type):
             if plot_type != "det":
                 return 1 - fn
-            return fn if self.no_ppf else norm.ppf(fn)
+            return fn
 
         for obj in data_list:
             if True not in np.isnan(np.array(obj.fn)):
@@ -114,7 +113,6 @@ class Render:
         if len(data_list) == 1:
             for annotation in annotations:
                 plt.annotate(annotation.text, **annotation.parameters)
-
         plt.xlim(plot_options["xlim"])
         plt.ylim(plot_options["ylim"])
         # print("ylim = {}".format(plot_options["ylim"]))
@@ -163,7 +161,7 @@ class Render:
 
     @staticmethod
     def gen_default_plot_options(plot_type, fa_label, fn_label,
-                                 plot_title=None, no_ppf=False):
+                                 plot_title=None):
         """This function generates JSON file to customize the plot.
         path: JSON file name along with the path
         plot_type: either DET or ROC"""
@@ -206,20 +204,14 @@ class Render:
             plot_opts["xlim"] = (plot_opts["xticks"][0],
                                  plot_opts["xticks"][-1])
             plot_opts["ylabel"] = "Prob. of Miss Detection"
-            if no_ppf:
-                plot_opts["yticks"] = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6,
-                                                0.7, 0.8, 0.9, 1.0]
-                plot_opts["yticks_labels"] = [
-                    '0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7',
-                    '0.8', '0.9', '1.0']
-            else:
-                plot_opts["yticks"] = norm.ppf([0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 0.9,
-                                                0.95, 0.98, 0.99, 0.995, 0.999])
-                plot_opts["yticks_labels"] = [
-                    '0.05', '0.10', '0.20', '0.40', '0.60', '0.80', '0.90', '0.95',
-                    '0.98', '0.99', '0.995', '0.999']
+
+            plot_opts["yticks"] = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6,
+                                            0.7, 0.8, 0.9, 1.0]
+            plot_opts["yticks_labels"] = [
+                '0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7',
+                '0.8', '0.9', '1.0']
             plot_opts["ylim"] = (plot_opts["yticks"][0],
-                                 plot_opts["yticks"][-1])
+                                plot_opts["yticks"][-1])
 
         elif plot_type.lower() == "roc":
             plot_opts["xscale"] = "linear"
