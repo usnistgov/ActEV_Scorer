@@ -307,9 +307,9 @@ def score_basic(protocol_class, args):
 
     if args.large_input:
         # Seperate instances by activity, export instances 1b1, then merge them and compute alignments
-        os.mkdir('lol')
+        system_activities = []
         for activity in list(activity_index.keys()):
-            log(1, "[Info] Extracting activities (%s)" % (activity))
+            log(1, "[Info] Loading activities (%s)" % (activity))
             with open(args.system_output_file, 'r') as fd:
                 objs = ijson.items(fd, 'activities.item')
                 fd.seek(0)
@@ -318,33 +318,33 @@ def score_basic(protocol_class, args):
                 activities['filesProcessed'] = list(fp)
                 fd.seek(0)
                 activities['activities'] = list(o for o in objs if o['activity'] == activity)
+                # Otherwise, it becomes a Decimal because of ijson and fails the checks
                 for inst in activities['activities']:
                     inst['presenceConf'] = float(inst['presenceConf'])
-            # WARNING If pruning, prune here.
-            log(1, "[Debug] Extracted %d instances (%s)" % (len(activities['activities']), activity))
+            # Potential pruning
+            # Not working yet because prune() loads the whole json. Need to be updated.
+            #if args.prune_system_output:
+            #    system_output, minmax = prune(args.system_output_file, args.prune_system_output, file_index, log)
+            #    protocol.minmax = minmax
+
             log(1, "[Info] Validating activities (%s)" % (activity))
             validate_input(log, activities, system_output_schema)
             check_file_index_congruence(log, activities, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
             log(1, "[Info] Validation successful (%s)" % (activity))
 
+            # We validate the whole json without parsing, then we exit.
             if args.validation_only:
                 continue
 
-            system_activities = parse_activities(activities, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
-            del activities
-            with open(os.path.join('lol', activity), 'wb') as fd:
-                dill.dump(system_activities, fd)
-            log(1, "[Debug] Dumped %d instances (%s)" % (len(system_activities), activity))
-        # Load all instances
-        system_activities = []
-        for root, dirs, files in os.walk('lol'):
-            for f in files:
-                with open(os.path.join(root, f), 'rb') as fd:
-                    system_activities.extend(dill.load(fd))
-        shutil.rmtree('lol')
+            system_activities.extend(parse_activities(activities, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files))
+
+        if args.validation_only:
+            exit(0)
+
+        log(1, "Loading references ..")
         reference = load_reference(log, args.reference_file)
         reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
-        log(1, "[Info] Computing alignments .. (%s)" % (activity))
+        log(1, "[Info] Computing alignments ..")
         alignment = protocol.compute_alignment(system_activities, reference_activities)
         log(1, '[Info] Scoring ..')
         results = protocol.compute_results(alignment, args.det_point_resolution)
