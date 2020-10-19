@@ -528,11 +528,9 @@ if __name__ == '__main__':
     logger.debug("Plotting...")
     # Creation of the Renderer
     myRender = Render(plot_type=args.plotType, plot_options=plot_opts)
-    # Linear Y-axis
-    linear = plot_opts.get('yscale', None) == "linear"
     # Plotting
     myfigure = myRender.plot(
-        DM_list, display=args.display, multi_fig=args.multiFigs, no_ppf=linear)
+        DM_list, display=args.display, multi_fig=args.multiFigs)
 
     # Output process
     outputFigure(
