@@ -132,23 +132,23 @@ def load_schema_for_protocol(log, protocol):
 
 def parse_activities(deserialized_json, file_index, load_objects = False, ignore_extraneous = False, ignore_missing = False):
     raw_instances = [ a for a in deserialized_json.get("activities", []) ]
-    if args.filter_no_score_regions:
+    if args.ignore_no_score_regions:
+        activity_instances = [ ActivityInstance(a, load_objects) for a in raw_instances ]
+    else:
         filtered_instances = []
         for inst in raw_instances:
             fn = list(inst['localization'].keys())[0]
             frames = SparseSignal(inst['localization'][fn])
             try:
                 f_frames = SparseSignal(file_index[fn]['selected'])
-                #print(frames, f_frames, (f_frames | frames), file=sys.stderr)
                 if (f_frames | frames) == f_frames:
                     filtered_instances.append(inst)
-                #else:
-                    #print(frames, f_frames, (f_frames | frames), file=sys.stderr)
-            except KeyError:
-                print('keyerror', fn, file=sys.stderr)
+            except KeyError as e:  # may append if there are extra files
+                if args.ignore_extraneous_files:
+                    pass
+                else:
+                    raise e
         activity_instances = [ ActivityInstance(a, load_objects) for a in filtered_instances ]
-    else:
-        activity_instances = [ ActivityInstance(a, load_objects) for a in raw_instances ]
 
     if ignore_extraneous or ignore_missing:
         extraneous_files = set(deserialized_json.get("filesProcessed", [])) - file_index.keys()
@@ -343,7 +343,6 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir, plot_options
                 save_dm(dc, dm_dir, "{}_{}.dm".format(prefix, activity))
                 log(1, "[Info] Plotting {} DET curve for {}".format(prefix, activity))
                 plot_options['title'] = activity
-                print(plot_options, file=sys.stderr)
                 save_DET(dc, figure_dir, "DET_{}_{}.png".format(prefix, activity), plot_options)
 
             mean_label = "{}_mean_byfa".format(prefix)
@@ -405,7 +404,7 @@ if __name__ == '__main__':
                  [["-p", "--scoring-parameters-file"], dict(help="Scoring parameters JSON file", type=str)],
                  [["-V", "--validation-only"], dict(help="Only perform system output validation step", action="store_true")],
                  [["-P", "--prune-system-output"], dict(help=("Prune system output before processing it."), type=float)],
-                 [["-R", "--filter-no-score-regions"], dict(help="Don't keep instances which overlap no-score regions.", action="store_true", default=False)],
+                 [["-i", "--ignore-no-score-regions"], dict(help="Don't discard instances which overlap no-score regions.", action="store_true", default=False)],
                  [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=8)],
                  [["-c", "--plotting-parameters-file"], dict(help="Optional plotting options JSON file", type=str)],]
 

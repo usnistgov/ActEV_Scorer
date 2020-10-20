@@ -275,11 +275,7 @@ test_7_1() {
     -r "data/test_7-1.json" \
     -a "data/test_4-0_activity-index.json" \
     -f "data/test_4-0_file-index.json" \
-    -F \
-    -o "$1" \
-    -d \
-    -j \
-    -v
+    -F -o "$1" -d -j -i -v
 }
 
 test_8_0() {
@@ -575,7 +571,7 @@ test_15_1() {
     -a "data/test_15-0_activity-index.json" \
     -f "data/test_15-0_file-index.json" \
     -o "$1" \
-    -v
+    -v -i
 }
 
 #Test averaging
@@ -587,7 +583,7 @@ test_15_2() {
     -a "data/test_15-2_activity-index.json" \
     -f "data/test_15-0_file-index.json" \
     -o "$1" \
-    -v
+    -v -i
 }
 
 #Test when there are no instances in ref. 
@@ -599,7 +595,7 @@ test_15_3() {
     -a "data/test_15-2_activity-index.json" \
     -f "data/test_15-0_file-index.json" \
     -o "$1" \
-    -v
+    -v -i
 }
 
 # multiprocessing test
@@ -623,7 +619,7 @@ test_17_0() {
     -a "data/test_15-0_activity-index.json" \
     -f "data/test_15-0_file-index.json" \
     -o "$1" -c "data/test_17-0_plot-option.json" \
-    -v
+    -v -i
 }
 
 # Pruning test
@@ -647,7 +643,7 @@ test_19_0() {
     -a "data/VIRAT_S_000000_activity-index.json" \
     -f "data/VIRAT_S_000000_file-index_no-score.json" \
     -o "$1" \
-    -v -R
+    -v
 }
 
 # no score regions test - Compared to test_16_0
@@ -659,7 +655,7 @@ test_19_1() {
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_19-1_file-index.json" \
     -o "$1" \
-    -v -R
+    -v
 }
 
 # no score regions test - 1000 1st frames of VIRAT_S_000000
