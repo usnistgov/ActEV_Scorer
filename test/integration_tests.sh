@@ -586,13 +586,39 @@ test_15_2() {
     -v -i
 }
 
-#Test when there are no instances in ref. 
+#Test when there are no instances in ref.
 test_15_3() {
     ../ActEV_Scorer.py \
     "ActEV_SDL_V1" \
     -s "data/test_15-3_fake-sysout.json" \
     -r "data/test_15-3.json" \
     -a "data/test_15-2_activity-index.json" \
+    -f "data/test_15-0_file-index.json" \
+    -o "$1" \
+    -v -i
+}
+
+#Test when there are no instances in ref.  Two Activities Closing, Entering.  Entering has NO instancs.
+### Assertion: All Closing scores should be identical to Test_15_2
+#Test averaging
+test_15_4() {
+    ../ActEV_Scorer.py \
+    "ActEV_SDL_V1" \
+    -s "data/test_15-2_fake-sysout.json" \
+    -r "data/test_15-4.json" \
+    -a "data/test_15-2_activity-index.json" \
+    -f "data/test_15-0_file-index.json" \
+    -o "$1" \
+    -v -i
+}
+
+# Verification of scores for Test_15_4.  This generates aggregated scores that 15_4 should be identical
+test_15_5() {
+    ../ActEV_Scorer.py \
+    "ActEV_SDL_V1" \
+    -s "data/test_15-2_fake-sysout.json" \
+    -r "data/test_15-4.json" \
+    -a "data/test_15-5_activity-index.json" \
     -f "data/test_15-0_file-index.json" \
     -o "$1" \
     -v -i
