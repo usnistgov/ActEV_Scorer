@@ -1,8 +1,8 @@
 # ActEV Scoring Software
 
-## Version: 0.5.4
+## Version: 0.5.6
 
-## Date: September 21, 2020
+## Date: November 09, 2020
 
 ------------------------
 
@@ -41,6 +41,7 @@ SCORING_PROTOCOL - Positional argument, from a fixed set of values (e.g. ActEV18
 * `-i` - Optional; if set, ignore no score regions.
 * `-n` - Optional; if set, define the number of processes to use for alignments and results computation.
 * `-c` - Optional; if set, specify the path for the plotting parameters JSON file (see test_17_0 for an example).
+* `-I` - Optional; if set, do not ignore activities that are not in the reference activity instances.
 
 #### Protocols
 
@@ -218,6 +219,10 @@ October 16, 2020 - Version 0.5.5
 
 * Removed `--no-ppf` option as it is now the default behavior.
 * Add `--plotting-parameters-file` option.
+
+November 9, 2020 - Version 0.5.6
+
+* Add `--include-zero-ref-instances` option for legacy purposes.
 
 ### Contact
 

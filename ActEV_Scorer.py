@@ -274,6 +274,7 @@ def score_basic(protocol_class, args):
             err_quit("Missing required OUTPUT_DIR argument (-o, --output-dir).  Aborting!")
 
     activity_index = load_activity_index(log, args.activity_index)
+
     file_index = load_file_index(log, args.file_index)
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
     protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
@@ -299,6 +300,17 @@ def score_basic(protocol_class, args):
     system_activities = parse_activities(system_output, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
     reference = load_reference(log, args.reference_file)
     reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
+
+    if not args.include_zero_ref_instances:
+        # Removing activities from activity-index that doesn't appear in the reference instances.
+        # See tests 15_4 and 15_5
+        for act in [act for act in activity_index if act not in [inst.activity for inst in reference_activities]]:
+            del activity_index[act]
+        # Now we regenerate protocol ans stuff
+        protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
+        protocol.pn = args.processes_number
+        protocol.minmax = None
+        system_output_schema = load_schema_for_protocol(log, protocol)
 
     log(1, "[Info] Computing alignments ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
@@ -406,7 +418,8 @@ if __name__ == '__main__':
                  [["-P", "--prune-system-output"], dict(help=("Prune system output before processing it."), type=float)],
                  [["-i", "--ignore-no-score-regions"], dict(help="Don't discard instances which overlap no-score regions.", action="store_true", default=False)],
                  [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=8)],
-                 [["-c", "--plotting-parameters-file"], dict(help="Optional plotting options JSON file", type=str)],]
+                 [["-c", "--plotting-parameters-file"], dict(help="Optional plotting options JSON file", type=str)],
+                 [["-I", "--include-zero-ref-instances"], dict(help="Legacy behavior. Take into account `zero reference activity instances`", action="store_true")]]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)

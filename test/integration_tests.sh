@@ -244,10 +244,7 @@ test_6_0() {
     -r "data/test_6-0.json" \
     -a "data/test_6-0_activity-index.json" \
     -f "data/test_6-0_file-index.json" \
-    -o "$1" \
-    -d \
-    -j \
-    -v
+    -o "$1" -d -j -I -v
 }
 
 # integration test 7-0
@@ -657,7 +654,7 @@ test_18_0() {
     -a "data/VIRAT_S_000000_activity-index.json" \
     -f "data/VIRAT_S_000000_file-index.json" \
     -o "$1" \
-    -v -P 0.8
+    -v -P 0.8 -I
 }
 
 # no score regions test - Compared to test_1_0
@@ -668,8 +665,7 @@ test_19_0() {
     -r "data/VIRAT_S_000000.json" \
     -a "data/VIRAT_S_000000_activity-index.json" \
     -f "data/VIRAT_S_000000_file-index_no-score.json" \
-    -o "$1" \
-    -v
+    -o "$1" -I -v
 }
 
 # no score regions test - Compared to test_16_0
@@ -680,8 +676,7 @@ test_19_1() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_19-1_file-index.json" \
-    -o "$1" \
-    -v
+    -o "$1" -I -v
 }
 
 # no score regions test - 1000 1st frames of VIRAT_S_000000
@@ -692,8 +687,7 @@ test_19_2() {
     -r "data/test_19-2.json" \
     -a "data/test_19-2_activity-index.json" \
     -f "data/test_19-2_file-index.json" \
-    -o "$1" \
-    -v
+    -o "$1" -I -v
 }
 
 # Same one without the no-score region
