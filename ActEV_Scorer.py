@@ -144,10 +144,9 @@ def parse_activities(deserialized_json, file_index, load_objects = False, ignore
                 if (f_frames | frames) == f_frames:
                     filtered_instances.append(inst)
             except KeyError as e:  # may append if there are extra files
-                if args.ignore_extraneous_files:
-                    pass
-                else:
+                if not args.ignore_extraneous_files:
                     raise e
+                pass
         activity_instances = [ ActivityInstance(a, load_objects) for a in filtered_instances ]
 
     if ignore_extraneous or ignore_missing:
@@ -303,7 +302,6 @@ def score_basic(protocol_class, args):
 
     if not args.include_zero_ref_instances:
         # Removing activities from activity-index that doesn't appear in the reference instances.
-        # See tests 15_4 and 15_5
         for act in [act for act in activity_index if act not in [inst.activity for inst in reference_activities]]:
             del activity_index[act]
         # Now we regenerate protocol ans stuff

@@ -676,7 +676,7 @@ test_19_1() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_19-1_file-index.json" \
-    -o "$1" -I -v
+    -o "$1" -v
 }
 
 # no score regions test - 1000 1st frames of VIRAT_S_000000
@@ -687,7 +687,7 @@ test_19_2() {
     -r "data/test_19-2.json" \
     -a "data/test_19-2_activity-index.json" \
     -f "data/test_19-2_file-index.json" \
-    -o "$1" -I -v
+    -o "$1" -v
 }
 
 # Same one without the no-score region
