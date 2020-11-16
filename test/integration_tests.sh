@@ -701,3 +701,14 @@ test_19_3() {
     -o "$1" \
     -v
 }
+
+# New protocol tests: SA ACTEV_SDL_V2_SA
+test_20_0() {
+    ../ActEV_Scorer.py \
+    "ActEV_SDL_V2_SA" \
+    -s "data/test_20-0_fake-sysout.json" \
+    -r "data/test_11-4.json" \
+    -a "data/test_9-0_activity-index.json" \
+    -f "data/test_11-0_file-index.json" \
+    -o "$1" -v
+}

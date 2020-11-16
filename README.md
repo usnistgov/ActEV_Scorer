@@ -1,8 +1,8 @@
 # ActEV Scoring Software
 
-## Version: 0.5.6
+## Version: 0.5.7
 
-## Date: November 09, 2020
+## Date: November 16, 2020
 
 ------------------------
 
@@ -67,6 +67,8 @@ ActEV18_AODT - Scoring protocol for the ActEV 2018 Activity and Object Detection
 `ActEV_SDL_V1` - Scoring protocol for Version 1 of the ActEV Sequestered Data Leaderboard Activity.  This version revises the computation of Time-based False Alarm to include false alarm time during reference instances when the system produces detections in excess of the reference instances.
 
 `ActEV_SDL_V2` - Scoring protocol for Version 2 of the ActEV Sequestered Data Leaderboard Activity.
+
+`ActEV_SDL_V2_SA` - Same as `ActEV_SDL_V2` but includes additional checks for surprise activities.
 
 ### Output
 
@@ -223,6 +225,10 @@ October 16, 2020 - Version 0.5.5
 November 9, 2020 - Version 0.5.6
 
 * Add `--include-zero-ref-instances` option for legacy purposes.
+
+November 16, 2020 - Version 0.5.7
+
+* Add `ACTEV_SDL_V2_SA` protocol.
 
 ### Contact
 
