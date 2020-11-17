@@ -38,10 +38,10 @@ sys.path.append(prot_path)
 
 from actev_sdl_v2 import ActEV_SDL_V2
 
-class ActEV_SDL_V2_SA(ActEV_SDL_V2):
+class ActEV_SDL_V2_PR(ActEV_SDL_V2):
     @classmethod
     def get_schema_fn(cls):
-        return "actev_sdl_v2_sa_schema.json"
+        return "actev_sdl_v2_pr_schema.json"
 
     def __init__(self, scoring_parameters, file_index, activity_index, command):
-        super(ActEV_SDL_V2_SA, self).__init__(scoring_parameters, file_index, activity_index, command)
+        super(ActEV_SDL_V2_PR, self).__init__(scoring_parameters, file_index, activity_index, command)

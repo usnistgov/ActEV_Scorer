@@ -68,7 +68,7 @@ ActEV18_AODT - Scoring protocol for the ActEV 2018 Activity and Object Detection
 
 `ActEV_SDL_V2` - Scoring protocol for Version 2 of the ActEV Sequestered Data Leaderboard Activity.
 
-`ActEV_SDL_V2_SA` - Same as `ActEV_SDL_V2` but includes additional checks for surprise activities.
+`ActEV_SDL_V2_PR` - Same as `ActEV_SDL_V2` but includes additional checks for surprise activities.
 
 ### Output
 
@@ -228,7 +228,7 @@ November 9, 2020 - Version 0.5.6
 
 November 16, 2020 - Version 0.5.7
 
-* Add `ACTEV_SDL_V2_SA` protocol.
+* Add `ACTEV_SDL_V2_PR` protocol.
 
 ### Contact
 
