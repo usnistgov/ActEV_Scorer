@@ -2,7 +2,7 @@
 
 ## Version: 0.5.7
 
-## Date: November 16, 2020
+## Date: November 18, 2020
 
 ------------------------
 
@@ -229,6 +229,7 @@ November 9, 2020 - Version 0.5.6
 November 16, 2020 - Version 0.5.7
 
 * Add `ACTEV_SDL_V2_PR` protocol.
+* Add checks on `processingReport`
 
 ### Contact
 
