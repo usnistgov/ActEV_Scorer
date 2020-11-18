@@ -712,3 +712,35 @@ test_20_0() {
     -f "data/test_11-0_file-index.json" \
     -o "$1" -v
 }
+
+# Check tests on processingReport (1,2 and 3)
+test_20_1() {
+    ../ActEV_Scorer.py \
+    "ActEV_SDL_V2_PR" \
+    -s "data/test_20-0_fake-sysout.json" \
+    -r "data/test_11-4.json" \
+    -a "data/test_9-0_activity-index.json" \
+    -f "data/test_11-0_file-index.json" \
+    -o "$1" -v --ignore-extraneous-files
+}
+
+test_20_2() {
+    ../ActEV_Scorer.py \
+    "ActEV_SDL_V2_PR" \
+    -s "data/test_20-0_fake-sysout.json" \
+    -r "data/test_11-4.json" \
+    -a "data/test_9-0_activity-index.json" \
+    -f "data/test_11-0_file-index.json" \
+    -o "$1" -v --ignore-missing-files
+}
+
+test_20_3() {
+    ../ActEV_Scorer.py \
+    "ActEV_SDL_V2_PR" \
+    -s "data/test_20-0_fake-sysout.json" \
+    -r "data/test_11-4.json" \
+    -a "data/test_9-0_activity-index.json" \
+    -f "data/test_11-0_file-index.json" \
+    -o "$1" -v --ignore-missing-files \
+    --ignore-extraneous-files
+}

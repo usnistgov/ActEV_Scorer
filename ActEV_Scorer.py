@@ -150,8 +150,12 @@ def parse_activities(deserialized_json, file_index, load_objects = False, ignore
         activity_instances = [ ActivityInstance(a, load_objects) for a in filtered_instances ]
 
     if ignore_extraneous or ignore_missing:
-        extraneous_files = set(deserialized_json.get("filesProcessed", [])) - file_index.keys()
-        missing_files = file_index.keys() - set(deserialized_json.get("filesProcessed", []))
+        if deserialized_json.get('processingReport', None) is None:
+            files = set(deserialized_json.get("filesProcessed", []))
+        else:
+            files = deserialized_json.get("processingReport").get('fileStatuses').keys()
+        extraneous_files = files - file_index.keys()
+        missing_files = file_index.keys() - files
 
         def _r(init, a):
             if ignore_extraneous:
@@ -160,12 +164,9 @@ def parse_activities(deserialized_json, file_index, load_objects = False, ignore
             if ignore_missing:
                 for f in missing_files & a.localization.keys():
                     del a.localization[f]
-
-            # Throw out activity instances only localized to
-            # "extraneous" files
+            # Throw out activity instances only localized to "extraneous" files
             if len(a.localization) > 0:
                 init.append(a)
-
             return init
 
         return reduce(_r, activity_instances, [])
@@ -185,28 +186,32 @@ def validate_input(log, system_output, system_output_schema):
 
 # Check system "filesProcessed" vs file index
 def check_file_index_congruence(log, system_output, file_index, ignore_extraneous = False, ignore_missing = False):
-    sys_files = set(system_output.get("filesProcessed", []))
+    isReportProcessing = system_output.get("processingReport", None) is not None
+    key = 'processingReport' if isReportProcessing else 'filesProcessed'
+    if not isReportProcessing:
+        sys_files = set(system_output.get("filesProcessed", []))
+    else:
+        sys_files = set(system_output.get("processingReport", {}).get('fileStatuses', {}).keys())
     index_files = set(file_index.keys())
 
     missing = index_files - sys_files
     extraneous = sys_files - index_files
 
-    log(1, "[Info] Checking file index against system's \"filesProcessed\"")
+    log(1, "[Info] Checking file index against system's \"%s\"" % key)
 
     error = False
     if not ignore_extraneous:
         if len(extraneous) > 0:
             for e in extraneous:
-                log(0, "[Error] Extraneous file '{}' in system's \"filesProcessed\"".format(e))
+                log(0, "[Error] Extraneous file '%s' in system's \"%s\"" % (e, key))
             error = True
     if not ignore_missing:
         if len(missing) > 0:
             for m in missing:
-                log(0, "[Error] Missing file '{}' from system's \"filesProcessed\"".format(m))
+                log(0, "[Error] Missing file '%s' from system's \"%s\"" % (m, key))
             error = True
     if error:
-        err_quit("System \"filesProcessed\" and file index are incongruent. Aborting!")
-
+        err_quit("System \"%s\" and file index are incongruent. Aborting!" % key)
     return True
 
 
