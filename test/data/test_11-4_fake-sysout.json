@@ -34,22 +34,22 @@
       "alertFrame": 3500,
       "localization": {
         "VIRAT_S_000000.mp4": {
- 	  "3500": 1,
-	  "3525": 0
+          "3500": 1,
+          "3525": 0
         }
       }
     },
-      {
-	  "activity": "Entering",
-	  "activityID": 4,
-	  "presenceConf": 0.8,
-	  "alertFrame": 3700,
-	  "localization": {
-	      "VIRAT_S_000000.mp4": {
-		  "3700": 1,
-		  "3710": 0
-	      }
-	  }
+    {
+      "activity": "Entering",
+      "activityID": 4,
+      "presenceConf": 0.8,
+      "alertFrame": 3700,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3700": 1,
+          "3710": 0
+        }
       }
+    }
   ]
 }
