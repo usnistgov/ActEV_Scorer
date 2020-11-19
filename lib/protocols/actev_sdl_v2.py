@@ -50,7 +50,7 @@ from default import *
 class ActEV_SDL_V2(Default):
     @classmethod
     def get_schema_fn(cls):
-        return "actev18_ad_schema.json"
+        return "actev_sdl_v2_schema.json"
 
     def __init__(self, scoring_parameters, file_index, activity_index, command):
         default_scoring_parameters = { "activity.epsilon_presenceconf_congruence": 1.0,

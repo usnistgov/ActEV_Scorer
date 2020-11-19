@@ -702,10 +702,10 @@ test_19_3() {
     -v
 }
 
-# New protocol tests: SA ACTEV_SDL_V2_PR
+# New protocol tests: processingReport
 test_20_0() {
     ../ActEV_Scorer.py \
-    "ActEV_SDL_V2_PR" \
+    "ActEV_SDL_V2" \
     -s "data/test_20-0_fake-sysout.json" \
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
@@ -716,7 +716,7 @@ test_20_0() {
 # Check tests on processingReport (1,2 and 3)
 test_20_1() {
     ../ActEV_Scorer.py \
-    "ActEV_SDL_V2_PR" \
+    "ActEV_SDL_V2" \
     -s "data/test_20-0_fake-sysout.json" \
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
@@ -726,7 +726,7 @@ test_20_1() {
 
 test_20_2() {
     ../ActEV_Scorer.py \
-    "ActEV_SDL_V2_PR" \
+    "ActEV_SDL_V2" \
     -s "data/test_20-0_fake-sysout.json" \
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
@@ -736,7 +736,7 @@ test_20_2() {
 
 test_20_3() {
     ../ActEV_Scorer.py \
-    "ActEV_SDL_V2_PR" \
+    "ActEV_SDL_V2" \
     -s "data/test_20-0_fake-sysout.json" \
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
@@ -748,7 +748,7 @@ test_20_3() {
 # Testing that Scorer can handle negative frame numbers
 test_21_0() {
     ../ActEV_Scorer.py \
-    "ActEV_SDL_V2_PR" \
+    "ActEV_SDL_V2" \
     -s "data/test_21-0_fake-sysout.json" \
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
