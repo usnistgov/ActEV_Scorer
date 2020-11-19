@@ -1,0 +1,67 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+    {
+      "activity": "Closing",
+      "activityID": 5,
+      "presenceConf": 0.796,
+      "alertFrame": 3030,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "-40": 1,
+          "3040": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 1,
+      "presenceConf": 0.796,
+      "alertFrame": 3030,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3030": 1,
+          "3050": 0
+        }
+      }
+    },
+    {
+      "activity": "Closing",
+      "activityID": 2,
+      "presenceConf": 0.874,
+      "alertFrame": 3100,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3100": 1,
+          "3120": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 3,
+      "presenceConf": 0.8,
+      "alertFrame": 3500,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3500": 1,
+          "3525": 0
+        }
+      }
+    },
+    {
+      "activity": "Entering",
+      "activityID": 4,
+      "presenceConf": 0.8,
+      "alertFrame": 3700,
+      "localization": {
+        "VIRAT_S_000000.mp4": {
+          "3700": 1,
+          "3710": 0
+        }
+      }
+    }
+  ]
+}

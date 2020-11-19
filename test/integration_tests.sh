@@ -744,3 +744,14 @@ test_20_3() {
     -o "$1" -v --ignore-missing-files \
     --ignore-extraneous-files
 }
+
+# Testing that Scorer can handle negative frame numbers
+test_21_0() {
+    ../ActEV_Scorer.py \
+    "ActEV_SDL_V2_PR" \
+    -s "data/test_21-0_fake-sysout.json" \
+    -r "data/test_11-4.json" \
+    -a "data/test_9-0_activity-index.json" \
+    -f "data/test_11-0_file-index.json" \
+    -o "$1" -v
+}
