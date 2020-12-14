@@ -61,9 +61,15 @@
           },
           "message": {
             "type": "string"
-          }
+          },
+          "required": [
+            "status",
+            "message"
+          ]
         }
-      }
+      },
+      "additionalProperties": false,
+      "minProperties": 1
     }
   },
   "type": "object",
