@@ -186,7 +186,7 @@ def validate_input(log, system_output, system_output_schema):
 
 # Check system "filesProcessed" vs file index
 def check_file_index_congruence(log, system_output, file_index, ignore_extraneous = False, ignore_missing = False):
-    isReportProcessing = system_output.get("processingReport", None) is not None
+    isReportProcessing = system_output.get("processingReport", {}) != {}
     key = 'processingReport' if isReportProcessing else 'filesProcessed'
     if not isReportProcessing:
         sys_files = set(system_output.get("filesProcessed", []))
