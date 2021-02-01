@@ -51,6 +51,16 @@ class TestWPMiss(TestMetrics):
         self.assertAlmostEqual(w_p_miss(0, 0, 0, 10, 8), None, places=10)
         self.assertAlmostEqual(w_p_miss(len(self.c1), len(self.m2), 0, 10, 8), float(8) / 14, places=10)
 
+class TestPrecision(TestMetrics):
+    def setUp(self):
+        super(TestPrecision, self).setUp()
+        
+    def testNoPredicate(self):
+        # c, m, f
+        self.assertAlmostEqual(precision(5, 5, 10), float(5) / 15, places=10)
+        self.assertAlmostEqual(precision(5, 5000, 10), float(5) / 15, places=10)
+        self.assertAlmostEqual(precision(0, 0, 0), None, places=10)
+
 class TestAUC(TestMetrics):
     def setUp(self):
         super(TestAUC, self).setUp()

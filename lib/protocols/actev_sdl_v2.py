@@ -134,6 +134,7 @@ class ActEV_SDL_V2(Default):
         sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [ build_rfa_metric(rfa_denom),
                                                                    build_pmiss_metric(),
                                                                    build_wpmiss_metric(wpmiss_denom, wpmiss_numer),
+                                                                   build_precision_metric(),
                                                                    self.build_nmide_measure(),
                                                                    self.build_fa_measure()], uniq_conf, file_framedur_lookup = self.file_framedur_lookup)
         det_points = sweeper(alignment)
@@ -151,6 +152,13 @@ class ActEV_SDL_V2(Default):
                                                             "w_p_miss",
                                                             lambda r: r["w_p_miss"],
                                                             rfa_targets)
+
+        precision_measures = get_points_along_confidence_curve(det_points,
+                                                               "rfa",
+                                                               lambda r: r["rfa"],
+                                                               "precision",
+                                                               lambda r: r["precision"],
+                                                               rfa_targets)
 
         nmide_measures = get_points_along_confidence_curve(det_points,
                                                            "rfa",
@@ -177,7 +185,11 @@ class ActEV_SDL_V2(Default):
         #auc_measure_t = get_auc(fa_measures, "tfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
         #auc_measure_r = get_auc(pmiss_measures, "rfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
         #return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(fa_measures, merge_dicts(wpmiss_tfa_measures,merge_dicts(auc_measure_t,auc_measure_r)))))))
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(fa_measures, wpmiss_tfa_measures)))))
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]),
+                flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]),
+                flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]),
+#                merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(fa_measures, wpmiss_tfa_measures)))))
+                merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(precision_measures, merge_dicts(fa_measures, wpmiss_tfa_measures))))))
     
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, rfa_targets, nmide_targets, fa_targets, default_factorizations = []):
