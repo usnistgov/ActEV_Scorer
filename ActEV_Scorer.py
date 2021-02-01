@@ -335,20 +335,7 @@ def score_basic(protocol_class, args):
             # We validate the whole json without parsing, then we exit.
             if args.validation_only:
                 continue
-
             system_activities.extend(parse_activities(activities, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files))
-
-        if args.validation_only:
-            exit(0)
-
-        log(1, "Loading references ..")
-        reference = load_reference(log, args.reference_file)
-        reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
-        log(1, "[Info] Computing alignments ..")
-        alignment = protocol.compute_alignment(system_activities, reference_activities)
-        log(1, '[Info] Scoring ..')
-        results = protocol.compute_results(alignment, args.det_point_resolution)
-
     else:
         log(1, "[Info] Loading activities and references")
         system_output = load_system_output(log, args.system_output_file)
@@ -360,16 +347,16 @@ def score_basic(protocol_class, args):
         check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
         log(1, "[Info] Validation successful")
 
-        if args.validation_only:
-            exit(0)
+    if args.validation_only:
+        exit(0)
 
-        system_activities = parse_activities(system_output, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
-        reference = load_reference(log, args.reference_file)
-        reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
-        log(1, "[Info] Computing alignments ..")
-        alignment = protocol.compute_alignment(system_activities, reference_activities)
-        log(1, '[Info] Scoring ..')
-        results = protocol.compute_results(alignment, args.det_point_resolution)
+    log(1, "Loading references ..")
+    reference = load_reference(log, args.reference_file)
+    reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
+    log(1, "[Info] Computing alignments ..")
+    alignment = protocol.compute_alignment(system_activities, reference_activities)
+    log(1, '[Info] Scoring ..')
+    results = protocol.compute_results(alignment, args.det_point_resolution)
 
     if args.validation_only:
         exit(0)
