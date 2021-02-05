@@ -41,6 +41,7 @@ import jsonschema
 from operator import add
 from functools import reduce
 from tempfile import NamedTemporaryFile
+import multiprocessing
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
 sys.path.append(lib_path)
@@ -286,7 +287,6 @@ def score_basic(protocol_class, args):
     file_index = load_file_index(log, args.file_index)
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
     protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
-    protocol.pn = args.processes_number
     protocol.minmax = None
     plot_options = load_json(args.plotting_parameters_file) if args.plotting_parameters_file else {}
     system_output_schema = load_schema_for_protocol(log, protocol)
@@ -315,12 +315,33 @@ def score_basic(protocol_class, args):
             del activity_index[act]
         # Now we regenerate protocol ans stuff
         protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
-        protocol.pn = args.processes_number
         protocol.minmax = None
         system_output_schema = load_schema_for_protocol(log, protocol)
 
     log(1, "[Info] Computing alignments ..")
-    alignment = protocol.compute_alignment(system_activities, reference_activities)
+
+    def split_instances(activities, qty=1000000):
+        i = 0
+        while i < len(activities):
+            #try:
+            yield activities[i:i+qty]
+            #except:
+            #    yield activities[i:]
+            i += qty
+
+    pool = multiprocessing.Pool(args.processes_number)
+    pool_args = []
+    for part in split_instances(system_activities):
+        pool_args.append((part, reference_activities))
+    res = pool.starmap(protocol.compute_alignment, pool_args)
+    def red(a, b):
+        a.extend(b)
+        return a
+    alignment = reduce(red, res, [])
+    with open('norm.dmp', 'w') as fd:
+        fd.write(str(alignment))
+    # alignment = protocol.compute_alignment(system_activities, reference_activities)
+    
     log(1, '[Info] Scoring ..')
     results = protocol.compute_results(alignment, args.det_point_resolution)
 
