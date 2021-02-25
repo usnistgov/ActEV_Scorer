@@ -318,30 +318,10 @@ def score_basic(protocol_class, args):
         protocol.minmax = None
         system_output_schema = load_schema_for_protocol(log, protocol)
 
+    protocol.pn = args.processes_number
     log(1, "[Info] Computing alignments ..")
+    alignment = protocol.compute_alignment(system_activities, reference_activities)
 
-    def split_instances(activities, qty=1000000):
-        i = 0
-        while i < len(activities):
-            #try:
-            yield activities[i:i+qty]
-            #except:
-            #    yield activities[i:]
-            i += qty
-
-    pool = multiprocessing.Pool(args.processes_number)
-    pool_args = []
-    for part in split_instances(system_activities):
-        pool_args.append((part, reference_activities))
-    res = pool.starmap(protocol.compute_alignment, pool_args)
-    def red(a, b):
-        a.extend(b)
-        return a
-    alignment = reduce(red, res, [])
-    with open('norm.dmp', 'w') as fd:
-        fd.write(str(alignment))
-    # alignment = protocol.compute_alignment(system_activities, reference_activities)
-    
     log(1, '[Info] Scoring ..')
     results = protocol.compute_results(alignment, args.det_point_resolution)
 

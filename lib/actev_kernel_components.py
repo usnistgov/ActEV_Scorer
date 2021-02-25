@@ -46,8 +46,10 @@ def temporal_intersection_filter(r, s):
     ti = temporal_intersection(r, s)
     return (temporal_intersection(r, s) > 0, { "temporal_intersection": ti })
 
-def build_temporal_second_overlap_filter_v2(threshold, tioa_threshold="None"):
+def build_temporal_second_overlap_filter_v2(thresholds, tioa_threshold="None"):
         def _filter(r, s):
+            k = list(r.localization)[0]
+            threshold = thresholds[k]
             if tioa_threshold != "None":
                 if temporal_single_signal_area(r) < threshold:
                     #do basic temporal overlap filter
