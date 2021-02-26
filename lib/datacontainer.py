@@ -125,7 +125,11 @@ class DataContainer:
                     n = len(ys)
                     stds = stds / math.sqrt(n)
                     stds = 1.96 * stds
-                    ys = [np.interp(x, data.fa, data.fn) for data in dc_list_filtered]
+                    # (0,1) (minpfa, 1)
+                    ys = [np.interp(x,
+                                    np.concatenate((np.array([0, data.fa.min()]), data.fa)),
+                                    np.concatenate((np.array([1, 1]),             data.fn)))
+                                    for data in dc_list_filtered]
                     aggregated_dc = DataContainer(x, (np.vstack(ys).sum(0) + len(dc_list) - len(dc_list_filtered)) / len(dc_list), np.array([]), label=output_label, line_options=line_options)
                     aggregated_dc.std_array = stds
                     return aggregated_dc
