@@ -81,9 +81,9 @@ def identity(x):
 
 
 def unserialize_fct_alg(args):
-    (sfct, activity, props) = args
+    (sfct, fargs) = args
     fct = loads(sfct)
-    return fct(activity, props)
+    return fct(**fargs)
 
 
 def unserialize_fct_res(args):

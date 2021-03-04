@@ -298,8 +298,8 @@ def score_basic(protocol_class, args):
     else:
         system_output = load_system_output(log, args.system_output_file)
 
-    validate_input(log, system_output, system_output_schema)
-    check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
+    #validate_input(log, system_output, system_output_schema)
+    #check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
     log(1, "[Info] Validation successful")
 
     if args.validation_only:
@@ -320,7 +320,10 @@ def score_basic(protocol_class, args):
 
     protocol.pn = args.processes_number
     log(1, "[Info] Computing alignments ..")
+    import time
+    t0 = time.time()
     alignment = protocol.compute_alignment(system_activities, reference_activities)
+    print(time.time() - t0)
 
     log(1, '[Info] Scoring ..')
     results = protocol.compute_results(alignment, args.det_point_resolution)

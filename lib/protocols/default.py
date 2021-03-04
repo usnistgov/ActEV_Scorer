@@ -35,6 +35,8 @@ import os
 from functools import reduce
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
+import multiprocessing as mp
+import dill
 
 from metrics import *
 from alignment_record import *
@@ -77,23 +79,38 @@ class Default(object):
         # instances.  Then configured per-activity and activity
         # instances for both ref and sys
         kernel_builder = kernel_builder_func(reference_activities, system_activities)
-
         activity_getter = lambda x: x.activity
         ref_by_act = group_by_func(activity_getter, reference_activities)
         sys_by_act = group_by_func(activity_getter, system_activities)
 
         alignment_recs = []
         for activity, activity_properties in self.activity_index.items():
-            refs = ref_by_act.get(activity, [])
-            syss = sys_by_act.get(activity, [])
-
-            kernel = kernel_builder(activity, activity_properties, refs, syss)
-            for rs, ss in cohort_gen(refs, syss):
-                c, m, f = perform_alignment(rs, ss, kernel)
-                alignment_recs.extend(c)
-                alignment_recs.extend(m)
-                alignment_recs.extend(f)
+            act_refs = ref_by_act.get(activity, [])
+            act_syss = sys_by_act.get(activity, [])
+            for key in self.file_framerates:
+                refs = [r for r in act_refs if list(r.localization)[0] == key]
+                syss = [s for s in act_syss if list(r.localization)[0] == key]
+                kernel = kernel_builder(activity, activity_properties, refs, syss)
+                s_kernel = dill.dumps(kernel)
+                pool = mp.Pool(self.pn)
+                pool_args = [(r, s, s_kernel) for r, s in cohort_gen(refs, syss)]
+                res = pool.starmap(self.unserialize_and_perform_alignment, pool_args)
+                """res = []
+                for r, s in cohort_gen(refs, syss):
+                    print('cohort')
+                    c, m, f = perform_alignment(r, s, kernel)
+                    res.append((c,m,f))"""
+                for c, m, f in res:
+                    alignment_recs.extend(c)
+                    alignment_recs.extend(m)
+                    alignment_recs.extend(f)
+                pool.close()
+                pool.join()
         return alignment_recs
+    
+    def unserialize_and_perform_alignment(self, refs, syss, s_kernel):
+        kernel = dill.loads(s_kernel)
+        return perform_alignment(refs, syss, kernel)
 
 
     def compute_measures(self, record, measures):
@@ -160,9 +177,6 @@ class Default(object):
 
 
     def build_simple_measure(self, arg_func, name, measure_func):
-        #        print arg_func
-        #        print name
-        #        print measure_func
         def _m(*rec):
             return { name: measure_func(*arg_func(*rec)) }
 

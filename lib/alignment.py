@@ -87,41 +87,28 @@ def build_actev19_linear_combination_kernel(filters, components, weights, initia
 def build_linear_combination_kernel(filters, components, weights, initial_similarity = 1):
     def _kernel(r_i, s_i):
         def _filter_reducer(init, f):
-            #print "f: " +str(f)
             ok, cache = init
-            #print ok
             # We don't want to run additional filters if we've already
             # decided to filter out.  Will need to revisit this
             # approach if we decide to return cache components even
             # when a pair is filtered out
             if ok:
                 f_ok, f_cache = f(r_i, s_i)
-                #print f_ok
-                #print f_cache
                 cache.update(f_cache)
                 return (ok and f_ok, cache)
             else:
                 return (ok, cache)
         ok, cache = reduce(_filter_reducer, filters, (True, {}))
         if ok:
-            #print "OK"
-            #print cache
             component_values = reduce(merge_dicts, [ cf(r_i, s_i, cache) for cf in components ], {})
 
             def _r(init, key_weight):
                 key, weight = key_weight
-                #if key=="object_tracking_congruence":
-                    #print key
-                    #print weight
-                    #print component_values.get(key,0)
                 return init + weight * component_values.get(key, 0)
 
             sim = reduce(_r, weights.items(), initial_similarity)
-            #print "SIM: %s" %str(sim)
             return (sim, component_values)
         else:
-            #print "NOTOK"
-            #print cache
             return (DISALLOWED, {})
 
     return _kernel
