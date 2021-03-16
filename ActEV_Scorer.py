@@ -289,7 +289,6 @@ def score_basic(protocol_class, args):
     protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
     protocol.minmax = None
     plot_options = load_json(args.plotting_parameters_file) if args.plotting_parameters_file else {}
-    system_output_schema = load_schema_for_protocol(log, protocol)
 
     log(1, "[Info] Loading activities and references")
     if args.prune_system_output:
@@ -298,9 +297,11 @@ def score_basic(protocol_class, args):
     else:
         system_output = load_system_output(log, args.system_output_file)
 
-    #validate_input(log, system_output, system_output_schema)
-    #check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
-    log(1, "[Info] Validation successful")
+    if not args.skip_validation:
+        system_output_schema = load_schema_for_protocol(log, protocol)
+        validate_input(log, system_output, system_output_schema)
+        check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
+        log(1, "[Info] Validation successful")
 
     if args.validation_only:
         exit(0)
@@ -316,14 +317,10 @@ def score_basic(protocol_class, args):
         # Now we regenerate protocol ans stuff
         protocol = protocol_class(input_scoring_parameters, file_index, activity_index, " ".join(sys.argv))
         protocol.minmax = None
-        system_output_schema = load_schema_for_protocol(log, protocol)
 
     protocol.pn = args.processes_number
     log(1, "[Info] Computing alignments ..")
-    import time
-    t0 = time.time()
     alignment = protocol.compute_alignment(system_activities, reference_activities)
-    print(time.time() - t0)
 
     log(1, '[Info] Scoring ..')
     results = protocol.compute_results(alignment, args.det_point_resolution)
@@ -430,7 +427,8 @@ if __name__ == '__main__':
                  [["-i", "--ignore-no-score-regions"], dict(help="Don't discard instances which overlap no-score regions.", action="store_true", default=False)],
                  [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=8)],
                  [["-c", "--plotting-parameters-file"], dict(help="Optional plotting options JSON file", type=str)],
-                 [["-I", "--include-zero-ref-instances"], dict(help="Legacy behavior. Take into account `zero reference activity instances`", action="store_true")]]
+                 [["-I", "--include-zero-ref-instances"], dict(help="Legacy behavior. Take into account `zero reference activity instances`", action="store_true")],
+                 [["-S", "--skip-validation"], dict(help="Skip validation for testing purposes", action="store_true")],]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)

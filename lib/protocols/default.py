@@ -82,30 +82,31 @@ class Default(object):
         activity_getter = lambda x: x.activity
         ref_by_act = group_by_func(activity_getter, reference_activities)
         sys_by_act = group_by_func(activity_getter, system_activities)
-
-        alignment_recs = []
+        # building map args
+        args = []
         for activity, activity_properties in self.activity_index.items():
             act_refs = ref_by_act.get(activity, [])
             act_syss = sys_by_act.get(activity, [])
-            for key in self.file_framerates:
-                refs = [r for r in act_refs if list(r.localization)[0] == key]
-                syss = [s for s in act_syss if list(r.localization)[0] == key]
-                kernel = kernel_builder(activity, activity_properties, refs, syss)
-                s_kernel = dill.dumps(kernel)
-                pool = mp.Pool(self.pn)
-                pool_args = [(r, s, s_kernel) for r, s in cohort_gen(refs, syss)]
-                res = pool.starmap(self.unserialize_and_perform_alignment, pool_args)
-                """res = []
-                for r, s in cohort_gen(refs, syss):
-                    print('cohort')
-                    c, m, f = perform_alignment(r, s, kernel)
-                    res.append((c,m,f))"""
-                for c, m, f in res:
-                    alignment_recs.extend(c)
-                    alignment_recs.extend(m)
-                    alignment_recs.extend(f)
-                pool.close()
-                pool.join()
+            kernel = kernel_builder(activity, activity_properties, act_refs, act_syss)
+            args.append((act_refs, act_syss, dill.dumps(kernel), dill.dumps(cohort_gen)))
+        # lets go baby
+        pool = mp.Pool(self.pn)
+        alignment_recs = reduce(lambda x,y: x + y, pool.map(self.compute_alignment_per_act, args), [])
+        pool.close()
+        pool.join()
+        return alignment_recs
+
+    def compute_alignment_per_act(self, acts):
+        act_refs, act_syss, kernel, cohort_gen = acts
+        alignment_recs = []
+        for key in self.file_framerates:
+            refs = [r for r in act_refs if list(r.localization)[0] == key]
+            syss = [s for s in act_syss if list(r.localization)[0] == key]
+            for r, s in dill.loads(cohort_gen)(refs, syss):
+                c, m, f = perform_alignment(r, s, dill.loads(kernel))
+                alignment_recs.extend(c)
+                alignment_recs.extend(m)
+                alignment_recs.extend(f)
         return alignment_recs
     
     def unserialize_and_perform_alignment(self, refs, syss, s_kernel):
