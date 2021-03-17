@@ -99,9 +99,9 @@ class Default(object):
     def compute_alignment_per_act(self, acts):
         act_refs, act_syss, kernel, cohort_gen = acts
         alignment_recs = []
-        for key in self.file_framerates:
+        for key in self.file_index:
             refs = [r for r in act_refs if list(r.localization)[0] == key]
-            syss = [s for s in act_syss if list(r.localization)[0] == key]
+            syss = [s for s in act_syss if list(s.localization)[0] == key]
             for r, s in dill.loads(cohort_gen)(refs, syss):
                 c, m, f = perform_alignment(r, s, dill.loads(kernel))
                 alignment_recs.extend(c)
