@@ -136,11 +136,12 @@ class Render:
 
         if any(label_list):
             self.legend = plt.legend(
-                loc='center left', bbox_to_anchor=(1.04, 0.5), borderaxespad=0,
-                prop={'size': 8}, shadow=True, fontsize='small')
+                #loc='center left', bbox_to_anchor=(1.04, 0.5), borderaxespad=0,
+                loc='upper center', bbox_to_anchor=(0.5, -0.13), borderaxespad=0,
+                prop={'size': 8}, shadow=True, fontsize='small', ncol=3)
         self.legend = plt.legend(
-            loc='center left', bbox_to_anchor=(1.04, 0.5), borderaxespad=0,
-            prop={'size': 8}, shadow=True, fontsize='small')
+            loc='upper center', bbox_to_anchor=(0.5, -0.13), borderaxespad=0,
+            prop={'size': 8}, shadow=True, fontsize='small', ncol=3)
 
         self.figure.tight_layout(pad=2)
 
