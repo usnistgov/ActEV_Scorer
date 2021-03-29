@@ -4,6 +4,7 @@ import sys
 import json
 import numpy as np
 from helpers import *
+import math
 
 from scipy.stats import norm
 from collections import OrderedDict
@@ -134,14 +135,21 @@ class Render:
                      fontsize=plot_options['suptitle_fontsize'])
         plt.grid()
 
+        max_num = 30
+        if len(data_list) > max_num :
+            my_legend_loc = 'upper center'
+            my_legend_box = (0.5, -0.13)
+        else:
+            my_legend_loc = 'center left'
+            my_legend_box = (1.04, 0.5)
+
         if any(label_list):
             self.legend = plt.legend(
-                #loc='center left', bbox_to_anchor=(1.04, 0.5), borderaxespad=0,
-                loc='upper center', bbox_to_anchor=(0.5, -0.13), borderaxespad=0,
-                prop={'size': 8}, shadow=True, fontsize='small', ncol=3)
+                loc=my_legend_loc, bbox_to_anchor=my_legend_box, borderaxespad=0,
+                prop={'size': 8}, shadow=True, fontsize='small', ncol=math.ceil(len(data_list)/max_num))
         self.legend = plt.legend(
-            loc='upper center', bbox_to_anchor=(0.5, -0.13), borderaxespad=0,
-            prop={'size': 8}, shadow=True, fontsize='small', ncol=3)
+            loc=my_legend_loc, bbox_to_anchor=my_legend_box, borderaxespad=0,
+            prop={'size': 8}, shadow=True, fontsize='small', ncol=math.ceil(len(data_list)/max_num))
 
         self.figure.tight_layout(pad=2)
 
