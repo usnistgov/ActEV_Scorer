@@ -84,20 +84,29 @@ class Default(object):
         sys_by_act = group_by_func(activity_getter, system_activities)
         # building map args
         args = []
+        alignment_recs = []
         for activity, activity_properties in self.activity_index.items():
             act_refs = ref_by_act.get(activity, [])
             act_syss = sys_by_act.get(activity, [])
             kernel = kernel_builder(activity, activity_properties, act_refs, act_syss)
             args.append((act_refs, act_syss, dill.dumps(kernel), dill.dumps(cohort_gen)))
-        # lets go baby
-        pool = mp.Pool(self.pn)
-        alignment_recs = reduce(lambda x,y: x + y, pool.map(self.compute_alignment_per_act, args), [])
-        pool.close()
-        pool.join()
+            # lets go baby
+            pool = mp.Pool(self.pn)
+            alignment_recs = reduce(lambda x,y: x + y, pool.map(self.compute_alignment_per_act, args), [])
+            pool.close()
+            pool.join()
+            """for key in self.file_index:
+                refs = [r for r in act_refs if list(r.localization)[0] == key]
+                syss = [s for s in act_syss if list(s.localization)[0] == key]
+                for r, s in cohort_gen(refs, syss):
+                    c, m, f = perform_alignment(r, s, kernel)
+                    alignment_recs.extend(c)
+                    alignment_recs.extend(m)
+                    alignment_recs.extend(f)"""
         return alignment_recs
 
-    def compute_alignment_per_act(self, acts):
-        act_refs, act_syss, kernel, cohort_gen = acts
+    def compute_alignment_per_act(self, args):
+        act_refs, act_syss, kernel, cohort_gen = args
         alignment_recs = []
         for key in self.file_index:
             refs = [r for r in act_refs if list(r.localization)[0] == key]

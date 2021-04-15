@@ -38,5 +38,5 @@ t0 = time.time()
 def build_logger(verbosity_threshold=0):
     def _log(depth, msg):
         if depth <= verbosity_threshold:
-            print("[%.03f] %s" % (time.time() - t0, msg))
+            print("[%.03f] %s" % (time.time() - t0,msg))
     return _log
