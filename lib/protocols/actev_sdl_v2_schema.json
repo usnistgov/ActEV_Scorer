@@ -56,11 +56,14 @@
       "type": "object",
       "patternProperties": {
         "^[A-Za-z0-9_\\-\\.]+$": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
           },
           "required": [
             "status",
