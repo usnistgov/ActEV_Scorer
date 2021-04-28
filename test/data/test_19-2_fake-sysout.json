@@ -343,5 +343,15 @@
         }
       }
     }
-  ]
+  ],
+  "processingReport": {
+    "fileStatuses": {
+      "VIRAT_S_000000.mp4": {
+        "status": "success",
+        "message": "ok"
+      }
+    },
+    "siteSpecific": {
+    }
+  }
 }

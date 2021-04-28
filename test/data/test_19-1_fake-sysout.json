@@ -5,18 +5,6 @@
   "activities": [
     {
       "activity": "Closing",
-      "activityID": 5,
-      "presenceConf": 0.796,
-      "alertFrame": 3030,
-      "localization": {
-        "VIRAT_S_000000.mp4": {
-          "-40": 1,
-          "3040": 0
-        }
-      }
-    },
-    {
-      "activity": "Closing",
       "activityID": 1,
       "presenceConf": 0.796,
       "alertFrame": 3030,

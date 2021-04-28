@@ -59,7 +59,8 @@
           "type": "object",
           "properties": {
             "status": {
-              "type": "string"
+              "type": "string",
+              "enum": ["success", "fail"]
             },
             "message": {
               "type": "string"
