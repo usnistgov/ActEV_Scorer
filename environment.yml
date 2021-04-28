@@ -9,3 +9,5 @@ dependencies:
   - munkres=1.0.12
   - jsonschema=3.2.0
   - dill=0.3.1.1
+  - pillow=8.2.0
+  - pandas=1.2.4
