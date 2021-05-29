@@ -104,6 +104,7 @@ class Default(object):
         pool = multiprocessing.Pool(self.pn)
         alignment_recs = pool.map(unserialize_fct_alg, args)
         pool.close()
+        pool.join()
         alignment = []
         for rec in alignment_recs:
             alignment.extend(rec)
