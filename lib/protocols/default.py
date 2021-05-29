@@ -98,6 +98,7 @@ class Default(object):
         pool = multiprocessing.Pool(self.pn)
         alignment_recs = pool.map(unserialize_fct_alg, args)
         pool.close()
+        pool.join()
         """
         def _f(activity, activity_properties):
             alignment_recs = []
