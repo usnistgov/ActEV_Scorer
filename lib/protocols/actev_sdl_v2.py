@@ -209,7 +209,7 @@ class ActEV_SDL_V2(Default):
         for key in grouped:
             args.append((_r_srlz, (key, grouped[key]), ({}, {}, [], [])))
 
-        with ProcessPoolExecutor() as pool:
+        with ProcessPoolExecutor(self.pn) as pool:
             res = pool.map(unserialize_fct_res, args)
 
         p, t, fa, m = {}, {}, [], []

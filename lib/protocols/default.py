@@ -95,7 +95,7 @@ class Default(object):
         for activity, props in self.activity_index.items():
             args.extend([a for a in gen_args(activity, props)])
 
-        with ProcessPoolExecutor() as pool:
+        with ProcessPoolExecutor(self.pn) as pool:
             alignment_recs = pool.map(unserialize_fct_alg, args)
         alignment = []
         for c,m,f in alignment_recs:
