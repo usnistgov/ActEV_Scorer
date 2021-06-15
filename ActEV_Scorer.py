@@ -298,9 +298,10 @@ def score_basic(protocol_class, args):
     else:
         system_output = load_system_output(log, args.system_output_file)
 
-    validate_input(log, system_output, system_output_schema)
-    check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
-    log(1, "[Info] Validation successful")
+    if not args.skip_validation:
+        validate_input(log, system_output, system_output_schema)
+        check_file_index_congruence(log, system_output, file_index, args.ignore_extraneous_files, args.ignore_missing_files)
+        log(1, "[Info] Validation successful")
 
     if args.validation_only:
         exit(0)
@@ -426,7 +427,8 @@ if __name__ == '__main__':
                  [["-i", "--ignore-no-score-regions"], dict(help="Don't discard instances which overlap no-score regions.", action="store_true", default=False)],
                  [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=8)],
                  [["-c", "--plotting-parameters-file"], dict(help="Optional plotting options JSON file", type=str)],
-                 [["-I", "--include-zero-ref-instances"], dict(help="Legacy behavior. Take into account `zero reference activity instances`", action="store_true")]]
+                 [["-I", "--include-zero-ref-instances"], dict(help="Legacy behavior. Take into account `zero reference activity instances`", action="store_true")],
+                 [["-S", "--skip-validation"], dict(help="Skip system output validation step", action="store_true", default=False)]]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)
