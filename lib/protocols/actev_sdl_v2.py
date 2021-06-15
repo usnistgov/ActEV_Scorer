@@ -34,7 +34,7 @@ import sys
 import os
 import subprocess
 import dill
-import multiprocessing
+from concurrent.futures import ProcessPoolExecutor
 
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
@@ -209,13 +209,8 @@ class ActEV_SDL_V2(Default):
         for key in grouped:
             args.append((_r_srlz, (key, grouped[key]), ({}, {}, [], [])))
 
-        # Freeing memory
-        del grouped
-        del records
-
-        pool = multiprocessing.Pool(self.pn)
-        res = pool.map(unserialize_fct_res, args)
-        pool.close()
+        with ProcessPoolExecutor(self.pn) as pool:
+            res = pool.map(unserialize_fct_res, args)
 
         p, t, fa, m = {}, {}, [], []
         for entry in res:

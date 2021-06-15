@@ -34,7 +34,7 @@ import sys
 import os
 from functools import reduce
 import dill
-import multiprocessing
+from concurrent.futures import ProcessPoolExecutor
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
 
@@ -83,31 +83,25 @@ class Default(object):
         activity_getter = lambda x: x.activity
         ref_by_act = group_by_func(activity_getter, reference_activities)
         sys_by_act = group_by_func(activity_getter, system_activities)
-
-        def _f(activity, activity_properties):
-            alignment_recs = []
+        
+        def gen_args(activity, properties):
             refs = ref_by_act.get(activity, [])
             syss = sys_by_act.get(activity, [])
-
-            kernel = kernel_builder(activity, activity_properties, refs, syss)
+            kernel = kernel_builder(activity, properties, refs, syss)
             for rs, ss in cohort_gen(refs, syss):
-                c, m, f = perform_alignment(rs, ss, kernel)
-                alignment_recs.extend(c)
-                alignment_recs.extend(m)
-                alignment_recs.extend(f)
-            return alignment_recs
-        serialized_f = dill.dumps(_f)
+                yield (dill.dumps(perform_alignment), dill.dumps(rs), dill.dumps(ss), dill.dumps(kernel))
 
         args = []
         for activity, props in self.activity_index.items():
-            args.append((serialized_f, activity, props))
-        pool = multiprocessing.Pool(self.pn)
-        alignment_recs = pool.map(unserialize_fct_alg, args)
-        pool.close()
-        pool.join()
+            args.extend([a for a in gen_args(activity, props)])
+
+        with ProcessPoolExecutor(self.pn) as pool:
+            alignment_recs = pool.map(unserialize_fct_alg, args)
         alignment = []
-        for rec in alignment_recs:
-            alignment.extend(rec)
+        for c,m,f in alignment_recs:
+            alignment.extend(c)
+            alignment.extend(m)
+            alignment.extend(f)
         return alignment
 
 
