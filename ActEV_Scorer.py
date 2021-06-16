@@ -322,6 +322,7 @@ def score_basic(protocol_class, args):
 
     log(1, "[Info] Computing alignments ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
+    sys.exit(0)
     log(1, '[Info] Scoring ..')
     results = protocol.compute_results(alignment, args.det_point_resolution)
 

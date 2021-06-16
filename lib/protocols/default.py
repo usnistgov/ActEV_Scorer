@@ -84,17 +84,21 @@ class Default(object):
         ref_by_act = group_by_func(activity_getter, reference_activities)
         sys_by_act = group_by_func(activity_getter, system_activities)
         
+        import time
         def gen_args(activity, properties):
             refs = ref_by_act.get(activity, [])
             syss = sys_by_act.get(activity, [])
             kernel = kernel_builder(activity, properties, refs, syss)
             for rs, ss in cohort_gen(refs, syss):
                 yield (dill.dumps(perform_alignment), dill.dumps(rs), dill.dumps(ss), dill.dumps(kernel))
-
+        t=time.time()
         args = []
         for activity, props in self.activity_index.items():
             args.extend([a for a in gen_args(activity, props)])
+        print('args: ')
+        print(time.time()-t)
 
+        ta=time.time()
         with ProcessPoolExecutor(self.pn) as pool:
             alignment_recs = pool.map(unserialize_fct_alg, args)
         alignment = []
@@ -102,6 +106,8 @@ class Default(object):
             alignment.extend(c)
             alignment.extend(m)
             alignment.extend(f)
+        print('alignment: ')
+        print(time.time()-ta)
         return alignment
 
 

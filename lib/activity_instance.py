@@ -66,6 +66,18 @@ class ActivityInstance():
 
     def __str__(self):
         return str(self.activityID)
+    
+    def __lt__(self, other):
+        k = list(self.localization)[0]
+        try:
+            assert self.activity == other.activity
+            ts = sorted(int(x) for x in list(self.localization[k]))
+            to = sorted(list(other.localization[k]))
+        except AssertionError:
+            raise TypeError("'<' not supported between instances of different activities")
+        except KeyError:
+            raise TypeError("'<' not supported between activity instances from different files")
+        return ts[0] < to[0] or ts[0] == to[0] and ts[1] < to[1]
 
 class ObjectInstance():
     def __init__(self, dictionary):

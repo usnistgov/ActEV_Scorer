@@ -80,8 +80,51 @@ class ActEV_SDL_V2(Default):
     # Warning ** this cohort generation function only works when
     # activity instances are localized to a single file!!  This is
     # enforced by the schemas for ActEV18_AD and ActEV18_AOD
-    """
     def default_cohort_gen(self, refs, syss):
+        def get_next_reference_instances(srefs, ngs, syss):
+            # Happen if out of reference isntances or system detections
+            if srefs == [] or ngs == []:
+                return []
+
+            nrefs = []
+            # First call when creating a group
+            if ngs == None:
+                nrefs.append(srefs.pop(0))
+                while len(srefs) != 0 and temporal_intersection(nrefs[-1], srefs[0]):
+                    nrefs.append(srefs.pop(0))
+            # Successive calls: happens if the last added system instance
+            # overlaps another reference instance
+            else:
+                for s in ngs:
+                    while len(srefs) != 0 and temporal_intersection(s, srefs[0]) != 0:
+                        nrefs.append(srefs.pop(0))
+            return nrefs
+
+        def get_next_system_instances(ssyss, ngr, srefs):
+            # If out of system detections
+            if ssyss == []:
+                return []
+            # If out of reference isntances, adding everything else
+            if srefs == [] or ngr == []:
+                syss = []
+                while len(ssyss) != 0:
+                    syss.append(ssyss.pop(0))
+                return syss
+            # Successive calls
+            nsyss = []
+            nsyss.append(ssyss.pop(0))
+            k = list(ngr[0].localization)[0]
+            max_end_frame = max(int(list(r.localization[k])[1]) for r in ngr)
+            # adding all sys detections that match nothing and strictly
+            # happened before the next reference instance
+            # they will be counted as FA
+            while len(ssyss) != 0 and int(list(ssyss[0].localization[k])[0]) < max_end_frame and temporal_intersection(ssyss[0], ngr[-1]) == 0:
+                nsyss.append(ssyss.pop(0))
+            # now we add all possible candidates
+            while len(ssyss) != 0 and temporal_intersection(ssyss[0], ngr[-1]) != 0:
+                nsyss.append(ssyss.pop(0))
+            return nsyss
+
         def _localization_file_grouper(instance):
             return list(instance.localization)[0]
 
@@ -90,74 +133,31 @@ class ActEV_SDL_V2(Default):
 
         for k in ref_groups.keys() | sys_groups.keys():
             yield (ref_groups.get(k, []), sys_groups.get(k, []))
-    """
-    def default_cohort_gen(self, refs, syss):
-        def get_next_reference_instances(srefs, ngs, syss):
-            if srefs == []:
-                return []
-            refs = []
-            # First call when creating a group
-            if ngs == None:
-                refs.append(srefs.pop(0))
-                while len(srefs) and temporal_intersection(refs[-1], srefs[0]):
-                    refs.append(srefs.pop(0))
-            # Happen if the last ref instance wasn't detected by the system
-            # In that case we can add all the following that the system missed
-            elif ngs == []:
-                while len(srefs) and len(syss) and temporal_intersection(refs[-1], syss[0] == 0):
-                    refs.append(srefs.pop(0))
-                # if there's no more sys insts (not very likely but still) 
-                if not len(syss):
-                    while (len(srefs)):
-                        refs.append(srefs.pop(0))
-            # Successive calls: happens if the last added system instance
-            # overlaps another reference instance
-            else:
-                for s in ngs:
-                    while len(srefs) and temporal_intersection(s, srefs[0]):
-                        refs.append(srefs.pop(0))
-            return refs
-
-        def get_next_system_instances(ssyss, ngr, srefs):
-            """try:
-                print('+', len(ngr))
-            except TypeError:
-                print('s none')"""
-            if ssyss == [] or ngr == None or ngr == []:
-                return []
-            if srefs == []:
-                syss = []
-                while len(ssyss):
-                    syss.append(ssyss.pop(0))
-                return syss
-            syss = []
-            syss.append(ssyss.pop(0))
-            k = list(ngr[0].localization)[0]
-            max_end_frame = max(int(list(r.localization[k])[1]) for r in ngr)
-            # adding all sys detections that match nothing and strictly
-            # happened before the next reference instance
-            # they will be counted as FA
-            while len(ssyss) and int(list(ssyss[0].localization[k])[0]) < max_end_frame and temporal_intersection(ssyss[0], ngr[-1]) == 0:
-                syss.append(ssyss.pop(0))
-            # now we add all possible candidates
-            while len(ssyss) and temporal_intersection(ssyss[0], ngr[-1]):
-                syss.append(ssyss.pop(0))
-            return syss
-
-        # First sorting by timestamp all instances
-        srefs, ssyss = sorted(refs), sorted(syss)
-        # Then group them by smaller parts
-        i = 0
-        while len(srefs) or len(ssyss):
-            # intermediate groups of instances
-            grefs, gsyss = [], []
-            next_gr, next_gs = None, None
-            while not (next_gr == [] and next_gs == []):
-                next_gr = get_next_reference_instances(srefs, next_gs, gsyss)
-                grefs.extend(next_gr)
-                next_gs = get_next_system_instances(ssyss, next_gr, srefs)
-                gsyss.extend(next_gs)
-            yield (grefs, gsyss)
+            """
+            # Check for multi groups in (currently only one)
+            # - 2018-03-15.16-45-00.16-50-00.bus.G331.avi
+            # - 2020-11-20.13-50-00.13-55-00.khq.G649.avi
+            #print("file %s" % k)
+            # First sorting by timestamp all instances
+            srefs, ssyss = sorted(ref_groups.get(k, [])), sorted(sys_groups.get(k, []))
+            # Then group them by smaller parts
+            i = 0
+            while len(srefs) != 0 or len(ssyss) != 0:
+                #print("  starting a new grp")
+                # intermediate groups of instances
+                grefs, gsyss = [], []
+                next_gr, next_gs = None, None
+                while not (next_gr == [] and next_gs == []):
+                    #print("    left refs and syss %d %d" % (len(srefs), len(ssyss)))
+                    #print("    adding candidates. current sizes %d %d" % (len(grefs), len(gsyss)))
+                    next_gr = get_next_reference_instances(srefs, next_gs, gsyss)
+                    grefs.extend(next_gr)
+                    next_gs = get_next_system_instances(ssyss, next_gr, srefs)
+                    gsyss.extend(next_gs)
+                    #print("    nextrefs(%d) nextsyss(%d)" % (len(next_gr), len(next_gs)))
+                #print("  giving %d refs and %d syss" % (len(grefs), len(gsyss)))
+                yield (grefs, gsyss)
+                #"""
 
 
     def default_kernel_builder(self, refs, syss):
