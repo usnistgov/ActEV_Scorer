@@ -393,8 +393,9 @@ def fa_meas_v2(ref_sig, sys_sig, sys_sig_add):
         num_sig = sys_temp - ref_temp_add
         out_dic = {"sys": sys_temp,
                    "ref": ref_temp_add,
-                   "sys_minus_ref": num_sig}
-        print(out_dic)
+                   "sys_minus_ref": num_sig,
+                   "vid": key}
+        #print(out_dic)
         numer=num_sig.area()
         tfa_denom[key] = nr_area
         tfa_numer[key] = numer
@@ -403,6 +404,7 @@ def fa_meas_v2(ref_sig, sys_sig, sys_sig_add):
         NR_Ref_Sig[key] = not_ref    
         numer_sum = numer_sum + numer
         denom_sum = denom_sum + nr_area
+    print(out_dic)
     if denom_sum == 0:
         return {  "tfa": None,
                   "tfa_denom": denom_sum, #tfa_denom,
