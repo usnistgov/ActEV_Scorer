@@ -374,7 +374,7 @@ def special_join(signals):
         #print signals
     return signals[0]
     
-def fa_meas_v2(ref_sig, sys_sig, sys_sig_add):
+def fa_meas_v2(ref_sig, sys_sig, sys_sig_add, activity):
     tfa_denom = {}
     tfa_numer = {}
     System_Sig = {}
@@ -394,7 +394,8 @@ def fa_meas_v2(ref_sig, sys_sig, sys_sig_add):
         out_dic = {"sys": sys_temp,
                    "ref": ref_temp_add,
                    "sys_minus_ref": num_sig,
-                   "vid": key}
+                   "vid": key,
+                   "activity": activity}
         #print(out_dic)
         numer=num_sig.area()
         tfa_denom[key] = nr_area
