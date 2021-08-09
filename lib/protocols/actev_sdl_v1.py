@@ -119,9 +119,9 @@ class ActEV_SDL_V1(Default):
 
         return _nmide
     
-    def build_fa_measure(self):
+    def build_fa_measure(self,activity):
         def _fa_meas(ref_sig, sys_sig, sys_sig_add):
-            return fa_meas_v2(ref_sig, sys_sig, sys_sig_add)
+            return fa_meas_v2(ref_sig, sys_sig, sys_sig_add, activity)
         #[ (ar.ref, ar.sys) for ar in c ],
         #                  [(ar.ref) for ar in m],
         #                  [(ar.sys) for ar in f],
@@ -130,11 +130,12 @@ class ActEV_SDL_V1(Default):
         return _fa_meas
         
     def compute_det_points_and_measures(self, alignment, rfa_denom, uniq_conf, rfa_targets, nmide_targets, fa_targets, wpmiss_denom, wpmiss_numer):
+        #print(alignment[0].activity)
         sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [ build_rfa_metric(rfa_denom),
                                                                    build_pmiss_metric(),
                                                                    build_wpmiss_metric(wpmiss_denom, wpmiss_numer),
                                                                    self.build_nmide_measure(),
-                                                                   self.build_fa_measure()], uniq_conf, file_framedur_lookup = self.file_framedur_lookup)
+                                                                   self.build_fa_measure(alignment[0].activity)], uniq_conf, file_framedur_lookup = self.file_framedur_lookup)
 
         det_points = sweeper(alignment)
 
