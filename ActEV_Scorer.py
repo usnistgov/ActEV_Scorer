@@ -55,6 +55,7 @@ from render import Render
 from logger import build_logger
 from ActivitiesFilePruner import prune
 from sparse_signal import SparseSignal
+from metrics import compute_map
 
 def err_quit(msg, exit_status=1):
     print("[Error] {}".format(msg))
@@ -324,6 +325,7 @@ def score_basic(protocol_class, args):
     alignment = protocol.compute_alignment(system_activities, reference_activities)
     log(1, '[Info] Scoring ..')
     results = protocol.compute_results(alignment, args.det_point_resolution)
+    map_metrics = compute_map(system_activities, reference_activities, activity_index, file_index)
 
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
@@ -336,7 +338,7 @@ def score_basic(protocol_class, args):
     write_out_scoring_params(args.output_dir, protocol.scoring_parameters)
     write_records_as_csv("{}/alignment.csv".format(args.output_dir), ["activity", "alignment", "ref", "sys", "sys_presenceconf_score", "kernel_similarity", "kernel_components"], results.get("output_alignment_records", []))
     write_records_as_csv("{}/pair_metrics.csv".format(args.output_dir), ["activity", "ref", "sys", "metric_name", "metric_value"], results.get("pair_metrics", []))
-    write_records_as_csv("{}/scores_by_activity.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], results.get("scores_by_activity", []) + audc_by_activity)
+    write_records_as_csv("{}/scores_by_activity.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], results.get("scores_by_activity", []) + audc_by_activity + map_metrics)
     write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], results.get("scores_aggregated", []) + mean_audc)
     write_records_as_csv("{}/scores_by_activity_and_threshold.csv".format(args.output_dir), [ "activity", "score_threshold", "metric_name", "metric_value" ], results.get("scores_by_activity_and_threshold", []))
 

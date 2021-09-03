@@ -838,3 +838,71 @@ def flatten_sweeper_records(recs, keys):
 #    return build_sweeper(conf_key_func, [ build_rfa_metric(rfa_denom),
 #                                          build_pmiss_metric(),
 #                                          build_wpmiss_metric() ])
+
+
+def compute_pr(system_activities, reference_activities, threshold):
+    refs_count = len(reference_activities)
+    syss_count = len(system_activities)
+    tp = []
+    fp = []
+    used_refs = []
+
+    if refs_count == 0 or syss_count == 0:
+        return (0, 0)
+
+    while len(used_refs) != refs_count or len(tp) + len(fp) != syss_count:
+        if len(used_refs) == refs_count:
+            for s in [s for s in system_activities if s not in tp and s not in fp]:
+                fp.append(s)
+            continue
+        ref = [r for r in reference_activities if r not in used_refs][0]
+        used_refs.append(ref)
+        candidates = [s for s in system_activities if s not in tp and s not in fp and temporal_intersection_over_union(s, ref) >= threshold]
+        iou = [temporal_intersection_over_union(s, ref) for s in candidates]
+        if iou == []:
+            continue
+        candidate = candidates[iou.index(max(iou))]
+        tp.append(candidate)
+
+    tp_count = len(tp)
+    fp_count = len(fp)
+    precision = tp_count / (tp_count+fp_count)
+    recall = tp_count / refs_count
+    return (precision, recall)
+
+def compute_map(system_activities, reference_activities, activity_index, file_index, thresholds=[0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]):
+    def _filter_by_act(activities, key):
+        return list(filter(lambda x: x.activity == key, activities))
+    
+    def _filter_by_file(activities, key):
+        return list(filter(lambda x: list(x.localization.keys())[0] == key, activities))
+
+    def _compute_ap(video_metrics):
+        precision, recall = [], []
+        for p, r in video_metrics:
+            precision.append(p)
+            recall.append(r)
+
+        mprec = np.hstack([[0], precision, [0]])
+        mrec = np.hstack([[0], recall, [1]])
+        for i in range(len(mprec) - 1)[::-1]:
+            mprec[i] = max(mprec[i], mprec[i + 1])
+        idx = np.where(mrec[1::] != mrec[0:-1])[0] + 1
+        ap = np.sum((mrec[idx] - mrec[idx - 1]) * mprec[idx])
+        return ap
+
+    #metrics = {}
+    metrics = []
+    for activity in activity_index:
+        syss = _filter_by_act(system_activities, activity)
+        refs = _filter_by_act(reference_activities, activity)
+        #metrics[activity] = {}
+        for thd in thresholds:
+            video_metrics = []
+            for video in file_index:
+                syss_by_video = _filter_by_file(syss, video)
+                refs_by_video = _filter_by_file(refs, video)
+                video_metrics.append(compute_pr(syss_by_video, refs_by_video, thd))
+            #metrics[activity][thd] = _compute_ap(video_metrics)
+            metrics.append((activity, 'mAP@%.2f' % thd, _compute_ap(video_metrics)))
+    return metrics
