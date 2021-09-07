@@ -870,18 +870,21 @@ def compute_pr(system_activities, reference_activities, threshold):
     recall = tp_count / refs_count
     return (precision, recall)
 
-def compute_map(system_activities, reference_activities, activity_index, file_index, thresholds=[0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]):
+
+def compute_map(system_activities, reference_activities, activity_index, file_index, thresholds=[x/100 for x in range(5, 100, 5)]):
+    # Largely inspired from ActivityNet code
     def _filter_by_act(activities, key):
         return list(filter(lambda x: x.activity == key, activities))
     
     def _filter_by_file(activities, key):
         return list(filter(lambda x: list(x.localization.keys())[0] == key, activities))
 
-    def _compute_ap(video_metrics):
+    def _compute_ap(precision, recall):
+        """
         precision, recall = [], []
         for p, r in video_metrics:
             precision.append(p)
-            recall.append(r)
+            recall.append(r)"""
 
         mprec = np.hstack([[0], precision, [0]])
         mrec = np.hstack([[0], recall, [1]])
@@ -891,18 +894,59 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
         ap = np.sum((mrec[idx] - mrec[idx - 1]) * mprec[idx])
         return ap
 
-    #metrics = {}
-    metrics = []
+    metrics = {"map": [], "pr": []}
+    ap = {}
     for activity in activity_index:
         syss = _filter_by_act(system_activities, activity)
         refs = _filter_by_act(reference_activities, activity)
-        #metrics[activity] = {}
+        """
         for thd in thresholds:
             video_metrics = []
             for video in file_index:
                 syss_by_video = _filter_by_file(syss, video)
                 refs_by_video = _filter_by_file(refs, video)
                 video_metrics.append(compute_pr(syss_by_video, refs_by_video, thd))
-            #metrics[activity][thd] = _compute_ap(video_metrics)
-            metrics.append((activity, 'mAP@%.2f' % thd, _compute_ap(video_metrics)))
-    return metrics
+            metrics["map"].append((activity, 'mAP@%.2f' % thd, _compute_ap(video_metrics)))
+            metrics["pr"].append((activity, 'pr@%.2f' % thd, video_metrics.copy()))
+        """
+        ap[activity] = np.zeros(len(thresholds))
+        npos = float(len(refs))
+        if npos == 0:
+            continue
+        lock_gt = np.ones((len(thresholds),len(refs))) * -1
+
+        # Sort predictions by decreasing score order.
+        sort_idx = argsort(syss, 'presenceConf')[::-1]
+        prediction = [syss[idx] for idx in sort_idx]
+
+        # Initialize true positive and false positive vectors.
+        tp = np.zeros((len(thresholds), len(prediction)))
+        fp = np.zeros((len(thresholds), len(prediction)))
+
+        for idx, this_pred in enumerate(prediction):
+            this_gt = _filter_by_file(refs, list(this_pred.localization.keys())[0])
+            tiou_arr = [temporal_intersection_over_union(ref, this_pred) for ref in this_gt]
+            tiou_sorted_idx = argsort(tiou_arr)[::-1]
+            for tidx, tiou_thr in enumerate(thresholds):
+                for jdx in tiou_sorted_idx:
+                    if tiou_arr[jdx] < tiou_thr:
+                        fp[tidx, idx] = 1
+                        break
+                    if lock_gt[tidx, jdx] >= 0:
+                        continue
+                    # Assign as true positive after the filters above.
+                    tp[tidx, idx] = 1
+                    lock_gt[tidx, jdx] = idx
+                    break
+
+                if fp[tidx, idx] == 0 and tp[tidx, idx] == 0:
+                    fp[tidx, idx] = 1
+
+        tp_cumsum = np.cumsum(tp, axis=1).astype(np.float)
+        fp_cumsum = np.cumsum(fp, axis=1).astype(np.float)
+        recall_cumsum = tp_cumsum / npos
+        precision_cumsum = tp_cumsum / (tp_cumsum + fp_cumsum)
+
+        for tidx in range(len(thresholds)):
+            ap[activity][tidx] = _compute_ap(precision_cumsum[tidx,:], recall_cumsum[tidx,:])
+    return ap
