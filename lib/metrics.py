@@ -949,4 +949,9 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
 
         for tidx in range(len(thresholds)):
             ap[activity][tidx] = _compute_ap(precision_cumsum[tidx,:], recall_cumsum[tidx,:])
-    return ap
+    
+    ap_metrics = []
+    for activity in ap:
+        for i in range(len(thresholds)):
+            ap_metrics.append((activity, 'mAP@%.2f' % thresholds[i], float(ap[activity][i])))
+    return ap_metrics
