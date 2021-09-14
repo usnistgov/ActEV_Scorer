@@ -875,7 +875,7 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
     # Largely inspired from ActivityNet code
     def _filter_by_act(activities, key):
         return list(filter(lambda x: x.activity == key, activities))
-    
+
     def _filter_by_file(activities, key):
         return list(filter(lambda x: list(x.localization.keys())[0] == key, activities))
 
@@ -949,9 +949,18 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
 
         for tidx in range(len(thresholds)):
             ap[activity][tidx] = _compute_ap(precision_cumsum[tidx,:], recall_cumsum[tidx,:])
-    
-    ap_metrics = []
+
+    ap_len = len(ap)
+    ap_metrics = {'AP': [], 'mAP': []}
+    mAP = {}
+    for thd in thresholds:
+        mAP[thd] = 0
     for activity in ap:
         for i in range(len(thresholds)):
-            ap_metrics.append((activity, 'mAP@%.2f' % thresholds[i], float(ap[activity][i])))
+            thd = thresholds[i]
+            v = float(ap[activity][i])
+            ap_metrics['AP'].append((activity, 'AP@%.2ftIoU' % thd, v))
+            mAP[thd] += v
+    for thd in mAP:
+        ap_metrics['mAP'].append(('mAP@%.2ftIoU' % thd, mAP[thd]/ap_len))
     return ap_metrics
