@@ -332,7 +332,7 @@ def score_basic(protocol_class, args):
     audc_by_activity = []
     mean_audc = []
     if not args.disable_plotting:
-        #export_pr_curves(log, map_metrics['pr'], args.output_dir, plot_options)
+        export_pr_curves(log, map_metrics['pr'], args.output_dir, plot_options)
         export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir, plot_options)
         audc_by_activity, mean_audc = protocol.compute_auc(args.output_dir)
 
@@ -386,14 +386,18 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir, plot_options
     _export_records(dm_records_tfa, "TFA")
 
 def export_pr_curves(log, pr_metrics, output_dir, plot_options):
-    if len(pr_metrics) > 0:
-        activities = list(set([e[0] for e in pr_metrics]))
-        for activity in activities:
-            precision, recall = [], []
-            for p, r in [r[2] for r in pr_metrics if r[0] == activity]:
-                precision.append(p)
-                recall.append(r)
-            
+    precision, recall = pr_metrics
+    activities = list(precision.keys())
+    import matplotlib.pyplot as plt
+    for activity in activities:
+        p, r = sorted(precision[activity], reverse=True), sorted(recall[activity])
+        plt.plot(r, p)
+        plt.title(activity)
+        plt.xlim([0, 1])
+        plt.ylim([0, 1])
+        plt.grid()
+        plt.savefig("%s/PR_%s.png" % (output_dir, activity))
+        plt.close()
 
 def records_to_dm(records):
     dc_dict = {}

@@ -880,12 +880,6 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
         return list(filter(lambda x: list(x.localization.keys())[0] == key, activities))
 
     def _compute_ap(precision, recall):
-        """
-        precision, recall = [], []
-        for p, r in video_metrics:
-            precision.append(p)
-            recall.append(r)"""
-
         mprec = np.hstack([[0], precision, [0]])
         mrec = np.hstack([[0], recall, [1]])
         for i in range(len(mprec) - 1)[::-1]:
@@ -894,21 +888,10 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
         ap = np.sum((mrec[idx] - mrec[idx - 1]) * mprec[idx])
         return ap
 
-    metrics = {"map": [], "pr": []}
-    ap = {}
+    ap, precision, recall = {}, {}, {}
     for activity in activity_index:
         syss = _filter_by_act(system_activities, activity)
         refs = _filter_by_act(reference_activities, activity)
-        """
-        for thd in thresholds:
-            video_metrics = []
-            for video in file_index:
-                syss_by_video = _filter_by_file(syss, video)
-                refs_by_video = _filter_by_file(refs, video)
-                video_metrics.append(compute_pr(syss_by_video, refs_by_video, thd))
-            metrics["map"].append((activity, 'mAP@%.2f' % thd, _compute_ap(video_metrics)))
-            metrics["pr"].append((activity, 'pr@%.2f' % thd, video_metrics.copy()))
-        """
         ap[activity] = np.zeros(len(thresholds))
         npos = float(len(refs))
         if npos == 0:
@@ -947,11 +930,13 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
         recall_cumsum = tp_cumsum / npos
         precision_cumsum = tp_cumsum / (tp_cumsum + fp_cumsum)
 
+        precision[activity] = precision_cumsum[tidx,:]
+        recall[activity] = recall_cumsum[tidx,:]
         for tidx in range(len(thresholds)):
-            ap[activity][tidx] = _compute_ap(precision_cumsum[tidx,:], recall_cumsum[tidx,:])
+            ap[activity][tidx] = _compute_ap(precision[activity], recall[activity])
 
     ap_len = len(ap)
-    ap_metrics = {'AP': [], 'mAP': []}
+    ap_metrics = {'AP': [], 'mAP': [], 'pr': (precision, recall)}
     mAP = {}
     for thd in thresholds:
         mAP[thd] = 0
