@@ -839,40 +839,9 @@ def flatten_sweeper_records(recs, keys):
 #                                          build_pmiss_metric(),
 #                                          build_wpmiss_metric() ])
 
-
-def compute_pr(system_activities, reference_activities, threshold):
-    refs_count = len(reference_activities)
-    syss_count = len(system_activities)
-    tp = []
-    fp = []
-    used_refs = []
-
-    if refs_count == 0 or syss_count == 0:
-        return (0, 0)
-
-    while len(used_refs) != refs_count or len(tp) + len(fp) != syss_count:
-        if len(used_refs) == refs_count:
-            for s in [s for s in system_activities if s not in tp and s not in fp]:
-                fp.append(s)
-            continue
-        ref = [r for r in reference_activities if r not in used_refs][0]
-        used_refs.append(ref)
-        candidates = [s for s in system_activities if s not in tp and s not in fp and temporal_intersection_over_union(s, ref) >= threshold]
-        iou = [temporal_intersection_over_union(s, ref) for s in candidates]
-        if iou == []:
-            continue
-        candidate = candidates[iou.index(max(iou))]
-        tp.append(candidate)
-
-    tp_count = len(tp)
-    fp_count = len(fp)
-    precision = tp_count / (tp_count+fp_count)
-    recall = tp_count / refs_count
-    return (precision, recall)
-
-
 def compute_map(system_activities, reference_activities, activity_index, file_index, thresholds=[x/100 for x in range(5, 100, 5)]):
     # Largely inspired from ActivityNet code
+    # http://activity-net.org/challenges/2021/tasks/anet_localization.html
     def _filter_by_act(activities, key):
         return list(filter(lambda x: x.activity == key, activities))
 
