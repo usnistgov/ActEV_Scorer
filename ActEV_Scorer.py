@@ -396,7 +396,7 @@ def export_pr_curves(log, pr_metrics, output_dir, plot_options):
         plt.xlim([0, min((1, 1.1*max(r)))])
         plt.ylim([0, min((1, 1.1*max(p)))])
         plt.grid()
-        plt.savefig("%s/figures/PR_%s.png" % (output_dir, activity))
+        plt.savefig("%s/figures/PR@0.5tIoU_%s.png" % (output_dir, activity))
         plt.close()
 
 def records_to_dm(records):

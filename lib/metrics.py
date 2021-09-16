@@ -900,9 +900,10 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
         precision_cumsum = tp_cumsum / (tp_cumsum + fp_cumsum)
 
         for tidx in range(len(thresholds)):
-            precision[activity] = precision_cumsum[tidx,:]
-            recall[activity] = recall_cumsum[tidx,:]
-            ap[activity][tidx] = _compute_ap(precision[activity], recall[activity])
+            if thresholds[tidx] == 0.5:
+                precision[activity] = precision_cumsum[tidx,:]
+                recall[activity] = recall_cumsum[tidx,:]
+            ap[activity][tidx] = _compute_ap(precision_cumsum[tidx,:], recall_cumsum[tidx,:])
 
     ap_len = len(ap)
     ap_metrics = {'AP': [], 'mAP': [], 'pr': (precision, recall)}
