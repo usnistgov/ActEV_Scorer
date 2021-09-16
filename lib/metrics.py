@@ -899,9 +899,9 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
         recall_cumsum = tp_cumsum / npos
         precision_cumsum = tp_cumsum / (tp_cumsum + fp_cumsum)
 
-        precision[activity] = precision_cumsum[tidx,:]
-        recall[activity] = recall_cumsum[tidx,:]
         for tidx in range(len(thresholds)):
+            precision[activity] = precision_cumsum[tidx,:]
+            recall[activity] = recall_cumsum[tidx,:]
             ap[activity][tidx] = _compute_ap(precision[activity], recall[activity])
 
     ap_len = len(ap)
