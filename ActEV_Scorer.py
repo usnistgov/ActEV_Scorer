@@ -332,8 +332,8 @@ def score_basic(protocol_class, args):
     audc_by_activity = []
     mean_audc = []
     if not args.disable_plotting:
-        export_pr_curves(log, map_metrics['pr'], args.output_dir, plot_options)
         export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir, plot_options)
+        export_pr_curves(log, map_metrics['pr'], args.output_dir, plot_options)
         audc_by_activity, mean_audc = protocol.compute_auc(args.output_dir)
 
     write_out_scoring_params(args.output_dir, protocol.scoring_parameters)
@@ -386,18 +386,30 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir, plot_options
     _export_records(dm_records_tfa, "TFA")
 
 def export_pr_curves(log, pr_metrics, output_dir, plot_options):
+    figure_dir = "{}/figures".format(output_dir)
+    mkdir_p(figure_dir)
+    log(1, "[Info] Saving PR curves to directory '{}'".format(figure_dir))
+
     precision, recall = pr_metrics
     activities = list(precision.keys())
-    import matplotlib.pyplot as plt
+    rd = Render()
+
+    def _save_pr(precision, recall, activity, file_name, plot_options):
+        plot_options['xlim'] = [0, min((1, 1.1*r[-1]))]
+        plot_options['ylim'] = [0, min((1, 1.1*p[0]))]
+        plot_options['xlabel'] = 'Recall'
+        plot_options['ylabel'] = 'Precision'
+        plot_options['title'] = "Precision/Recall - 0.5 tIoU - %s" % activity
+        fig = rd.plot_pr(precision, recall, activity, plot_options=plot_options)
+        fig.savefig("{}/{}".format(figure_dir, file_name))
+        rd.close_fig(fig)
+
     for activity in activities:
-        p, r = sorted(precision[activity], reverse=True), sorted(recall[activity])
-        plt.plot(r, p)
-        plt.title(activity)
-        plt.xlim([0, min((1, 1.1*max(r)))])
-        plt.ylim([0, min((1, 1.1*max(p)))])
-        plt.grid()
-        plt.savefig("%s/figures/PR@0.5tIoU_%s.png" % (output_dir, activity))
-        plt.close()
+        p = sorted(precision[activity], reverse=True)
+        r = sorted(recall[activity])
+        if p[0] != 0:
+            name = "PR@0.5tIoU_%s.png" % activity
+            _save_pr(r, p, activity, name, plot_options)
 
 def records_to_dm(records):
     dc_dict = {}
