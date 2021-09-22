@@ -853,7 +853,11 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
         mrec = np.hstack([[0], recall, [1]])
         for i in range(len(mprec) - 1)[::-1]:
             mprec[i] = max(mprec[i], mprec[i + 1])
+        #print("ALLO")
+        #print(precision)
+        #print(mprec)
         idx = np.where(mrec[1::] != mrec[0:-1])[0] + 1
+        #print(idx)
         ap = np.sum((mrec[idx] - mrec[idx - 1]) * mprec[idx])
         return ap
 
@@ -870,39 +874,54 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
         # Sort predictions by decreasing score order.
         sort_idx = argsort(syss, 'presenceConf')[::-1]
         prediction = [syss[idx] for idx in sort_idx]
+        #print([p.localization for p in prediction])
 
         # Initialize true positive and false positive vectors.
         tp = np.zeros((len(thresholds), len(prediction)))
         fp = np.zeros((len(thresholds), len(prediction)))
 
         for idx, this_pred in enumerate(prediction):
+            #print('#%d - %s' % (len(prediction)-idx, str(this_pred.localization)))
             this_gt = _filter_by_file(refs, list(this_pred.localization.keys())[0])
+            #print('ref: ' + str([a.localization for a in this_gt]))
             tiou_arr = [temporal_intersection_over_union(ref, this_pred) for ref in this_gt]
+            #print('tiou: ' + str(tiou_arr))
             tiou_sorted_idx = argsort(tiou_arr)[::-1]
+            #print('stiou: ' + str(tiou_sorted_idx))
             for tidx, tiou_thr in enumerate(thresholds):
                 for jdx in tiou_sorted_idx:
+                    #print('  ' + str(tiou_arr[jdx]))
                     if tiou_arr[jdx] < tiou_thr:
+                        #print('  FP')
                         fp[tidx, idx] = 1
                         break
                     if lock_gt[tidx, jdx] >= 0:
+                        #print('  LOCK')
                         continue
                     # Assign as true positive after the filters above.
+                    #print('  OK')
                     tp[tidx, idx] = 1
                     lock_gt[tidx, jdx] = idx
                     break
 
                 if fp[tidx, idx] == 0 and tp[tidx, idx] == 0:
+                    #print('default fp: '+idx)
                     fp[tidx, idx] = 1
 
-        tp_cumsum = np.cumsum(tp, axis=1).astype(np.float)
-        fp_cumsum = np.cumsum(fp, axis=1).astype(np.float)
+        tp_cumsum = np.cumsum(tp, axis=1).astype(float)
+        fp_cumsum = np.cumsum(fp, axis=1).astype(float)
         recall_cumsum = tp_cumsum / npos
         precision_cumsum = tp_cumsum / (tp_cumsum + fp_cumsum)
+        #print('\nTP | FP | precision | recall')
+        #for i in range(len(recall_cumsum[0])):
+        #    print(' %d |  %d |     %0.3f |  %.3f' % (tp_cumsum[0][i], fp_cumsum[0][i], precision_cumsum[0][i], recall_cumsum[0][i]))
 
         for tidx in range(len(thresholds)):
             if thresholds[tidx] == 0.5:
-                precision[activity] = precision_cumsum[tidx,:]
-                recall[activity] = recall_cumsum[tidx,:]
+                if list(precision_cumsum[tidx,:]) != []:
+                    precision[activity] = precision_cumsum[tidx,:]
+                if list(recall_cumsum[tidx,:]) != []:
+                    recall[activity] = recall_cumsum[tidx,:]
             ap[activity][tidx] = _compute_ap(precision_cumsum[tidx,:], recall_cumsum[tidx,:])
 
     ap_len = len(ap)
@@ -918,4 +937,7 @@ def compute_map(system_activities, reference_activities, activity_index, file_in
             mAP[thd] += v
     for thd in mAP:
         ap_metrics['mAP'].append(('mAP@%.2ftIoU' % thd, mAP[thd]/ap_len))
+    #if len(system_activities) > 0 and len(reference_activities) > 0:
+    #    print('precision', list(ap_metrics['pr'][0]['activity']))
+    #    print('recall', list(ap_metrics['pr'][1]['activity']))
     return ap_metrics

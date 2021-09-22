@@ -96,8 +96,9 @@ def argsort(a, key=None):
     sort_a = sorted(a, key=lambda x:getattr(x, key)) if key is not None else sorted(a)
     sort_idx = []
     while len(sort_a) > 0:
-        idx = a.index(sort_a.pop(0))
+        elt = sort_a.pop(0)
+        idx = a.index(elt)
         while idx in sort_idx:
-            idx+=1
+            idx = a[idx+1:].index(elt) + idx+1
         sort_idx.append(idx)
     return sort_idx
