@@ -371,8 +371,7 @@ class TestMAP(TestMetrics):
         # TP = 4 / FP = 7 / Total = 11
         # round(AP, 4) = 0.6015 
         results = compute_map(self.sys, self.ref, [self.activity], ["f1"], [0.5])
-        self.assertAlmostEqual(0.6015, results['AP'][0][2])
-
+        self.assertAlmostEqual(0.5288888888888889, results['AP'][0][2])
 
 class TestMeanExcludeNone(TestMetrics):
     def test(self):
