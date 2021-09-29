@@ -807,7 +807,7 @@ def compute_map(system_activities, reference_activities, activity_index,
     for activity in ap:
         for i in range(len(thresholds)):
             thd = thresholds[i]
-            v = float(ap[activity][i])
+            v = round(float(ap[activity][i]), 18)
             ap_metrics['AP'].append((activity, 'AP@%.2ftIoU' % thd, v))
             mAP[thd] += v
     for thd in mAP:
