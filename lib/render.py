@@ -146,10 +146,10 @@ class Render:
         if any(label_list):
             self.legend = plt.legend(
                 loc=my_legend_loc, bbox_to_anchor=my_legend_box, borderaxespad=0,
-                prop={'size': 8}, shadow=True, fontsize='small', ncol=math.ceil(len(data_list)/max_num))
+                prop={'size': plot_options['legend_fontsize']}, shadow=True, fontsize='small', ncol=math.ceil(len(data_list)/max_num))
         self.legend = plt.legend(
             loc=my_legend_loc, bbox_to_anchor=my_legend_box, borderaxespad=0,
-            prop={'size': 8}, shadow=True, fontsize='small', ncol=math.ceil(len(data_list)/max_num))
+            prop={'size': plot_options['legend_fontsize']}, shadow=True, fontsize='small', ncol=math.ceil(len(data_list)/max_num))
 
         self.figure.tight_layout(pad=2)
 
@@ -187,7 +187,8 @@ class Render:
             ('yticks_label_size', 'medium'),
             ('xlabel', "False Alarm Rate [%]"),
             ('xlabel_fontsize', 11),
-            ('ylabel_fontsize', 11)])
+            ('ylabel_fontsize', 11),
+            ('legend_fontsize', 8)])
 
         if plot_type.lower() == "det":
             if (fa_label == "TFA"):
