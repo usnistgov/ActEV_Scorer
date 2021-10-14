@@ -9,6 +9,6 @@ if [ ! "$1" = "" ] ; then
     tests=$*
 fi
 for test in $tests ; do
-    run_test $test $checkfiles_dir/$test
+    run_test $test $checkfiles_dir/$test 2>&1
 done
 

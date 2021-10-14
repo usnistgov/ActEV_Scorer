@@ -131,9 +131,9 @@
     0.02,
     0.01
   ],
-  "command": "../ActEV_Scorer.py ActEV_SDL_V2_PR -s data/test_20-0_fake-sysout.json -r data/test_11-4.json -a data/test_9-0_activity-index.json -f data/test_11-0_file-index.json -o compcheckfiles/test_20_0 -v",
+  "command": "../ActEV_Scorer.py ActEV_SDL_V2 -s data/test_20-0_fake-sysout.json -r data/test_11-4.json -a data/test_9-0_activity-index.json -f data/test_11-0_file-index.json -o compcheckfiles/test_20_0 -v",
   "fa.ns_collar_size": 0,
-  "git.commit": "1b3e93634d9bcec80b6ddb9e2b42f8a0e9e90571--2020-11-16T13:26:11-05:00",
+  "git.commit": "0efc445b596abb3fdac688c9612adb1f69137c4b--2021-09-23T10:47:08-04:00",
   "nmide.cost_fa": 1,
   "nmide.cost_miss": 1,
   "nmide.ns_collar_size": 0,

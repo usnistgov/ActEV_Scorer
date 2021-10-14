@@ -12,8 +12,12 @@ from sparse_signal import SparseSignal as S
 
 # ActivityInstance stub class
 class A():
-    def __init__(self, dictionary):
+    def __init__(self, dictionary, activity=None, presenceConf=None):
         self.localization = dictionary
+        if activity is not None:
+            self.activity = activity
+        if presenceConf is not None:
+            self.presenceConf = presenceConf
 
 class TestMetrics(unittest.TestCase):
     def setUp(self):
@@ -331,6 +335,43 @@ class TestTemporalFA(TestSignalMetrics):
         self.assertEqual(temporal_fa(self.a5, self.a7), (5 + 0))
 
         self.assertEqual(temporal_fa(self.a3, self.a4), 10)
+
+class TestMAP(TestMetrics):
+    def setUp(self):
+        self.activity = "activity"
+        self.ref = [
+            A({"f1": { 10: 1, 20: 0 }}, self.activity),
+            A({"f1": { 30: 1, 35: 0 }}, self.activity),
+            A({"f1": { 32: 1, 40: 0 }}, self.activity),
+            A({"f1": { 50: 1, 70: 0 }}, self.activity),
+            A({"f1": { 60: 1, 90: 0 }}, self.activity)
+        ]
+        # presenceConf does not eally matter here, it is just used for optimization
+        self.sys = [
+            # first one is kept #1
+            A({"f1": { 10: 1, 15: 0 }}, self.activity, 0.99),
+            A({"f1": { 12: 1, 15: 0 }}, self.activity, 0.92),
+            # alone FP
+            A({"f1": { 21: 1, 24: 0 }}, self.activity, 0.9),
+            # first is kept #2, second kept #3
+            A({"f1": { 30: 1, 35: 0 }}, self.activity, 0.88),
+            A({"f1": { 32: 1, 41: 0 }}, self.activity, 0.81),
+            A({"f1": { 37: 1, 42: 0 }}, self.activity, 0.8),
+            # alone FP
+            A({"f1": { 44: 1, 47: 0 }}, self.activity, 0.78),
+            # second one is kept #4
+            A({"f1": { 49: 1, 59: 0 }}, self.activity, 0.7),
+            A({"f1": { 49: 1, 61: 0 }}, self.activity, 0.68),
+            # no one is kept #5
+            A({"f1": { 77: 1, 90: 0 }}, self.activity, 0.6),
+            A({"f1": { 60: 1, 73: 0 }}, self.activity, 0.58)
+        ]
+
+    def test_map(self):
+        # TP = 4 / FP = 7 / Total = 11
+        # round(AP, 4) = 0.6015 
+        results = compute_map(self.sys, self.ref, [self.activity], ["f1"], [0.5])
+        self.assertAlmostEqual(0.5288888888888889, results['AP'][0][2])
 
 class TestMeanExcludeNone(TestMetrics):
     def test(self):

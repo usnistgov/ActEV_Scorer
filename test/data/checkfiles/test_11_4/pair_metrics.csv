@@ -1,6 +1,0 @@
-activity|ref|sys|metric_name|metric_value
-Closing|1|2|temporal_fa|0
-Closing|1|2|temporal_intersection|20
-Closing|1|2|temporal_intersection-over-union|None
-Closing|1|2|temporal_miss|0
-Closing|1|2|temporal_union|20

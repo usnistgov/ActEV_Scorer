@@ -55,6 +55,7 @@ from render import Render
 from logger import build_logger
 from ActivitiesFilePruner import prune
 from sparse_signal import SparseSignal
+from metrics import compute_map
 
 def err_quit(msg, exit_status=1):
     print("[Error] {}".format(msg))
@@ -325,19 +326,24 @@ def score_basic(protocol_class, args):
     log(1, '[Info] Scoring ..')
     results = protocol.compute_results(alignment, args.det_point_resolution)
 
+    if protocol.__class__.__name__ == 'ActEV_SDL_V2':
+        map_metrics = compute_map(system_activities, reference_activities, activity_index, file_index)
+    else: map_metrics = {}
+
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
     audc_by_activity = []
     mean_audc = []
     if not args.disable_plotting:
         export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir, plot_options)
+        export_pr_curves(log, map_metrics.get('pr', []), args.output_dir, plot_options)
         audc_by_activity, mean_audc = protocol.compute_auc(args.output_dir)
 
     write_out_scoring_params(args.output_dir, protocol.scoring_parameters)
     write_records_as_csv("{}/alignment.csv".format(args.output_dir), ["activity", "alignment", "ref", "sys", "sys_presenceconf_score", "kernel_similarity", "kernel_components"], results.get("output_alignment_records", []))
     write_records_as_csv("{}/pair_metrics.csv".format(args.output_dir), ["activity", "ref", "sys", "metric_name", "metric_value"], results.get("pair_metrics", []))
-    write_records_as_csv("{}/scores_by_activity.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], results.get("scores_by_activity", []) + audc_by_activity)
-    write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], results.get("scores_aggregated", []) + mean_audc)
+    write_records_as_csv("{}/scores_by_activity.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], results.get("scores_by_activity", []) + audc_by_activity + map_metrics.get('AP', []))
+    write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], results.get("scores_aggregated", []) + mean_audc + map_metrics.get('mAP', []))
     write_records_as_csv("{}/scores_by_activity_and_threshold.csv".format(args.output_dir), [ "activity", "score_threshold", "metric_name", "metric_value" ], results.get("scores_by_activity_and_threshold", []))
 
     if vars(args).get("dump_object_alignment_records", False):
@@ -381,6 +387,35 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir, plot_options
 
     _export_records(dm_records_rfa, "RFA")
     _export_records(dm_records_tfa, "TFA")
+
+def export_pr_curves(log, pr_metrics, output_dir, plot_options):
+    if pr_metrics == []:
+        return
+
+    figure_dir = "{}/figures".format(output_dir)
+    mkdir_p(figure_dir)
+    log(1, "[Info] Saving PR curves to directory '{}'".format(figure_dir))
+
+    precision, recall = pr_metrics
+    activities = list(precision.keys())
+    rd = Render()
+
+    def _save_pr(precision, recall, activity, file_name, plot_options):
+        plot_options['xlim'] = [0, min((1, 1.1*r[-1]))]
+        plot_options['ylim'] = [0, min((1, 1.1*p[0]))]
+        plot_options['xlabel'] = 'Recall'
+        plot_options['ylabel'] = 'Precision'
+        plot_options['title'] = "Precision/Recall - 0.5 tIoU - %s" % activity
+        fig = rd.plot_pr(precision, recall, activity, plot_options=plot_options)
+        fig.savefig("{}/{}".format(figure_dir, file_name))
+        rd.close_fig(fig)
+
+    for activity in activities:
+        p = sorted(precision[activity], reverse=True)
+        r = sorted(recall[activity])
+        if p[0] != 0:
+            name = "PR@0.5tIoU_%s.png" % activity
+            _save_pr(r, p, activity, name, plot_options)
 
 def records_to_dm(records):
     dc_dict = {}

@@ -81,6 +81,23 @@ class Render:
         adjusted_width = 0.0677 * max_label_length + 6.5904
         return (adjusted_width, height)
 
+    def plot_pr(self, precision, recall, activity, plot_options):
+        import matplotlib.pyplot as plt
+        plot_options = merge_dicts(
+            self.gen_default_plot_options('', '', ''), plot_options)
+        self.figure = plt.figure(
+            figsize=plot_options['figsize'], dpi=120, facecolor='w',
+            edgecolor='k')
+        plt.xlim(plot_options['xlim'])
+        plt.ylim(plot_options['ylim'])
+        plt.xlabel(plot_options['xlabel'])
+        plt.ylabel(plot_options['ylabel'])
+        plt.title(
+            plot_options['title'], fontsize=plot_options['title_fontsize'])
+        plt.plot(precision, recall)
+        plt.grid()
+        return self.figure
+
     def plotter(self, data_list, annotations, plot_type, plot_options, display,
                 infinity=999999, auto_width=True):
         import matplotlib.pyplot as plt
