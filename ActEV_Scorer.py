@@ -466,7 +466,7 @@ if __name__ == '__main__':
                  [["-c", "--plotting-parameters-file"], dict(help="Optional plotting options JSON file", type=str)],
                  [["-I", "--include-zero-ref-instances"], dict(help="Legacy behavior. Take into account `zero reference activity instances`", action="store_true")],
                  [["-S", "--skip-validation"], dict(help="Skip system output validation step", action="store_true", default=False)],
-                 [["-e", "--extra-metrics"], dict=(help="Allow Scorer to compute extra metrics", action="store_true", default=False)]]
+                 [["-e", "--extra-metrics"], dict(help="Allow Scorer to compute extra metrics", action="store_true", default=False)]]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)
