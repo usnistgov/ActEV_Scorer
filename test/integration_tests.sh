@@ -630,7 +630,7 @@ test_16_0() {
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
     -o "$1" \
-    -v -n 4
+    -v -n 4 -e
 }
 
 # no ppf test
@@ -676,7 +676,7 @@ test_19_1() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_19-1_file-index.json" \
-    -o "$1" -v
+    -o "$1" -v -e
 }
 
 # no score regions test - 1000 1st frames of VIRAT_S_000000
@@ -687,7 +687,7 @@ test_19_2() {
     -r "data/test_19-2.json" \
     -a "data/test_19-2_activity-index.json" \
     -f "data/test_19-2_file-index.json" \
-    -o "$1" -v
+    -o "$1" -v -e
 }
 
 # Same one without the no-score region
@@ -698,8 +698,7 @@ test_19_3() {
     -r "data/test_19-2.json" \
     -a "data/test_19-2_activity-index.json" \
     -f "data/test_19-3_file-index.json" \
-    -o "$1" \
-    -v
+    -o "$1" -v -e
 }
 
 # New protocol tests: processingReport
@@ -710,7 +709,7 @@ test_20_0() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
-    -o "$1" -v
+    -o "$1" -v -e
 }
 
 # Check tests on processingReport (1,2 and 3)
@@ -721,7 +720,7 @@ test_20_1() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
-    -o "$1" -v --ignore-extraneous-files
+    -o "$1" -v --ignore-extraneous-files -e
 }
 
 test_20_2() {
@@ -731,7 +730,7 @@ test_20_2() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
-    -o "$1" -v --ignore-missing-files
+    -o "$1" -v --ignore-missing-files -e
 }
 
 test_20_3() {
@@ -742,7 +741,7 @@ test_20_3() {
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
     -o "$1" -v --ignore-missing-files \
-    --ignore-extraneous-files
+    --ignore-extraneous-files -e
 }
 
 # Testing that Scorer can handle negative frame numbers
@@ -753,5 +752,5 @@ test_21_0() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
-    -o "$1" -v
+    -o "$1" -v -e
 }
