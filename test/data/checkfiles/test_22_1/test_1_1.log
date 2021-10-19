@@ -1,0 +1,13 @@
+[Info] Command: ../ActEV_Scorer.py ActEV18_AD -s data/VIRAT_S_000000_fake-sysout.json -r data/VIRAT_S_000000.json -a data/VIRAT_S_000000_activity-index.json -f data/VIRAT_S_000000_file-index.json -o data/checkfiles/test_1_1 -d -p data/test_1_1.scoring_parameters.json -v
+[Info] Loading system output file
+[Info] Loading activity index file
+[Info] Loading file index file
+[Info] Loading scoring parameters file
+[Info] Loading JSON schema
+[Info] Validating system output against JSON schema
+[Info] System output validated successfully against JSON schema
+[Info] Checking file index against system's "filesProcessed"
+[Info] Validation successful
+[Info] Loading reference file
+[Info] Scoring ..
+[Info] Saving results to directory 'data/checkfiles/test_1_1'
