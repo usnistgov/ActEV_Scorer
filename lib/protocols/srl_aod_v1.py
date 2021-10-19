@@ -34,6 +34,8 @@ import sys
 import os
 import subprocess
 from functools import reduce
+import dill
+from concurrent.futures import ProcessPoolExecutor
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
 
@@ -184,7 +186,20 @@ class SRL_AOD_V1(SRL_AD_V1):
 
             return (p, m)
 
-        return reduce(_r, group_by_func(factorization_func, records, default_groups = default_factorizations).items(), ({}, []))
+        grouped = group_by_func(factorization_func, records, default_groups = default_factorizations)
+        _r_srlz = dill.dumps(_r)
+        args = []
+        for key in grouped:
+            args.append((_r_srlz, (key, grouped[key]), ({}, [])))
+
+        with ProcessPoolExecutor(self.pn) as pool:
+            res = pool.map(unserialize_fct_res, args)
+
+        p, m = {}, []
+        for entry in res:
+            p.update(entry[0])
+            m.extend(entry[1])
+        return (p, m)
 
     def compute_results(self, alignment, uniq_conf):
         c, m, f = partition_alignment(alignment)
@@ -221,7 +236,8 @@ class SRL_AOD_V1(SRL_AD_V1):
             init.extend(l)
             return init
 
-        object_frame_alignment_records = reduce(_object_frame_alignment_records, group_by_func(lambda rec: rec.activity, alignment).items(), [])
+        grouped = group_by_func(lambda rec: rec.activity, alignment).items()
+        object_frame_alignment_records = reduce(_object_frame_alignment_records, grouped, [])
 
         def _obj_pmiss_at_rfa(targ):
             t = "object-p_miss@{}rfa".format(targ)
@@ -245,11 +261,6 @@ class SRL_AOD_V1(SRL_AD_V1):
                 # Merges the two temporal localization dictionaries by
                 # "adding" the signals
                 return merge_dicts(init, loc, add)
-            #print correct_recs
-#            print [lambda x: x.kernel_components["ref_filter_localization"], correct_recs]
-#            print reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {})
-#            print reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {}).values()
-#            print [v.area() for v in reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {}).values() ]
             return sum([ v.area() for v in reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {}).values() ])
 
         activity_obj_det_points, activity_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _activity_grouper, _rfa_denom_fn, uniq_conf, self.scoring_parameters["object.p_miss_at_rfa_targets"], self.default_activity_groups)

@@ -147,10 +147,21 @@ class Default(object):
         def _r(init, rec):
             for mv in self.compute_measures(rec, measures).items():
                 init.append(rec_map_func(rec) + mv)
-
             return init
 
-        return reduce(_r, records, [])
+        _r_srlz = dill.dumps(_r)
+        args = []
+        for item in records:
+            args.append((_r_srlz, item, []))
+
+        with ProcessPoolExecutor(self.pn) as pool:
+            res = pool.map(unserialize_fct_atomic, args)
+
+        m = []
+        for entry in res:
+            m.extend(entry)
+        return m
+
 
     # This method assumes that the "metric_name" is the second-to-last
     # element, and that "metric_value" is the last element.  Should

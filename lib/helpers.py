@@ -92,6 +92,21 @@ def unserialize_fct_res(args):
     return fct(init, (activity, iterable))
 
 
+# Used in default.py to parallelize atomic measures
+def unserialize_fct_atomic(args):
+    (sfct, activity, init) = args
+    fct = loads(sfct)
+    return fct(init, activity)
+
+
+# Used in SRL_AOD_V1 to parallelize object frame alignments
+def unserialize_fct_obj(args):
+    (sfct, svar, init) = args
+    activity = loads(svar)
+    fct = loads(sfct)
+    return fct(init, activity)
+
+
 def argsort(a, key=None):
     sort_a = sorted(a, key=lambda x:getattr(x, key)) if key is not None else sorted(a)
     sort_idx = []
