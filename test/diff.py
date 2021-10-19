@@ -120,7 +120,7 @@ def main():
             except FileNotFoundError as e:
                 print("Missing file {}".format(e.filename), file=sys.stderr)
                 if ref:  # if second open fails, ref is opened
-                    ref.close(0)
+                    ref.close()
                 sys.exit(1)
             finally:
                 if is_json:

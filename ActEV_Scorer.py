@@ -264,6 +264,14 @@ def score_actev18_aod(args):
 def score_actev18_aodt(args):
     from actev18_aodt import ActEV18_AODT
     score_basic(ActEV18_AODT, args)
+    
+def score_srl_ad_v1(args):
+    from srl_ad_v1 import SRL_AD_V1
+    score_basic(SRL_AD_V1, args)
+
+def score_srl_aod_v1(args):
+    from srl_aod_v1 import SRL_AOD_V1
+    score_basic(SRL_AOD_V1, args)
 
 def score_basic(protocol_class, args):
     verbosity_threshold = 1 if args.verbose else 0
@@ -521,6 +529,16 @@ if __name__ == '__main__':
                            dict(help="Scoring protocol for the ActEV18 Activity and Object Detection and Tracking task"),
                            score_actev18_aodt,
                            base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
+    
+    add_protocol_subparser("SRL_AOD_V1",
+                           dict(help="Scoring protocol for the SRL"),
+                           score_srl_aod_v1,
+                           base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
+
+    add_protocol_subparser("SRL_AD_V1",
+                           dict(help="Scoring protocol for the SRL"),
+                           score_srl_ad_v1,
+                           base_args)
 
     args = parser.parse_args()
     if args == argparse.Namespace():
