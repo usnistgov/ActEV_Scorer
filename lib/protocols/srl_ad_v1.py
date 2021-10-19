@@ -33,6 +33,8 @@
 import sys
 import os
 import subprocess
+import dill
+from concurrent.futures import ProcessPoolExecutor
 from functools import reduce
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
@@ -168,7 +170,21 @@ class SRL_AD_V1(Default):
             return (p, m)
 
         grouped = merge_dicts({ k: [] for k in default_factorizations }, group_by_func(factorization_func, records))
-        return reduce(_r, grouped.items(), ({}, []))
+        _r_srlz = dill.dumps(_r)
+        args = []
+        for key in grouped:
+            args.append((_r_srlz, (key, grouped[key]), ({}, {}, [], [])))
+
+        with ProcessPoolExecutor(self.pn) as pool:
+            res = pool.map(unserialize_fct_res, args)
+
+        p, t, fa, m = {}, {}, [], []
+        for entry in res:
+            p.update(entry[0])
+            t.update(entry[1])
+            fa.extend(entry[2])
+            m.extend(entry[3])
+        return (p, t, fa, m)
 
     def compute_record_means(self, records, selected_measures = None):
         raw_means = self.compute_means(records, selected_measures)
