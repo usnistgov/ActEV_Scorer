@@ -272,6 +272,14 @@ def score_srl_ad_v1(args):
 def score_srl_aod_v1(args):
     from srl_aod_v1 import SRL_AOD_V1
     score_basic(SRL_AOD_V1, args)
+    
+def score_srl_ad_v2(args):
+    from srl_ad_v2 import SRL_AD_V2
+    score_basic(SRL_AD_V2, args)
+
+def score_srl_aod_v2(args):
+    from srl_aod_v2 import SRL_AOD_V2
+    score_basic(SRL_AOD_V2, args)
 
 def score_basic(protocol_class, args):
     verbosity_threshold = 1 if args.verbose else 0
@@ -531,13 +539,23 @@ if __name__ == '__main__':
                            base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
     
     add_protocol_subparser("SRL_AOD_V1",
-                           dict(help="Scoring protocol for the SRL"),
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection"),
                            score_srl_aod_v1,
                            base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
 
     add_protocol_subparser("SRL_AD_V1",
-                           dict(help="Scoring protocol for the SRL"),
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard"),
                            score_srl_ad_v1,
+                           base_args)
+    
+    add_protocol_subparser("SRL_AOD_V2",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection V2"),
+                           score_srl_aod_v2,
+                           base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
+
+    add_protocol_subparser("SRL_AD_V2",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard V2"),
+                           score_srl_ad_v2,
                            base_args)
 
     args = parser.parse_args()
