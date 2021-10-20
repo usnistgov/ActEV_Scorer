@@ -1,12 +1,25 @@
-[Info] Command: ../ActEV_Scorer.py ActEV18_AOD -s data/test_4-0_fake-sysout.json -r data/test_4-0.json -a data/test_4-0_activity-index.json -f data/test_4-0_file-index.json -o data/checkfiles/test_4_0 -d -j -v
-[Info] Loading system output file
+[Info] Command: ../ActEV_Scorer.py SRL_AOD_V1 -s data/test_4-0_fake-sysout.json -r data/test_4-0.json -a data/test_4-0_activity-index.json -f data/test_4-0_file-index.json -o data/checkfiles/test_23_0 -j -v
 [Info] Loading activity index file
 [Info] Loading file index file
 [Info] Loading JSON schema
+[Info] Loading activities and references
 [Info] Validating system output against JSON schema
 [Info] System output validated successfully against JSON schema
 [Info] Checking file index against system's "filesProcessed"
 [Info] Validation successful
 [Info] Loading reference file
+[Info] Loading JSON schema
+[Info] Computing alignments ..
 [Info] Scoring ..
-[Info] Saving results to directory 'data/checkfiles/test_4_0'
+[Info] Saving results to directory 'data/checkfiles/test_23_0'
+[Info] Saving figures to directory 'data/checkfiles/test_23_0/figures'
+[Info] Saving dm files to directory 'data/checkfiles/test_23_0/dm'
+[Info] Plotting RFA DET curve for Entering
+[Info] Plotting RFA DET curve for Closing
+[Info] Plotting mean RFA curve for 2 activities
+[Info] Plotting combined RFA DET curves
+[Errno 2] No such file or directory: 'data/checkfiles/test_23_0/dm/TFA_Closing.dm'
+data/checkfiles/test_23_0/dm/TFA_Closing.dmDNE
+[Errno 2] No such file or directory: 'data/checkfiles/test_23_0/dm/TFA_Entering.dm'
+data/checkfiles/test_23_0/dm/TFA_Entering.dmDNE
+helloooooo
