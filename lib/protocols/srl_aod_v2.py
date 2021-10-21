@@ -73,4 +73,4 @@ class SRL_AOD_V2(SRL_AOD_V1):
                                        "command": str(command),
                                        "git.commit": subprocess.check_output(["git", "--git-dir="+ os.path.join(lib_path, "../")+".git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
-        super(SRL_AOD_V1, self).__init__(scoring_parameters, file_index, activity_index, command)
+        super(SRL_AOD_V2, self).__init__(scoring_parameters, file_index, activity_index, command)
