@@ -164,8 +164,8 @@ def transform_json_single_bbox_per_frame(data):
             count = 0
             prev_x = prev_y = prev_w = prev_h = -1
             for l in range(min_frame, max_frame):
-                if prev_x != min_x_list[count] and prev_y != min_y_list[count] and prev_w != \
-                        max_w_list[count] and prev_h != max_h_list[count]:
+                if prev_x != min_x_list[count] or prev_y != min_y_list[count] or prev_w != \
+                        max_w_list[count] or prev_h != max_h_list[count]:
                     prev_x = min_x_list[count]
                     prev_y = min_y_list[count]
                     prev_w = max_w_list[count]
