@@ -37,6 +37,7 @@ import os
 import errno
 import argparse
 import json
+import math
 import jsonschema
 from operator import add
 from functools import reduce
@@ -69,7 +70,7 @@ def load_json(json_fn):
         err_quit("{}. Aborting!".format(ioerr))
 
 
-def transform_json(data):
+def transform_json_single_bbox(data):
     for i in range(len(data['activities'])):
         fname = list(data['activities'][i]['localization'].keys())[0]
         for j in range(len(data['activities'][i]['objects'])):
@@ -105,6 +106,81 @@ def transform_json(data):
             new_obj[str(first_frame)]['boundingBox']['y'] = min_y
             new_obj[str(last_frame)] = dict()
             data['activities'][i]['objects'][j]['localization'][fname] = new_obj
+    return data
+
+
+def transform_json_single_bbox_per_frame(data):
+    for i in range(len(data['activities'])):
+        fname = list(data['activities'][i]['localization'].keys())[0]
+        frame_mark = list(data['activities'][i]['localization'][fname].keys())
+        frame_mark = [int(i) for i in frame_mark]
+        max_frame = max(frame_mark)
+        min_frame = min(frame_mark)
+        if len(data['activities'][i]['objects']) > 1:
+            min_x_list = list()
+            min_y_list = list()
+            max_w_list = list()
+            max_h_list = list()
+            for j in range(len(data['activities'][i]['objects'])):
+                x_list = list()
+                y_list = list()
+                w_list = list()
+                h_list = list()
+                frames = data['activities'][i]['objects'][j]['localization'][fname]
+                for k in range(min_frame, max_frame):
+                    if str(k) in frames:
+                        if 'boundingBox' in frames[str(k)]:
+                            my_vals = frames[str(k)]['boundingBox']
+                            x_list.append(my_vals['x'])
+                            y_list.append(my_vals['y'])
+                            w_list.append(my_vals['w'] + my_vals['x'])
+                            h_list.append(my_vals['h'] + my_vals['y'])
+                        else:
+                            x_list.append(math.inf)
+                            y_list.append(math.inf)
+                            w_list.append(-math.inf)
+                            h_list.append(-math.inf)
+                    elif k != min_frame:
+                        x_list.append(x_list[-1])
+                        y_list.append(y_list[-1])
+                        w_list.append(w_list[-1])
+                        h_list.append(h_list[-1])
+                    else:
+                        x_list.append(math.inf)
+                        y_list.append(math.inf)
+                        w_list.append(-math.inf)
+                        h_list.append(-math.inf)
+                min_x_list.append(x_list)
+                min_y_list.append(y_list)
+                max_w_list.append(w_list)
+                max_h_list.append(h_list)
+            min_x_list = [min(i) for i in zip(*min_x_list)]
+            min_y_list = [min(i) for i in zip(*min_y_list)]
+            max_w_list = [max(i) for i in zip(*max_w_list)]
+            max_h_list = [max(i) for i in zip(*max_h_list)]
+            max_w_list = [i-j for i,j in zip(max_w_list, min_x_list)]
+            max_h_list = [i-j for i,j in zip(max_h_list, min_y_list)]
+            new_obj = dict()
+            count = 0
+            prev_x = prev_y = prev_w = prev_h = -1
+            for l in range(min_frame, max_frame):
+                if prev_x != min_x_list[count] and prev_y != min_y_list[count] and prev_w != \
+                        max_w_list[count] and prev_h != max_h_list[count]:
+                    prev_x = min_x_list[count]
+                    prev_y = min_y_list[count]
+                    prev_w = max_w_list[count]
+                    prev_h = max_h_list[count]
+                    new_obj[str(l)] = dict()
+                    new_obj[str(l)]['boundingBox'] = dict()
+                    new_obj[str(l)]['boundingBox']['h'] = prev_h
+                    new_obj[str(l)]['boundingBox']['w'] = prev_w
+                    new_obj[str(l)]['boundingBox']['x'] = prev_x
+                    new_obj[str(l)]['boundingBox']['y'] = prev_y
+                count += 1
+            new_obj[str(max_frame)] = dict()
+            data['activities'][i]['objects'][0]['localization'][fname] = new_obj
+            data['activities'][i]['objects'] = [data['activities'][i]['objects'][0]]
+        data['activities'][i]['objects'][0]['objectType'] = 'single_bbox_per_frame'
     return data
 
 def mkdir_p(path):
@@ -360,11 +436,14 @@ def score_basic(protocol_class, args):
     reference = load_reference(log, args.reference_file)
 
     if args.transformations == "single_bbox":
-        system_output = transform_json(system_output)
-        reference = transform_json(reference)
+        system_output = transform_json_single_bbox(system_output)
+        reference = transform_json_single_bbox(reference)
+    elif args.transformations == "single_bbox_per_frame":
+        system_output = transform_json_single_bbox_per_frame(system_output)
+        reference = transform_json_single_bbox_per_frame(reference)
     if args.rewrite:
-        sys_out_file = args.system_output_file('.')[:-1] + args.rewrite + '.json'
-        ref_out_file = args.reference_file('.')[:-1] + args.rewrite + '.json'
+        sys_out_file = args.system_output_file.split('.')[:-1] + args.rewrite + '.json'
+        ref_out_file = args.reference_file.split('.')[:-1] + args.rewrite + '.json'
         with open(sys_out_file, 'w') as sys_outfile:
             json.dump(system_output, sys_outfile)
         with open(ref_out_file, 'w') as ref_outfile:
