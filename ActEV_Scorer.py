@@ -68,6 +68,46 @@ def load_json(json_fn):
     except IOError as ioerr:
         err_quit("{}. Aborting!".format(ioerr))
 
+
+def transform_json(data):
+    for i in range(len(data['activities'])):
+        fname = list(data['activities'][i]['localization'].keys())[0]
+        for j in range(len(data['activities'][i]['objects'])):
+            frames = data['activities'][i]['objects'][j]['localization'][fname]
+            obj_keys = list(data['activities'][i]['objects'][j]['localization'][fname])
+
+            x_list = list()
+            y_list = list()
+            w_list = list()
+            h_list = list()
+            for k in obj_keys:
+                val = list(frames[k].keys())
+                if val:
+                    my_vals = frames[k]['boundingBox']
+                    # print(my_vals)
+                    x_list.append(my_vals['x'])
+                    y_list.append(my_vals['y'])
+                    w_list.append(my_vals['w'] + my_vals['x'])
+                    h_list.append(my_vals['h'] + my_vals['y'])
+
+            min_x = min(x_list)
+            min_y = min(y_list)
+            max_w = max(w_list) - min_x
+            max_h = max(h_list) - min_y
+            my_int_keys = [int(i) for i in obj_keys]
+            first_frame = min(my_int_keys)
+            last_frame = max(my_int_keys)
+            new_obj = dict()
+            new_obj[str(first_frame)] = dict()
+            new_obj[str(first_frame)]['boundingBox'] = dict()
+            new_obj[str(first_frame)]['boundingBox']['h'] = max_w
+            new_obj[str(first_frame)]['boundingBox']['w'] = max_h
+            new_obj[str(first_frame)]['boundingBox']['x'] = min_x
+            new_obj[str(first_frame)]['boundingBox']['y'] = min_y
+            new_obj[str(last_frame)] = dict()
+            data['activities'][i]['objects'][j]['localization'][fname] = new_obj
+    return data
+
 def mkdir_p(path):
     try:
         os.makedirs(path)
@@ -310,9 +350,20 @@ def score_basic(protocol_class, args):
 
     if args.validation_only:
         exit(0)
+    reference = load_reference(log, args.reference_file)
+
+    if args.transformations == "single_bbox":
+        system_output = transform_json(system_output)
+        reference = transform_json(reference)
+    if args.rewrite:
+        sys_out_file = args.system_output_file('.')[:-1] + args.rewrite + '.json'
+        ref_out_file = args.reference_file('.')[:-1] + args.rewrite + '.json'
+        with open(sys_out_file, 'w') as sys_outfile:
+            json.dump(system_output, sys_outfile)
+        with open(ref_out_file, 'w') as ref_outfile:
+            json.dump(reference, ref_outfile)
 
     system_activities = parse_activities(system_output, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
-    reference = load_reference(log, args.reference_file)
     reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
 
     if not args.include_zero_ref_instances:
@@ -470,7 +521,9 @@ if __name__ == '__main__':
                  [["-c", "--plotting-parameters-file"], dict(help="Optional plotting options JSON file", type=str)],
                  [["-I", "--include-zero-ref-instances"], dict(help="Legacy behavior. Take into account `zero reference activity instances`", action="store_true")],
                  [["-S", "--skip-validation"], dict(help="Skip system output validation step", action="store_true", default=False)],
-                 [["-e", "--extra-metrics"], dict(help="Allow Scorer to compute extra metrics", action="store_true", default=False)]]
+                 [["-e", "--extra-metrics"], dict(help="Allow Scorer to compute extra metrics", action="store_true", default=False)],
+                 [["--transformations"], dict(help="Converts the json object to the maximum posible bounding box size", type=str)],
+                 [["--rewrite"], dict(help="Rewrites transformed jsons with the given extension", type=str)]]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)
