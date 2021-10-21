@@ -133,7 +133,6 @@ class Render:
                 plt.annotate(annotation.text, **annotation.parameters)
         plt.xlim(plot_options["xlim"])
         plt.ylim(plot_options["ylim"])
-        # print("ylim = {}".format(plot_options["ylim"]))
         plt.xlabel(
             plot_options['xlabel'], fontsize=plot_options['xlabel_fontsize'])
         plt.ylabel(

@@ -150,8 +150,6 @@ class SRL_AD_V1(Default):
                                                            lambda r: r["n-mide"],
                                                            nmide_targets,
                                                            None)
-        #auc_measure_t = get_auc(fa_measures, threshold = max(self.scoring_parameters["activity.auc_at_fa_targets"]))
-        #auc_measure_r = get_auc(pmiss_measures, "rfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
         return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, wpmiss_measures)))
     
 
@@ -173,18 +171,16 @@ class SRL_AD_V1(Default):
         _r_srlz = dill.dumps(_r)
         args = []
         for key in grouped:
-            args.append((_r_srlz, (key, grouped[key]), ({}, {}, [], [])))
+            args.append((_r_srlz, (key, grouped[key]), ({}, [])))
 
         with ProcessPoolExecutor(self.pn) as pool:
             res = pool.map(unserialize_fct_res, args)
 
-        p, t, fa, m = {}, {}, [], []
+        p, m = {}, []
         for entry in res:
             p.update(entry[0])
-            t.update(entry[1])
-            fa.extend(entry[2])
-            m.extend(entry[3])
-        return (p, t, fa, m)
+            m.extend(entry[1])
+        return (p, m)
 
     def compute_record_means(self, records, selected_measures = None):
         raw_means = self.compute_means(records, selected_measures)

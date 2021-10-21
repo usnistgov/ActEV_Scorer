@@ -74,12 +74,6 @@ class DataContainer:
         pickle.dump(self, file)
         file.close()
 
-    # def __repr__(self):
-    #     old_printoptions = np.get_printoptions()
-    #     np.set_printoptions(threshold=15, edgeitems=5)
-    #     np.set_printoptions(**old_printoptions)
-
-
     @staticmethod
     def load(path):
         """ Load Dumped files
@@ -133,5 +127,4 @@ class DataContainer:
                     aggregated_dc = DataContainer(x, (np.vstack(ys).sum(0) + len(dc_list) - len(dc_list_filtered)) / len(dc_list), np.array([]), label=output_label, line_options=line_options)
                     aggregated_dc.std_array = stds
                     return aggregated_dc
-        # print("Warning: No data container remained after filtering, returning an empty object")
         return DataContainer(np.array([]), np.array([]), np.array([]), label=output_label, line_options=None)
