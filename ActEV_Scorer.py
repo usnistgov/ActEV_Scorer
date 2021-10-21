@@ -75,7 +75,7 @@ def transform_json(data):
         for j in range(len(data['activities'][i]['objects'])):
             frames = data['activities'][i]['objects'][j]['localization'][fname]
             obj_keys = list(data['activities'][i]['objects'][j]['localization'][fname])
-
+            data['activities'][i]['objects'][j]['objectType'] = 'single_bbox'
             x_list = list()
             y_list = list()
             w_list = list()
@@ -84,7 +84,6 @@ def transform_json(data):
                 val = list(frames[k].keys())
                 if val:
                     my_vals = frames[k]['boundingBox']
-                    # print(my_vals)
                     x_list.append(my_vals['x'])
                     y_list.append(my_vals['y'])
                     w_list.append(my_vals['w'] + my_vals['x'])
