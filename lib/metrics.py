@@ -726,6 +726,16 @@ def flatten_sweeper_records(recs, keys):
     return [[c] + [d[k] for k in keys] for c, d in recs]
 
 
+def compute_ap(precision, recall):
+    mprec = np.hstack([[0], precision, [0]])
+    mrec = np.hstack([[0], recall, [1]])
+    for i in range(len(mprec) - 1)[::-1]:
+        mprec[i] = max(mprec[i], mprec[i + 1])
+    idx = np.where(mrec[1::] != mrec[0:-1])[0] + 1
+    ap = np.sum((mrec[idx] - mrec[idx - 1]) * mprec[idx])
+    return ap
+
+
 def compute_map(system_activities, reference_activities, activity_index,
                 file_index, thresholds=[x/100 for x in range(5, 100, 5)]):
     # Largely inspired from ActivityNet code
@@ -736,15 +746,6 @@ def compute_map(system_activities, reference_activities, activity_index,
     def _filter_by_file(activities, key):
         return list(filter(lambda x: list(
             x.localization.keys())[0] == key, activities))
-
-    def _compute_ap(precision, recall):
-        mprec = np.hstack([[0], precision, [0]])
-        mrec = np.hstack([[0], recall, [1]])
-        for i in range(len(mprec) - 1)[::-1]:
-            mprec[i] = max(mprec[i], mprec[i + 1])
-        idx = np.where(mrec[1::] != mrec[0:-1])[0] + 1
-        ap = np.sum((mrec[idx] - mrec[idx - 1]) * mprec[idx])
-        return ap
 
     ap, precision, recall = {}, {}, {}
     for activity in activity_index:
@@ -796,7 +797,7 @@ def compute_map(system_activities, reference_activities, activity_index,
                     precision[activity] = precision_cumsum[tidx, :]
                 if list(recall_cumsum[tidx, :]) != []:
                     recall[activity] = recall_cumsum[tidx, :]
-            ap[activity][tidx] = _compute_ap(
+            ap[activity][tidx] = compute_ap(
                 precision_cumsum[tidx, :], recall_cumsum[tidx, :])
 
     ap_len = len(ap)
@@ -812,4 +813,153 @@ def compute_map(system_activities, reference_activities, activity_index,
             mAP[thd] += v
     for thd in mAP:
         ap_metrics['mAP'].append(('mAP@%.2ftIoU' % thd, mAP[thd]/ap_len))
+    return ap_metrics
+
+
+def object_map(system_activities, reference_activities, activity_index,
+               file_index, thresholds=[x/100 for x in range(5, 100, 5)]):
+    def _filter(function, iterable):
+        return list(filter(function, iterable))
+
+    def _unify_object_ids(instance_list):
+        """Makes all object IDs unique in an instance list"""
+        curr_id = 1
+        for instance in instance_list:
+            for obj in instance.objects:
+                obj.objectID = curr_id
+                curr_id += 1
+        return instance_list
+    
+    def _objects(instance_list):
+        """Return a list of all objects embedded in `instance_list`"""
+        # Spatial methods require this to work.
+        for instance in instance_list:
+            k = list(instance.localization.keys())[0]
+            for obj in instance.objects:
+                obj.localization = obj.localization[k]
+        return reduce(lambda x,y: x+y, [inst.objects for inst in instance_list], [])
+
+    ap, precision, recall = {}, {}, {}
+    for activity in activity_index:
+        ap[activity] = np.zeros(len(thresholds))
+
+        # Filtering s and r
+        filter_by_activity = lambda x: x.activity == activity
+        refs_by_activity = _filter(filter_by_activity, reference_activities)
+        syss_by_activity = _filter(filter_by_activity, system_activities)
+
+        # Storing mAP for each threshold per file
+        # That means each element is an array
+        # Size <= len(file_index) (some file may not
+        #     have any instances for a given activity)
+        # Size of each element = len(thresholds)
+        files_AP = []
+        for video in file_index:
+            # Filtering s and r again
+            filter_by_video = lambda x: list(x.localization.keys())[0] == video
+            refs_by_video = _filter(filter_by_video, refs_by_activity)
+            syss_by_video = _filter(filter_by_video, syss_by_activity)
+
+            # Otherwise for each activity instance, ID starts at 1
+            refs_by_video = _unify_object_ids(refs_by_video)
+            syss_by_video = _unify_object_ids(syss_by_video)
+
+            # Gathering objects
+            refs = _objects(refs_by_video)
+            syss = _objects(syss_by_video)
+
+            # Sort predictions by decreasing score order.
+            def _sort_objects(obj_list):
+                # When presenceConf will be set per object and not bbox
+                if getattr(obj_list[0], 'presenceConf', None) is not None:
+                    return argsort(obj_list, 'presenceConf')[::-1]
+
+                pc = []
+                for obj in obj_list:
+                    mean = 0
+                    size = len(obj.localization.keys())
+                    for frame in obj.localization:
+                        try:
+                            mean += obj.localization[frame].presenceConf
+                        except TypeError:  # presenceConf is None for {}
+                            size -= 1
+                    pc.append(mean / size)
+                sorted_pc = sorted(pc, reverse=True)
+                sorted_idx = []
+
+                while len(sorted_pc) > 0:
+                    elt = sorted_pc.pop(0)
+                    idx = pc.index(elt)
+                    while idx in sorted_idx:
+                        idx = pc[idx+1:].index(elt) + idx+1
+                    sorted_idx.append(idx)
+                return sorted_idx
+            
+            sorted_idx = _sort_objects(syss)
+            predictions = [syss[idx] for idx in sorted_idx]
+
+            npos = len(refs)
+            if npos == 0:
+                continue
+            lock_gt = np.ones((len(thresholds), npos)) * -1
+
+            # Initialize true positive and false positive vectors.
+            tp = np.zeros((len(thresholds), len(predictions)))
+            fp = np.zeros((len(thresholds), len(predictions)))
+
+            for idx, this_pred in enumerate(predictions):
+                this_gt = [r for r in refs if r.objectType == this_pred.objectType]
+                siou_arr = [spatial_intersection_over_union(
+                    ref, this_pred) for ref in this_gt]
+                siou_sorted_idx = argsort(siou_arr)[::-1]
+                for tidx, siou_thr in enumerate(thresholds):
+                    for jdx in siou_sorted_idx:
+                        if siou_arr[jdx] < siou_thr:
+                            fp[tidx, idx] = 1
+                            break
+                        if lock_gt[tidx, jdx] >= 0:
+                            continue
+                        # Assign as true positive after the filters above.
+                        tp[tidx, idx] = 1
+                        lock_gt[tidx, jdx] = idx
+                        break
+
+                    if fp[tidx, idx] == 0 and tp[tidx, idx] == 0:
+                        fp[tidx, idx] = 1
+
+            tp_cumsum = np.cumsum(tp, axis=1).astype(float)
+            fp_cumsum = np.cumsum(fp, axis=1).astype(float)
+            recall_cumsum = tp_cumsum / npos
+            precision_cumsum = tp_cumsum / (tp_cumsum + fp_cumsum)
+            local_AP = []
+            for tidx in range(len(thresholds)):
+                if thresholds[tidx] == 0.5:
+                    if list(precision_cumsum[tidx, :]) != []:
+                        precision[activity] = precision_cumsum[tidx, :]
+                    if list(recall_cumsum[tidx, :]) != []:
+                        recall[activity] = recall_cumsum[tidx, :]
+                # Not ap itself, we should happen it to files_AP
+                # and then compute a mean
+                local_AP.append(compute_ap(
+                    precision_cumsum[tidx, :], recall_cumsum[tidx, :]))
+            files_AP.append(local_AP)
+        # Finally, filling ap
+        for tidx in range(len(thresholds)):
+            for file_AP in files_AP:
+                ap[activity][tidx] += file_AP[tidx]
+            ap[activity][tidx] /= len(files_AP)
+
+    ap_len = len(ap)
+    ap_metrics = {'AP': [], 'mAP': [], 'pr': (precision, recall)}
+    mAP = {}
+    for thd in thresholds:
+        mAP[thd] = 0
+    for activity in ap:
+        for i in range(len(thresholds)):
+            thd = thresholds[i]
+            v = round(float(ap[activity][i]), 18)
+            ap_metrics['AP'].append((activity, 'object-AP@%.2ftIoU' % thd, v))
+            mAP[thd] += v
+    for thd in mAP:
+        ap_metrics['mAP'].append(('object-mAP@%.2ftIoU' % thd, mAP[thd]/ap_len))
     return ap_metrics
