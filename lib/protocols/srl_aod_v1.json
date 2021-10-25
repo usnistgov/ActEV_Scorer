@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$version": "ActEV18_AOD_v0",
+  "definitions": {
+    "temporal_localization": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z0-9_\\-\\.]+$": {
+          "type": "object",
+          "patternProperties": {
+            "^[0-9]+$": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "minProperties": 2,
+          "additionalProperties": false
+        }
+      },
+      "minProperties": 1,
+      "maxProperties": 1,
+      "additionalProperties": false
+    },
+    "activity_instance": {
+      "type": "object",
+      "properties": {
+        "activity": {
+          "type": "string"
+        },
+        "alertFrame": {
+          "type": "integer"
+        },
+        "presenceConf": {
+          "type": "number"
+        },
+        "activityID": {
+          "type": "integer"
+        },
+        "localization": {
+          "$ref": "#/definitions/temporal_localization"
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/object_instance"
+          }
+        }
+      },
+      "required": [
+        "activity",
+        "presenceConf",
+        "activityID",
+        "localization",
+        "objects"
+      ]
+    },
+    "filename": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_\\-\\.]+$"
+    },
+    "bounding_box": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "integer"
+        },
+        "y": {
+          "type": "integer"
+        },
+        "w": {
+          "type": "integer"
+        },
+        "h": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "w",
+        "h"
+      ],
+      "additionalProperties": false
+    },
+    "spatial_localization": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z0-9_\\-\\.]+$": {
+          "type": "object",
+          "patternProperties": {
+            "^[0-9]+$": {
+              "type": "object",
+              "oneOf": [
+                {
+                  "properties": {
+                    "presenceConf": {
+                      "type": "number"
+                    },
+                    "boundingBox": {
+                      "$ref": "#/definitions/bounding_box"
+                    }
+                  },
+                  "required": [
+                      "boundingBox"
+                  ]
+                },
+                {
+                  "maxProperties": 0
+                }
+              ]
+            }
+          },
+          "minProperties": 2,
+          "additionalProperties": false
+        }
+      },
+      "minProperties": 1,
+      "maxProperties": 1,
+      "additionalProperties": false
+    },
+    "object_instance": {
+      "type": "object",
+      "properties": {
+        "objectType": {
+          "type": "string"
+        },
+        "objectID": {
+          "type": "integer"
+        },
+        "localization": {
+          "$ref": "#/definitions/spatial_localization"
+        }
+      },
+      "required": [
+        "objectType",
+        "objectID",
+        "localization"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "filesProcessed": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/filename"
+      }
+    },
+    "activities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/activity_instance"
+      }
+    }
+  },
+  "required": [
+    "filesProcessed",
+    "activities"
+  ]
+}

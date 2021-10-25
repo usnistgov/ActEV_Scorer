@@ -52,7 +52,7 @@ from srl_ad_v1 import *
 class SRL_AOD_V1(SRL_AD_V1):
     @classmethod
     def get_schema_fn(cls):
-        return "actev18_aod_schema.json"
+        return "srl_aod_v1.json"
 
     @classmethod
     def requires_object_localization(cls):
@@ -72,7 +72,7 @@ class SRL_AOD_V1(SRL_AD_V1):
                                        "wpmiss.numerator": 8,
                                        "wpmiss.denominator": 10,
                                        "object.epsilon_object-overlap_congruence": 1.0e-8,
-                                       "object.epsilon_presenceconf_congruence": 1.0e-6,
+                                       "object.epsilon_presenceconf_congruence": 0,
                                        "object.spatial_overlap_delta": 0.5,
                                        "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
                                        "mode.cost_miss": 1,
