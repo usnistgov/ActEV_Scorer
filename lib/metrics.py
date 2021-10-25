@@ -868,6 +868,10 @@ def object_map(system_activities, reference_activities, activity_index,
             refs = _objects(refs_by_video)
             syss = _objects(syss_by_video)
 
+            npos = len(refs)
+            if npos == 0 or len(syss) == 0:
+                continue
+
             # Sort predictions by decreasing score order.
             def _sort_objects(obj_list):
                 # When presenceConf will be set per object and not bbox
@@ -898,9 +902,6 @@ def object_map(system_activities, reference_activities, activity_index,
             sorted_idx = _sort_objects(syss)
             predictions = [syss[idx] for idx in sorted_idx]
 
-            npos = len(refs)
-            if npos == 0:
-                continue
             lock_gt = np.ones((len(thresholds), npos)) * -1
 
             # Initialize true positive and false positive vectors.
