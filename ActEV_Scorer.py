@@ -470,10 +470,8 @@ def score_basic(protocol_class, args):
     # --extra-metrics part
     # Currently only map is part of it
     if args.extra_metrics:
-        extra_metrics = {}
-        extra_metrics['mAP'] = compute_map(system_activities, reference_activities, activity_index, file_index)
-        if 'OD' in protocol.__class__.__name__:
-            extra_metrics['obj-mAP'] = object_map(system_activities, reference_activities, activity_index, file_index)
+        is_aod = 'OD' in protocol.__class__.__name__
+        extra_metrics = compute_map(system_activities, reference_activities, activity_index, file_index, aod=protocol.scoring_parameters["activity.temporal_overlap_delta"])
     else: extra_metrics = {}
 
     mkdir_p(args.output_dir)
@@ -482,8 +480,12 @@ def score_basic(protocol_class, args):
     mean_audc = []
     if not args.disable_plotting:
         export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir, plot_options)
+        plot_options['title'] = "Detection Precision/Recall - 0.5 tIoU"
+        plot_options['filename'] = "PR@0.5tIoU"
         export_pr_curves(log, extra_metrics.get('mAP', {}).get('pr', []), args.output_dir, plot_options)
-        #export_pr_curves(log, extra_metrics.get('obj-mAP', {}).get('pr', []), args.output_dir, plot_options)
+        plot_options['title'] = "Object Precision/Recall - 0.5 sIoU"
+        plot_options['filename'] = "obj-PR@0.5sIoU"
+        export_pr_curves(log, extra_metrics.get('obj-mAP', {}).get('pr', []), args.output_dir, plot_options)
         audc_by_activity, mean_audc = protocol.compute_auc(args.output_dir)
 
     write_out_scoring_params(args.output_dir, protocol.scoring_parameters)
@@ -552,7 +554,7 @@ def export_pr_curves(log, pr_metrics, output_dir, plot_options):
         plot_options['ylim'] = [0, min((1, 1.1*p[0]))]
         plot_options['xlabel'] = 'Recall'
         plot_options['ylabel'] = 'Precision'
-        plot_options['title'] = "Precision/Recall - 0.5 tIoU - %s" % activity
+        plot_options['title'] = "%s - %s" % (plot_options['title'], activity)
         fig = rd.plot_pr(precision, recall, activity, plot_options=plot_options)
         fig.savefig("{}/{}".format(figure_dir, file_name))
         rd.close_fig(fig)
@@ -561,7 +563,7 @@ def export_pr_curves(log, pr_metrics, output_dir, plot_options):
         p = sorted(precision[activity], reverse=True)
         r = sorted(recall[activity])
         if p[0] != 0:
-            name = "PR@0.5tIoU_%s.png" % activity
+            name = "%s_%s.png" % (plot_options['filename'], activity)
             _save_pr(r, p, activity, name, plot_options)
 
 def records_to_dm(records):

@@ -737,9 +737,15 @@ def compute_ap(precision, recall):
 
 
 def compute_map(system_activities, reference_activities, activity_index,
-                file_index, thresholds=[x/100 for x in range(5, 100, 5)]):
+                file_index, thresholds=[x/100 for x in range(5, 100, 5)],
+                aod=False):
     # Largely inspired from ActivityNet code
     # http://activity-net.org/challenges/2021/tasks/anet_localization.html
+
+    metrics = {'mAP': {}}
+    if aod:
+        metrics['obj-mAP'] = {}
+
     def _filter_by_act(activities, key):
         return list(filter(lambda x: x.activity == key, activities))
 
@@ -749,9 +755,14 @@ def compute_map(system_activities, reference_activities, activity_index,
 
     ap, precision, recall = {}, {}, {}
     for activity in activity_index:
+        ap[activity] = np.zeros(len(thresholds))
+        if aod:
+            metrics['obj-mAP'][activity] = np.zeros(len(thresholds))
+
+        # Filtering syss and refs
         syss = _filter_by_act(system_activities, activity)
         refs = _filter_by_act(reference_activities, activity)
-        ap[activity] = np.zeros(len(thresholds))
+
         npos = float(len(refs))
         if npos == 0:
             continue
@@ -785,6 +796,9 @@ def compute_map(system_activities, reference_activities, activity_index,
 
                 if fp[tidx, idx] == 0 and tp[tidx, idx] == 0:
                     fp[tidx, idx] = 1
+            
+            # If AOD, we want to store for each prediction, the list of
+            # reference instances with a decent overlap
 
         tp_cumsum = np.cumsum(tp, axis=1).astype(float)
         fp_cumsum = np.cumsum(fp, axis=1).astype(float)
@@ -813,7 +827,14 @@ def compute_map(system_activities, reference_activities, activity_index,
             mAP[thd] += v
     for thd in mAP:
         ap_metrics['mAP'].append(('mAP@%.2ftIoU' % thd, mAP[thd]/ap_len))
-    return ap_metrics
+    
+    metrics['mAP'] = ap_metrics
+    if not aod:
+        return metrics
+        
+    # If AOD, we also compute object map
+    # TODO
+    return metrics
 
 
 def object_map(system_activities, reference_activities, activity_index,

@@ -822,7 +822,7 @@ test_23_0() {
     -r "data/test_4-0.json" \
     -a "data/test_4-0_activity-index.json" \
     -f "data/test_4-0_file-index.json" \
-    -o "$1" -j -v
+    -o "$1" -j -v -e
 }
 
 # SRL_AOD_V1 integration test
