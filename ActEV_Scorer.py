@@ -195,6 +195,10 @@ def transform_json_single_bbox_per_frame(data):
             new_obj[str(max_frame)] = dict()
             data['activities'][i]['objects'][0]['localization'][fname] = new_obj
             data['activities'][i]['objects'] = [data['activities'][i]['objects'][0]]
+            data['activities'][i]['combined_objects'] = 'yes'
+        else:
+            data['activities'][i]['combined_objects'] = 'no'
+            
         ### Set the object type
         data['activities'][i]['objects'][0]['objectType'] = 'single_bbox_per_frame'
         ### Add default object_presence_conf Values
