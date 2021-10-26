@@ -1,12 +1,14 @@
 [Info] Command: ../ActEV_Scorer.py ActEV18_AOD -s data/test_4-0_fake-sysout.json -r data/test_4-0.json -a data/test_5-1_activity-index.json -f data/test_4-0_file-index.json -o data/checkfiles/test_5_1 -d -j -v
-[Info] Loading system output file
 [Info] Loading activity index file
 [Info] Loading file index file
 [Info] Loading JSON schema
+[Info] Loading activities and references
 [Info] Validating system output against JSON schema
 [Info] System output validated successfully against JSON schema
 [Info] Checking file index against system's "filesProcessed"
 [Info] Validation successful
 [Info] Loading reference file
+[Info] Loading JSON schema
+[Info] Computing alignments ..
 [Info] Scoring ..
 [Info] Saving results to directory 'data/checkfiles/test_5_1'

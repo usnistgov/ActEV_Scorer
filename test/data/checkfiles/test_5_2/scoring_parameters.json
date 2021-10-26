@@ -36,8 +36,8 @@
     0.03,
     0.01
   ],
-  "command": "../ActEV_Scorer.py ActEV18_AOD -s data/test_5-2_fake-sysout.json -r data/test_4-0.json -a data/test_5-2_activity-index.json -f data/test_4-0_file-index.json -o data/checkfiles/test_5_2 -d -j -v",
-  "git.commit": "69202c5eb497411c34d870bee00927b54a250778--2020-03-10T11:38:28-04:00",
+  "command": "../ActEV_Scorer.py ActEV18_AOD -s data/test_5-2_fake-sysout.json -r data/test_4-0.json -a data/test_5-2_activity-index.json -f data/test_4-0_file-index.json -o compcheckfiles/test_5_2 -d -j -v",
+  "git.commit": "b93e8501a1672a62d24c4d263473a1f66f70d857--2021-10-25T14:59:09-04:00",
   "mode.cost_fa": 1,
   "mode.cost_miss": 1,
   "nmide.cost_fa": 1,

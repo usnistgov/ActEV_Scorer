@@ -14,89 +14,33 @@
 [Info] Saving results to directory 'data/checkfiles/test_24_0'
 [Info] Saving figures to directory 'data/checkfiles/test_24_0/figures'
 [Info] Saving dm files to directory 'data/checkfiles/test_24_0/dm'
-[Info] Plotting RFA DET curve for Closing_Trunk
-[Info] Plotting RFA DET curve for Push
-[Info] Plotting RFA DET curve for Unloading
-[Info] Plotting RFA DET curve for Opening
-[Info] Plotting RFA DET curve for Closing
-[Info] Plotting RFA DET curve for vehicle_turning_right
-[Info] Plotting RFA DET curve for Interacts
-[Info] Plotting RFA DET curve for activity_standing
-[Info] Plotting RFA DET curve for activity_walking
 [Info] Plotting RFA DET curve for specialized_talking_phone
-[Info] Plotting RFA DET curve for vehicle_stopping
-[Info] Plotting RFA DET curve for SetDown
-[Info] Plotting RFA DET curve for vehicle_moving
-[Info] Plotting RFA DET curve for Open_Trunk
-[Info] Plotting RFA DET curve for activity_running
-[Info] Plotting RFA DET curve for Talking
-[Info] Plotting RFA DET curve for activity_gesturing
-[Info] Plotting RFA DET curve for specialized_miscellaneous
-[Info] Plotting RFA DET curve for activity_carrying
+[Info] Plotting RFA DET curve for Closing
+[Info] Plotting RFA DET curve for Interacts
 [Info] Plotting RFA DET curve for Person_Person_Interaction
 [Info] Plotting RFA DET curve for specialized_texting_phone
-[Info] Plotting RFA DET curve for Pull
-[Info] Plotting RFA DET curve for Transport_HeavyCarry
+[Info] Plotting RFA DET curve for Open_Trunk
+[Info] Plotting RFA DET curve for Unloading
+[Info] Plotting RFA DET curve for Opening
+[Info] Plotting RFA DET curve for Talking
+[Info] Plotting RFA DET curve for vehicle_moving
+[Info] Plotting RFA DET curve for vehicle_turning_right
+[Info] Plotting RFA DET curve for activity_running
+[Info] Plotting RFA DET curve for Push
+[Info] Plotting RFA DET curve for specialized_miscellaneous
+[Info] Plotting RFA DET curve for vehicle_starting
+[Info] Plotting RFA DET curve for SetDown
+[Info] Plotting RFA DET curve for Closing_Trunk
+[Info] Plotting RFA DET curve for activity_standing
+[Info] Plotting RFA DET curve for vehicle_stopping
+[Info] Plotting RFA DET curve for activity_carrying
+[Info] Plotting RFA DET curve for vehicle_turning_left
+[Info] Plotting RFA DET curve for activity_gesturing
 [Info] Plotting RFA DET curve for Loading
 [Info] Plotting RFA DET curve for Exiting
-[Info] Plotting RFA DET curve for vehicle_turning_left
-[Info] Plotting RFA DET curve for vehicle_starting
+[Info] Plotting RFA DET curve for Pull
+[Info] Plotting RFA DET curve for activity_walking
 [Info] Plotting RFA DET curve for Entering
+[Info] Plotting RFA DET curve for Transport_HeavyCarry
 [Info] Plotting mean RFA curve for 28 activities
 [Info] Plotting combined RFA DET curves
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Closing.dm'
-data/checkfiles/test_24_0/dm/TFA_Closing.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Closing_Trunk.dm'
-data/checkfiles/test_24_0/dm/TFA_Closing_Trunk.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Entering.dm'
-data/checkfiles/test_24_0/dm/TFA_Entering.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Exiting.dm'
-data/checkfiles/test_24_0/dm/TFA_Exiting.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Interacts.dm'
-data/checkfiles/test_24_0/dm/TFA_Interacts.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Loading.dm'
-data/checkfiles/test_24_0/dm/TFA_Loading.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Open_Trunk.dm'
-data/checkfiles/test_24_0/dm/TFA_Open_Trunk.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Opening.dm'
-data/checkfiles/test_24_0/dm/TFA_Opening.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Person_Person_Interaction.dm'
-data/checkfiles/test_24_0/dm/TFA_Person_Person_Interaction.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Pull.dm'
-data/checkfiles/test_24_0/dm/TFA_Pull.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Push.dm'
-data/checkfiles/test_24_0/dm/TFA_Push.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_SetDown.dm'
-data/checkfiles/test_24_0/dm/TFA_SetDown.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Talking.dm'
-data/checkfiles/test_24_0/dm/TFA_Talking.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Transport_HeavyCarry.dm'
-data/checkfiles/test_24_0/dm/TFA_Transport_HeavyCarry.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_Unloading.dm'
-data/checkfiles/test_24_0/dm/TFA_Unloading.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_activity_carrying.dm'
-data/checkfiles/test_24_0/dm/TFA_activity_carrying.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_activity_gesturing.dm'
-data/checkfiles/test_24_0/dm/TFA_activity_gesturing.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_activity_running.dm'
-data/checkfiles/test_24_0/dm/TFA_activity_running.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_activity_standing.dm'
-data/checkfiles/test_24_0/dm/TFA_activity_standing.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_activity_walking.dm'
-data/checkfiles/test_24_0/dm/TFA_activity_walking.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_specialized_miscellaneous.dm'
-data/checkfiles/test_24_0/dm/TFA_specialized_miscellaneous.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_specialized_talking_phone.dm'
-data/checkfiles/test_24_0/dm/TFA_specialized_talking_phone.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_specialized_texting_phone.dm'
-data/checkfiles/test_24_0/dm/TFA_specialized_texting_phone.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_vehicle_moving.dm'
-data/checkfiles/test_24_0/dm/TFA_vehicle_moving.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_vehicle_starting.dm'
-data/checkfiles/test_24_0/dm/TFA_vehicle_starting.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_vehicle_stopping.dm'
-data/checkfiles/test_24_0/dm/TFA_vehicle_stopping.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_vehicle_turning_left.dm'
-data/checkfiles/test_24_0/dm/TFA_vehicle_turning_left.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_24_0/dm/TFA_vehicle_turning_right.dm'
-data/checkfiles/test_24_0/dm/TFA_vehicle_turning_right.dmDNE
