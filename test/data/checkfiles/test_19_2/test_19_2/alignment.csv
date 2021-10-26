@@ -1,7 +1,0 @@
-activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
-Loading|CD|627|627|0.166|1.0|{"presenceconf_congruence": 0.0}
-Push|CD|665|665|0.764|1.9583333333333333|{"presenceconf_congruence": 0.9583333333333333}
-Talking|CD|664|664|0.764|1.9583333333333333|{"presenceconf_congruence": 0.9583333333333333}
-activity_walking|CD|2|2|0.764|1.9583333333333333|{"presenceconf_congruence": 0.9583333333333333}
-activity_walking|CD|660|660|0.764|1.9583333333333333|{"presenceconf_congruence": 0.9583333333333333}
-vehicle_turning_right|CD|658|658|0.79|2.0|{"presenceconf_congruence": 1.0}
