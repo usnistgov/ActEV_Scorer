@@ -63,6 +63,10 @@ def main():
     out_folder = sys.argv[2]
 
     def eprint(fn, ln, rl, ol):
+        if len(rl) > 30:
+            rl = "%s..." % rl[:60]
+        if len(ol) > 30:
+            ol = "%s..." % ol[:60]
         print("""
             Difference found in file %s line %d.
                 Expected: %s

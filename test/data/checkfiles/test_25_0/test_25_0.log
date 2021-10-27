@@ -14,11 +14,7 @@
 [Info] Saving results to directory 'data/checkfiles/test_25_0'
 [Info] Saving figures to directory 'data/checkfiles/test_25_0/figures'
 [Info] Saving dm files to directory 'data/checkfiles/test_25_0/dm'
-[Info] Plotting RFA DET curve for Entering
 [Info] Plotting RFA DET curve for Closing
+[Info] Plotting RFA DET curve for Entering
 [Info] Plotting mean RFA curve for 2 activities
 [Info] Plotting combined RFA DET curves
-[Errno 2] No such file or directory: 'data/checkfiles/test_25_0/dm/TFA_Closing.dm'
-data/checkfiles/test_25_0/dm/TFA_Closing.dmDNE
-[Errno 2] No such file or directory: 'data/checkfiles/test_25_0/dm/TFA_Entering.dm'
-data/checkfiles/test_25_0/dm/TFA_Entering.dmDNE

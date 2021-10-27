@@ -79,20 +79,16 @@ class SRL_AOD_V1(SRL_AD_V1):
                                        "mode.cost_fa": 1,
                                        "command": str(command),
                                        "git.commit": subprocess.check_output(["git", "--git-dir="+ os.path.join(lib_path, "../")+".git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
-
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
-
         super(SRL_AOD_V1, self).__init__(scoring_parameters, file_index, activity_index, command)
 
     def default_kernel_builder(self, refs, syss):
-
         act_presenceconf_congruence = build_sed_presenceconf_congruence(syss, minmax=self.minmax)
         simple_temporal_overlap_filter = build_temporal_overlap_filter(self.scoring_parameters["activity.temporal_overlap_delta"])
 
         def _r(init, sys):
             localization_vals = reduce(add, map(lambda x: list(x.localization.values()), sys.objects), [])
             init.extend(reduce(add, map(lambda x: list(x.values()), localization_vals), []))
-
             return init
 
         # Have to filter out empty ObjectLocalizationFrames here
@@ -110,8 +106,7 @@ class SRL_AOD_V1(SRL_AD_V1):
         def _configure_kernel_for_activity(activity, activity_properties, refs, syss):
             object_types = activity_properties.get("objectTypes", [])
             object_type_map = activity_properties.get("objectTypeMap", None)
-            #            print "object_type_map: "
-            #            print object_type_map
+
             if object_type_map is None:
                 object_type_filter = object_type_match_filter
             else:
@@ -227,13 +222,10 @@ class SRL_AOD_V1(SRL_AD_V1):
                                      object_type_map.get(ref_object_type, ref_object_type) if ref_object_type is not None else None,
                                      object_type_map.get(sys_object_type, sys_object_type) if sys_object_type is not None else None])) + [ x for x in ar.iter_with_extended_properties(["spatial_intersection-over-union", "presenceconf_congruence"]) ]
 
-                return map(_subm, item.kernel_components.get("alignment_records", []))
+                return list(map(_subm, item.kernel_components.get("alignment_records", [])))
 
-            l = []
-            for entry in list(map(_m, filter(lambda r: r.alignment == "CD", recs))):
-                l.append(entry)
-            #init.extend(reduce(add, map(_m, filter(lambda r: r.alignment == "CD", recs)), []))
-            init.extend(l)
+            for entry in map(_m, filter(lambda r: r.alignment == "CD", recs)):
+                init.extend(entry)
             return init
 
         grouped = group_by_func(lambda rec: rec.activity, alignment).items()

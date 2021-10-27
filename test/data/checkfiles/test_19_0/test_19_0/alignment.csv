@@ -1,0 +1,829 @@
+activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
+Closing|CD|64|30|0.789|1.0000007967389262|{"temporal_intersection-over-union": 0.9655172413793104, "presenceconf_congruence": 0.7870837537840566}
+Closing|CD|69|123|0.807|1.0000008139428773|{"temporal_intersection-over-union": 0.8695652173913043, "presenceconf_congruence": 0.805247225025227}
+Closing|CD|70|26|0.774|1.0000007809218867|{"temporal_intersection-over-union": 0.8974358974358975, "presenceconf_congruence": 0.7719475277497477}
+Closing|CD|71|143|0.529|1.0000005338134117|{"temporal_intersection-over-union": 0.9090909090909091, "presenceconf_congruence": 0.5247225025227044}
+Closing|FA|None|1031|0.591|None|None
+Closing|FA|None|1035|0.068|None|None
+Closing|FA|None|1062|0.318|None|None
+Closing|FA|None|1311|0.622|None|None
+Closing|FA|None|242|0.946|None|None
+Closing|FA|None|250|0.654|None|None
+Closing|FA|None|254|0.931|None|None
+Closing|FA|None|541|0.08|None|None
+Closing|FA|None|620|0.567|None|None
+Closing|FA|None|648|0.992|None|None
+Closing|FA|None|776|0.682|None|None
+Closing|FA|None|860|0.679|None|None
+Closing|FA|None|896|0.069|None|None
+Closing|FA|None|904|0.307|None|None
+Closing|MD|65|None|None|None|None
+Closing|MD|66|None|None|None|None
+Closing|MD|68|None|None|None|None
+Closing_Trunk|FA|None|1007|0.99|None|None
+Closing_Trunk|FA|None|1022|0.723|None|None
+Closing_Trunk|FA|None|1184|0.608|None|None
+Closing_Trunk|FA|None|1190|0.259|None|None
+Closing_Trunk|FA|None|1269|0.47|None|None
+Closing_Trunk|FA|None|160|0.254|None|None
+Closing_Trunk|FA|None|165|0.351|None|None
+Closing_Trunk|FA|None|198|0.124|None|None
+Closing_Trunk|FA|None|258|0.115|None|None
+Closing_Trunk|FA|None|260|0.508|None|None
+Closing_Trunk|FA|None|322|0.8|None|None
+Closing_Trunk|FA|None|375|0.063|None|None
+Closing_Trunk|FA|None|428|0.45|None|None
+Closing_Trunk|FA|None|522|0.352|None|None
+Closing_Trunk|FA|None|619|0.685|None|None
+Closing_Trunk|FA|None|637|0.64|None|None
+Closing_Trunk|FA|None|676|0.113|None|None
+Closing_Trunk|FA|None|688|0.173|None|None
+Entering|CD|44|27|0.769|1.0000007756521192|{"temporal_intersection-over-union": 0.875, "presenceconf_congruence": 0.7669021190716448}
+Entering|CD|47|80|0.795|1.0000008020571631|{"temporal_intersection-over-union": 0.8918918918918919, "presenceconf_congruence": 0.79313824419778}
+Entering|FA|None|1173|0.639|None|None
+Entering|FA|None|1228|0.572|None|None
+Entering|FA|None|1249|0.947|None|None
+Entering|FA|None|1298|0.913|None|None
+Entering|FA|None|1310|0.226|None|None
+Entering|FA|None|156|0.909|None|None
+Entering|FA|None|219|0.68|None|None
+Entering|FA|None|387|0.97|None|None
+Entering|FA|None|486|0.505|None|None
+Entering|FA|None|498|0.046|None|None
+Entering|FA|None|550|0.171|None|None
+Entering|FA|None|564|0.702|None|None
+Entering|FA|None|586|0.573|None|None
+Entering|FA|None|623|0.143|None|None
+Entering|FA|None|689|0.499|None|None
+Entering|FA|None|712|0.872|None|None
+Entering|FA|None|763|0.176|None|None
+Entering|FA|None|784|0.034|None|None
+Entering|FA|None|809|0.615|None|None
+Entering|FA|None|834|0.893|None|None
+Entering|FA|None|872|0.287|None|None
+Entering|FA|None|885|0.055|None|None
+Entering|FA|None|990|0.902|None|None
+Entering|MD|45|None|None|None|None
+Exiting|CD|39|35|0.6|1.0000006051551846|{"temporal_intersection-over-union": 0.8787878787878788, "presenceconf_congruence": 0.5963673057517659}
+Exiting|FA|None|1021|0.464|None|None
+Exiting|FA|None|1141|0.671|None|None
+Exiting|FA|None|1162|0.054|None|None
+Exiting|FA|None|1166|0.523|None|None
+Exiting|FA|None|1207|0.586|None|None
+Exiting|FA|None|1226|0.536|None|None
+Exiting|FA|None|1285|0.263|None|None
+Exiting|FA|None|153|0.486|None|None
+Exiting|FA|None|206|0.21|None|None
+Exiting|FA|None|233|0.186|None|None
+Exiting|FA|None|253|0.799|None|None
+Exiting|FA|None|355|0.882|None|None
+Exiting|FA|None|379|0.186|None|None
+Exiting|FA|None|398|0.908|None|None
+Exiting|FA|None|429|0.889|None|None
+Exiting|FA|None|515|0.974|None|None
+Exiting|FA|None|569|0.614|None|None
+Exiting|FA|None|636|0.316|None|None
+Exiting|FA|None|680|0.288|None|None
+Exiting|MD|40|None|None|None|None
+Exiting|MD|41|None|None|None|None
+Exiting|MD|42|None|None|None|None
+Interacts|FA|None|1000|0.984|None|None
+Interacts|FA|None|1034|0.881|None|None
+Interacts|FA|None|1090|0.157|None|None
+Interacts|FA|None|1109|0.683|None|None
+Interacts|FA|None|1170|0.437|None|None
+Interacts|FA|None|1252|0.727|None|None
+Interacts|FA|None|1294|0.368|None|None
+Interacts|FA|None|155|0.661|None|None
+Interacts|FA|None|275|0.48|None|None
+Interacts|FA|None|291|0.527|None|None
+Interacts|FA|None|425|0.814|None|None
+Interacts|FA|None|426|0.303|None|None
+Interacts|FA|None|547|0.205|None|None
+Interacts|FA|None|556|0.294|None|None
+Interacts|FA|None|576|0.761|None|None
+Interacts|FA|None|631|0.366|None|None
+Interacts|FA|None|702|0.79|None|None
+Interacts|FA|None|783|0.397|None|None
+Interacts|FA|None|786|0.991|None|None
+Interacts|FA|None|798|0.939|None|None
+Interacts|FA|None|844|0.999|None|None
+Interacts|FA|None|878|0.666|None|None
+Interacts|FA|None|905|0.367|None|None
+Interacts|FA|None|940|0.466|None|None
+Interacts|MD|15|None|None|None|None
+Interacts|MD|16|None|None|None|None
+Interacts|MD|17|None|None|None|None
+Loading|FA|None|1074|0.316|None|None
+Loading|FA|None|1146|0.151|None|None
+Loading|FA|None|1153|0.267|None|None
+Loading|FA|None|1183|0.476|None|None
+Loading|FA|None|1314|0.946|None|None
+Loading|FA|None|418|0.438|None|None
+Loading|FA|None|535|0.406|None|None
+Loading|FA|None|614|0.348|None|None
+Loading|FA|None|627|0.166|None|None
+Loading|FA|None|643|0.776|None|None
+Loading|FA|None|694|0.558|None|None
+Loading|FA|None|740|0.588|None|None
+Loading|FA|None|903|0.639|None|None
+Loading|FA|None|971|0.869|None|None
+Open_Trunk|FA|None|1027|0.287|None|None
+Open_Trunk|FA|None|1047|0.337|None|None
+Open_Trunk|FA|None|1112|0.267|None|None
+Open_Trunk|FA|None|1157|0.715|None|None
+Open_Trunk|FA|None|1238|0.747|None|None
+Open_Trunk|FA|None|1267|0.17|None|None
+Open_Trunk|FA|None|1281|0.763|None|None
+Open_Trunk|FA|None|151|0.583|None|None
+Open_Trunk|FA|None|200|0.546|None|None
+Open_Trunk|FA|None|210|0.973|None|None
+Open_Trunk|FA|None|228|0.372|None|None
+Open_Trunk|FA|None|353|0.462|None|None
+Open_Trunk|FA|None|399|0.118|None|None
+Open_Trunk|FA|None|414|0.098|None|None
+Open_Trunk|FA|None|508|0.978|None|None
+Open_Trunk|FA|None|548|0.247|None|None
+Open_Trunk|FA|None|594|0.834|None|None
+Open_Trunk|FA|None|679|0.619|None|None
+Open_Trunk|FA|None|707|0.395|None|None
+Open_Trunk|FA|None|730|0.258|None|None
+Open_Trunk|FA|None|966|0.399|None|None
+Opening|CD|57|54|0.547|1.0000005515223374|{"temporal_intersection-over-union": 0.8636363636363636, "presenceconf_congruence": 0.5428859737638749}
+Opening|CD|58|144|0.858|1.0000008655992825|{"temporal_intersection-over-union": 0.8888888888888888, "presenceconf_congruence": 0.8567103935418768}
+Opening|CD|59|114|0.727|1.0000007328751166|{"temporal_intersection-over-union": 0.8354430379746836, "presenceconf_congruence": 0.7245206861755802}
+Opening|FA|None|1041|0.588|None|None
+Opening|FA|None|1071|0.617|None|None
+Opening|FA|None|1083|0.608|None|None
+Opening|FA|None|1191|0.461|None|None
+Opening|FA|None|1223|0.733|None|None
+Opening|FA|None|1290|0.127|None|None
+Opening|FA|None|190|0.181|None|None
+Opening|FA|None|224|0.825|None|None
+Opening|FA|None|227|0.597|None|None
+Opening|FA|None|267|0.922|None|None
+Opening|FA|None|298|0.268|None|None
+Opening|FA|None|326|0.547|None|None
+Opening|FA|None|354|0.888|None|None
+Opening|FA|None|496|0.313|None|None
+Opening|FA|None|532|0.983|None|None
+Opening|FA|None|650|0.118|None|None
+Opening|FA|None|682|0.868|None|None
+Opening|FA|None|685|0.81|None|None
+Opening|FA|None|687|0.283|None|None
+Opening|FA|None|762|0.781|None|None
+Opening|FA|None|791|0.466|None|None
+Opening|FA|None|902|0.625|None|None
+Opening|FA|None|928|0.543|None|None
+Opening|FA|None|948|0.408|None|None
+Opening|FA|None|950|0.645|None|None
+Opening|FA|None|956|0.695|None|None
+Opening|FA|None|967|0.29|None|None
+Opening|FA|None|992|0.021|None|None
+Opening|MD|51|None|None|None|None
+Opening|MD|52|None|None|None|None
+Opening|MD|53|None|None|None|None
+Person_Person_Interaction|CD|10|19|0.516|1.0000005200892883|{"temporal_intersection-over-union": 0.8484848484848485, "presenceconf_congruence": 0.5116044399596368}
+Person_Person_Interaction|CD|11|70|0.822|1.000000829415709|{"temporal_intersection-over-union": 0.9032258064516129, "presenceconf_congruence": 0.8203834510595358}
+Person_Person_Interaction|CD|13|23|0.537|1.0000005414158462|{"temporal_intersection-over-union": 0.8620689655172413, "presenceconf_congruence": 0.5327951564076691}
+Person_Person_Interaction|FA|None|1008|0.129|None|None
+Person_Person_Interaction|FA|None|1095|0.378|None|None
+Person_Person_Interaction|FA|None|1120|0.934|None|None
+Person_Person_Interaction|FA|None|1121|0.688|None|None
+Person_Person_Interaction|FA|None|1180|0.978|None|None
+Person_Person_Interaction|FA|None|1232|0.27|None|None
+Person_Person_Interaction|FA|None|1279|0.328|None|None
+Person_Person_Interaction|FA|None|173|0.337|None|None
+Person_Person_Interaction|FA|None|252|0.709|None|None
+Person_Person_Interaction|FA|None|266|0.385|None|None
+Person_Person_Interaction|FA|None|285|0.549|None|None
+Person_Person_Interaction|FA|None|350|0.195|None|None
+Person_Person_Interaction|FA|None|361|0.77|None|None
+Person_Person_Interaction|FA|None|364|0.085|None|None
+Person_Person_Interaction|FA|None|450|0.641|None|None
+Person_Person_Interaction|FA|None|457|0.511|None|None
+Person_Person_Interaction|FA|None|462|0.84|None|None
+Person_Person_Interaction|FA|None|478|0.71|None|None
+Person_Person_Interaction|FA|None|484|0.706|None|None
+Person_Person_Interaction|FA|None|507|0.759|None|None
+Person_Person_Interaction|FA|None|511|0.369|None|None
+Person_Person_Interaction|FA|None|526|0.15|None|None
+Person_Person_Interaction|FA|None|528|0.436|None|None
+Person_Person_Interaction|FA|None|529|0.615|None|None
+Person_Person_Interaction|FA|None|554|0.271|None|None
+Person_Person_Interaction|FA|None|589|0.65|None|None
+Person_Person_Interaction|FA|None|615|0.05|None|None
+Person_Person_Interaction|FA|None|651|0.537|None|None
+Person_Person_Interaction|FA|None|660|0.023|None|None
+Person_Person_Interaction|FA|None|779|0.093|None|None
+Person_Person_Interaction|FA|None|780|0.372|None|None
+Person_Person_Interaction|FA|None|803|0.482|None|None
+Person_Person_Interaction|FA|None|812|0.219|None|None
+Person_Person_Interaction|FA|None|813|0.752|None|None
+Person_Person_Interaction|FA|None|816|0.582|None|None
+Person_Person_Interaction|FA|None|836|0.91|None|None
+Person_Person_Interaction|FA|None|857|0.28|None|None
+Person_Person_Interaction|FA|None|859|0.832|None|None
+Person_Person_Interaction|FA|None|864|0.674|None|None
+Person_Person_Interaction|FA|None|865|0.533|None|None
+Person_Person_Interaction|FA|None|887|0.648|None|None
+Person_Person_Interaction|FA|None|958|0.452|None|None
+Person_Person_Interaction|FA|None|993|0.398|None|None
+Person_Person_Interaction|MD|12|None|None|None|None
+Person_Person_Interaction|MD|9|None|None|None|None
+Pull|CD|34|847|0.433|1.0000004330092926|{"temporal_intersection-over-union": 0.5158636897767332, "presenceconf_congruence": 0.42785065590312815}
+Pull|CD|36|271|0.178|1.000000173262086|{"temporal_intersection-over-union": 0.2727272727272727, "presenceconf_congruence": 0.1705348133198789}
+Pull|FA|None|1077|0.274|None|None
+Pull|FA|None|1124|0.24|None|None
+Pull|FA|None|1205|0.907|None|None
+Pull|FA|None|172|0.682|None|None
+Pull|FA|None|382|0.124|None|None
+Pull|FA|None|427|0.228|None|None
+Pull|FA|None|514|0.416|None|None
+Pull|FA|None|546|0.644|None|None
+Pull|FA|None|613|0.412|None|None
+Pull|FA|None|632|0.115|None|None
+Pull|FA|None|662|0.874|None|None
+Pull|FA|None|725|0.815|None|None
+Pull|FA|None|770|0.519|None|None
+Pull|FA|None|787|0.312|None|None
+Pull|FA|None|818|0.623|None|None
+Pull|FA|None|821|0.256|None|None
+Pull|FA|None|892|0.502|None|None
+Pull|FA|None|969|0.27|None|None
+Push|CD|31|3|0.716|1.000000722622384|{"temporal_intersection-over-union": 0.9201596806387226, "presenceconf_congruence": 0.7134207870837538}
+Push|CD|32|1271|0.173|1.0000001680981003|{"temporal_intersection-over-union": 0.2608695652173913, "presenceconf_congruence": 0.16548940464177597}
+Push|FA|None|1026|0.777|None|None
+Push|FA|None|1053|0.233|None|None
+Push|FA|None|1055|0.115|None|None
+Push|FA|None|1068|0.13|None|None
+Push|FA|None|1079|0.933|None|None
+Push|FA|None|1081|0.2|None|None
+Push|FA|None|1107|0.435|None|None
+Push|FA|None|1220|0.16|None|None
+Push|FA|None|1235|0.887|None|None
+Push|FA|None|1255|0.442|None|None
+Push|FA|None|1286|0.588|None|None
+Push|FA|None|1291|0.7|None|None
+Push|FA|None|195|0.714|None|None
+Push|FA|None|196|0.843|None|None
+Push|FA|None|214|0.73|None|None
+Push|FA|None|277|0.298|None|None
+Push|FA|None|295|0.323|None|None
+Push|FA|None|352|0.247|None|None
+Push|FA|None|417|0.05|None|None
+Push|FA|None|460|0.276|None|None
+Push|FA|None|820|0.518|None|None
+SetDown|CD|73|28|0.954|1.000000963005317|{"temporal_intersection-over-union": 0.9423076923076923, "presenceconf_congruence": 0.953582240161453}
+SetDown|FA|None|1085|0.886|None|None
+SetDown|FA|None|1134|0.948|None|None
+SetDown|FA|None|1143|0.054|None|None
+SetDown|FA|None|159|0.627|None|None
+SetDown|FA|None|239|0.447|None|None
+SetDown|FA|None|344|0.229|None|None
+SetDown|FA|None|366|0.09|None|None
+SetDown|FA|None|376|0.655|None|None
+SetDown|FA|None|412|0.684|None|None
+SetDown|FA|None|444|0.979|None|None
+SetDown|FA|None|657|0.124|None|None
+SetDown|FA|None|668|0.163|None|None
+SetDown|FA|None|681|0.378|None|None
+SetDown|FA|None|737|0.035|None|None
+SetDown|FA|None|769|0.286|None|None
+SetDown|FA|None|953|0.604|None|None
+SetDown|FA|None|975|0.391|None|None
+SetDown|FA|None|994|0.917|None|None
+SetDown|MD|72|None|None|None|None
+Talking|CD|7|247|0.892|1.0000008972628274|{"temporal_intersection-over-union": 0.6243654822335025, "presenceconf_congruence": 0.8910191725529768}
+Talking|FA|None|1009|0.02|None|None
+Talking|FA|None|1040|0.524|None|None
+Talking|FA|None|1061|0.786|None|None
+Talking|FA|None|1114|0.089|None|None
+Talking|FA|None|1130|0.082|None|None
+Talking|FA|None|1152|0.268|None|None
+Talking|FA|None|1165|0.404|None|None
+Talking|FA|None|1172|0.078|None|None
+Talking|FA|None|1245|0.197|None|None
+Talking|FA|None|158|0.527|None|None
+Talking|FA|None|243|0.685|None|None
+Talking|FA|None|246|0.713|None|None
+Talking|FA|None|300|0.039|None|None
+Talking|FA|None|307|0.226|None|None
+Talking|FA|None|318|0.959|None|None
+Talking|FA|None|385|0.56|None|None
+Talking|FA|None|424|0.331|None|None
+Talking|FA|None|438|0.426|None|None
+Talking|FA|None|476|0.768|None|None
+Talking|FA|None|487|0.406|None|None
+Talking|FA|None|506|0.198|None|None
+Talking|FA|None|516|0.594|None|None
+Talking|FA|None|527|0.474|None|None
+Talking|FA|None|545|0.133|None|None
+Talking|FA|None|557|0.391|None|None
+Talking|FA|None|574|0.063|None|None
+Talking|FA|None|699|0.89|None|None
+Talking|FA|None|716|0.838|None|None
+Talking|FA|None|806|0.718|None|None
+Talking|FA|None|840|0.325|None|None
+Talking|MD|5|None|None|None|None
+Talking|MD|6|None|None|None|None
+Transport_HeavyCarry|CD|27|105|0.668|1.00000067402678|{"temporal_intersection-over-union": 0.9041916167664671, "presenceconf_congruence": 0.6649848637739657}
+Transport_HeavyCarry|CD|28|11|0.519|1.0000005233273375|{"temporal_intersection-over-union": 0.8695652173913043, "presenceconf_congruence": 0.5146316851664985}
+Transport_HeavyCarry|CD|29|113|0.888|1.00000089501856|{"temporal_intersection-over-union": 0.8035714285714286, "presenceconf_congruence": 0.8869828456104945}
+Transport_HeavyCarry|CD|30|408|0.191|1.0000001857532475|{"temporal_intersection-over-union": 0.2100371747211896, "presenceconf_congruence": 0.18365287588294651}
+Transport_HeavyCarry|FA|None|1069|0.923|None|None
+Transport_HeavyCarry|FA|None|1278|0.059|None|None
+Transport_HeavyCarry|FA|None|220|0.139|None|None
+Transport_HeavyCarry|FA|None|270|0.528|None|None
+Transport_HeavyCarry|FA|None|402|0.468|None|None
+Transport_HeavyCarry|FA|None|407|0.747|None|None
+Transport_HeavyCarry|FA|None|421|0.47|None|None
+Transport_HeavyCarry|FA|None|467|0.077|None|None
+Transport_HeavyCarry|FA|None|537|0.696|None|None
+Transport_HeavyCarry|FA|None|610|0.243|None|None
+Transport_HeavyCarry|FA|None|621|0.924|None|None
+Transport_HeavyCarry|FA|None|641|0.601|None|None
+Transport_HeavyCarry|FA|None|652|0.68|None|None
+Transport_HeavyCarry|FA|None|775|0.081|None|None
+Transport_HeavyCarry|FA|None|796|0.953|None|None
+Transport_HeavyCarry|FA|None|832|0.741|None|None
+Transport_HeavyCarry|FA|None|849|0.429|None|None
+Transport_HeavyCarry|FA|None|916|0.341|None|None
+Transport_HeavyCarry|FA|None|972|0.359|None|None
+Transport_HeavyCarry|FA|None|987|0.442|None|None
+Unloading|CD|24|212|0.335|1.0000003321774291|{"temporal_intersection-over-union": 0.32167832167832167, "presenceconf_congruence": 0.3289606458123108}
+Unloading|FA|None|1137|0.127|None|None
+Unloading|FA|None|1144|0.626|None|None
+Unloading|FA|None|1151|0.87|None|None
+Unloading|FA|None|1195|0.397|None|None
+Unloading|FA|None|1196|0.767|None|None
+Unloading|FA|None|1254|0.227|None|None
+Unloading|FA|None|1256|0.562|None|None
+Unloading|FA|None|1272|0.803|None|None
+Unloading|FA|None|177|0.916|None|None
+Unloading|FA|None|204|0.427|None|None
+Unloading|FA|None|261|0.1|None|None
+Unloading|FA|None|388|0.591|None|None
+Unloading|FA|None|449|0.027|None|None
+Unloading|FA|None|602|0.504|None|None
+Unloading|FA|None|808|0.073|None|None
+Unloading|FA|None|835|0.944|None|None
+Unloading|FA|None|939|0.691|None|None
+Unloading|FA|None|988|0.475|None|None
+Unloading|MD|23|None|None|None|None
+activity_carrying|CD|85|36|0.88|1.0000008880603568|{"temporal_intersection-over-union": 0.915016501650165, "presenceconf_congruence": 0.8789101917255298}
+activity_carrying|FA|None|1086|0.385|None|None
+activity_carrying|FA|None|1105|0.402|None|None
+activity_carrying|FA|None|1111|0.906|None|None
+activity_carrying|FA|None|1127|0.728|None|None
+activity_carrying|FA|None|1133|0.667|None|None
+activity_carrying|FA|None|1163|0.877|None|None
+activity_carrying|FA|None|1179|0.594|None|None
+activity_carrying|FA|None|1224|0.369|None|None
+activity_carrying|FA|None|1244|0.526|None|None
+activity_carrying|FA|None|1263|0.324|None|None
+activity_carrying|FA|None|1295|0.4|None|None
+activity_carrying|FA|None|1304|0.829|None|None
+activity_carrying|FA|None|268|0.387|None|None
+activity_carrying|FA|None|286|0.642|None|None
+activity_carrying|FA|None|290|0.601|None|None
+activity_carrying|FA|None|299|0.399|None|None
+activity_carrying|FA|None|357|0.519|None|None
+activity_carrying|FA|None|394|0.327|None|None
+activity_carrying|FA|None|468|0.068|None|None
+activity_carrying|FA|None|497|0.308|None|None
+activity_carrying|FA|None|512|0.589|None|None
+activity_carrying|FA|None|533|0.359|None|None
+activity_carrying|FA|None|562|0.461|None|None
+activity_carrying|FA|None|596|1.0|None|None
+activity_carrying|FA|None|617|0.445|None|None
+activity_carrying|FA|None|678|0.986|None|None
+activity_carrying|FA|None|692|0.093|None|None
+activity_carrying|FA|None|695|0.502|None|None
+activity_carrying|FA|None|721|0.864|None|None
+activity_carrying|FA|None|722|0.284|None|None
+activity_carrying|FA|None|727|0.7|None|None
+activity_carrying|FA|None|753|0.161|None|None
+activity_carrying|FA|None|891|0.331|None|None
+activity_carrying|MD|86|None|None|None|None
+activity_gesturing|CD|280|83|0.52|1.0000005248074337|{"temporal_intersection-over-union": 0.9166666666666666, "presenceconf_congruence": 0.5156407669021191}
+activity_gesturing|CD|281|47|0.871|1.0000008794117894|{"temporal_intersection-over-union": 0.9583333333333334, "presenceconf_congruence": 0.8698284561049445}
+activity_gesturing|CD|282|79|0.537|1.0000005407951564|{"temporal_intersection-over-union": 0.8, "presenceconf_congruence": 0.5327951564076691}
+activity_gesturing|CD|284|68|0.567|1.0000005716390372|{"temporal_intersection-over-union": 0.8571428571428571, "presenceconf_congruence": 0.5630676084762866}
+activity_gesturing|CD|291|12|0.762|1.0000007691718804|{"temporal_intersection-over-union": 0.9333333333333333, "presenceconf_congruence": 0.7598385469223007}
+activity_gesturing|FA|None|1019|0.009|None|None
+activity_gesturing|FA|None|1054|0.123|None|None
+activity_gesturing|FA|None|1096|0.559|None|None
+activity_gesturing|FA|None|1258|0.65|None|None
+activity_gesturing|FA|None|1293|0.851|None|None
+activity_gesturing|FA|None|162|0.325|None|None
+activity_gesturing|FA|None|174|0.461|None|None
+activity_gesturing|FA|None|189|0.985|None|None
+activity_gesturing|FA|None|225|0.677|None|None
+activity_gesturing|FA|None|257|0.583|None|None
+activity_gesturing|FA|None|325|0.799|None|None
+activity_gesturing|FA|None|337|0.643|None|None
+activity_gesturing|FA|None|413|0.998|None|None
+activity_gesturing|FA|None|445|0.103|None|None
+activity_gesturing|FA|None|455|0.854|None|None
+activity_gesturing|FA|None|470|0.233|None|None
+activity_gesturing|FA|None|759|0.446|None|None
+activity_gesturing|FA|None|800|0.181|None|None
+activity_gesturing|FA|None|827|0.284|None|None
+activity_gesturing|FA|None|898|0.41|None|None
+activity_gesturing|FA|None|908|0.274|None|None
+activity_gesturing|FA|None|978|0.437|None|None
+activity_gesturing|MD|283|None|None|None|None
+activity_gesturing|MD|285|None|None|None|None
+activity_gesturing|MD|286|None|None|None|None
+activity_gesturing|MD|289|None|None|None|None
+activity_running|CD|157|22|0.782|1.000000788281051|{"temporal_intersection-over-union": 0.8260869565217391, "presenceconf_congruence": 0.7800201816347124}
+activity_running|CD|158|100|0.673|1.0000006750302723|{"temporal_intersection-over-union": 0.5, "presenceconf_congruence": 0.6700302724520687}
+activity_running|CD|159|138|0.552|1.0000005569790016|{"temporal_intersection-over-union": 0.9047619047619048, "presenceconf_congruence": 0.5479313824419778}
+activity_running|FA|None|1004|0.986|None|None
+activity_running|FA|None|1005|0.972|None|None
+activity_running|FA|None|1013|0.872|None|None
+activity_running|FA|None|1017|0.076|None|None
+activity_running|FA|None|1064|0.959|None|None
+activity_running|FA|None|1139|0.689|None|None
+activity_running|FA|None|1178|0.618|None|None
+activity_running|FA|None|1181|0.728|None|None
+activity_running|FA|None|1275|0.823|None|None
+activity_running|FA|None|1289|0.559|None|None
+activity_running|FA|None|369|0.432|None|None
+activity_running|FA|None|559|0.42|None|None
+activity_running|FA|None|578|0.732|None|None
+activity_running|FA|None|579|0.615|None|None
+activity_running|FA|None|603|0.46|None|None
+activity_running|FA|None|642|0.304|None|None
+activity_running|FA|None|683|0.521|None|None
+activity_running|FA|None|711|0.427|None|None
+activity_running|FA|None|733|0.962|None|None
+activity_running|FA|None|742|0.213|None|None
+activity_running|FA|None|749|0.356|None|None
+activity_running|FA|None|782|0.678|None|None
+activity_running|FA|None|807|0.712|None|None
+activity_running|FA|None|879|0.486|None|None
+activity_running|FA|None|945|0.885|None|None
+activity_running|FA|None|963|0.416|None|None
+activity_running|FA|None|964|0.097|None|None
+activity_running|FA|None|968|0.782|None|None
+activity_running|FA|None|977|0.747|None|None
+activity_running|MD|160|None|None|None|None
+activity_standing|CD|228|128|0.745|1.000000751517491|{"temporal_intersection-over-union": 0.8833333333333333, "presenceconf_congruence": 0.7426841574167508}
+activity_standing|CD|232|57|0.638|1.0000006397124117|{"temporal_intersection-over-union": 0.5, "presenceconf_congruence": 0.6347124117053481}
+activity_standing|CD|244|137|0.827|1.000000834172029|{"temporal_intersection-over-union": 0.8743169398907104, "presenceconf_congruence": 0.8254288597376387}
+activity_standing|CD|245|56|0.708|1.0000007143224923|{"temporal_intersection-over-union": 0.8974358974358975, "presenceconf_congruence": 0.7053481331987891}
+activity_standing|CD|247|38|0.727|1.00000073372314|{"temporal_intersection-over-union": 0.9202453987730062, "presenceconf_congruence": 0.7245206861755802}
+activity_standing|CD|250|980|0.826|1.0000008265651612|{"temporal_intersection-over-union": 0.21453831041257368, "presenceconf_congruence": 0.8244197780020182}
+activity_standing|CD|251|72|0.964|1.0000009733026871|{"temporal_intersection-over-union": 0.9629629629629629, "presenceconf_congruence": 0.9636730575176589}
+activity_standing|CD|252|288|0.159|1.0000001560958025|{"temporal_intersection-over-union": 0.47335423197492166, "presenceconf_congruence": 0.15136226034308778}
+activity_standing|CD|253|66|0.613|1.0000006179469068|{"temporal_intersection-over-union": 0.8461538461538461, "presenceconf_congruence": 0.6094853683148335}
+activity_standing|CD|254|1214|0.833|1.000000834285548|{"temporal_intersection-over-union": 0.2802197802197802, "presenceconf_congruence": 0.8314833501513622}
+activity_standing|CD|255|91|0.784|1.0000007917157645|{"temporal_intersection-over-union": 0.967741935483871, "presenceconf_congruence": 0.7820383451059536}
+activity_standing|CD|262|61|0.645|1.000000650823603|{"temporal_intersection-over-union": 0.9047619047619048, "presenceconf_congruence": 0.6417759838546923}
+activity_standing|CD|263|88|0.68|1.0000006856652732|{"temporal_intersection-over-union": 0.8571428571428571, "presenceconf_congruence": 0.6770938446014128}
+activity_standing|CD|270|40|0.735|1.0000007406578562|{"temporal_intersection-over-union": 0.8064516129032258, "presenceconf_congruence": 0.7325933400605449}
+activity_standing|CD|271|86|0.536|1.0000005397272511|{"temporal_intersection-over-union": 0.7941176470588235, "presenceconf_congruence": 0.5317860746720484}
+activity_standing|CD|273|134|0.749|1.0000007560642343|{"temporal_intersection-over-union": 0.934375, "presenceconf_congruence": 0.7467204843592331}
+activity_standing|CD|274|923|0.359|1.0000003590027833|{"temporal_intersection-over-union": 0.5824175824175825, "presenceconf_congruence": 0.3531786074672048}
+activity_standing|CD|278|8|0.982|1.0000009868365287|{"temporal_intersection-over-union": 0.5, "presenceconf_congruence": 0.9818365287588294}
+activity_standing|FA|None|1006|0.796|None|None
+activity_standing|FA|None|1088|0.234|None|None
+activity_standing|FA|None|1192|0.187|None|None
+activity_standing|FA|None|18|0.619|None|None
+activity_standing|FA|None|209|0.203|None|None
+activity_standing|FA|None|223|0.968|None|None
+activity_standing|FA|None|226|0.486|None|None
+activity_standing|FA|None|249|0.709|None|None
+activity_standing|FA|None|604|0.451|None|None
+activity_standing|FA|None|646|0.841|None|None
+activity_standing|FA|None|714|0.118|None|None
+activity_standing|FA|None|772|0.583|None|None
+activity_standing|FA|None|82|0.692|None|None
+activity_standing|FA|None|841|0.234|None|None
+activity_standing|FA|None|877|0.345|None|None
+activity_standing|FA|None|897|0.862|None|None
+activity_standing|FA|None|899|0.751|None|None
+activity_standing|FA|None|932|0.418|None|None
+activity_standing|MD|224|None|None|None|None
+activity_standing|MD|225|None|None|None|None
+activity_standing|MD|229|None|None|None|None
+activity_standing|MD|230|None|None|None|None
+activity_standing|MD|231|None|None|None|None
+activity_standing|MD|233|None|None|None|None
+activity_standing|MD|234|None|None|None|None
+activity_standing|MD|235|None|None|None|None
+activity_standing|MD|236|None|None|None|None
+activity_standing|MD|238|None|None|None|None
+activity_standing|MD|246|None|None|None|None
+activity_standing|MD|248|None|None|None|None
+activity_standing|MD|264|None|None|None|None
+activity_standing|MD|265|None|None|None|None
+activity_standing|MD|269|None|None|None|None
+activity_standing|MD|272|None|None|None|None
+activity_standing|MD|275|None|None|None|None
+activity_standing|MD|276|None|None|None|None
+activity_standing|MD|277|None|None|None|None
+activity_standing|MD|279|None|None|None|None
+activity_walking|CD|162|6|0.612|1.0000006175280107|{"temporal_intersection-over-union": 0.9051724137931034, "presenceconf_congruence": 0.6084762865792129}
+activity_walking|CD|164|490|0.609|1.0000006076878474|{"temporal_intersection-over-union": 0.22388059701492538, "presenceconf_congruence": 0.6054490413723511}
+activity_walking|CD|166|785|0.896|1.0000009006141588|{"temporal_intersection-over-union": 0.5558659217877095, "presenceconf_congruence": 0.8950554994954592}
+activity_walking|CD|176|1204|0.837|1.0000008390821165|{"temporal_intersection-over-union": 0.356243949661181, "presenceconf_congruence": 0.8355196770938446}
+activity_walking|CD|178|78|0.77|1.0000007761597884|{"temporal_intersection-over-union": 0.8248587570621468, "presenceconf_congruence": 0.7679112008072654}
+activity_walking|CD|179|120|0.861|1.000000868237639|{"temporal_intersection-over-union": 0.85, "presenceconf_congruence": 0.8597376387487387}
+activity_walking|CD|180|141|0.975|1.0000009837352206|{"temporal_intersection-over-union": 0.8962264150943396, "presenceconf_congruence": 0.9747729566094854}
+activity_walking|CD|181|125|0.754|1.0000007610762378|{"temporal_intersection-over-union": 0.9310344827586207, "presenceconf_congruence": 0.751765893037336}
+activity_walking|CD|182|5|0.958|1.0000009659647209|{"temporal_intersection-over-union": 0.8346153846153846, "presenceconf_congruence": 0.9576185671039353}
+activity_walking|CD|183|67|0.718|1.0000007245660645|{"temporal_intersection-over-union": 0.9127114020731042, "presenceconf_congruence": 0.715438950554995}
+activity_walking|CD|184|32|0.589|1.0000005936394998|{"temporal_intersection-over-union": 0.8372093023255814, "presenceconf_congruence": 0.5852674066599394}
+activity_walking|CD|185|15|0.839|1.0000008468598744|{"temporal_intersection-over-union": 0.9322033898305084, "presenceconf_congruence": 0.8375378405650857}
+activity_walking|CD|186|20|0.601|1.000000606064912|{"temporal_intersection-over-union": 0.8688524590163934, "presenceconf_congruence": 0.5973763874873864}
+activity_walking|CD|187|104|0.648|1.000000653175322|{"temporal_intersection-over-union": 0.8372093023255814, "presenceconf_congruence": 0.644803229061554}
+activity_walking|CD|188|92|0.828|1.0000008361948858|{"temporal_intersection-over-union": 0.9756944444444444, "presenceconf_congruence": 0.8264379414732593}
+activity_walking|CD|189|77|0.818|1.0000008251958825|{"temporal_intersection-over-union": 0.8848758465011287, "presenceconf_congruence": 0.8163471241170535}
+activity_walking|CD|190|37|0.603|1.0000006043945509|{"temporal_intersection-over-union": 0.5, "presenceconf_congruence": 0.5993945509586276}
+activity_walking|CD|193|540|0.954|1.0000009568200625|{"temporal_intersection-over-union": 0.3237822349570201, "presenceconf_congruence": 0.953582240161453}
+activity_walking|CD|194|117|0.981|1.0000009900957396|{"temporal_intersection-over-union": 0.926829268292683, "presenceconf_congruence": 0.9808274470232089}
+activity_walking|CD|195|45|0.61|1.0000006153152659|{"temporal_intersection-over-union": 0.8857142857142857, "presenceconf_congruence": 0.6064581231079718}
+activity_walking|CD|196|53|0.773|1.0000007796222425|{"temporal_intersection-over-union": 0.8683796539066597, "presenceconf_congruence": 0.7709384460141272}
+activity_walking|CD|197|380|0.309|1.0000003071631174|{"temporal_intersection-over-union": 0.443859649122807, "presenceconf_congruence": 0.30272452068617556}
+activity_walking|CD|199|109|0.568|1.0000005730478836|{"temporal_intersection-over-union": 0.897119341563786, "presenceconf_congruence": 0.5640766902119071}
+activity_walking|CD|200|96|0.988|1.0000009975871518|{"temporal_intersection-over-union": 0.9696132596685083, "presenceconf_congruence": 0.987891019172553}
+activity_walking|CD|210|9|0.514|1.0000005183410474|{"temporal_intersection-over-union": 0.8754770992366412, "presenceconf_congruence": 0.5095862764883956}
+activity_walking|CD|213|42|0.628|1.0000006334847036|{"temporal_intersection-over-union": 0.8863109048723898, "presenceconf_congruence": 0.6246215943491423}
+activity_walking|CD|214|1198|0.202|1.0000001975220059|{"temporal_intersection-over-union": 0.27692307692307694, "presenceconf_congruence": 0.19475277497477297}
+activity_walking|CD|215|69|0.909|1.0000009163054302|{"temporal_intersection-over-union": 0.8131868131868132, "presenceconf_congruence": 0.9081735620585267}
+activity_walking|CD|216|95|0.887|1.0000008940343699|{"temporal_intersection-over-union": 0.806060606060606, "presenceconf_congruence": 0.8859737638748739}
+activity_walking|CD|218|63|0.972|1.0000009812869959|{"temporal_intersection-over-union": 0.9541284403669725, "presenceconf_congruence": 0.9717457114026236}
+activity_walking|CD|219|1091|0.56|1.000000559113577|{"temporal_intersection-over-union": 0.31095406360424027, "presenceconf_congruence": 0.5560040363269425}
+activity_walking|CD|221|99|0.523|1.0000005276680122|{"temporal_intersection-over-union": 0.9, "presenceconf_congruence": 0.5186680121089808}
+activity_walking|FA|None|1050|0.211|None|None
+activity_walking|FA|None|1122|0.629|None|None
+activity_walking|FA|None|1147|0.72|None|None
+activity_walking|FA|None|1156|0.021|None|None
+activity_walking|FA|None|274|0.225|None|None
+activity_walking|FA|None|320|0.333|None|None
+activity_walking|FA|None|451|0.628|None|None
+activity_walking|FA|None|489|0.23|None|None
+activity_walking|FA|None|518|0.223|None|None
+activity_walking|FA|None|612|0.238|None|None
+activity_walking|FA|None|671|0.364|None|None
+activity_walking|FA|None|734|0.501|None|None
+activity_walking|FA|None|768|0.64|None|None
+activity_walking|FA|None|842|0.137|None|None
+activity_walking|FA|None|954|0.236|None|None
+activity_walking|MD|163|None|None|None|None
+activity_walking|MD|165|None|None|None|None
+activity_walking|MD|177|None|None|None|None
+activity_walking|MD|191|None|None|None|None
+activity_walking|MD|192|None|None|None|None
+activity_walking|MD|208|None|None|None|None
+activity_walking|MD|209|None|None|None|None
+activity_walking|MD|211|None|None|None|None
+activity_walking|MD|212|None|None|None|None
+activity_walking|MD|217|None|None|None|None
+activity_walking|MD|222|None|None|None|None
+specialized_miscellaneous|CD|292|21|0.76|1.0000007662875368|{"temporal_intersection-over-union": 0.8467153284671532, "presenceconf_congruence": 0.7578203834510595}
+specialized_miscellaneous|FA|None|1030|0.108|None|None
+specialized_miscellaneous|FA|None|1057|0.166|None|None
+specialized_miscellaneous|FA|None|1065|0.847|None|None
+specialized_miscellaneous|FA|None|1128|0.049|None|None
+specialized_miscellaneous|FA|None|1175|0.374|None|None
+specialized_miscellaneous|FA|None|1188|0.209|None|None
+specialized_miscellaneous|FA|None|1247|0.412|None|None
+specialized_miscellaneous|FA|None|1266|0.653|None|None
+specialized_miscellaneous|FA|None|148|0.685|None|None
+specialized_miscellaneous|FA|None|168|0.801|None|None
+specialized_miscellaneous|FA|None|192|0.527|None|None
+specialized_miscellaneous|FA|None|282|0.585|None|None
+specialized_miscellaneous|FA|None|346|0.389|None|None
+specialized_miscellaneous|FA|None|423|0.082|None|None
+specialized_miscellaneous|FA|None|500|0.707|None|None
+specialized_miscellaneous|FA|None|524|0.29|None|None
+specialized_miscellaneous|FA|None|630|0.088|None|None
+specialized_miscellaneous|FA|None|698|0.856|None|None
+specialized_miscellaneous|FA|None|728|0.997|None|None
+specialized_miscellaneous|FA|None|729|0.604|None|None
+specialized_miscellaneous|FA|None|817|0.491|None|None
+specialized_miscellaneous|FA|None|863|0.313|None|None
+specialized_miscellaneous|FA|None|866|0.639|None|None
+specialized_miscellaneous|FA|None|929|0.684|None|None
+specialized_miscellaneous|FA|None|996|0.369|None|None
+specialized_miscellaneous|FA|None|999|0.696|None|None
+specialized_talking_phone|FA|None|1099|0.401|None|None
+specialized_talking_phone|FA|None|188|0.096|None|None
+specialized_talking_phone|FA|None|191|0.345|None|None
+specialized_talking_phone|FA|None|230|0.948|None|None
+specialized_talking_phone|FA|None|324|0.372|None|None
+specialized_talking_phone|FA|None|327|0.602|None|None
+specialized_talking_phone|FA|None|409|0.457|None|None
+specialized_talking_phone|FA|None|432|0.716|None|None
+specialized_talking_phone|FA|None|454|0.334|None|None
+specialized_talking_phone|FA|None|458|0.893|None|None
+specialized_talking_phone|FA|None|480|0.994|None|None
+specialized_talking_phone|FA|None|517|0.19|None|None
+specialized_talking_phone|FA|None|700|0.618|None|None
+specialized_talking_phone|FA|None|764|0.151|None|None
+specialized_talking_phone|FA|None|856|0.359|None|None
+specialized_talking_phone|FA|None|894|0.639|None|None
+specialized_talking_phone|FA|None|982|0.978|None|None
+specialized_texting_phone|CD|90|852|0.835|1.0000008382101382|{"temporal_intersection-over-union": 0.47086247086247085, "presenceconf_congruence": 0.8335015136226034}
+specialized_texting_phone|CD|91|17|0.994|1.000001003176279|{"temporal_intersection-over-union": 0.9230769230769231, "presenceconf_congruence": 0.9939455095862765}
+specialized_texting_phone|FA|None|1089|0.424|None|None
+specialized_texting_phone|FA|None|1094|0.162|None|None
+specialized_texting_phone|FA|None|1131|0.239|None|None
+specialized_texting_phone|FA|None|1225|0.808|None|None
+specialized_texting_phone|FA|None|216|0.804|None|None
+specialized_texting_phone|FA|None|222|0.246|None|None
+specialized_texting_phone|FA|None|244|0.336|None|None
+specialized_texting_phone|FA|None|265|0.028|None|None
+specialized_texting_phone|FA|None|292|0.053|None|None
+specialized_texting_phone|FA|None|293|0.199|None|None
+specialized_texting_phone|FA|None|351|0.672|None|None
+specialized_texting_phone|FA|None|358|0.723|None|None
+specialized_texting_phone|FA|None|400|0.308|None|None
+specialized_texting_phone|FA|None|553|0.412|None|None
+specialized_texting_phone|FA|None|581|0.604|None|None
+specialized_texting_phone|FA|None|710|0.463|None|None
+specialized_texting_phone|FA|None|713|0.608|None|None
+specialized_texting_phone|FA|None|731|0.535|None|None
+vehicle_moving|CD|100|55|0.987|1.0000009957080245|{"temporal_intersection-over-union": 0.8826086956521739, "presenceconf_congruence": 0.9868819374369324}
+vehicle_moving|CD|101|167|0.788|1.000000789619448|{"temporal_intersection-over-union": 0.35447761194029853, "presenceconf_congruence": 0.786074672048436}
+vehicle_moving|CD|102|136|0.621|1.0000006258657146|{"temporal_intersection-over-union": 0.8307692307692308, "presenceconf_congruence": 0.6175580221997982}
+vehicle_moving|CD|104|653|0.857|1.000000858258964|{"temporal_intersection-over-union": 0.2557651991614256, "presenceconf_congruence": 0.8557013118062563}
+vehicle_moving|CD|105|116|0.913|1.0000009202937212|{"temporal_intersection-over-union": 0.8083832335329342, "presenceconf_congruence": 0.9122098890010091}
+vehicle_moving|CD|106|127|0.664|1.0000006696947141|{"temporal_intersection-over-union": 0.8746177370030581, "presenceconf_congruence": 0.6609485368314834}
+vehicle_moving|CD|107|131|0.793|1.0000007996015623|{"temporal_intersection-over-union": 0.8481481481481481, "presenceconf_congruence": 0.7911200807265388}
+vehicle_moving|CD|109|2|0.937|1.000000945704959|{"temporal_intersection-over-union": 0.927710843373494, "presenceconf_congruence": 0.9364278506559032}
+vehicle_moving|CD|110|341|0.869|1.000000877007184|{"temporal_intersection-over-union": 0.9196891191709845, "presenceconf_congruence": 0.8678102926337034}
+vehicle_moving|CD|92|938|0.825|1.0000008261815059|{"temporal_intersection-over-union": 0.27708095781071834, "presenceconf_congruence": 0.8234106962663975}
+vehicle_moving|CD|95|874|0.963|1.0000009677234998|{"temporal_intersection-over-union": 0.5059523809523809, "presenceconf_congruence": 0.9626639757820383}
+vehicle_moving|CD|97|140|0.68|1.0000006848769771|{"temporal_intersection-over-union": 0.7783132530120482, "presenceconf_congruence": 0.6770938446014128}
+vehicle_moving|CD|98|539|0.233|1.0000002285602603|{"temporal_intersection-over-union": 0.25259515570934254, "presenceconf_congruence": 0.2260343087790111}
+vehicle_moving|CD|99|870|0.986|1.0000009907040246|{"temporal_intersection-over-union": 0.4831168831168831, "presenceconf_congruence": 0.9858728557013118}
+vehicle_moving|FA|None|1093|0.284|None|None
+vehicle_moving|FA|None|1176|0.958|None|None
+vehicle_moving|FA|None|1189|0.553|None|None
+vehicle_moving|FA|None|1203|0.696|None|None
+vehicle_moving|FA|None|1250|0.336|None|None
+vehicle_moving|FA|None|1259|0.516|None|None
+vehicle_moving|FA|None|1270|0.271|None|None
+vehicle_moving|FA|None|13|0.512|None|None
+vehicle_moving|FA|None|161|0.351|None|None
+vehicle_moving|FA|None|331|0.815|None|None
+vehicle_moving|FA|None|349|0.4|None|None
+vehicle_moving|FA|None|396|0.185|None|None
+vehicle_moving|FA|None|52|0.607|None|None
+vehicle_moving|FA|None|549|0.859|None|None
+vehicle_moving|FA|None|567|0.2|None|None
+vehicle_moving|FA|None|591|0.521|None|None
+vehicle_moving|FA|None|719|0.218|None|None
+vehicle_moving|FA|None|900|0.913|None|None
+vehicle_moving|FA|None|998|0.481|None|None
+vehicle_moving|MD|108|None|None|None|None
+vehicle_starting|CD|126|81|0.868|1.0000008760994563|{"temporal_intersection-over-union": 0.9298245614035088, "presenceconf_congruence": 0.8668012108980827}
+vehicle_starting|CD|131|60|0.569|1.0000005742407014|{"temporal_intersection-over-union": 0.9154929577464789, "presenceconf_congruence": 0.5650857719475277}
+vehicle_starting|CD|132|118|0.653|1.0000006591563302|{"temporal_intersection-over-union": 0.9307692307692308, "presenceconf_congruence": 0.649848637739657}
+vehicle_starting|CD|133|126|0.688|1.000000693610943|{"temporal_intersection-over-union": 0.8444444444444444, "presenceconf_congruence": 0.6851664984863773}
+vehicle_starting|CD|136|59|0.849|1.0000008575199624|{"temporal_intersection-over-union": 0.9891304347826086, "presenceconf_congruence": 0.8476286579212916}
+vehicle_starting|CD|137|24|0.723|1.0000007287452288|{"temporal_intersection-over-union": 0.8260869565217391, "presenceconf_congruence": 0.7204843592330978}
+vehicle_starting|FA|None|1039|0.937|None|None
+vehicle_starting|FA|None|1056|0.724|None|None
+vehicle_starting|FA|None|1067|0.841|None|None
+vehicle_starting|FA|None|1072|0.603|None|None
+vehicle_starting|FA|None|1138|0.16|None|None
+vehicle_starting|FA|None|1160|0.607|None|None
+vehicle_starting|FA|None|1299|0.063|None|None
+vehicle_starting|FA|None|1312|0.319|None|None
+vehicle_starting|FA|None|193|0.394|None|None
+vehicle_starting|FA|None|259|0.834|None|None
+vehicle_starting|FA|None|370|0.902|None|None
+vehicle_starting|FA|None|393|0.627|None|None
+vehicle_starting|FA|None|585|0.768|None|None
+vehicle_starting|FA|None|597|0.5|None|None
+vehicle_starting|FA|None|607|0.89|None|None
+vehicle_starting|FA|None|667|0.624|None|None
+vehicle_starting|FA|None|677|0.033|None|None
+vehicle_starting|FA|None|767|0.618|None|None
+vehicle_starting|FA|None|771|0.733|None|None
+vehicle_starting|FA|None|804|0.204|None|None
+vehicle_starting|FA|None|814|0.452|None|None
+vehicle_starting|FA|None|819|0.293|None|None
+vehicle_starting|FA|None|824|0.308|None|None
+vehicle_starting|FA|None|829|0.722|None|None
+vehicle_starting|FA|None|917|0.531|None|None
+vehicle_starting|FA|None|924|0.57|None|None
+vehicle_starting|MD|124|None|None|None|None
+vehicle_starting|MD|125|None|None|None|None
+vehicle_starting|MD|127|None|None|None|None
+vehicle_starting|MD|128|None|None|None|None
+vehicle_starting|MD|129|None|None|None|None
+vehicle_starting|MD|130|None|None|None|None
+vehicle_starting|MD|134|None|None|None|None
+vehicle_starting|MD|135|None|None|None|None
+vehicle_stopping|CD|142|0|0.842|1.0000008488984191|{"temporal_intersection-over-union": 0.8333333333333334, "presenceconf_congruence": 0.8405650857719476}
+vehicle_stopping|CD|143|112|0.719|1.0000007258230323|{"temporal_intersection-over-union": 0.9375, "presenceconf_congruence": 0.7164480322906155}
+vehicle_stopping|CD|145|122|0.837|1.000000844769677|{"temporal_intersection-over-union": 0.925, "presenceconf_congruence": 0.8355196770938446}
+vehicle_stopping|CD|146|62|0.818|1.0000008248086625|{"temporal_intersection-over-union": 0.8461538461538461, "presenceconf_congruence": 0.8163471241170535}
+vehicle_stopping|CD|149|39|0.797|1.0000008043988318|{"temporal_intersection-over-union": 0.9242424242424242, "presenceconf_congruence": 0.7951564076690212}
+vehicle_stopping|CD|154|130|0.814|1.0000008219404266|{"temporal_intersection-over-union": 0.9629629629629629, "presenceconf_congruence": 0.8123107971745711}
+vehicle_stopping|CD|155|106|0.997|1.0000010069727547|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.9969727547931383}
+vehicle_stopping|FA|None|1043|0.903|None|None
+vehicle_stopping|FA|None|1084|0.955|None|None
+vehicle_stopping|FA|None|1159|0.67|None|None
+vehicle_stopping|FA|None|1161|0.942|None|None
+vehicle_stopping|FA|None|1174|0.949|None|None
+vehicle_stopping|FA|None|1182|0.437|None|None
+vehicle_stopping|FA|None|1218|0.389|None|None
+vehicle_stopping|FA|None|1257|0.168|None|None
+vehicle_stopping|FA|None|147|0.227|None|None
+vehicle_stopping|FA|None|205|0.677|None|None
+vehicle_stopping|FA|None|236|0.965|None|None
+vehicle_stopping|FA|None|255|0.848|None|None
+vehicle_stopping|FA|None|313|0.072|None|None
+vehicle_stopping|FA|None|328|0.674|None|None
+vehicle_stopping|FA|None|329|0.514|None|None
+vehicle_stopping|FA|None|371|0.039|None|None
+vehicle_stopping|FA|None|469|0.341|None|None
+vehicle_stopping|FA|None|501|0.638|None|None
+vehicle_stopping|FA|None|502|0.578|None|None
+vehicle_stopping|FA|None|587|0.873|None|None
+vehicle_stopping|FA|None|616|0.872|None|None
+vehicle_stopping|FA|None|635|0.353|None|None
+vehicle_stopping|FA|None|640|0.137|None|None
+vehicle_stopping|FA|None|709|0.13|None|None
+vehicle_stopping|FA|None|752|0.727|None|None
+vehicle_stopping|FA|None|886|0.127|None|None
+vehicle_stopping|FA|None|942|0.52|None|None
+vehicle_stopping|FA|None|962|0.399|None|None
+vehicle_stopping|MD|139|None|None|None|None
+vehicle_stopping|MD|140|None|None|None|None
+vehicle_stopping|MD|141|None|None|None|None
+vehicle_stopping|MD|144|None|None|None|None
+vehicle_stopping|MD|150|None|None|None|None
+vehicle_stopping|MD|151|None|None|None|None
+vehicle_stopping|MD|153|None|None|None|None
+vehicle_turning_left|CD|76|41|0.888|1.0000008959701874|{"temporal_intersection-over-union": 0.8987341772151899, "presenceconf_congruence": 0.8869828456104945}
+vehicle_turning_left|CD|78|119|0.83|1.0000008374356968|{"temporal_intersection-over-union": 0.8979591836734694, "presenceconf_congruence": 0.8284561049445005}
+vehicle_turning_left|CD|79|1080|0.422|1.0000004198336583|{"temporal_intersection-over-union": 0.3082901554404145, "presenceconf_congruence": 0.4167507568113017}
+vehicle_turning_left|CD|80|93|0.887|1.000000894876203|{"temporal_intersection-over-union": 0.8902439024390244, "presenceconf_congruence": 0.8859737638748739}
+vehicle_turning_left|FA|None|1113|0.358|None|None
+vehicle_turning_left|FA|None|1119|0.987|None|None
+vehicle_turning_left|FA|None|1177|0.367|None|None
+vehicle_turning_left|FA|None|1193|0.26|None|None
+vehicle_turning_left|FA|None|1209|0.621|None|None
+vehicle_turning_left|FA|None|1221|0.338|None|None
+vehicle_turning_left|FA|None|1246|0.089|None|None
+vehicle_turning_left|FA|None|169|0.906|None|None
+vehicle_turning_left|FA|None|235|0.592|None|None
+vehicle_turning_left|FA|None|392|0.754|None|None
+vehicle_turning_left|FA|None|491|0.035|None|None
+vehicle_turning_left|FA|None|509|0.701|None|None
+vehicle_turning_left|FA|None|696|0.846|None|None
+vehicle_turning_left|FA|None|720|0.048|None|None
+vehicle_turning_left|FA|None|761|0.537|None|None
+vehicle_turning_left|FA|None|843|0.05|None|None
+vehicle_turning_left|FA|None|846|0.598|None|None
+vehicle_turning_left|FA|None|858|0.184|None|None
+vehicle_turning_left|FA|None|890|0.726|None|None
+vehicle_turning_left|FA|None|918|0.633|None|None
+vehicle_turning_left|FA|None|959|0.17|None|None
+vehicle_turning_left|MD|77|None|None|None|None
+vehicle_turning_left|MD|82|None|None|None|None
+vehicle_turning_right|CD|114|133|0.954|1.0000009625155735|{"temporal_intersection-over-union": 0.8933333333333333, "presenceconf_congruence": 0.953582240161453}
+vehicle_turning_right|CD|115|949|0.203|1.00000019977877|{"temporal_intersection-over-union": 0.40169133192389006, "presenceconf_congruence": 0.19576185671039356}
+vehicle_turning_right|CD|116|284|0.943|1.0000009445533469|{"temporal_intersection-over-union": 0.20710059171597633, "presenceconf_congruence": 0.9424823410696266}
+vehicle_turning_right|CD|117|14|0.899|1.0000009066073348|{"temporal_intersection-over-union": 0.8524590163934426, "presenceconf_congruence": 0.8980827447023209}
+vehicle_turning_right|CD|122|102|0.742|1.0000007484261428|{"temporal_intersection-over-union": 0.8769230769230769, "presenceconf_congruence": 0.7396569122098889}
+vehicle_turning_right|CD|123|605|0.496|1.0000004986450275|{"temporal_intersection-over-union": 0.7222222222222222, "presenceconf_congruence": 0.49142280524722504}
+vehicle_turning_right|FA|None|10|0.766|None|None
+vehicle_turning_right|FA|None|1010|0.582|None|None
+vehicle_turning_right|FA|None|1024|0.817|None|None
+vehicle_turning_right|FA|None|1032|0.177|None|None
+vehicle_turning_right|FA|None|1098|0.689|None|None
+vehicle_turning_right|FA|None|1104|0.455|None|None
+vehicle_turning_right|FA|None|1135|0.956|None|None
+vehicle_turning_right|FA|None|1149|0.284|None|None
+vehicle_turning_right|FA|None|1251|0.535|None|None
+vehicle_turning_right|FA|None|1300|0.862|None|None
+vehicle_turning_right|FA|None|1305|0.686|None|None
+vehicle_turning_right|FA|None|152|0.416|None|None
+vehicle_turning_right|FA|None|163|0.359|None|None
+vehicle_turning_right|FA|None|248|0.842|None|None
+vehicle_turning_right|FA|None|256|0.399|None|None
+vehicle_turning_right|FA|None|304|0.264|None|None
+vehicle_turning_right|FA|None|330|0.028|None|None
+vehicle_turning_right|FA|None|384|0.098|None|None
+vehicle_turning_right|FA|None|401|0.458|None|None
+vehicle_turning_right|FA|None|434|0.343|None|None
+vehicle_turning_right|FA|None|442|0.188|None|None
+vehicle_turning_right|FA|None|588|0.868|None|None
+vehicle_turning_right|FA|None|658|0.79|None|None
+vehicle_turning_right|FA|None|670|0.959|None|None
+vehicle_turning_right|FA|None|690|0.723|None|None
+vehicle_turning_right|FA|None|708|0.154|None|None
+vehicle_turning_right|FA|None|739|0.127|None|None
+vehicle_turning_right|FA|None|845|0.019|None|None
+vehicle_turning_right|MD|120|None|None|None|None
+vehicle_turning_right|MD|121|None|None|None|None
