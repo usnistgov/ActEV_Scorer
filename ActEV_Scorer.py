@@ -70,6 +70,13 @@ def load_json(json_fn):
         err_quit("{}. Aborting!".format(ioerr))
 
 
+def transform_activity_index(data, obj_type):
+    d = dict()
+    for act in data:
+        d[act] = { 'objectTypeMap' : { obj_type: "*" + obj_type + "*" }, 'objectTypes': [ obj_type ] }
+
+    return d
+
 def transform_json_single_bbox(data):
     for i in range(len(data['activities'])):
         fname = list(data['activities'][i]['localization'].keys())[0]
@@ -106,6 +113,14 @@ def transform_json_single_bbox(data):
             new_obj[str(first_frame)]['boundingBox']['y'] = min_y
             new_obj[str(last_frame)] = dict()
             data['activities'][i]['objects'][j]['localization'][fname] = new_obj
+        ### Set the object type
+        data['activities'][i]['objects'][0]['objectType'] = 'single_bbox'
+        ### Add default object_presence_conf Values
+        for obj in range(len(data['activities'][i]['objects'])):
+            for fil in data['activities'][i]['objects'][obj]['localization']:
+                for frm in data['activities'][i]['objects'][obj]['localization'][fil]:
+                    if 'boundingBox' in data['activities'][i]['objects'][obj]['localization'][fil][frm]:
+                        data['activities'][i]['objects'][obj]['localization'][fil][frm]['presenceConf'] = 1.0
     return data
 
 
@@ -180,7 +195,19 @@ def transform_json_single_bbox_per_frame(data):
             new_obj[str(max_frame)] = dict()
             data['activities'][i]['objects'][0]['localization'][fname] = new_obj
             data['activities'][i]['objects'] = [data['activities'][i]['objects'][0]]
+            data['activities'][i]['combined_objects'] = 'yes'
+        else:
+            data['activities'][i]['combined_objects'] = 'no'
+            
+        ### Set the object type
         data['activities'][i]['objects'][0]['objectType'] = 'single_bbox_per_frame'
+        ### Add default object_presence_conf Values
+        for obj in range(len(data['activities'][i]['objects'])):
+            for fil in data['activities'][i]['objects'][obj]['localization']:
+                for frm in data['activities'][i]['objects'][obj]['localization'][fil]:
+                    if 'boundingBox' in data['activities'][i]['objects'][obj]['localization'][fil][frm]:
+                        data['activities'][i]['objects'][obj]['localization'][fil][frm]['presenceConf'] = 1.0
+                
     return data
 
 def mkdir_p(path):
@@ -410,6 +437,8 @@ def score_basic(protocol_class, args):
             err_quit("Missing required OUTPUT_DIR argument (-o, --output-dir).  Aborting!")
 
     activity_index = load_activity_index(log, args.activity_index)
+    if args.transformations == "single_bbox" or args.transformations == "single_bbox_per_frame":
+        activity_index = transform_activity_index(activity_index, args.transformations)
 
     file_index = load_file_index(log, args.file_index)
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
@@ -441,11 +470,14 @@ def score_basic(protocol_class, args):
     elif args.transformations == "single_bbox_per_frame":
         system_output = transform_json_single_bbox_per_frame(system_output)
         reference = transform_json_single_bbox_per_frame(reference)
+        
     if args.rewrite:
-        sys_out_file = args.system_output_file.split('.')[:-1] + args.rewrite + '.json'
-        ref_out_file = args.reference_file.split('.')[:-1] + args.rewrite + '.json'
+        sys_out_file = '.'.join(args.system_output_file.split('.')[:-1]) + args.rewrite + '.json'
+        ref_out_file = '.'.join(args.reference_file.split('.')[:-1]) + args.rewrite + '.json'
+        log(1, "[Info] Re-writing system activities file to {}".format(sys_out_file))
         with open(sys_out_file, 'w') as sys_outfile:
             json.dump(system_output, sys_outfile)
+        log(1, "[Info] Re-writing reference activities file to {}".format(ref_out_file))
         with open(ref_out_file, 'w') as ref_outfile:
             json.dump(reference, ref_outfile)
 
