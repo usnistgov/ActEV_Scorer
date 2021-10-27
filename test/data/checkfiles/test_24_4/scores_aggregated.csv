@@ -7,6 +7,7 @@ mean-n-mide@0.1rfa|None
 mean-n-mide@0.2rfa|None
 mean-n-mide@1rfa|0.021278611244503025
 mean-n-mide_num_rejected|0.0
+mean-nMODE|0.0
 mean-p_miss@0.01rfa|1.0
 mean-p_miss@0.03rfa|1.0
 mean-p_miss@0.15rfa|1.0
@@ -15,9 +16,9 @@ mean-p_miss@0.2rfa|1.0
 mean-p_miss@1rfa|0.8222222222222223
 mean-w_p_miss@0.01rfa|1.0
 mean-w_p_miss@0.03rfa|1.0
-mean-w_p_miss@0.15rfa|0.8646464646464646
-mean-w_p_miss@0.1rfa|0.8646464646464646
-mean-w_p_miss@0.2rfa|0.8646464646464646
+mean-w_p_miss@0.15rfa|0.8646464646464648
+mean-w_p_miss@0.1rfa|0.8646464646464648
+mean-w_p_miss@0.2rfa|0.8646464646464648
 mean-w_p_miss@1rfa|0.7818181818181819
 n-mide|0.04065115910952945
 n-mide_num_rejected|0

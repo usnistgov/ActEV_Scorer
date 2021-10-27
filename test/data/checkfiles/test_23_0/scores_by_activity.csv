@@ -78,6 +78,7 @@ Closing|nAUDC@0.8rfa|0.10744985673352436
 Closing|nAUDC@0.95rfa|0.09048408988086262
 Closing|nAUDC@0.9rfa|0.09551098376313277
 Closing|nAUDC@1rfa|0.08595988538681949
+Closing|nMODE|0.6428571428571428
 Closing|object-p_miss@0.033rfa|0.5
 Closing|object-p_miss@0.1rfa|0.5
 Closing|object-p_miss@0.2rfa|0.5
@@ -173,6 +174,7 @@ Entering|nAUDC@0.8rfa|0.5537249283667621
 Entering|nAUDC@0.95rfa|0.5452420449404314
 Entering|nAUDC@0.9rfa|0.5477554918815664
 Entering|nAUDC@1rfa|0.5429799426934098
+Entering|nMODE|1.0
 Entering|object-p_miss@0.033rfa|0.0
 Entering|object-p_miss@0.1rfa|0.0
 Entering|object-p_miss@0.2rfa|0.0

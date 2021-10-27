@@ -121,6 +121,12 @@ class SRL_AD_V1(Default):
 
         return _nmide
 
+    def build_nmode_measure(self):
+        def _nmode(alignment):
+            c = list(filter(lambda rec: rec.alignment == "CD", alignment))
+            return nmode(c)
+        return _nmode
+
     def compute_det_points_and_measures(self, alignment, rfa_denom, uniq_conf, rfa_targets, nmide_targets, wpmiss_denom, wpmiss_numer):
         sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [ build_rfa_metric(rfa_denom),
                                                                    build_pmiss_metric(),
@@ -199,6 +205,7 @@ class SRL_AD_V1(Default):
         c, m, f = partition_alignment(alignment)
 
         ar_nmide_measure = self.build_ar_nmide_measure()
+        nmode_measure = self.build_nmode_measure()
 
         def _pair_arg_map(rec):
             return (rec.ref, rec.sys)
@@ -221,14 +228,16 @@ class SRL_AD_V1(Default):
 
         activity_nmides = self.compute_aggregate_measures(alignment, _activity_grouper, [ ar_nmide_measure ], self.default_activity_groups)
         out_det_points, det_measures = self.compute_aggregate_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, uniq_conf, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.default_activity_groups)
+        activity_nmode = self.compute_aggregate_measures(alignment, _activity_grouper, [nmode_measure], self.default_activity_groups)
 
         # Overall level + Activity Aggregates + Pair Agg. Aggregates
         def _empty_grouper(rec):
             return tuple() # empty tuple
 
-        activity_results = activity_nmides + det_measures
+        activity_results = activity_nmides + det_measures + activity_nmode
 
         overall_nmide = self.compute_aggregate_measures(alignment, _empty_grouper, [ ar_nmide_measure ])
+        overall_nmode = self.compute_aggregate_measures(alignment, _empty_grouper, [ nmode_measure ])
         activity_means = self.compute_record_means(activity_results)
 
         def _align_rec_mapper(rec):

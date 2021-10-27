@@ -11,6 +11,7 @@ Closing|n-mide@0.1rfa|None
 Closing|n-mide@0.2rfa|None
 Closing|n-mide@1rfa|None
 Closing|n-mide_num_rejected|0
+Closing|nMODE|None
 Closing|object-p_miss@0.033rfa|1.0
 Closing|object-p_miss@0.1rfa|1.0
 Closing|object-p_miss@0.2rfa|1.0
@@ -39,6 +40,7 @@ Closing_Trunk|n-mide@0.1rfa|None
 Closing_Trunk|n-mide@0.2rfa|None
 Closing_Trunk|n-mide@1rfa|None
 Closing_Trunk|n-mide_num_rejected|0
+Closing_Trunk|nMODE|None
 Closing_Trunk|object-p_miss@0.033rfa|1.0
 Closing_Trunk|object-p_miss@0.1rfa|1.0
 Closing_Trunk|object-p_miss@0.2rfa|1.0
@@ -67,6 +69,7 @@ Entering|n-mide@0.1rfa|None
 Entering|n-mide@0.2rfa|None
 Entering|n-mide@1rfa|None
 Entering|n-mide_num_rejected|0
+Entering|nMODE|None
 Entering|object-p_miss@0.033rfa|1.0
 Entering|object-p_miss@0.1rfa|1.0
 Entering|object-p_miss@0.2rfa|1.0
@@ -95,6 +98,7 @@ Exiting|n-mide@0.1rfa|None
 Exiting|n-mide@0.2rfa|None
 Exiting|n-mide@1rfa|None
 Exiting|n-mide_num_rejected|0
+Exiting|nMODE|None
 Exiting|object-p_miss@0.033rfa|1.0
 Exiting|object-p_miss@0.1rfa|1.0
 Exiting|object-p_miss@0.2rfa|1.0
@@ -123,6 +127,7 @@ Loading|n-mide@0.1rfa|None
 Loading|n-mide@0.2rfa|None
 Loading|n-mide@1rfa|None
 Loading|n-mide_num_rejected|0
+Loading|nMODE|None
 Loading|object-p_miss@0.033rfa|1.0
 Loading|object-p_miss@0.1rfa|1.0
 Loading|object-p_miss@0.2rfa|1.0
@@ -151,6 +156,7 @@ Open_Trunk|n-mide@0.1rfa|None
 Open_Trunk|n-mide@0.2rfa|None
 Open_Trunk|n-mide@1rfa|None
 Open_Trunk|n-mide_num_rejected|0
+Open_Trunk|nMODE|None
 Open_Trunk|object-p_miss@0.033rfa|1.0
 Open_Trunk|object-p_miss@0.1rfa|1.0
 Open_Trunk|object-p_miss@0.2rfa|1.0
@@ -179,6 +185,7 @@ Opening|n-mide@0.1rfa|None
 Opening|n-mide@0.2rfa|None
 Opening|n-mide@1rfa|None
 Opening|n-mide_num_rejected|0
+Opening|nMODE|None
 Opening|object-p_miss@0.033rfa|1.0
 Opening|object-p_miss@0.1rfa|1.0
 Opening|object-p_miss@0.2rfa|1.0
@@ -207,6 +214,7 @@ Transport_HeavyCarry|n-mide@0.1rfa|None
 Transport_HeavyCarry|n-mide@0.2rfa|None
 Transport_HeavyCarry|n-mide@1rfa|None
 Transport_HeavyCarry|n-mide_num_rejected|0
+Transport_HeavyCarry|nMODE|None
 Transport_HeavyCarry|object-p_miss@0.033rfa|1.0
 Transport_HeavyCarry|object-p_miss@0.1rfa|1.0
 Transport_HeavyCarry|object-p_miss@0.2rfa|1.0
@@ -235,6 +243,7 @@ Unloading|n-mide@0.1rfa|None
 Unloading|n-mide@0.2rfa|None
 Unloading|n-mide@1rfa|None
 Unloading|n-mide_num_rejected|0
+Unloading|nMODE|None
 Unloading|object-p_miss@0.033rfa|1.0
 Unloading|object-p_miss@0.1rfa|1.0
 Unloading|object-p_miss@0.2rfa|1.0
@@ -263,6 +272,7 @@ vehicle_turning_left|n-mide@0.1rfa|None
 vehicle_turning_left|n-mide@0.2rfa|None
 vehicle_turning_left|n-mide@1rfa|None
 vehicle_turning_left|n-mide_num_rejected|0
+vehicle_turning_left|nMODE|None
 vehicle_turning_left|object-p_miss@0.033rfa|1.0
 vehicle_turning_left|object-p_miss@0.1rfa|1.0
 vehicle_turning_left|object-p_miss@0.2rfa|1.0
@@ -291,6 +301,7 @@ vehicle_turning_right|n-mide@0.1rfa|None
 vehicle_turning_right|n-mide@0.2rfa|None
 vehicle_turning_right|n-mide@1rfa|None
 vehicle_turning_right|n-mide_num_rejected|0
+vehicle_turning_right|nMODE|None
 vehicle_turning_right|object-p_miss@0.033rfa|1.0
 vehicle_turning_right|object-p_miss@0.1rfa|1.0
 vehicle_turning_right|object-p_miss@0.2rfa|1.0
@@ -319,6 +330,7 @@ vehicle_u_turn|n-mide@0.1rfa|None
 vehicle_u_turn|n-mide@0.2rfa|None
 vehicle_u_turn|n-mide@1rfa|None
 vehicle_u_turn|n-mide_num_rejected|0
+vehicle_u_turn|nMODE|None
 vehicle_u_turn|object-p_miss@0.033rfa|1.0
 vehicle_u_turn|object-p_miss@0.1rfa|1.0
 vehicle_u_turn|object-p_miss@0.2rfa|1.0

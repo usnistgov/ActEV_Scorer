@@ -59,6 +59,7 @@ mean-nAUDC@0.8rfa|0.33058739255014324
 mean-nAUDC@0.95rfa|0.317863067410647
 mean-nAUDC@0.9rfa|0.32163323782234954
 mean-nAUDC@1rfa|0.31446991404011465
+mean-nMODE|0.8214285714285714
 mean-object-p_miss@0.033rfa|0.25
 mean-object-p_miss@0.1rfa|0.25
 mean-object-p_miss@0.2rfa|0.25
