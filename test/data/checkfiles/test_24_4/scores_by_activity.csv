@@ -7,7 +7,6 @@ Closing|n-mide@0.1rfa|None
 Closing|n-mide@0.2rfa|None
 Closing|n-mide@1rfa|0.03441857829138062
 Closing|n-mide_num_rejected|0
-Closing|nMODE|0.0
 Closing|p_miss@0.01rfa|1.0
 Closing|p_miss@0.03rfa|1.0
 Closing|p_miss@0.15rfa|1.0
@@ -28,7 +27,6 @@ Closing_Trunk|n-mide@0.1rfa|None
 Closing_Trunk|n-mide@0.2rfa|None
 Closing_Trunk|n-mide@1rfa|None
 Closing_Trunk|n-mide_num_rejected|0
-Closing_Trunk|nMODE|None
 Closing_Trunk|p_miss@0.01rfa|1.0
 Closing_Trunk|p_miss@0.03rfa|1.0
 Closing_Trunk|p_miss@0.15rfa|1.0
@@ -49,7 +47,6 @@ Entering|n-mide@0.1rfa|None
 Entering|n-mide@0.2rfa|None
 Entering|n-mide@1rfa|0.00813864419762543
 Entering|n-mide_num_rejected|0
-Entering|nMODE|0.0
 Entering|p_miss@0.01rfa|1.0
 Entering|p_miss@0.03rfa|1.0
 Entering|p_miss@0.15rfa|1.0

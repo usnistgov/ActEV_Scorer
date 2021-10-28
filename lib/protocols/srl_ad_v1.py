@@ -121,12 +121,6 @@ class SRL_AD_V1(Default):
 
         return _nmide
 
-    def build_nmode_measure(self):
-        def _nmode(alignment):
-            c = list(filter(lambda rec: rec.alignment == "CD", alignment))
-            return nmode(c)
-        return _nmode
-
     def compute_det_points_and_measures(self, alignment, rfa_denom, uniq_conf, rfa_targets, nmide_targets, wpmiss_denom, wpmiss_numer):
         sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [ build_rfa_metric(rfa_denom),
                                                                    build_pmiss_metric(),
@@ -157,7 +151,7 @@ class SRL_AD_V1(Default):
                                                            nmide_targets,
                                                            None)
         return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, wpmiss_measures)))
-    
+
 
     def compute_aggregate_det_points_and_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, rfa_targets, nmide_targets, default_factorizations = []):
         def _r(init, item):

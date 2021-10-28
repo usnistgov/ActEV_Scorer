@@ -64,19 +64,20 @@ class SRL_AOD_V1(SRL_AD_V1):
                                        "activity.temporal_overlap_delta": 0.2,
                                        "activity.p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.n_mide_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.epsilon_object_congruence": 1.0e-10,
+                                       "activity.object_congruence_delta": 0.0,
+                                       "activity.n_mode_at_rfa_targets": [1] + [x/100 for x in range(95, 4, -5)] + [0.04, 0.03, 0.02, 0.01],
+                                       "mode.cost_miss": 1,
+                                       "mode.cost_fa": 1,
                                        "nmide.ns_collar_size": 0,
                                        "nmide.cost_miss": 1,
                                        "nmide.cost_fa": 1,
-                                       "activity.epsilon_object_congruence": 1.0e-10,
-                                       "activity.object_congruence_delta": 0.0,
-                                       "wpmiss.numerator": 8,
-                                       "wpmiss.denominator": 10,
                                        "object.epsilon_object-overlap_congruence": 1.0e-8,
                                        "object.epsilon_presenceconf_congruence": 0,
                                        "object.spatial_overlap_delta": 0.5,
                                        "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
-                                       "mode.cost_miss": 1,
-                                       "mode.cost_fa": 1,
+                                       "wpmiss.numerator": 8,
+                                       "wpmiss.denominator": 10,
                                        "command": str(command),
                                        "git.commit": subprocess.check_output(["git", "--git-dir="+ os.path.join(lib_path, "../")+".git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
@@ -147,7 +148,8 @@ class SRL_AOD_V1(SRL_AD_V1):
 
     def compute_obj_det_points_and_measures(self, alignment, rfa_denom, uniq_conf, rfa_targets):
         sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [ build_rfa_metric(rfa_denom),
-                                                                   build_pmiss_metric() ], uniq_conf)
+                                                                   build_pmiss_metric(),
+                                                                   self.build_nmode_measure() ], uniq_conf)
 
         det_points = sweeper(alignment)
 
@@ -157,8 +159,14 @@ class SRL_AOD_V1(SRL_AD_V1):
                                                            "p_miss",
                                                            lambda r: r["p_miss"],
                                                            rfa_targets)
+        nmode_measures = get_points_along_confidence_curve(det_points,
+                                                           "rfa",
+                                                           lambda r: r["rfa"],
+                                                           "n-mode",
+                                                           lambda r: r["n-mode"],
+                                                           self.scoring_parameters['activity.n_mode_at_rfa_targets'])
 
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), pmiss_measures)
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, nmode_measures))
 
     def compute_aggregate_obj_det_points_and_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, rfa_targets, default_factorizations = None):
         # Build concat object alignment records
@@ -279,10 +287,14 @@ class SRL_AOD_V1(SRL_AD_V1):
 
         agg_obj_means = self.compute_record_means(activity_obj_det_measures)
 
-        appended_results = merge_dicts(ad_results, { "scores_by_activity": activity_obj_det_measures + obj_activity_means,
+        # Adding nMODE
+        nmode_measures = self.compute_agg_nmode_measures(c, _activity_grouper, _rfa_denom_fn, uniq_conf, self.scoring_parameters["activity.n_mode_at_rfa_targets"])
+        agg_nmode_measures = self.compute_record_means(nmode_measures)
+
+        appended_results = merge_dicts(ad_results, { "scores_by_activity": activity_obj_det_measures + obj_activity_means + nmode_measures,
                                                      "pair_metrics": aod_pair_results,
                                                      "object_frame_alignment_records": object_frame_alignment_records,
-                                                     "scores_aggregated": agg_obj_det_measures + agg_obj_activity_means + agg_obj_means }, add)
+                                                     "scores_aggregated": agg_obj_det_measures + agg_obj_activity_means + agg_obj_means + agg_nmode_measures}, add)
 
         def _align_rec_mapper(rec):
             return (rec.activity,) + tuple(rec.iter_with_extended_properties([ "temporal_intersection-over-union", "presenceconf_congruence", "object_congruence" ]))
@@ -291,3 +303,31 @@ class SRL_AOD_V1(SRL_AD_V1):
 
         # Replacement results for AOD
         return merge_dicts(appended_results, { "output_alignment_records": output_alignment_records })
+
+    def build_nmode_measure(self):
+        def _nmode(c, m, f):
+            return n_mode(c)
+        return _nmode
+
+    def compute_nmode_measures(self, alignment, rfa_denom, uniq_conf, nmode_targets):
+        sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [build_rfa_metric(rfa_denom), self.build_nmode_measure()], uniq_conf)
+        det_points = sweeper(alignment)
+        nmode_measures = get_points_along_confidence_curve(det_points,
+                                                            "rfa",
+                                                            lambda r: r["rfa"],
+                                                            "n-mode",
+                                                            lambda r: r["n-mode"],
+                                                            nmode_targets)
+        return nmode_measures
+
+    def compute_agg_nmode_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, nmode_targets, default_factorizations = []):
+        def _r(init, item):
+            m = init
+            factorization, recs = item
+            measures = self.compute_nmode_measures(recs, rfa_denom_func(recs), uniq_conf, nmode_targets)
+            for _m, v in measures.items():
+                m.append(factorization + (_m, v))
+            return m
+
+        grouped = merge_dicts({ k: [] for k in default_factorizations }, group_by_func(factorization_func, records))
+        return reduce(_r, grouped.items(), ([]))
