@@ -610,12 +610,6 @@ def build_mote_metric(frame_correct_align, conf_func,
     return _mote
 
 
-def nmode(c):
-    if len(c) == 0:
-        return {"nMODE": None}
-    return {'nMODE': sum([rec.kernel_components.get('object_congruence', 0) for rec in c])/len(c)}
-
-
 def build_ref_sig(ref, file_framedur_lookup):
     # Need to modify join, find ways to keep from doing full join each time.
     # reference stays the same, calculated once. system, just need to include
