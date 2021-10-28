@@ -36,8 +36,7 @@ from operator import and_
 from alignment_record import AlignmentRecord
 from helpers import *
 from functools import reduce
-
-
+import time
 
 def build_actev19_linear_combination_kernel(filters, components, weights, initial_similarity = 1):
     def _kernel(r_i, s_i):
@@ -130,6 +129,14 @@ def perform_alignment(ref_instances, sys_instances, kernel, maximize = True):
     disallowed = {}
     max_sim = 0
     sim_matrix, component_matrix = [], []
+    start = time.time_ns()
+    report_matrix_stats = False  ### Boolean to report the stats
+    report_matrix_start = False  ### Writes a line before the matrix processing begins
+    report_matrix_print_threshold = 10000  ### Controls the size of the matrix to trigger output
+
+    if report_matrix_stats and report_matrix_start and len(ref_instances) * len(sys_instances) > report_matrix_print_threshold:
+        print("[Info] StartBigAlignment: {} x {} = {}".format(len(ref_instances), len(sys_instances), len(ref_instances) * len(sys_instances)))
+
     for s_i, s in enumerate(sys_instances):
         sim_row = []
         comp_row = []
@@ -182,4 +189,9 @@ def perform_alignment(ref_instances, sys_instances, kernel, maximize = True):
             false_alarms.append(AlignmentRecord(None, sys_instances[s_i], None, None, None, sys_instances[s_i].localization, list(sys_instances[s_i].localization)[0]))
         except:
             false_alarms.append(AlignmentRecord(None, sys_instances[s_i], None, None,None,None,None))
+
+    if  report_matrix_stats and len(ref_instances) * len(sys_instances) > report_matrix_print_threshold:
+        print("[Info] BigAlignmentMatixTime: {} x {} = {}, {} sec.".format(len(ref_instances), len(sys_instances), len(ref_instances) * len(sys_instances),
+                                                                (time.time_ns()-start) / 1000000000))
+            
     return(correct_detects, missed_detects, false_alarms)
