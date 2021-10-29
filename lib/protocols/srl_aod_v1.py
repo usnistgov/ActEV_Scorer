@@ -78,6 +78,7 @@ class SRL_AOD_V1(SRL_AD_V1):
                                        "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
                                        "wpmiss.numerator": 8,
                                        "wpmiss.denominator": 10,
+                                       "scoring_protocol": "srl_aod_v1",
                                        "command": str(command),
                                        "git.commit": subprocess.check_output(["git", "--git-dir="+ os.path.join(lib_path, "../")+".git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)

@@ -70,6 +70,7 @@ class SRL_AOD_V2(SRL_AOD_V1):
                                        "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
                                        "mode.cost_miss": 1,
                                        "mode.cost_fa": 1,
+                                       "scoring_protocol": "srl_aod_v2",
                                        "command": str(command),
                                        "git.commit": subprocess.check_output(["git", "--git-dir="+ os.path.join(lib_path, "../")+".git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)

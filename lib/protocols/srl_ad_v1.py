@@ -65,7 +65,7 @@ class SRL_AD_V1(Default):
                                        "nmide.cost_fa": 1,
                                        "wpmiss.numerator": 8,
                                        "wpmiss.denominator": 10,
-                                       "scoring_protocol": "actev18_ad",
+                                       "scoring_protocol": "srl_ad_v1",
                                        "command": str(command),
                                        "git.commit": subprocess.check_output(["git", "--git-dir="+ os.path.join(lib_path, "../")+".git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
 
