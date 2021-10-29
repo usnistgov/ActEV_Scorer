@@ -1,0 +1,17 @@
+activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
+Closing|CD|102|3|0.9|1.0000008434083332|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.8333333333333334, "object_congruence": 0.75}
+Closing|CD|103|5|0.8|1.0000006767166667|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.6666666666666667, "object_congruence": 0.5}
+Closing|CD|104|7|0.7|1.000000510025|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.4999999999999999, "object_congruence": 0.25}
+Closing|CD|105|9|0.6|1.0000003434333333|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.33333333333333326, "object_congruence": 1.0}
+Closing|FA|None|10|0.6|None|None
+Closing|FA|None|11|0.5|None|None
+Closing|FA|None|12|0.5|None|None
+Closing|FA|None|13|0.4|None|None
+Closing|FA|None|14|0.4|None|None
+Closing|FA|None|2|1.0|None|None
+Closing|FA|None|4|0.9|None|None
+Closing|FA|None|6|0.8|None|None
+Closing|FA|None|8|0.7|None|None
+Closing|MD|106|None|None|None|None
+Closing|MD|107|None|None|None|None
+Closing|MD|108|None|None|None|None

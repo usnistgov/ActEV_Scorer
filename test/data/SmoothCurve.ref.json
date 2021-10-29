@@ -1,0 +1,15 @@
+{
+  "filesProcessed": [
+    "VIRAT_S_000000.mp4"
+  ],
+  "activities": [
+      {"activity":"Closing","activityID":101,"localization":{"VIRAT_S_000000.mp4":{"0":1,"100":0}},   "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{  "0":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "100":{}   }}}]},
+      {"activity":"Closing","activityID":102,"localization":{"VIRAT_S_000000.mp4":{"100":1,"200":0}}, "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{"100":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "200":{}   }}}]},
+      {"activity":"Closing","activityID":103,"localization":{"VIRAT_S_000000.mp4":{"200":1,"300":0}}, "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{"200":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "300":{}   }}}]},
+      {"activity":"Closing","activityID":104,"localization":{"VIRAT_S_000000.mp4":{"300":1,"400":0}}, "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{"300":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "400":{}   }}}]},
+      {"activity":"Closing","activityID":105,"localization":{"VIRAT_S_000000.mp4":{"400":1,"500":0}}, "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{"400":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "500":{}   }}}]},
+      {"activity":"Closing","activityID":106,"localization":{"VIRAT_S_000000.mp4":{"500":1,"600":0}}, "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{"500":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "600":{}   }}}]},
+      {"activity":"Closing","activityID":107,"localization":{"VIRAT_S_000000.mp4":{"600":1,"700":0}}, "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{"600":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "700":{}   }}}]},
+      {"activity":"Closing","activityID":108,"localization":{"VIRAT_S_000000.mp4":{"700":1,"800":0}}, "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{"700":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "800":{}   }}}]}
+      ]
+}
