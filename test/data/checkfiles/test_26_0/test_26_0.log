@@ -1,0 +1,16 @@
+[Info] Command: ../ActEV_Scorer.py SRL_AOD_V1 -s data/SmoothCurve.sys.json -r data/SmoothCurve.ref.json -a data/SmoothCurve.activity-index.json -f data/SmoothCurve.file-index.json -F -o data/checkfiles/test_26_0 -d -j -v --rewrite .foo --transformations single_bbox_per_frame
+[Info] Loading activity index file
+[Info] Loading file index file
+[Info] Loading JSON schema
+[Info] Loading activities and references
+[Info] Validating system output against JSON schema
+[Info] System output validated successfully against JSON schema
+[Info] Checking file index against system's "filesProcessed"
+[Info] Validation successful
+[Info] Loading reference file
+[Info] Re-writing system activities file to data/SmoothCurve.sys.foo.json
+[Info] Re-writing reference activities file to data/SmoothCurve.ref.foo.json
+[Info] Loading JSON schema
+[Info] Computing alignments ..
+[Info] Scoring ..
+[Info] Saving results to directory 'data/checkfiles/test_26_0'

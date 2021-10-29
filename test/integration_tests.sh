@@ -560,6 +560,7 @@ test_15_0() {
     -v
 }
 #larger test
+## This is a special test case with a well-set DET curve structure.  There are no False Alarms so the RFA scoring will be wierd.
 test_15_1() {
     ../ActEV_Scorer.py \
     "ActEV_SDL_V1" \
@@ -991,4 +992,14 @@ test_25_4() {
     -a "data/test_4-0_activity-index.json" \
     -f "data/test_4-0_file-index.json" \
     -F -o "$1" -d -j -v
+}
+
+test_26_0() {
+    ../ActEV_Scorer.py \
+    "SRL_AOD_V1" \
+    -s "data/SmoothCurve.sys.json" \
+    -r "data/SmoothCurve.ref.json" \
+    -a "data/SmoothCurve.activity-index.json" \
+    -f "data/SmoothCurve.file-index.json" \
+    -F -o "$1" -j -v --transformations single_bbox_per_frame 
 }
