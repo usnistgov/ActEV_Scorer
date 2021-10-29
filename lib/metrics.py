@@ -584,7 +584,7 @@ def build_mode_metric(cost_fn_m=lambda x: 1 * x, cost_fn_f=lambda x: 1 * x):
 def n_mode(c):
     if len(c) == 0:
         return {"n-mode": None}
-    return {'n-mode': sum([rec.kernel_components.get('object_congruence', 0) for rec in c])/len(c)}
+    return {'n-mode': sum([1-rec.kernel_components.get('object_congruence', 0) for rec in c])/len(c)}
 
 
 def mote(num_c, num_m, num_f, num_id, cost_m, cost_f, cost_id):

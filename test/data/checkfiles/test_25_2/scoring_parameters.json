@@ -63,7 +63,7 @@
     0.01
   ],
   "command": "../ActEV_Scorer.py SRL_AOD_V2 -s data/test_4-0_fake-sysout.json -r data/test_4-0.json -a data/test_5-0_activity-index.json -f data/test_4-0_file-index.json -o compcheckfiles/test_25_2 -d -j -v",
-  "git.commit": "e3fe924c0d9163f3ffec5b37c04d9ba65e712716--2021-10-28T10:36:14-04:00",
+  "git.commit": "9f2ef910774cd08ecf0401fd4d310a5c20bcae68--2021-10-28T16:37:57-04:00",
   "mode.cost_fa": 1,
   "mode.cost_miss": 1,
   "nmide.cost_fa": 1,
