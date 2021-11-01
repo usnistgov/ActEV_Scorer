@@ -3,7 +3,7 @@
     "VIRAT_S_000000.mp4"
   ],
   "activities": [
-      {"activity":"Closing","activityID":101,"localization":{"VIRAT_S_000000.mp4":{"0":1,"100":0}},   "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{  "0":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "100":{}   }}}]},
+      {"activity":"Closing","activityID":101,"localization":{"VIRAT_S_000000.mp4":{"1":1,"100":0}},   "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{  "0":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "100":{}   }}}]},
       {"activity":"Closing","activityID":102,"localization":{"VIRAT_S_000000.mp4":{"100":1,"200":0}}, "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{"100":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "200":{}   }}}]},
       {"activity":"Closing","activityID":103,"localization":{"VIRAT_S_000000.mp4":{"200":1,"300":0}}, "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{"200":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "300":{}   }}}]},
       {"activity":"Closing","activityID":104,"localization":{"VIRAT_S_000000.mp4":{"300":1,"400":0}}, "objects":[{"objectType":"person","objectID":1,"localization":{"VIRAT_S_000000.mp4":{"300":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},    "400":{}   }}}]},
