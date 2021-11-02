@@ -705,26 +705,26 @@ if __name__ == '__main__':
                            dict(help="Scoring protocol for the ActEV18 Activity and Object Detection and Tracking task"),
                            score_actev18_aodt,
                            base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
-    
-    add_protocol_subparser("SRL_AOD_V1",
-                           dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection"),
-                           score_srl_aod_v1,
-                           base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
 
     add_protocol_subparser("SRL_AD_V1",
                            dict(help="Scoring protocol for the Self-Reported Leaderboard"),
                            score_srl_ad_v1,
                            base_args)
     
-    add_protocol_subparser("SRL_AOD_V2",
-                           dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection V2"),
-                           score_srl_aod_v2,
-                           base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
-
-    add_protocol_subparser("SRL_AD_V2",
-                           dict(help="Scoring protocol for the Self-Reported Leaderboard V2"),
-                           score_srl_ad_v2,
+    add_protocol_subparser("SRL_AOD_V1",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection"),
+                           score_srl_aod_v1,
                            base_args)
+    
+    # add_protocol_subparser("SRL_AOD_V2",
+    #                        dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection V2"),
+    #                        score_srl_aod_v2,
+    #                        base_args)
+
+    # add_protocol_subparser("SRL_AD_V2",
+    #                        dict(help="Scoring protocol for the Self-Reported Leaderboard V2"),
+    #                        score_srl_ad_v2,
+    #                        base_args)
 
     args = parser.parse_args()
     if args == argparse.Namespace():
