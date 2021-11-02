@@ -1,1 +1,4 @@
 activity|score_threshold|metric_name|metric_value
+Opening|0.899|n-mode|None
+Opening|0.899|p_miss|1.0
+Opening|0.899|rfa|0.4270462633451957

@@ -1,4 +1,4 @@
-[Info] Command: ../ActEV_Scorer.py SRL_AOD_V1 -s data/test_6-0_fake-sysout.json -r data/test_6-0.json -a data/test_6-0_activity-index.json -f data/test_6-0_file-index.json -o data/checkfiles/test_23_3 -d -j -I -v
+[Info] Command: ../ActEV_Scorer.py SRL_AOD_V1 -s data/test_6-0_fake-sysout.json -r data/test_6-0.json -a data/test_6-0_activity-index.json -f data/test_6-0_file-index.json -o data/checkfiles/test_23_3 -d -I -v
 [Info] Loading activity index file
 [Info] Loading file index file
 [Info] Loading JSON schema
@@ -9,5 +9,6 @@
 [Info] Validation successful
 [Info] Loading reference file
 [Info] Computing alignments ..
+[Info] 2 alignment records
 [Info] Scoring ..
 [Info] Saving results to directory 'data/checkfiles/test_23_3'
