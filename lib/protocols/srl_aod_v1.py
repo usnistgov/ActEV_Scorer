@@ -59,14 +59,14 @@ class SRL_AOD_V1(SRL_AD_V1):
         return True
 
     def __init__(self, scoring_parameters, file_index, activity_index, command):
-        default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
+        default_scoring_parameters = { "activityo.epsilon_temporal_congruence": 1.0e-8,
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,
                                        "activity.fa_at_rfa_targets": [ 10, 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.04, 0.03, 0.02, 0.01 ],
                                        "activity.temporal_overlap_delta": 0.2,
                                        "activity.p_miss_at_rfa_targets": [ 10, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.n_mide_at_rfa_targets": [ 10, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.epsilon_object_congruence": 1.0e-10,
-                                       "activity.object_congruence_delta": 0.0,
+                                       "activity.object_congruence_delta": 0.3,
                                        "activity.n_mode_at_rfa_targets": [1] + [x/100 for x in range(95, 4, -5)] + [0.04, 0.03, 0.02, 0.01],
                                        "mode.cost_miss": 1,
                                        "mode.cost_fa": 1,
@@ -75,7 +75,7 @@ class SRL_AOD_V1(SRL_AD_V1):
                                        "nmide.cost_fa": 1,
                                        "object.epsilon_object-overlap_congruence": 1.0e-8,
                                        "object.epsilon_presenceconf_congruence": 0,
-                                       "object.spatial_overlap_delta": 0.5,
+                                       "object.spatial_overlap_delta": 0.2,
                                        "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
                                        "wpmiss.numerator": 8,
                                        "wpmiss.denominator": 10,
@@ -147,7 +147,7 @@ class SRL_AOD_V1(SRL_AD_V1):
                                                     "object_congruence": self.scoring_parameters["activity.epsilon_object_congruence"]})
 
         return _configure_kernel_for_activity
-
+    
     def build_nmode_measure(self):
         def _nmode(c, m, f):
             return n_mode(c)
@@ -210,7 +210,7 @@ class SRL_AOD_V1(SRL_AD_V1):
     #     args = []
     #     for key in grouped:
     #         args.append((_r_srlz, (key, grouped[key]), ({}, [], [])))
-
+    
     #     with ProcessPoolExecutor(self.pn) as pool:
     #         res = pool.map(unserialize_fct_res, args)
 
