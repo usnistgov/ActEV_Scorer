@@ -357,8 +357,9 @@ class SRL_AOD_V1(SRL_AD_V1):
                                                            lambda r: r["n-mode"],
                                                            rfa_targets,
                                                            None)
-        print("mod {}".format(nmode_measures))
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, nmode_measures))))
+
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss", "n-mode" ]),
+                merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, nmode_measures))))
 
     def compute_aggregate_aod_det_points_and_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, rfa_targets, nmide_targets, default_factorizations = []):
         def _r(init, item):
@@ -366,8 +367,6 @@ class SRL_AOD_V1(SRL_AD_V1):
             factorization, recs = item
 
             det_points, measures = self.compute_aod_det_points_and_measures(recs, rfa_denom_func(recs), uniq_conf, rfa_targets, nmide_targets, self.scoring_parameters["wpmiss.denominator"], self.scoring_parameters["wpmiss.numerator"])
-            print("det_points {}".format(det_points))
-            print("measures {}".format(measures))
             
             p["-".join(factorization)] = det_points
 
@@ -430,12 +429,20 @@ class SRL_AOD_V1(SRL_AD_V1):
         activity_means = self.compute_record_means(activity_results)
 
         def _align_rec_mapper(rec):
-            return (rec.activity,) + tuple(rec.iter_with_extended_properties(["temporal_intersection-over-union", "presenceconf_congruence", "minMODE"]))
+            return (rec.activity,) + tuple(rec.iter_with_extended_properties(["temporal_intersection-over-union", "presenceconf_congruence", "object_congruence", "minMODE"]))
 
         output_alignment_records = map(_align_rec_mapper, alignment)
+
+        output_thresh = []
+        for activity in out_det_points:
+            for thd, rfa, pmiss, nmode in out_det_points[activity]:
+                output_thresh.append((activity, thd, 'rfa', rfa))
+                output_thresh.append((activity, thd, 'p_miss', pmiss))
+                output_thresh.append((activity, thd, 'n-mode', nmode))
 
         return { "pair_metrics": pair_results,
                  "scores_by_activity": activity_results,
                  "scores_aggregated": activity_means + overall_nmide,
                  "det_point_records": out_det_points,
-                 "output_alignment_records": output_alignment_records }
+                 "output_alignment_records": output_alignment_records,
+                 "scores_by_activity_and_threshold": output_thresh }
