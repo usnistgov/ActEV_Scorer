@@ -334,7 +334,7 @@ class SRL_AOD_V1(SRL_AD_V1):
                           self.build_simple_measure(lambda x: (x.kernel_components.get("temporal_intersection-over-union"),), "temporal_intersection-over-union", identity),
                           self.build_simple_measure(lambda x: (x.kernel_components.get("minMODE"),), "minMODE", identity) ]
 
-        # Pairs 
+        # Pairs from the alignments
         def _pair_properties_map(rec):
             return (rec.activity, rec.ref.activityID, rec.sys.activityID)
 
@@ -357,7 +357,7 @@ class SRL_AOD_V1(SRL_AD_V1):
         activity_means = self.compute_record_means(activity_results)
 
         def _align_rec_mapper(rec):
-            return (rec.activity,) + tuple(rec.iter_with_extended_properties(["temporal_intersection-over-union", "presenceconf_congruence"]))
+            return (rec.activity,) + tuple(rec.iter_with_extended_properties(["temporal_intersection-over-union", "presenceconf_congruence", "minMODE"]))
 
         output_alignment_records = map(_align_rec_mapper, alignment)
 
