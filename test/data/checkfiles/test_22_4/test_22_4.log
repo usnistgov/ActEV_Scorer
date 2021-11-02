@@ -10,5 +10,6 @@
 [Info] Loading reference file
 [Info] Loading JSON schema
 [Info] Computing alignments ..
+[Info] 119 alignment records
 [Info] Scoring ..
 [Info] Saving results to directory 'data/checkfiles/test_22_4'
