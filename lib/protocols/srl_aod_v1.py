@@ -221,7 +221,7 @@ class SRL_AOD_V1(SRL_AD_V1):
             m.extend(entry[2])
         return (p, fa, m)
 
-    def compute_results(self, alignment, uniq_conf):
+    def compute_results_with_obj(self, alignment, uniq_conf):
         c, m, f = partition_alignment(alignment)
 
         # Building off of the metrics computed for AD
@@ -281,7 +281,6 @@ class SRL_AOD_V1(SRL_AD_V1):
             return sum([ v.area() for v in reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {}).values() ])
 
         activity_obj_det_points, fa_data, activity_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _activity_grouper, _rfa_denom_fn, uniq_conf, self.scoring_parameters["object.p_miss_at_rfa_targets"], self.default_activity_groups)
-        print(fa_data)
 
         def _pair_metric_means(init, res):
             a, ress = res
@@ -318,3 +317,52 @@ class SRL_AOD_V1(SRL_AD_V1):
 
         # Replacement results for AOD
         return merge_dicts(appended_results, {"output_alignment_records": output_alignment_records})
+
+
+    def compute_results(self, alignment, uniq_conf):
+        c, m, f = partition_alignment(alignment)
+
+        ar_nmide_measure = self.build_ar_nmide_measure()
+
+        def _pair_arg_map(rec):
+            return (rec.ref, rec.sys)
+
+        pair_measures = [ self.build_simple_measure(_pair_arg_map, "temporal_intersection", temporal_intersection),
+                          self.build_simple_measure(_pair_arg_map, "temporal_union", temporal_union),
+                          self.build_simple_measure(_pair_arg_map, "temporal_fa", temporal_fa),
+                          self.build_simple_measure(_pair_arg_map, "temporal_miss", temporal_miss),
+                          self.build_simple_measure(lambda x: (x.kernel_components.get("temporal_intersection-over-union"),), "temporal_intersection-over-union", identity),
+                          self.build_simple_measure(lambda x: (x.kernel_components.get("minMODE"),), "minMODE", identity) ]
+
+        # Pairs 
+        def _pair_properties_map(rec):
+            return (rec.activity, rec.ref.activityID, rec.sys.activityID)
+
+        pair_results = self.compute_atomic_measures(c, _pair_properties_map, pair_measures)
+        
+        # Activity level + Pair Aggregates
+        def _activity_grouper(rec):
+            return (rec.activity,)
+
+        activity_nmides = self.compute_aggregate_measures(alignment, _activity_grouper, [ ar_nmide_measure ], self.default_activity_groups)
+        out_det_points, det_measures = self.compute_aggregate_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, uniq_conf, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.default_activity_groups)
+
+        # Overall level + Activity Aggregates + Pair Agg. Aggregates
+        def _empty_grouper(rec):
+            return tuple() # empty tuple
+
+        activity_results = activity_nmides + det_measures
+
+        overall_nmide = self.compute_aggregate_measures(alignment, _empty_grouper, [ ar_nmide_measure ])
+        activity_means = self.compute_record_means(activity_results)
+
+        def _align_rec_mapper(rec):
+            return (rec.activity,) + tuple(rec.iter_with_extended_properties(["temporal_intersection-over-union", "presenceconf_congruence"]))
+
+        output_alignment_records = map(_align_rec_mapper, alignment)
+
+        return { "pair_metrics": pair_results,
+                 "scores_by_activity": activity_results,
+                 "scores_aggregated": activity_means + overall_nmide,
+                 "det_point_records": out_det_points,
+                 "output_alignment_records": output_alignment_records }
