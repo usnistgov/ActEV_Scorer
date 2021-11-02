@@ -61,10 +61,10 @@ class SRL_AOD_V1(SRL_AD_V1):
     def __init__(self, scoring_parameters, file_index, activity_index, command):
         default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,
-                                       "activity.fa_at_rfa_targets": [ 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.04, 0.03, 0.02, 0.01 ],
+                                       "activity.fa_at_rfa_targets": [ 10, 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.50, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.04, 0.03, 0.02, 0.01 ],
                                        "activity.temporal_overlap_delta": 0.2,
-                                       "activity.p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
-                                       "activity.n_mide_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.p_miss_at_rfa_targets": [ 10, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.n_mide_at_rfa_targets": [ 10, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "activity.epsilon_object_congruence": 1.0e-10,
                                        "activity.object_congruence_delta": 0.0,
                                        "activity.n_mode_at_rfa_targets": [1] + [x/100 for x in range(95, 4, -5)] + [0.04, 0.03, 0.02, 0.01],
@@ -153,10 +153,178 @@ class SRL_AOD_V1(SRL_AD_V1):
             return n_mode(c)
         return _nmode
 
-    def compute_obj_det_points_and_measures(self, alignment, rfa_denom, uniq_conf, rfa_targets):
+    # def compute_obj_det_points_and_measures(self, alignment, rfa_denom, uniq_conf, rfa_targets):
+    #     sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [ build_rfa_metric(rfa_denom),
+    #                                                                build_pmiss_metric(),
+    #                                                                self.build_nmode_measure() ], uniq_conf)
+
+    #     det_points = sweeper(alignment)
+
+    #     pmiss_measures = get_points_along_confidence_curve(det_points,
+    #                                                        "rfa",
+    #                                                        lambda r: r["rfa"],
+    #                                                        "p_miss",
+    #                                                        lambda r: r["p_miss"],
+    #                                                        rfa_targets)
+    #     nmode_measures = get_points_along_confidence_curve(det_points,
+    #                                                        "rfa",
+    #                                                        lambda r: r["rfa"],
+    #                                                        "n-mode",
+    #                                                        lambda r: r["n-mode"],
+    #                                                        self.scoring_parameters['activity.n_mode_at_rfa_targets'])
+
+    #     return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "n-mode" ]), merge_dicts(pmiss_measures, nmode_measures))
+
+    # def compute_aggregate_obj_det_points_and_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, rfa_targets, default_factorizations = None):
+    #     # Build concat object alignment records
+    #     def _concat_align_recs(init, ar):
+    #         init.extend(map(lambda x: x[1], ar.kernel_components["alignment_records"]))
+    #         return init
+
+    #     def _r(init, item):
+    #         p, fa, m = init
+    #         factorization, recs = item
+    #         f = {}
+    #         combined_alignment_records = reduce(_concat_align_recs, recs, [])
+
+    #         det_points, _, measures = self.compute_obj_det_points_and_measures(combined_alignment_records, rfa_denom_func(recs), uniq_conf, rfa_targets)
+    #         _, fa_data, _ = self.compute_obj_det_points_and_measures(recs, rfa_denom_func(recs), uniq_conf, rfa_targets)
+
+    #         p["-".join(factorization)] = det_points
+    #         f["-".join(factorization)] = fa_data
+            
+    #         for k in f:
+    #             for i in f[k]:
+    #                 ii = i[0] if 'e' in str(i[0]) else round(i[0], 3)
+    #                 fa.append((k, ii, "p_miss", i[2]))
+    #                 fa.append((k, ii, "rfa", i[1]))
+    #                 fa.append((k, ii, "n-mode", i[3]))
+
+    #         for _m, v in measures.items():
+    #             m.append(factorization + ("object-{}".format(_m), v))
+
+    #         return (p, fa, m)
+
+    #     grouped = group_by_func(factorization_func, records, default_groups = default_factorizations)
+    #     _r_srlz = dill.dumps(_r)
+    #     args = []
+    #     for key in grouped:
+    #         args.append((_r_srlz, (key, grouped[key]), ({}, [], [])))
+
+    #     with ProcessPoolExecutor(self.pn) as pool:
+    #         res = pool.map(unserialize_fct_res, args)
+
+    #     p, fa, m = {}, [], []
+    #     for entry in res:
+    #         p.update(entry[0])
+    #         fa.extend(entry[1])
+    #         m.extend(entry[2])
+    #     return (p, fa, m)
+
+    # def compute_results_with_obj(self, alignment, uniq_conf):
+    #     c, m, f = partition_alignment(alignment)
+
+    #     # Building off of the metrics computed for AD
+    #     ad_results = super(SRL_AOD_V1, self).compute_results(alignment, uniq_conf)
+
+    #     def _object_frame_alignment_records(init, kv):
+    #         activity, recs = kv
+    #         object_type_map = self.activity_index[activity].get("objectTypeMap", {})
+
+    #         def _m(item):
+    #             def _subm(frame_ar):
+    #                 frame, ar = frame_ar
+    #                 ref_object_type = ar.ref.objectType if ar.ref is not None else None
+    #                 sys_object_type = ar.sys.objectType if ar.sys is not None else None
+    #                 mapped_type = object_type_map.get(ref_object_type if ref_object_type is not None else sys_object_type,
+    #                                                   ref_object_type if ref_object_type is not None else sys_object_type)
+    #                 return list(map(str, [activity,
+    #                                  item.ref,
+    #                                  item.sys,
+    #                                  frame,
+    #                                  ref_object_type,
+    #                                  sys_object_type,
+    #                                  object_type_map.get(ref_object_type, ref_object_type) if ref_object_type is not None else None,
+    #                                  object_type_map.get(sys_object_type, sys_object_type) if sys_object_type is not None else None])) + [ x for x in ar.iter_with_extended_properties(["spatial_intersection-over-union", "presenceconf_congruence"]) ]
+
+    #             return list(map(_subm, item.kernel_components.get("alignment_records", [])))
+
+    #         for entry in map(_m, filter(lambda r: r.alignment == "CD", recs)):
+    #             init.extend(entry)
+    #         return init
+
+    #     grouped = group_by_func(lambda rec: rec.activity, alignment).items()
+    #     object_frame_alignment_records = reduce(_object_frame_alignment_records, grouped, [])
+
+    #     def _obj_pmiss_at_rfa(targ):
+    #         t = "object-p_miss@{}rfa".format(targ)
+    #         return self.build_simple_measure(lambda x: (x.kernel_components.get(t),), t, identity)
+
+    #     aod_pair_measures = [ self.build_simple_measure(lambda x: (x.kernel_components.get("minMODE"),), "minMODE", identity)] + list(map(_obj_pmiss_at_rfa, self.scoring_parameters["object.p_miss_at_rfa_targets"]))
+
+    #     def _pair_properties_map(rec):
+    #         return (rec.activity, rec.ref.activityID, rec.sys.activityID)
+
+    #     aod_pair_results = self.compute_atomic_measures(c, _pair_properties_map, aod_pair_measures)
+
+    #     def _activity_grouper(rec):
+    #         return (rec.activity,)
+
+    #     def _empty_grouper(rec):
+    #         return tuple() # empty tuple
+
+    #     def _rfa_denom_fn(correct_recs):
+    #         def _localization_reducer(init, loc):
+    #             # Merges the two temporal localization dictionaries by
+    #             # "adding" the signals
+    #             return merge_dicts(init, loc, add)
+    #         return sum([ v.area() for v in reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {}).values() ])
+
+    #     activity_obj_det_points, fa_data, activity_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _activity_grouper, _rfa_denom_fn, uniq_conf, self.scoring_parameters["object.p_miss_at_rfa_targets"], self.default_activity_groups)
+
+    #     def _pair_metric_means(init, res):
+    #         a, ress = res
+
+    #         for r in self.compute_record_means(ress, map(lambda targ: "object-p_miss@{}rfa".format(targ), self.scoring_parameters["object.p_miss_at_rfa_targets"])):
+    #             label, val = r
+
+    #             # Explicitly setting mean object-p_miss@rfa to be 1.0
+    #             # rather than None in the case where no activity
+    #             # instances were detected for a given activity. TODO
+    #             # find a cleaner way to incorporate this
+    #             init.extend([ (a, label, 1.0 if val is None else val) ])
+
+    #         return init
+
+    #     obj_activity_means = reduce(_pair_metric_means, group_by_func(lambda t: t[0], aod_pair_results, default_groups = self.activity_index.keys()).items(), [])
+
+    #     agg_obj_det_points, agg_fa_data, agg_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _empty_grouper, _rfa_denom_fn, uniq_conf, self.scoring_parameters["object.p_miss_at_rfa_targets"], [ tuple() ])
+
+    #     agg_obj_activity_means = self.compute_record_means(obj_activity_means)
+
+    #     agg_obj_means = self.compute_record_means(activity_obj_det_measures)
+
+    #     appended_results = merge_dicts(ad_results, {"scores_by_activity": activity_obj_det_measures + obj_activity_means,
+    #                                                 "pair_metrics": aod_pair_results,
+    #                                                 "object_frame_alignment_records": object_frame_alignment_records,
+    #                                                 "scores_aggregated": agg_obj_det_measures + agg_obj_activity_means + agg_obj_means,
+    #                                                 "scores_by_activity_and_threshold": fa_data}, add)
+
+    #     def _align_rec_mapper(rec):
+    #         return (rec.activity,) + tuple(rec.iter_with_extended_properties([ "temporal_intersection-over-union", "presenceconf_congruence", "object_congruence" ]))
+
+    #     output_alignment_records = map(_align_rec_mapper, alignment)
+
+    #     # Replacement results for AOD
+    #     return merge_dicts(appended_results, {"output_alignment_records": output_alignment_records})
+
+
+    def compute_aod_det_points_and_measures(self, alignment, rfa_denom, uniq_conf, rfa_targets, nmide_targets, wpmiss_denom, wpmiss_numer):
         sweeper = build_sweeper(lambda ar: ar.sys_presence_conf, [ build_rfa_metric(rfa_denom),
                                                                    build_pmiss_metric(),
-                                                                   self.build_nmode_measure() ], uniq_conf)
+                                                                   build_wpmiss_metric(wpmiss_denom, wpmiss_numer),
+                                                                   self.build_nmide_measure(),
+                                                                   self.build_nmode_measure()], uniq_conf)
 
         det_points = sweeper(alignment)
 
@@ -166,158 +334,63 @@ class SRL_AOD_V1(SRL_AD_V1):
                                                            "p_miss",
                                                            lambda r: r["p_miss"],
                                                            rfa_targets)
+        
+        wpmiss_measures = get_points_along_confidence_curve(det_points,
+                                                            "rfa",
+                                                            lambda r: r["rfa"],
+                                                            "w_p_miss",
+                                                            lambda r: r["w_p_miss"],
+                                                            rfa_targets)
+
+        nmide_measures = get_points_along_confidence_curve(det_points,
+                                                           "rfa",
+                                                           lambda r: r["rfa"],
+                                                           "n-mide",
+                                                           lambda r: r["n-mide"],
+                                                           nmide_targets,
+                                                           None)
+
         nmode_measures = get_points_along_confidence_curve(det_points,
                                                            "rfa",
                                                            lambda r: r["rfa"],
                                                            "n-mode",
                                                            lambda r: r["n-mode"],
-                                                           self.scoring_parameters['activity.n_mode_at_rfa_targets'])
+                                                           rfa_targets,
+                                                           None)
+        print("mod {}".format(nmode_measures))
+        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, nmode_measures))))
 
-        return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "n-mode" ]), merge_dicts(pmiss_measures, nmode_measures))
-
-    def compute_aggregate_obj_det_points_and_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, rfa_targets, default_factorizations = None):
-        # Build concat object alignment records
-        def _concat_align_recs(init, ar):
-            init.extend(map(lambda x: x[1], ar.kernel_components["alignment_records"]))
-            return init
-
+    def compute_aggregate_aod_det_points_and_measures(self, records, factorization_func, rfa_denom_func, uniq_conf, rfa_targets, nmide_targets, default_factorizations = []):
         def _r(init, item):
-            p, fa, m = init
+            p, m = init
             factorization, recs = item
-            f = {}
-            combined_alignment_records = reduce(_concat_align_recs, recs, [])
 
-            det_points, _, measures = self.compute_obj_det_points_and_measures(combined_alignment_records, rfa_denom_func(recs), uniq_conf, rfa_targets)
-            _, fa_data, _ = self.compute_obj_det_points_and_measures(recs, rfa_denom_func(recs), uniq_conf, rfa_targets)
-
-            p["-".join(factorization)] = det_points
-            f["-".join(factorization)] = fa_data
+            det_points, measures = self.compute_aod_det_points_and_measures(recs, rfa_denom_func(recs), uniq_conf, rfa_targets, nmide_targets, self.scoring_parameters["wpmiss.denominator"], self.scoring_parameters["wpmiss.numerator"])
+            print("det_points {}".format(det_points))
+            print("measures {}".format(measures))
             
-            for k in f:
-                for i in f[k]:
-                    ii = i[0] if 'e' in str(i[0]) else round(i[0], 3)
-                    fa.append((k, ii, "p_miss", i[2]))
-                    fa.append((k, ii, "rfa", i[1]))
-                    fa.append((k, ii, "n-mode", i[3]))
+            p["-".join(factorization)] = det_points
 
             for _m, v in measures.items():
-                m.append(factorization + ("object-{}".format(_m), v))
+                m.append(factorization + (_m, v))
 
-            return (p, fa, m)
+            return (p, m)
 
-        grouped = group_by_func(factorization_func, records, default_groups = default_factorizations)
+        grouped = merge_dicts({ k: [] for k in default_factorizations }, group_by_func(factorization_func, records))
         _r_srlz = dill.dumps(_r)
         args = []
         for key in grouped:
-            args.append((_r_srlz, (key, grouped[key]), ({}, [], [])))
+            args.append((_r_srlz, (key, grouped[key]), ({}, [])))
 
         with ProcessPoolExecutor(self.pn) as pool:
             res = pool.map(unserialize_fct_res, args)
 
-        p, fa, m = {}, [], []
+        p, m = {}, []
         for entry in res:
             p.update(entry[0])
-            fa.extend(entry[1])
-            m.extend(entry[2])
-        return (p, fa, m)
-
-    def compute_results_with_obj(self, alignment, uniq_conf):
-        c, m, f = partition_alignment(alignment)
-
-        # Building off of the metrics computed for AD
-        ad_results = super(SRL_AOD_V1, self).compute_results(alignment, uniq_conf)
-
-        def _object_frame_alignment_records(init, kv):
-            activity, recs = kv
-            object_type_map = self.activity_index[activity].get("objectTypeMap", {})
-
-            def _m(item):
-                def _subm(frame_ar):
-                    frame, ar = frame_ar
-                    ref_object_type = ar.ref.objectType if ar.ref is not None else None
-                    sys_object_type = ar.sys.objectType if ar.sys is not None else None
-                    mapped_type = object_type_map.get(ref_object_type if ref_object_type is not None else sys_object_type,
-                                                      ref_object_type if ref_object_type is not None else sys_object_type)
-                    return list(map(str, [activity,
-                                     item.ref,
-                                     item.sys,
-                                     frame,
-                                     ref_object_type,
-                                     sys_object_type,
-                                     object_type_map.get(ref_object_type, ref_object_type) if ref_object_type is not None else None,
-                                     object_type_map.get(sys_object_type, sys_object_type) if sys_object_type is not None else None])) + [ x for x in ar.iter_with_extended_properties(["spatial_intersection-over-union", "presenceconf_congruence"]) ]
-
-                return list(map(_subm, item.kernel_components.get("alignment_records", [])))
-
-            for entry in map(_m, filter(lambda r: r.alignment == "CD", recs)):
-                init.extend(entry)
-            return init
-
-        grouped = group_by_func(lambda rec: rec.activity, alignment).items()
-        object_frame_alignment_records = reduce(_object_frame_alignment_records, grouped, [])
-
-        def _obj_pmiss_at_rfa(targ):
-            t = "object-p_miss@{}rfa".format(targ)
-            return self.build_simple_measure(lambda x: (x.kernel_components.get(t),), t, identity)
-
-        aod_pair_measures = [ self.build_simple_measure(lambda x: (x.kernel_components.get("minMODE"),), "minMODE", identity)] + list(map(_obj_pmiss_at_rfa, self.scoring_parameters["object.p_miss_at_rfa_targets"]))
-
-        def _pair_properties_map(rec):
-            return (rec.activity, rec.ref.activityID, rec.sys.activityID)
-
-        aod_pair_results = self.compute_atomic_measures(c, _pair_properties_map, aod_pair_measures)
-
-        def _activity_grouper(rec):
-            return (rec.activity,)
-
-        def _empty_grouper(rec):
-            return tuple() # empty tuple
-
-        def _rfa_denom_fn(correct_recs):
-            def _localization_reducer(init, loc):
-                # Merges the two temporal localization dictionaries by
-                # "adding" the signals
-                return merge_dicts(init, loc, add)
-            return sum([ v.area() for v in reduce(_localization_reducer, map(lambda x: x.kernel_components["ref_filter_localization"], correct_recs), {}).values() ])
-
-        activity_obj_det_points, fa_data, activity_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _activity_grouper, _rfa_denom_fn, uniq_conf, self.scoring_parameters["object.p_miss_at_rfa_targets"], self.default_activity_groups)
-
-        def _pair_metric_means(init, res):
-            a, ress = res
-
-            for r in self.compute_record_means(ress, map(lambda targ: "object-p_miss@{}rfa".format(targ), self.scoring_parameters["object.p_miss_at_rfa_targets"])):
-                label, val = r
-
-                # Explicitly setting mean object-p_miss@rfa to be 1.0
-                # rather than None in the case where no activity
-                # instances were detected for a given activity. TODO
-                # find a cleaner way to incorporate this
-                init.extend([ (a, label, 1.0 if val is None else val) ])
-
-            return init
-
-        obj_activity_means = reduce(_pair_metric_means, group_by_func(lambda t: t[0], aod_pair_results, default_groups = self.activity_index.keys()).items(), [])
-
-        agg_obj_det_points, agg_fa_data, agg_obj_det_measures = self.compute_aggregate_obj_det_points_and_measures(c, _empty_grouper, _rfa_denom_fn, uniq_conf, self.scoring_parameters["object.p_miss_at_rfa_targets"], [ tuple() ])
-
-        agg_obj_activity_means = self.compute_record_means(obj_activity_means)
-
-        agg_obj_means = self.compute_record_means(activity_obj_det_measures)
-
-        appended_results = merge_dicts(ad_results, {"scores_by_activity": activity_obj_det_measures + obj_activity_means,
-                                                    "pair_metrics": aod_pair_results,
-                                                    "object_frame_alignment_records": object_frame_alignment_records,
-                                                    "scores_aggregated": agg_obj_det_measures + agg_obj_activity_means + agg_obj_means,
-                                                    "scores_by_activity_and_threshold": fa_data}, add)
-
-        def _align_rec_mapper(rec):
-            return (rec.activity,) + tuple(rec.iter_with_extended_properties([ "temporal_intersection-over-union", "presenceconf_congruence", "object_congruence" ]))
-
-        output_alignment_records = map(_align_rec_mapper, alignment)
-
-        # Replacement results for AOD
-        return merge_dicts(appended_results, {"output_alignment_records": output_alignment_records})
-
+            m.extend(entry[1])
+        return (p, m)
+    
 
     def compute_results(self, alignment, uniq_conf):
         c, m, f = partition_alignment(alignment)
@@ -345,7 +418,7 @@ class SRL_AOD_V1(SRL_AD_V1):
             return (rec.activity,)
 
         activity_nmides = self.compute_aggregate_measures(alignment, _activity_grouper, [ ar_nmide_measure ], self.default_activity_groups)
-        out_det_points, det_measures = self.compute_aggregate_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, uniq_conf, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.default_activity_groups)
+        out_det_points, det_measures = self.compute_aggregate_aod_det_points_and_measures(alignment, _activity_grouper, lambda x: self.total_file_duration_minutes, uniq_conf, self.scoring_parameters["activity.p_miss_at_rfa_targets"], self.scoring_parameters["activity.n_mide_at_rfa_targets"], self.default_activity_groups)
 
         # Overall level + Activity Aggregates + Pair Agg. Aggregates
         def _empty_grouper(rec):
