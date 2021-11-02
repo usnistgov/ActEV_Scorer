@@ -5,6 +5,12 @@
       "vehicle"
     ]
   },
+  "Closing-Temp-IOU": {
+    "objectTypes": [
+      "person",
+      "vehicle"
+    ]
+  },
   "Entering": {
     "objectTypes": [
       "person",

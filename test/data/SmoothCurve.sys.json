@@ -2,6 +2,15 @@
   "filesProcessed": [
     "VIRAT_S_000000.mp4"
   ],
+  "processingReport": {
+    "fileStatuses": {
+      "VIRAT_S_000000.mp4": {
+        "status": "success",
+        "message": "ez"
+      }
+    },
+    "siteSpecific": {}
+  },
   "activities": [
       {"activity":"Closing","activityID": 1,"presenceConf":1.0,"alertFrame":100,"expected_confusion":"CD","localization":{"VIRAT_S_000000.mp4":{"1":1,"100":0}},     "objects":[{"objectType":"person","objectID": 1,"localization":{"VIRAT_S_000000.mp4":{   "1":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}}, "100":{}   }}}]   },
       {"activity":"Closing","activityID": 2,"presenceConf":1.0,"alertFrame":100,"expected_confusion":"FA","localization":{"VIRAT_S_000000.mp4":{"1100":1,"1200":0}}, "objects":[{"objectType":"person","objectID":11,"localization":{"VIRAT_S_000000.mp4":{"1100":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},"1200":{}   }}}]  },
@@ -22,6 +31,27 @@
       {"activity":"Closing","activityID":12,"presenceConf":0.5,"alertFrame":100,"expected_confusion":"FA","localization":{"VIRAT_S_000000.mp4":{"1100":1,"1200":0}}, "objects":[{"objectType":"person","objectID":16,"localization":{"VIRAT_S_000000.mp4":{"1100":{"boundingBox":{"x":10,"y":10,"w": 90,"h":200}},"1200":{}   }}}] },
 
       {"activity":"Closing","activityID":13,"presenceConf":0.4,"alertFrame":100,"expected_confusion":"CD","localization":{"VIRAT_S_000000.mp4":{"600":1,"700":0}},   "objects":[{"objectType":"person","objectID": 7,"localization":{"VIRAT_S_000000.mp4":{ "600":{"boundingBox":{"x":300,"y":10,"w":200,"h":200}}, "700":{}   }}}]  },
-      {"activity":"Closing","activityID":14,"presenceConf":0.4,"alertFrame":100,"expected_confusion":"FA","localization":{"VIRAT_S_000000.mp4":{"1100":1,"1200":0}}, "objects":[{"objectType":"person","objectID":17,"localization":{"VIRAT_S_000000.mp4":{"1100":{"boundingBox":{"x":300,"y":10,"w":200,"h":200}},"1200":{}   }}}]  }
+      {"activity":"Closing","activityID":14,"presenceConf":0.4,"alertFrame":100,"expected_confusion":"FA","localization":{"VIRAT_S_000000.mp4":{"1100":1,"1200":0}}, "objects":[{"objectType":"person","objectID":17,"localization":{"VIRAT_S_000000.mp4":{"1100":{"boundingBox":{"x":300,"y":10,"w":200,"h":200}},"1200":{}   }}}]  },
+      
+      {"activity":"Closing-Temp-IOU","activityID":201,"presenceConf":1.0,"alertFrame":100,"expected_confusion":"CD","localization":{"VIRAT_S_000000.mp4":{"1":1,"100":0}},     "objects":[{"objectType":"person","objectID": 1,"localization":{"VIRAT_S_000000.mp4":{   "1":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}}, "200":{}   }}}]   },
+      {"activity":"Closing-Temp-IOU","activityID":202,"presenceConf":1.0,"alertFrame":100,"expected_confusion":"FA","localization":{"VIRAT_S_000000.mp4":{"1100":1,"1200":0}}, "objects":[{"objectType":"person","objectID":11,"localization":{"VIRAT_S_000000.mp4":{"1100":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},"1200":{}   }}}]  },
+
+      {"activity":"Closing-Temp-IOU","activityID":203,"presenceConf":0.9,"alertFrame":100,"expected_confusion":"CD","localization":{"VIRAT_S_000000.mp4":{"100":1,"180":0}},   "objects":[{"objectType":"person","objectID": 2,"localization":{"VIRAT_S_000000.mp4":{ "100":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}}, "200":{}   }}}]    },
+      {"activity":"Closing-Temp-IOU","activityID":204,"presenceConf":0.9,"alertFrame":100,"expected_confusion":"FA","localization":{"VIRAT_S_000000.mp4":{"1100":1,"1200":0}}, "objects":[{"objectType":"person","objectID":12,"localization":{"VIRAT_S_000000.mp4":{"1100":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},"1200":{}   }}}]  },
+
+      {"activity":"Closing-Temp-IOU","activityID":205,"presenceConf":0.8,"alertFrame":100,"expected_confusion":"CD","localization":{"VIRAT_S_000000.mp4":{"200":1,"260":0}},   "objects":[{"objectType":"person","objectID": 3,"localization":{"VIRAT_S_000000.mp4":{ "200":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}}, "300":{}   }}}]     },
+      {"activity":"Closing-Temp-IOU","activityID":206,"presenceConf":0.8,"alertFrame":100,"expected_confusion":"FA","localization":{"VIRAT_S_000000.mp4":{"1100":1,"1200":0}}, "objects":[{"objectType":"person","objectID":13,"localization":{"VIRAT_S_000000.mp4":{"1100":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},"1200":{}   }}}]   },
+
+      {"activity":"Closing-Temp-IOU","activityID":207,"presenceConf":0.7,"alertFrame":100,"expected_confusion":"CD","localization":{"VIRAT_S_000000.mp4":{"300":1,"340":0}},   "objects":[{"objectType":"person","objectID": 4,"localization":{"VIRAT_S_000000.mp4":{ "300":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}}, "400":{}   }}}]     },
+      {"activity":"Closing-Temp-IOU","activityID":208,"presenceConf":0.7,"alertFrame":100,"expected_confusion":"FA","localization":{"VIRAT_S_000000.mp4":{"1100":1,"1200":0}}, "objects":[{"objectType":"person","objectID":14,"localization":{"VIRAT_S_000000.mp4":{"1100":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},"1200":{}   }}}]  },
+
+      {"activity":"Closing-Temp-IOU","activityID":209,"presenceConf":0.6,"alertFrame":100,"expected_confusion":"CD","localization":{"VIRAT_S_000000.mp4":{"400":1,"420":0}},   "objects":[{"objectType":"person","objectID": 5,"localization":{"VIRAT_S_000000.mp4":{ "400":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}}, "500":{}   }}}]    },
+      {"activity":"Closing-Temp-IOU","activityID":210,"presenceConf":0.6,"alertFrame":100,"expected_confusion":"FA","localization":{"VIRAT_S_000000.mp4":{"1100":1,"1200":0}}, "objects":[{"objectType":"person","objectID":15,"localization":{"VIRAT_S_000000.mp4":{"1100":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},"1200":{}   }}}] },
+
+      {"activity":"Closing-Temp-IOU","activityID":211,"presenceConf":0.5,"alertFrame":100,"expected_confusion":"CD","localization":{"VIRAT_S_000000.mp4":{"500":1,"510":0}},   "objects":[{"objectType":"person","objectID": 6,"localization":{"VIRAT_S_000000.mp4":{ "500":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}}, "600":{}   }}}]  },
+      {"activity":"Closing-Temp-IOU","activityID":212,"presenceConf":0.5,"alertFrame":100,"expected_confusion":"FA","localization":{"VIRAT_S_000000.mp4":{"1100":1,"1200":0}}, "objects":[{"objectType":"person","objectID":16,"localization":{"VIRAT_S_000000.mp4":{"1100":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},"1200":{}   }}}] },
+
+      {"activity":"Closing-Temp-IOU","activityID":213,"presenceConf":0.4,"alertFrame":100,"expected_confusion":"CD","localization":{"VIRAT_S_000000.mp4":{"600":1,"605":0}},   "objects":[{"objectType":"person","objectID": 7,"localization":{"VIRAT_S_000000.mp4":{ "600":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}}, "700":{}   }}}]  },
+      {"activity":"Closing-Temp-IOU","activityID":214,"presenceConf":0.4,"alertFrame":100,"expected_confusion":"FA","localization":{"VIRAT_S_000000.mp4":{"1100":1,"1200":0}}, "objects":[{"objectType":"person","objectID":17,"localization":{"VIRAT_S_000000.mp4":{"1100":{"boundingBox":{"x":10,"y":10,"w":200,"h":200}},"1200":{}   }}}]  }
   ]
 }
