@@ -552,7 +552,10 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir, plot_options
                 save_DET(dc, figure_dir, "DET_{}_{}.png".format(prefix, activity), plot_options)
 
             mean_label = "{}_mean_byfa".format(prefix)
-            dc_agg = DataContainer.aggregate(dc_dict.values(), output_label=mean_label, average_resolution=500)
+            xscale = plot_options['xscale'] if 'xscale' in plot_options else 'linear'
+            xmin = plot_options['xlim'][0] if 'xlim' in plot_options else 0
+            dc_agg = DataContainer.aggregate(dc_dict.values(), output_label=mean_label, average_resolution=500,
+                                             xscale=xscale, xmin=xmin)
             dc_agg.activity = "AGGREGATED"
             dc_agg.fa_label = prefix
             dc_agg.fn_label = "PMISS"
