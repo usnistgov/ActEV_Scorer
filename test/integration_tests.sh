@@ -818,12 +818,13 @@ test_22_4() {
 # SRL_AD_V1 using the SmoothCurve test set
 test_22_5() {
     ../ActEV_Scorer.py \
-    "SRL_AOD_V1" \
+    "SRL_AD_V1" \
     -s "data/SmoothCurve.sys.json" \
     -r "data/SmoothCurve.ref.json" \
     -a "data/SmoothCurve.activity-index.json" \
     -f "data/SmoothCurve.file-index.json" \
-    -F -o "$1" -v --transformations single_bbox_per_frame 
+    -F -o "$1" -v \
+    -c ../lib/srl_linear_plot.json
 }
 
 # SRL_AOD_V1 integration test with AUDC metrics 
@@ -894,5 +895,6 @@ test_23_5() {
     -r "data/SmoothCurve.ref.json" \
     -a "data/SmoothCurve.activity-index.json" \
     -f "data/SmoothCurve.file-index.json" \
-    -F -o "$1" -v --transformations single_bbox_per_frame 
+    -F -o "$1" -v --transformations single_bbox_per_frame \
+    -c ../lib/srl_linear_plot.json
 }

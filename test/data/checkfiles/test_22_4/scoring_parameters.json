@@ -1,6 +1,10 @@
 {
   "activity.auc_at_fa_targets": [
+    10,
+    5,
+    2,
     1,
+    0.5,
     0.2,
     0.15,
     0.1,
@@ -10,7 +14,11 @@
   "activity.epsilon_presenceconf_congruence": 1e-06,
   "activity.epsilon_temporal_congruence": 1e-08,
   "activity.n_mide_at_rfa_targets": [
+    10,
+    5,
+    2,
     1,
+    0.5,
     0.2,
     0.15,
     0.1,
@@ -18,7 +26,11 @@
     0.01
   ],
   "activity.p_miss_at_rfa_targets": [
+    10,
+    5,
+    2,
     1,
+    0.5,
     0.2,
     0.15,
     0.1,
@@ -27,7 +39,11 @@
   ],
   "activity.temporal_overlap_delta": 0.2,
   "activity.w_p_miss_at_rfa_targets": [
+    10,
+    5,
+    2,
     1,
+    0.5,
     0.2,
     0.15,
     0.1,
@@ -35,7 +51,7 @@
     0.01
   ],
   "command": "../ActEV_Scorer.py SRL_AD_V1 -s data/test_3-0_fake-sysout.json -r data/test_3-0.json -a data/test_3-0_activity-index.json -f data/test_3-0_file-index.json -o data/checkfiles/test_22_4 -d -v",
-  "git.commit": "157ed626c54bd615cbd1a739fcb235037adfe3ae--2021-11-02T14:51:22-04:00",
+  "git.commit": "3372cb160c7cb59fdb1596a47be41646c46898b9--2021-11-02T15:21:39-04:00",
   "nmide.cost_fa": 1,
   "nmide.cost_miss": 1,
   "nmide.ns_collar_size": 0,
