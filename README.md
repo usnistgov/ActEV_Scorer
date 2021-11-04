@@ -1,8 +1,8 @@
 # ActEV Scoring Software
 
-## Version: 0.5.7
+## Version: 0.5.8
 
-## Date: November 19, 2020
+## Date: November 4, 2021
 
 ------------------------
 
@@ -228,6 +228,10 @@ November 16, 2020 - Version 0.5.7
 
 * Add checks on `processingReport`
 
+November 3, 2021 - Version 0.5.8
+
+* Added the suite of SRL_AD_V? and SRL_AOD_V? protocols
+
 ### Contact
 
 Please send any issues, questions, or comments to [actev-nist@nist.gov](mailto:actev-nist@nist.gov)
@@ -237,3 +241,4 @@ Please send any issues, questions, or comments to [actev-nist@nist.gov](mailto:a
 * David Joy
 * Andrew Delgado
 * Baptiste Chocot
+* Jonathan Fiscus
