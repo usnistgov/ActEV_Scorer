@@ -94,8 +94,8 @@
     0.01
   ],
   "activityo.epsilon_temporal_congruence": 1e-08,
-  "command": "../ActEV_Scorer.py SRL_AOD_V1 -s data/SmoothCurve.sys.json -r data/SmoothCurve.ref.json -a data/SmoothCurve.activity-index.json -f data/SmoothCurve.file-index.json -F -o data/checkfiles/test_23_5 -v --transformations single_bbox_per_frame",
-  "git.commit": "48342c519c4d7762bc97748ec30b674271ca0d43--2021-11-02T15:13:36-04:00",
+  "command": "../ActEV_Scorer.py SRL_AOD_V1 -s data/SmoothCurve.sys.json -r data/SmoothCurve.ref.json -a data/SmoothCurve.activity-index.json -f data/SmoothCurve.file-index.json -F -o compcheckfiles/test_23_5 -v --transformations single_bbox_per_frame",
+  "git.commit": "3372cb160c7cb59fdb1596a47be41646c46898b9--2021-11-02T15:21:39-04:00",
   "mode.cost_fa": 1,
   "mode.cost_miss": 1,
   "nmide.cost_fa": 1,

@@ -795,9 +795,6 @@ def compute_map(system_activities, reference_activities, activity_index,
 
                 if fp[tidx, idx] == 0 and tp[tidx, idx] == 0:
                     fp[tidx, idx] = 1
-            
-            # If AOD, we want to store for each prediction, the list of
-            # reference instances with a decent overlap
 
         tp_cumsum = np.cumsum(tp, axis=1).astype(float)
         fp_cumsum = np.cumsum(fp, axis=1).astype(float)
@@ -826,5 +823,81 @@ def compute_map(system_activities, reference_activities, activity_index,
             mAP[thd] += v
     for thd in mAP:
         ap_metrics['mAP'].append(('mAP@%.2ftIoU' % thd, mAP[thd]/ap_len))
-    
+    return ap_metrics
+
+
+def compute_obj_map(protocol, system_activities, reference_activities,
+                    activity_index, thresholds=[.75, 0.5, .33, .25, .1]):
+    ap = {}
+    precision = {}
+    recall = {}
+    for activity in activity_index:
+        ap[activity] = np.zeros(len(thresholds))
+        _precision = []
+        _recall = []
+        for tidx, thd in enumerate(thresholds):
+            protocol.scoring_parameters["object.spatial_overlap_delta"] = thd
+            alignment = protocol.compute_alignment(system_activities, reference_activities)
+            c, m, f = partition_alignment(alignment)
+            # For each frame, gather all objects, and find which one is the best
+            
+            def _object_frame_alignment_records(init, kv):
+                activity, recs = kv
+                object_type_map = activity_index[activity].get("objectTypeMap", {})
+
+                def _m(item):
+                    def _subm(frame_ar):
+                        frame, ar = frame_ar
+                        ref_object_type = ar.ref.objectType if ar.ref is not None else None
+                        sys_object_type = ar.sys.objectType if ar.sys is not None else None
+                        return list(map(str, [activity,
+                                        item.ref,
+                                        item.sys,
+                                        frame,
+                                        ref_object_type,
+                                        sys_object_type,
+                                        object_type_map.get(ref_object_type, ref_object_type) if ref_object_type is not None else None,
+                                        object_type_map.get(sys_object_type, sys_object_type) if sys_object_type is not None else None])) + [ x for x in ar.iter_with_extended_properties(["spatial_intersection-over-union", "presenceconf_congruence"]) ]
+
+                    return map(_subm, item.kernel_components.get("alignment_records", []))
+
+                for entry in list(map(_m, filter(lambda r: r.alignment == "CD", recs))):
+                    init.extend(entry)
+                return init
+
+            object_frame_alignment_records = reduce(_object_frame_alignment_records, group_by_func(lambda rec: rec.activity, c + f).items(), [])
+
+            fp, tp = 0, 0
+            size = len(object_frame_alignment_records)
+            for record in object_frame_alignment_records:
+                alignment_type = record[8]
+                if alignment_type == "CD":
+                    tp += 1
+                elif alignment_type == "FA":
+                    fp += 1
+
+            # tp / (tp + len(detections))
+            _precision.append(tp / (tp + size))
+            # tp / (tp + len(missed_ground_truth))
+            _recall.append(tp / (tp + len([rec for rec in object_frame_alignment_records if rec[8] == 'MD'])))
+
+        for tidx in range(len(thresholds)):
+            precision[activity] = _precision[tidx]
+            recall[activity] = _recall[tidx]
+            ap[activity][tidx] = compute_ap(_precision[tidx], _recall[tidx])
+
+    ap_len = len(ap)
+    ap_metrics = {'AP': [], 'mAP': [], 'pr': (precision, recall)}
+    mAP = {}
+    for thd in thresholds:
+        mAP[thd] = 0
+    for activity in ap:
+        for i in range(len(thresholds)):
+            thd = thresholds[i]
+            v = round(float(ap[activity][i]), 18)
+            ap_metrics['AP'].append((activity, 'object-AP@%.2fsIoU' % thd, v))
+            mAP[thd] += v
+    for thd in mAP:
+        ap_metrics['mAP'].append(('object-mAP@%.2fsIoU' % thd, mAP[thd]/ap_len))
+
     return ap_metrics

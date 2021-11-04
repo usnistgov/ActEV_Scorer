@@ -94,8 +94,8 @@
     0.01
   ],
   "activityo.epsilon_temporal_congruence": 1e-08,
-  "command": "../ActEV_Scorer.py SRL_AOD_V1 -s data/test_4-0_fake-sysout.json -r data/test_4-0.json -a data/test_5-0_activity-index.json -f data/test_4-0_file-index.json -o data/checkfiles/test_23_2 -d -v",
-  "git.commit": "48342c519c4d7762bc97748ec30b674271ca0d43--2021-11-02T15:13:36-04:00",
+  "command": "../ActEV_Scorer.py SRL_AOD_V1 -s data/test_4-0_fake-sysout.json -r data/test_4-0.json -a data/test_5-0_activity-index.json -f data/test_4-0_file-index.json -o compcheckfiles/test_23_2 -d -v",
+  "git.commit": "3372cb160c7cb59fdb1596a47be41646c46898b9--2021-11-02T15:21:39-04:00",
   "mode.cost_fa": 1,
   "mode.cost_miss": 1,
   "nmide.cost_fa": 1,
