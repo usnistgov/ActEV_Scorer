@@ -1,4 +1,4 @@
-# actev18_ad.py
+# srl_ad_v1.py
 # Author(s): David Joy
 
 # This software was developed by employees of the National Institute of
@@ -56,10 +56,10 @@ class SRL_AD_V1(Default):
         default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,
                                        "activity.temporal_overlap_delta": 0.2,
-                                       "activity.p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
-                                       "activity.auc_at_fa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
-                                       "activity.w_p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
-                                       "activity.n_mide_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.p_miss_at_rfa_targets":   [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.auc_at_fa_targets":       [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.w_p_miss_at_rfa_targets": [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.n_mide_at_rfa_targets":   [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
                                        "nmide.ns_collar_size": 0,
                                        "nmide.cost_miss": 1,
                                        "nmide.cost_fa": 1,

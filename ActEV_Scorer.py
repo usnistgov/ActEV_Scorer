@@ -423,6 +423,14 @@ def score_srl_aod_v2(args):
     from srl_aod_v2 import SRL_AOD_V2
     score_basic(SRL_AOD_V2, args)
 
+def score_srl_ad_v3(args):
+    from srl_ad_v3 import SRL_AD_V3
+    score_basic(SRL_AD_V3, args)
+
+def score_srl_aod_v3(args):
+    from srl_aod_v3 import SRL_AOD_V3
+    score_basic(SRL_AOD_V3, args)
+
 def score_basic(protocol_class, args):
     verbosity_threshold = 1 if args.verbose else 0
     log = build_logger(verbosity_threshold)
@@ -554,7 +562,10 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir, plot_options
                 save_DET(dc, figure_dir, "DET_{}_{}.png".format(prefix, activity), plot_options)
 
             mean_label = "{}_mean_byfa".format(prefix)
-            dc_agg = DataContainer.aggregate(dc_dict.values(), output_label=mean_label, average_resolution=500)
+            xscale = plot_options['xscale'] if 'xscale' in plot_options else 'linear'
+            xmin = plot_options['xlim'][0] if 'xlim' in plot_options else 0
+            dc_agg = DataContainer.aggregate(dc_dict.values(), output_label=mean_label, average_resolution=500,
+                                             xscale=xscale, xmin=xmin)
             dc_agg.activity = "AGGREGATED"
             dc_agg.fa_label = prefix
             dc_agg.fn_label = "PMISS"
@@ -718,15 +729,25 @@ if __name__ == '__main__':
                            score_srl_aod_v1,
                            base_args)
     
-    # add_protocol_subparser("SRL_AOD_V2",
-    #                        dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection V2"),
-    #                        score_srl_aod_v2,
-    #                        base_args)
+    add_protocol_subparser("SRL_AOD_V2",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection V2 - 50% Looser Correctness"),
+                           score_srl_aod_v2,
+                           base_args)
 
-    # add_protocol_subparser("SRL_AD_V2",
-    #                        dict(help="Scoring protocol for the Self-Reported Leaderboard V2"),
-    #                        score_srl_ad_v2,
-    #                        base_args)
+    add_protocol_subparser("SRL_AD_V2",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard V2 - 50% Looser Correctness"),
+                           score_srl_ad_v2,
+                           base_args)
+
+    add_protocol_subparser("SRL_AOD_V3",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection V3 - 100% Tighter Correctness"),
+                           score_srl_aod_v3,
+                           base_args)
+
+    add_protocol_subparser("SRL_AD_V3",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard V3 - 100% Tighter Correctness"),
+                           score_srl_ad_v3,
+                           base_args)
 
     args = parser.parse_args()
     if args == argparse.Namespace():
