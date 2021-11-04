@@ -1,4 +1,4 @@
-# srl_ad_v2.py
+# srl_aod_v2.py
 # Author(s): David Joy, Baptiste Chocot, Jonathan Fiscus
 
 # This software was developed by employees of the National Institute of
@@ -33,11 +33,13 @@
 import sys
 import os
 import subprocess
+from functools import reduce
 import dill
 from concurrent.futures import ProcessPoolExecutor
-from functools import reduce
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
 sys.path.append(lib_path)
+
+from operator import add
 
 from metrics import *
 from alignment_record import *
@@ -45,34 +47,40 @@ from actev_kernel_components import *
 from sed_kernel_components import *
 from alignment import *
 from helpers import *
-from default import *
-from srl_ad_v1 import *
+from srl_aod_v1 import *
 
-class SRL_AD_V2(SRL_AD_V1):
+class SRL_AOD_V3(SRL_AOD_V1):
     @classmethod
     def get_schema_fn(cls):
-        return "actev18_ad_schema.json"
+        return "srl_aod_v1.json"
+
+    @classmethod
+    def requires_object_localization(cls):
+        return True
 
     def __init__(self, scoring_parameters, file_index, activity_index, command):
-        default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
+        default_scoring_parameters = { "activityo.epsilon_temporal_congruence": 1.0e-8,
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,
-                                       "activity.temporal_overlap_delta": 0.1,
-                                       "activity.p_miss_at_rfa_targets":   [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
-                                       "activity.auc_at_fa_targets":       [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
-                                       "activity.w_p_miss_at_rfa_targets": [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
-                                       "activity.n_mide_at_rfa_targets":   [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.fa_at_rfa_targets":     [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.temporal_overlap_delta": 0.4,
+                                       "activity.p_miss_at_rfa_targets": [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.05, 0.02, 0.01 ],
+                                       "activity.n_mide_at_rfa_targets": [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.05, 0.02, 0.01 ],
+                                       "activity.epsilon_object_congruence": 1.0e-10,
+                                       "activity.object_congruence_delta": 0.6,
+                                       "activity.n_mode_at_rfa_targets": [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.05, 0.02, 0.01 ],
+                                       "mode.cost_miss": 1,
+                                       "mode.cost_fa": 1,
                                        "nmide.ns_collar_size": 0,
                                        "nmide.cost_miss": 1,
                                        "nmide.cost_fa": 1,
+                                       "object.epsilon_object-overlap_congruence": 1.0e-8,
+                                       "object.epsilon_presenceconf_congruence": 0,
+                                       "object.spatial_overlap_delta": 0.4,
+                                       "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
                                        "wpmiss.numerator": 8,
                                        "wpmiss.denominator": 10,
-                                       "scoring_protocol": "srl_ad_v2",
+                                       "scoring_protocol": "srl_aod_v2",
                                        "command": str(command),
                                        "git.commit": subprocess.check_output(["git", "--git-dir="+ os.path.join(lib_path, "../")+".git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
-
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
-
-        super(SRL_AD_V1, self).__init__(scoring_parameters, file_index, activity_index, command)
-
-        self.file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].items() }).area() for k, v in file_index.items() }
-        self.total_file_duration_minutes = sum([ float(frames) / file_index[k]["framerate"] for k, frames in self.file_framedur_lookup.items()]) / float(60)
+        super(SRL_AOD_V1, self).__init__(scoring_parameters, file_index, activity_index, command)

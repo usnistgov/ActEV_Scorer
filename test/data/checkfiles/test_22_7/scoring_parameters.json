@@ -1,0 +1,61 @@
+{
+  "activity.auc_at_fa_targets": [
+    10,
+    5,
+    2,
+    1,
+    0.5,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.epsilon_presenceconf_congruence": 1e-06,
+  "activity.epsilon_temporal_congruence": 1e-08,
+  "activity.n_mide_at_rfa_targets": [
+    10,
+    5,
+    2,
+    1,
+    0.5,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.p_miss_at_rfa_targets": [
+    10,
+    5,
+    2,
+    1,
+    0.5,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "activity.temporal_overlap_delta": 0.4,
+  "activity.w_p_miss_at_rfa_targets": [
+    10,
+    5,
+    2,
+    1,
+    0.5,
+    0.2,
+    0.15,
+    0.1,
+    0.03,
+    0.01
+  ],
+  "command": "../ActEV_Scorer.py SRL_AD_V3 -s data/SmoothCurve.sys.json -r data/SmoothCurve.ref.json -a data/SmoothCurve.activity-index.json -f data/SmoothCurve.file-index.json -F -o data/checkfiles/test_22_7 -v -c ../lib/srl_linear_plot.json",
+  "git.commit": "97ca1ff21610b3d78d6b9105f2ea8cce830e893a--2021-11-03T17:47:20-04:00",
+  "nmide.cost_fa": 1,
+  "nmide.cost_miss": 1,
+  "nmide.ns_collar_size": 0,
+  "scoring_protocol": "srl_ad_v3",
+  "wpmiss.denominator": 10,
+  "wpmiss.numerator": 8
+}

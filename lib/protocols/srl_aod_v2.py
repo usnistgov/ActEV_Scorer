@@ -1,5 +1,5 @@
-# actev18_aod.py
-# Author(s): David Joy
+# srl_aod_v2.py
+# Author(s): David Joy, Baptiste Chocot, Jonathan Fiscus
 
 # This software was developed by employees of the National Institute of
 # Standards and Technology (NIST), an agency of the Federal
@@ -49,29 +49,38 @@ from alignment import *
 from helpers import *
 from srl_aod_v1 import *
 
-
 class SRL_AOD_V2(SRL_AOD_V1):
+    @classmethod
+    def get_schema_fn(cls):
+        return "srl_aod_v1.json"
+
+    @classmethod
+    def requires_object_localization(cls):
+        return True
+
     def __init__(self, scoring_parameters, file_index, activity_index, command):
-        default_scoring_parameters = { "activity.epsilon_temporal_congruence": 1.0e-8,
+        default_scoring_parameters = { "activityo.epsilon_temporal_congruence": 1.0e-8,
                                        "activity.epsilon_presenceconf_congruence": 1.0e-6,
-                                       "activity.temporal_overlap_delta": 0.2,
-                                       "activity.p_miss_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
-                                       "activity.n_mide_at_rfa_targets": [ 1, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.fa_at_rfa_targets":     [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.03, 0.01 ],
+                                       "activity.temporal_overlap_delta": 0.1,
+                                       "activity.p_miss_at_rfa_targets": [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.05, 0.02, 0.01 ],
+                                       "activity.n_mide_at_rfa_targets": [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.05, 0.02, 0.01 ],
+                                       "activity.epsilon_object_congruence": 1.0e-10,
+                                       "activity.object_congruence_delta": 0.15,
+                                       "activity.n_mode_at_rfa_targets": [ 10, 5, 2, 1, 0.5, 0.2, 0.15, 0.1, 0.05, 0.02, 0.01 ],
+                                       "mode.cost_miss": 1,
+                                       "mode.cost_fa": 1,
                                        "nmide.ns_collar_size": 0,
                                        "nmide.cost_miss": 1,
                                        "nmide.cost_fa": 1,
-                                       "activity.epsilon_object_congruence": 1.0e-10,
-                                       "activity.object_congruence_delta": 0.0,
+                                       "object.epsilon_object-overlap_congruence": 1.0e-8,
+                                       "object.epsilon_presenceconf_congruence": 0,
+                                       "object.spatial_overlap_delta": 0.1,
+                                       "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
                                        "wpmiss.numerator": 8,
                                        "wpmiss.denominator": 10,
-                                       "object.epsilon_object-overlap_congruence": 1.0e-8,
-                                       "object.epsilon_presenceconf_congruence": 1.0e-6,
-                                       "object.spatial_overlap_delta": 0.5,
-                                       "object.p_miss_at_rfa_targets": [ 0.5, 0.2, 0.1, 0.033 ],
-                                       "mode.cost_miss": 1,
-                                       "mode.cost_fa": 1,
                                        "scoring_protocol": "srl_aod_v2",
                                        "command": str(command),
                                        "git.commit": subprocess.check_output(["git", "--git-dir="+ os.path.join(lib_path, "../")+".git", "show", "--oneline", "-s", "--no-abbrev-commit","--pretty=format:%H--%aI"]).strip()}
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
-        super(SRL_AOD_V2, self).__init__(scoring_parameters, file_index, activity_index, command)
+        super(SRL_AOD_V1, self).__init__(scoring_parameters, file_index, activity_index, command)

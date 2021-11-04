@@ -1,0 +1,34 @@
+activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
+Closing|CD|101|1|1.0|1.0000010100999999|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 1.0, "object_congruence": 1.0, "minMODE": 0.0}
+Closing|CD|102|3|0.9|1.0000008434083332|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.8333333333333334, "object_congruence": 0.75, "minMODE": 0.25}
+Closing|CD|103|5|0.8|1.0000006767166667|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.6666666666666667, "object_congruence": 0.5, "minMODE": 0.5}
+Closing|CD|104|7|0.7|1.000000510025|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.4999999999999999, "object_congruence": 0.25, "minMODE": 0.75}
+Closing|CD|105|9|0.6|1.0000003434333333|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.33333333333333326, "object_congruence": 1.0, "minMODE": 0.0}
+Closing|CD|106|11|0.5|1.0000001767666666|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.16666666666666663, "object_congruence": 1.0, "minMODE": 0.0}
+Closing|FA|None|10|0.6|None|None
+Closing|FA|None|12|0.5|None|None
+Closing|FA|None|13|0.4|None|None
+Closing|FA|None|14|0.4|None|None
+Closing|FA|None|2|1.0|None|None
+Closing|FA|None|4|0.9|None|None
+Closing|FA|None|6|0.8|None|None
+Closing|FA|None|8|0.7|None|None
+Closing|MD|107|None|None|None|None
+Closing|MD|108|None|None|None|None
+Closing-Temp-IOU|CD|1101|201|1.0|1.0000010100999999|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 1.0, "object_congruence": 1.0, "minMODE": 0.0}
+Closing-Temp-IOU|CD|1102|203|0.9|1.0000008414333332|{"temporal_intersection-over-union": 0.8, "presenceconf_congruence": 0.8333333333333334, "object_congruence": 1.0, "minMODE": 0.0}
+Closing-Temp-IOU|CD|1103|205|0.8|1.0000006727666668|{"temporal_intersection-over-union": 0.6, "presenceconf_congruence": 0.6666666666666667, "object_congruence": 1.0, "minMODE": 0.0}
+Closing-Temp-IOU|CD|1104|207|0.7|1.0000005041000002|{"temporal_intersection-over-union": 0.4, "presenceconf_congruence": 0.4999999999999999, "object_congruence": 1.0, "minMODE": 0.0}
+Closing-Temp-IOU|CD|1105|209|0.6|1.0000003354333333|{"temporal_intersection-over-union": 0.2, "presenceconf_congruence": 0.33333333333333326, "object_congruence": 1.0, "minMODE": 0.0}
+Closing-Temp-IOU|FA|None|202|1.0|None|None
+Closing-Temp-IOU|FA|None|204|0.9|None|None
+Closing-Temp-IOU|FA|None|206|0.8|None|None
+Closing-Temp-IOU|FA|None|208|0.7|None|None
+Closing-Temp-IOU|FA|None|210|0.6|None|None
+Closing-Temp-IOU|FA|None|211|0.5|None|None
+Closing-Temp-IOU|FA|None|212|0.5|None|None
+Closing-Temp-IOU|FA|None|213|0.4|None|None
+Closing-Temp-IOU|FA|None|214|0.4|None|None
+Closing-Temp-IOU|MD|1106|None|None|None|None
+Closing-Temp-IOU|MD|1107|None|None|None|None
+Closing-Temp-IOU|MD|1108|None|None|None|None

@@ -1,5 +1,5 @@
-# actev18_aod.py
-# Author(s): David Joy
+# srl_aod_v1.py
+# Author(s): David Joy, Baptiste Chocot, Jonathan Fiscus
 
 # This software was developed by employees of the National Institute of
 # Standards and Technology (NIST), an agency of the Federal
