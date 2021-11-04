@@ -81,7 +81,7 @@
   ],
   "activityo.epsilon_temporal_congruence": 1e-08,
   "command": "../ActEV_Scorer.py SRL_AOD_V3 -s data/SmoothCurve.sys.json -r data/SmoothCurve.ref.json -a data/SmoothCurve.activity-index.json -f data/SmoothCurve.file-index.json -F -o data/checkfiles/test_23_7 -v --transformations single_bbox_per_frame -c ../lib/srl_linear_plot.json",
-  "git.commit": "97ca1ff21610b3d78d6b9105f2ea8cce830e893a--2021-11-03T17:47:20-04:00",
+  "git.commit": "8849dccd895f42ec2bcf489d4fa168dc66f9fea3--2021-11-04T08:39:59-04:00",
   "mode.cost_fa": 1,
   "mode.cost_miss": 1,
   "nmide.cost_fa": 1,
