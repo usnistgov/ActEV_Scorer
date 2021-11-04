@@ -727,12 +727,12 @@ if __name__ == '__main__':
     add_protocol_subparser("SRL_AOD_V1",
                            dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection"),
                            score_srl_aod_v1,
-                           base_args)
+                           base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
     
     add_protocol_subparser("SRL_AOD_V2",
                            dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection V2 - 50% Looser Correctness"),
                            score_srl_aod_v2,
-                           base_args)
+                           base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
 
     add_protocol_subparser("SRL_AD_V2",
                            dict(help="Scoring protocol for the Self-Reported Leaderboard V2 - 50% Looser Correctness"),
@@ -742,7 +742,7 @@ if __name__ == '__main__':
     add_protocol_subparser("SRL_AOD_V3",
                            dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection V3 - 100% Tighter Correctness"),
                            score_srl_aod_v3,
-                           base_args)
+                           base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
 
     add_protocol_subparser("SRL_AD_V3",
                            dict(help="Scoring protocol for the Self-Reported Leaderboard V3 - 100% Tighter Correctness"),
