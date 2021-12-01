@@ -192,6 +192,16 @@ def transform_json_single_bbox_per_frame(data):
                     new_obj[str(l)]['boundingBox']['x'] = prev_x
                     new_obj[str(l)]['boundingBox']['y'] = prev_y
                 count += 1
+
+            # Checking all frames have correct bbox in the new object
+            # If not, replace it with the next valid bbox
+            for frame in new_obj:
+                bbox = new_obj[frame]['boundingBox']
+                for field in ['x', 'y', 'h', 'w']:
+                    if bbox[field] in [-math.inf, math.inf]:
+                        new_obj[frame] = {}
+                        break
+
             new_obj[str(max_frame)] = dict()
             data['activities'][i]['objects'][0]['localization'][fname] = new_obj
             data['activities'][i]['objects'] = [data['activities'][i]['objects'][0]]

@@ -945,3 +945,15 @@ test_23_7() {
     -F -o "$1" -v --transformations single_bbox_per_frame \
     -c ../lib/srl_linear_plot.json
 }
+
+
+# Non-regression test for --transformations single_bbox_per_frame
+test_24_0() {
+    ../ActEV_Scorer.py \
+    "SRL_AOD_V1" \
+    -s "data/test_24-0_fake-sysout.json" \
+    -r "data/test_24-0.json" \
+    -a "data/test_5-0_activity-index.json" \
+    -f "data/test_4-0_file-index.json" \
+    -o "$1" -v --transformations single_bbox_per_frame
+}
