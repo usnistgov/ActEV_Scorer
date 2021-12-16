@@ -1,0 +1,22 @@
+[Info] Command: ../ActEV_Scorer.py SRL_AOD_V1 -s data/test_4-0_fake-sysout.json -r data/test_4-0.json -a data/test_4-0_activity-index.json -f data/test_4-0_file-index.json -o data/checkfiles/test_23_0 -v -e
+[Info] Loading activity index file
+[Info] Loading file index file
+[Info] Loading JSON schema
+[Info] Loading activities and references
+[Info] Validating system output against JSON schema
+[Info] System output validated successfully against JSON schema
+[Info] Checking file index against system's "filesProcessed"
+[Info] Validation successful
+[Info] Loading reference file
+[Info] Loading JSON schema
+[Info] Computing alignments ..
+[Info] 5 alignment records
+[Info] Scoring ..
+[Info] Saving results to directory 'data/checkfiles/test_23_0'
+[Info] Saving figures to directory 'data/checkfiles/test_23_0/figures'
+[Info] Saving dm files to directory 'data/checkfiles/test_23_0/dm'
+[Info] Plotting RFA DET curve for Closing
+[Info] Plotting RFA DET curve for Entering
+[Info] Plotting mean RFA curve for 2 activities
+[Info] Plotting combined RFA DET curves
+[Info] Saving PR curves to directory 'data/checkfiles/test_23_0/figures'

@@ -1,0 +1,6 @@
+activity|alignment|ref|sys|sys_presenceconf_score|kernel_similarity|kernel_components
+Closing|CD|1|1|0.756|1.0000008625233021|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.8524590163934425, "object_congruence": 0.6428571428571428, "minMODE": 0.35714285714285715}
+Closing|FA|None|2|0.774|None|None
+Entering|CD|2|3|0.652|1.0000000101|{"temporal_intersection-over-union": 1.0, "presenceconf_congruence": 0.0, "object_congruence": 1.0, "minMODE": 0.0}
+Entering|FA|None|4|0.769|None|None
+Entering|MD|3|None|None|None|None

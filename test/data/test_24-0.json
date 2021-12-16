@@ -1,0 +1,50 @@
+{
+    "filesProcessed": [
+        "VIRAT_S_000000.mp4"
+    ],
+    "activities": [
+        {
+            "activity": "Closing",
+            "activityID": 1,
+            "localization": {
+                "VIRAT_S_000000.mp4": {
+                    "1000": 1,
+                    "2000": 0
+                }
+            },
+            "objects": [
+                {
+                    "objectID": 1,
+                    "objectType": "person",
+                    "localization": {
+                        "VIRAT_S_000000.mp4": {
+                            "1000": {
+                                "boundingBox": {
+                                    "h": 0,
+                                    "w": 0,
+                                    "x": 102,
+                                    "y": 43
+                                }
+                            }, "1500": {}
+                        }
+                    }
+                }, {
+                    "objectID": 2,
+                    "objectType": "vehicle",
+                    "localization": {
+                        "VIRAT_S_000000.mp4": {
+                            "1600": {
+                                "boundingBox": {
+                                    "h": 36,
+                                    "w": 14,
+                                    "x": 102,
+                                    "y": 43
+                                }
+                            }, "2000": {}
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -67,7 +67,7 @@ def create_parser():
         containing a list of matplotlib.lines.Line2D dictionnaries properties \
         (One per line)", metavar='path')
 
-    parser.add_argument("--plotType", default="ROC", choices=["ROC", "DET"],
+    parser.add_argument("--plotType", default="ROC", choices=["ROC", "DET", "DETPMTHR"],
                         help="Plot type (default: %(default)s)", metavar='')
 
     parser.add_argument("--plotTitle", default="Performance",
@@ -455,7 +455,7 @@ def outputFigure(figure, outputFolder, outputFileNameSuffix, plotType):
         outputFolder (str): path to the destination folder
         outputFileNameSuffix (str): string suffix that will be inserted at the
             beginning of the filename
-        plotType (str): the type of plot (ROC or DET)
+        plotType (str): the type of plot (ROC, DET, DETPMTHR)
 
     """
     logger = logging.getLogger("DMlog")

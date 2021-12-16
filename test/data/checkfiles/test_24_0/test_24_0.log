@@ -1,0 +1,24 @@
+[Info] Command: ../ActEV_Scorer.py SRL_AOD_V1 -s data/test_24-0_fake-sysout.json -r data/test_24-0.json -a data/test_5-0_activity-index.json -f data/test_4-0_file-index.json -o data/checkfiles/test_24_0 -v --transformations single_bbox_per_frame
+[Info] Loading activity index file
+[Info] Loading file index file
+[Info] Loading JSON schema
+[Info] Loading activities and references
+[Info] Validating system output against JSON schema
+[Info] System output validated successfully against JSON schema
+[Info] Checking file index against system's "filesProcessed"
+[Info] Validation successful
+[Info] Loading reference file
+{'1000': {'boundingBox': {'h': 36, 'w': 14, 'x': 102, 'y': 43}}, '1500': {'boundingBox': {'h': -inf, 'w': -inf, 'x': inf, 'y': inf}}, '1600': {'boundingBox': {'h': 36, 'w': 14, 'x': 102, 'y': 43}}}
+{'1000': {'boundingBox': {'h': 36, 'w': 14, 'x': 102, 'y': 43}}, '1500': {'boundingBox': {}}, '1600': {'boundingBox': {'h': 36, 'w': 14, 'x': 102, 'y': 43}}}
+{'1000': {'boundingBox': {'h': 0, 'w': 0, 'x': 102, 'y': 43}}, '1500': {'boundingBox': {'h': -inf, 'w': -inf, 'x': inf, 'y': inf}}, '1600': {'boundingBox': {'h': 36, 'w': 14, 'x': 102, 'y': 43}}}
+{'1000': {'boundingBox': {'h': 0, 'w': 0, 'x': 102, 'y': 43}}, '1500': {'boundingBox': {}}, '1600': {'boundingBox': {'h': 36, 'w': 14, 'x': 102, 'y': 43}}}
+[Info] Loading JSON schema
+[Info] Computing alignments ..
+[Info] 2 alignment records
+[Info] Scoring ..
+[Info] Saving results to directory 'data/checkfiles/test_24_0'
+[Info] Saving figures to directory 'data/checkfiles/test_24_0/figures'
+[Info] Saving dm files to directory 'data/checkfiles/test_24_0/dm'
+[Info] Plotting RFA DET curve for Closing
+[Info] Plotting mean RFA curve for 1 activities
+[Info] Plotting combined RFA DET curves

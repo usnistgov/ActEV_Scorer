@@ -1,8 +1,8 @@
 # ActEV Scoring Software
 
-## Version: 0.5.7
+## Version: 0.5.8
 
-## Date: November 19, 2020
+## Date: November 4, 2021
 
 ------------------------
 
@@ -26,6 +26,8 @@ a system output file adhering to the JSON format defined in the ActEV evaluation
 
 SCORING_PROTOCOL - Positional argument, from a fixed set of values (e.g. ActEV18_AD).  This required argument controls what system output formats are valid, and what metrics are computed.  A description of each supported protocol can be found in the [Protocols](#protocols) section of this document.
 
+#### Common
+
 * `-s SYSTEM_OUTPUT_FILE` - Required; path to the system output JSON file to be scored
 * `-r REFERENCE_FILE` - Required unless running validation only; path to the reference JSON file to score against
 * `-a ACTIVITY_INDEX` - Required; path to activity index JSON file. This file lists what activities the system output will be evaluated on
@@ -35,28 +37,43 @@ SCORING_PROTOCOL - Positional argument, from a fixed set of values (e.g. ActEV18
 * `-p SCORING_PARAMETERS_FILE` - Optional; path to a scoring parameter JSON file.  If provided, overwrites the default parameters used for scoring
 * `-v` - Optional; if enabled, the script will be more verbose (i.e. provide some scoring progress information)
 * `-V` - Optional; if enabled, the SYSTEM_OUTPUT_FILE will be validated but not scored.  REFERENCE_FILE and OUTPUT_DIR parameters are not required if this option is enabled
-* `-F` - Optional; if enabled, ignores extraneous "filesProcessed" and ignores system and reference instance localizations for extraneous files.  Note that extraneous files in this sense are those not included in the FILE_INDEX
+* `-F` - Optional; if enabled, ignores extraneous "filesProcessed" or "processingReport" if provided and ignores system and reference instance localizations for extraneous files.  Note that extraneous files in this sense are those not included in the FILE_INDEX
+* `-m` - Optional; if enabled, ignore system detection localizations for files not included in the SYSTEM_OUTPUT_FILE
 * `-t` DET_Point_Resolution - Optional; if enabled, this will change the number of points used for the det curves to be the input integer value rather than the max
-* `-P PERCENTAGE` - Optional; if set, the system output will be pruned, keeping maximum `MAX_FRAMES` of instances per activity.
+* `-P PERCENTAGE` - Optional; if set, the system output will be pruned, keeping PERCENTAGE of the original SYSTEM_OUTPUT_FILE
 * `-i` - Optional; if set, ignore no score regions.
-* `-n` - Optional; if set, define the number of processes to use for alignments and results computation.
-* `-c` - Optional; if set, specify the path for the plotting parameters JSON file (see test_17_0 for an example).
-* `-I` - Optional; if set, do not ignore activities that are not in the reference activity instances.
+* `-n` - Optional; if set, define the number of processes to use for alignments and results computation. Default to 8
+* `-c` - Optional; if set, specify the path for the plotting parameters JSON file (see test_17_0 for an example)
+* `-I` - Optional; if set, do not ignore activities that are not in the reference activity instances
+* `-S` - Optional; if set, skip system output validation step
+* `-e` - Optinal; if set, compute extra metrics such as mAP
+* `--transformations` - Optional; if set, converts the json object to the maximum posible bounding box size
+* `--rewrite` - Optional; if set, rewrites transformed jsons with the given extension
+
+#### Object detection related options
+
+* `-j` - Optional; if set, dump out per-frame object alignment records
 
 #### Protocols
 
-ActEV18_AD - Scoring protocol for the ActEV 2018 Activity Detection task, the following measures are computed:
+`ActEV18_AD` - Scoring protocol for the ActEV 2018 Activity Detection task, the following measures are computed:
 
 * *PMiss* at RFA for RFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
 * *NMIDE*: **NOTE** currently using a no-score collar size of 0 frames, this will likely change in a future release)
 * *NMIDE*: at RFA for RFA values of 1, 0.2, 0.15, 0.1, 0.03, and 0.01
 
-ActEV18_AOD - Scoring protocol for the ActEV 2018 Activity and Object Detection task.  This protocol computes both the PMiss at RFA and NMIDE measures reported for the ActEV18_AD protocol, but over an activity instance alignment that also considers object detections. The following additional measure are computed:
+`ActEV18PC_AD` - Scoring protocol for the ActEV18 Prize Challenge Activity Detection task
+    
+`ActEV18_AD_TFA` - Scoring protocol for the ActEV18 Activity Detection task with Temporal False Alarm
+    
+`ActEV18_AD_1SECOL` - Scoring protocol for the ActEV18 Activity Detection task with 1 Second Overlap Kernel Function
+
+`ActEV18_AOD` - Scoring protocol for the ActEV 2018 Activity and Object Detection task.  This protocol computes both the PMiss at RFA and NMIDE measures reported for the ActEV18_AD protocol, but over an activity instance alignment that also considers object detections. The following additional measure are computed:
 
 * *minMODE*: The minimum NMODE score for an object detection alignment; reported for each aligned activity instance pair
 * PMiss at RFA for RFA values of 0.5, 0.2, 0.1, 0.033 for object detections (these measures are prefixed with "object-" to differentiate them from PMiss at RFA measures on activity detections)
 
-ActEV18_AODT - Scoring protocol for the ActEV 2018 Activity and Object Detection and Tracking task. This protocol computes both PMiss at RFA, NMIDE, and minMODE measures reported for the ActEV18_AD and ActEV18_AOD protocols, but over an activity instance alignment that also considers object  detections. The following additional measures are computed:
+`ActEV18_AODT` - Scoring protocol for the ActEV 2018 Activity and Object Detection and Tracking task. This protocol computes both PMiss at RFA, NMIDE, and minMODE measures reported for the ActEV18_AD and ActEV18_AOD protocols, but over an activity instance alignment that also considers object  detections. The following additional measures are computed:
 
 * *MOTE*: the Multiple Object Tracking Error for an object detection and tracking alignment.
 
@@ -67,6 +84,18 @@ ActEV18_AODT - Scoring protocol for the ActEV 2018 Activity and Object Detection
 `ActEV_SDL_V1` - Scoring protocol for Version 1 of the ActEV Sequestered Data Leaderboard Activity.  This version revises the computation of Time-based False Alarm to include false alarm time during reference instances when the system produces detections in excess of the reference instances.
 
 `ActEV_SDL_V2` - Scoring protocol for Version 2 of the ActEV Sequestered Data Leaderboard Activity.
+
+`SRL_AD_V1` - Scoring protocol for the Self-Reported Leaderboard
+    
+`SRL_AOD_V1` - Scoring protocol for the Self-Reported Leaderboard with object detection
+    
+`SRL_AOD_V2` - Scoring protocol for the Self-Reported Leaderboard with object detection V2 - 50% Looser Correctness
+
+`SRL_AD_V2` - Scoring protocol for the Self-Reported Leaderboard V2 - 50% Looser Correctness
+
+`SRL_AOD_V3` - Scoring protocol for the Self-Reported Leaderboard with object detection V3 - 100% Tighter Correctness
+
+`SRL_AD_V3` - Scoring protocol for the Self-Reported Leaderboard V3 - 100% Tighter Correctness
 
 ### Output
 
@@ -79,6 +108,7 @@ OUTPUT_DIR directory (all \*.csv files are pipe separated):
 * `alignment.csv` - Lists each of the matched and unmatched system and reference instances, along with the matching kernel components and similarity scores
 * `pair_metrics.csv` - Metrics computed on the matched system/reference instance pairs
 * `figures/DET_<activity>.png` - Unless disabled with the '-d' option, the DET curve figure for \<activity>
+* `figures/PR@0.5tIoU_<activity>.png` - If enabled zith '-e' option, the Precision/Recall curve, with a temporal IoU threshold of 0.5
 
 Option/Protocol dependent:
 
@@ -228,6 +258,11 @@ November 16, 2020 - Version 0.5.7
 
 * Add checks on `processingReport`
 
+November 27, 2021 - Version 0.5.8
+
+* Added the suite of SRL_AD_V? and SRL_AOD_V? protocols
+* Update README
+
 ### Contact
 
 Please send any issues, questions, or comments to [actev-nist@nist.gov](mailto:actev-nist@nist.gov)
@@ -237,3 +272,4 @@ Please send any issues, questions, or comments to [actev-nist@nist.gov](mailto:a
 * David Joy
 * Andrew Delgado
 * Baptiste Chocot
+* Jonathan Fiscus

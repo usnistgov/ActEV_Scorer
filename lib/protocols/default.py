@@ -124,7 +124,6 @@ class Default(object):
         return reduce(_r, group_by_func(factorization_func, records, default_groups = default_factorizations).items(), [])
     
     def compute_auc(self, output_dir):
-
         prefix = ["RFA", "TFA"]
         auc_data = []
         mean_auc = []
@@ -134,8 +133,8 @@ class Default(object):
                     dm_data = DataContainer.load(output_dir+"/dm/"+"{}_{}.dm".format(p, activity))
                     auc_data = auc_data + get_auc_new(dm_data, p, activity)
                 except Exception as E:
-                    print(E)
-                    print(output_dir+"/dm/"+"{}_{}.dm".format(p, activity) +"DNE")
+                    # Raise exception for protocols which don't compute TFA metrics
+                    pass
         mean_auc =  get_auc_mean(auc_data)
         return auc_data, mean_auc
     
@@ -147,10 +146,21 @@ class Default(object):
         def _r(init, rec):
             for mv in self.compute_measures(rec, measures).items():
                 init.append(rec_map_func(rec) + mv)
-
             return init
 
-        return reduce(_r, records, [])
+        _r_srlz = dill.dumps(_r)
+        args = []
+        for item in records:
+            args.append((_r_srlz, item, []))
+
+        with ProcessPoolExecutor(self.pn) as pool:
+            res = pool.map(unserialize_fct_atomic, args)
+
+        m = []
+        for entry in res:
+            m.extend(entry)
+        return m
+
 
     # This method assumes that the "metric_name" is the second-to-last
     # element, and that "metric_value" is the last element.  Should
@@ -169,9 +179,6 @@ class Default(object):
 
 
     def build_simple_measure(self, arg_func, name, measure_func):
-        #        print arg_func
-        #        print name
-        #        print measure_func
         def _m(*rec):
             return { name: measure_func(*arg_func(*rec)) }
 

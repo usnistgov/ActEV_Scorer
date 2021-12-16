@@ -37,6 +37,7 @@ import os
 import errno
 import argparse
 import json
+import math
 import jsonschema
 from operator import add
 from functools import reduce
@@ -55,6 +56,7 @@ from render import Render
 from logger import build_logger
 from ActivitiesFilePruner import prune
 from sparse_signal import SparseSignal
+from metrics import compute_map
 
 def err_quit(msg, exit_status=1):
     print("[Error] {}".format(msg))
@@ -66,6 +68,157 @@ def load_json(json_fn):
             return json.load(json_f)
     except IOError as ioerr:
         err_quit("{}. Aborting!".format(ioerr))
+
+
+def transform_activity_index(data, obj_type):
+    d = dict()
+    for act in data:
+        d[act] = { 'objectTypeMap' : { obj_type: "*" + obj_type + "*" }, 'objectTypes': [ obj_type ] }
+
+    return d
+
+def transform_json_single_bbox(data):
+    for i in range(len(data['activities'])):
+        fname = list(data['activities'][i]['localization'].keys())[0]
+        for j in range(len(data['activities'][i]['objects'])):
+            frames = data['activities'][i]['objects'][j]['localization'][fname]
+            obj_keys = list(data['activities'][i]['objects'][j]['localization'][fname])
+            data['activities'][i]['objects'][j]['objectType'] = 'single_bbox'
+            x_list = list()
+            y_list = list()
+            w_list = list()
+            h_list = list()
+            for k in obj_keys:
+                val = list(frames[k].keys())
+                if val:
+                    my_vals = frames[k]['boundingBox']
+                    x_list.append(my_vals['x'])
+                    y_list.append(my_vals['y'])
+                    w_list.append(my_vals['w'] + my_vals['x'])
+                    h_list.append(my_vals['h'] + my_vals['y'])
+
+            min_x = min(x_list)
+            min_y = min(y_list)
+            max_w = max(w_list) - min_x
+            max_h = max(h_list) - min_y
+            my_int_keys = [int(i) for i in obj_keys]
+            first_frame = min(my_int_keys)
+            last_frame = max(my_int_keys)
+            new_obj = dict()
+            new_obj[str(first_frame)] = dict()
+            new_obj[str(first_frame)]['boundingBox'] = dict()
+            new_obj[str(first_frame)]['boundingBox']['h'] = max_w
+            new_obj[str(first_frame)]['boundingBox']['w'] = max_h
+            new_obj[str(first_frame)]['boundingBox']['x'] = min_x
+            new_obj[str(first_frame)]['boundingBox']['y'] = min_y
+            new_obj[str(last_frame)] = dict()
+            data['activities'][i]['objects'][j]['localization'][fname] = new_obj
+        ### Set the object type
+        data['activities'][i]['objects'][0]['objectType'] = 'single_bbox'
+        ### Add default object_presence_conf Values
+        for obj in range(len(data['activities'][i]['objects'])):
+            for fil in data['activities'][i]['objects'][obj]['localization']:
+                for frm in data['activities'][i]['objects'][obj]['localization'][fil]:
+                    if 'boundingBox' in data['activities'][i]['objects'][obj]['localization'][fil][frm]:
+                        data['activities'][i]['objects'][obj]['localization'][fil][frm]['presenceConf'] = 1.0
+    return data
+
+
+def transform_json_single_bbox_per_frame(data):
+    for i in range(len(data['activities'])):
+        fname = list(data['activities'][i]['localization'].keys())[0]
+        frame_mark = list(data['activities'][i]['localization'][fname].keys())
+        frame_mark = [int(i) for i in frame_mark]
+        max_frame = max(frame_mark)
+        min_frame = min(frame_mark)
+        if len(data['activities'][i]['objects']) > 1:
+            min_x_list = list()
+            min_y_list = list()
+            max_w_list = list()
+            max_h_list = list()
+            for j in range(len(data['activities'][i]['objects'])):
+                x_list = list()
+                y_list = list()
+                w_list = list()
+                h_list = list()
+                frames = data['activities'][i]['objects'][j]['localization'][fname]
+                for k in range(min_frame, max_frame):
+                    if str(k) in frames:
+                        if 'boundingBox' in frames[str(k)]:
+                            my_vals = frames[str(k)]['boundingBox']
+                            x_list.append(my_vals['x'])
+                            y_list.append(my_vals['y'])
+                            w_list.append(my_vals['w'] + my_vals['x'])
+                            h_list.append(my_vals['h'] + my_vals['y'])
+                        else:
+                            x_list.append(math.inf)
+                            y_list.append(math.inf)
+                            w_list.append(-math.inf)
+                            h_list.append(-math.inf)
+                    elif k != min_frame:
+                        x_list.append(x_list[-1])
+                        y_list.append(y_list[-1])
+                        w_list.append(w_list[-1])
+                        h_list.append(h_list[-1])
+                    else:
+                        x_list.append(math.inf)
+                        y_list.append(math.inf)
+                        w_list.append(-math.inf)
+                        h_list.append(-math.inf)
+                min_x_list.append(x_list)
+                min_y_list.append(y_list)
+                max_w_list.append(w_list)
+                max_h_list.append(h_list)
+            min_x_list = [min(i) for i in zip(*min_x_list)]
+            min_y_list = [min(i) for i in zip(*min_y_list)]
+            max_w_list = [max(i) for i in zip(*max_w_list)]
+            max_h_list = [max(i) for i in zip(*max_h_list)]
+            max_w_list = [i-j for i,j in zip(max_w_list, min_x_list)]
+            max_h_list = [i-j for i,j in zip(max_h_list, min_y_list)]
+            new_obj = dict()
+            count = 0
+            prev_x = prev_y = prev_w = prev_h = -1
+            for l in range(min_frame, max_frame):
+                if prev_x != min_x_list[count] or prev_y != min_y_list[count] or prev_w != \
+                        max_w_list[count] or prev_h != max_h_list[count]:
+                    prev_x = min_x_list[count]
+                    prev_y = min_y_list[count]
+                    prev_w = max_w_list[count]
+                    prev_h = max_h_list[count]
+                    new_obj[str(l)] = dict()
+                    new_obj[str(l)]['boundingBox'] = dict()
+                    new_obj[str(l)]['boundingBox']['h'] = prev_h
+                    new_obj[str(l)]['boundingBox']['w'] = prev_w
+                    new_obj[str(l)]['boundingBox']['x'] = prev_x
+                    new_obj[str(l)]['boundingBox']['y'] = prev_y
+                count += 1
+
+            # Checking all frames have correct bbox in the new object
+            # If not, replace it with the next valid bbox
+            for frame in new_obj:
+                bbox = new_obj[frame]['boundingBox']
+                for field in ['x', 'y', 'h', 'w']:
+                    if bbox[field] in [-math.inf, math.inf]:
+                        new_obj[frame] = {}
+                        break
+
+            new_obj[str(max_frame)] = dict()
+            data['activities'][i]['objects'][0]['localization'][fname] = new_obj
+            data['activities'][i]['objects'] = [data['activities'][i]['objects'][0]]
+            data['activities'][i]['combined_objects'] = 'yes'
+        else:
+            data['activities'][i]['combined_objects'] = 'no'
+            
+        ### Set the object type
+        data['activities'][i]['objects'][0]['objectType'] = 'single_bbox_per_frame'
+        ### Add default object_presence_conf Values
+        for obj in range(len(data['activities'][i]['objects'])):
+            for fil in data['activities'][i]['objects'][obj]['localization']:
+                for frm in data['activities'][i]['objects'][obj]['localization'][fil]:
+                    if 'boundingBox' in data['activities'][i]['objects'][obj]['localization'][fil][frm]:
+                        data['activities'][i]['objects'][obj]['localization'][fil][frm]['presenceConf'] = 1.0
+                
+    return data
 
 def mkdir_p(path):
     try:
@@ -239,10 +392,6 @@ def score_actev_sdl_v1(args):
 def score_actev_sdl_v2(args):
     from actev_sdl_v2 import ActEV_SDL_V2
     score_basic(ActEV_SDL_V2, args)
-
-def score_actev_sdl_v2_pr(args):
-    from actev_sdl_v2_pr import ActEV_SDL_V2_PR
-    score_basic(ActEV_SDL_V2_PR, args)
     
 def score_actev18_ad(args):
     from actev18_ad import ActEV18_AD
@@ -267,6 +416,30 @@ def score_actev18_aod(args):
 def score_actev18_aodt(args):
     from actev18_aodt import ActEV18_AODT
     score_basic(ActEV18_AODT, args)
+    
+def score_srl_ad_v1(args):
+    from srl_ad_v1 import SRL_AD_V1
+    score_basic(SRL_AD_V1, args)
+
+def score_srl_aod_v1(args):
+    from srl_aod_v1 import SRL_AOD_V1
+    score_basic(SRL_AOD_V1, args)
+    
+def score_srl_ad_v2(args):
+    from srl_ad_v2 import SRL_AD_V2
+    score_basic(SRL_AD_V2, args)
+
+def score_srl_aod_v2(args):
+    from srl_aod_v2 import SRL_AOD_V2
+    score_basic(SRL_AOD_V2, args)
+
+def score_srl_ad_v3(args):
+    from srl_ad_v3 import SRL_AD_V3
+    score_basic(SRL_AD_V3, args)
+
+def score_srl_aod_v3(args):
+    from srl_aod_v3 import SRL_AOD_V3
+    score_basic(SRL_AOD_V3, args)
 
 def score_basic(protocol_class, args):
     verbosity_threshold = 1 if args.verbose else 0
@@ -282,6 +455,8 @@ def score_basic(protocol_class, args):
             err_quit("Missing required OUTPUT_DIR argument (-o, --output-dir).  Aborting!")
 
     activity_index = load_activity_index(log, args.activity_index)
+    if args.transformations == "single_bbox" or args.transformations == "single_bbox_per_frame":
+        activity_index = transform_activity_index(activity_index, args.transformations)
 
     file_index = load_file_index(log, args.file_index)
     input_scoring_parameters = load_scoring_parameters(log, args.scoring_parameters_file) if args.scoring_parameters_file else {}
@@ -305,9 +480,26 @@ def score_basic(protocol_class, args):
 
     if args.validation_only:
         exit(0)
+    reference = load_reference(log, args.reference_file)
+
+    if args.transformations == "single_bbox":
+        system_output = transform_json_single_bbox(system_output)
+        reference = transform_json_single_bbox(reference)
+    elif args.transformations == "single_bbox_per_frame":
+        system_output = transform_json_single_bbox_per_frame(system_output)
+        reference = transform_json_single_bbox_per_frame(reference)
+        
+    if args.rewrite:
+        sys_out_file = '.'.join(args.system_output_file.split('.')[:-1]) + args.rewrite + '.json'
+        ref_out_file = '.'.join(args.reference_file.split('.')[:-1]) + args.rewrite + '.json'
+        log(1, "[Info] Re-writing system activities file to {}".format(sys_out_file))
+        with open(sys_out_file, 'w') as sys_outfile:
+            json.dump(system_output, sys_outfile)
+        log(1, "[Info] Re-writing reference activities file to {}".format(ref_out_file))
+        with open(ref_out_file, 'w') as ref_outfile:
+            json.dump(reference, ref_outfile)
 
     system_activities = parse_activities(system_output, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
-    reference = load_reference(log, args.reference_file)
     reference_activities = parse_activities(reference, file_index, protocol_class.requires_object_localization, args.ignore_extraneous_files, args.ignore_missing_files)
 
     if not args.include_zero_ref_instances:
@@ -322,8 +514,17 @@ def score_basic(protocol_class, args):
 
     log(1, "[Info] Computing alignments ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
+    log(1, "[Info] {} alignment records".format(len(alignment)))
+
     log(1, '[Info] Scoring ..')
     results = protocol.compute_results(alignment, args.det_point_resolution)
+
+    # --extra-metrics part
+    # Currently only map is part of it
+    if args.extra_metrics:
+        is_aod = 'OD' in protocol.__class__.__name__
+        extra_metrics = compute_map(system_activities, reference_activities, activity_index, file_index)
+    else: extra_metrics = {}
 
     mkdir_p(args.output_dir)
     log(1, "[Info] Saving results to directory '{}'".format(args.output_dir))
@@ -331,13 +532,16 @@ def score_basic(protocol_class, args):
     mean_audc = []
     if not args.disable_plotting:
         export_records(log, results.get("det_point_records", {}), results.get("tfa_det_point_records", {}), args.output_dir, plot_options)
+        plot_options['title'] = "Detection Precision/Recall - 0.5 tIoU"
+        plot_options['filename'] = "PR@0.5tIoU"
+        export_pr_curves(log, extra_metrics.get('pr', []), args.output_dir, plot_options)
         audc_by_activity, mean_audc = protocol.compute_auc(args.output_dir)
 
     write_out_scoring_params(args.output_dir, protocol.scoring_parameters)
     write_records_as_csv("{}/alignment.csv".format(args.output_dir), ["activity", "alignment", "ref", "sys", "sys_presenceconf_score", "kernel_similarity", "kernel_components"], results.get("output_alignment_records", []))
     write_records_as_csv("{}/pair_metrics.csv".format(args.output_dir), ["activity", "ref", "sys", "metric_name", "metric_value"], results.get("pair_metrics", []))
-    write_records_as_csv("{}/scores_by_activity.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], results.get("scores_by_activity", []) + audc_by_activity)
-    write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], results.get("scores_aggregated", []) + mean_audc)
+    write_records_as_csv("{}/scores_by_activity.csv".format(args.output_dir), ["activity", "metric_name", "metric_value"], results.get("scores_by_activity", []) + audc_by_activity + extra_metrics.get('AP', []))
+    write_records_as_csv("{}/scores_aggregated.csv".format(args.output_dir), [ "metric_name", "metric_value" ], results.get("scores_aggregated", []) + mean_audc + extra_metrics.get('mAP', []))
     write_records_as_csv("{}/scores_by_activity_and_threshold.csv".format(args.output_dir), [ "activity", "score_threshold", "metric_name", "metric_value" ], results.get("scores_by_activity_and_threshold", []))
 
     if vars(args).get("dump_object_alignment_records", False):
@@ -366,7 +570,10 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir, plot_options
                 save_DET(dc, figure_dir, "DET_{}_{}.png".format(prefix, activity), plot_options)
 
             mean_label = "{}_mean_byfa".format(prefix)
-            dc_agg = DataContainer.aggregate(dc_dict.values(), output_label=mean_label, average_resolution=500)
+            xscale = plot_options['xscale'] if 'xscale' in plot_options else 'linear'
+            xmin = plot_options['xlim'][0] if 'xlim' in plot_options else 0
+            dc_agg = DataContainer.aggregate(dc_dict.values(), output_label=mean_label, average_resolution=500,
+                                             xscale=xscale, xmin=xmin)
             dc_agg.activity = "AGGREGATED"
             dc_agg.fa_label = prefix
             dc_agg.fn_label = "PMISS"
@@ -381,6 +588,35 @@ def export_records(log, dm_records_rfa, dm_records_tfa, output_dir, plot_options
 
     _export_records(dm_records_rfa, "RFA")
     _export_records(dm_records_tfa, "TFA")
+
+def export_pr_curves(log, pr_metrics, output_dir, plot_options):
+    if pr_metrics == []:
+        return
+
+    figure_dir = "{}/figures".format(output_dir)
+    mkdir_p(figure_dir)
+    log(1, "[Info] Saving PR curves to directory '{}'".format(figure_dir))
+
+    precision, recall = pr_metrics
+    activities = list(precision.keys())
+    rd = Render()
+
+    def _save_pr(precision, recall, activity, file_name, plot_options):
+        plot_options['xlim'] = [0, min((1, 1.1*r[-1]))]
+        plot_options['ylim'] = [0, min((1, 1.1*p[0]))]
+        plot_options['xlabel'] = 'Recall'
+        plot_options['ylabel'] = 'Precision'
+        plot_options['title'] = "%s - %s" % (plot_options['title'], activity)
+        fig = rd.plot_pr(precision, recall, activity, plot_options=plot_options)
+        fig.savefig("{}/{}".format(figure_dir, file_name))
+        rd.close_fig(fig)
+
+    for activity in activities:
+        p = sorted(precision[activity], reverse=True)
+        r = sorted(recall[activity])
+        if p[0] != 0:
+            name = "%s_%s.png" % (plot_options['filename'], activity)
+            _save_pr(r, p, activity, name, plot_options)
 
 def records_to_dm(records):
     dc_dict = {}
@@ -428,7 +664,10 @@ if __name__ == '__main__':
                  [["-n", "--processes-number"], dict(help="Number of processes to use to compute results", type=int, default=8)],
                  [["-c", "--plotting-parameters-file"], dict(help="Optional plotting options JSON file", type=str)],
                  [["-I", "--include-zero-ref-instances"], dict(help="Legacy behavior. Take into account `zero reference activity instances`", action="store_true")],
-                 [["-S", "--skip-validation"], dict(help="Skip system output validation step", action="store_true", default=False)]]
+                 [["-S", "--skip-validation"], dict(help="Skip system output validation step", action="store_true", default=False)],
+                 [["-e", "--extra-metrics"], dict(help="Allow Scorer to compute extra metrics", action="store_true", default=False)],
+                 [["--transformations"], dict(help="Converts the json object to the maximum posible bounding box size", type=str)],
+                 [["--rewrite"], dict(help="Rewrites transformed jsons with the given extension", type=str)]]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)
@@ -456,11 +695,6 @@ if __name__ == '__main__':
     add_protocol_subparser("ActEV_SDL_V2",
                            dict(help="Scoring protocol for the ActEV SDL V2 Activity Detection task"),
                            score_actev_sdl_v2,
-                           base_args)
-    
-    add_protocol_subparser("ActEV_SDL_V2_PR",
-                           dict(help="Scoring protocol for the ActEV SDL V2 Activity Detection task"),
-                           score_actev_sdl_v2_pr,
                            base_args)
     
     add_protocol_subparser("ActEV18_AD",
@@ -492,6 +726,36 @@ if __name__ == '__main__':
                            dict(help="Scoring protocol for the ActEV18 Activity and Object Detection and Tracking task"),
                            score_actev18_aodt,
                            base_args + [[["-j", "--dump-object-alignment-records"], dict(help="Dump out per-frame object alignment records", action="store_true")]])
+
+    add_protocol_subparser("SRL_AD_V1",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard"),
+                           score_srl_ad_v1,
+                           base_args)
+    
+    add_protocol_subparser("SRL_AOD_V1",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection"),
+                           score_srl_aod_v1,
+                           base_args)
+    
+    add_protocol_subparser("SRL_AOD_V2",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection V2 - 50% Looser Correctness"),
+                           score_srl_aod_v2,
+                           base_args)
+
+    add_protocol_subparser("SRL_AD_V2",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard V2 - 50% Looser Correctness"),
+                           score_srl_ad_v2,
+                           base_args)
+
+    add_protocol_subparser("SRL_AOD_V3",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard with object detection V3 - 100% Tighter Correctness"),
+                           score_srl_aod_v3,
+                           base_args)
+
+    add_protocol_subparser("SRL_AD_V3",
+                           dict(help="Scoring protocol for the Self-Reported Leaderboard V3 - 100% Tighter Correctness"),
+                           score_srl_ad_v3,
+                           base_args)
 
     args = parser.parse_args()
     if args == argparse.Namespace():

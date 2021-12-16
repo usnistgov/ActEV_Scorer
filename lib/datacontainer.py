@@ -74,12 +74,6 @@ class DataContainer:
         pickle.dump(self, file)
         file.close()
 
-    # def __repr__(self):
-    #     old_printoptions = np.get_printoptions()
-    #     np.set_printoptions(threshold=15, edgeitems=5)
-    #     np.set_printoptions(**old_printoptions)
-
-
     @staticmethod
     def load(path):
         """ Load Dumped files
@@ -105,7 +99,7 @@ class DataContainer:
                             ('antialiased', 'False')])
 
     @staticmethod
-    def aggregate(dc_list, output_label="Average", method="average", average_resolution=500, line_options=None):
+    def aggregate(dc_list, output_label="Average", method="average", average_resolution=500, line_options=None, xscale="linear", xmin=0):
         if dc_list:
             # Filtering data with missing value
             is_valid = lambda dc: dc.fa.size != 0 and dc.fn.size != 0 and np.all(~np.isnan(dc.fa)) and np.all(~np.isnan(dc.fn))
@@ -119,7 +113,10 @@ class DataContainer:
                     default_line_options["color"] = "green"
 
                 if method == "average":
-                    x = np.linspace(0, max_fa, average_resolution)
+                    if (xscale == "log"):
+                        x = np.logspace(np.log10(xmin), np.log10(max_fa), average_resolution)
+                    else:
+                        x = np.linspace(xmin, max_fa, average_resolution)
                     ys = np.vstack([np.interp(x, data.fa, data.fn) for data in dc_list_filtered])
                     stds = np.std(ys, axis=0, ddof=0)
                     n = len(ys)
@@ -133,5 +130,4 @@ class DataContainer:
                     aggregated_dc = DataContainer(x, (np.vstack(ys).sum(0) + len(dc_list) - len(dc_list_filtered)) / len(dc_list), np.array([]), label=output_label, line_options=line_options)
                     aggregated_dc.std_array = stds
                     return aggregated_dc
-        # print("Warning: No data container remained after filtering, returning an empty object")
         return DataContainer(np.array([]), np.array([]), np.array([]), label=output_label, line_options=None)

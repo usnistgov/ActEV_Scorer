@@ -32,7 +32,6 @@
 
 import sys
 import os
-from pprint import pprint
 import subprocess
 from functools import reduce
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
@@ -138,8 +137,6 @@ class ActEV19_AD_V2(Default):
                                                                    self.build_fa_measure()], uniq_conf, file_framedur_lookup = self.file_framedur_lookup)
 
         det_points = sweeper(alignment)
-        #print "det_points"
-        #pprint(det_points)
 
         pmiss_measures = get_points_along_confidence_curve(det_points,
                                                            "rfa",

@@ -24,7 +24,7 @@ class Render:
         elif self.plot_type is not None:
             return self.plot_type.lower()
         else:
-            print("Error: No plot type has been set {'ROC' or 'DET'}. Either \
+            print("Error: No plot type has been set {'ROC', 'DET', 'DETPMTHR'}. Either \
                 instance a specifif Render with Render(plot_type='roc') or \
                     provide a type to the plot method")
             sys.exit(1)
@@ -81,6 +81,23 @@ class Render:
         adjusted_width = 0.0677 * max_label_length + 6.5904
         return (adjusted_width, height)
 
+    def plot_pr(self, precision, recall, activity, plot_options):
+        import matplotlib.pyplot as plt
+        plot_options = merge_dicts(
+            self.gen_default_plot_options('', '', ''), plot_options)
+        self.figure = plt.figure(
+            figsize=plot_options['figsize'], dpi=120, facecolor='w',
+            edgecolor='k')
+        plt.xlim(plot_options['xlim'])
+        plt.ylim(plot_options['ylim'])
+        plt.xlabel(plot_options['xlabel'])
+        plt.ylabel(plot_options['ylabel'])
+        plt.title(
+            plot_options['title'], fontsize=plot_options['title_fontsize'])
+        plt.plot(precision, recall)
+        plt.grid()
+        return self.figure
+
     def plotter(self, data_list, annotations, plot_type, plot_options, display,
                 infinity=999999, auto_width=True):
         import matplotlib.pyplot as plt
@@ -95,13 +112,16 @@ class Render:
             figsize=figure_size, dpi=120, facecolor='w', edgecolor='k')
 
         def get_y(fn, plot_type):
-            if plot_type != "det":
+            if plot_type != "det" and plot_type != "detpmthr":
                 return 1 - fn
             return fn
 
         for obj in data_list:
             if True not in np.isnan(np.array(obj.fn)):
-                x = obj.fa
+                if plot_type != 'detpmthr':
+                    x = obj.fa
+                else:
+                    x = obj.threshold
                 y = get_y(obj.fn, plot_type)
                 y[y == np.inf] = infinity
                 plt.plot(x, y, **obj.line_options)
@@ -116,7 +136,6 @@ class Render:
                 plt.annotate(annotation.text, **annotation.parameters)
         plt.xlim(plot_options["xlim"])
         plt.ylim(plot_options["ylim"])
-        # print("ylim = {}".format(plot_options["ylim"]))
         plt.xlabel(
             plot_options['xlabel'], fontsize=plot_options['xlabel_fontsize'])
         plt.ylabel(
@@ -173,7 +192,7 @@ class Render:
                                  plot_title=None):
         """This function generates JSON file to customize the plot.
         path: JSON file name along with the path
-        plot_type: either DET or ROC"""
+        plot_type: either DET, ROC, DETPMTHR"""
 
         plot_opts = OrderedDict([
             ('title', "Performance" if plot_title is None else plot_title),
@@ -190,13 +209,22 @@ class Render:
             ('ylabel_fontsize', 11),
             ('legend_fontsize', 8)])
 
-        if plot_type.lower() == "det":
-            if (fa_label == "TFA"):
+        if plot_type.lower() == "det" or plot_type.lower() == "detpmthr":
+            if plot_type.lower() == "detpmthr":  ### X-axis is the threshold
+                plot_opts["xscale"] = "linear"
+                plot_opts["xlabel"] = "PresenceConf Value"
+                plot_opts["xticks"] = [0.0, 0.2, 0.4, 0.6, 0.8, 1]
+                plot_opts["xticks_labels"] = [
+                    "0.0", "0.2", "0.4", "0.6", "0.8", "1.0"]
+                
+            elif (fa_label == "TFA"):
+                plot_opts["xscale"] = "log"
                 plot_opts["xlabel"] = "Time-based False Alarm"
                 plot_opts["xticks"] = [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1]
                 plot_opts["xticks_labels"] = [
                     "0.01", "0.02", "0.05", "0.1", "0.2", "0.5", "1.0"]
             elif (fa_label == "RFA"):
+                plot_opts["xscale"] = "log"
                 plot_opts["xlabel"] = "Rate of False Alarms (#FAs/minute)"
                 plot_opts["xticks"] = [
                     0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10]
@@ -204,13 +232,13 @@ class Render:
                     "0.01", "0.02", "0.05",  "0.1", "0.2", "0.5", "1.0", "2.0",
                     "5.0", "10.0"]
             else:
+                plot_opts["xscale"] = "log"
                 plot_opts["xlabel"] = "Prob. of False Alarm"
                 plot_opts["xticks"] = [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1]
                 plot_opts["xticks_labels"] = [
                     "0.01", "0.02", "0.05", "0.1", "0.2", "0.5", "1.0"]
 
             # Default
-            plot_opts["xscale"] = "log"
             plot_opts["xlim"] = (plot_opts["xticks"][0],
                                  plot_opts["xticks"][-1])
             plot_opts["ylabel"] = "Prob. of Miss Detection"
@@ -222,7 +250,7 @@ class Render:
                 '0.8', '0.9', '1.0']
             plot_opts["ylim"] = (plot_opts["yticks"][0],
                                 plot_opts["yticks"][-1])
-
+            
         elif plot_type.lower() == "roc":
             plot_opts["xscale"] = "linear"
             plot_opts["ylabel"] = "Correct Detection Rate [%]"
@@ -234,6 +262,7 @@ class Render:
                                           '60', '70', '80', '90', '100']
             plot_opts["xticks_labels"] = ['0', '10', '20', '30', '40', '50',
                                           '60', '70', '80', '90', '100']
+
         return plot_opts
 
 

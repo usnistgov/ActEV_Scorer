@@ -32,7 +32,6 @@
 
 import sys
 import os
-from pprint import pprint
 import subprocess
 from functools import reduce
 lib_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../")
@@ -123,11 +122,6 @@ class ActEV19_AD(Default):
     def build_fa_measure(self):
         def _fa_meas(ref_sig, sys_sig, sys_sig_add):
             return fa_meas(ref_sig, sys_sig, sys_sig_add)
-        #[ (ar.ref, ar.sys) for ar in c ],
-        #                  [(ar.ref) for ar in m],
-        #                  [(ar.sys) for ar in f],
-        #                  self.file_framedur_lookup,
-        #                  self.scoring_parameters["fa.ns_collar_size"])
         return _fa_meas
         
     def compute_det_points_and_measures(self, alignment, rfa_denom, uniq_conf, rfa_targets, nmide_targets, fa_targets, wpmiss_denom, wpmiss_numer):
@@ -138,8 +132,6 @@ class ActEV19_AD(Default):
                                                                    self.build_fa_measure()], uniq_conf, file_framedur_lookup = self.file_framedur_lookup)
 
         det_points = sweeper(alignment)
-        #print "det_points"
-        #pprint(det_points)
 
         pmiss_measures = get_points_along_confidence_curve(det_points,
                                                            "rfa",
@@ -176,9 +168,6 @@ class ActEV19_AD(Default):
                                                                 "w_p_miss",
                                                                 lambda r: r["w_p_miss"],
                                                                 fa_targets)
-#        print det_points
-        #auc_measure_t = get_auc(fa_measures, "tfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
-        #auc_measure_r = get_auc(pmiss_measures, "rfa", threshold = self.scoring_parameters["activity.auc_at_fa_targets"])
         return (flatten_sweeper_records(det_points, [ "rfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "tfa", "p_miss" ]), flatten_sweeper_records(det_points, [ "rfa", "p_miss", "tfa", "tfa_denom", "tfa_numer" ]), merge_dicts(pmiss_measures, merge_dicts(nmide_measures, merge_dicts(wpmiss_measures, merge_dicts(fa_measures, wpmiss_tfa_measures)))))
     
 
@@ -200,17 +189,27 @@ class ActEV19_AD(Default):
                     fa.append((k, ii, "tfa", i[3]))
                     fa.append((k, ii, "tfa_denom", i[4]))
                     fa.append((k, ii, "tfa_numer", i[5]))
-#            for k, v in f.items():
-#                print k,v
-                #fa.append(factorization + (k, v))
-                #for k in f.keys():
                 
             for _m, v in measures.items():
                 m.append(factorization + (_m, v))
             return (p, t, fa, m)
 
         grouped = merge_dicts({ k: [] for k in default_factorizations }, group_by_func(factorization_func, records))
-        return reduce(_r, grouped.items(), ({}, {}, [], []))
+        _r_srlz = dill.dumps(_r)
+        args = []
+        for key in grouped:
+            args.append((_r_srlz, (key, grouped[key]), ({}, {}, [], [])))
+
+        with ProcessPoolExecutor(self.pn) as pool:
+            res = pool.map(unserialize_fct_res, args)
+
+        p, t, fa, m = {}, {}, [], []
+        for entry in res:
+            p.update(entry[0])
+            t.update(entry[1])
+            fa.extend(entry[2])
+            m.extend(entry[3])
+        return (p, t, fa, m)
 
     def compute_record_means(self, records, selected_measures = None):
         raw_means = self.compute_means(records, selected_measures)

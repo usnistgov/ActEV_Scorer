@@ -560,6 +560,7 @@ test_15_0() {
     -v
 }
 #larger test
+## This is a special test case with a well-set DET curve structure.  There are no False Alarms so the RFA scoring will be wierd.
 test_15_1() {
     ../ActEV_Scorer.py \
     "ActEV_SDL_V1" \
@@ -630,7 +631,7 @@ test_16_0() {
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
     -o "$1" \
-    -v -n 4
+    -v -n 4 -e
 }
 
 # no ppf test
@@ -676,7 +677,7 @@ test_19_1() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_19-1_file-index.json" \
-    -o "$1" -v
+    -o "$1" -v -e
 }
 
 # no score regions test - 1000 1st frames of VIRAT_S_000000
@@ -687,7 +688,7 @@ test_19_2() {
     -r "data/test_19-2.json" \
     -a "data/test_19-2_activity-index.json" \
     -f "data/test_19-2_file-index.json" \
-    -o "$1" -v
+    -o "$1" -v -e
 }
 
 # Same one without the no-score region
@@ -698,8 +699,7 @@ test_19_3() {
     -r "data/test_19-2.json" \
     -a "data/test_19-2_activity-index.json" \
     -f "data/test_19-3_file-index.json" \
-    -o "$1" \
-    -v
+    -o "$1" -v -e
 }
 
 # New protocol tests: processingReport
@@ -710,7 +710,7 @@ test_20_0() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
-    -o "$1" -v
+    -o "$1" -v -e
 }
 
 # Check tests on processingReport (1,2 and 3)
@@ -721,7 +721,7 @@ test_20_1() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
-    -o "$1" -v --ignore-extraneous-files
+    -o "$1" -v --ignore-extraneous-files -e
 }
 
 test_20_2() {
@@ -731,7 +731,7 @@ test_20_2() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
-    -o "$1" -v --ignore-missing-files
+    -o "$1" -v --ignore-missing-files -e
 }
 
 test_20_3() {
@@ -742,7 +742,7 @@ test_20_3() {
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
     -o "$1" -v --ignore-missing-files \
-    --ignore-extraneous-files
+    --ignore-extraneous-files -e
 }
 
 # Testing that Scorer can handle negative frame numbers
@@ -753,5 +753,207 @@ test_21_0() {
     -r "data/test_11-4.json" \
     -a "data/test_9-0_activity-index.json" \
     -f "data/test_11-0_file-index.json" \
+    -o "$1" -v -e
+}
+
+# SRL_AD_V1 integration test with AUDC metrics 
+test_22_0() {
+    ../ActEV_Scorer.py \
+    "SRL_AD_V1" \
+    -s "data/VIRAT_S_000000_fake-sysout.json" \
+    -r "data/VIRAT_S_000000.json" \
+    -a "data/VIRAT_S_000000_activity-index.json" \
+    -f "data/VIRAT_S_000000_file-index.json" \
     -o "$1" -v
+}
+
+# SRL_AD_V1 integration test
+# Testing passing of scoring parameters JSON
+test_22_1() {
+    ../ActEV_Scorer.py \
+    "SRL_AD_V1" \
+    -s "data/VIRAT_S_000000_fake-sysout.json" \
+    -r "data/VIRAT_S_000000.json" \
+    -a "data/VIRAT_S_000000_activity-index.json" \
+    -f "data/VIRAT_S_000000_file-index.json" \
+    -o "$1" \
+    -d \
+    -p "data/test_1_1.scoring_parameters.json" \
+    -v
+}
+
+# SRL_AD_V1 integration test
+# Check validation only option
+test_22_2() {
+    ../ActEV_Scorer.py \
+    "SRL_AD_V1" \
+    -s "data/VIRAT_S_000000_fake-sysout.json" \
+    -a "data/VIRAT_S_000000_activity-index.json" \
+    -f "data/VIRAT_S_000000_file-index.json" \
+    -d -v -V
+}
+
+# SRL_AD_V1 integration test
+test_22_3() {
+    ../ActEV_Scorer.py \
+    "SRL_AD_V1" \
+    -s "data/VIRAT_S_000001_fake-sysout.json" \
+    -r "data/VIRAT_S_000001.json" \
+    -a "data/VIRAT_S_000001_activity-index.json" \
+    -f "data/VIRAT_S_000001_file-index.json" \
+    -o "$1" -d -v
+}
+
+# SRL_AD_V1 integration test 3-0
+test_22_4() {
+    ../ActEV_Scorer.py \
+    "SRL_AD_V1" \
+    -s "data/test_3-0_fake-sysout.json" \
+    -r "data/test_3-0.json" \
+    -a "data/test_3-0_activity-index.json" \
+    -f "data/test_3-0_file-index.json" \
+    -o "$1" -d -v
+}
+
+# SRL_AD_V1 using the SmoothCurve test set
+test_22_5() {
+    ../ActEV_Scorer.py \
+    "SRL_AD_V1" \
+    -s "data/SmoothCurve.sys.json" \
+    -r "data/SmoothCurve.ref.json" \
+    -a "data/SmoothCurve.activity-index.json" \
+    -f "data/SmoothCurve.file-index.json" \
+    -F -o "$1" -v \
+    -c ../lib/srl_linear_plot.json
+}
+
+# SRL_AD_V2 using the SmoothCurve test set
+test_22_6() {
+    ../ActEV_Scorer.py \
+    "SRL_AD_V2" \
+    -s "data/SmoothCurve.sys.json" \
+    -r "data/SmoothCurve.ref.json" \
+    -a "data/SmoothCurve.activity-index.json" \
+    -f "data/SmoothCurve.file-index.json" \
+    -F -o "$1" -v \
+    -c ../lib/srl_linear_plot.json
+}
+
+# SRL_AD_V3 using the SmoothCurve test set
+test_22_7() {
+    ../ActEV_Scorer.py \
+    "SRL_AD_V3" \
+    -s "data/SmoothCurve.sys.json" \
+    -r "data/SmoothCurve.ref.json" \
+    -a "data/SmoothCurve.activity-index.json" \
+    -f "data/SmoothCurve.file-index.json" \
+    -F -o "$1" -v \
+    -c ../lib/srl_linear_plot.json
+}
+
+# SRL_AOD_V1 integration test with AUDC metrics 
+test_23_0() {
+    ../ActEV_Scorer.py \
+    "SRL_AOD_V1" \
+    -s "data/test_4-0_fake-sysout.json" \
+    -r "data/test_4-0.json" \
+    -a "data/test_4-0_activity-index.json" \
+    -f "data/test_4-0_file-index.json" \
+    -o "$1" -v -e
+}
+
+# SRL_AOD_V1 integration test
+# Check validation only option
+test_23_1() {
+    ../ActEV_Scorer.py \
+    "SRL_AOD_V1" \
+    -s "data/test_4-0_fake-sysout.json" \
+    -a "data/test_4-0_activity-index.json" \
+    -f "data/test_4-0_file-index.json" \
+    -o "$1" -d -v -V
+}
+
+
+# SRL_AOD_V1 integration test
+# Activity index equivalence class testing
+test_23_2() {
+    ../ActEV_Scorer.py \
+    "SRL_AOD_V1" \
+    -s "data/test_4-0_fake-sysout.json" \
+    -r "data/test_4-0.json" \
+    -a "data/test_5-0_activity-index.json" \
+    -f "data/test_4-0_file-index.json" \
+    -o "$1" -d -v
+}
+
+# SRL_AOD_V1 integration test
+# Check for handling of MODE metric over instances with 0 reference
+# objects
+test_23_3() {
+    ../ActEV_Scorer.py \
+    "SRL_AOD_V1" \
+    -s "data/test_6-0_fake-sysout.json" \
+    -r "data/test_6-0.json" \
+    -a "data/test_6-0_activity-index.json" \
+    -f "data/test_6-0_file-index.json" \
+    -o "$1" -d -I -v
+}
+
+# integration test 7-0
+# Test ignore-extraneous-files (-F) option
+test_23_4() {
+    ../ActEV_Scorer.py \
+    "SRL_AOD_V1" \
+    -s "data/test_7-0_fake-sysout.json" \
+    -r "data/test_4-0.json" \
+    -a "data/test_4-0_activity-index.json" \
+    -f "data/test_4-0_file-index.json" \
+    -F -o "$1" -d -v
+}
+
+# SRL_AOD_V1 using the SmoothCurve test set
+test_23_5() {
+    ../ActEV_Scorer.py \
+    "SRL_AOD_V1" \
+    -s "data/SmoothCurve.sys.json" \
+    -r "data/SmoothCurve.ref.json" \
+    -a "data/SmoothCurve.activity-index.json" \
+    -f "data/SmoothCurve.file-index.json" \
+    -F -o "$1" -v --transformations single_bbox_per_frame \
+    -c ../lib/srl_linear_plot.json
+}
+
+# SRL_AOD_V2 using the SmoothCurve test set
+test_23_6() {
+    ../ActEV_Scorer.py \
+    "SRL_AOD_V2" \
+    -s "data/SmoothCurve.sys.json" \
+    -r "data/SmoothCurve.ref.json" \
+    -a "data/SmoothCurve.activity-index.json" \
+    -f "data/SmoothCurve.file-index.json" \
+    -F -o "$1" -v --transformations single_bbox_per_frame \
+    -c ../lib/srl_linear_plot.json
+}
+# SRL_AOD_V3 using the SmoothCurve test set
+test_23_7() {
+    ../ActEV_Scorer.py \
+    "SRL_AOD_V3" \
+    -s "data/SmoothCurve.sys.json" \
+    -r "data/SmoothCurve.ref.json" \
+    -a "data/SmoothCurve.activity-index.json" \
+    -f "data/SmoothCurve.file-index.json" \
+    -F -o "$1" -v --transformations single_bbox_per_frame \
+    -c ../lib/srl_linear_plot.json
+}
+
+
+# Non-regression test for --transformations single_bbox_per_frame
+test_24_0() {
+    ../ActEV_Scorer.py \
+    "SRL_AOD_V1" \
+    -s "data/test_24-0_fake-sysout.json" \
+    -r "data/test_24-0.json" \
+    -a "data/test_5-0_activity-index.json" \
+    -f "data/test_4-0_file-index.json" \
+    -o "$1" -v --transformations single_bbox_per_frame
 }

@@ -1,0 +1,20 @@
+{
+  "Closing": {
+    "objectTypes": [
+      "person",
+      "vehicle"
+    ]
+  },
+  "Closing-Temp-IOU": {
+    "objectTypes": [
+      "person",
+      "vehicle"
+    ]
+  },
+  "Entering": {
+    "objectTypes": [
+      "person",
+      "vehicle"
+    ]
+  }
+}

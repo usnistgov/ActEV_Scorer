@@ -1,0 +1,13 @@
+activity|score_threshold|metric_name|metric_value
+Closing|0.756|n-mode|0.3571428571428572
+Closing|0.756|p_miss|0.0
+Closing|0.756|rfa|0.08595988538681949
+Closing|0.774|n-mode|None
+Closing|0.774|p_miss|1.0
+Closing|0.774|rfa|0.08595988538681949
+Entering|0.652|n-mode|0.0
+Entering|0.652|p_miss|0.5
+Entering|0.652|rfa|0.08595988538681949
+Entering|0.769|n-mode|None
+Entering|0.769|p_miss|1.0
+Entering|0.769|rfa|0.08595988538681949

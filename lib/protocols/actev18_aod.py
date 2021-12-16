@@ -214,11 +214,8 @@ class ActEV18_AOD(ActEV18_AD):
 
                 return map(_subm, item.kernel_components.get("alignment_records", []))
 
-            l = []
             for entry in list(map(_m, filter(lambda r: r.alignment == "CD", recs))):
-                l.append(entry)
-            #init.extend(reduce(add, map(_m, filter(lambda r: r.alignment == "CD", recs)), []))
-            init.extend(l)
+                init.extend(entry)
             return init
 
         object_frame_alignment_records = reduce(_object_frame_alignment_records, group_by_func(lambda rec: rec.activity, alignment).items(), [])
