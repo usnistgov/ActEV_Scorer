@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$version": "ActEV_SDL_V2_SA",
+  "definitions": {
+    "temporal_localization": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z0-9_\\-\\.]+$": {
+          "type": "object",
+          "patternProperties": {
+            "^-?[0-9]+$": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "minProperties": 2,
+          "additionalProperties": false
+        }
+      },
+      "minProperties": 1,
+      "maxProperties": 1,
+      "additionalProperties": false
+    },
+    "activity_instance": {
+      "type": "object",
+      "properties": {
+        "activity": {
+          "type": "string"
+        },
+        "alertFrame": {
+          "type": "integer"
+        },
+        "presenceConf": {
+          "type": "number"
+        },
+        "activityID": {
+          "type": "integer"
+        },
+        "localization": {
+          "$ref": "#/definitions/temporal_localization"
+        }
+      },
+      "required": [
+        "activity",
+        "presenceConf",
+        "activityID",
+        "localization"
+      ]
+    },
+    "filename": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_\\-\\.]+$"
+    },
+    "file_status": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z0-9_\\-\\.]+$": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["success", "fail"]
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "status",
+            "message"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1
+    }
+  },
+  "type": "object",
+  "properties": {
+    "filesProcessed": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/filename"
+      }
+    },
+    "activities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/activity_instance"
+      }
+    },
+    "processingReport": {
+      "type": "object",
+      "properties": {
+        "siteSpecific": {
+          "type": "object"
+        },
+        "fileStatuses": {
+          "$ref": "#/definitions/file_status"
+        }
+      },
+      "required": [
+        "fileStatuses"
+      ]
+    }
+  },
+  "required": [
+    "filesProcessed",
+    "activities"
+  ]
+}

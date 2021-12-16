@@ -279,8 +279,8 @@ def load_scoring_parameters(log, scoring_parameters_file):
     return load_json(scoring_parameters_file)
 
 def load_schema_for_protocol(log, protocol):
-    log(1, "[Info] Loading JSON schema")
     schema_path = "{}/{}".format(protocols_path, protocol.get_schema_fn())
+    log(1, "[Info] Loading JSON schema {}".format(schema_path))
     return load_json(schema_path)
 
 def parse_activities(deserialized_json, file_index, load_objects = False, ignore_extraneous = False, ignore_missing = False):
@@ -392,6 +392,10 @@ def score_actev_sdl_v1(args):
 def score_actev_sdl_v2(args):
     from actev_sdl_v2 import ActEV_SDL_V2
     score_basic(ActEV_SDL_V2, args)
+    
+def score_actev_sdl_v2npr(args):
+    from actev_sdl_v2npr import ActEV_SDL_V2NPR
+    score_basic(ActEV_SDL_V2NPR, args)
     
 def score_actev18_ad(args):
     from actev18_ad import ActEV18_AD
@@ -695,6 +699,11 @@ if __name__ == '__main__':
     add_protocol_subparser("ActEV_SDL_V2",
                            dict(help="Scoring protocol for the ActEV SDL V2 Activity Detection task"),
                            score_actev_sdl_v2,
+                           base_args)
+    
+    add_protocol_subparser("ActEV_SDL_V2NPR",
+                           dict(help="Same as Scoring protocol ActEV_SDL_V2 but not requiring the processingReport in the system output"),
+                           score_actev_sdl_v2npr,
                            base_args)
     
     add_protocol_subparser("ActEV18_AD",

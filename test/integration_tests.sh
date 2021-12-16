@@ -422,6 +422,17 @@ test_11_4() {
        -v
 }
 
+test_11_4npr() {
+    ../ActEV_Scorer.py \
+    "ActEV_SDL_V2NPR" \
+       -s "data/test_11-4_fake-sysout-npr.json" \
+       -r "data/test_11-4.json" \
+       -a "data/test_9-0_activity-index.json" \
+       -f "data/test_11-0_file-index.json" \
+       -o "$1" \
+       -v
+}
+
 test_11_5() {
     ../ActEV_Scorer.py \
     "ActEV_SDL_V1" \

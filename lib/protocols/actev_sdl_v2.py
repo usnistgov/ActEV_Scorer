@@ -72,6 +72,7 @@ class ActEV_SDL_V2(Default):
 
         scoring_parameters = merge_dicts(default_scoring_parameters, scoring_parameters)
         super(ActEV_SDL_V2, self).__init__(scoring_parameters, file_index, activity_index, command)
+        print("=Wrong Init")
 
         self.file_framedur_lookup = { k: S({ int(_k): _v for _k, _v in v["selected"].items() }).area() for k, v in file_index.items() }
         self.total_file_duration_minutes = sum([ float(frames) / file_index[k]["framerate"] for k, frames in self.file_framedur_lookup.items()]) / float(60)
