@@ -512,6 +512,11 @@ def score_basic(protocol_class, args):
         protocol.minmax = None
         system_output_schema = load_schema_for_protocol(log, protocol)
 
+    if args.do_not_annotate:
+        # Loading DNA regions and include them into the protocol class.
+        # Then, related instances should be discarded during cohort gen, or during alignment
+        protocol.dna = load_json(args.do_not_annotate)
+
     log(1, "[Info] Computing alignments ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
     log(1, "[Info] {} alignment records".format(len(alignment)))
@@ -667,7 +672,8 @@ if __name__ == '__main__':
                  [["-S", "--skip-validation"], dict(help="Skip system output validation step", action="store_true", default=False)],
                  [["-e", "--extra-metrics"], dict(help="Allow Scorer to compute extra metrics", action="store_true", default=False)],
                  [["--transformations"], dict(help="Converts the json object to the maximum posible bounding box size", type=str)],
-                 [["--rewrite"], dict(help="Rewrites transformed jsons with the given extension", type=str)]]
+                 [["--rewrite"], dict(help="Rewrites transformed jsons with the given extension", type=str)],
+                 [["--do-not-annotate"], dict(help="Do-Not-Annotate regions file", type=str, required=False)]]
 
     def add_protocol_subparser(name, kwargs, func, arguments):
         subp = subparsers.add_parser(name, **kwargs)
