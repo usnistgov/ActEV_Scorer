@@ -515,7 +515,43 @@ def score_basic(protocol_class, args):
     if args.do_not_annotate:
         # Loading DNA regions and include them into the protocol class.
         # Then, related instances should be discarded during cohort gen, or during alignment
-        protocol.dna = load_json(args.do_not_annotate)
+        # protocol.dna = load_dna(args.do_not_annotate)
+        # protocol.dna is then a list of Polygon instances, defining all the DNA regions
+        from polygons import DNA
+        videos = [
+            "2018-03-15.16-45-00.16-50-00.school.G421.avi",
+            "2018-03-15.16-50-00.16-54-59.school.G421.avi",
+            "2018-09-06.08-50-01.08-55-01.alb.G421.avi",
+            "2018-09-06.12-35-01.12-40-01.alb.G421.avi",
+            "2018-09-06.12-55-01.13-00-01.alb.G421.avi",
+            "2018-09-09.10-00-00.10-05-00.alb.G421.avi",
+            "2018-10-15.13-05-00.13-10-01.alb.G421.avi"]
+        points_top = [(233, 128), (396, 128), (396, 326), (233, 326)]
+        dna_top = DNA(videos, (1, 9061), [], points_top, thd='50p')
+        points_bottom = [(1653, 675), (1886, 780), (1641, 1072), (1513, 1072), (1280, 885)]
+        dna_bottom = DNA(videos, (1, 9061), [], points_bottom, thd='50p')
+        protocol.dna = [dna_top, dna_bottom]
+        # Setup ready, now counting instances that are inside a DNA
+        obj_count = 0
+        o_cpt = 0
+        i_cpt = 0
+        for instance in system_activities:
+            cpt = 0
+            for obj in instance['objects']:
+                obj_count += 1
+                for dna in protocol.dna:
+                    if dna.contains(obj):
+                        cpt += 1
+            if cpt != 0:
+                o_cpt += cpt
+                i_cpt += 1
+
+        print("Total activity instances: %d" % len(system_activities))
+        print("Discarded activity instances: %d" % i_cpt)
+        print("Total objects instances: %d" % obj_count)
+        print("Discard object instances: %d" % o_cpt)
+
+        sys.exit(0)
 
     log(1, "[Info] Computing alignments ..")
     alignment = protocol.compute_alignment(system_activities, reference_activities)
