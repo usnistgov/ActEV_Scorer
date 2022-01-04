@@ -176,10 +176,11 @@ class DNA:
             return (count % 2 == 1)
 
         # Not the same video
-        if obj['localization'].get(self.video, None) is None:
+        video = list(obj['localization'].keys())[0]
+        if video in self.videos is None:
             return False
 
-        loc = obj['localization'][self.video]
+        loc = obj['localization'][video]
         obj_frames = sorted(map(lambda x: int(x), loc.keys()))
 
         # Not on the same timespan
