@@ -99,13 +99,18 @@ def inter_list(a, b):
 
 class DNA:
     """
-    Class defining a Do-Not-Annotate region. It is defined by a list of activity types to filter,
+    Class defining a Do-Not-Annotate region. It is defined by a list of activity types to filter.
+    `video_files`: list of video files to consider. If empty, all files are considered.
+    `frames`: duet of integers (starting and ending frames)
+    `activity_types`: list of activities to consider. If empty, all types are considered.
+    `points`: tuple of duets of integers, describing a polygon (each duet represents
+        the coordinates of each point defining the polygon)
 
-    Careful: no possible check on activity type so a first object instance filtering
-    should happen before calling self.is_inside
+    Note that filtering on activity types should occur prior to using contains, because given an
+    object instance, we don't know what activity types it is associated to.
     """
-    def __init__(self, video_file, frames, activity_types, points, thd="10p"):
-        self.video = video_file
+    def __init__(self, video_files, frames, activity_types, points, thd="10p"):
+        self.videos = video_files
         self.frames = frames
         self.types = activity_types
         self.points = points
