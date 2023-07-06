@@ -1,5 +1,5 @@
 munkres==1.0.12
-scipy==1.4.1
+scipy==1.10.0
 matplotlib==3.2.0
 jsonschema==2.5.1
 dill==0.3.1.1
