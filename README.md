@@ -10,7 +10,7 @@
 
 This software package contains a scoring script for the TRECVID
 Activities in Extended Video (ActEV) task.  The script
-`ActEV_Scorer.py`, is a Python 3.7 script that will validate and score
+`ActEV_Scorer.py`, is a Python 3.14.6 script that will validate and score
 a system output file adhering to the JSON format defined in the ActEV evaluation plan. A collection of unit and integration test cases have also been included, see the [setup](#setup) section for more detail.
 
 `ActEV_Scorer.py`, when run with the '-h' option, will show the script's usage text. The `example_run.sh` contains an example of typical usage (using the provided test data).
@@ -19,7 +19,7 @@ a system output file adhering to the JSON format defined in the ActEV evaluation
 
   This package assumes a Unix-like environment. Included Python files are written for Python 3.7
 
-  1) Install Python 3.7+, `jq` and required dependencies using `make install_pip` or `make install_conda`
+  1) Install Python 3.14.6+, `jq` and required dependencies using `make install_pip` or `make install_conda`
   2) Run the tests (optional, but strongly recommended) using `make check`
 
 ### Option description
